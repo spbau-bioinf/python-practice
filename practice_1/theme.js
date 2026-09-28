@@ -280,6 +280,59 @@
     window.location.reload();
   }
 
+  /* ---------- «Начать заново» (версия 54): прогресс, код и все настройки ----------
+     Кнопка всегда в верхней панели. Окно подтверждения перечисляет, что сбросится; файл с
+     прогрессом и настройками скачивается перед сбросом всегда: кнопкой в окне или сам.
+     Отметки страницы преподавателя (practice-html-teacher) не трогаются. */
+  var RESET_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3M4.5 4.5v3.9h3.9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>';
+  function resetAll() {
+    var d = el("dialog", "rs-dlg");
+    d.setAttribute("aria-labelledby", "rs-title");
+    var x = el("button", "tb-icon rs-x"); x.type = "button"; x.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    x.setAttribute("aria-label", "Закрыть"); x.onclick = function () { d.close(); };
+    d.appendChild(x);
+    var h = el("h3", "", "Начать заново?"); h.id = "rs-title"; d.appendChild(h);
+    d.appendChild(el("p", "", "Будут сброшены все данные сайта в этом браузере:"));
+    var ul = el("ul");
+    [["решенные упражнения и прогресс", ": отметки, кольца на главной, опыт и значки игрового режима;"],
+     ["код", " в полях проверки и в примерах;"],
+     ["настройки", ": тема (как в системе), режим (классический), звук (выключен), уровень (не выбран), " +
+       "объем теории (подробно), система для терминала (по вашему компьютеру)."]].forEach(function (it) {
+      var li = el("li"); li.appendChild(el("b", "", it[0])); li.appendChild(document.createTextNode(it[1])); ul.appendChild(li);
+    });
+    d.appendChild(ul);
+    d.appendChild(el("p", "rs-warn", "Отменить сброс нельзя. Перед сбросом файл с прогрессом и настройками скачается сам, " +
+      "если вы не сохранили его кнопкой ниже: его можно загрузить обратно через ⚙ → «Прогресс» → «Загрузить»."));
+    var acts = el("div", "rs-acts"), saved = false;
+    var sb = el("button", "tb-btn rs-save"); sb.type = "button";
+    sb.innerHTML = SVG.dl + "<span>Сохранить прогресс в файл</span>";
+    sb.onclick = function () { exportProgress(); saved = true; sb.querySelector("span").textContent = "Файл сохранен"; };
+    acts.appendChild(sb);
+    acts.appendChild(el("span", "rs-flex"));
+    var yes = el("button", "tb-btn rs-yes", "Сбросить все"); yes.type = "button";
+    yes.onclick = function () {
+      yes.disabled = true;
+      if (!saved) exportProgress();              /* резервная копия скачивается всегда */
+      window.setTimeout(function () {
+        var keys = [];
+        for (var i = 0; i < window.localStorage.length; i++) {
+          var key = window.localStorage.key(i);
+          if (key && key.indexOf("practice-html") === 0 && key.indexOf("practice-html-teacher") !== 0) keys.push(key);
+        }
+        keys.forEach(function (key) { window.localStorage.removeItem(key); });
+        window.location.replace(window.location.pathname);
+      }, 700);
+    };
+    acts.appendChild(yes);
+    var no = el("button", "tb-btn", "Отмена"); no.type = "button"; no.onclick = function () { d.close(); };
+    acts.appendChild(no);
+    d.appendChild(acts);
+    d.addEventListener("close", function () { d.parentNode && d.parentNode.removeChild(d); });
+    document.body.appendChild(d);
+    d.showModal();
+  }
+
   /* ---------- объем теории (версия 27) ---------- */
   var THEORY_OPTS = [["brief", "Кратко"], ["full", "Подробно"]];
   function hasTheory() { return !!document.querySelector("main .th-full"); }
@@ -469,6 +522,12 @@
     soundBtn.type = "button";
     soundBtn.addEventListener("click", function () { settings.sound = !settings.sound; changed(); });
     bar.appendChild(soundBtn);
+    var resetBtn = el("button", "tb-icon tip tb-reset");
+    resetBtn.type = "button";
+    resetBtn.innerHTML = RESET_ICON;
+    tip(resetBtn, "Начать заново: сбросить прогресс и настройки");
+    resetBtn.addEventListener("click", resetAll);
+    bar.appendChild(resetBtn);
     bar.appendChild(gearMenu());
 
     document.body.insertBefore(bar, document.body.firstChild);

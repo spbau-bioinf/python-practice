@@ -89,6 +89,53 @@
     document.head.appendChild(s);
   }
 
+  function stamp() {
+    var d = new Date(), p = function (n) { return (n < 10 ? "0" : "") + n; };
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + "_" + p(d.getHours()) + "-" + p(d.getMinutes());
+  }
+  function exportProgress() {                         /* тот же формат, что в theme.js */
+    var data = {};
+    for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf("practice-html") === 0) data[k] = localStorage.getItem(k); }
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify({ format: "practice-html-progress", saved: new Date().toISOString(), data: data }, null, 1)], { type: "application/json" }));
+    a.download = "progress_python_" + stamp() + ".json"; document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  function mk(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function resetAll() {
+    var d = mk("dialog", "rs-dlg");
+    var x = mk("button", "tb-icon rs-x"); x.type = "button"; x.setAttribute("aria-label", "Закрыть");
+    x.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>';
+    x.onclick = function () { d.close(); }; d.appendChild(x);
+    d.appendChild(mk("h3", "", "Начать заново?"));
+    d.appendChild(mk("p", "", "Будут сброшены все данные сайта в этом браузере:"));
+    var ul = mk("ul");
+    [["решенные упражнения и прогресс", ": отметки, кольца на главной, опыт и значки игрового режима;"], ["код", " в полях проверки и в примерах;"],
+     ["настройки", ": тема (как в системе), режим (классический), звук (выключен), уровень (не выбран), объем теории (подробно), система для терминала (по вашему компьютеру)."]
+    ].forEach(function (it) { var li = mk("li"); li.appendChild(mk("b", "", it[0])); li.appendChild(document.createTextNode(it[1])); ul.appendChild(li); });
+    d.appendChild(ul);
+    d.appendChild(mk("p", "rs-warn", "Отменить сброс нельзя. Перед сбросом файл с прогрессом и настройками скачается сам, если вы не сохранили его кнопкой ниже: его можно загрузить обратно через ⚙ → «Прогресс» → «Загрузить» на странице практики."));
+    var acts = mk("div", "rs-acts"), saved = false;
+    var sb = mk("button", "tb-btn rs-save", "Сохранить прогресс в файл"); sb.type = "button";
+    sb.onclick = function () { exportProgress(); saved = true; sb.textContent = "Файл сохранен"; };
+    acts.appendChild(sb); acts.appendChild(mk("span", "rs-flex"));
+    var yes = mk("button", "tb-btn rs-yes", "Сбросить все"); yes.type = "button";
+    yes.onclick = function () {
+      yes.disabled = true; if (!saved) exportProgress();
+      setTimeout(function () {
+        var keys = [];
+        for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf("practice-html") === 0 && k.indexOf("practice-html-teacher") !== 0) keys.push(k); }
+        keys.forEach(function (k) { localStorage.removeItem(k); });
+        location.replace(location.pathname);
+      }, 700);
+    };
+    acts.appendChild(yes);
+    var no = mk("button", "tb-btn", "Отмена"); no.type = "button"; no.onclick = function () { d.close(); }; acts.appendChild(no);
+    d.appendChild(acts);
+    d.addEventListener("close", function () { d.remove(); });
+    document.body.appendChild(d); d.showModal();
+  }
+
   function init() {
     var tb = document.querySelector(".home-theme");
     if (tb) {
@@ -99,6 +146,9 @@
         write(KEY, settings); apply(); paintThemeBtn(tb);
       });
     }
+    /* версия 54: «Начать заново» и на главной: то же окно, что на страницах практики */
+    var rb = document.querySelector(".home-reset");
+    if (rb) rb.addEventListener("click", resetAll);
     var gear = document.querySelector(".home-gear"), pop = document.querySelector(".home-pop");
     if (gear && pop) {
       gear.addEventListener("click", function () {

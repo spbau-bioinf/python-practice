@@ -1812,3 +1812,25 @@ html[data-os] .os-switch > .output-block { border-top-left-radius: 0; border-top
 [data-profile="game"] .example > h3::before { border-radius: 0; }
 .tch-row2 .tch-tabs { order: 0; }
 .tch-row2 .tch-acts-top { order: 1; margin-left: auto; }
+
+/* ---------- Версия 54: «Начать заново» ----------
+   Иконка «стрелка с точкой» всегда в верхней панели (на страницах практики и на главной);
+   окно подтверждения перечисляет, что сбросится; файл с прогрессом скачивается перед сбросом всегда. */
+.tb-reset svg, .home-reset svg { width: 1.15rem; height: 1.15rem; }
+.rs-dlg { border: 1px solid var(--c-border); border-radius: var(--radius-md); background: var(--c-surface); color: var(--c-text);
+  padding: 1.3rem 1.4rem 1.1rem; max-width: 34rem; box-shadow: var(--shadow-md); font-family: var(--font-ui); }
+.rs-dlg::backdrop { background: rgba(0, 0, 0, 0.45); }
+.rs-dlg h3 { margin: 0 0.8rem 0.6rem 0; }
+.rs-dlg ul { margin: 0.2rem 0 0.7rem; padding-left: 1.2rem; color: var(--c-text-2); }
+.rs-dlg li { margin: 0.3rem 0; }
+.rs-dlg li b { color: var(--c-text); }
+.rs-warn { padding: 0.55rem 0.7rem; border-radius: 8px; background: var(--c-error-light); color: var(--c-error-text); font-size: 0.9rem; }
+.rs-x { position: absolute; right: 0.6rem; top: 0.6rem; }
+.rs-x svg { width: 1rem; height: 1rem; }
+.rs-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.8rem; }
+.rs-acts .tb-btn { display: inline-flex; align-items: center; gap: 0.35rem; }
+.rs-acts svg { width: 1rem; height: 1rem; }
+.rs-flex { flex: 1; }
+.rs-yes { border-color: var(--c-error); color: var(--c-error-text); font-weight: 700; }
+.rs-yes:disabled { opacity: 0.6; }
+[data-profile="game"] .rs-dlg { border-radius: 0; border-width: 3px; }
