@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Переменные. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t1_04.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Присваивание</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Имя и объект</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Изменяемый объект и два имени</a></li><li><a href="#s4" data-section="s4"><span class="anc-num">4.</span> Правила имен</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.4.1</span> <span class="anc-ex-title" data-variant="basic">Два деления</span><span class="anc-ex-title" data-variant="medium">Пересев культуры</span><span class="anc-ex-title" data-variant="advanced">Три цикла роста</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">04</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Переменные и ссылочная модель</span></p>
+      <h1>Переменные</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>15 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+<p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться связывать имена со значениями, прослеживать переприсваивание по шагам, различать сравнение значений и тождество объектов и выбирать допустимые понятные имена.</p>
+<aside class="hint"><p><strong>Как устроены задачи.</strong> Функцию <code>input()</code> вы изучите на странице <a href="t1_09.html">09</a>, поэтому до нее исходные данные задаются в начале программы строками вида <code>count = 5</code>. Имена переменных берите из условия: проверка подставляет в эти строки свои значения и так убеждается, что программа считает, а не печатает готовое число. В поле проверки эти строки уже вставлены.</p></aside>
+<section class="subsection" id="s1">
+<h2>1. Присваивание</h2>
+<div class="step step-learn">Теория</div>
+<p class="th-full">Программа обрабатывает данные: длины последовательностей, объемы, концентрации. Чтобы к значению можно было вернуться, его связывают с именем. Имя делает код похожим на условие задачи: <code>volume - sample</code> читается легче, чем <code>100 - 10</code>.</p>
+<p class="definition"><span class="term">Переменная</span>&nbsp;— имя, связанное с объектом (значением) в памяти.</p>
+<p>Связь создает <span class="term">присваивание</span> <code>имя = выражение</code>. Знак <code>=</code> не означает равенство: Python сначала целиком вычисляет выражение справа, а затем привязывает к результату имя слева. Поэтому запись <code>x = x - 1</code> осмысленна: из старого значения <code>x</code> вычисляется новое, и имя <code>x</code> переходит к нему. Выражение без присваивания (строка <code>x - 1</code>) значение переменной не меняет.</p>
+<p>В примерах используются сложение, вычитание и умножение, знакомые по школе; все арифметические операции Python разобраны на странице <a href="t1_06.html">06</a>.</p>
+<div class="th-full">
+<p>Порядок выполнения присваивания обратен порядку чтения. Пусть <code>x</code> связано с числом 43. Строка <code>x = x - 1</code> выполняется так:</p>
+<ol class="flow" aria-label="Выполнение присваивания x = x - 1">
+<li><span class="flow-expr">x = x − 1</span><span class="flow-text">правая часть вычисляется первой, имя x пока связано с 43</span></li>
+<li><span class="flow-expr">x = 43 − 1</span><span class="flow-text">вместо имени подставлено его значение</span></li>
+<li><span class="flow-expr">x = 42</span><span class="flow-text">получен новый объект, число 42</span></li>
+<li><span class="flow-expr">x → 42</span><span class="flow-text">имя x привязывается к нему</span></li>
+</ol>
+<p>Объект существует раньше, чем имя: сначала вычисляется значение, потом к нему привязывается имя. Объявлять переменную заранее не нужно, она появляется при первом присваивании. Если обратиться к имени до присваивания, Python выдаст <code>NameError</code> (страница <a href="t1_01.html">01</a>).</p>
+</div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Переприсваивание по шагам</h3><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">cells.py</span><pre><code><span class="ln">cells <span class="tok-op">=</span> <span class="tok-num">40</span></span>
+<span class="ln">cells <span class="tok-op">=</span> cells <span class="tok-op">*</span> <span class="tok-num">2</span></span>
+<span class="ln">cells <span class="tok-op">=</span> cells <span class="tok-op">-</span> <span class="tok-num">5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(cells)  <span class="tok-out"># → 75</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>75</pre></div></div><ol class="code-explain-text"><li>Имя <code>cells</code> связывается с числом 40: в пробирке 40 клеток.</li><li>Справа вычисляется <span class="formula">40 · 2 = 80</span>, имя <code>cells</code> переходит к 80. Клетки поделились.</li><li>Справа <span class="formula">80 − 5 = 75</span>: пять клеток забрали на анализ.</li><li>Выводится текущее значение: 75. Промежуточные значения 40 и 80 больше не связаны с именем.</li></ol></div><div class="th-full"><div class="table-wrap"><table class="data trace"><thead><tr><th>Шаг</th><th>Строка</th><th>Вычисление</th><th>cells</th><th>Вывод</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td></td><td>40</td><td></td></tr>
+<tr><td>2</td><td>2</td><td><span class="formula">40 · 2 → 80</span></td><td>80</td><td></td></tr>
+<tr><td>3</td><td>3</td><td><span class="formula">80 − 5 → 75</span></td><td>75</td><td></td></tr>
+<tr><td>4</td><td>4</td><td></td><td>75</td><td>75</td></tr>
+</tbody></table></div></div></article>
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: присваивание «справа налево»</p><div class="code-block code-wrong"><span class="code-label">Неверно: имя справа от знака =</span><pre><code><span class="tok-num">40</span> <span class="tok-op">=</span> cells</code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "mistake.py", line 1
+    40 = cells
+    ^^
+SyntaxError: cannot assign to literal here. Maybe you meant '==' instead of '='?</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code>cells <span class="tok-op">=</span> <span class="tok-num">40</span></code></pre></div><p>В математике равенство можно читать в обе стороны, в Python нет: слева от <code>=</code> всегда стоит имя, которое получит значение. Python даже подсказывает, что, возможно, имелось в виду сравнение <code>==</code> (оно разобрано на странице <a href="t1_05.html">05</a>).</p></div>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Замените во второй строке <code>* 2</code> на <code>* 3</code> и предскажите вывод до запуска. Затем удалите <code>cells = </code> в начале третьей строки, оставив <code>cells - 5</code>: почему вывод изменился?</p><div class="run-pair"><div class="code-block"><span class="code-label">try_cells.py</span><pre><code><span class="ln">cells <span class="tok-op">=</span> <span class="tok-num">40</span></span>
+<span class="ln">cells <span class="tok-op">=</span> cells <span class="tok-op">*</span> <span class="tok-num">2</span></span>
+<span class="ln">cells <span class="tok-op">=</span> cells <span class="tok-op">-</span> <span class="tok-num">5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(cells)  <span class="tok-out"># → 75</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>75</pre></div></div></div>
+<div class="step step-task">Задача</div>
+<div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+<div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t1_04_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t1_04_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t1_04_1_advanced.py">Продвинутый</button></div>
+<div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+<div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+<h3>Упражнение 1.4.1. Два деления</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В пробирке <code>count</code> клеток. При каждом делении число клеток удваивается. Найдите, сколько клеток станет после двух делений. Используйте переприсваивание, как в примере.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задается целое неотрицательное число <code>count</code>.</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>count = 5</pre></td><td><pre>20</pre></td></tr>
+                <tr><td><pre>count = 0</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_04_1_basic.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+<div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+<h3>Упражнение 1.4.1. Пересев культуры</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В колбе <code>volume</code> мл культуры. Сначала из нее отбирают <code>sample</code> мл на анализ. Затем добавляют столько среды, сколько в колбе осталось культуры, и объем удваивается. После этого снова отбирают <code>sample</code> мл. Найдите объем в колбе после второго отбора.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задаются целые числа <code>volume</code> и <code>sample</code> (0 ≤ 2 · <code>sample</code> ≤ <code>volume</code>).</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число: объем в мл.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>volume = 100
+sample = 10</pre></td><td><pre>170</pre></td></tr>
+                <tr><td><pre>volume = 50
+sample = 25</pre></td><td><pre>25</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_04_1_medium.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+<div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+<h3>Упражнение 1.4.1. Три цикла роста</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вечером в культуре <code>count</code> клеток. Каждую ночь число клеток удваивается, каждое утро на анализ забирают <code>sample</code> клеток. Сколько клеток останется после третьего утра?</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задаются целые числа <code>count</code> и <code>sample</code> (0 ≤ <code>sample</code> ≤ <code>count</code>).</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>count = 10
+sample = 5</pre></td><td><pre>45</pre></td></tr>
+                <tr><td><pre>count = 5
+sample = 5</pre></td><td><pre>5</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_04_1_advanced.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="subsection" id="s2">
+<h2>2. Имя и объект</h2>
+<div class="step step-learn">Теория</div>
+<p>Переменная&nbsp;— не коробка, в которую положено значение, а ярлык (наклейка) на объекте. Присваивание <code>b = a</code> не создает копию: на тот же объект наклеивается второй ярлык. Переприсваивание <code>a = a + 1</code> создает новый объект и переносит на него ярлык <code>a</code>; ярлык <code>b</code> остается на старом объекте.</p>
+<p>У каждого объекта есть <span class="term">тождество</span>: оно не меняется за всю его жизнь. Оператор <code>==</code> сравнивает значения, оператор <code>is</code> проверяет, один ли это объект. Результат обоих: <code>True</code> (истина) или <code>False</code> (ложь).</p>
+<div class="th-full">
+<p>Функция <code>id()</code> возвращает тождество объекта числом. Само число каждый раз разное и ничего не значит, важно только, совпадают ли <code>id</code> двух имен. В обычном коде <code>id()</code> почти не пишут: она нужна при отладке, когда два объекта выглядят одинаково.</p>
+<p>Единственный частый случай, когда в коде нужен <code>is</code>,&nbsp;— проверка <code>x is None</code>. Объект <code>None</code> означает «значения нет» и в программе существует в одном экземпляре, поэтому проверяют тождество, а не равенство. Подробно <code>None</code> разбирается в теме 3 «Логика и ветвления».</p>
+</div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Два ярлыка на одном объекте</h3><div class="run-pair"><div class="code-block"><span class="code-label">labels.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-num">17</span></span>
+<span class="ln">b <span class="tok-op">=</span> a</span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-kw">is</span> b)  <span class="tok-out"># → True</span></span>
+<span class="ln">a <span class="tok-op">=</span> a <span class="tok-op">+</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a)       <span class="tok-out"># → 18</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(b)       <span class="tok-out"># → 17</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>True
+18
+17</pre></div></div><div class="analysis"><ol><li>Строки 1–2: имя <code>b</code> получает тот же объект 17, что и <code>a</code>. Копии нет.</li><li>Строка 3: <code>a is b</code> дает <code>True</code>: оба имени наклеены на один объект.</li><li>Строка 4: справа вычисляется новый объект 18, и ярлык <code>a</code> переносится на него.</li><li>Строки 5–6: <code>a</code> теперь указывает на 18, а <code>b</code> по-прежнему на 17. Число 17 не изменилось: целые числа неизменяемы.</li></ol></div></article>
+<article class="example th-full"><h3>Тождество и None</h3><div class="run-pair"><div class="code-block"><span class="code-label">identity.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-num">17</span></span>
+<span class="ln">b <span class="tok-op">=</span> a</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">id</span>(a) <span class="tok-op">==</span> <span class="tok-builtin">id</span>(b))  <span class="tok-out"># → True</span></span>
+<span class="ln">result <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(result <span class="tok-kw">is</span> <span class="tok-const">None</span>)  <span class="tok-out"># → True</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>True
+True</pre></div></div><div class="analysis"><ol><li>Строка 3: совпадают числа <code>id</code>, значит, объект один. Сами числа не печатаем: они меняются от запуска к запуску.</li><li>Строки 4–5: правильная проверка на отсутствие значения: <code>is None</code>.</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Добавьте в конец строку <code>print(a == b)</code> и предскажите результат. Затем замените вторую строку на <code>b = 18</code>: что теперь напечатают <code>a is b</code> и <code>a == b</code> в конце?</p><div class="run-pair"><div class="code-block"><span class="code-label">try_labels.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-num">17</span></span>
+<span class="ln">b <span class="tok-op">=</span> a</span>
+<span class="ln">a <span class="tok-op">=</span> a <span class="tok-op">+</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a)  <span class="tok-out"># → 18</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(b)  <span class="tok-out"># → 17</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>18
+17</pre></div></div></div>
+</section>
+
+<section class="subsection overview" id="s3">
+<h2>3. Изменяемый объект и два имени</h2><span class="overview-badge">Необходимый минимум</span><p class="overview-note">В практике 1 списки не нужны для решения задач. Подробно списки разбираются в теме 5 «Списки и кортежи», передача объектов в функции в теме 7 «Функции и декомпозиция».</p>
+<div class="step step-learn">Теория</div>
+<p>Разница между ярлыком и коробкой становится заметной, когда объект можно изменить. Список <code>[1, 2, 3]</code>&nbsp;— изменяемый объект: запись <code>b[0] = 17</code> меняет его первый элемент. Если на список наклеены два ярлыка, изменение через одно имя видно через другое.</p>
+<p>Строки и числа неизменяемы: изменить их через имя нельзя, можно только перенести ярлык на новый объект. Поэтому для них два имени безопасны. Опасно только сочетание «два имени и изменяемый объект».</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Копии не было</h3><div class="run-pair"><div class="code-block"><span class="code-label">alias.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> [<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>]</span>
+<span class="ln">b <span class="tok-op">=</span> a</span>
+<span class="ln">b[<span class="tok-num">0</span>] <span class="tok-op">=</span> <span class="tok-num">17</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a)  <span class="tok-out"># → [17, 2, 3]</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>[17, 2, 3]</pre></div></div><div class="analysis"><ol><li>Строка 2: <code>b</code>&nbsp;— второй ярлык того же списка.</li><li>Строка 3: список меняется через имя <code>b</code>.</li><li>Строка 4: через <code>a</code> видно то же изменение, потому что объект один.</li></ol></div></article>
+<article class="example th-full"><h3>Равны, но не тот же самый</h3><div class="run-pair"><div class="code-block"><span class="code-label">equal_not_same.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> [<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>]</span>
+<span class="ln">b <span class="tok-op">=</span> a</span>
+<span class="ln">c <span class="tok-op">=</span> [<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">==</span> c)  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-kw">is</span> c)  <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-kw">is</span> b)  <span class="tok-out"># → True</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>True
+False
+True</pre></div></div><div class="analysis"><ol><li>Строка 3 создает второй список с тем же содержимым.</li><li>Строки 4–5: значения равны (<code>==</code> дает <code>True</code>), но это разные объекты (<code>is</code> дает <code>False</code>).</li><li>Строка 6: <code>a</code> и <code>b</code>&nbsp;— один объект.</li></ol></div></article>
+</section>
+
+<section class="subsection" id="s4">
+<h2>4. Правила имен</h2>
+<div class="step step-learn">Теория</div>
+<p>Имя переменной состоит из латинских букв, цифр и знака подчеркивания и не начинается с цифры. Регистр важен: <code>LaTeX</code> и <code>latex</code>&nbsp;— разные имена. Нельзя использовать 35 ключевых слов Python (<code>class</code>, <code>if</code>, <code>for</code>, <code>True</code> и другие): они заняты языком. Нарушение правил дает <code>SyntaxError</code>.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Имя</th><th>Что не так</th></tr></thead><tbody>
+<tr><td><code>76trombones</code></td><td>начинается с цифры</td></tr>
+<tr><td><code>more@</code></td><td>недопустимый символ</td></tr>
+<tr><td><code>class</code></td><td>ключевое слово</td></tr>
+<tr><td><code>bad name</code></td><td>пробел: Python видит два имени без оператора</td></tr>
+</tbody></table></div>
+<p>Для интерпретатора любое допустимое имя подходит одинаково, для человека нет. <span class="term">Мнемоничное имя</span> напоминает, зачем переменная заведена: <code>read_length</code>, а не <code>x1</code>. По PEP&nbsp;8 имена пишут строчными буквами через подчеркивание.</p>
+<div class="th-full"><p>Все 35 ключевых слов Python 3.12: <code>False</code>, <code>None</code>, <code>True</code>, <code>and</code>, <code>as</code>, <code>assert</code>, <code>async</code>, <code>await</code>, <code>break</code>, <code>class</code>, <code>continue</code>, <code>def</code>, <code>del</code>, <code>elif</code>, <code>else</code>, <code>except</code>, <code>finally</code>, <code>for</code>, <code>from</code>, <code>global</code>, <code>if</code>, <code>import</code>, <code>in</code>, <code>is</code>, <code>lambda</code>, <code>nonlocal</code>, <code>not</code>, <code>or</code>, <code>pass</code>, <code>raise</code>, <code>return</code>, <code>try</code>, <code>while</code>, <code>with</code>, <code>yield</code>.</p><p>Имена встроенных функций (<code>print</code>, <code>type</code>, <code>input</code>) ключевыми словами не являются, и Python разрешит <code>print = 5</code>. Но после этого функция <code>print</code> в программе перестанет работать, поэтому такие имена переменным не дают.</p></div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Три одинаковые программы</h3><div class="run-pair"><div class="code-block"><span class="code-label">abstract.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-num">35.0</span></span>
+<span class="ln">b <span class="tok-op">=</span> <span class="tok-num">12.50</span></span>
+<span class="ln">c <span class="tok-op">=</span> a <span class="tok-op">*</span> b</span>
+<span class="ln"><span class="tok-builtin">print</span>(c)  <span class="tok-out"># → 437.5</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>437.5</pre></div></div><div class="run-pair"><div class="code-block"><span class="code-label">clear.py</span><pre><code><span class="ln">hours <span class="tok-op">=</span> <span class="tok-num">35.0</span></span>
+<span class="ln">rate <span class="tok-op">=</span> <span class="tok-num">12.50</span></span>
+<span class="ln">pay <span class="tok-op">=</span> hours <span class="tok-op">*</span> rate</span>
+<span class="ln"><span class="tok-builtin">print</span>(pay)  <span class="tok-out"># → 437.5</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>437.5</pre></div></div><div class="analysis"><ol><li>Для интерпретатора программы одинаковы: те же числа, то же умножение, тот же вывод.</li><li>Для человека нет: во второй сразу видно, что считается оплата, часы умножаются на ставку.</li><li class="th-full">Третий вариант той же программы с именами вроде <code>x1q3z9ahd</code> и <code>x1q3z9afd</code> тоже работал бы, но различить такие имена почти невозможно.</li></ol></div></article>
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: имя с цифры</p><div class="code-block code-wrong"><span class="code-label">Неверно: имя начинается с цифры</span><pre><code><span class="tok-num">2</span>nd_sample <span class="tok-op">=</span> <span class="tok-num">150</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "mistake.py", line 1
+    2nd_sample = 150
+    ^
+SyntaxError: invalid decimal literal</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code>sample_2 <span class="tok-op">=</span> <span class="tok-num">150</span></code></pre></div><p>Имя может содержать цифры, но не в начале: Python принимает <code>2nd</code> за начало числа.</p></div>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Имя переменной записано с пробелом. Исправьте его по правилам PEP&nbsp;8 и запустите.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_names.py</span><pre><code><span class="ln">read length <span class="tok-op">=</span> <span class="tok-num">150</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(read length)</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "try_names.py", line 1
+    read length = 150
+         ^^^^^^
+SyntaxError: invalid syntax</pre></div></div></div>
+</section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>Создайте личную папку и назовите ее своей фамилией и инициалами: латинскими строчными буквами, без пробелов, через подчеркивание, например <code>prokhorova_vp</code>. Расположите ее, например, в папке «Документы». Эта папка понадобится во всех практиках курса.</li>
+          <li>Внутри личной папки создайте папку <code>projects_1</code>: в ней будут все работы практики 1.</li>
+          <li>В папке <code>projects_1</code> создайте папку <code>t1_04</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_04_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_04_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_04_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t1_04</code> в свой репозиторий внутрь папки <code>projects_1</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_1/
+    └── t1_04/
+        └── t1_04_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_1/
+    └── t1_04/
+        └── t1_04_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_1/
+    └── t1_04/
+        └── t1_04_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_03.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">03 Среда и запуск</span></a>
+        <a class="pcard pcard-next" href="t1_05.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">05 Типы данных</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

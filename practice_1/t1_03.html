@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Среда и запуск. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Интерактивный режим и файл</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Запуск из терминала</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Редактор</a></li></ul></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">03</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Среда разработки и запуск программы</span></p>
+      <h1>Среда и запуск</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>10 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content" data-page-kind="theory">
+<p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться создавать файл <span class="file-name">.py</span>, запускать его из редактора и из терминала, пользоваться интерактивным режимом и настраивать редактор для работы по PEP&nbsp;8.</p>
+<section class="subsection" id="s1">
+<h2>1. Интерактивный режим и файл</h2>
+<div class="step step-learn">Теория</div>
+<p>Писать код на Python можно двумя способами. В <span class="term">интерактивном режиме</span> (REPL, от англ. Read-Eval-Print Loop, цикл «чтение, вычисление, вывод») вы набираете строку после приглашения <code>&gt;&gt;&gt;</code> и сразу получаете ответ; выход командой <code>quit()</code> или <code>exit()</code>. Ничего не сохраняется, поэтому режим годится, чтобы проверить одну мысль.</p>
+<p>Программу, которую нужно сохранить, повторить или сдать, пишут в <span class="term">файле-скрипте</span>: обычном текстовом файле с расширением <span class="file-name">.py</span>. Все решения упражнений курса сдаются именно файлами.</p>
+<p class="definition"><span class="term">Комментарий</span>&nbsp;— часть строки от символа <code>#</code> до ее конца; интерпретатор его не выполняет.</p>
+<div class="th-full">
+<p>В интерактивном режиме Python сам показывает значение выражения, например <code>2 + 3</code> дает ответ <code>5</code>. В файле так не будет: программа печатает только то, что передано функции <code>print()</code>. Это частая причина вопроса «почему программа ничего не вывела».</p>
+<p>Файл программы&nbsp;— обычный текст в кодировке UTF-8, поэтому русские буквы и другие символы Unicode в строках и комментариях допустимы. Если сохранить файл в другой кодировке и не объявить ее, Python выдаст <code>SyntaxError</code> еще до запуска. Современные редакторы сохраняют в UTF-8 по умолчанию.</p>
+<p>Комментарий объясняет, <em>зачем</em> написан код, а не пересказывает, <em>что</em> он делает: это и так видно из кода.</p><div class="code-block"><span class="code-label">Бесполезный комментарий</span><pre><code>v <span class="tok-op">=</span> <span class="tok-num">8</span>  <span class="tok-com"># присвоить 8 переменной v</span></code></pre></div><div class="code-block"><span class="code-label">Полезный комментарий</span><pre><code>v <span class="tok-op">=</span> <span class="tok-num">8</span>  <span class="tok-com"># скорость в милях в час</span></code></pre></div></div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Интерактивный режим</h3><div class="os-switch"><div class="output-block" data-os="win"><span class="output-label">Терминал · Windows</span><pre>PS C:\Users\student&gt; python
+&gt;&gt;&gt; print(4)
+4
+&gt;&gt;&gt; 2 + 3
+5
+&gt;&gt;&gt; quit()
+PS C:\Users\student&gt;</pre></div><div class="output-block" data-os="mac"><span class="output-label">Терминал · macOS</span><pre>% python3
+&gt;&gt;&gt; print(4)
+4
+&gt;&gt;&gt; 2 + 3
+5
+&gt;&gt;&gt; quit()
+%</pre></div><div class="output-block" data-os="linux"><span class="output-label">Терминал · Linux</span><pre>$ python3
+&gt;&gt;&gt; print(4)
+4
+&gt;&gt;&gt; 2 + 3
+5
+&gt;&gt;&gt; quit()
+$</pre></div></div><div class="analysis"><ol><li>Команда <code data-os="win">python</code><code data-os="mac">python3</code><code data-os="linux">python3</code> без имени файла открывает интерактивный режим.</li><li>После каждой строки с приглашением <code>&gt;&gt;&gt;</code> Python сразу показывает результат.</li><li><code>quit()</code> возвращает в обычный терминал, все набранное теряется.</li></ol></div></article>
+<article class="example"><h3>Первая программа в файле</h3><div class="run-pair"><div class="code-block"><span class="code-label">hello_world.py</span><pre><code><span class="ln"><span class="tok-com"># hello_world.py: первая программа практики</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Hello Python world!'</span>)  <span class="tok-out"># → Hello Python world!</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Привет, лаборатория'</span>)  <span class="tok-out"># → Привет, лаборатория</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Hello Python world!
+Привет, лаборатория</pre></div></div><div class="analysis"><ol><li>Строка 1: комментарий, интерпретатор ее пропускает.</li><li>Строки 2–3 выполняются по порядку, каждая печатает одну строку. Русский текст печатается без проблем: файл в UTF-8.</li><li class="th-full">За доли секунды Python успел разобрать файл, перевести его в байт-код и выполнить (страница <a href="t1_01.html">01</a>).</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Добавьте третью строку, которая печатает название вашей группы, и запустите. Затем уберите <code>print</code> из второй строки, оставив только текст в кавычках: изменится ли вывод?</p><div class="run-pair"><div class="code-block"><span class="code-label">try_hello.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Hello Python world!'</span>)  <span class="tok-out"># → Hello Python world!</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Привет, лаборатория'</span>)  <span class="tok-out"># → Привет, лаборатория</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Hello Python world!
+Привет, лаборатория</pre></div></div></div>
+</section>
+
+<section class="subsection" id="s2">
+<h2>2. Запуск из терминала</h2>
+<div class="step step-learn">Теория</div>
+<p>Терминал всегда «находится» в какой-то папке (текущем каталоге), и команда запуска ищет файл именно там. Поэтому запуск состоит из трех шагов:</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Шаг</th><th>Windows</th><th>macOS / Linux</th></tr></thead><tbody>
+<tr><td>1. Перейти в папку с файлом</td><td><code>cd Documents\python_work</code></td><td><code>cd Documents/python_work/</code></td></tr>
+<tr><td>2. Убедиться, что файл там</td><td><code>dir</code></td><td><code>ls</code></td></tr>
+<tr><td>3. Запустить программу</td><td><code>python hello_world.py</code></td><td><code>python3 hello_world.py</code></td></tr>
+</tbody></table></div>
+<p>Сообщение «файл не найден» почти всегда значит, что пропущен шаг 1. Большинство программ вы будете запускать кнопкой в редакторе, но терминал понадобится, когда работа усложнится.</p>
+<p class="th-full">В Windows команда <code>python</code> обычно ведет к установленному Python 3, а <code>python3</code> может отсутствовать. В macOS и Linux, наоборот, <code>python</code> может вести к старому Python 2 или не существовать, поэтому там пишут <code>python3</code>. Проверить, что запускается, можно командой <code>python3 --version</code> (или <code>python --version</code>).</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Запуск из терминала</h3><div class="os-switch"><div class="output-block" data-os="win"><span class="output-label">Терминал · Windows</span><pre>PS C:\Users\student&gt; cd Documents\python_work
+PS C:\Users\student\Documents\python_work&gt; dir
+
+Mode        LastWriteTime      Length Name
+----        -------------      ------ ----
+-a----      01.09.2026 10:15      142 hello_world.py
+
+PS C:\Users\student\Documents\python_work&gt; python hello_world.py
+Hello Python world!
+Привет, лаборатория</pre></div><div class="output-block" data-os="mac"><span class="output-label">Терминал · macOS</span><pre>% cd Documents/python_work/
+% ls
+hello_world.py
+% python3 hello_world.py
+Hello Python world!
+Привет, лаборатория</pre></div><div class="output-block" data-os="linux"><span class="output-label">Терминал · Linux</span><pre>$ cd Documents/python_work/
+$ ls
+hello_world.py
+$ python3 hello_world.py
+Hello Python world!
+Привет, лаборатория</pre></div></div><div class="analysis"><ol><li><code>cd</code> переводит терминал в папку с программой.</li><li><code data-os="win">dir</code><code data-os="mac">ls</code><code data-os="linux">ls</code> показывает, что файл на месте.</li><li><code data-os="win">python hello_world.py</code><code data-os="mac">python3 hello_world.py</code><code data-os="linux">python3 hello_world.py</code> запускает файл, ниже его вывод.</li></ol></div></article>
+<article class="example th-full"><h3>Файл не найден</h3><p>Та же команда, но терминал остался в домашней папке пользователя.</p><div class="os-switch"><div class="output-block" data-os="win"><span class="output-label">Терминал · Windows</span><pre>PS C:\Users\student&gt; python hello_world.py
+C:\Users\student\AppData\Local\Programs\Python\Python312\python.exe: can't open file 'C:\\Users\\student\\hello_world.py': [Errno 2] No such file or directory</pre></div><div class="output-block" data-os="mac"><span class="output-label">Терминал · macOS</span><pre>% python3 hello_world.py
+/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/student/hello_world.py': [Errno 2] No such file or directory</pre></div><div class="output-block" data-os="linux"><span class="output-label">Терминал · Linux</span><pre>$ python3 hello_world.py
+python3: can't open file '/home/student/hello_world.py': [Errno 2] No such file or directory</pre></div></div><div class="analysis"><ol><li>Python искал файл в текущей папке <span class="file-name" data-os="win">C:\Users\student</span><span class="file-name" data-os="mac">/Users/student</span><span class="file-name" data-os="linux">/home/student</span>, а файл лежит в <span class="file-name">python_work</span>.</li><li>Исправление: сначала <code>cd</code> в нужную папку, затем запуск. Код программы менять не нужно.</li></ol></div></article>
+</section>
+
+<section class="subsection" id="s3">
+<h2>3. Редактор</h2>
+<div class="step step-learn">Теория</div>
+<p>Код можно писать и в блокноте, но редактор для программиста избавляет от ошибок, которые трудно найти глазами. В курсе используется <a href="https://code.visualstudio.com/">VS Code</a> или <a href="https://www.jetbrains.com/pycharm/">PyCharm Community</a>: выберите один, на оценку выбор не влияет. Оптимальный выбор: PyCharm Community 2023 года, <a href="https://www.jetbrains.com/help/pycharm/2023.1/installation-guide.html">инструкция по установке</a>.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Проблема</th><th>Чем помогает редактор</th></tr></thead><tbody>
+<tr><td>опечатка в имени функции</td><td>подсветка синтаксиса: <code>print</code> и текст в кавычках окрашены по-разному</td></tr>
+<tr><td>смешаны табуляция и пробелы</td><td>клавиша Tab вставляет 4 пробела</td></tr>
+<tr><td>строка уходит за край экрана</td><td>вертикальная линия на 79–80 символах</td></tr>
+</tbody></table></div>
+<div class="th-full">
+<p>Перед первым практическим занятием проверьте рабочее место:</p>
+<ol><li>Python 3.10 или новее: <code>python3 --version</code>.</li>
+<li>Установлен редактор VS Code или PyCharm Community.</li>
+<li>В редакторе табуляция заменяется 4 пробелами, линейка стоит на 80 символах.</li>
+<li>Установлен <a href="https://git-scm.com/">Git</a>, есть доступ к личному удаленному репозиторию.</li>
+<li>Создана папка проекта; имена папок и файлов строчными латинскими буквами, через подчеркивание.</li></ol>
+</div>
+<div class="step step-see">Пример</div>
+<div class="mistake"><p class="mistake-caption">Типичная ошибка: кавычки из текстового редактора</p><div class="code-block code-wrong"><span class="code-label">Неверно: «елочки» вместо прямых кавычек</span><pre><code><span class="tok-builtin">print</span>(«Hello»)</code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "hello.py", line 1
+    print(«Hello»)
+          ^
+SyntaxError: invalid character '«' (U+00AB)</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-str">'Hello'</span>)  <span class="tok-out"># → Hello</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Hello</pre></div><p>Текстовые процессоры (Word и другие) автоматически заменяют прямые кавычки на типографские. Python понимает только прямые кавычки <code>'</code> и <code>"</code>, поэтому код не переносят через Word, а пишут в редакторе.</p></div>
+<details class="deep"><summary>Подробнее: что такое U+00AB</summary><p>Каждому символу Unicode присвоен номер, его записывают как U+ и шестнадцатеричное число. U+00AB&nbsp;— открывающая кавычка «. Python указывает номер, потому что на экране похожие символы (прямая и типографская кавычки, латинская и русская «а») неотличимы, а номер у них разный.</p></details>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Программу перенесли из текстового документа. Исправьте кавычки и запустите.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_quotes.py</span><pre><code><span class="tok-builtin">print</span>(“Hello, lab”)</code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "try_quotes.py", line 1
+    print(“Hello, lab”)
+          ^
+SyntaxError: invalid character '“' (U+201C)</pre></div></div></div>
+</section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_02.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">02 Экосистема</span></a>
+        <a class="pcard pcard-next" href="t1_04.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">04 Переменные</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

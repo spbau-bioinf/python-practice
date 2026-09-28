@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Биологические данные. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t1_10.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Что каким типом</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> GC-состав</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Одна последовательность и набор</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.10.1</span> <span class="anc-ex-title" data-variant="basic">Длина и GC-состав</span><span class="anc-ex-title" data-variant="medium">GC-асимметрия</span><span class="anc-ex-title" data-variant="advanced">GC-состав без N</span></span></a></li></ul></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">10</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Биологические данные в программе</span></p>
+      <h1>Биологические данные</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>15 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+<p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться выбирать тип для каждой величины биологической записи, считать GC-состав по числам нуклеотидов и выводить его в нужном формате.</p>
+<section class="subsection" id="s1">
+<h2>1. Что каким типом</h2>
+<div class="step step-learn">Теория</div>
+<p class="th-full">Специального «биологического» типа в Python нет, и он не нужен. Последовательность, идентификатор записи, длина, GC-состав представляются теми же встроенными типами, что разобраны на странице <a href="t1_05.html">05</a>. Значит, к последовательностям применимо все, что известно о строках, а к расчетам все, что известно о числах.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Величина</th><th>Тип</th><th>Почему</th></tr></thead><tbody>
+<tr><td>идентификатор записи</td><td><code>str</code></td><td>текст, а не число</td></tr>
+<tr><td>последовательность</td><td><code>str</code></td><td>последовательность символов</td></tr>
+<tr><td>длина последовательности</td><td><code>int</code></td><td>считаем штуки</td></tr>
+<tr><td>GC-состав</td><td><code>float</code></td><td>доля, не целое</td></tr>
+<tr><td>«последовательность корректна?»</td><td><code>bool</code></td><td>два исхода</td></tr>
+<tr><td>описание отсутствует</td><td><code>None</code></td><td>не пустая строка, а «ничего нет»</td></tr>
+</tbody></table></div>
+<p>Нуклеотидная последовательность записывается буквами A, T, C, G (аденин, тимин, цитозин, гуанин). Строчными буквами обычно помечают мягко замаскированные повторы, буква N означает любое, неизвестное основание.</p>
+<p>В формате FASTA запись состоит из строки описания, которая начинается с символа <code>&gt;</code>, и последовательности на следующих строках. Идентификатор&nbsp;— часть строки описания до первого пробела, после пробела идет описание.</p>
+<div class="output-block file-output"><span class="output-label">Содержимое файла gene.fa</span><pre>&gt;gene_00284728 length=32;type=dna
+GAGAACTGATTCTGTTACCGCAGGGCATTCGG</pre></div>
+<div class="th-full"><p>Длина всегда целая. Если длина получилась с точкой, где-то в расчете деление <code>/</code> вместо <code>//</code> (страница <a href="t1_06.html">06</a>). Формат FASTA сложился стихийно, единой спецификации идентификатора нет; распространенное соглашение делит строку описания по первому пробелу. Частые ошибки в таких файлах: лишний пробел после <code>&gt;</code> и повторяющиеся идентификаторы. Разбирать файлы FASTA программой вы будете в темах 8–9.</p></div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Запись в переменных</h3><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">record.py</span><pre><code><span class="ln">record_id <span class="tok-op">=</span> <span class="tok-str">'gene_00284728'</span></span>
+<span class="ln">sequence <span class="tok-op">=</span> <span class="tok-str">'GAGAACTGATTCTGTTACCG'</span></span>
+<span class="ln">length <span class="tok-op">=</span> <span class="tok-builtin">len</span>(sequence)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(record_id))  <span class="tok-out"># → &lt;class 'str'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length)           <span class="tok-out"># → 20</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(length))     <span class="tok-out"># → &lt;class 'int'&gt;</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>&lt;class 'str'&gt;
+20
+&lt;class 'int'&gt;</pre></div></div><ol class="code-explain-text"><li>Идентификатор хранится строкой.</li><li>Последовательность тоже строка.</li><li>Длина строки (страница <a href="t1_05.html">05</a>) дает целое число.</li><li>Тип идентификатора: <code>str</code>.</li><li>В последовательности 20 нуклеотидов.</li><li>Тип длины: <code>int</code>.</li></ol></div></article>
+<article class="example th-full"><h3>Отсутствующее описание</h3><div class="run-pair"><div class="code-block"><span class="code-label">description.py</span><pre><code><span class="ln">description <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(description <span class="tok-kw">is</span> <span class="tok-const">None</span>)  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(description <span class="tok-op">==</span> <span class="tok-str">''</span>)    <span class="tok-out"># → False</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>True
+False</pre></div></div><div class="analysis"><ol><li>Строка 2: описания нет, проверка через <code>is None</code> (страница <a href="t1_04.html">04</a>).</li><li>Строка 3: <code>None</code> не равно пустой строке. Пустое описание и отсутствующее описание&nbsp;— разные ситуации.</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Допишите в последовательность несколько букв N и запустите: изменилась ли длина? Буква N тоже символ строки.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_record.py</span><pre><code><span class="ln">sequence <span class="tok-op">=</span> <span class="tok-str">'GAGAACTGATTCTGTTACCG'</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(sequence))  <span class="tok-out"># → 20</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>20</pre></div></div></div>
+</section>
+
+<section class="subsection" id="s2">
+<h2>2. GC-состав</h2>
+<div class="step step-learn">Теория</div>
+<p class="definition"><span class="term">GC-состав</span>&nbsp;— доля гуанина и цитозина среди всех нуклеотидных остатков последовательности; обычно выражается в процентах.</p>
+<p>GC-состав&nbsp;— доля, поэтому это <code>float</code> со всеми свойствами вещественных чисел (страница <a href="t1_07.html">07</a>). Сравнивать его с другим вычисленным значением нужно с допуском (<code>math.isclose</code>), фильтровать по порогу через <code>&gt;</code> и <code>&lt;</code>, а округлять только при выводе, например <code>f'{gc:0.3f}'</code>.</p>
+<p class="th-full">Осторожно с нулем: GC-состав бывает равен нулю, а <code>math.isclose(gc, 0.0)</code> без <code>abs_tol</code> дает <code>False</code> для любого ненулевого значения, даже крошечного (страница <a href="t1_07.html">07</a>). Если в последовательности есть неизвестные основания N, их обычно не учитывают ни в числителе, ни в знаменателе: доля считается среди определенных нуклеотидов.</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>GC-состав по числам нуклеотидов</h3><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">gc.py</span><pre><code><span class="ln">g <span class="tok-op">=</span> <span class="tok-num">205</span></span>
+<span class="ln">c <span class="tok-op">=</span> <span class="tok-num">195</span></span>
+<span class="ln">length <span class="tok-op">=</span> <span class="tok-num">1000</span></span>
+<span class="ln">gc <span class="tok-op">=</span> (g <span class="tok-op">+</span> c) <span class="tok-op">/</span> length</span>
+<span class="ln"><span class="tok-builtin">print</span>(gc)                  <span class="tok-out"># → 0.4</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f'</span>{gc <span class="tok-op">*</span> <span class="tok-num">100</span>:<span class="tok-str">0.1f</span>}<span class="tok-str">'</span>)  <span class="tok-out"># → 40.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">&gt;</span> <span class="tok-num">0.45</span>)           <span class="tok-out"># → False</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>0.4
+40.0
+False</pre></div></div><ol class="code-explain-text"><li>Число гуанинов.</li><li>Число цитозинов.</li><li>Длина последовательности.</li><li>Скобки нужны: сначала сумма, потом деление. Результат <code>float</code>.</li><li>Доля 0,4.</li><li>Проценты для человека с одним знаком после точки.</li><li>Сравнение с порогом 45 % выполняется над долей: 0,4 меньше 0,45.</li></ol></div></article>
+<div class="step step-task">Задача</div>
+<div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+<div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t1_10_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t1_10_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t1_10_1_advanced.py">Продвинутый</button></div>
+<div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+<div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+<h3>Упражнение 1.10.1. Длина и GC-состав</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Известно, сколько в последовательности нуклеотидов каждого вида: <code>a</code>, <code>t</code>, <code>g</code>, <code>c</code>. Найдите длину последовательности и GC-состав как долю.</p></div>
+<h4>Входные данные</h4>
+<p>Четыре целых неотрицательных числа, каждое в своей строке: <code>a</code>, <code>t</code>, <code>g</code>, <code>c</code>. Их сумма больше нуля.</p>
+<h4>Выходные данные</h4>
+<p>В первой строке длина (целое число), во второй GC-состав ровно с тремя знаками после точки.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>10
+10
+15
+5</pre></td><td><pre>40
+0.500</pre></td></tr>
+                <tr><td><pre>3
+1
+0
+0</pre></td><td><pre>4
+0.000</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_10_1_basic.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+<div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+<h3>Упражнение 1.10.1. GC-асимметрия</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-асимметрия показывает, какого нуклеотида больше на цепи: она равна <span class="formula">(G − C) / (G + C)</span>. Найдите ее по числам гуанинов <code>g</code> и цитозинов <code>c</code>.</p></div>
+<h4>Входные данные</h4>
+<p>Два целых неотрицательных числа, каждое в своей строке: <code>g</code> и <code>c</code>. Их сумма больше нуля.</p>
+<h4>Выходные данные</h4>
+<p>Одно число ровно с тремя знаками после точки (может быть отрицательным).</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>60
+40</pre></td><td><pre>0.200</pre></td></tr>
+                <tr><td><pre>10
+30</pre></td><td><pre>-0.500</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_10_1_medium.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+<div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+<h3>Упражнение 1.10.1. GC-состав без N</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В последовательности длиной <code>length</code> есть <code>g</code> гуанинов, <code>c</code> цитозинов и <code>n</code> неизвестных оснований N. Найдите GC-состав в процентах среди определенных нуклеотидов, то есть без учета N.</p></div>
+<h4>Входные данные</h4>
+<p>Четыре целых неотрицательных числа, каждое в своей строке: <code>length</code>, <code>g</code>, <code>c</code>, <code>n</code> (<code>g</code> + <code>c</code> + <code>n</code> ≤ <code>length</code>, <code>n</code> &lt; <code>length</code>).</p>
+<h4>Выходные данные</h4>
+<p>Одно число ровно с одним знаком после точки.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>1000
+200
+250
+100</pre></td><td><pre>50.0</pre></td></tr>
+                <tr><td><pre>10
+0
+0
+0</pre></td><td><pre>0.0</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_10_1_advanced.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="subsection overview" id="s3">
+<h2>3. Одна последовательность и набор</h2><span class="overview-badge">Необходимый минимум</span><p class="overview-note">Подробно списки разбираются в теме 5 «Списки и кортежи», передача их в функции в теме 7 «Функции и декомпозиция».</p>
+<div class="step step-learn">Теория</div>
+<p>Отдельная последовательность&nbsp;— строка, она неизменяема: два имени у одной строки безопасны. Набор последовательностей удобно хранить списком, а список изменяем: изменение через одно имя видно через другое (страница <a href="t1_04.html">04</a>). Риск определяется не тем, биологические перед вами данные или нет, а только изменяемостью объекта.</p>
+<p class="th-full">То же произойдет, когда набор передают в функцию: функция получает ссылку на тот же список, а не копию, и ее изменения увидит вызывающий код. К этому вернетесь в темах 5 и 7.</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Строка и список</h3><div class="run-pair"><div class="code-block"><span class="code-label">batch.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">'ACGT'</span></span>
+<span class="ln">alias <span class="tok-op">=</span> seq</span>
+<span class="ln">seq <span class="tok-op">=</span> seq <span class="tok-op">+</span> <span class="tok-str">'A'</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(alias)  <span class="tok-out"># → ACGT</span></span>
+<span class="ln">batch <span class="tok-op">=</span> [<span class="tok-str">'ACGT'</span>, <span class="tok-str">'GGCC'</span>]</span>
+<span class="ln">same <span class="tok-op">=</span> batch</span>
+<span class="ln">same[<span class="tok-num">0</span>] <span class="tok-op">=</span> <span class="tok-str">'TTTT'</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(batch)  <span class="tok-out"># → ['TTTT', 'GGCC']</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>ACGT
+['TTTT', 'GGCC']</pre></div></div><div class="analysis"><ol><li>Строки 1–4: склейка создает новую строку и переносит на нее имя <code>seq</code>; <code>alias</code> остался на старой.</li><li>Строки 5–8: список один, изменение через <code>same</code> видно через <code>batch</code>.</li></ol></div></article>
+</section>
+
+<aside class="nb"><p>Практики курса развивают одну программу «Анализ биологических последовательностей»: проверка данных (тема 3), статистики и GC-состав (тема 4), частоты нуклеотидов (тема 6), поиск мотивов (темы 4 и 8), разбор FASTA и отчет (темы 8–9). Сейчас вы на первом шаге: типы, переменные, ввод и вывод.</p></aside>
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_1</code> создайте папку <code>t1_10</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_10_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_10_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_10_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t1_10</code> в свой репозиторий внутрь папки <code>projects_1</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_1/
+    └── t1_10/
+        └── t1_10_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_1/
+    └── t1_10/
+        └── t1_10_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_1/
+    └── t1_10/
+        └── t1_10_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_09.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">09 <code>print()</code> и <code>input()</code></span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

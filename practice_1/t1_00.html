@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обзор практики. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a class="current" aria-current="page" href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">00</span>
+      <h1>Практика 1. Введение в Python</h1>
+      <p class="page-subtitle">Язык программирования Python · 1,5 часа в аудитории и 1,5 часа самостоятельно</p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <section class="goals">
+        <h2>На этом занятии вы</h2>
+        <ul>
+          <li>разберетесь, как программа на Python проходит путь от файла до результата и как по сообщению интерпретатора определить вид ошибки;</li>
+          <li>подготовите рабочее место: редактор, запуск программы из терминала, подключение модулей;</li>
+          <li>научитесь хранить данные в переменных и различать типы <code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>;</li>
+          <li>будете вычислять с помощью арифметических операций и сравнивать вещественные числа с допуском;</li>
+          <li>научитесь читать данные с клавиатуры, выводить результат и представлять в программе биологические данные.</li>
+        </ul>
+      </section>
+      <p>Это первая практика курса. Все, что будет дальше (разбор последовательностей, GC-состав, поиск мотивов, файлы FASTA), строится на ее материале: на переменных, типах, арифметике, вводе и выводе.</p>
+      <h2>Как устроено занятие</h2>
+      <p>Каждый раздел страницы идет по шагам: <span class="step step-learn">Теория</span> объясняет понятие, <span class="step step-see">Пример</span> показывает готовый код с разбором, в шаге <span class="step step-try">Практика</span> вы меняете код и запускаете его, <span class="step step-task">Задача</span> содержит упражнение с проверкой. Раздел с меткой <span class="overview-badge">Необходимый минимум</span> касается темы следующих лекций: в нем только то, что нужно сейчас, и ссылка на тему, где она разбирается полностью. У каждого упражнения три варианта: базовый, средний и продвинутый. Первым открывается вариант вашего уровня.</p>
+      <p>Теорию на каждой странице можно читать кратко или подробно: переключатель «Объем теории» стоит в шапке страницы справа от заголовка. Подробный вариант добавляет примеры, разборы по шагам и типичные ошибки. Упражнения в обоих вариантах одинаковые, для их решения достаточно краткого.</p>
+      <p>Страницы 01–03 вводные: на них нет упражнений, только примеры и практика. Упражнения начинаются со страницы 04.</p>
+      <h2>Как засчитывается практика</h2>
+      <p>Вы заранее выбираете уровень и в каждом упражнении решаете вариант этого уровня. Какие файлы сохранить в репозиторий, написано в конце каждой страницы с упражнениями, в блоке «Сдача работы».</p>
+      <p>Уровень можно сменить один раз за семестр, после этого смена уровня невозможна. Уровень меняется через преподавателя: кнопки выбора уровня на сайте только переключают, какие варианты упражнений вы видите. Уже засчитанные практики при смене уровня остаются засчитанными. Итоговый зачет по курсу проходит по критериям уровня, выбранного на момент зачета.</p>
+      <p>Практика засчитывается после сдачи преподавателю:</p>
+      <ol>
+        <li>До срока решения всех упражнений вашего уровня лежат в вашем личном репозитории.</li>
+        <li>Вы сдаете практику преподавателю целиком. Он проверяет, все ли упражнения выполнены и верны ли решения, и задает вопросы по теме практики.</li>
+        <li>Если сдача прошла успешно, практика засчитана, и в <a href="https://docs.google.com/spreadsheets/d/1tL3ss0C5M3oGCWBMaINgOsdRusTft5vpJIj0Y_e5Tyw/edit?gid=231019579#gid=231019579">Google-таблице курса</a> появляется отметка.</li>
+      </ol>
+      <p>Если сдача не прошла, исправьте ошибки в упражнениях или повторите теорию, в зависимости от того, какие были ошибки, и сдайте практику повторно до конца семестра.</p>
+      <aside class="important"><p><strong>ИИ-помощники.</strong> В этом семестре не просите ИИ-помощников решить упражнение. Подсказки кода с ИИ в редакторе тоже пишут решение за вас, поэтому отключите их. Спрашивать ИИ о теории и о сообщениях об ошибках можно. Цель практики в том, чтобы вы научились писать код сами. Если решение верное, но вы не можете объяснить его и ответить на вопросы по теме, практика не засчитывается.</p>
+        <p><strong>Три практики подряд не с первой попытки.</strong> Если на среднем или продвинутом уровне три практики подряд не сданы с первой попытки, уровень понижается на один: с продвинутого на средний, со среднего на базовый. Повысить его в этом семестре будет уже нельзя. Уже засчитанные практики остаются засчитанными.</p></aside>
+      <div class="ladder">
+        <div><span class="lvl-tag lvl-basic">Базовый</span><b>Базовые варианты</b><p>Воспроизвести и немного изменить разобранное. На сдаче: объяснить свой код. Итог: тест по курсу.</p></div>
+        <div><span class="lvl-tag lvl-medium">Средний</span><b>Средние варианты</b><p>Самостоятельное применение. На сдаче: изменить решение под новое условие. Итог: защита 2–3 работ.</p></div>
+        <div><span class="lvl-tag lvl-advanced">Продвинутый</span><b>Продвинутые варианты</b><p>Перенос знаний, в каждом варианте неочевидный шаг. На сдаче: решить похожую задачу. Итог: зачет автоматически.</p></div>
+      </div>
+      <p>Срок: до конца второго практического занятия после этого (три недели). Время: страницы 01–10 рассчитаны на 1,5 часа в аудитории и 1,5 часа самостоятельно; то, что не успели на занятии, доделайте дома.</p>
+      <h2>Страницы практики</h2>
+      <ol class="topic-nav">
+          <li><span class="topic-num">01</span><span class="topic-name">Программа и алгоритм</span><a class="topic-link" href="t1_01.html">Открыть</a></li>
+          <li><span class="topic-num">02</span><span class="topic-name">Экосистема</span><a class="topic-link" href="t1_02.html">Открыть</a></li>
+          <li><span class="topic-num">03</span><span class="topic-name">Среда и запуск</span><a class="topic-link" href="t1_03.html">Открыть</a></li>
+          <li><span class="topic-num">04</span><span class="topic-name">Переменные</span><a class="topic-link" href="t1_04.html">Открыть</a></li>
+          <li><span class="topic-num">05</span><span class="topic-name">Типы данных</span><a class="topic-link" href="t1_05.html">Открыть</a></li>
+          <li><span class="topic-num">06</span><span class="topic-name">Арифметика</span><a class="topic-link" href="t1_06.html">Открыть</a></li>
+          <li><span class="topic-num">07</span><span class="topic-name">Вещественные числа</span><a class="topic-link" href="t1_07.html">Открыть</a></li>
+          <li><span class="topic-num">08</span><span class="topic-name">Округление и Decimal</span><a class="topic-link" href="t1_08.html">Открыть</a></li>
+          <li><span class="topic-num">09</span><span class="topic-name"><code>print()</code> и <code>input()</code></span><a class="topic-link" href="t1_09.html">Открыть</a></li>
+          <li><span class="topic-num">10</span><span class="topic-name">Биологические данные</span><a class="topic-link" href="t1_10.html">Открыть</a></li>
+      </ol>
+      <aside class="nb"><p>Примеры можно изменять и запускать прямо на странице, под каждым упражнением есть проверка решения. Для этого нужен интернет; первый запуск занимает 10–30 секунд. Код можно проверять и в своем редакторе (<a href="https://code.visualstudio.com/">VS Code</a>, <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>) или в онлайн-сервисах: <a href="https://www.online-python.com/">online-python.com</a>, <a href="https://pythononline.net/">pythononline.net</a>.</p></aside>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-next" href="t1_01.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">01 Программа и алгоритм</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

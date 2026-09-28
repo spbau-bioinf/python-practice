@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вещественные числа. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t1_07.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Почему 0.1 + 0.2 ≠ 0.3</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сравнение с допуском</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Сравнение с нулем</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.1</span> <span class="anc-ex-title" data-variant="basic">Совпадают ли массы</span><span class="anc-ex-title" data-variant="medium">Допуск в процентах</span><span class="anc-ex-title" data-variant="advanced">Допуск с абсолютным порогом</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.2</span> <span class="anc-ex-title" data-variant="basic">Почти ноль</span><span class="anc-ex-title" data-variant="medium">Баланс объемов</span><span class="anc-ex-title" data-variant="advanced">Три пробирки и свой порог</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">07</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Точность вычислений</span></p>
+      <h1>Вещественные числа</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Понять, почему вычисления с <code>float</code> дают погрешность, и научиться сравнивать такие числа с допуском.</p>
+      <aside class="hint"><p><strong>Модули.</strong> На этой странице нужен модуль <code>math</code>: подключение модулей командой <code>import</code> разобрано на странице 02. Исходные данные в задачах задаются в начале программы, как на странице 06.</p></aside>
+
+      <section class="subsection" id="s1">
+        <h2>1. Почему 0.1 + 0.2 ≠ 0.3</h2>
+        <div class="step step-learn">Теория</div>
+        <p>В CPython на обычных платформах <code>float</code> реализован как 64-битное двоичное число двойной точности по стандарту IEEE 754: около 15–17 значащих десятичных цифр. Большинство десятичных дробей (0,1; 0,2; 1,45) в двоичной записи бесконечны и хранятся приближенно; точно хранятся дроби со знаменателем-степенью двойки, например 0,5 и 0,25.</p>
+        <p>Целые числа <code>int</code> представляются точно и не ограничены числом разрядов. Но деление <code>/</code> даже целых чисел дает <code>float</code> с его погрешностью.</p>
+        <div class="th-full">
+          <h3 class="block-title">Аналогия: 1/3 в десятичной записи</h3>
+          <p>Число 1/3 нельзя точно записать десятичной дробью: 0,3; 0,33; 0,333… Сколько цифр ни пиши, точного значения не будет, а если места только на 16 цифр, придется остановиться на приближении.</p>
+          <p>С двоичной записью происходит то же самое, только неудобными оказываются другие числа. Например, 1/10 в двоичной системе записывается бесконечной периодической дробью 0,000110011…<sub>2</sub>. Под значащие цифры отведено 53 двоичных разряда, поэтому в памяти хранится ближайшее к 0,1 двоичное число, а не само 0,1.</p>
+          <ul>
+            <li>При выводе Python показывает самую короткую десятичную запись, которая однозначно указывает на хранимое число. Поэтому <code>print(0.1)</code> пишет <code>0.1</code>, хотя в памяти не ровно 0,1.</li>
+            <li>Это свойство формата, а не Python: то же происходит в C, Java, R и в электронных таблицах.</li>
+            <li>Сложение, вычитание, умножение, <code>//</code> и <code>%</code> целых чисел дают точный целый результат.</li>
+          </ul>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Одинаковые с виду выражения</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">same_looking.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0.1</span> <span class="tok-op">+</span> <span class="tok-num">0.1</span>)         <span class="tok-out"># → 0.2</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0.1</span> <span class="tok-op">+</span> <span class="tok-num">0.2</span>)         <span class="tok-out"># → 0.30000000000000004</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0.1</span> <span class="tok-op">+</span> <span class="tok-num">0.2</span> <span class="tok-op">==</span> <span class="tok-num">0.3</span>)  <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>0.2
+0.30000000000000004
+False</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: погрешности совпали с хранимым 0,2, вывод выглядит точным.</li><li>Строка 2: результат оказался соседним двоичным числом, а не тем, что хранится для 0,3.</li><li>Строка 3: поэтому сравнение <code>==</code> дает <code>False</code>.</li></ol><p>Отсюда правило: вычисленные значения <code>float</code> обычно не сравнивают через <code>==</code>, если в результате может быть погрешность округления. Для точных значений, например <code>0.5 + 0.25 == 0.75</code>, <code>==</code> работает.</p></div>
+        </article>
+        <article class="example th-full">
+          <h3>Что на самом деле хранится</h3>
+          <p>Класс <code>Decimal</code> (<a href="t1_08.html">страница 08</a>) умеет показать точное значение, которое хранится в <code>float</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">stored.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> decimal <span class="tok-kw">import</span> Decimal</span>
+<span class="ln"></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0.1</span>)           <span class="tok-out"># → 0.1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(Decimal(<span class="tok-num">0.1</span>))</span>
+<span class="ln"><span class="tok-builtin">print</span>(Decimal(<span class="tok-num">0.5</span>))  <span class="tok-out"># → 0.5</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>0.1
+0.1000000000000000055511151231257827021181583404541015625
+0.5</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 3: при обычном выводе Python показывает короткую запись.</li><li>Строка 4: <code>Decimal(0.1)</code> переводит хранимое двоичное значение в десятичную запись без потерь: в памяти чуть больше 0,1.</li><li>Строка 5: <span class="formula">0,5 = 1/2</span> хранится точно.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Погрешность накапливается</h3>
+          <p>Десять доз по 0,1 мл складываются в один объем.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">ten_doses.py</span><pre><code><span class="ln">dose <span class="tok-op">=</span> <span class="tok-num">0.1</span></span>
+<span class="ln">total <span class="tok-op">=</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose <span class="tok-op">+</span> dose</span>
+<span class="ln"><span class="tok-builtin">print</span>(total)         <span class="tok-out"># → 0.9999999999999999</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(total <span class="tok-op">==</span> <span class="tok-num">1.0</span>)  <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>0.9999999999999999
+False</pre></div>
+          </div>
+          <div class="analysis"><p>При каждом сложении результат округляется до ближайшего хранимого числа, и эти маленькие округления складываются. Чем длиннее вычисление, тем заметнее может быть отличие от математического ответа.</p></div>
+        </article>
+        <div class="th-full">
+          <p>Сравнение вещественных чисел через <code>==</code> ненадежно по трем причинам:</p>
+          <ol>
+            <li>ожидаемое значение обычно записано с меньшим числом цифр, чем результат вычисления;</li>
+            <li>даже перестановка множителей меняет последнюю цифру результата;</li>
+            <li>округление не спасает: округленные значения тоже приближения.</li>
+          </ol>
+          <article class="example">
+            <h3>Три причины в одной программе</h3>
+            <div class="run-pair">
+              <div class="code-block"><span class="code-label">not_equal.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">5</span> <span class="tok-op">/</span> <span class="tok-num">3</span> <span class="tok-op">==</span> <span class="tok-num">1.667</span>)  <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">5</span> <span class="tok-op">/</span> <span class="tok-num">3</span> <span class="tok-op">*</span> <span class="tok-num">0.1</span>)  <span class="tok-out"># → 0.16666666666666669</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0.1</span> <span class="tok-op">*</span> <span class="tok-num">5</span> <span class="tok-op">/</span> <span class="tok-num">3</span>)  <span class="tok-out"># → 0.16666666666666666</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">round</span>(<span class="tok-num">0.1</span>, <span class="tok-num">1</span>) <span class="tok-op">+</span> <span class="tok-builtin">round</span>(<span class="tok-num">0.1</span>, <span class="tok-num">1</span>) <span class="tok-op">+</span> <span class="tok-builtin">round</span>(<span class="tok-num">0.1</span>, <span class="tok-num">1</span>) <span class="tok-op">==</span> <span class="tok-builtin">round</span>(<span class="tok-num">0.3</span>, <span class="tok-num">1</span>))  <span class="tok-out"># → False</span></span></code></pre></div>
+              <div class="output-block predict"><span class="output-label">Вывод</span><pre>False
+0.16666666666666669
+0.16666666666666666
+False</pre></div>
+            </div>
+            <div class="analysis"><ol><li>Строка 1: 1.667 только запись с тремя знаками, до вычисленного значения ей далеко.</li><li>Строки 2–3: математически оба выражения равны 1/6, но разный порядок операций дал разные приближения.</li><li>Строка 4: каждое <code>round(0.1, 1)</code> снова приближение к 0,1, и сумма трех таких приближений не совпадает с хранимым 0,3.</li></ol></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Сравнение с допуском</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Функция <code>math.isclose(a, b)</code> возвращает <code>True</code>, если числа достаточно близки. У нее два допуска: <code>rel_tol</code> (по умолчанию <code>1e-09</code>) и <code>abs_tol</code> (по умолчанию <code>0.0</code>). Числа считаются близкими, если</p>
+        <div class="code-block"><span class="code-label">Условие близости</span><pre><code><span class="tok-builtin">abs</span>(a <span class="tok-op">-</span> b) <span class="tok-op">&lt;=</span> <span class="tok-builtin">max</span>(rel_tol <span class="tok-op">*</span> <span class="tok-builtin">max</span>(<span class="tok-builtin">abs</span>(a), <span class="tok-builtin">abs</span>(b)), abs_tol)</code></pre></div>
+        <p><code>rel_tol</code> задает допуск относительно масштаба чисел: при <code>rel_tol=1e-09</code> разница должна быть не больше 10<sup>−9</sup> от большего по модулю числа, а <code>rel_tol=0.05</code> означает 5 %. Допуск пишется в скобках по имени; такая запись называется именованным аргументом, подробно она разбирается в теме «Функции».</p>
+        <div class="th-full">
+          <ul>
+            <li>Относительный допуск <code>rel_tol</code> задается долей от большего по модулю числа: <code>rel_tol=0.05</code> означает 5&nbsp;%. Значение по умолчанию <code>1e-09</code> требует совпадения примерно в девяти значащих цифрах.</li>
+            <li>Абсолютный допуск <code>abs_tol</code> задает разницу, которая несущественна сама по себе, независимо от масштаба чисел. По умолчанию он равен нулю.</li>
+            <li>Числа считаются близкими, если разница между ними не больше хотя бы одного из двух допусков.</li>
+          </ul>
+          <p>Какой инструмент выбрать, зависит от вопроса задачи:</p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Ситуация</th><th>Инструмент</th><th>Запись</th></tr></thead>
+              <tbody>
+                <tr><td>сравнить два вычисленных числа</td><td>сравнение с допуском</td><td><code>math.isclose(a, b)</code></td></tr>
+                <tr><td>отфильтровать по порогу</td><td>сравнение «больше, меньше»</td><td><code>gc &gt; 0.4</code></td></tr>
+                <tr><td>показать число человеку</td><td>округление при выводе, <a href="t1_08.html">страница 08</a></td><td><code>round(x, 2)</code></td></tr>
+                <tr><td>нужен точный десятичный результат</td><td>класс <code>Decimal</code>, <a href="t1_08.html">страница 08</a></td><td><code>Decimal('1.45')</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Сравнение с допуском</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">isclose.py</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(<span class="tok-num">0.1</span> <span class="tok-op">+</span> <span class="tok-num">0.2</span>, <span class="tok-num">0.3</span>))               <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(<span class="tok-num">1.667</span>, <span class="tok-num">5</span> <span class="tok-op">/</span> <span class="tok-num">3</span>))                 <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(<span class="tok-num">1.667</span>, <span class="tok-num">5</span> <span class="tok-op">/</span> <span class="tok-num">3</span>, rel_tol<span class="tok-op">=</span><span class="tok-num">0.001</span>))  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True
+False
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 3: числа отличаются только погрешностью формата.</li><li>Строка 4: 1.667 и 1,6666… отличаются примерно на 0,02 %, это больше допуска по умолчанию.</li><li>Строка 5: при допуске 0,1 % они уже близки.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Допуск в процентах</h3>
+          <p>Дозатор должен отмерять 200&nbsp;мкл с точностью 5&nbsp;%.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">dose_tolerance.py</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(<span class="tok-num">200</span>, <span class="tok-num">208</span>, rel_tol<span class="tok-op">=</span><span class="tok-num">0.05</span>))  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(<span class="tok-num">200</span>, <span class="tok-num">212</span>, rel_tol<span class="tok-op">=</span><span class="tok-num">0.05</span>))  <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True
+False</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 3: допуск считается от большего числа: 5&nbsp;% от 208 составляют 10,4, разница 8 допустима.</li><li>Строка 4: 5&nbsp;% от 212 составляют 10,6, а разница 12 больше.</li></ol></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Подберите наименьший <code>rel_tol</code> из 0.01, 0.001 и 0.0001, при котором 1.667 и 5 / 3 считаются близкими.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_tol.py</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(<span class="tok-num">1.667</span>, <span class="tok-num">5</span> <span class="tok-op">/</span> <span class="tok-num">3</span>, rel_tol<span class="tok-op">=</span><span class="tok-num">0.01</span>))  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t1_07_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t1_07_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t1_07_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 1.7.1. Совпадают ли массы</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Две массы <code>m1</code> и <code>m2</code> получены вычислением. Проверьте функцией <code>math.isclose()</code> с допуском по умолчанию, совпадают ли они.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>m1</code> и <code>m2</code>.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code> или <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>m1 = 0.3
+m2 = 0.30000000000000004</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>m1 = 1.5
+m2 = 1.6</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 1.7.1. Допуск в процентах</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор исправен, если измеренное значение <code>measured</code> отличается от номинального <code>nominal</code> не больше чем на <code>percent</code> процентов (как <code>rel_tol</code>). Проверьте прибор одним вызовом <code>math.isclose()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются числа <code>measured</code>, <code>nominal</code> и <code>percent</code> (больше 0).</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если прибор исправен, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>measured = 0.998
+nominal = 1.0
+percent = 0.5</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>measured = 0.99
+nominal = 1.0
+percent = 0.5</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 1.7.1. Допуск с абсолютным порогом</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Как в среднем варианте, но около нуля процентный допуск бесполезен, поэтому прибор исправен и тогда, когда разница не больше абсолютного порога <code>floor</code>. Проверьте одним вызовом <code>math.isclose()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются числа <code>measured</code>, <code>nominal</code>, <code>percent</code> (больше 0) и <code>floor</code> (от 0).</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если прибор исправен, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>measured = 0.02
+nominal = 0.0
+percent = 1
+floor = 0.05</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>measured = 104
+nominal = 100
+percent = 5
+floor = 0.0</pre></td><td><pre>True</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Сравнение с нулем</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Относительный допуск считается от большего из двух чисел. Если одно из них ноль, допуск получается ничтожным, и <code>math.isclose(x, 0.0)</code> дает <code>False</code> для любого ненулевого <code>x</code>. Для сравнения с нулем задают абсолютный допуск <code>abs_tol</code>.</p>
+        <div class="th-full">
+          <p>На числах это выглядит так. Для <span class="formula">x = 5,6 · 10⁻¹⁷</span> относительный допуск по умолчанию равен <span class="formula">10⁻⁹ · 5,6 · 10⁻¹⁷ ≈ 5,6 · 10⁻²⁶</span>, а разница с нулем равна самому x: она в миллиард раз больше допуска.</p>
+          <p>Точный ноль равен нулю и без допусков: <code>math.isclose(0.0, 0.0)</code> дает <code>True</code>. Это важно, например, для GC-состава, который бывает ровно нулевым.</p>
+          <aside class="hint"><p><strong>Как выбрать abs_tol.</strong> Абсолютный допуск подбирают по смыслу величины. Для остатков вычислений с долями подходит <code>1e-9</code>: погрешность формата намного меньше. Для измерений допуск берут из точности прибора: если дозатор отмеряет с шагом 0,1&nbsp;мкл, разница меньше 0,05&nbsp;мкл значения не имеет.</p></aside>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Почти ноль</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">near_zero.py</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"></span>
+<span class="ln">residual <span class="tok-op">=</span> <span class="tok-num">0.1</span> <span class="tok-op">+</span> <span class="tok-num">0.2</span> <span class="tok-op">-</span> <span class="tok-num">0.3</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(residual)                                   <span class="tok-out"># → 5.551115123125783e-17</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(residual, <span class="tok-num">0.0</span>))                <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.isclose(residual, <span class="tok-num">0.0</span>, abs_tol<span class="tok-op">=</span><span class="tok-num">1e-9</span>))  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>5.551115123125783e-17
+False
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 4: остаток равен примерно 5,6 · 10<sup>−17</sup>; запись <code>e-17</code> значит «умножить на 10 в степени −17».</li><li>Строка 5: без абсолютного допуска это не ноль.</li><li>Строка 6: с <code>abs_tol=1e-9</code> число считается нулем.</li></ol></div>
+        </article>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t1_07_2_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t1_07_2_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t1_07_2_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 1.7.2. Почти ноль</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вычисленное значение <code>x</code> должно быть нулем. Проверьте, равно ли оно нулю с абсолютным допуском 10<sup>−9</sup>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задается вещественное число <code>x</code>.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code> или <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>x = 3e-12</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>x = 0.5</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_2_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 1.7.2. Баланс объемов</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор объемом <code>total</code> мл разлили в две пробирки: <code>part1</code> и <code>part2</code> мл. Проверьте, что раствор разлит без остатка: разность равна нулю с абсолютным допуском 10<sup>−9</sup>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>total</code>, <code>part1</code>, <code>part2</code>.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если остатка нет, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>total = 1.0
+part1 = 0.7
+part2 = 0.3</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>total = 1.0
+part1 = 0.5
+part2 = 0.4</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_2_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 1.7.2. Три пробирки и свой порог</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор объемом <code>total</code> мл разлили в три пробирки: <code>p1</code>, <code>p2</code>, <code>p3</code> мл. Остаток считается нулевым, если он не больше <code>tol</code> мл. Проверьте баланс.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>total</code>, <code>p1</code>, <code>p2</code>, <code>p3</code> и <code>tol</code> (больше 0).</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если остатка нет, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>total = 1.0
+p1 = 0.2
+p2 = 0.3
+p3 = 0.5
+tol = 1e-09</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>total = 1.0
+p1 = 0.2
+p2 = 0.3
+p3 = 0.4
+tol = 0.01</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_2_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_1</code> создайте папку <code>t1_07</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_07_1_basic.py</code> и <code>t1_07_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_07_1_medium.py</code> и <code>t1_07_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_07_1_advanced.py</code> и <code>t1_07_2_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t1_07</code> в свой репозиторий внутрь папки <code>projects_1</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_1/
+    └── t1_07/
+        ├── t1_07_1_basic.py
+        └── t1_07_2_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_1/
+    └── t1_07/
+        ├── t1_07_1_medium.py
+        └── t1_07_2_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_1/
+    └── t1_07/
+        ├── t1_07_1_advanced.py
+        └── t1_07_2_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_06.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">06 Арифметика</span></a>
+        <a class="pcard pcard-next" href="t1_08.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">08 Округление и Decimal</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

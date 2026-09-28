@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Типы данных. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t1_05.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Значение и тип</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Строки: склейка и повторение</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Явное преобразование</a></li><li><a href="#s4" data-section="s4"><span class="anc-num">4.</span> Два разных отказа</a></li><li><a href="#s5" data-section="s5"><span class="anc-num">5.</span> Истина и ложь</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.5.1</span> <span class="anc-ex-title" data-variant="basic">Сумма из протокола</span><span class="anc-ex-title" data-variant="medium">Повтор мотива</span><span class="anc-ex-title" data-variant="advanced">Номер следующего образца</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.5.2</span> <span class="anc-ex-title" data-variant="basic">Целые микролитры</span><span class="anc-ex-title" data-variant="medium">Целая часть из протокола</span><span class="anc-ex-title" data-variant="advanced">Сумма двоичных флагов</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">05</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Встроенные типы и преобразование</span></p>
+      <h1>Типы данных</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+<p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться определять тип значения, явно преобразовывать строки в числа и обратно и различать ошибки <code>TypeError</code> и <code>ValueError</code>.</p>
+<aside class="hint"><p><strong>Как устроены задачи.</strong> Как и на странице <a href="t1_04.html">04</a>, исходные данные задаются в начале программы. Строки записываются в кавычках: <code>a = '1200'</code>. Проверка подставляет свои значения того же типа.</p></aside>
+<section class="subsection" id="s1">
+<h2>1. Значение и тип</h2>
+<div class="step step-learn">Теория</div>
+<p class="th-full">Одни и те же символы могут означать разное: 17 можно сложить с другим числом, а «17» на бирке пробирки&nbsp;— это надпись. Python различает такие случаи по типу значения. От типа зависит, что со значением можно делать: числа складывают, строки соединяют, а разделить строку на число нельзя.</p>
+<p class="definition"><span class="term">Тип</span>&nbsp;— класс, к которому принадлежит значение; он определяет, какие операции с ним допустимы.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Значение</th><th>Тип</th><th>Что это</th></tr></thead><tbody>
+<tr><td><code>17</code></td><td><code>int</code></td><td>целое число</td></tr>
+<tr><td><code>4.2</code></td><td><code>float</code></td><td>вещественное число</td></tr>
+<tr><td><code>'Hello, World!'</code></td><td><code>str</code></td><td>строка символов</td></tr>
+<tr><td><code>True</code></td><td><code>bool</code></td><td>истина или ложь</td></tr>
+</tbody></table></div>
+<p>Тип значения сообщает функция <code>type()</code>. Кавычки обозначают строку, поэтому <code>17</code> и <code>'17'</code> имеют разные типы. <code>True</code> и <code>False</code> пишутся без кавычек и с большой буквы: это не строки.</p>
+<div class="th-full">
+<p>Одно и то же целое число можно записать в коде по-разному:</p><div class="table-wrap"><table class="data"><thead><tr><th>Запись</th><th>Система счисления</th><th>Значение</th></tr></thead><tbody>
+<tr><td><code>42</code></td><td>десятичная</td><td>42</td></tr>
+<tr><td><code>0b101010</code></td><td>двоичная</td><td>42</td></tr>
+<tr><td><code>0o52</code></td><td>восьмеричная</td><td>42</td></tr>
+<tr><td><code>0x2a</code></td><td>шестнадцатеричная</td><td>42</td></tr>
+</tbody></table></div><p>Форма записи относится к исходному тексту, а не к числу: основание в значении не сохраняется, и <code>print(0x2a)</code> печатает <code>42</code>. Для удобства чтения длинные числа разделяют подчеркиванием: <code>123_456_789</code> хранится как 123456789. Запятая разделителем разрядов не работает: <code>print(1,000,000)</code> печатает <code>1 0 0</code>. Разгадка на странице <a href="t1_09.html">09</a>.</p>
+</div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Спросить тип у интерпретатора</h3><div class="run-pair"><div class="code-block"><span class="code-label">types.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-num">17</span>))    <span class="tok-out"># → &lt;class 'int'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-num">4.2</span>))   <span class="tok-out"># → &lt;class 'float'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-str">'17'</span>))  <span class="tok-out"># → &lt;class 'str'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-const">True</span>))  <span class="tok-out"># → &lt;class 'bool'&gt;</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;
+&lt;class 'bool'&gt;</pre></div></div><div class="analysis"><ol><li>Строки 1–2: числа без точки и с точкой имеют разные типы.</li><li>Строка 3: <code>'17'</code> в кавычках является строкой, хотя состоит из цифр.</li><li>Строка 4: <code>True</code> имеет логический тип <code>bool</code>.</li></ol></div></article>
+<article class="example th-full"><h3>Разные записи одного числа</h3><div class="run-pair"><div class="code-block"><span class="code-label">literals.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0b101010</span>)     <span class="tok-out"># → 42</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0x2a</span>)         <span class="tok-out"># → 42</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">123_456_789</span>)  <span class="tok-out"># → 123456789</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>42
+42
+123456789</pre></div></div><div class="analysis"><ol><li>Python печатает целые числа в десятичной записи, в какой бы системе они ни были записаны в коде.</li><li>Подчеркивания нужны только человеку и в значение не попадают.</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Узнайте типы значений <code>4.0</code>, <code>'4.2'</code> и <code>False</code>. Предскажите ответ до запуска.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_types.py</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-num">17</span>))  <span class="tok-out"># → &lt;class 'int'&gt;</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>&lt;class 'int'&gt;</pre></div></div></div>
+</section>
+
+<section class="subsection overview" id="s2">
+<h2>2. Строки: склейка и повторение</h2><span class="overview-badge">Необходимый минимум</span><p class="overview-note">Здесь только склейка, повторение и длина строки. Подробно строки разбираются в теме 2 «Строки и текстовые данные».</p>
+<div class="step step-learn">Теория</div>
+<p>Смысл оператора определяют типы операндов. Для строк <code>+</code> означает склейку (конкатенацию), а <code>*</code> с целым числом&nbsp;— повторение. Функция <code>len()</code> возвращает длину строки, то есть число символов в ней.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Выражение</th><th>Результат</th><th>Что произошло</th></tr></thead><tbody>
+<tr><td><code>100 + 150</code></td><td><code>250</code></td><td>сложение чисел</td></tr>
+<tr><td><code>'100' + '150'</code></td><td><code>'100150'</code></td><td>склейка строк, не сложение</td></tr>
+<tr><td><code>'AT' * 3</code></td><td><code>'ATATAT'</code></td><td>повторение строки</td></tr>
+<tr><td><code>len('GATTACA')</code></td><td><code>7</code></td><td>длина строки</td></tr>
+</tbody></table></div>
+<p>Смешивать строку и число нельзя: <code>'Hello' + 3</code> и <code>'Hello' * 3.0</code> вызывают <code>TypeError</code>. Повторять строку можно только целое число раз.</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Один знак, разные действия</h3><div class="run-pair"><div class="code-block"><span class="code-label">string_ops.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">100</span> <span class="tok-op">+</span> <span class="tok-num">150</span>)       <span class="tok-out"># → 250</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'100'</span> <span class="tok-op">+</span> <span class="tok-str">'150'</span>)   <span class="tok-out"># → 100150</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'AT'</span> <span class="tok-op">*</span> <span class="tok-num">3</span>)        <span class="tok-out"># → ATATAT</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(<span class="tok-str">'GATTACA'</span>))  <span class="tok-out"># → 7</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>250
+100150
+ATATAT
+7</pre></div></div><div class="analysis"><ol><li>Строки 1–2: одинаковый знак <code>+</code>, но во второй строке операнды&nbsp;— строки, и цифры склеиваются.</li><li>Строка 3: мотив AT повторен три раза.</li><li>Строка 4: в последовательности GATTACA семь нуклеотидов.</li></ol></div></article>
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: строка и число в одном выражении</p><div class="code-block code-wrong"><span class="code-label">Неверно: склейка с числом</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-str">'Длина: '</span> <span class="tok-op">+</span> <span class="tok-num">7</span>)  <span class="tok-out"># → ошибка: TypeError</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "mistake.py", line 1, in &lt;module&gt;
+    print('Длина: ' + 7)
+          ~~~~~~~~~~^~~
+TypeError: can only concatenate str (not "int") to str</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-str">'Длина: '</span> <span class="tok-op">+</span> <span class="tok-builtin">str</span>(<span class="tok-num">7</span>))  <span class="tok-out"># → Длина: 7</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Длина: 7</pre></div><p>Python не переводит число в строку сам. Функция <code>str()</code> из следующего раздела делает это явно. На странице <a href="t1_09.html">09</a> появится более удобный способ: f-строки.</p></div>
+</section>
+
+<section class="subsection" id="s3">
+<h2>3. Явное преобразование</h2>
+<div class="step step-learn">Теория</div>
+<p>Python никогда не истолковывает содержимое строки как число сам: выражение <code>'37' + '42'</code> склеивает строки в <code>'3742'</code>. Чтобы посчитать, строку нужно явно преобразовать функцией нужного типа.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Вызов</th><th>Результат</th><th>Что делает</th></tr></thead><tbody>
+<tr><td><code>int('101')</code></td><td><code>101</code></td><td>строка с целым числом в <code>int</code></td></tr>
+<tr><td><code>int('101', 2)</code></td><td><code>5</code></td><td>строка с двоичной записью в <code>int</code></td></tr>
+<tr><td><code>int(42.9)</code></td><td><code>42</code></td><td>отбрасывает дробную часть, не округляет</td></tr>
+<tr><td><code>float('4.2')</code></td><td><code>4.2</code></td><td>строка в <code>float</code></td></tr>
+<tr><td><code>float(42)</code></td><td><code>42.0</code></td><td>целое в <code>float</code></td></tr>
+<tr><td><code>str(42)</code></td><td><code>'42'</code></td><td>любое значение в строку</td></tr>
+</tbody></table></div>
+<p>Второй аргумент <code>int()</code> задает основание системы счисления, в которой записана строка. Результат всегда обычное целое число и печатается в десятичной записи.</p>
+<div class="th-full"><p>Схема преобразований: вверх, в строку, ведет <code>str()</code>; вниз, из строки в число, ведут <code>int()</code> и <code>float()</code>; между числами тоже <code>int()</code> и <code>float()</code>. Функция <code>int()</code> у вещественного числа отбрасывает дробную часть: <code>int(42.9)</code> дает 42, а не 43. Для отрицательных чисел отбрасывание тоже идет к нулю: <code>int(-3.5)</code> дает <code>-3</code> (страница <a href="t1_06.html">06</a>).</p></div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Склеить или сложить</h3><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">convert.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-str">'37'</span></span>
+<span class="ln">b <span class="tok-op">=</span> <span class="tok-str">'42'</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">+</span> b)            <span class="tok-out"># → 3742</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(a) <span class="tok-op">+</span> <span class="tok-builtin">int</span>(b))  <span class="tok-out"># → 79</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>3742
+79</pre></div></div><ol class="code-explain-text"><li>Имя <code>a</code> связано со строкой из двух символов.</li><li>Имя <code>b</code> тоже со строкой.</li><li>Операнды&nbsp;— строки, поэтому <code>+</code> склеивает их.</li><li>Каждая строка сначала превращается в число, затем числа складываются: <span class="formula">37 + 42 = 79</span>.</li></ol></div></article>
+<article class="example th-full"><h3>Преобразования по таблице</h3><div class="run-pair"><div class="code-block"><span class="code-label">convert_more.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-str">'101'</span>, <span class="tok-num">2</span>))  <span class="tok-out"># → 5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-num">42.9</span>))      <span class="tok-out"># → 42</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">float</span>(<span class="tok-num">42</span>))      <span class="tok-out"># → 42.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">str</span>(<span class="tok-num">42</span>) <span class="tok-op">+</span> <span class="tok-str">'0'</span>)  <span class="tok-out"># → 420</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>5
+42
+42.0
+420</pre></div></div><div class="analysis"><ol><li>Строка 1: <span class="formula">101₂ = 1 · 4 + 0 · 2 + 1 = 5</span>.</li><li>Строка 2: дробная часть отброшена, результат 42.</li><li>Строка 3: целое стало вещественным, появилась точка.</li><li>Строка 4: после <code>str(42)</code> знак <code>+</code> склеивает строки: получилось 420, а не 42.</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Замените в третьей строке <code>+</code> на <code>*</code> и запустите: какая получилась ошибка? Затем исправьте программу так, чтобы вторая строка печатала <code>ATATAT</code>, а не ошибку.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_convert.py</span><pre><code><span class="ln">motif <span class="tok-op">=</span> <span class="tok-str">'AT'</span></span>
+<span class="ln">times <span class="tok-op">=</span> <span class="tok-str">'3'</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(motif <span class="tok-op">+</span> times)  <span class="tok-out"># → AT3</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>AT3</pre></div></div></div>
+<div class="step step-task">Задача</div>
+<div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+<div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t1_05_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t1_05_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t1_05_1_advanced.py">Продвинутый</button></div>
+<div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+<div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+<h3>Упражнение 1.5.1. Сумма из протокола</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор записал длины двух фрагментов ДНК строками <code>a</code> и <code>b</code>, например <code>'1200'</code>. Найдите общую длину фрагментов. Воспользуйтесь функцией <code>int()</code>.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задаются строки <code>a</code> и <code>b</code>, каждая содержит целое неотрицательное число.</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>a = '1200'
+b = '350'</pre></td><td><pre>1550</pre></td></tr>
+                <tr><td><pre>a = '0'
+b = '75'</pre></td><td><pre>75</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_05_1_basic.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+<div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+<h3>Упражнение 1.5.1. Повтор мотива</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор выдает все значения строками: мотив <code>motif</code> и число повторов <code>times</code>. Постройте последовательность, в которой мотив повторен <code>times</code> раз подряд.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задаются строка <code>motif</code> из букв A, C, G, T и строка <code>times</code> с целым числом от 1 до 20.</p>
+<h4>Выходные данные</h4>
+<p>Одна строка из букв.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>motif = 'CAG'
+times = '3'</pre></td><td><pre>CAGCAGCAG</pre></td></tr>
+                <tr><td><pre>motif = 'A'
+times = '1'</pre></td><td><pre>A</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_05_1_medium.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+<div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+<h3>Упражнение 1.5.1. Номер следующего образца</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Номер образца составляется из номера планшета <code>plate</code> и двух цифр номера лунки <code>well</code>: планшет 12 и лунка 07 дают образец 1207. Найдите номер следующего образца, то есть на единицу больше.</p></div>
+<details class="task-hint"><summary>Подсказка</summary><p>Сначала склейте строки, затем преобразуйте результат в число.</p></details><h4>Входные данные</h4>
+<p>В начале программы задаются строки <code>plate</code> (целое число от 1 до 99) и <code>well</code> (ровно две цифры, от <code>'00'</code> до <code>'99'</code>).</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>plate = '12'
+well = '07'</pre></td><td><pre>1208</pre></td></tr>
+                <tr><td><pre>plate = '40'
+well = '99'</pre></td><td><pre>4100</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_05_1_advanced.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="subsection" id="s4">
+<h2>4. Два разных отказа</h2>
+<div class="step step-learn">Теория</div>
+<p>Преобразование может не удаться двумя разными способами, и название ошибки уже ставит диагноз.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Ситуация</th><th>Пример</th><th>Результат</th><th>Что делать</th></tr></thead><tbody>
+<tr><td>все сходится</td><td><code>int('126') / 3</code></td><td><code>42.0</code></td><td>продолжать работу</td></tr>
+<tr><td>тип верный, содержимое негодное</td><td><code>int('hello')</code></td><td><code>ValueError</code></td><td>проверять данные до преобразования</td></tr>
+<tr><td>тип вообще не тот</td><td><code>'126' / 3</code></td><td><code>TypeError</code></td><td>преобразовать тип или исправить логику</td></tr>
+</tbody></table></div>
+<p><code>int()</code> принимает строку только с записью целого числа. Строку <code>'42.9'</code> она не примет (<code>ValueError</code>), хотя число <code>42.9</code> примет. Поэтому целую часть из такой строки получают в два шага: <code>int(float('42.9'))</code>.</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Целая часть из строки</h3><div class="run-pair"><div class="code-block"><span class="code-label">two_steps.py</span><pre><code><span class="ln">s <span class="tok-op">=</span> <span class="tok-str">'42.9'</span></span>
+<span class="ln">x <span class="tok-op">=</span> <span class="tok-builtin">float</span>(s)</span>
+<span class="ln"><span class="tok-builtin">print</span>(x)       <span class="tok-out"># → 42.9</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(x))  <span class="tok-out"># → 42</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>42.9
+42</pre></div></div><div class="analysis"><ol><li>Строка 2: строка превращается в вещественное число.</li><li>Строка 4: у числа отбрасывается дробная часть. Вызов <code>int(s)</code> сразу со строкой завершился бы ошибкой.</li></ol></div></article>
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: <code>int()</code> от строки с точкой</p><div class="code-block code-wrong"><span class="code-label">Неверно: ValueError</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-str">'42.9'</span>))  <span class="tok-out"># → ошибка: ValueError</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "mistake.py", line 1, in &lt;module&gt;
+    print(int('42.9'))
+          ^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '42.9'</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-builtin">float</span>(<span class="tok-str">'42.9'</span>)))  <span class="tok-out"># → 42</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>42</pre></div><p>Содержимое <code>'42.9'</code> не является записью целого числа, и <code>int()</code> честно отказывается. Последняя строка сообщения говорит, что именно не так: негодная запись <code>'42.9'</code> для целого числа в десятичной системе.</p></div>
+<div class="step step-task">Задача</div>
+<div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+<div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t1_05_2_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t1_05_2_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t1_05_2_advanced.py">Продвинутый</button></div>
+<div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+<div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+<h3>Упражнение 1.5.2. Целые микролитры</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дозатор показывает объем <code>volume</code> в мкл с дробной частью. В протокол записывают только целые микролитры: дробную часть отбрасывают. Найдите число для протокола.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задается вещественное неотрицательное число <code>volume</code>.</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>volume = 36.6</pre></td><td><pre>36</pre></td></tr>
+                <tr><td><pre>volume = 7.0</pre></td><td><pre>7</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_05_2_basic.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+<div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+<h3>Упражнение 1.5.2. Целая часть из протокола</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В протоколе масса образца записана строкой <code>s</code>, например <code>'18.75'</code> или <code>'7'</code>. Найдите целое число миллиграммов: отбросьте дробную часть.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задается строка <code>s</code> с записью неотрицательного числа, с точкой или без нее.</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>s = '18.75'</pre></td><td><pre>18</pre></td></tr>
+                <tr><td><pre>s = '7'</pre></td><td><pre>7</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_05_2_medium.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+<div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+<div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+<article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+<h3>Упражнение 1.5.2. Сумма двоичных флагов</h3>
+<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Флаги качества двух прочтений прибор записывает двоичными строками <code>f1</code> и <code>f2</code>, например <code>'1011'</code>. Найдите сумму двух значений флагов в обычной десятичной записи.</p></div>
+<h4>Входные данные</h4>
+<p>В начале программы задаются строки <code>f1</code> и <code>f2</code> из символов 0 и 1 (от 1 до 16 символов).</p>
+<h4>Выходные данные</h4>
+<p>Одно целое число.</p>
+<div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+<tbody>
+                <tr><td><pre>f1 = '1011'
+f2 = '1'</pre></td><td><pre>12</pre></td></tr>
+                <tr><td><pre>f1 = '0'
+f2 = '0'</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+</table>
+</div>
+<div class="checker" data-file="t1_05_2_advanced.py">
+<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="subsection overview" id="s5">
+<h2>5. Истина и ложь</h2><span class="overview-badge">Необходимый минимум</span><p class="overview-note">Истинность значений понадобится в условиях. Подробно она разбирается в теме 3 «Логика и ветвления».</p>
+<div class="step step-learn">Теория</div>
+<p>Тип <code>bool</code> имеет ровно два значения: <code>True</code> и <code>False</code>. Функция <code>bool()</code> показывает, считается ли значение истинным. Ложью считаются <code>False</code>, число 0 (и <code>0.0</code>), пустая строка <code>''</code> и <code>None</code>; истиной все остальное, в том числе любое ненулевое число и любая непустая строка.</p>
+<p class="th-full">Проверка на истинность склеивает разные ситуации: пустая строка и отсутствие значения (<code>None</code>) обе дают ложь, хотя означают разное. На это наталкиваются в условиях <code>if</code>; условия разбираются в теме 3.</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Что считается ложью</h3><div class="run-pair"><div class="code-block"><span class="code-label">truth.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-num">0</span>))    <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">''</span>))   <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">'0'</span>))  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-op">-</span><span class="tok-num">1</span>))   <span class="tok-out"># → True</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>False
+False
+True
+True</pre></div></div><div class="analysis"><ol><li>Строки 1–2: ноль и пустая строка ложны.</li><li>Строка 3: <code>'0'</code>&nbsp;— непустая строка из одного символа, поэтому истина.</li><li>Строка 4: любое ненулевое число, даже отрицательное, истинно.</li></ol></div></article>
+</section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_1</code> создайте папку <code>t1_05</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_05_1_basic.py</code> и <code>t1_05_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_05_1_medium.py</code> и <code>t1_05_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_05_1_advanced.py</code> и <code>t1_05_2_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t1_05</code> в свой репозиторий внутрь папки <code>projects_1</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_1/
+    └── t1_05/
+        ├── t1_05_1_basic.py
+        └── t1_05_2_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_1/
+    └── t1_05/
+        ├── t1_05_1_medium.py
+        └── t1_05_2_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_1/
+    └── t1_05/
+        ├── t1_05_1_advanced.py
+        └── t1_05_2_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_04.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">04 Переменные</span></a>
+        <a class="pcard pcard-next" href="t1_06.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">06 Арифметика</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

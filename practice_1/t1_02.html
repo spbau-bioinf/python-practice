@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Экосистема. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Три слоя экосистемы</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Подключение модулей</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Стиль кода: PEP 8</a></li></ul></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">02</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Экосистема Python</span></p>
+      <h1>Экосистема</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>10 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content" data-page-kind="theory">
+<p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться различать ядро языка, стандартную библиотеку и сторонние пакеты, подключать модули командой <code>import</code> и оформлять код по соглашению PEP&nbsp;8.</p>
+<section class="subsection" id="s1">
+<h2>1. Три слоя экосистемы</h2>
+<div class="step step-learn">Теория</div>
+<p class="th-full">Python выбирают для анализа биологических данных не только за простой синтаксис. Вокруг языка сложилась экосистема: тысячи готовых модулей для чтения форматов последовательностей, запросов к базам данных, вычислений и графиков. Чтобы пользоваться ею, нужно понимать, из каких частей она состоит и откуда что берется.</p>
+<p>«Python» на вашем компьютере состоит из трех слоев. <span class="term">Ядро языка</span> небольшое: числа, строки, списки, словари и правила их записи. <span class="term">Стандартная библиотека</span> устанавливается вместе с Python: это модули <code>math</code>, <code>decimal</code>, <code>random</code>, <code>os</code>, <code>sys</code> и многие другие. <span class="term">Сторонние пакеты</span> развиваются отдельно от языка и устанавливаются вручную командой <code>pip</code> из каталога <a href="https://pypi.org/">PyPI</a> (pypi.org).</p>
+<p class="definition"><span class="term">Модуль</span>&nbsp;— файл или набор файлов с готовыми функциями и значениями, которые программа может подключить.</p>
+<p>Если подключить пакет, который не установлен, Python выдаст <code>ModuleNotFoundError</code>. Это проблема окружения (на компьютере нет пакета), а не ошибка в коде: ее исправляют установкой, а не правкой программы.</p>
+<div class="th-full"><p>Что чем делается в биоинформатике на Python:</p><div class="table-wrap"><table class="data"><thead><tr><th>Задача</th><th>Пакет</th></tr></thead><tbody>
+<tr><td>получить данные из баз NCBI, UniProt, Ensembl</td><td>requests</td></tr>
+<tr><td>читать файлы FASTA, FASTQ, BED, GFF, VCF</td><td><a href="https://biopython.org/">Biopython</a></td></tr>
+<tr><td>работать с таблицами, группировать данные</td><td><code>pandas</code></td></tr>
+<tr><td>считать с массивами чисел</td><td>NumPy</td></tr>
+<tr><td>строить научные графики</td><td><code>matplotlib</code>, <code>seaborn</code></td></tr>
+<tr><td>проверять программу тестами</td><td>pytest</td></tr>
+</tbody></table></div><p>Все это материал второго семестра. В первом семестре программы пишутся на чистом Python: кто сам написал подсчет GC-состава, понимает, что за него делает библиотека.</p></div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Установка пакета и ошибка окружения</h3><p>Пакет устанавливают в терминале (это не код Python, а команда операционной системы):</p><div class="os-switch"><div class="output-block" data-os="win"><span class="output-label">Терминал · Windows</span><pre>PS C:\Users\student&gt; python -m pip install numpy</pre></div><div class="output-block" data-os="mac"><span class="output-label">Терминал · macOS</span><pre>% python3 -m pip install numpy</pre></div><div class="output-block" data-os="linux"><span class="output-label">Терминал · Linux</span><pre>$ python3 -m pip install numpy</pre></div></div><p>Если пакет не установлен, попытка подключить его в интерактивном режиме Python дает такое сообщение:</p><div class="output-block"><span class="output-label">Интерактивный режим Python</span><pre>&gt;&gt;&gt; import Bio
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+ModuleNotFoundError: No module named 'Bio'</pre></div><div class="analysis"><ol><li>Команда <code data-os="win">python -m pip install</code><code data-os="mac">python3 -m pip install</code><code data-os="linux">python3 -m pip install</code> запускает установщик <code>pip</code> той версии Python, которой вы пользуетесь. Так пакет гарантированно попадет туда, где его будет искать ваш интерпретатор.</li><li><code>Bio</code>&nbsp;— имя, под которым подключается пакет Biopython. Сообщение <code>No module named 'Bio'</code> значит, что пакет не найден среди установленных.</li><li class="th-full">На компьютерах в аудитории устанавливать пакеты для практики 1 не нужно: все модули, которые понадобятся, входят в стандартную библиотеку.</li></ol></div></article>
+</section>
+
+<section class="subsection overview" id="s2">
+<h2>2. Подключение модулей</h2><span class="overview-badge">Необходимый минимум</span><p class="overview-note">Здесь только то, что нужно в практике 1. Подробно модули и пакеты разбираются в теме 11 «Модули, пакеты и интерфейс командной строки».</p>
+<div class="step step-learn">Теория</div>
+<p>Модуль стандартной библиотеки уже установлен, но в программе он становится доступен только после команды <code>import</code>. Ее пишут в начале файла.</p>
+<div class="code-block"><span class="code-label"></span><pre><code><span class="ln"><span class="tok-kw">import</span> имя_модуля</span>
+<span class="ln">имя_модуля.имя_функции(…)</span>
+<span class="ln"></span>
+<span class="ln"><span class="tok-kw">from</span> имя_модуля <span class="tok-kw">import</span> имя</span>
+<span class="ln">имя(…)</span></code></pre></div>
+<p>Первая форма подключает модуль целиком; к его содержимому обращаются через точку: <code>math.sqrt(16)</code> означает «функция <code>sqrt</code> из модуля <code>math</code>». Вторая форма берет из модуля одно имя, и дальше его пишут без приставки.</p>
+<p class="th-full">Функция <code>math.sqrt()</code> вычисляет квадратный корень и всегда возвращает вещественное число. Модуль <code>math</code> понадобится на странице <a href="t1_07.html">07</a> для сравнения вещественных чисел, а класс <code>Decimal</code> из модуля <code>decimal</code> на странице <a href="t1_08.html">08</a> для точной десятичной арифметики.</p>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Модуль <code>math</code></h3><p>Предскажите: будет ли корень из 16 напечатан как <code>4</code>?</p><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">modules.py</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"><span class="tok-builtin">print</span>(math.sqrt(<span class="tok-num">16</span>))  <span class="tok-out"># → 4.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(math.pi)        <span class="tok-out"># → 3.141592653589793</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>4.0
+3.141592653589793</pre></div></div><ol class="code-explain-text"><li>Модуль <code>math</code> подключается целиком.</li><li>Функция <code>sqrt</code> из модуля <code>math</code> вычисляет корень из 16. Результат вещественный: <code>4.0</code>, а не <code>4</code>.</li><li><code>math.pi</code>&nbsp;— не функция, а значение числа π, поэтому скобок после него нет.</li></ol></div></article>
+<article class="example th-full"><h3>Одно имя из модуля</h3><div class="run-pair"><div class="code-block"><span class="code-label">decimal_import.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> decimal <span class="tok-kw">import</span> Decimal</span>
+<span class="ln"><span class="tok-builtin">print</span>(Decimal(<span class="tok-str">'1.45'</span>))  <span class="tok-out"># → 1.45</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>1.45</pre></div></div><div class="analysis"><ol><li>Строка 1: из модуля <code>decimal</code> берется только имя <code>Decimal</code>.</li><li>Строка 2: <code>Decimal</code> пишется без приставки <code>decimal.</code>. Что это за число и зачем оно нужно, разобрано на странице <a href="t1_08.html">08</a>.</li></ol></div></article>
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: обращение без имени модуля</p><div class="code-block code-wrong"><span class="code-label">Неверно: sqrt без math.</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"><span class="tok-builtin">print</span>(sqrt(<span class="tok-num">16</span>))  <span class="tok-out"># → ошибка: NameError</span></span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "mistake.py", line 2, in &lt;module&gt;
+    print(sqrt(16))
+          ^^^^
+NameError: name 'sqrt' is not defined</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"><span class="tok-builtin">print</span>(math.sqrt(<span class="tok-num">16</span>))  <span class="tok-out"># → 4.0</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>4.0</pre></div><p>После <code>import math</code> в программе появляется одно имя: <code>math</code>. Функция <code>sqrt</code> доступна только через него.</p></div>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Посчитайте корень из 2, а затем удалите первую строку и прочитайте сообщение об ошибке.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_math.py</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
+<span class="ln"><span class="tok-builtin">print</span>(math.sqrt(<span class="tok-num">16</span>))  <span class="tok-out"># → 4.0</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>4.0</pre></div></div></div>
+</section>
+
+<section class="subsection" id="s3">
+<h2>3. Стиль кода: PEP 8</h2>
+<div class="step step-learn">Теория</div>
+<p>Код читают чаще, чем пишут: при отладке, доработке, проверке чужой работы. Поэтому в Python принят общий стиль оформления, а не личный вкус каждого. Соглашение о стиле называется <span class="term">PEP&nbsp;8</span>.</p>
+<ul><li>отступ одного уровня: 4 пробела, без символов табуляции;</li><li>длина строки не больше 79 символов;</li><li>имена из строчных букв со знаком подчеркивания: <code>read_length</code>;</li><li>вокруг <code>=</code> и знаков операций по одному пробелу, после запятой пробел, внутри скобок пробелов нет.</li></ul>
+<div class="th-full"><p>Раз стиль общий, его можно проверять и применять автоматически. Автоформатер (например, black) сам расставляет пробелы и переносы, линтер (например, pylint) находит нарушения стиля и подозрительные места. В редакторе их подключают один раз, и дальше код оформляется при сохранении.</p><p>Табуляцию и пробелы в отступах смешивать нельзя: символы невидимы, а Python воспринимает их по-разному. Отступы станут важны в теме 3 «Логика и ветвления»; редактор заранее настраивают так, чтобы клавиша Tab вставляла 4 пробела (страница <a href="t1_03.html">03</a>).</p></div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Одна программа, два оформления</h3><div class="run-pair"><div class="code-block"><span class="code-label">style_bad.py</span><pre><code><span class="tok-builtin">print</span>( <span class="tok-num">2</span><span class="tok-op">+</span><span class="tok-num">3</span> )  <span class="tok-out"># → 5</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>5</pre></div></div><div class="run-pair"><div class="code-block"><span class="code-label">style_good.py</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">+</span> <span class="tok-num">3</span>)  <span class="tok-out"># → 5</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>5</pre></div></div><div class="analysis"><ol><li>Для интерпретатора программы одинаковы, вывод совпадает.</li><li>Вторая оформлена по PEP 8: без пробелов внутри скобок и с пробелами вокруг <code>+</code>. Такой код привычнее читать любому, кто пишет на Python.</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Запустите программу. Это «Дзен Python»: принципы, по которым устроен язык. Найдите строку про читаемость.</p><div class="run-pair"><div class="code-block"><span class="code-label">zen.py</span><pre><code><span class="tok-kw">import</span> this</code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!</pre></div></div></div>
+</section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_01.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">01 Программа и алгоритм</span></a>
+        <a class="pcard pcard-next" href="t1_03.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">03 Среда и запуск</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Арифметика. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t1_06.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Как считается выражение</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Операторы и деление</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Остаток и отрицательные числа</a></li><li><a href="#s4" data-section="s4"><span class="anc-num">4.</span> Тип результата</a></li><li><a href="#s5" data-section="s5"><span class="anc-num">5.</span> Приоритет операций</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.6.1</span> <span class="anc-ex-title" data-variant="basic">Полные кодоны</span><span class="anc-ex-title" data-variant="medium">До полного кодона</span><span class="anc-ex-title" data-variant="advanced">Рамка считывания со сдвигом</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.6.2</span> <span class="anc-ex-title" data-variant="basic">Средняя длина прочтения</span><span class="anc-ex-title" data-variant="medium">Кратность разведения</span><span class="anc-ex-title" data-variant="advanced">Объем пробы для разведения</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">06</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Арифметические операции</span></p>
+      <h1>Арифметика</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>30 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться вычислять выражения по шагам, различать <code>/</code>, <code>//</code> и <code>%</code> и переводить формулы из условия в код.</p>
+      <aside class="hint"><p><strong>Как устроены задачи.</strong> Функцию <code>input()</code> вы изучите на странице 09, поэтому исходные данные задаются в начале программы строками вида <code>length = 20</code>. Имена переменных берите из условия: проверка подставляет в эти строки свои значения. В поле проверки эти строки уже вставлены.</p></aside>
+
+      <section class="subsection" id="s1">
+        <h2>1. Как считается выражение</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Почти любая обработка данных сводится к вычислениям: длина последовательности в кодонах, число планшетов для партии проб, время прогона, объем реактива. На этой странице арифметика Python разобрана целиком: операторы, два вида деления, остаток и правила, по которым выражение превращается в значение.</p>
+        <p class="definition"><span class="term">Выражение</span>&nbsp;— запись из значений, имен и знаков операций, которую Python вычисляет до одного значения.</p>
+        <p>Выражение сворачивается по шагам: на каждом шаге выполняется одна операция, и ее операнды заменяются результатом. Какая операция идет первой, задают правила приоритета (раздел 5).</p>
+        <div class="th-full">
+          <p class="definition"><span class="term">Операнды</span>&nbsp;— значения, над которыми выполняется действие.</p>
+          <p class="definition"><span class="term">Операторы</span>&nbsp;— знаки, которые обозначают действие: <code>+</code>, <code>*</code> и другие.</p>
+          <p>Выражение <code>2 + 3 * 4</code> сворачивается так:</p>
+          <ol class="flow" aria-label="Вычисление выражения 2 + 3 * 4">
+            <li><span class="flow-expr">2 + 3 * 4</span><span class="flow-text">операнды 2, 3 и 4, операторы + и *</span></li>
+            <li><span class="flow-expr">2 + 12</span><span class="flow-text">умножение выполняется первым</span></li>
+            <li><span class="flow-expr">14</span><span class="flow-text">осталось одно значение</span></li>
+          </ol>
+          <p>Если ошибиться в порядке, Python не сообщит об ошибке: он посчитает другое выражение. Такую ошибку называют семантической, ее выдает только неверный результат.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Скобки меняют порядок</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">expressions.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">+</span> <span class="tok-num">3</span> <span class="tok-op">*</span> <span class="tok-num">4</span>)    <span class="tok-out"># → 14</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((<span class="tok-num">2</span> <span class="tok-op">+</span> <span class="tok-num">3</span>) <span class="tok-op">*</span> <span class="tok-num">4</span>)  <span class="tok-out"># → 20</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>14
+20</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: умножение выполняется раньше сложения: 3 · 4 = 12, затем 2 + 12 = 14.</li><li>Строка 2: скобки вычисляются первыми: 2 + 3 = 5, затем 5 · 4 = 20.</li><li class="th-full">Скобки ставят, когда нужен другой порядок или когда порядок должен быть сразу понятен читателю.</li></ol></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Уберите скобки во второй строке и запустите. Почему результат совпал с первой строкой?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_brackets.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">+</span> <span class="tok-num">3</span> <span class="tok-op">*</span> <span class="tok-num">4</span>)    <span class="tok-out"># → 14</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((<span class="tok-num">2</span> <span class="tok-op">+</span> <span class="tok-num">3</span>) <span class="tok-op">*</span> <span class="tok-num">4</span>)  <span class="tok-out"># → 20</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>14
+20</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Операторы и деление</h2>
+        <div class="step step-learn">Теория</div>
+        <div class="table-wrap th-brief">
+          <table class="data">
+            <thead><tr><th>Оператор</th><th>Действие</th><th>Пример</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td><code>+</code>, <code>-</code>, <code>*</code></td><td>сложение, вычитание, умножение</td><td><code>6 * 7</code></td><td><code>42</code></td></tr>
+              <tr><td><code>/</code></td><td>деление, результат всегда <code>float</code></td><td><code>84 / 2</code></td><td><code>42.0</code></td></tr>
+              <tr><td><code>//</code></td><td>целочисленное деление: результат деления, округленный вниз</td><td><code>85 // 2</code></td><td><code>42</code></td></tr>
+              <tr><td><code>%</code></td><td>остаток от деления</td><td><code>7 % 3</code></td><td><code>1</code></td></tr>
+              <tr><td><code>**</code></td><td>возведение в степень</td><td><code>7 ** 2</code></td><td><code>49</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap th-full">
+          <table class="data">
+            <thead><tr><th>Оператор</th><th>Действие</th><th>Пример</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td><code>x + y</code></td><td>сложение</td><td><code>30 + 12</code></td><td><code>42</code></td></tr>
+              <tr><td><code>x - y</code></td><td>вычитание</td><td><code>43 - 1</code></td><td><code>42</code></td></tr>
+              <tr><td><code>x * y</code></td><td>умножение</td><td><code>6 * 7</code></td><td><code>42</code></td></tr>
+              <tr><td><code>x / y</code></td><td>деление, результат всегда <code>float</code></td><td><code>84 / 2</code></td><td><code>42.0</code></td></tr>
+              <tr><td><code>x // y</code></td><td>целочисленное деление: результат деления, округленный вниз</td><td><code>85 // 2</code></td><td><code>42</code></td></tr>
+              <tr><td><code>x % y</code></td><td>остаток от деления</td><td><code>7 % 3</code></td><td><code>1</code></td></tr>
+              <tr><td><code>x ** y</code></td><td>возведение в степень</td><td><code>7 ** 2</code></td><td><code>49</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Для положительных чисел округление вниз у <code>//</code> совпадает с отбрасыванием дробной части; про отрицательные числа в разделе 3.<span class="th-brief"> Степень пишется <code>**</code>: знак <code>^</code> в Python означает другую, побитовую операцию, и <code>2 ^ 3</code> молча дает <code>1</code>.</span></p>
+        <div class="th-full">
+          <p>Знак минус перед числом или именем (<code>-x</code>) называется унарным минусом: он меняет знак значения. Вокруг остальных операторов по PEP&nbsp;8 ставят по одному пробелу: <code>a + b</code>, а не <code>a+b</code>.</p>
+          <p>В Python&nbsp;2 деление двух целых чисел отбрасывало дробную часть, и выражение <code>59 / 60</code> давало ноль. В Python&nbsp;3 оператор <code>/</code> всегда делит обычным образом и возвращает <code>float</code>, а для деления нацело есть отдельный оператор <code>//</code>. В старых книгах и на старых сайтах встречается код, который в Python&nbsp;3 работает иначе.</p>
+          <p>Операторы <code>//</code> и <code>%</code> отвечают на два вопроса об одном делении:</p>
+          <ul>
+            <li><code>x // y</code>: сколько целых <code>y</code> помещается в <code>x</code>. Сколько полных часов в минутах, полных кодонов в последовательности, полных планшетов в партии.</li>
+            <li><code>x % y</code>: сколько осталось. Оставшиеся минуты, нуклеотиды, пробы.</li>
+            <li><code>x % y == 0</code> проверяет, делится ли <code>x</code> на <code>y</code> нацело; результат <code>True</code> или <code>False</code>.</li>
+            <li>На ноль делить нельзя и здесь: <code>10 // 0</code> и <code>10 % 0</code> вызывают <code>ZeroDivisionError</code>.</li>
+          </ul>
+          <div class="mistake">
+            <p class="mistake-caption">Типичная ошибка: <code>^</code> вместо <code>**</code></p>
+            <div class="code-block code-wrong"><span class="code-label">Неверно: это не степень</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">^</span> <span class="tok-num">3</span>)  <span class="tok-out"># → 1</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>1</pre></div>
+            <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">**</span> <span class="tok-num">3</span>)  <span class="tok-out"># → 8</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>8</pre></div>
+            <p>В электронных таблицах степень обозначают знаком <code>^</code>, а в Python это побитовая операция, поэтому программа молча выводит 1. Сообщения об ошибке нет, ошибку выдает только неверный результат.</p>
+          </div>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example th-full">
+          <h3>Два вида деления</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">division.py</span><pre><code><span class="ln">minute <span class="tok-op">=</span> <span class="tok-num">59</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(minute <span class="tok-op">/</span> <span class="tok-num">60</span>)    <span class="tok-out"># → 0.9833333333333333</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(minute <span class="tok-op">//</span> <span class="tok-num">60</span>)   <span class="tok-out"># → 0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">60</span> <span class="tok-op">/</span> <span class="tok-num">60</span>)        <span class="tok-out"># → 1.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-num">60</span> <span class="tok-op">/</span> <span class="tok-num">60</span>))  <span class="tok-out"># → &lt;class 'float'&gt;</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>0.9833333333333333
+0
+1.0
+&lt;class 'float'&gt;</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: 59 минут составляют 0,98(3) часа; бесконечная дробь показана конечным числом цифр.</li><li>Строка 3: полных часов в 59 минутах ноль.</li><li>Строки 4–5: даже <code>60 / 60</code> дает <code>1.0</code> типа <code>float</code>.</li></ol></div>
+        </article>
+        <article class="example">
+          <h3>Минуты в часы и минуты</h3>
+          <div class="code-explain">
+            <div class="run-pair">
+              <div class="code-block"><span class="code-label">minutes.py</span><pre><code><span class="ln">minutes <span class="tok-op">=</span> <span class="tok-num">105</span></span>
+<span class="ln">hours <span class="tok-op">=</span> minutes <span class="tok-op">//</span> <span class="tok-num">60</span></span>
+<span class="ln">rest <span class="tok-op">=</span> minutes <span class="tok-op">%</span> <span class="tok-num">60</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(hours)  <span class="tok-out"># → 1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(rest)   <span class="tok-out"># → 45</span></span></code></pre></div>
+              <div class="output-block"><span class="output-label">Вывод</span><pre>1
+45</pre></div>
+            </div>
+            <ol class="code-explain-text">
+              <li>Имя <code>minutes</code> связывается с числом 105.</li>
+              <li><code>105 // 60</code> дает 1: в 105 минутах один полный час.</li>
+              <li><code>105 % 60</code> дает 45: столько минут остается.</li>
+              <li>Выводится число часов.</li>
+              <li>Выводится остаток минут.</li>
+            </ol>
+          </div>
+        </article>
+        <article class="example th-full">
+          <h3>Пробы по планшетам</h3>
+          <p>В планшете 94 рабочие лунки, в партии 250 проб. Сколько планшетов заполнится целиком и сколько проб попадет в последний?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">plates.py</span><pre><code><span class="ln">samples <span class="tok-op">=</span> <span class="tok-num">250</span></span>
+<span class="ln">wells <span class="tok-op">=</span> <span class="tok-num">94</span></span>
+<span class="ln">full <span class="tok-op">=</span> samples <span class="tok-op">//</span> wells</span>
+<span class="ln">last <span class="tok-op">=</span> samples <span class="tok-op">%</span> wells</span>
+<span class="ln"><span class="tok-builtin">print</span>(full)                 <span class="tok-out"># → 2</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(last)                 <span class="tok-out"># → 62</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(full <span class="tok-op">*</span> wells <span class="tok-op">+</span> last)  <span class="tok-out"># → 250</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>2
+62
+250</pre></div>
+          </div>
+          <div class="analysis"><div class="table-wrap"><table class="data trace"><thead><tr><th>Строка</th><th>Вычисление</th><th>samples</th><th>wells</th><th>full</th><th>last</th><th>Вывод</th></tr></thead><tbody>
+            <tr><td>1–2</td><td></td><td>250</td><td>94</td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td><span class="formula">250 // 94 → 2</span></td><td>250</td><td>94</td><td>2</td><td></td><td></td></tr>
+            <tr><td>4</td><td><span class="formula">250 % 94 → 62</span></td><td>250</td><td>94</td><td>2</td><td>62</td><td></td></tr>
+            <tr><td>5–6</td><td></td><td>250</td><td>94</td><td>2</td><td>62</td><td>2 и 62</td></tr>
+            <tr><td>7</td><td><span class="formula">2 · 94 + 62 → 250</span></td><td>250</td><td>94</td><td>2</td><td>62</td><td>250</td></tr>
+          </tbody></table></div>
+          <p>Строка 7 проверяет пару: целая часть и остаток восстановили исходное число, значит, ни одна проба не потерялась.</p></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените 105 на 180 и предскажите вывод до запуска. Сколько минут останется?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_minutes.py</span><pre><code><span class="ln">minutes <span class="tok-op">=</span> <span class="tok-num">105</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(minutes <span class="tok-op">//</span> <span class="tok-num">60</span>)  <span class="tok-out"># → 1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(minutes <span class="tok-op">%</span> <span class="tok-num">60</span>)   <span class="tok-out"># → 45</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>1
+45</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t1_06_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t1_06_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t1_06_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 1.6.1. Полные кодоны</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана длина последовательности нуклеотидов. Найдите, сколько в ней полных кодонов и сколько нуклеотидов останется после последнего полного кодона.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задается целое неотрицательное число <code>length</code>.</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке число полных кодонов, во второй остаток.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>length = 20</pre></td><td><pre>6
+2</pre></td></tr>
+                <tr><td><pre>length = 21</pre></td><td><pre>7
+0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_06_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 1.6.1. До полного кодона</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана длина последовательности нуклеотидов. Найдите, сколько нуклеотидов нужно добавить в конец, чтобы длина стала кратной трем.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задается целое неотрицательное число <code>length</code>.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно целое число от 0 до 2.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>length = 20</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>length = 21</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_06_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 1.6.1. Рамка считывания со сдвигом</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Чтение начинается с позиции <code>shift</code> (0, 1 или 2). Найдите, сколько полных кодонов прочитается и сколько нуклеотидов останется непрочитанными в конце.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются целые числа <code>length</code> и <code>shift</code> (от 0 до 2, не больше <code>length</code>).</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке число полных кодонов, во второй остаток в конце.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>length = 20
+shift = 1</pre></td><td><pre>6
+1</pre></td></tr>
+                <tr><td><pre>length = 7
+shift = 2</pre></td><td><pre>1
+2</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_06_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Остаток и отрицательные числа</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="property">Для целых <code>x</code> и <code>y</code> (<code>y</code> ≠ 0) выполняется равенство <code>(x // y) * y + x % y == x</code>: целая часть частного и остаток вместе восстанавливают число.</p>
+        <p>Поскольку <code>//</code> округляет вниз, для отрицательных чисел результат отличается от отбрасывания дробной части, а остаток получает знак делителя.</p>
+        <p class="th-full">Для положительных чисел округление вниз и отбрасывание дробной части совпадают, для отрицательных нет. Функция <code>int()</code> отбрасывает дробную часть: <code>int(-3.5)</code> дает <code>-3</code>, а <code>-7 // 2</code> дает <code>-4</code>. Остаток получает знак делителя, поэтому при положительном делителе он не бывает отрицательным, и равенство пары по-прежнему выполняется.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Деление отрицательного числа</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">negative.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-op">-</span><span class="tok-num">7</span> <span class="tok-op">//</span> <span class="tok-num">2</span>)               <span class="tok-out"># → -4</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-op">-</span><span class="tok-num">7</span> <span class="tok-op">%</span> <span class="tok-num">2</span>)                <span class="tok-out"># → 1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-op">-</span><span class="tok-num">7</span> <span class="tok-op">//</span> <span class="tok-num">2</span> <span class="tok-op">*</span> <span class="tok-num">2</span> <span class="tok-op">+</span> <span class="tok-op">-</span><span class="tok-num">7</span> <span class="tok-op">%</span> <span class="tok-num">2</span>)  <span class="tok-out"># → -7</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>-4
+1
+-7</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: −7 / 2 = −3,5, округление вниз дает −4.</li><li>Строка 2: остаток −7 − (−4 · 2) = 1.</li><li>Строка 3: равенство выполняется: (−4) · 2 + 1 = −7.</li></ol><p>Это свойство пригодится для кольцевых координат: позиция на кольцевой плазмиде после сдвига назад остается в диапазоне от 0 до длины.</p></div>
+        </article>
+        <article class="example th-full">
+          <h3>Кольцевая плазмида</h3>
+          <p>Плазмида длиной 2686 нуклеотидов замкнута в кольцо. Позицию после сдвига назад удобно считать остатком: результат всегда попадает в диапазон от 0 до длины.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">plasmid.py</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-num">2686</span></span>
+<span class="ln">position <span class="tok-op">=</span> <span class="tok-num">50</span></span>
+<span class="ln">shift <span class="tok-op">=</span> <span class="tok-num">100</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(position <span class="tok-op">-</span> shift)             <span class="tok-out"># → -50</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((position <span class="tok-op">-</span> shift) <span class="tok-op">%</span> length)  <span class="tok-out"># → 2636</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>-50
+2636</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 4: простое вычитание уводит позицию за начало координат.</li><li>Строка 5: остаток от деления на длину возвращает ее на кольцо: <span class="formula">−50 − (−1) · 2686 = 2636</span>.</li></ol></div>
+        </article>
+      </section>
+
+      <section class="subsection" id="s4">
+        <h2>4. Тип результата</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="rule"><span class="term">Правило «заражения»</span> (неявное приведение к <code>float</code>): если хотя бы один операнд <code>float</code>, результат тоже <code>float</code>. Деление <code>/</code> дает <code>float</code> всегда.</p>
+        <p class="th-full">Если оба операнда <code>int</code>, результат <code>int</code> для <code>+</code>, <code>-</code>, <code>*</code>, <code>//</code>, <code>%</code> и для <code>**</code> с неотрицательной степенью. Исключений два: деление <code>/</code> всегда возвращает <code>float</code>, возведение в отрицательную степень тоже: <code>2 ** -1</code> дает <code>0.5</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example th-brief">
+          <h3>Один <code>float</code>, и результат вещественный</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">float_rule.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">1</span> <span class="tok-op">+</span> <span class="tok-num">2.0</span>)       <span class="tok-out"># → 3.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">7</span> <span class="tok-op">//</span> <span class="tok-num">2.0</span>)      <span class="tok-out"># → 3.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-num">2</span> <span class="tok-op">**</span> <span class="tok-num">3</span>))  <span class="tok-out"># → &lt;class 'int'&gt;</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>3.0
+3.0
+&lt;class 'int'&gt;</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: вещественный операнд делает результат вещественным.</li><li>Строка 2: даже <code>//</code> с <code>float</code> дает <code>3.0</code>.</li><li>Строка 3: оба операнда целые, результат <code>int</code>.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Один <code>float</code>, и результат вещественный</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">float_rule.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">4</span> <span class="tok-op">/</span> <span class="tok-num">2</span>)         <span class="tok-out"># → 2.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">1</span> <span class="tok-op">+</span> <span class="tok-num">2.0</span>)       <span class="tok-out"># → 3.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">7</span> <span class="tok-op">//</span> <span class="tok-num">2.0</span>)      <span class="tok-out"># → 3.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">7</span> <span class="tok-op">%</span> <span class="tok-num">2.5</span>)       <span class="tok-out"># → 2.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">**</span> <span class="tok-op">-</span><span class="tok-num">1</span>)       <span class="tok-out"># → 0.5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-num">2</span> <span class="tok-op">**</span> <span class="tok-num">3</span>))  <span class="tok-out"># → &lt;class 'int'&gt;</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>2.0
+3.0
+3.0
+2.0
+0.5
+&lt;class 'int'&gt;</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: деление <code>/</code> возвращает <code>float</code>, даже если делится нацело.</li><li>Строка 2: вещественный операнд делает результат вещественным, хотя значение целое.</li><li>Строка 3: целочисленное деление с <code>float</code> дает <code>3.0</code>, а не <code>3</code>.</li><li>Строка 4: остаток работает и для вещественных чисел: <span class="formula">7 = 2,5 · 2 + 2</span>.</li><li>Строка 5: отрицательная степень дает <code>float</code> даже при целых операндах.</li><li>Строка 6: оба операнда целые, степень неотрицательная, результат <code>int</code>.</li></ol><p>Практическое следствие: длина последовательности, число кодонов и число проб всегда целые. Если такая величина получилась с точкой, значит, в расчете оказалось деление <code>/</code> вместо <code>//</code> или вещественный операнд.</p></div>
+        </article>
+      </section>
+
+      <section class="subsection" id="s5">
+        <h2>5. Приоритет операций</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-brief">Сначала скобки, затем <code>**</code> (справа налево), унарный минус, потом <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code> (слева направо), потом <code>+</code> и <code>-</code>, в конце сравнения.</p>
+        <div class="th-full">
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Приоритет</th><th>Операции</th><th>При равном приоритете</th></tr></thead>
+              <tbody>
+                <tr><td>1, высший</td><td>скобки <code>( )</code></td><td>изнутри наружу</td></tr>
+                <tr><td>2</td><td>степень <code>**</code></td><td>справа налево: <span class="formula">2 ** 3 ** 2 = 2⁹</span></td></tr>
+                <tr><td>3</td><td>унарный минус <code>-x</code></td><td></td></tr>
+                <tr><td>4</td><td><code>*</code>, <code>/</code>, <code>//</code>, <code>%</code></td><td>слева направо</td></tr>
+                <tr><td>5</td><td><code>+</code>, <code>-</code></td><td>слева направо</td></tr>
+                <tr><td>6, низший</td><td>сравнения <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Сравнения выполняются после арифметики, поэтому <code>length % 3 == 0</code> читается как «остаток равен нулю» без дополнительных скобок.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Ловушки приоритета</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">precedence.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">12</span> <span class="tok-op">/</span> <span class="tok-num">2</span> <span class="tok-op">*</span> <span class="tok-num">3</span>)   <span class="tok-out"># → 18.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">2</span> <span class="tok-op">**</span> <span class="tok-num">3</span> <span class="tok-op">**</span> <span class="tok-num">2</span>)  <span class="tok-out"># → 512</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-op">-</span><span class="tok-num">3</span> <span class="tok-op">**</span> <span class="tok-num">2</span>)      <span class="tok-out"># → -9</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>18.0
+512
+-9</pre></div>
+          </div>
+          <div class="analysis"><div class="table-wrap"><table class="data"><thead><tr><th>Выражение</th><th>Кажется</th><th>На самом деле</th></tr></thead><tbody><tr><td><code>12 / 2 * 3</code></td><td><span class="formula">12 / (2 · 3) = 2.0</span></td><td><span class="formula">(12 / 2) · 3 = 18.0</span></td></tr><tr><td><code>2 ** 3 ** 2</code></td><td><span class="formula">8² = 64</span></td><td><span class="formula">2⁹ = 512</span></td></tr><tr><td><code>-3 ** 2</code></td><td><span class="formula">(−3)² = 9</span></td><td><span class="formula">−(3²) = −9</span></td></tr></tbody></table></div></div>
+        </article>
+        <aside class="hint"><p><strong>Сомневаетесь в порядке, ставьте скобки.</strong> Если скобки повторяют правило, смысл не меняется, а порядок сразу понятен читателю: <code>2 ** (3 ** 2)</code>, <code>(12 / 2) * 3</code>.</p></aside>
+        <div class="th-full">
+          <h3 class="block-title">Формула из условия в выражение Python</h3>
+          <ol>
+            <li>Запишите знаки операций: умножение <code>*</code> (знак не пропускают: <span class="formula">2x</span> пишется <code>2 * x</code>), деление <code>/</code> или <code>//</code>, степень <code>**</code>.</li>
+            <li>Числитель и знаменатель дроби, в которых есть сложение или вычитание, возьмите в скобки: <span class="formula">(a + b) / c</span>.</li>
+            <li>Проверьте выражение на простых числах, для которых ответ известен заранее.</li>
+          </ol>
+          <div class="mistake">
+            <p class="mistake-caption">Типичная ошибка: забытые скобки в формуле</p>
+            <p>Относительное изменение в процентах: <span class="formula">(новое − старое) / старое · 100</span>. Старое значение 40, новое 50.</p>
+            <div class="code-block code-wrong"><span class="code-label">Неверно: делится только old</span><pre><code><span class="ln">old <span class="tok-op">=</span> <span class="tok-num">40</span></span>
+<span class="ln">new <span class="tok-op">=</span> <span class="tok-num">50</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(new <span class="tok-op">-</span> old <span class="tok-op">/</span> old <span class="tok-op">*</span> <span class="tok-num">100</span>)  <span class="tok-out"># → -50.0</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>-50.0</pre></div>
+            <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">old <span class="tok-op">=</span> <span class="tok-num">40</span></span>
+<span class="ln">new <span class="tok-op">=</span> <span class="tok-num">50</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((new <span class="tok-op">-</span> old) <span class="tok-op">/</span> old <span class="tok-op">*</span> <span class="tok-num">100</span>)  <span class="tok-out"># → 25.0</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>25.0</pre></div>
+            <p>Без скобок на <code>old</code> делится только <code>old</code>, и из 50 вычитается 100. Рост с 40 до 50 не может дать отрицательный процент: такую ошибку выдает проверка результата на здравый смысл.</p>
+          </div>
+        </div>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Средняя длина трех прочтений 148, 150 и 155 посчитана с ошибкой. Исправьте формулу: средняя не может быть больше максимальной длины.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_mean.py</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-num">148</span> <span class="tok-op">+</span> <span class="tok-num">150</span> <span class="tok-op">+</span> <span class="tok-num">155</span> <span class="tok-op">/</span> <span class="tok-num">3</span>)  <span class="tok-out"># → 349.6666666666667</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>349.6666666666667</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t1_06_2_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t1_06_2_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t1_06_2_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 1.6.2. Средняя длина прочтения</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны длины трех прочтений <code>r1</code>, <code>r2</code>, <code>r3</code>. Найдите среднюю длину.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются целые неотрицательные числа <code>r1</code>, <code>r2</code>, <code>r3</code>.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно вещественное число в том виде, в каком его печатает Python.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>r1 = 148
+r2 = 150
+r3 = 155</pre></td><td><pre>151.0</pre></td></tr>
+                <tr><td><pre>r1 = 100
+r2 = 100
+r3 = 101</pre></td><td><pre>100.33333333333333</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_06_2_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 1.6.2. Кратность разведения</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пробу объемом <code>sample</code> мкл смешали с буфером объемом <code>buffer</code> мкл. Найдите кратность разведения: общий объем, деленный на объем пробы.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются целые положительные числа <code>sample</code> и <code>buffer</code>.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно вещественное число в том виде, в каком его печатает Python.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>sample = 20
+buffer = 180</pre></td><td><pre>10.0</pre></td></tr>
+                <tr><td><pre>sample = 25
+buffer = 100</pre></td><td><pre>5.0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_06_2_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 1.6.2. Объем пробы для разведения</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Нужно получить <code>v2</code> мкл раствора с концентрацией <code>c2</code> из исходного раствора с концентрацией <code>c1</code>. По формуле <span class='formula'>C1 · V1 = C2 · V2</span> найдите объем исходного раствора V1 и объем буфера.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>c1</code>, <code>c2</code> (не больше <code>c1</code>) и <code>v2</code>, все больше 0.</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке объем исходного раствора, во второй объем буфера.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>c1 = 100.0
+c2 = 10.0
+v2 = 50.0</pre></td><td><pre>5.0
+45.0</pre></td></tr>
+                <tr><td><pre>c1 = 20.0
+c2 = 5.0
+v2 = 8.0</pre></td><td><pre>2.0
+6.0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_06_2_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_1</code> создайте папку <code>t1_06</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_06_1_basic.py</code> и <code>t1_06_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_06_1_medium.py</code> и <code>t1_06_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_06_1_advanced.py</code> и <code>t1_06_2_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t1_06</code> в свой репозиторий внутрь папки <code>projects_1</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_1/
+    └── t1_06/
+        ├── t1_06_1_basic.py
+        └── t1_06_2_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_1/
+    └── t1_06/
+        ├── t1_06_1_medium.py
+        └── t1_06_2_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_1/
+    └── t1_06/
+        ├── t1_06_1_advanced.py
+        └── t1_06_2_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_05.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">05 Типы данных</span></a>
+        <a class="pcard pcard-next" href="t1_07.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">07 Вещественные числа</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

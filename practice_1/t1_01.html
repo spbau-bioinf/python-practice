@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Программа и алгоритм. Практика 1. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 1</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t1_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Программа и алгоритм</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> От задачи к исполнению</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Интерпретатор</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Три вида ошибок</a></li></ul></li>
+        <li class="menu-sub"><a href="t1_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Экосистема</span></span></a></li>
+        <li class="menu-sub"><a href="t1_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Среда и запуск</span></span></a></li>
+        <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
+        <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
+        <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
+        <li class="menu-sub"><a href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a></li>
+        <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
+        <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">01</span>
+      <p class="page-path"><span>Практика 1</span><span class="page-path-sep" aria-hidden="true">›</span><span>Программа, алгоритм, интерпретатор</span></p>
+      <h1>Программа и алгоритм</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>10 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content" data-page-kind="theory">
+<p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться отличать алгоритм от программы, называть этапы, которые проходит программа на Python до результата, и определять вид ошибки по сообщению интерпретатора.</p>
+<section class="subsection" id="s1">
+<h2>1. От задачи к исполнению</h2>
+<div class="step step-learn">Теория</div>
+<p class="th-full">Человек и компьютер сильны в разном. Человек понимает смысл текста, придумывает и догадывается, но пересчитывать тысячи чисел вручную ему тяжело. Компьютер смысла не понимает, зато выполняет миллиарды простых операций в секунду и никогда не устает. Программирование передает машине рутину и оставляет человеку смысл: в этом курсе рутиной будут подсчет GC-состава, поиск мотивов, частоты кодонов, разбор файлов FASTA.</p>
+<p class="definition"><span class="term">Алгоритм</span>&nbsp;— точное описание способа решения задачи: последовательность шагов, которая из исходных данных получает результат.</p>
+<p class="definition"><span class="term">Программа</span>&nbsp;— запись алгоритма на конкретном языке программирования, которую может выполнить компьютер.</p>
+<p>Путь от задачи до результата состоит из четырех этапов: задача (что нужно получить), алгоритм (способ решения словами, схемой или псевдокодом), программа (инструкции на языке Python) и исполнение (запуск и проверка результата). Алгоритм от языка не зависит, программа зависит. Большинство ошибок появляется при переводе алгоритма в программу, поэтому программу всегда проверяют запуском.</p>
+<div class="th-full">
+<p>Решение задачи состоит из трех разных действий: сформулировать проблему, найти решение и выразить его на языке исполнителя. Их полезно разделять: если программа работает неверно, сначала проверьте алгоритм на бумаге и только потом ищите ошибку в коде.</p>
+<p>Программа при работе использует несколько устройств компьютера:</p><div class="table-wrap"><table class="data"><thead><tr><th>Устройство</th><th>Что делает</th><th>Что там во время работы программы</th></tr></thead><tbody>
+<tr><td>внешняя память (диск)</td><td>хранит файлы и после выключения</td><td>файл программы <span class="file-name">hello.py</span></td></tr>
+<tr><td>оперативная память</td><td>хранит данные, пока есть питание</td><td>загруженная программа и ее данные</td></tr>
+<tr><td>процессор</td><td>выполняет команды</td><td>по одной выполняет инструкции программы</td></tr>
+<tr><td>ввод и вывод</td><td>клавиатура, файл, сеть; экран, файл</td><td>то, что программа получает и выдает</td></tr>
+</tbody></table></div><p>После строки <code>x = 123</code> число 123 появляется в оперативной памяти, а имя <code>x</code> указывает на него (подробно на странице <a href="t1_04.html">04</a>). Когда программа завершится, оперативная память освободится; сохранится только то, что записано в файл во внешней памяти.</p>
+</div>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Алгоритм подсчета GC-состава</h3><p>Задача: узнать, какую долю последовательности ДНК составляют гуанин (G) и цитозин (C). Алгоритм словами:</p><ol><li>Посчитать, сколько в последовательности букв G.</li><li>Посчитать, сколько букв C.</li><li>Сложить эти два числа.</li><li>Разделить сумму на длину последовательности.</li><li>Сообщить результат.</li></ol><div class="analysis"><ol><li>Алгоритм не упоминает ни одного слова Python: так же его выполнит человек с карандашом или программа на другом языке.</li><li>Каждый шаг однозначен: у исполнителя не возникает вопроса, что делать дальше.</li><li class="th-full">Запись этого алгоритма на Python появится на страницах <a href="t1_08.html">08</a> и <a href="t1_10.html">10</a>. Шаги 1–2 без готовых чисел требуют циклов (тема 4 «Циклы и итеративная обработка»), поэтому в практике 1 числа G и C будут даны заранее.</li></ol></div></article>
+</section>
+
+<section class="subsection" id="s2">
+<h2>2. Интерпретатор</h2>
+<div class="step step-learn">Теория</div>
+<p>Процессор выполняет только машинный код: команды в двоичном виде, свои для каждого типа процессора. Python&nbsp;— язык высокого уровня, он спроектирован так, чтобы программу мог прочитать человек. Между человеком и процессором всегда стоит программа-переводчик.</p>
+<p class="definition"><span class="term">Компилятор</span>&nbsp;— переводчик, который переводит программу целиком в файл с машинным кодом; запускать этот файл можно позже.</p>
+<p class="definition"><span class="term">Интерпретатор</span>&nbsp;— переводчик, который читает программу и сразу выполняет ее по ходу дела.</p>
+<p>Python интерпретируемый язык. Интерпретатор CPython сначала разбирает весь файл <span class="file-name">.py</span> и переводит его в байт-код (промежуточный код для виртуальной машины Python), затем выполняет байт-код строка за строкой. Отсюда главное следствие: синтаксическая ошибка (<code>SyntaxError</code>) обнаруживается при разборе, до выполнения первой строки, а остальные ошибки проявляются только тогда, когда строка с ошибкой действительно выполняется.</p>
+<div class="th-full">
+<p>Слово «Python» означает три разные вещи: язык (правила, общие для всех), реализацию (программа-переводчик CPython, написанная на языке C) и версию, установленную на вашем компьютере. Код выполняет именно установленная версия, поэтому ее полезно знать:</p><div class="os-switch"><div class="output-block" data-os="win"><span class="output-label">Терминал · Windows</span><pre>PS C:\Users\student&gt; python --version
+Python 3.12.3</pre></div><div class="output-block" data-os="mac"><span class="output-label">Терминал · macOS</span><pre>% python3 --version
+Python 3.12.3</pre></div><div class="output-block" data-os="linux"><span class="output-label">Терминал · Linux</span><pre>$ python3 --version
+Python 3.12.3</pre></div></div><p>В курсе нужен Python 3.10 или новее. Команда <code>python</code> на разных системах может вести к старой версии или отсутствовать, поэтому в терминале пишут <code>python3</code> (в Windows обычно работает <code>python</code>, подробнее на странице <a href="t1_03.html">03</a>).</p>
+<p>Машинный код привязан к процессору, поэтому программа в машинных кодах не переносится на другой компьютер. Исходный текст на Python один, а интерпретаторы для разных систем разные. Если открыть файл с машинным кодом в текстовом редакторе, увидите набор непонятных символов вроде <code>^?ELF^A^A^A</code>: он предназначен не для человека.</p>
+<p>Байт-код модулей, которые подключает программа, Python сохраняет в папку <span class="file-name">__pycache__</span> (файлы <span class="file-name">.pyc</span>), чтобы в следующий раз не разбирать их заново. Эту папку не нужно ни редактировать, ни сдавать.</p>
+</div>
+<div class="step step-see">Пример</div>
+<p>Две программы ниже отличаются одной ошибкой. Предскажите, что успеет напечатать каждая.</p>
+<article class="example"><h3>Ошибка во время выполнения</h3><div class="run-pair"><div class="code-block"><span class="code-label">runtime.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Начало анализа'</span>)  <span class="tok-out"># → Начало анализа</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'126'</span> <span class="tok-op">/</span> <span class="tok-num">3</span>)         <span class="tok-out"># → ошибка: TypeError</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Конец анализа'</span>)</span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>Начало анализа</pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "runtime.py", line 2, in &lt;module&gt;
+    print('126' / 3)
+          ~~~~~~^~~
+TypeError: unsupported operand type(s) for /: 'str' and 'int'</pre></div></div><div class="analysis"><ol><li>Строка 1 выполнилась: текст напечатан.</li><li>Строка 2: делить текст <code>'126'</code> на число нельзя. Ошибка обнаружена только сейчас, когда строка начала выполняться, и программа остановилась.</li><li>Строка 3 не выполнилась: после ошибки программа не продолжается.</li></ol></div></article>
+<article class="example"><h3>Синтаксическая ошибка</h3><div class="run-pair"><div class="code-block"><span class="code-label">syntax.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Начало анализа'</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Конец анализа'</span></span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "syntax.py", line 2
+    print('Конец анализа'
+         ^
+SyntaxError: '(' was never closed</pre></div></div><div class="analysis"><ol><li>Во второй строке не закрыта скобка.</li><li>Окна вывода нет: не напечатано даже «Начало анализа», хотя первая строка правильная. Python нашел ошибку при разборе файла, до выполнения первой строки.</li></ol></div></article>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Исправьте вторую строку программы <span class="file-name">syntax.py</span>: допишите закрывающую скобку и запустите. Затем замените во второй строке текст на выражение <code>'126' / 3</code> и посмотрите, какая строка успеет выполниться.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_syntax.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Начало анализа'</span>)  <span class="tok-out"># → Начало анализа</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Конец анализа'</span>)   <span class="tok-out"># → Конец анализа</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Начало анализа
+Конец анализа</pre></div></div></div>
+</section>
+
+<section class="subsection" id="s3">
+<h2>3. Три вида ошибок</h2>
+<div class="step step-learn">Теория</div>
+<p>Ошибки различаются тем, когда они обнаруживаются.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Ошибка</th><th>Когда обнаруживается</th><th>Пример</th><th>Что видно</th></tr></thead><tbody>
+<tr><td>синтаксическая</td><td>до запуска, при разборе файла</td><td><code>million! = 1000000</code></td><td><code>SyntaxError</code>, не выполнилась ни одна строка</td></tr>
+<tr><td>времени выполнения (исключение)</td><td>во время работы</td><td><code>'126' / 3</code></td><td>программа остановилась на строке с ошибкой</td></tr>
+<tr><td>семантическая</td><td>никогда</td><td><code>1 + 3 / 2</code> вместо среднего</td><td>программа отработала, но результат не тот</td></tr>
+</tbody></table></div>
+<p class="definition"><span class="term">Исключение</span>&nbsp;— ошибка, которая возникает во время выполнения программы и прерывает ее, если ее не обработать.</p>
+<p>Первые два вида ошибок Python найдет сам и выведет сообщение. Семантическую ошибку найдете только вы, проверив результат. Сообщение об ошибке (трассировку, англ. traceback) читают снизу вверх: последняя строка называет тип ошибки и причину, строки выше показывают файл и строку, где ошибка обнаружена.</p>
+<aside class="important"><p>Сообщение указывает место, где ошибка <em>обнаружена</em>, а не где она допущена. Настоящая причина часто строкой-двумя выше. Порядок действий: прочитать сообщение целиком, сформулировать гипотезу и только потом менять код.</p></aside>
+<div class="step step-see">Пример</div>
+<article class="example"><h3>Как читать трассировку</h3><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">traceback.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Образец принят'</span>)  <span class="tok-out"># → Образец принят</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(sample_id)         <span class="tok-out"># → ошибка: NameError</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Образец принят</pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "traceback.py", line 2, in &lt;module&gt;
+    print(sample_id)
+          ^^^^^^^^^
+NameError: name 'sample_id' is not defined</pre></div></div><ol class="code-explain-text"><li>Строка выполнилась, текст напечатан.</li><li>Имя <code>sample_id</code> нигде не задано, поэтому Python не знает, что печатать, и останавливает программу.</li></ol></div><p>В сообщении три части. Заголовок <code>Traceback (most recent call last):</code> говорит, что ниже путь к месту ошибки. Строка <code>File "traceback.py", line 2</code> называет файл и номер строки. Последняя строка ставит диагноз: тип ошибки <code>NameError</code> (неизвестное имя) и пояснение <code>name 'sample_id' is not defined</code>, то есть какое имя не найдено.</p></article>
+<article class="example th-full"><h3>Семантическая ошибка</h3><p>Нужно найти среднее чисел 1 и 3, то есть 2. Предскажите вывод обеих строк.</p><div class="run-pair"><div class="code-block"><span class="code-label">mean.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">1</span> <span class="tok-op">+</span> <span class="tok-num">3</span> <span class="tok-op">/</span> <span class="tok-num">2</span>)    <span class="tok-out"># → 2.5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((<span class="tok-num">1</span> <span class="tok-op">+</span> <span class="tok-num">3</span>) <span class="tok-op">/</span> <span class="tok-num">2</span>)  <span class="tok-out"># → 2.0</span></span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>2.5
+2.0</pre></div></div><div class="analysis"><ol><li>Строка 1: деление выполняется раньше сложения, поэтому считается 1 + 1,5. Python не сообщает об ошибке: с его точки зрения выражение правильное.</li><li>Строка 2: скобки задают нужный порядок. Правила порядка операций разобраны на странице <a href="t1_06.html">06</a>.</li></ol></div></article>
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: причина выше указанной строки</p><div class="code-block code-wrong"><span class="code-label">Неверно: скобка не закрыта в строке 1</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Длина прочтения:'</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">150</span>)</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "mistake.py", line 1
+    print('Длина прочтения:'
+         ^
+SyntaxError: '(' was never closed</pre></div><div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Длина прочтения:'</span>)  <span class="tok-out"># → Длина прочтения:</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">150</span>)                 <span class="tok-out"># → 150</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Длина прочтения:
+150</pre></div><p>Python дочитал файл до конца и не нашел пару для скобки, открытой в первой строке. В этом случае он показывает строку, где скобка открыта; в других синтаксических ошибках указанное место бывает ниже настоящей причины. Текст сообщений о синтаксических ошибках часто малоинформативен: позиция в нем только отправная точка поиска.</p></div>
+<details class="deep"><summary>Подробнее: почему в Python 3.12 сообщения стали понятнее</summary><p>Начиная с версии 3.10 интерпретатор подсказывает причину синтаксических ошибок точнее: вместо общего <code>invalid syntax</code> он пишет, например, <code>'(' was never closed</code>. С той же версии 3.10 для <code>NameError</code> Python предлагает похожее имя: <code>Did you mean: 'print'?</code>. В версии 3.11 появились значки <code>^^^^</code> под частью строки, где возникла ошибка. Поэтому в старых учебниках текст сообщений может отличаться от того, что видите вы.</p></details>
+<div class="step step-try">Практика</div>
+<div class="try-block"><p>Имя функции написано с большой буквы. Прочитайте последнюю строку сообщения и исправьте программу.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_name.py</span><pre><code>Print(<span class="tok-str">'Hello, lab'</span>)  <span class="tok-out"># → ошибка: NameError</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "try_name.py", line 1, in &lt;module&gt;
+    Print('Hello, lab')
+    ^^^^^
+NameError: name 'Print' is not defined. Did you mean: 'print'?</pre></div></div></div>
+</section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t1_00.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">00 Обзор практики</span></a>
+        <a class="pcard pcard-next" href="t1_02.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">02 Экосистема</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

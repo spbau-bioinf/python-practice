@@ -1,0 +1,1814 @@
+/* ==========================================================================
+   style.css: общий файл стилей практических работ курса
+   «Язык программирования Python».
+
+   Версия 8.
+   - Все цвета заданы переменными (раздел 1). Правила ниже используют только
+     переменные, поэтому тема и профиль меняются одной сменой атрибутов:
+       <html data-theme="light|dark" data-profile="classic|game">
+     Атрибуты ставит theme.js до отрисовки страницы (без вспышки).
+     Без JavaScript работает системная тема (prefers-color-scheme).
+   - Профиль «Классический»: теплый «бумажный» стиль по мотивам
+     codebase-to-course (реализация своя).
+   - Профиль «Игровой»: пиксельный интерфейс в духе 16-битных платформеров
+     (оригинальный, без персонажей и элементов чужих игр).
+
+   Словарь классов фиксирован: старые классы не переименовываются,
+   новые только добавляются. Внешние шрифты не подключаются.
+   ========================================================================== */
+
+/* ---------- 1. Токены: классический профиль, светлая тема ---------- */
+:root {
+  color-scheme: light;
+
+  --c-bg: #FAF7F2;          --c-bg-warm: #F5F0E8;
+  --c-surface: #FFFFFF;     --c-surface-warm: #FDF9F3;
+  --c-text: #2C2A28;        --c-text-2: #5F5952;      --c-muted: #8E877F;
+  --c-border: #E5DFD6;      --c-border-light: #EEEBE5;
+  --c-on-accent: #FFFFFF;
+
+  --c-accent: #257A48;      --c-accent-hover: #1D633A;
+  --c-accent-light: #E8F5EE; --c-accent-muted: #6DB38C;
+
+  --c-info: #1F6784;        --c-info-light: #E4F2F7;
+  --c-error: #B02E2E;       --c-error-light: #FDE8E8;  --c-error-border: #F1C3C3;  --c-error-text: #8E2525;
+  --c-amber: #8A6310;       --c-amber-light: #FBF3DD;  --c-amber-border: #EBD9AE;  --c-amber-text: #6E5210;
+  --c-plum: #6F61A3;        --c-plum-light: #F0EDF7;   --c-plum-border: #D9D2EA;
+  --c-vermillion: #C9472B;  --c-vermillion-light: #FDEEE9; --c-vermillion-border: #F2C9BD;
+  --c-rose: #A3336B;        --c-rose-light: #FBEAF2;   --c-rose-border: #EEC3D7;
+  --c-teal: #0E7A74;        --c-teal-light: #E3F4F2;
+  --c-task-bg: #F4FAF6;     --c-task-border: #CFE6D8;
+
+  --c-input: #1F6A87;       --c-input-bg: #DDEFF6;
+  /* элементы управления: переключатели, дорожка прогресса */
+  --c-control-bg: #F1ECE4; --c-control-border: #B8AE9F; --c-control-on: #FFFFFF; --c-control-on-border: #7A7268;
+  --c-track: #EEE8DF; --c-track-border: #B8AE9F;
+
+  /* окна кода и вывода */
+  --win-code-bg: #282C34;   --win-code-text: #ABB2BF;  --win-code-title: #8A919E;
+  --win-code-gutter: #7D8594; --win-code-caret: #F5E0DC; --win-code-edit: #E6E9EF;
+  --win-btn-bg: #323842;    --win-btn-border: #3E4451; --win-btn-text: #C8CDD6;
+  --win-out-bg: #F3F4F6;    --win-out-border: #E5E7EB; --win-out-text: #1F2328; --win-out-title: #5B6270; --win-link: #8C857A;
+  --win-dot-1: #FF5F57;     --win-dot-2: #FEBC2E;      --win-dot-3: #28C840;
+
+  /* подсветка синтаксиса (One Dark) */
+  --tok-kw: #C678DD; --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66;
+  --tok-str: #98C379; --tok-op: #56B6C2; --tok-com: #7F848E; --tok-out: #9DA5B4;
+  --out-str: #A31515; --out-const: #0000E6;
+
+  --shadow-rgb: 44, 42, 40;
+  --shadow-sm: 0 1px 2px rgba(var(--shadow-rgb), 0.05);
+  --shadow-md: 0 4px 12px rgba(var(--shadow-rgb), 0.08);
+  --shadow-lg: 0 8px 24px rgba(var(--shadow-rgb), 0.12);
+  --win-shadow: 0 10px 30px rgba(var(--shadow-rgb), 0.16), 0 2px 6px rgba(var(--shadow-rgb), 0.08);
+  --bg-glow: rgba(45, 139, 85, 0.035);
+
+  --font-display: Georgia, "PT Serif", "Noto Serif", "Times New Roman", serif;
+  --font-body: "PT Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, "SFMono-Regular", Menlo, "Liberation Mono", monospace;
+  --font-ui: var(--font-mono);
+
+  --t-xs: 0.75rem; --t-sm: 0.9375rem; --t-base: 1rem; --t-lg: 1.125rem;
+  --t-xl: 1.25rem; --t-2xl: 1.5rem; --t-3xl: 1.875rem; --t-4xl: 2.25rem;
+
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-full: 9999px; --win-radius: 14px;
+  --border-w: 1px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --sidebar-w: 280px; --content-w: 820px; --topbar-h: 0px;
+}
+
+/* ---------- 2. Токены: темная тема ---------- */
+/* по системе, если пользователь не выбрал тему явно */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --c-bg: #161513; --c-bg-warm: #1E1C19; --c-surface: #211F1C; --c-surface-warm: #262420;
+    --c-text: #ECE7DF; --c-text-2: #BDB5AA; --c-muted: #8F877D;
+    --c-border: #3A3631; --c-border-light: #2E2B27; --c-on-accent: #0F1A14;
+    --c-accent: #52C98F; --c-accent-hover: #74D8A7; --c-accent-light: #1D3328; --c-accent-muted: #3E9A6C;
+    --c-info: #6BBEDD; --c-info-light: #16303A;
+    --c-error: #F2837A; --c-error-light: #3A1F1D; --c-error-border: #5E302C; --c-error-text: #FFB4AC;
+    --c-amber: #E3B75E; --c-amber-light: #332A17; --c-amber-border: #574522; --c-amber-text: #F0D190;
+    --c-plum: #B8AAE8; --c-plum-light: #29243D; --c-plum-border: #433B63;
+    --c-vermillion: #F29577; --c-vermillion-light: #3A231C; --c-vermillion-border: #5C3528;
+    --c-rose: #F09AC4; --c-rose-light: #3A1F2D; --c-rose-border: #5E3148;
+    --c-teal: #4FD1C5; --c-teal-light: #1D302E;
+    --c-task-bg: #1A2A21; --c-task-border: #2F4A3B;
+    --c-input: #8FD3EE; --c-input-bg: #1B3642;
+    --win-code-bg: #1C1F25; --win-out-bg: #2A2D33; --win-out-border: #3A3E46; --win-out-text: #E6E6E6; --win-out-title: #A3A9B5; --win-link: #6E675D;
+    --out-str: #F28B82; --out-const: #8AB4F8;
+    --shadow-rgb: 0, 0, 0; --bg-glow: rgba(82, 201, 143, 0.04);
+    --c-control-bg: #2C2925; --c-control-border: #5E574E; --c-control-on: #46403A; --c-control-on-border: #B0A79B;
+    --c-track: #2C2925; --c-track-border: #5E574E;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --c-bg: #161513; --c-bg-warm: #1E1C19; --c-surface: #211F1C; --c-surface-warm: #262420;
+  --c-text: #ECE7DF; --c-text-2: #BDB5AA; --c-muted: #8F877D;
+  --c-border: #3A3631; --c-border-light: #2E2B27; --c-on-accent: #0F1A14;
+  --c-accent: #52C98F; --c-accent-hover: #74D8A7; --c-accent-light: #1D3328; --c-accent-muted: #3E9A6C;
+  --c-info: #6BBEDD; --c-info-light: #16303A;
+  --c-error: #F2837A; --c-error-light: #3A1F1D; --c-error-border: #5E302C; --c-error-text: #FFB4AC;
+  --c-amber: #E3B75E; --c-amber-light: #332A17; --c-amber-border: #574522; --c-amber-text: #F0D190;
+  --c-plum: #B8AAE8; --c-plum-light: #29243D; --c-plum-border: #433B63;
+  --c-vermillion: #F29577; --c-vermillion-light: #3A231C; --c-vermillion-border: #5C3528;
+  --c-rose: #F09AC4; --c-rose-light: #3A1F2D; --c-rose-border: #5E3148;
+  --c-teal: #4FD1C5; --c-teal-light: #1D302E;
+  --c-task-bg: #1A2A21; --c-task-border: #2F4A3B;
+  --c-input: #8FD3EE; --c-input-bg: #1B3642;
+  --win-code-bg: #1C1F25; --win-out-bg: #2A2D33; --win-out-border: #3A3E46; --win-out-text: #E6E6E6; --win-out-title: #A3A9B5; --win-link: #6E675D;
+  --out-str: #F28B82; --out-const: #8AB4F8;
+  --shadow-rgb: 0, 0, 0; --bg-glow: rgba(82, 201, 143, 0.04);
+  --c-control-bg: #2C2925; --c-control-border: #5E574E; --c-control-on: #46403A; --c-control-on-border: #B0A79B;
+  --c-track: #2C2925; --c-track-border: #5E574E;
+}
+
+/* ---------- 3. Токены: игровой профиль ---------- */
+/* Палитра «16 бит»: чернильные контуры, насыщенные плоские цвета,
+   жесткие тени без размытия. Дневной уровень. */
+:root[data-profile="game"] {
+  color-scheme: light;
+  --c-bg: #8FD8F2; --c-bg-warm: #FFE9B8; --c-surface: #FFF8E6; --c-surface-warm: #FFEFCC;
+  --c-text: #1A1C2C; --c-text-2: #3B3F5C; --c-muted: #5D617E;
+  --c-border: #1A1C2C; --c-border-light: #C9B98F; --c-on-accent: #FFFFFF;
+  --c-accent: #137A3F; --c-accent-hover: #0F6433; --c-accent-light: #D4F5DC; --c-accent-muted: #46C47B;
+  --c-info: #0D4F8A; --c-info-light: #D8ECFF;
+  --c-error: #AE1E2C; --c-error-light: #FFD9DC; --c-error-border: #1A1C2C; --c-error-text: #8A0F1C;
+  --c-amber: #955800; --c-amber-light: #FFE6A8; --c-amber-border: #1A1C2C; --c-amber-text: #6B4100;
+  --c-plum: #7A3FC8; --c-plum-light: #EBDDFF; --c-plum-border: #1A1C2C;
+  --c-vermillion: #E0452B; --c-vermillion-light: #FFDCCF; --c-vermillion-border: #1A1C2C;
+  --c-rose: #B0155A; --c-rose-light: #FFD9E8; --c-rose-border: #1A1C2C;
+  --c-teal: #00665F; --c-teal-light: #D2F3EE;
+  --c-task-bg: #E6FFE9; --c-task-border: #1A1C2C;
+  --c-input: #0D4F8A; --c-input-bg: #D8ECFF;
+  --win-code-bg: #1A1C2C; --win-code-gutter: #8A90A8; --win-out-bg: #F4F4F4; --win-out-border: #1A1C2C; --win-out-text: #1A1C2C; --win-link: #1A1C2C;
+  --win-dot-1: #D62839; --win-dot-2: #F2C230; --win-dot-3: #1F9D55;
+  --shadow-rgb: 26, 28, 44;
+  --shadow-sm: 3px 3px 0 #1A1C2C; --shadow-md: 4px 4px 0 #1A1C2C; --shadow-lg: 6px 6px 0 #1A1C2C;
+  --win-shadow: 4px 4px 0 #1A1C2C;
+  --bg-glow: transparent;
+  --font-display: var(--font-mono); --font-ui: var(--font-mono);
+  --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-full: 0; --win-radius: 0;
+  --border-w: 3px;
+  --c-control-bg: #FFE9B8; --c-control-border: #1A1C2C; --c-control-on: #FFFFFF; --c-control-on-border: #1A1C2C;
+  --c-track: #FFE9B8; --c-track-border: #1A1C2C;
+}
+/* ночной уровень: игровой профиль + темная тема */
+:root[data-profile="game"][data-theme="dark"] {
+  color-scheme: dark;
+  --c-bg: #141633; --c-bg-warm: #23264D; --c-surface: #20234A; --c-surface-warm: #2A2E5C;
+  --c-text: #F4F1DE; --c-text-2: #C9C6E8; --c-muted: #9A98C6;
+  --c-border: #06070F; --c-border-light: #3A3F7A; --c-on-accent: #06070F;
+  --c-accent: #4BE08A; --c-accent-hover: #7AF0AB; --c-accent-light: #173D2A; --c-accent-muted: #2FA866;
+  --c-info: #6CC4FF; --c-info-light: #1C2F57;
+  --c-error: #FF6B7A; --c-error-light: #4A1A2A; --c-error-text: #FFC2C9;
+  --c-amber: #FFC94A; --c-amber-light: #4A3A12; --c-amber-text: #FFE2A0;
+  --c-plum: #C8A2FF; --c-plum-light: #33245A;
+  --c-vermillion: #FF8A66; --c-vermillion-light: #4A2418;
+  --c-rose: #FF8FC0; --c-rose-light: #4A1E33;
+  --c-teal: #5EE6D6; --c-teal-light: #173B3A;
+  --c-task-bg: #173326; --c-task-border: #06070F;
+  --c-input: #9BD6FF; --c-input-bg: #1C2F57;
+  --win-code-bg: #0B0C1A; --win-out-bg: #2A2E5C; --win-out-text: #F4F1DE; --win-out-title: #C9C6E8; --win-link: #8A90D0;
+  --out-str: #FF9AA2; --out-const: #9BD6FF;
+  --shadow-sm: 3px 3px 0 #06070F; --shadow-md: 4px 4px 0 #06070F; --shadow-lg: 6px 6px 0 #06070F;
+  --win-shadow: 4px 4px 0 #06070F;
+  --c-control-bg: #2A2E5C; --c-control-border: #8A90D0; --c-control-on: #454B94; --c-control-on-border: #F4F1DE;
+  --c-track: #2A2E5C; --c-track-border: #8A90D0;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-profile="game"]:not([data-theme="light"]) {
+    color-scheme: dark;
+    --c-bg: #141633; --c-bg-warm: #23264D; --c-surface: #20234A; --c-surface-warm: #2A2E5C;
+    --c-text: #F4F1DE; --c-text-2: #C9C6E8; --c-muted: #9A98C6;
+    --c-border: #06070F; --c-border-light: #3A3F7A; --c-on-accent: #06070F;
+    --c-accent: #4BE08A; --c-accent-hover: #7AF0AB; --c-accent-light: #173D2A; --c-accent-muted: #2FA866;
+    --c-info: #6CC4FF; --c-info-light: #1C2F57;
+    --c-error: #FF6B7A; --c-error-light: #4A1A2A; --c-error-text: #FFC2C9;
+    --c-amber: #FFC94A; --c-amber-light: #4A3A12; --c-amber-text: #FFE2A0;
+    --c-plum: #C8A2FF; --c-plum-light: #33245A;
+    --c-vermillion: #FF8A66; --c-vermillion-light: #4A2418;
+    --c-rose: #FF8FC0; --c-rose-light: #4A1E33;
+    --c-teal: #5EE6D6; --c-teal-light: #173B3A;
+    --c-task-bg: #173326; --c-task-border: #06070F;
+    --c-input: #9BD6FF; --c-input-bg: #1C2F57;
+    --win-code-bg: #0B0C1A; --win-out-bg: #2A2E5C; --win-out-text: #F4F1DE; --win-out-title: #C9C6E8; --win-link: #8A90D0;
+    --out-str: #FF9AA2; --out-const: #9BD6FF;
+    --shadow-sm: 3px 3px 0 #06070F; --shadow-md: 4px 4px 0 #06070F; --shadow-lg: 6px 6px 0 #06070F;
+    --win-shadow: 4px 4px 0 #06070F;
+    --c-control-bg: #2A2E5C; --c-control-border: #8A90D0; --c-control-on: #454B94; --c-control-on-border: #F4F1DE;
+    --c-track: #2A2E5C; --c-track-border: #8A90D0;
+  }
+}
+
+/* ---------- 4. База ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: var(--font-body); font-size: var(--t-base); line-height: 1.65;
+  color: var(--c-text); background: var(--c-bg);
+  background-image: radial-gradient(ellipse at 15% 30%, var(--bg-glow) 0%, transparent 55%);
+}
+a { color: var(--c-info); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--c-accent); }
+:focus-visible { outline: 3px solid var(--c-accent-muted); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--c-text); }
+h1 { line-height: 1.15; font-weight: 700; }
+h2 { font-size: var(--t-2xl); line-height: 1.3; font-weight: 700; margin: 2.6rem 0 1rem; }
+h3 { font-size: var(--t-xl); line-height: 1.3; font-weight: 700; margin: 1.8rem 0 0.7rem; }
+p { margin: 0 0 0.95rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: 0.35rem; }
+strong { font-weight: 700; }
+/* код в строке текста и в ячейках таблиц не разрывается переносом:
+   «2 ** 1 + 1» читается только целиком. Длинный код (больше 40 символов)
+   в строку не ставится, для него есть окно кода (check_page.py) */
+:not(pre) > code { white-space: nowrap; }
+/* формула в тексте или в ячейке таблицы («12 / (2 · 3) = 2.0») не разрывается */
+.formula { white-space: nowrap; }
+/* метки и короткие подписи тоже не переносятся внутри себя */
+.level, .task-status, .overview-badge, .menu-progress, .topic-link, .tb-btn, .seg-btn,
+.checker-run, .checker-file, .btn, .predict-btn { white-space: nowrap; }
+code {
+  font-family: var(--font-mono); font-size: 0.88em; color: var(--c-text);
+  background: var(--c-bg-warm); border: 1px solid var(--c-border-light); border-radius: 6px; padding: 0.08em 0.38em;
+}
+.term { font-weight: 700; color: var(--c-accent); }
+.file-name { font-family: var(--font-mono); font-size: 0.9em; font-weight: 600; color: var(--c-plum); }
+.muted { color: var(--c-text-2); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: var(--radius-full); }
+/* при переключении темы переходы отключаются, чтобы не было «мигания» */
+.theme-switching, .theme-switching * { transition: none !important; }
+
+/* ---------- 5. Каркас: боковое меню + контент ---------- */
+.site { display: flex; min-height: 100vh; }
+.sidebar {
+  flex: 0 0 var(--sidebar-w); background: var(--c-surface-warm);
+  border-right: var(--border-w) solid var(--c-border); padding: 1.6rem 1.1rem;
+  position: sticky; top: var(--topbar-h); align-self: flex-start; max-height: calc(100vh - var(--topbar-h)); overflow-y: auto;
+}
+.sidebar-title {
+  margin: 0 0 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--c-border-light);
+  font-family: var(--font-display); font-size: var(--t-lg); font-weight: 700; line-height: 1.3; color: var(--c-text);
+}
+.menu { list-style: none; margin: 0; padding: 0; font-size: var(--t-sm); }
+.menu li { margin: 0 0 2px; }
+.menu a, .menu a:hover, .menu a:focus, .menu a:active, .menu a:visited, .menu a * { text-decoration: none; }
+.menu a {
+  display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.42rem 0.7rem;
+  border-radius: var(--radius-sm); color: var(--c-text-2); line-height: 1.35;
+  transition: background 150ms var(--ease), color 150ms var(--ease);
+}
+.menu a:hover { background: var(--c-bg-warm); color: var(--c-text); }
+.menu .menu-sub a { padding-left: 1.3rem; }
+.menu a.current { background: var(--c-accent); color: var(--c-on-accent); font-weight: 700; box-shadow: var(--shadow-sm); }
+.menu a.current:hover { background: var(--c-accent-hover); color: var(--c-on-accent); }
+.menu-title { flex: 1 1 auto; min-width: 0; text-wrap: balance; }
+/* пункт меню в две строки: код страницы (и счетчик справа) сверху, название снизу */
+.menu-code { display: block; padding-right: 2.8rem; font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.02em; opacity: 0.75; line-height: 1.3; }
+.menu-name { display: block; line-height: 1.3; }
+.menu a.current .menu-code { opacity: 0.9; }
+.menu a { position: relative; }
+/* счетчик стоит на строке кода и не отнимает ширину у названия */
+.menu-progress {
+  position: absolute; right: 0.55rem; top: 0.45rem; font-family: var(--font-ui); font-size: 0.7rem; font-weight: 700;
+  line-height: 1.5; padding: 0 0.45rem; border-radius: var(--radius-full);
+  color: var(--c-text-2); background: var(--c-bg-warm);
+}
+.menu-progress.is-done { background: var(--c-accent-light); color: var(--c-accent); }
+.menu a.current .menu-progress { background: rgba(255, 255, 255, 0.22); color: var(--c-on-accent); }
+
+.main { flex: 1 1 auto; min-width: 0; }
+.page-header { padding: 3.2rem 1.5rem 1.6rem; }
+.page-header > * { max-width: var(--content-w); margin-left: auto; margin-right: auto; }
+.page-number {
+  display: block; font-family: var(--font-display); font-size: 3.75rem; font-weight: 800; line-height: 1;
+  color: var(--c-accent); opacity: 0.2; margin-bottom: -0.4rem;
+}
+.page-header h1 { margin-top: 0; margin-bottom: 0; font-size: var(--t-4xl); }
+.page-header h1::after {
+  content: ""; display: block; width: 72px; height: 5px; margin-top: 1rem;
+  background: var(--c-accent); border-radius: var(--radius-full);
+}
+.page-subtitle {
+  margin-top: 0.9rem; font-family: var(--font-ui); font-size: var(--t-xs); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--c-text-2);
+}
+.content { max-width: var(--content-w); margin: 0 auto; padding: 0.6rem 1.5rem 1rem; }
+
+/* ---------- 6. Панель настроек (строит theme.js) ---------- */
+.site-settings {
+  margin: 0 0 1rem; padding: 0.7rem 0.75rem; background: var(--c-surface);
+  border: var(--border-w) solid var(--c-border-light); border-radius: var(--radius-md); font-size: var(--t-xs);
+}
+.settings-row { display: flex; flex-direction: column; gap: 0.3rem; margin: 0 0 0.6rem; }
+.settings-row:last-child { margin-bottom: 0; }
+.settings-label {
+  font-family: var(--font-ui); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2);
+}
+.seg { display: flex; flex-wrap: wrap; gap: 2px; padding: 2px; background: var(--c-control-bg); border-radius: var(--radius-sm); }
+.seg-btn {
+  flex: 1 0 auto; font: inherit; font-size: 0.78rem; cursor: pointer; padding: 0.3rem 0.2rem;
+  border: 0; border-radius: calc(var(--radius-sm) - 2px); background: transparent; color: var(--c-text-2);
+  white-space: nowrap;
+}
+.seg-btn:hover { color: var(--c-text); }
+.seg-btn[aria-pressed="true"] { background: var(--c-surface); color: var(--c-text); font-weight: 700; box-shadow: var(--shadow-sm); }
+.settings-links { display: flex; flex-wrap: wrap; gap: 0.2rem 0.7rem; }
+.settings-link {
+  font: inherit; font-size: 0.78rem; cursor: pointer; padding: 0; border: 0; background: none;
+  color: var(--c-info); text-decoration: underline; text-underline-offset: 2px;
+}
+.settings-note { margin: 0.2rem 0 0; color: var(--c-muted); font-size: 0.72rem; line-height: 1.4; }
+
+/* ---------- 7. Страница навигации ---------- */
+.goals {
+  background: var(--c-surface); border: var(--border-w) solid var(--c-border-light);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: 1.3rem 1.6rem 0.8rem; margin-bottom: 1.6rem;
+}
+.goals h2 {
+  margin: 0 0 0.8rem; font-family: var(--font-ui); font-size: var(--t-xs); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--c-accent);
+}
+.goals li::marker { color: var(--c-accent); }
+.topic-nav { list-style: none; padding: 0; margin: 0 0 1.6rem; display: grid; gap: 0.6rem; }
+.topic-nav li {
+  display: grid; grid-template-columns: 2.6rem 1fr 7rem; gap: 0.9rem; align-items: center; margin: 0;
+  padding: 0.8rem 1.1rem; background: var(--c-surface); border: var(--border-w) solid var(--c-border-light);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  transition: box-shadow 200ms var(--ease), transform 200ms var(--ease);
+}
+.topic-nav li:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.topic-num { font-family: var(--font-display); font-size: var(--t-2xl); font-weight: 800; color: var(--c-accent); opacity: 0.6; text-align: right; line-height: 1; }
+.topic-name { font-weight: 700; font-size: var(--t-sm); text-transform: uppercase; letter-spacing: 0.03em; }
+.topic-link {
+  justify-self: end; font-family: var(--font-mono); font-size: var(--t-sm); white-space: nowrap; text-decoration: none;
+  padding: 0.25rem 0.7rem; border-radius: var(--radius-full); background: var(--c-accent-light); color: var(--c-accent);
+}
+.topic-link:hover { background: var(--c-accent); color: var(--c-on-accent); }
+.topic-extra { background: var(--c-vermillion-light); border-color: var(--c-vermillion-border); }
+.topic-extra .topic-num { color: var(--c-vermillion); }
+.topic-extra .topic-link { background: var(--c-surface); color: var(--c-vermillion); }
+.nb { background: var(--c-info-light); border-left: 4px solid var(--c-info); border-radius: var(--radius-md); padding: 1rem 1.3rem; margin: 1.6rem 0; }
+.nb ul { margin-bottom: 0; }
+
+/* ---------- 8. Смысловые блоки ---------- */
+.theory, .goal, .overview, .example, .task, .task-final, .task-summary, .hint, .warning, .important, .then {
+  border-radius: var(--radius-md); padding: 1.15rem 1.4rem; margin: 1.3rem 0;
+}
+.block-title {
+  margin: 0 0 0.7rem; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2);
+}
+.theory { background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); box-shadow: var(--shadow-sm); }
+.theory .block-title { color: var(--c-info); }
+.goal { background: var(--c-accent-light); border-left: 4px solid var(--c-accent); }
+.goal .block-title { color: var(--c-accent); }
+.subsection { margin-top: 3rem; }
+.subsection > h2 { padding-left: 0.9rem; border-left: 5px solid var(--c-accent); }
+.subsection, .task, .task-final, .then, .level-tabs { scroll-margin-top: calc(var(--topbar-h) + 1rem); }
+
+.definition, .property, .rule {
+  background: var(--c-surface-warm); border: 1px dashed var(--c-border); border-radius: var(--radius-sm);
+  padding: 0.8rem 1.1rem; margin: 1rem 0;
+}
+.definition { border-color: var(--c-accent-muted); }
+.definition::before { content: "Определение. "; font-weight: 700; color: var(--c-accent); }
+.property::before { content: "Свойство. "; font-weight: 700; color: var(--c-info); }
+.rule::before { content: "Правило. "; font-weight: 700; color: var(--c-plum); }
+
+/* раздел «Необходимый минимум» (тема будущей лекции): свой цвет rose, версия 29;
+   фиолетовый plum занят меткой шага «Пример» */
+.overview { background: var(--c-rose-light); border: var(--border-w) solid var(--c-rose-border, var(--c-border)); }
+.overview > h2 { border-left-color: var(--c-rose); margin-top: 0.4rem; }
+.overview-badge {
+  display: inline-block; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; background: var(--c-rose); color: var(--c-on-accent); border-radius: var(--radius-full); padding: 0.15rem 0.7rem;
+}
+.overview-note { font-style: italic; color: var(--c-rose); }
+.overview-badge + .overview-note { margin-top: 0.85rem; } /* метка не слипается с пояснением (версия 30) */
+
+.example { background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); box-shadow: var(--shadow-md); }
+.example > h3:first-child, .task > h3:first-child { margin-top: 0; }
+.analysis { margin: 0.9rem 0 0; }
+.analysis > ol, .analysis > ul { margin-bottom: 0.3rem; }
+
+.gloss { position: relative; border-bottom: 1.5px dashed var(--c-accent-muted); cursor: help; }
+.gloss::after {
+  content: attr(data-def); position: absolute; left: 0; top: calc(100% + 8px); z-index: 20;
+  width: max-content; max-width: 280px; padding: 0.55rem 0.8rem; background: var(--c-text); color: var(--c-bg);
+  font-size: var(--t-sm); font-weight: 400; line-height: 1.45; border-radius: var(--radius-sm); box-shadow: var(--shadow-lg);
+  opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 150ms var(--ease), transform 150ms var(--ease);
+}
+.gloss:hover::after, .gloss:focus::after { opacity: 1; visibility: visible; transform: none; }
+
+/* ---------- 9. Окна кода и вывода ---------- */
+.code-block, .output-block {
+  position: relative; margin: 1.1rem 0; border-radius: var(--win-radius); box-shadow: var(--win-shadow); overflow: hidden;
+}
+.code-block { background: var(--win-code-bg); }
+.output-block { background: var(--win-out-bg); border: var(--border-w) solid var(--win-out-border); }
+.code-label, .output-label {
+  display: block; position: relative; margin: 0; padding: 0.7rem 4.5rem 0.2rem; min-height: 2.2rem; text-align: center;
+  font-family: var(--font-body); font-size: var(--t-sm); font-weight: 400; line-height: 1.3; background: transparent;
+}
+.code-label::before {
+  content: ""; position: absolute; left: 1rem; top: 0.85rem; width: 52px; height: 12px;
+  background: radial-gradient(circle at 6px 6px, var(--win-dot-1) 5.5px, transparent 6px),
+              radial-gradient(circle at 26px 6px, var(--win-dot-2) 5.5px, transparent 6px),
+              radial-gradient(circle at 46px 6px, var(--win-dot-3) 5.5px, transparent 6px);
+}
+.code-label { color: var(--win-code-title); }
+/* окно вывода без «светофора»: подпись слева, как у терминала */
+.output-label {
+  color: var(--win-out-title); text-align: left; padding: 0.65rem 1.5rem 0; min-height: 0;
+  font-family: var(--font-ui); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.code-block pre, .output-block pre {
+  margin: 0; padding: 0.9rem 1.5rem 1.4rem; overflow-x: auto; white-space: pre; tab-size: 4;
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1.7; background: transparent; border: 0;
+}
+.code-block pre { color: var(--win-code-text); }
+.output-block pre { color: var(--win-out-text); }
+.code-block pre code, .output-block pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+.code-block pre code { counter-reset: line; }
+.code-block pre code .ln { counter-increment: line; }
+.code-block pre code .ln::before {
+  content: counter(line); display: inline-block; width: 1.6em; margin-right: 1em; text-align: right;
+  color: var(--win-code-gutter); user-select: none;
+}
+/* версия 45: содержимое файла окном кода: темное окно, в заголовке иконка файла и подпись
+   («Содержимое файла gene.fa»); фиолетовый plum остается только за меткой «Пример» */
+.file-output { background: var(--win-code-bg); border-color: var(--win-code-bg); }
+.file-output .output-label { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.5rem; color: var(--win-code-title);
+  text-transform: none; letter-spacing: 0; font-size: 0.82rem; border-bottom: 1px solid var(--win-code-gutter); }
+.file-output .output-label::before { content: ""; width: 1rem; height: 1rem; flex: 0 0 auto; background-color: currentColor;
+  -webkit-mask: var(--ic-file) center / contain no-repeat; mask: var(--ic-file) center / contain no-repeat; }
+.file-output pre { color: var(--win-code-text); padding-top: 0.9rem; }
+.error-output { background: var(--c-error-light); border-color: var(--c-error-border); }
+.error-output .output-label { color: var(--c-error); }
+.error-output pre { color: var(--c-error-text); }
+
+.run-pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9rem; margin: 1.1rem 0; }
+.run-pair > .code-block, .run-pair > .output-block { margin: 0; }
+.run-pair > .code-block + .output-block { overflow: visible; }
+.run-pair > .code-block + .output-block::after {
+  content: ""; position: absolute; left: 2rem; top: calc(-0.9rem - var(--border-w)); width: 2px; height: 0.9rem; background: var(--win-link, var(--c-border));
+}
+
+/* ввод пользователя в окне вывода и подпись-легенда */
+kbd.user-input {
+  font-family: var(--font-mono); font-size: inherit; font-weight: 700; color: var(--c-input); background: var(--c-input-bg);
+  border-radius: 4px; padding: 0 0.3em; box-shadow: inset 0 -2px 0 var(--c-input);
+}
+kbd.user-input::after { content: " ⏎"; font-weight: 400; opacity: 0.55; font-size: 0.85em; }
+.io-legend {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.5rem; margin: 0 1.5rem;
+  padding: 0.35rem 0 0; font-size: var(--t-xs); color: var(--win-out-title);
+}
+.io-legend kbd.user-input { font-size: 0.8rem; }
+
+/* подсветка синтаксиса (span расставляет scripts/highlight.py) */
+.tok-kw { color: var(--tok-kw); } .tok-builtin { color: var(--tok-builtin); } .tok-const { color: var(--tok-const); }
+.tok-num { color: var(--tok-num); } .tok-str { color: var(--tok-str); } .tok-op { color: var(--tok-op); }
+.tok-com { color: var(--tok-com); font-style: italic; }
+/* комментарий-вывод «# → 14»: цвет окна вывода, чтобы глаз связывал строку кода и результат */
+.tok-out { color: var(--tok-out); font-style: normal; }
+.out-str { color: var(--out-str); } .out-const { color: var(--out-const); }
+
+/* разбор по строкам */
+.code-explain {
+  margin: 1.2rem 0; padding: 0; background: var(--c-surface); border: var(--border-w) solid var(--c-border-light);
+  border-radius: calc(var(--win-radius) + 4px); box-shadow: var(--shadow-sm);
+}
+.code-explain > .run-pair { margin: 0; padding: 1rem 1rem 0.2rem; }
+.code-explain > .code-block { margin: 1rem 1rem 0.2rem; }
+.code-explain-text { list-style: none; margin: 0; padding: 0.4rem 1rem 0.8rem; font-size: var(--t-sm); counter-reset: ce; }
+.code-explain-text li { margin: 0; padding: 0.5rem 0.4rem 0.5rem 5.2rem; position: relative; border-bottom: 1px solid var(--c-border-light); counter-increment: ce; }
+.code-explain-text li:last-child { border-bottom: 0; }
+.code-explain-text li::before {
+  content: "Строка " counter(ce); position: absolute; left: 0.4rem; top: 0.55rem;
+  font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; color: var(--c-accent);
+}
+
+/* ---------- 10. Типичные ошибки ---------- */
+/* Карточка «Неверно / Верно»: без «светофоров», панели друг под другом,
+   у каждой цветная шапка со значком и подписью. */
+.mistake {
+  display: block; margin: 1.3rem 0; padding: 0; overflow: hidden;
+  background: var(--c-surface); border: var(--border-w) solid var(--c-border-light);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+}
+.mistake-caption {
+  margin: 0; padding: 0.75rem 1.1rem; font-weight: 700; color: var(--c-text);
+  background: var(--c-bg-warm); border-bottom: 1px solid var(--c-border-light);
+}
+.mistake-caption code { background: var(--c-surface); }
+.mistake .code-block { margin: 0; min-width: 0; border-radius: 0; box-shadow: none; }
+.mistake .code-block + .code-block { border-top: 1px solid var(--c-border-light); }
+.mistake .code-label::before { display: none; }
+.mistake .code-label {
+  text-align: left; padding: 0.5rem 1.1rem; min-height: 0; font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.code-wrong .code-label { background: var(--c-error-light); color: var(--c-error); }
+.mistake .code-wrong .code-label::before, .mistake .code-right .code-label::before {
+  display: inline; position: static; width: auto; height: auto; background: none; margin-right: 0.35rem;
+}
+.mistake .code-wrong .code-label::before { content: "✗"; }
+.mistake .code-right .code-label::before { content: "✓"; }
+.code-right .code-label { background: var(--c-accent-light); color: var(--c-accent); }
+.code-wrong { box-shadow: inset 4px 0 0 var(--c-error); }
+.code-right { box-shadow: inset 4px 0 0 var(--c-accent); }
+.mistake .code-block pre { padding: 0.8rem 1.1rem 1rem; }
+.mistake .output-block { margin: 0; border-radius: 0; box-shadow: none; border-width: 1px 0 0; }
+.mistake > p:not(.mistake-caption) { margin: 0; padding: 0.8rem 1.1rem; border-top: 1px solid var(--c-border-light); }
+/* вне .mistake (пара «код + вывод» в примере) цветная полоса сверху */
+.run-pair > .code-wrong, .run-pair > .code-right { border-radius: var(--win-radius); }
+.run-pair > .code-wrong { box-shadow: inset 0 4px 0 var(--c-error), var(--win-shadow); }
+.run-pair > .code-right { box-shadow: inset 0 4px 0 var(--c-accent), var(--win-shadow); }
+.run-pair > .code-wrong .code-label { color: var(--c-error); font-weight: 700; }
+.run-pair > .code-right .code-label { color: var(--c-accent); font-weight: 700; }
+
+/* ---------- 11. Задачи ---------- */
+.task { background: var(--c-task-bg); border: var(--border-w) solid var(--c-task-border); border-left: 6px solid var(--c-accent); box-shadow: var(--shadow-md); }
+.task-final { background: var(--c-amber-light); border: var(--border-w) solid var(--c-amber-border); border-top: 4px solid var(--c-amber); box-shadow: var(--shadow-md); }
+.task-final .block-title { color: var(--c-amber-text); }
+.task-summary { background: var(--c-vermillion-light); border: var(--border-w) solid var(--c-vermillion-border); border-top: 4px solid var(--c-vermillion); box-shadow: var(--shadow-md); }
+.task-summary .block-title { color: var(--c-vermillion); }
+/* задачи подряд не сливаются в один блок */
+.task + .task, .task + .task-final, .task-final + .task, .task + .task-summary,
+.example + .task, .task + .example, .task + .subsection { margin-top: 2.6rem; }
+.task-optional { border-left-style: dashed; border-left-color: var(--c-muted); background: var(--c-surface); }
+.task h3, .task-final h3, .task-summary h3 { margin-top: 0; }
+.task > h3::before, .task-final > h3::before {
+  content: "Задача"; display: inline-block; margin-right: 0.6rem; vertical-align: middle;
+  font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--c-on-accent); background: var(--c-accent); padding: 0.15rem 0.55rem; border-radius: 4px;
+}
+/* у итоговой над заголовком уже стоит «Итоговая задача», метка не повторяет его */
+.task-final > h3::before { content: none; display: none; }
+.task-optional > h3::before { content: "Дополнительно"; background: var(--c-muted); }
+.level {
+  display: inline-block; vertical-align: middle; margin-left: 0.5rem; font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.12rem 0.6rem; border-radius: var(--radius-full);
+  background: var(--c-accent-light); color: var(--c-accent);
+}
+.task-final .level { background: var(--c-surface); color: var(--c-amber-text); }
+.task-optional .level { background: var(--c-bg-warm); color: var(--c-text-2); }
+.task-status {
+  display: inline-block; margin-left: 0.5rem; vertical-align: middle; font-family: var(--font-body); font-size: var(--t-xs);
+  font-weight: 700; color: var(--c-on-accent); background: var(--c-accent); padding: 0.12rem 0.55rem; border-radius: var(--radius-full);
+}
+.task-meta { font-size: var(--t-sm); background: var(--c-bg-warm); border-radius: var(--radius-sm); padding: 0.5rem 0.9rem; margin: 0.8rem 0 0.2rem; }
+.task-meta dt { font-weight: 700; display: inline; }
+.task-meta dd { display: inline; margin: 0 1.2rem 0 0.3rem; }
+.task h4, .task-final h4, .task-summary h4 {
+  margin: 1rem 0 0.25rem; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2);
+}
+.task h4 + p, .task-final h4 + p, .task-summary h4 + p { margin-bottom: 0.4rem; }
+details.task-hint { margin: 0.7rem 0; padding: 0.1rem 0.9rem; background: var(--c-surface); border: var(--border-w) solid var(--c-task-border); border-radius: var(--radius-sm); }
+details.task-hint > summary { cursor: pointer; padding: 0.45rem 0; font-weight: 700; color: var(--c-accent); }
+details.task-hint[open] > summary { border-bottom: 1px solid var(--c-border-light); margin-bottom: 0.5rem; }
+
+/* ---------- 12. Подсказки, углубление, оглавление ---------- */
+.hint, .warning, .important { border-left: 4px solid; }
+.hint { background: var(--c-accent-light); border-color: var(--c-accent); }
+.warning { background: var(--c-amber-light); border-color: var(--c-amber); }
+/* версия 45: выноски одним семейством, вариант «метка типа сверху»: над текстом маленькая метка
+   прописными с иконкой («Подсказка», «Заметка», «Внимание», «Важно») цветом блока; черта слева,
+   легкий фон того же цвета, текст обычный. Метку и иконку дает CSS, в разметке их не пишут. */
+.important { background: var(--c-teal-light); border-color: var(--c-teal); }
+.hint, .nb, .warning, .important { position: relative; padding: 2.45rem 1.3rem 1rem !important; border-left: 4px solid var(--co);
+  border-radius: var(--radius-sm); }
+.hint { --co: var(--c-accent); --co-ic: var(--ic-bulb); --co-t: "Подсказка"; }
+.nb { --co: var(--c-info); --co-ic: var(--ic-info); --co-t: "Заметка"; background: var(--c-info-light); margin: 1.6rem 0; }
+.warning { --co: var(--c-amber-text); --co-ic: var(--ic-warn); --co-t: "Внимание"; }
+.important { --co: var(--c-teal); --co-ic: var(--ic-flame); --co-t: "Важно"; }
+.hint::before, .nb::before, .warning::before, .important::before { content: ""; position: absolute; left: 1.3rem; top: 1rem;
+  width: 1rem; height: 1rem; background-color: var(--co); -webkit-mask: var(--co-ic) center / contain no-repeat; mask: var(--co-ic) center / contain no-repeat; }
+.hint::after, .nb::after, .warning::after, .important::after { content: var(--co-t); position: absolute; left: 2.6rem; top: 1rem;
+  line-height: 1rem; font-family: var(--font-ui); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--co); }
+[data-profile="game"] .hint, [data-profile="game"] .nb, [data-profile="game"] .warning, [data-profile="game"] .important { border-radius: 0; }
+.hint > :last-child, .warning > :last-child, .important > :last-child, .theory > :last-child,
+.goal > :last-child, .overview > :last-child, .example > :last-child { margin-bottom: 0; }
+details.deep { background: var(--c-surface-warm); border: var(--border-w) solid var(--c-border-light); border-radius: var(--radius-md); padding: 0.1rem 1.2rem; margin: 1.1rem 0; }
+details.deep > summary { cursor: pointer; padding: 0.7rem 0; font-weight: 700; color: var(--c-text-2); }
+details.deep > summary:hover { color: var(--c-accent); }
+details.deep[open] > summary { border-bottom: 1px solid var(--c-border-light); margin-bottom: 0.8rem; }
+details.deep > :last-child { margin-bottom: 0.9rem; }
+.page-toc { margin: 1.3rem 0; padding: 0.9rem 1.2rem; background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.page-toc-title { margin: 0 0 0.4rem; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2); }
+/* Оглавление строит scripts/build_toc.py.
+   Один список, две колонки на общей сетке: строки обеих колонок одной высоты.
+   Колонка 1 заполняется сверху вниз до N строк (класс toc-rows-N на nav),
+   остальное уходит во вторую. N выбирается так, чтобы раздел и его задачи
+   не разрывались между колонками, а колонки были как можно ровнее.
+   Номера разделов считает счетчик: задачи в нумерации не участвуют. */
+.page-toc ol {
+  list-style: none; margin: 0; padding: 0; counter-reset: toc; font-size: var(--t-sm);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-flow: column;
+  column-gap: 2rem; row-gap: 0.2rem;
+}
+.page-toc.toc-single ol { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; }
+.page-toc.toc-rows-1 ol { grid-template-rows: repeat(1, auto); }
+.page-toc.toc-rows-2 ol { grid-template-rows: repeat(2, auto); }
+.page-toc.toc-rows-3 ol { grid-template-rows: repeat(3, auto); }
+.page-toc.toc-rows-4 ol { grid-template-rows: repeat(4, auto); }
+.page-toc.toc-rows-5 ol { grid-template-rows: repeat(5, auto); }
+.page-toc.toc-rows-6 ol { grid-template-rows: repeat(6, auto); }
+.page-toc.toc-rows-7 ol { grid-template-rows: repeat(7, auto); }
+.page-toc.toc-rows-8 ol { grid-template-rows: repeat(8, auto); }
+.page-toc.toc-rows-9 ol { grid-template-rows: repeat(9, auto); }
+.page-toc.toc-rows-10 ol { grid-template-rows: repeat(10, auto); }
+.page-toc.toc-rows-11 ol { grid-template-rows: repeat(11, auto); }
+.page-toc.toc-rows-12 ol { grid-template-rows: repeat(12, auto); }
+.page-toc.toc-rows-13 ol { grid-template-rows: repeat(13, auto); }
+.page-toc.toc-rows-14 ol { grid-template-rows: repeat(14, auto); }
+.page-toc.toc-rows-15 ol { grid-template-rows: repeat(15, auto); }
+.page-toc.toc-rows-16 ol { grid-template-rows: repeat(16, auto); }
+.page-toc.toc-rows-17 ol { grid-template-rows: repeat(17, auto); }
+.page-toc.toc-rows-18 ol { grid-template-rows: repeat(18, auto); }
+.page-toc.toc-rows-19 ol { grid-template-rows: repeat(19, auto); }
+.page-toc.toc-rows-20 ol { grid-template-rows: repeat(20, auto); }
+/* у каждого пункта своя колонка для маркера: текст разделов и задач начинается на одной вертикали */
+.page-toc li { display: grid; grid-template-columns: 1.7rem minmax(0, 1fr); align-items: baseline; margin: 0; }
+.page-toc li::before { text-align: right; padding-right: 0.5rem; }
+.page-toc .toc-section::before { counter-increment: toc; content: counter(toc) "."; color: var(--c-text-2); }
+.page-toc .toc-task::before { content: "▸"; color: var(--c-accent); }
+/* задача как вложенный пункт: маркер ▸ стоит на вертикали текста раздела
+   (отступ равен ширине колонки номера), название задачи правее маркера;
+   перенос длинного названия встает под его текстом, а не под маркером */
+.page-toc .toc-task { padding-left: 1.7rem; grid-template-columns: 1.1rem minmax(0, 1fr); }
+.page-toc .toc-task::before { text-align: left; padding-right: 0; }
+@media (max-width: 700px) {
+  .page-toc ol, .page-toc[class*="toc-rows-"] ol { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; grid-template-rows: none; }
+}
+
+/* ---------- 13. Таблицы ---------- */
+.table-wrap { overflow-x: auto; margin: 1rem 0; }
+table.data { border-collapse: separate; border-spacing: 0; width: 100%; font-size: var(--t-sm); background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); border-radius: var(--radius-md); overflow: hidden; }
+table.data caption { caption-side: top; text-align: left; font-weight: 700; padding-bottom: 0.5rem; font-family: var(--font-display); }
+table.data th, table.data td { padding: 0.55rem 0.8rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--c-border-light); }
+table.data th { background: var(--c-bg-warm); font-family: var(--font-ui); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-text-2); }
+table.data tbody tr:last-child td { border-bottom: 0; }
+table.data tbody tr:nth-child(even) td { background: var(--c-surface-warm); }
+table.trace td { font-family: var(--font-mono); font-size: 0.84rem; }
+table.tests { table-layout: fixed; }
+table.tests th { width: 50%; }
+table.tests td { padding: 0; }
+table.tests td + td { border-left: 1px solid var(--c-border-light); }
+table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.5; white-space: pre; overflow-x: auto; color: var(--c-text); }
+
+/* ---------- 14. Проверка решения ---------- */
+.checker { margin: 1rem 0 0.2rem; padding: 1rem 1.1rem; border-radius: var(--radius-md); background: var(--c-bg-warm); border: var(--border-w) solid var(--c-border-light); }
+.checker-title { margin: 0 0 0.35rem; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-accent); }
+.checker-note, .checker-fallback { margin: 0 0 0.7rem; font-size: var(--t-base); line-height: 1.55; color: var(--c-text); }
+.checker-fallback:last-child { margin-bottom: 0; }
+.code-editor { display: flex; align-items: stretch; background: var(--win-code-bg); border-radius: var(--radius-sm); overflow: hidden; }
+.code-gutter {
+  margin: 0; padding: 0.8rem 0.5rem 0.8rem 0.7rem; min-width: 2.6rem; overflow: hidden; text-align: right;
+  color: var(--win-code-gutter); user-select: none; background: rgba(0, 0, 0, 0.14);
+  font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55; white-space: pre;
+}
+.code-editor textarea { flex: 1 1 auto; min-width: 0; }
+.checker-editor { margin: 0; }
+.checker-code {
+  display: block; width: 100%; min-height: 9rem; resize: vertical; padding: 0.8rem 1rem; border: 0; outline: none;
+  background: transparent; color: var(--win-code-edit); caret-color: var(--win-code-caret);
+  font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55; tab-size: 4;
+}
+.code-editor:focus-within { box-shadow: 0 0 0 3px var(--c-accent-muted); }
+.checker-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0.7rem 0 0; }
+.checker-run {
+  font: inherit; font-weight: 700; cursor: pointer; border: 0; padding: 0.55rem 1.4rem; border-radius: var(--radius-full);
+  background: var(--c-accent); color: var(--c-on-accent); box-shadow: var(--shadow-sm);
+  transition: background 150ms var(--ease), transform 150ms var(--ease);
+}
+.checker-run:hover { background: var(--c-accent-hover); transform: translateY(-1px); }
+.checker-run:disabled { opacity: 0.6; cursor: wait; transform: none; }
+.checker-file { cursor: pointer; font-size: var(--t-sm); padding: 0.5rem 1rem; border-radius: var(--radius-full); border: var(--border-w) solid var(--c-border); background: var(--c-surface); color: var(--c-text); }
+.checker-file:hover { border-color: var(--c-accent-muted); }
+.checker-file input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+/* «↺ Сбросить»: настоящая кнопка в стиле «Выбрать файл», а не ссылка (версия 24) */
+.checker-clear { font: inherit; font-size: var(--t-sm); cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-full);
+  border: var(--border-w) solid var(--c-border); background: var(--c-surface); color: var(--c-text); }
+.checker-clear:hover { border-color: var(--c-error); color: var(--c-error); }
+.checker-saved { font-size: var(--t-xs); color: var(--c-muted); }
+.checker-result:empty { display: none; }
+.checker-result { margin-top: 0.8rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); font-size: var(--t-sm); background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); color: var(--c-text); }
+.checker-result.is-wait { color: var(--c-text-2); }
+.checker-result.is-pass { background: var(--c-accent-light); border-color: var(--c-accent-muted); }
+.checker-result.is-fail { background: var(--c-error-light); border-color: var(--c-error-border); }
+.checker-verdict { margin: 0 0 0.4rem; font-weight: 700; font-size: var(--t-base); }
+.is-pass > .checker-verdict { color: var(--c-accent); }
+.is-fail > .checker-verdict { color: var(--c-error); }
+.checker-hint { margin: 0 0 0.4rem; color: var(--c-error-text); }
+.checker-hints { margin: 0.6rem 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--c-amber-light); border: var(--border-w) solid var(--c-amber-border); color: var(--c-text); }
+.checker-hints-title { margin: 0 0 0.3rem; font-weight: 700; color: var(--c-amber-text); }
+.checker-hints ul { margin: 0; padding-left: 1.2rem; }
+.checker-hints li { margin: 0.2rem 0; }
+.checker-tests-list { list-style: none; margin: 0.3rem 0 0; padding: 0; }
+.checker-tests-list li { margin: 0.25rem 0; }
+.checker-tests-list li.is-pass { color: var(--c-accent); }
+.checker-tests-list li.is-fail { color: var(--c-text); }
+.checker-tests-list li.is-fail > .checker-test-name { color: var(--c-error); }
+.checker-test-name { font-weight: 600; }
+.checker-note-test { margin: 0.3rem 0 0 1.3rem; color: var(--c-text-2); font-style: italic; }
+.checker-tests-list .checker-hint { margin: 0.35rem 0 0.2rem 1.3rem; padding: 0.4rem 0.6rem; border-radius: 6px; background: var(--c-amber-light); color: var(--c-text); font-weight: 400; }
+.checker-io { margin: 0.35rem 0 0.2rem 1.3rem; color: var(--c-text); }
+.checker-io-label { display: block; font-family: var(--font-ui); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2); }
+.checker-io-text { margin: 0.15rem 0 0; padding: 0.4rem 0.6rem; background: var(--c-surface); border: 1px solid var(--c-border-light); border-radius: 6px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; white-space: pre; color: var(--c-text); }
+.checker-reveal { margin: 0.35rem 0 0.2rem 1.3rem; color: var(--c-text-2); }
+.checker-reveal > summary { cursor: pointer; font-size: var(--t-sm); }
+.checker-tests { display: none; }
+
+/* ---------- 15. Живые примеры и «предскажите вывод» ---------- */
+.ex-tools { position: absolute; top: 0.45rem; right: 0.7rem; display: flex; gap: 0.35rem; z-index: 2; }
+.ex-btn {
+  font: inherit; font-size: var(--t-xs); line-height: 1.2; cursor: pointer; padding: 0.3rem 0.75rem; border-radius: var(--radius-full);
+  border: 1px solid var(--win-btn-border); background: var(--win-btn-bg); color: var(--win-btn-text);
+}
+.ex-btn:hover { filter: brightness(1.2); }
+.ex-btn:disabled { opacity: 0.6; cursor: wait; }
+.ex-btn-run { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
+.code-block.is-editing { box-shadow: 0 0 0 3px var(--c-accent-muted), var(--win-shadow); }
+.ex-editor-wrap { background: transparent; border-radius: 0; }
+.ex-editor-wrap .code-gutter { padding-top: 0.9rem; font-size: 1rem; line-height: 1.7; background: transparent; }
+.ex-editor {
+  display: block; width: 100%; margin: 0; padding: 0.9rem 1.5rem 1.4rem 0.6rem; border: 0; resize: vertical; outline: none;
+  background: transparent; color: var(--win-code-edit); caret-color: var(--win-code-caret);
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1.7; tab-size: 4; white-space: pre; overflow-x: auto;
+}
+.ex-stdin-label { display: block; margin: 0.2rem 1.5rem; font-size: var(--t-xs); color: var(--win-out-title); }
+.ex-stdin {
+  display: block; width: calc(100% - 3rem); margin: 0 1.5rem 0.4rem; padding: 0.35rem 0.6rem; resize: vertical;
+  border: 1px solid var(--win-out-border); border-radius: 6px; background: var(--c-surface); color: var(--c-input);
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700;
+}
+.ex-error { color: var(--c-error); }
+.ex-empty { color: var(--win-out-title); font-style: italic; }
+.output-block.predict { min-height: 7rem; }
+/* пока вывод скрыт, комментарии «# → …» в коде тоже скрыты, иначе ответ виден заранее */
+.code-block.predict-pending .tok-out { visibility: hidden; }
+.predict-cover { padding: 1rem 1.5rem 1.3rem; text-align: center; }
+.predict-text { margin: 0 0 0.7rem; font-size: var(--t-sm); color: var(--win-out-title); }
+.predict-btn {
+  font: inherit; font-size: var(--t-sm); font-weight: 700; cursor: pointer; padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full); border: 2px solid var(--c-accent); background: var(--c-surface); color: var(--c-accent);
+}
+.predict-btn:hover { background: var(--c-accent); color: var(--c-on-accent); }
+
+/* ---------- 16. «Затем», автор, кнопки, подвал ---------- */
+.then { background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); box-shadow: var(--shadow-sm); }
+.then h2 { margin-top: 0; }
+pre.tree { margin: 0.9rem 0; padding: 1rem 1.2rem; background: var(--c-surface-warm); border: 1px solid var(--c-border-light); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55; overflow-x: auto; white-space: pre; color: var(--c-text); }
+.tree-new { color: var(--c-accent); font-weight: 700; }
+.author { margin: 2.2rem 0 1rem; font-style: italic; color: var(--c-text-2); }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin: 1.6rem 0 2.4rem; }
+.btn {
+  display: inline-block; padding: 0.6rem 1.3rem; border-radius: var(--radius-full); background: var(--c-accent); color: var(--c-on-accent);
+  font-weight: 700; text-decoration: none; box-shadow: var(--shadow-md); transition: background 150ms var(--ease), transform 150ms var(--ease);
+}
+.btn:hover { background: var(--c-accent-hover); color: var(--c-on-accent); transform: translateY(-1px); }
+.site-footer { text-align: center; font-size: var(--t-sm); color: var(--c-muted); border-top: 1px solid var(--c-border-light); padding: 1.4rem 1rem 1.8rem; }
+.site-footer p { margin: 0.2rem 0; }
+
+/* ---------- 17. Игровой профиль: форма элементов ---------- */
+/* без закрепленных декоративных полос: текст при прокрутке не должен наезжать на фон */
+[data-profile="game"] body { background-color: var(--c-bg); background-image: none; }
+/* в игровом режиме подвала нет (решение преподавателя) */
+[data-profile="game"] .site-footer { display: none; }
+[data-profile="game"] .page-header h1,
+[data-profile="game"] h2, [data-profile="game"] h3 {
+  text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 3px 3px 0 var(--c-border-light);
+}
+/* тень только у самого текста заголовка: метки, плашки и мелкие подписи внутри
+   и рядом с заголовком ее не наследуют (иначе надпись двоится) */
+[data-profile="game"] .block-title,
+[data-profile="game"] h1::before, [data-profile="game"] h1::after,
+[data-profile="game"] h2::before, [data-profile="game"] h2::after,
+[data-profile="game"] h3::before, [data-profile="game"] h3::after,
+[data-profile="game"] h1 *, [data-profile="game"] h2 *, [data-profile="game"] h3 * { text-shadow: none; }
+[data-profile="game"] .page-header h1 { font-size: var(--t-3xl); }
+[data-profile="game"] .page-header h1::after { height: 8px; width: 96px; box-shadow: 4px 4px 0 var(--c-border); }
+[data-profile="game"] .theory, [data-profile="game"] .example, [data-profile="game"] .then,
+[data-profile="game"] .goals, [data-profile="game"] .page-toc, [data-profile="game"] .topic-nav li,
+[data-profile="game"] .checker, [data-profile="game"] table.data, [data-profile="game"] .code-explain,
+[data-profile="game"] .site-settings { border-color: var(--c-border); }
+[data-profile="game"] .btn, [data-profile="game"] .checker-run, [data-profile="game"] .predict-btn,
+[data-profile="game"] .checker-file, [data-profile="game"] .topic-link {
+  border: 3px solid var(--c-border); box-shadow: 4px 4px 0 var(--c-border); text-transform: uppercase; letter-spacing: 0.04em;
+  font-family: var(--font-ui);
+}
+[data-profile="game"] .btn:active, [data-profile="game"] .checker-run:active, [data-profile="game"] .predict-btn:active {
+  transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-border);
+}
+[data-profile="game"] .menu a.current { box-shadow: 3px 3px 0 var(--c-border); }
+[data-profile="game"] .menu a.current .menu-name::before { content: "▶ "; }
+[data-profile="game"] .code-label::before {
+  background: linear-gradient(to right, var(--win-dot-1) 0 12px, transparent 12px 20px, var(--win-dot-2) 20px 32px, transparent 32px 40px, var(--win-dot-3) 40px 52px);
+}
+[data-profile="game"] .level, [data-profile="game"] .task-status { border: 2px solid var(--c-border); }
+/* пиксельный курсор (рисунок свой, встроен как data:SVG) */
+[data-profile="game"] body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='34' viewBox='0 0 12 17' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='7' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='8' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='3' y='11' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='12' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='12' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='13' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='13' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='15' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='6' y='15' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%23FFF8E6'/%3E%3Crect x='8' y='15' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='6' y='16' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='7' y='16' width='1' height='1' fill='%231A1C2C'/%3E%3C/svg%3E") 0 0, auto;
+}
+[data-profile="game"] a, [data-profile="game"] button, [data-profile="game"] summary, [data-profile="game"] label.checker-file {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 15 15' shape-rendering='crispEdges'%3E%3Crect x='5' y='0' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='6' y='0' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='1' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='2' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='2' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='2' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='2' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='3' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='3' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='3' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='4' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='4' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='8' y='4' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='9' y='4' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='8' y='5' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='5' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='11' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='12' y='5' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='8' y='6' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='6' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='13' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='14' y='6' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='12' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='13' y='7' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='14' y='7' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='13' y='8' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='14' y='8' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='13' y='9' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='14' y='9' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='10' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='3' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='11' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='11' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='3' y='12' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='12' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='12' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='3' y='13' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='8' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='9' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='10' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='11' y='13' width='1' height='1' fill='%23F2C230'/%3E%3Crect x='12' y='13' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='4' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='9' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='10' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%231A1C2C'/%3E%3C/svg%3E") 11 1, pointer;
+}
+
+/* ---------- 18. Игровая сцена под блоком проверки (рисует game.js) ---------- */
+.game-scene { display: none; }
+[data-profile="game"] .game-scene {
+  display: block; position: relative; margin: 0.9rem 0 0; border: 3px solid var(--c-border); box-shadow: 4px 4px 0 var(--c-border);
+  background: #1A1C2C; image-rendering: pixelated;
+}
+.game-canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; image-rendering: crisp-edges; }
+.game-hud {
+  position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.3rem 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: #FFF8E6;
+  text-shadow: 2px 2px 0 #1A1C2C; pointer-events: none; text-transform: uppercase;
+}
+.game-caption {
+  position: absolute; left: 0; right: 0; bottom: 0.35rem; text-align: center; font-family: var(--font-mono); font-size: 0.8rem;
+  font-weight: 700; color: #FFF8E6; text-shadow: 2px 2px 0 #1A1C2C; pointer-events: none; text-transform: uppercase;
+}
+
+/* ---------- 19. Мобильный экран ---------- */
+@media (max-width: 900px) {
+  .site { display: block; }
+  .sidebar { position: static; max-height: none; border-right: 0; border-bottom: var(--border-w) solid var(--c-border); padding: 1rem; }
+  .sidebar-title { margin-bottom: 0.7rem; padding-bottom: 0.6rem; }
+  .menu { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .menu li { margin: 0; }
+  .menu a, .menu .menu-sub a { padding: 0.3rem 0.7rem; border: 1px solid var(--c-border-light); background: var(--c-surface); }
+  /* текущая страница остается выделенной: иначе белый текст на белом фоне */
+  .menu a.current, .menu .menu-sub a.current { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
+  .page-header { padding: 2rem 1rem 1rem; }
+  .page-header h1 { font-size: var(--t-3xl); }
+  .page-number { font-size: 3rem; }
+  .content { padding: 0.4rem 1rem 0.5rem; }
+  .code-explain-text li { padding-left: 0.4rem; padding-top: 1.6rem; }
+  .code-block pre, .output-block pre { font-size: 0.9rem; padding: 0.8rem 1rem 1.1rem; }
+  .topic-nav li { grid-template-columns: 2rem 1fr; }
+  .topic-link { grid-column: 2; justify-self: start; }
+}
+@media (max-width: 600px) {
+  .page-header h1 { font-size: var(--t-2xl); }
+  .theory, .goal, .overview, .example, .task, .task-final, .task-summary, .hint, .warning, .important, .then { padding: 1rem; }
+  .code-label::before, .output-label::before { display: none; }
+  .code-label, .output-label { padding-left: 1rem; padding-right: 1rem; text-align: left; }
+  .ex-tools { position: static; justify-content: flex-end; padding: 0.3rem 0.7rem 0; }
+}
+
+/* ---------- 20. Печать ---------- */
+@media print {
+  :root { color-scheme: light; }
+  body { background: #fff; color: #000; }
+  .sidebar, .pager, .checker, .page-toc, .game-scene, .ex-tools, .predict-cover { display: none !important; }
+  .output-block pre[hidden] { display: block !important; }
+  .site { display: block; }
+  .page-header { padding: 0 0 1rem; }
+  .content { max-width: none; padding: 0; }
+  .code-block, .output-block { box-shadow: none; border: 1px solid #999; background: #fff; }
+  .code-block pre { color: #000; white-space: pre-wrap; }
+  .code-label::before, .output-label::before { display: none; }
+  .code-label, .output-label { color: #333; text-align: left; padding: 0.4rem 1rem 0; }
+  [class^="tok-"], [class^="out-"] { color: #000 !important; }
+  .output-block pre, pre.tree, table.tests td pre { white-space: pre-wrap; }
+  .gloss::after { display: none; }
+  .theory, .goal, .overview, .example, .task, .task-final, .task-summary, .hint, .warning, .important, .then, .mistake, .code-explain { break-inside: avoid; box-shadow: none; }
+  details.deep, details.task-hint { display: block; }
+  a { color: #000; text-decoration: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- 21. Подпись к вводу пользователя в окне вывода ---------- */
+.output-block:has(kbd.user-input) > .output-label::after {
+  content: " · выделено: ввод с клавиатуры"; color: var(--c-input); font-size: var(--t-xs);
+}
+
+/* ---------- 22. Верхняя панель (строит theme.js) ---------- */
+.has-topbar { --topbar-h: 60px; }
+.has-topbar .sidebar-title { display: none; }
+.topbar {
+  position: sticky; top: 0; z-index: 30; display: flex; align-items: center;
+  min-height: var(--topbar-h); padding: 0.55rem 1.5rem; background: var(--c-surface);
+  border-bottom: var(--border-w) solid var(--c-border-light); box-shadow: var(--shadow-sm);
+}
+.tb-brand { flex: 0 0 auto; display: flex; flex-direction: column; line-height: 1.2; }
+.tb-brand-main { font-family: var(--font-display); font-weight: 700; font-size: var(--t-lg); color: var(--c-text); }
+.tb-brand-sub { font-family: var(--font-ui); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2); }
+.tb-progress { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; min-width: 0; margin: 0 1.5rem; }
+.tb-progress-label { color: var(--c-text-2); font-size: var(--t-sm); white-space: nowrap; }
+.tb-track {
+  position: relative; flex: 0 1 240px; min-width: 80px; height: 10px; overflow: hidden;
+  background: var(--c-track); border: 1px solid var(--c-track-border); border-radius: var(--radius-full);
+}
+.tb-fill { display: block; height: 100%; width: 0; background: var(--c-accent); border-radius: var(--radius-full); transition: width 400ms var(--ease); }
+.tb-progress-text { font-weight: 700; font-size: var(--t-sm); color: var(--c-text-2); white-space: nowrap; }
+.tb-controls { flex: 0 0 auto; display: flex; align-items: center; }
+.tb-controls > * + * { margin-left: 0.9rem; }
+.tb-progress > * + * { margin-left: 0.8rem; }
+.tb-group > * + * { margin-left: 0.55rem; }
+.tb-group { display: flex; align-items: center; }
+.tb-label { font-family: var(--font-ui); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-text-2); }
+.topbar .seg { padding: 3px; background: var(--c-control-bg); border: 1px solid var(--c-control-border); border-radius: var(--radius-sm); }
+.topbar .seg-btn { flex: 0 0 auto; min-width: 2.3rem; padding: 0.3rem 0.75rem; font-size: var(--t-sm); }
+/* выбранная кнопка: своя заливка и контрастная рамка, а не только тень (тень в темной теме не видна) */
+.topbar .seg-btn[aria-pressed="true"] { background: var(--c-control-on); color: var(--c-text); font-weight: 700; box-shadow: 0 0 0 1px var(--c-control-on-border); }
+.tb-btn, .tb-icon {
+  font: inherit; font-size: var(--t-sm); cursor: pointer; color: var(--c-text); background: var(--c-surface);
+  border: var(--border-w) solid var(--c-control-border); border-radius: var(--radius-full);
+}
+.tb-btn { padding: 0.4rem 1rem; white-space: nowrap; }
+.tb-icon { width: 2.2rem; height: 2.2rem; padding: 0; }
+.tb-icon[aria-pressed="false"] { color: var(--c-muted); opacity: 0.6; }
+.tb-icon[aria-pressed="true"] { color: var(--c-accent); font-weight: 700; }
+.tb-btn:hover, .tb-icon:hover { border-color: var(--c-accent-muted); }
+.tb-menu { position: relative; }
+.tb-pop {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 40; width: 17rem; padding: 0.4rem;
+  background: var(--c-surface); border: var(--border-w) solid var(--c-border); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+}
+.tb-pop-item {
+  display: block; width: 100%; text-align: left; font: inherit; font-size: var(--t-sm); cursor: pointer;
+  padding: 0.5rem 0.7rem; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--c-text);
+}
+.tb-pop-item:hover { background: var(--c-bg-warm); }
+.tb-pop-note { margin: 0.3rem 0.7rem 0.4rem; font-size: var(--t-xs); line-height: 1.45; color: var(--c-text-2); }
+[data-profile="game"] .topbar { border-bottom: 3px solid var(--c-border); box-shadow: 0 4px 0 var(--c-border); }
+[data-profile="game"] .tb-brand-main { text-transform: uppercase; font-family: var(--font-ui); }
+[data-profile="game"] .topbar .seg, [data-profile="game"] .tb-btn, [data-profile="game"] .tb-icon, [data-profile="game"] .tb-pop {
+  border: 3px solid var(--c-control-border); box-shadow: 3px 3px 0 var(--c-control-border);
+}
+[data-profile="game"] .topbar .seg-btn[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--c-control-on-border); }
+[data-profile="game"] .tb-track { height: 14px; border: 3px solid var(--c-track-border); }
+[data-profile="game"] .tb-fill { border-radius: 0; background-color: var(--c-accent); background-image: repeating-linear-gradient(90deg, transparent 0 10px, var(--c-accent-muted) 10px 12px); }
+@media (max-width: 1100px) { .tb-label { display: none; } .tb-progress-label { display: none; } }
+@media (max-width: 900px) {
+  .has-topbar { --topbar-h: 0px; }
+  .topbar { position: static; flex-wrap: wrap; padding: 0.6rem 1rem; }
+  .tb-progress { order: 3; flex: 1 1 100%; justify-content: flex-start; margin: 0.6rem 0 0; }
+  .tb-controls { margin-left: auto; }
+}
+@media (max-width: 600px) {
+  .tb-brand { display: none; }
+  .tb-controls { margin-left: 0; flex-wrap: wrap; }
+  .tb-controls > * { margin-bottom: 0.4rem; }
+  .topbar .seg-btn { padding: 0.3rem 0.55rem; }
+}
+@media print { .topbar { display: none; } .has-topbar .sidebar-title { display: block; } }
+
+
+/* ==========================================================================
+   ВЕРСИЯ 18 (решения преподавателя после рецензии)
+   Шрифты Golos Text и JetBrains Mono из папки fonts/, свои SVG-иконки,
+   шаги занятия, макеты А и В, состояния задач, уровни заданий практики,
+   меньше рамок, «Сдача работы», игровая механика.
+   ========================================================================== */
+
+/* ---------- 23. Шрифты из папки практики (лицензия OFL, файлы в fonts/) ---------- */
+@font-face { font-family: "Golos Text"; src: url("fonts/GolosText-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Golos Text"; src: url("fonts/GolosText-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+:root {
+  --font-display: "Golos Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Golos Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Golos Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, "SFMono-Regular", Menlo, "Liberation Mono", monospace;
+}
+:root[data-profile="game"] { --font-display: var(--font-mono); --font-ui: var(--font-mono); }
+body { font-size: 1.0625rem; }
+h1, h2, h3 { letter-spacing: -0.01em; }
+.block-title, .page-subtitle, .goals h2, .task h4, .task-final h4, .checker-title, table.data th, .tb-label, .menu-head {
+  font-family: var(--font-ui); letter-spacing: 0.05em;
+}
+
+/* ---------- 24. Иконки (свой набор, линия 2 px, цвет currentColor) ---------- */
+.i { display: inline-block; width: 1.1em; height: 1.1em; vertical-align: -0.18em; background-color: currentColor;
+     -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center;
+     -webkit-mask-size: contain; mask-size: contain; flex: 0 0 auto; }
+.i-book { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z%22/%3E%3Cpath d=%22M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z%22/%3E%3Cpath d=%22M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5%22/%3E%3C/svg%3E"); }
+.i-eye { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223%22/%3E%3C/svg%3E"); }
+.i-try { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 17l6-6-6-6%22/%3E%3Cpath d=%22M12 19h8%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 17l6-6-6-6%22/%3E%3Cpath d=%22M12 19h8%22/%3E%3C/svg%3E"); }
+.i-target { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221%22/%3E%3C/svg%3E"); }
+.i-check { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M8 12.5l2.8 2.8L16.5 9%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M8 12.5l2.8 2.8L16.5 9%22/%3E%3C/svg%3E"); }
+.i-upload { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 16V4%22/%3E%3Cpath d=%22M7 9l5-5 5 5%22/%3E%3Cpath d=%22M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 16V4%22/%3E%3Cpath d=%22M7 9l5-5 5 5%22/%3E%3Cpath d=%22M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3%22/%3E%3C/svg%3E"); }
+.i-sun { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%224%22/%3E%3Cpath d=%22M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%224%22/%3E%3Cpath d=%22M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4%22/%3E%3C/svg%3E"); }
+.i-moon { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z%22/%3E%3C/svg%3E"); }
+.i-gear { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223%22/%3E%3Cpath d=%22M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223%22/%3E%3Cpath d=%22M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z%22/%3E%3C/svg%3E"); }
+.i-play { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 5l12 7-12 7z%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 5l12 7-12 7z%22/%3E%3C/svg%3E"); }
+.i-list { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M8 6h13M8 12h13M8 18h13%22/%3E%3Ccircle cx=%223.5%22 cy=%226%22 r=%221%22/%3E%3Ccircle cx=%223.5%22 cy=%2212%22 r=%221%22/%3E%3Ccircle cx=%223.5%22 cy=%2218%22 r=%221%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M8 6h13M8 12h13M8 18h13%22/%3E%3Ccircle cx=%223.5%22 cy=%226%22 r=%221%22/%3E%3Ccircle cx=%223.5%22 cy=%2212%22 r=%221%22/%3E%3Ccircle cx=%223.5%22 cy=%2218%22 r=%221%22/%3E%3C/svg%3E"); }
+.i-chev { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 9l6 6 6-6%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 9l6 6 6-6%22/%3E%3C/svg%3E"); }
+.i-left { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M15 18l-6-6 6-6%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M15 18l-6-6 6-6%22/%3E%3C/svg%3E"); }
+.i-right { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M9 18l6-6-6-6%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M9 18l6-6-6-6%22/%3E%3C/svg%3E"); }
+.i-auto { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M12 3a9 9 0 0 1 0 18z%22 fill=%22black%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M12 3a9 9 0 0 1 0 18z%22 fill=%22black%22/%3E%3C/svg%3E"); }
+.i-lock { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%2211%22 width=%2214%22 height=%2210%22 rx=%222%22/%3E%3Cpath d=%22M8 11V7a4 4 0 0 1 8 0v4%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%225%22 y=%2211%22 width=%2214%22 height=%2210%22 rx=%222%22/%3E%3Cpath d=%22M8 11V7a4 4 0 0 1 8 0v4%22/%3E%3C/svg%3E"); }
+.i-arrow { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 12h14%22/%3E%3Cpath d=%22M13 6l6 6-6 6%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 12h14%22/%3E%3Cpath d=%22M13 6l6 6-6 6%22/%3E%3C/svg%3E"); }
+
+/* ---------- 25. Состояния: не начато, в работе, есть ошибка, решено ---------- */
+.st { display: inline-block; position: relative; width: 14px; height: 14px; border-radius: 50%; flex: 0 0 auto;
+      border: 2px solid var(--c-control-border); vertical-align: -2px; }
+.st-progress { border-color: var(--c-accent); background: linear-gradient(90deg, var(--c-accent) 50%, transparent 50%); }
+.st-solved { border-color: var(--c-accent); background: var(--c-accent); }
+/* галочка по центру круга (версия 32): середина галочки совпадает с центром */
+.st-solved::after { content: ""; position: absolute; left: 50%; top: 50%; width: 3px; height: 6px; box-sizing: content-box;
+  border: solid var(--c-on-accent); border-width: 0 2px 2px 0; transform: translate(-55%, -60%) rotate(45deg); }
+.st-error { border-color: var(--c-error); background: var(--c-error); }
+.st-error::after { content: "!"; position: absolute; inset: 0; color: var(--c-surface); font: 700 10px/10px var(--font-ui); text-align: center; }
+.task-state { float: right; display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.25rem;
+  font-family: var(--font-ui); font-size: var(--t-sm); font-weight: 400; color: var(--c-text-2); letter-spacing: 0; text-transform: none; }
+.task-state.is-error { color: var(--c-error); }
+.task-state.is-solved { color: var(--c-accent); font-weight: 700; }
+.task-status { display: none; }
+
+/* ---------- 26. Меню: номера страниц, состояния, уровни заданий ---------- */
+.menu-code { font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.7; padding-right: 0; display: inline-block; width: 2.1rem; }
+.menu .menu-title { display: flex; align-items: baseline; }
+.menu .menu-name { display: inline; flex: 1 1 auto; }
+.menu a { align-items: center; }
+.menu-state { margin-left: auto; display: inline-flex; }
+.menu a.current .st { border-color: var(--c-on-accent); }
+.menu a.current .st-progress { background: linear-gradient(90deg, var(--c-on-accent) 50%, transparent 50%); }
+.menu a.current .st-solved { background: var(--c-on-accent); }
+.menu a.current .st-solved::after { border-color: var(--c-accent); }
+/* страница еще не собрана: приглушенный пункт без ссылки и пунктирный кружок на месте значка состояния */
+.menu-soon { display: flex; align-items: center; gap: 0.5rem; padding: 0.42rem 0.7rem 0.42rem 1.3rem; color: var(--c-muted); cursor: default; }
+.menu-soon::after { content: ""; flex: 0 0 auto; margin-left: auto; width: 14px; height: 14px; border-radius: 50%;
+  border: 2px dashed var(--c-control-border); }
+.menu-head { margin: 1.1rem 0.7rem 0.4rem; font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; color: var(--c-text-2); }
+.menu-levels .lvl-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0.42rem 0.7rem; border-radius: var(--radius-sm); }
+.menu-levels .lvl-none .lvl-row { font-size: var(--t-sm); color: var(--c-text-2); line-height: 1.4; }
+/* в боковом меню только выбранный уровень (data-track у <html> ставит theme.js до отрисовки) */
+:root:not([data-track]) .menu-levels li[data-level],
+:root[data-track] .menu-levels .lvl-none,
+:root[data-track="basic"] .menu-levels li[data-level]:not([data-level="basic"]),
+:root[data-track="medium"] .menu-levels li[data-level]:not([data-level="medium"]),
+:root[data-track="advanced"] .menu-levels li[data-level]:not([data-level="advanced"]) { display: none; }
+.lvl-tag { font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 0.12rem 0.55rem; border-radius: var(--radius-full); white-space: nowrap; }
+.lvl-basic { color: var(--c-accent); background: var(--c-accent-light); }
+/* средний и продвинутый */
+.lvl-medium { color: var(--c-amber-text); background: var(--c-amber-light); }
+.lvl-advanced { color: var(--c-error); background: var(--c-error-light); }
+.lvl-count { font-weight: 700; font-size: var(--t-sm); color: var(--c-text-2); white-space: nowrap; }
+.lvl-count.is-done { color: var(--c-accent); }
+.level.level-basic { color: var(--c-accent); background: var(--c-accent-light); }
+.level.level-advanced { color: var(--c-error); background: var(--c-error-light); }
+.level.level-medium { color: var(--c-amber-text); background: var(--c-amber-light); }
+
+/* ---------- 27. Верхняя панель: компактная ---------- */
+.tb-brand { font-family: var(--font-display); font-weight: 700; font-size: var(--t-lg); color: var(--c-text); text-decoration: none;
+  white-space: nowrap; margin-right: 1.5rem; }
+.tb-brand:hover { color: var(--c-accent); }
+.tb-progress { flex: 0 1 auto; justify-content: flex-start; margin: 0; }
+.tb-progress-text { display: inline-flex; align-items: baseline; gap: 0.6rem; font-weight: 400; }
+.tb-progress-text b { color: var(--c-text); }
+.tb-progress-sub { color: var(--c-muted); font-size: var(--t-xs); }
+.tb-spacer { flex: 1 1 auto; }
+.tb-icon { display: inline-flex; align-items: center; justify-content: center; margin-left: 0.5rem; }
+.tb-icon .i { width: 18px; height: 18px; }
+.tb-menu { margin-left: 0; }
+.tb-pop { width: 21rem; padding: 0.7rem; }
+.tb-row { display: flex; flex-direction: column; gap: 0.3rem; margin: 0 0 0.7rem; }
+.tb-row .tb-label { display: block; }
+.tb-row .seg { display: flex; }
+.tb-row .seg-btn { flex: 1 0 auto; }
+.tb-links { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+.tb-links .tb-pop-item { width: auto; padding: 0.35rem 0.6rem; border: 1px solid var(--c-control-border); border-radius: var(--radius-sm); }
+.tb-game { display: none; }
+[data-profile="game"] .tb-game { display: flex; align-items: center; gap: 0.6rem; }
+[data-profile="game"] .tb-progress { display: none; }
+.hud-pill { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; white-space: nowrap;
+  text-transform: uppercase; padding: 0.25rem 0.55rem; border: 3px solid var(--c-control-border); box-shadow: 3px 3px 0 var(--c-border); color: var(--c-text); }
+.hud-bar { display: inline-block; width: 110px; height: 10px; margin: 0 0.4rem; border: 2px solid var(--c-control-border); background: var(--c-track); }
+.hud-bar i { display: block; height: 100%; background: var(--c-amber); }
+.hud-streak { color: var(--c-vermillion); }
+@media (max-width: 1100px) { .tb-progress-sub { display: none; } .hud-bar { width: 60px; } }
+
+/* ---------- 28. Шапка страницы, цель, ритм занятия ---------- */
+.page-header { padding-bottom: 0.8rem; }
+.page-header h1::after { display: none; }
+/* обычный абзац с иконкой слева: не flex, иначе фрагменты кода в тексте становятся колонками */
+.goal-line { position: relative; padding-left: 1.9rem; margin: 0.6rem 0 1.2rem; font-size: var(--t-lg); }
+.goal-line > .i { position: absolute; left: 0; top: 0.3em; color: var(--c-accent); }
+.step { display: inline-flex; align-items: center; gap: 0.4rem; margin: 1.4rem 0 0.5rem; font-family: var(--font-ui);
+  font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+.step::before { content: ""; display: inline-block; width: 16px; height: 16px; background-color: currentColor;
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.step-learn { color: var(--c-info); } .step-learn::before { -webkit-mask-image: var(--ic-book); mask-image: var(--ic-book); }
+.step-see { color: var(--c-plum); } .step-see::before { -webkit-mask-image: var(--ic-eye); mask-image: var(--ic-eye); }
+.step-try { color: var(--c-amber-text); } .step-try::before { -webkit-mask-image: var(--ic-try); mask-image: var(--ic-try); }
+.step-task { color: var(--c-accent); } .step-task::before { -webkit-mask-image: var(--ic-target); mask-image: var(--ic-target); }
+.step-check { color: var(--c-accent); } .step-check::before { -webkit-mask-image: var(--ic-check); mask-image: var(--ic-check); }
+:root { --ic-bulb: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z' fill='none' stroke='black' stroke-width='1.9' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E"); --ic-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='1.9'/%3E%3Cpath d='M12 11v6M12 7.5v.5' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); --ic-warn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4 2.8 19.5h18.4Z' fill='none' stroke='black' stroke-width='1.9' stroke-linejoin='round'/%3E%3Cpath d='M12 10v4.5M12 17v.4' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); --ic-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 3h8l4 4v14H6Z M14 3v4h4' fill='none' stroke='black' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E"); --ic-flame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3c.5 3-1.5 4.5-3 6.5S7 13 7 15a5 5 0 0 0 10 0c0-2-1-3.5-2-4.5 0 1.5-.8 2.6-2 3 .8-3.2-.2-7.5-1-10.5Z' fill='none' stroke='black' stroke-width='1.9' stroke-linejoin='round'/%3E%3C/svg%3E"); --ic-book: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z%22/%3E%3Cpath d=%22M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5%22/%3E%3C/svg%3E"); --ic-eye: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223%22/%3E%3C/svg%3E"); --ic-try: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 17l6-6-6-6%22/%3E%3Cpath d=%22M12 19h8%22/%3E%3C/svg%3E"); --ic-target: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%225%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%221%22/%3E%3C/svg%3E"); --ic-check: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%229%22/%3E%3Cpath d=%22M8 12.5l2.8 2.8L16.5 9%22/%3E%3C/svg%3E"); }
+
+/* меньше рамок: теория, примеры и NB без карточек; выделены только задачи */
+.theory { background: none; border: 0; box-shadow: none; padding: 0; }
+.example { background: none; border: 0; box-shadow: none; padding: 0; margin: 0.6rem 0 1.2rem; }
+.example > h3 { font-size: var(--t-lg); margin-bottom: 0.4rem; }
+.goal { background: none; border: 0; padding: 0; }
+.subsection { margin-top: 4.5rem; }
+.subsection > h2 { border-left: 0; padding-left: 0; font-size: var(--t-3xl); }
+.overview > h2 { border: 0; }
+.try-block { margin: 0.4rem 0 1rem; }
+.try-block > p { margin-bottom: 0.6rem; }
+.try-block .code-block { box-shadow: 0 0 0 2px var(--c-amber-light), var(--win-shadow); }
+
+/* «Что нужно сделать»: главный элемент задачи */
+.todo-box { background: var(--c-surface); border: 2px solid var(--c-accent); border-radius: var(--radius-sm); padding: 0.7rem 1rem; margin: 0.6rem 0 0.8rem; }
+.todo-title { margin: 0 0 0.2rem; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--c-accent); }
+.todo-box > p:last-child { margin-bottom: 0; }
+.task > h3::before { content: none; display: none; }
+.task-exercise { background: var(--c-task-bg); border: 0; border-left: 4px solid var(--c-accent-muted); border-radius: var(--radius-sm); box-shadow: none; }
+.task-graded { background: var(--c-task-bg); border: 1px solid var(--c-task-border); border-left: 6px solid var(--c-accent); }
+.task-graded[data-level="medium"] { border-left-color: var(--c-amber); }
+.task-graded[data-level="advanced"] { border-left-color: var(--c-error); }
+
+/* ---------- 29. Макет страницы: разделы страницы в боковом меню; метки шагов над блоками (версия 28) ---------- */
+.page-body { display: flex; align-items: flex-start; max-width: 1240px; margin: 0 auto; }
+.page-body > .content { flex: 1 1 auto; min-width: 0; }
+.nav-state { display: inline-flex; order: -1; }
+@media (min-width: 1100px) {
+  .content { max-width: 860px; }
+  .subsection > h2 { margin-left: 0; }
+}
+
+/* ---------- 28a. Метки и ритм шагов (версия 28: вариант «плашка на линии») ----------
+   Метка шага стоит над своим блоком: цветная плашка со значком и названием
+   («Теория», «Пример», «Практика», «Задача»), от нее до правого края раздела идет
+   тонкая линия цвета шага. Линия отделяет шаги друг от друга, поэтому отдельного
+   разделителя нет. Промежуток перед шагом около 2,75 rem, после метки около 0,75 rem,
+   между разделами 4,5 rem (правило близости). Одинаково на всех ширинах экрана. */
+.subsection { container-type: inline-size; }
+.subsection > .step {
+  position: relative; display: inline-flex; align-items: center; gap: 0.4rem;
+  margin: 2.75rem 0 0.75rem; padding: 0.28rem 0.75rem 0.28rem 0.6rem; border-radius: var(--radius-full);
+  background: var(--c-step-bg, transparent); line-height: 1.2;
+}
+.subsection > h2 + .step { margin-top: 1rem; }
+.subsection > .step::after {
+  content: ""; position: absolute; left: calc(100% + 0.5rem); top: 50%;
+  width: calc(100cqw - 100% - 0.5rem); border-top: 1px solid currentColor; opacity: 0.35; pointer-events: none;
+}
+.step-learn { --c-step-bg: var(--c-info-light); }
+.step-see { --c-step-bg: var(--c-plum-light); }
+.step-try { --c-step-bg: var(--c-amber-light); }
+.step-task, .step-check { --c-step-bg: var(--c-accent-light); }
+
+/* ---------- 31. Сдача работы, подвал ---------- */
+.then { background: var(--c-bg-warm); border: 0; box-shadow: none; }
+.then > h2 { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-size: var(--t-xl);
+  text-transform: none; letter-spacing: 0; color: var(--c-text); }
+.then details > summary { cursor: pointer; display: inline-block; padding: 0.35rem 0.8rem; border: 1px solid var(--c-control-border);
+  border-radius: var(--radius-full); background: var(--c-surface); font-size: var(--t-sm); }
+.site-footer { font-size: var(--t-xs); line-height: 1.5; }
+.site-footer p { max-width: 50rem; margin: 0.2rem auto; }
+
+/* ---------- 32. Проверка: замечание (результат верный, прием другой) ---------- */
+.checker-result.is-warn { background: var(--c-amber-light); border-color: var(--c-amber-border); }
+.is-warn > .checker-verdict { color: var(--c-amber-text); }
+.checker-why { margin: 0.2rem 0 0.2rem 1.3rem; padding: 0.35rem 0.6rem; border-left: 3px solid var(--c-info); color: var(--c-text); font-size: var(--t-sm); }
+
+/* ---------- 33. Обзор практики: как засчитывается ---------- */
+.ladder { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 0.8rem 0 1.2rem; }
+.ladder > div { flex: 1 1 14rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--c-surface); border: 1px solid var(--c-border-light); }
+.ladder b { display: block; margin: 0.3rem 0 0.2rem; }
+.ladder p { margin: 0; font-size: var(--t-sm); color: var(--c-text-2); }
+.topic-nav li.is-soon { opacity: 0.55; }
+.topic-nav .topic-state { justify-self: end; }
+
+/* ---------- 34. Игровой режим: всплывающие награды, ворота сложной зоны ---------- */
+.game-toasts { position: fixed; right: 1rem; bottom: 1rem; z-index: 60; display: flex; flex-direction: column; gap: 0.5rem; }
+.game-toast { font-family: var(--font-mono); padding: 0.7rem 1rem; max-width: 22rem; background: var(--c-surface-warm); color: var(--c-text);
+  border: 3px solid var(--c-amber); box-shadow: 5px 5px 0 var(--c-border); transition: opacity 500ms, transform 500ms; }
+.game-toast b { display: block; color: var(--c-amber-text); text-transform: uppercase; }
+.game-toast span { font-family: var(--font-body); font-size: var(--t-sm); }
+.game-toast.is-out { opacity: 0; transform: translateY(8px); }
+@media print { .game-toasts, .page-tabs, .topbar, .tabs-list, .track-choice { display: none !important; } .tab-panel[hidden] { display: block !important; } }
+
+
+/* ---------- 35. Блок «Задачи»: пояснение и вкладки уровней (tab component) ---------- */
+.tasks-block { margin: 2rem 0 1rem; padding: 1.2rem 1.4rem 1.4rem; background: var(--c-bg-warm);
+  border: 1px solid var(--c-border-light); border-radius: var(--radius-md); }
+.tasks-block > h2 { margin: 0 0 0.4rem; font-size: var(--t-2xl); }
+.tasks-block > p { margin-bottom: 0; color: var(--c-text-2); }
+.level-tabs { margin-top: 1.2rem; }
+.tabs-list { display: none; }
+.js-tabs > .tabs-list { display: flex; flex-wrap: wrap; gap: 0.25rem; padding-left: 0.5rem; border-bottom: 1px solid var(--c-border); }
+/* вкладки как в Bootstrap: активная соединена с панелью, остальные похожи на ссылки */
+.tab { font: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 0.45rem; margin-bottom: -1px;
+  padding: 0.6rem 1.1rem; border: 1px solid transparent; border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: none; color: var(--c-info); white-space: nowrap; }
+.tab::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c-accent); flex: 0 0 auto; }
+.tab[data-level="medium"]::before { background: var(--c-amber); }
+.tab[data-level="advanced"]::before { background: var(--c-error); }
+.tab:hover { color: var(--c-text); border-color: var(--c-border-light) var(--c-border-light) var(--c-border); }
+.tab[aria-selected="true"] { color: var(--c-text); font-weight: 700; background: var(--c-surface);
+  border-color: var(--c-border) var(--c-border) var(--c-surface); }
+.tab .lvl-count { font-weight: 400; font-size: var(--t-xs); color: var(--c-text-2); }
+/* версия 22: метки «мой» на вкладке нет; свой уровень виден по кнопке «✓ Мой уровень» в панели */
+.js-tabs .tab-panel { margin: 0; padding: 1.2rem 1.4rem 0.4rem; background: var(--c-surface);
+  border: 1px solid var(--c-border); border-top: 0; border-radius: 0 0 var(--radius-md) var(--radius-md); }
+.tab-panel .panel-title { margin: 0 0 0.3rem; font-size: var(--t-xl); }
+.js-tabs .tab-panel .panel-title { display: none; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; margin-bottom: 0.6rem; }
+.panel-note { margin: 0; color: var(--c-text-2); }
+.mine-btn { font: inherit; font-size: var(--t-sm); cursor: pointer; padding: 0.4rem 0.9rem; border-radius: var(--radius-full);
+  border: 1px solid var(--c-control-border); background: var(--c-surface); color: var(--c-text); white-space: nowrap; }
+.mine-btn:hover { border-color: var(--c-accent-muted); }
+.mine-btn .mine-on { display: none; }
+.mine-btn[aria-pressed="true"] { background: var(--c-accent-light); border-color: var(--c-accent); color: var(--c-accent); font-weight: 700; }
+.mine-btn[aria-pressed="true"] .mine-on { display: inline; }
+.mine-btn[aria-pressed="true"] .mine-on::before { content: "✓ "; }
+.mine-btn[aria-pressed="true"] .mine-off { display: none; }
+.menu-levels li.is-mine .lvl-row { background: var(--c-bg-warm); font-weight: 700; }
+[data-profile="game"] .tab[aria-selected="true"], [data-profile="game"] .js-tabs .tab-panel, [data-profile="game"] .tasks-block { border-width: 3px; }
+@media (max-width: 600px) {
+  .js-tabs > .tabs-list { padding-left: 0; }
+  .tab { padding: 0.5rem 0.7rem; }
+  .js-tabs .tab-panel, .tasks-block { padding-left: 0.9rem; padding-right: 0.9rem; }
+}
+
+/* ---------- 36. Текст не выходит за пределы кнопок ----------
+   Кнопка не бывает уже своего текста; группы кнопок переносятся на новую строку.
+   check_css.py требует это правило для всех классов кнопок. */
+.seg-btn, .tab, .btn, .tb-btn, .tb-icon, .tb-pop-item, .checker-run, .checker-file, .checker-clear,
+.predict-btn, .ex-btn, .mine-btn, .mine-reset, .settings-link { min-width: max-content; }
+
+
+/* ---------- 37. Упражнение раздела в трех вариантах по уровню ---------- */
+.ex-variants { margin: 0.4rem 0 1.4rem; }
+.ex-variants .tab .nav-state { order: 0; }
+.ex-variants.js-tabs .tab-panel { background: var(--c-task-bg); }
+/* активная вкладка окрашена в цвет блока упражнения и сливается с ним */
+.ex-variants .tab[aria-selected="true"] { background: var(--c-task-bg); border-bottom-color: var(--c-task-bg); }
+.ex-variants .task-exercise { background: none; border: 0; border-radius: 0; padding: 0; margin: 0.6rem 0 0; box-shadow: none; }
+.ex-variants .task-exercise > h3 { margin-top: 0.2rem; }
+.mine-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.mine-reset { font: inherit; font-size: var(--t-sm); cursor: pointer; padding: 0.4rem 0.6rem; border: 0; background: none;
+  color: var(--c-text-2); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.mine-reset:hover { color: var(--c-error); }
+.mine-reset[hidden] { display: none; }
+
+
+/* ---------- 38. Блок «Сдача работы» тематической страницы (версия 26) ----------
+   Строит build_submit.py: шаги ol.submit-steps, имена файлов по уровням
+   (span.submit-level), деревья pre.tree[data-level]. При выбранном уровне видны
+   только его файлы и дерево, метка уровня не нужна; без выбранного уровня видны
+   файлы всех уровней с метками и подсказка выбрать уровень, дерево скрыто. */
+.submit-steps { margin: 0.6rem 0 1rem; padding-left: 1.4rem; }
+.submit-steps li { margin: 0 0 0.55rem; padding-left: 0.2rem; }
+.submit-level { display: block; margin: 0.35rem 0 0.1rem; }
+.submit-level .lvl-tag { margin-right: 0.4rem; }
+.submit-tree-title { margin: 0.9rem 0 0.4rem; }
+.submit-choose { margin: 0.4rem 0 0; color: var(--c-text-2); font-size: var(--t-sm); }
+:root[data-track] .submit-choose { display: none; }
+:root:not([data-track]) .then pre.tree, :root:not([data-track]) .submit-tree-title { display: none; }
+:root[data-track] .submit-level { display: inline; margin: 0; }
+:root[data-track] .submit-level .lvl-tag { display: none; }
+:root[data-track="basic"] .then [data-level]:not([data-level="basic"]),
+:root[data-track="medium"] .then [data-level]:not([data-level="medium"]),
+:root[data-track="advanced"] .then [data-level]:not([data-level="advanced"]) { display: none; }
+
+/* ---------- 39. Подменю страницы в боковом меню (версия 32, вариант C) ----------
+   ul.menu-anchors под текущей страницей (строит build_toc.py): группа «Разделы»
+   и группа «Упражнения». Раздел на экране (.is-current, ставит checker.js) отмечен
+   полосой на линии подменю и цветом текста, без заливки: заливка сливалась с зеленой
+   строкой страницы. Жирным не выделяется: жирный текст шире и мог переноситься
+   (замечание преподавателя; следит check_layout.py), утолщение тенью ширину не меняет.
+   У упражнения значок «тетрадь с карандашом», номер, название варианта своего уровня
+   и состояние (.nav-state ставит checker.js). */
+.menu .menu-anchors { list-style: none; margin: 0.55rem 0 0.7rem 1.55rem; padding: 0 0 0 0.75rem;
+  border-left: 2px solid var(--c-border-light); font-size: 0.84rem; }
+.menu .menu-anchors li { position: relative; margin: 0 0 1px; }
+.menu .menu-anchors .anc-group { margin: 0.55rem 0 0.2rem; padding-left: 0.45rem; font-family: var(--font-ui); font-size: 0.68rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-muted); }
+.menu .menu-anchors .anc-group:first-child { margin-top: 0.1rem; }
+.menu .menu-anchors a { display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.3rem 0.45rem; line-height: 1.3;
+  color: var(--c-text-2); background: none; border: 0; border-radius: var(--radius-sm); box-shadow: none; font-weight: 400; }
+.menu .menu-anchors a:hover { background: var(--c-bg-warm); color: var(--c-text); }
+.menu .menu-anchors a.is-current { background: none; color: var(--c-accent); font-weight: inherit; text-shadow: 0.35px 0 0 currentColor; }
+.menu .menu-anchors a.is-current::before { content: ""; position: absolute; left: calc(-0.75rem - 2px); top: 0.25rem; bottom: 0.25rem;
+  width: 3px; border-radius: 2px; background: var(--c-accent); }
+.menu .menu-anchors .anc-num { font-variant-numeric: tabular-nums; }
+/* упражнение */
+.menu .menu-anchors a.anc-ex { align-items: flex-start; }
+.anc-ex-ic { flex: 0 0 auto; width: 18px; height: 18px; margin-top: -0.05rem; }
+.anc-ex-text { flex: 1 1 auto; min-width: 0; }
+.anc-ex-num { font-weight: 700; color: var(--c-text); font-variant-numeric: tabular-nums; }
+.anc-ex-title { display: none; }
+:root:not([data-track]) .anc-ex-title[data-variant="basic"],
+:root[data-track="basic"] .anc-ex-title[data-variant="basic"],
+:root[data-track="medium"] .anc-ex-title[data-variant="medium"],
+:root[data-track="advanced"] .anc-ex-title[data-variant="advanced"] { display: inline; }
+/* значок состояния по центру первой строки */
+.menu .menu-anchors .nav-state { display: inline-flex; order: 0; align-items: center; justify-content: center; height: 1.3em; margin-left: auto; }
+[data-profile="game"] .menu .menu-anchors { border-left-width: 3px; border-left-color: var(--c-border); }
+@media (max-width: 900px) {
+  /* на узком экране меню стоит над текстом: разделы и упражнения идут строками-плашками под пунктами страниц */
+  .menu .menu-anchors { display: flex; flex-wrap: wrap; gap: 0.3rem; flex-basis: 100%; margin: 0.4rem 0 0; padding: 0; border: 0; }
+  .menu li:has(> .menu-anchors) { display: contents; }
+  .menu .menu-anchors .anc-group { flex-basis: 100%; margin: 0.3rem 0 0; padding: 0; }
+  .menu .menu-anchors a { border: 1px solid var(--c-border-light); background: var(--c-surface); }
+  .menu .menu-anchors a.is-current { border-color: var(--c-accent); }
+  .menu .menu-anchors a.is-current::before { display: none; }
+}
+@media print { .menu-anchors { display: none; } }
+
+/* ---------- 40. Значки состояний в подменю (версия 32) ----------
+   Значок у упражнения; у разделов значков нет (состояние видно в группе «Упражнения»). */
+.menu-anchors .nav-state.is-none { display: none; }
+
+/* значок «тетрадь с карандашом» (версия 32): заливки как на иллюстрации, контур из темы (версия 33) */
+.anc-ex-ic .nb-cover { fill: #3FBF8F; }
+.anc-ex-ic .nb-page { fill: #FFFFFF; }
+.anc-ex-ic .nb-stroke { stroke: var(--c-text); } /* версия 33: контур цвета текста темы, виден и на темном фоне */
+.anc-ex-ic .nb-line { stroke: #1D1D1B; } /* строчки на белой странице всегда темные */
+.anc-ex-ic .nb-pencil { fill: #F2D15C; }
+.anc-ex-ic .nb-eraser { fill: #E88C8C; }
+.anc-ex-ic .nb-tip { fill: #F4E1B0; }
+
+/* ---------- Версия 27: объем теории «Кратко / Подробно» ----------
+   data-theory у <html> ставит set_theory.py (вариант преподавателя) и theme.js
+   (выбор студента). Без атрибута действует «Кратко». */
+html:not([data-theory="full"]) .th-full { display: none !important; }
+html[data-theory="full"] .th-brief { display: none !important; }
+/* версия 31: переключатель в шапке страницы справа от заголовка (вариант D), без подписи о времени */
+.ph-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 1rem 2rem; }
+.theory-switch { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; margin-bottom: 0.3rem; font-family: var(--font-ui); }
+.theory-switch-label {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--c-text-2);
+}
+.theory-switch .seg { flex: 0 0 auto; }
+.theory-switch .seg-btn { padding: 0.3rem 0.8rem; font-size: 0.85rem; }
+@media (max-width: 700px) {
+  .ph-row { grid-template-columns: 1fr; gap: 0.9rem; }
+  .theory-switch { flex-direction: row; align-items: center; gap: 0.7rem; margin-bottom: 0; }
+}
+@media print { .theory-switch { display: none; } }
+
+/* лесенка вычисления выражения: каждая строка на шаг ближе к значению */
+ol.flow { list-style: none; margin: 1rem 0; padding: 0; counter-reset: none; }
+ol.flow > li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 1rem;
+  padding: 0.45rem 0.8rem; border-left: 3px solid var(--c-accent-muted); background: var(--c-surface-warm);
+}
+ol.flow > li + li { margin-top: 2px; }
+ol.flow > li:last-child { border-left-color: var(--c-accent); }
+.flow-expr { font-family: var(--font-mono); font-weight: 700; white-space: nowrap; min-width: 9rem; }
+.flow-text { color: var(--c-text-2); font-size: 0.92rem; }
+
+/* метка шага внутри текста (обзор практики): маленькая плашка в строке */
+p .step, li .step { margin: 0; padding: 0.08rem 0.5rem 0.08rem 0.4rem; border-radius: var(--radius-full);
+  background: var(--c-step-bg, transparent); vertical-align: baseline; }
+
+/* ---------- Версия 30: переходы между страницами, карточки (вариант B) ----------
+   «Назад» узкая (30 %), «Дальше» широкая (70 %) и выделена цветом. Наведение
+   на «Дальше» заметнее, чем на «Назад»: главное действие страницы одно. */
+.pager-cards { display: grid; grid-template-columns: 3fr 7fr; gap: 1rem; margin: 1.6rem 0 2.4rem; }
+.pcard {
+  display: flex; flex-direction: column; justify-content: center; gap: 0.3rem; min-width: 0;
+  padding: 1rem 1.2rem; border-radius: var(--radius-md); text-decoration: none; color: var(--c-text);
+  border: var(--border-w) solid var(--c-border); background: var(--c-surface);
+  transition: background 150ms var(--ease), border-color 150ms var(--ease), box-shadow 150ms var(--ease), transform 150ms var(--ease), color 150ms var(--ease);
+}
+.pcard-dir { font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--c-text-2); }
+.pcard-title { font-weight: 700; font-size: 1.05rem; line-height: 1.3; overflow-wrap: anywhere; }
+.pcard-next { grid-column: 2; text-align: right; border-color: var(--c-accent); background: var(--c-accent-light); box-shadow: var(--shadow-sm); }
+.pcard-next .pcard-dir { color: var(--c-accent); }
+.pcard-next .pcard-title { font-size: 1.2rem; }
+.pcard-next:only-child { grid-column: 1 / -1; }
+/* «Назад»: едва заметно */
+.pcard-prev:hover { background: var(--c-bg-warm); border-color: var(--c-control-border); color: var(--c-text); }
+/* «Дальше»: заливка акцентом, тень, подъем */
+.pcard-next:hover { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent);
+  box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.pcard-next:hover .pcard-dir { color: var(--c-on-accent); }
+.pcard:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; }
+.pcard code { color: inherit; background: transparent; border: 0; box-shadow: none; padding: 0; font-weight: 700; }
+@media (max-width: 560px) {
+  .pager-cards { grid-template-columns: 1fr; }
+  .pcard-next { grid-column: 1; grid-row: 1; }   /* на телефоне «Дальше» первой */
+  .pcard-prev { grid-row: 2; }
+  .pcard-prev:only-child { grid-row: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .pcard-next:hover { transform: none; } }
+
+/* версия 33: имена функций в названиях страниц бокового меню кодом, без плашки */
+.menu-name code { background: transparent; border: 0; box-shadow: none; padding: 0; color: inherit; font-size: 0.86em; letter-spacing: -0.02em; }
+
+/* ---------- Версия 33: меню на узком экране свернуто в кнопку «Содержание» ----------
+   Кнопку ставит theme.js в верхнюю панель. Без JavaScript класса has-topbar нет,
+   и меню видно целиком, как раньше. */
+.tb-menu-btn { display: none; align-items: center; gap: 0.45rem; }
+.tb-menu-ic { width: 16px; height: 12px; flex: 0 0 auto;
+  background: linear-gradient(currentColor 0 0) top / 100% 2px no-repeat, linear-gradient(currentColor 0 0) center / 100% 2px no-repeat,
+              linear-gradient(currentColor 0 0) bottom / 100% 2px no-repeat; }
+@media (max-width: 900px) {
+  .tb-menu-btn { display: inline-flex; }
+  .has-topbar .sidebar { display: none; }
+  .has-topbar.menu-open .sidebar { display: block; }
+  .has-topbar.menu-open .tb-menu-btn { background: var(--c-accent-light); border-color: var(--c-accent); color: var(--c-accent); }
+}
+@media print { .tb-menu-btn { display: none !important; } }
+
+/* ---------- Версия 36: главная страница сайта курса (вариант A с кольцами) ----------
+   Строит build_site.py, поведение home.js. Шапка с темой и настройками, заставка по центру,
+   карточки практик: у открытой кольцо прогресса, будущие приглушены. */
+.home { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem 2rem; }
+.home-bar { display: flex; align-items: center; gap: 0.6rem 1.2rem; flex-wrap: wrap; padding: 0.9rem 0; border-bottom: 1px solid var(--c-border-light); font-family: var(--font-ui); position: relative; }
+.home-brand { font-weight: 700; letter-spacing: 0.08em; color: var(--c-accent); text-decoration: none; margin-right: auto; }
+.home-nav { display: flex; gap: 1.1rem; }
+.home-nav a { color: var(--c-text-2); }
+.home-pop { position: absolute; right: 0; top: calc(100% + 0.4rem); z-index: 30; min-width: 15rem; padding: 0.8rem; border: 1px solid var(--c-border); border-radius: var(--radius-md); background: var(--c-surface); box-shadow: var(--shadow-md); }
+.home-pop .tb-label { display: block; margin: 0 0 0.4rem; font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2); }
+.home-hero { text-align: center; padding: 2.4rem 0 1.2rem; }
+.home-logo { width: 112px; height: 112px; }
+.home-hero h1 { font-size: clamp(1.8rem, 4.5vw, 2.7rem); margin: 0.9rem 0 0.35rem; }
+.home-org { margin: 0; color: var(--c-text-2); font-size: 0.95rem; }
+.home-lead { max-width: 38rem; margin: 0.9rem auto 0; color: var(--c-text-2); }
+.home h2 { font-size: 1.3rem; margin: 1.8rem 0 1rem; }
+.home-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.home-card { display: flex; flex-direction: column; border: 1px solid var(--c-border); border-radius: var(--radius-md); overflow: hidden; background: var(--c-surface); color: var(--c-text); text-decoration: none; transition: transform 150ms var(--ease), box-shadow 150ms var(--ease), border-color 150ms var(--ease); }
+a.home-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--c-accent); }
+a.home-card:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; }
+.home-ban { position: relative; height: 118px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0.9rem 1.1rem; background: linear-gradient(135deg, #0F2319, #1D4030); }
+.home-num { align-self: flex-start; font: 700 2.6rem/1 var(--font-display); color: #FFFFFF; border-bottom: 4px solid #3FBF8F; padding-bottom: 0.2rem; }
+.home-sub { margin-top: 0.4rem; font-family: var(--font-mono); font-size: 0.8rem; color: #9FD8BC; }
+.home-ring { position: absolute; right: 1rem; top: 1rem; width: 58px; height: 58px; display: grid; place-items: center; }
+.home-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.home-ring-bg { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 4; }
+.home-ring-fg { fill: none; stroke: #3FBF8F; stroke-width: 4; stroke-linecap: round; transition: stroke-dasharray 400ms var(--ease); }
+.home-ring-t { font: 700 0.78rem var(--font-ui); color: #FFFFFF; }
+.home-card.is-done .home-ring-fg { stroke: #F2D15C; }
+.home-body { display: flex; flex-direction: column; gap: 0.45rem; padding: 1rem 1.1rem 1.1rem; flex: 1; }
+.home-title { font-size: 1.02rem; }
+.home-meta, .home-ring-cap { font-size: 0.82rem; color: var(--c-text-2); }
+.home-desc { font-size: 0.9rem; color: var(--c-text-2); }
+.home-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: auto; padding-top: 0.3rem; }
+.home-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.15rem 0.55rem; border-radius: var(--radius-full); background: var(--c-accent-light); color: var(--c-accent); }
+.home-card.is-soon { background: var(--c-bg-warm); color: var(--c-text-2); }
+.home-card.is-soon .home-ban { background: linear-gradient(135deg, #3A3A37, #55544F); }
+.home-card.is-soon .home-num { border-bottom-color: #9A988F; color: #E6E3DC; }
+.home-card.is-soon .home-tag { background: var(--c-bg); color: var(--c-text-2); }
+[data-profile="game"] .home-card, [data-profile="game"] .home-pop { border: 3px solid var(--c-border); box-shadow: 4px 4px 0 var(--c-border); border-radius: 0; }
+@media (max-width: 600px) { .home-nav { display: none; } .home-hero { padding-top: 1.6rem; } .home-logo { width: 84px; height: 84px; } }
+
+/* ---------- Версия 36: типичная ошибка как разница строк (вариант C) ----------
+   Окно кода с строками «−» (неверно) и «+» (верно), под ним два результата. Строит checker.js
+   из окон .code-wrong и .code-right; без JavaScript видна прежняя карточка. */
+.mistake.mistake-diff > .code-block, .mistake.mistake-diff > .output-block { display: none; }
+.mdiff-win { border-radius: var(--win-radius); overflow: hidden; background: var(--win-code-bg); margin: 0.2rem 0 0; }
+.mdiff-bar { display: flex; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; padding: 0.5rem 0.95rem; font: 0.78rem var(--font-ui); color: var(--win-code-title); border-bottom: 1px solid var(--win-code-gutter); }
+.mdiff-leg i { font-style: normal; font-weight: 700; margin: 0 0.2rem 0 0.6rem; }
+.mdiff-m, .mdiff-minus b { color: #F08A8A; }
+.mdiff-p, .mdiff-plus b { color: #6FD39F; }
+.mdiff-code { margin: 0; padding: 0.45rem 0; font: 0.95rem/1.7 var(--font-mono); color: var(--win-code-text); overflow-x: auto; background: transparent; border: 0; }
+.mdiff-l { display: block; padding: 0 0.95rem; white-space: pre; }
+.mdiff-l b { display: inline-block; width: 1.4rem; font-weight: 700; color: var(--win-code-title); }
+.mdiff-minus { background: rgba(240, 80, 80, 0.16); }
+.mdiff-plus { background: rgba(80, 200, 140, 0.16); }
+.mdiff-res { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 0.7rem; }
+@media (max-width: 700px) { .mdiff-res { grid-template-columns: 1fr; } }
+.mdiff-box { border: 1px solid var(--c-border-light); border-radius: var(--radius-sm); background: var(--c-surface); min-width: 0; }
+.mdiff-sub { display: block; padding: 0.45rem 0.9rem 0; font: 700 0.7rem var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em; }
+.mdiff-bad .mdiff-sub { color: var(--c-error-text); }
+.mdiff-good .mdiff-sub { color: var(--c-accent); }
+.mdiff-out { margin: 0; padding: 0.5rem 0.9rem 0.7rem; font: 0.85rem/1.5 var(--font-mono); white-space: pre-wrap; background: transparent; border: 0; color: var(--c-text); }
+.mdiff-out.mdiff-err { color: var(--c-error-text); }
+
+/* ---------- Версия 36: примеры с терминалом под Windows, macOS и Linux ----------
+   div.os-switch > три варианта [data-os="win|mac|linux"]; пояснения, которые зависят от
+   системы, тоже с [data-os]. theme.js ставит data-os у <html> (выбор студента или по
+   браузеру) и переключатель в окно. Без JavaScript видны все варианты с подписями. */
+html[data-os="win"] body [data-os]:not([data-os="win"]),
+html[data-os="mac"] body [data-os]:not([data-os="mac"]),
+html[data-os="linux"] body [data-os]:not([data-os="linux"]) { display: none !important; }
+.os-switch { margin: 0.8rem 0; }
+.os-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 0.8rem; margin-bottom: 0.35rem; font-family: var(--font-ui); }
+.os-bar-label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2); }
+.os-bar .seg-btn { padding: 0.25rem 0.7rem; font-size: 0.82rem; }
+html[data-os] .os-switch > [data-os] .output-label { display: none; }
+.os-switch > [data-os] + [data-os] { margin-top: 0.5rem; }
+html[data-os] .os-switch > [data-os] + [data-os] { margin-top: 0; }
+@media print { .os-bar { display: none; } html[data-os] body [data-os] { display: revert !important; } }
+
+/* ---------- Версия 37: подпись автора в шапке страницы ----------
+   span.page-author в строке подзаголовка (ставит build_pager.py). Отделена от темы и времени
+   увеличенным отступом и тонкой вертикальной чертой, чтобы строка не сливалась;
+   на узком экране стоит отдельной строкой. */
+.page-author { display: inline-block; margin-left: 1.3rem; padding-left: 1.3rem; border-left: 1px solid var(--c-border); white-space: nowrap; }
+@media (max-width: 700px) {
+  .page-author { display: block; margin: 0.35rem 0 0; padding: 0; border: 0; }
+}
+
+/* ---------- Версия 38: переключатели не прыгают ----------
+   1) выбранная кнопка в переключателях страницы (системы, объем теории) не жирная: жирный
+      текст шире, и соседние кнопки сдвигались; выбор виден по фону и утолщению тенью;
+      у кнопок систем одинаковая ширина;
+   2) варианты терминала стоят в одной ячейке сетки: высота окна равна самому высокому
+      варианту, поэтому текст под окном не смещается при смене системы. */
+.os-bar .seg-btn[aria-pressed="true"], .theory-switch .seg-btn[aria-pressed="true"] { font-weight: inherit; text-shadow: 0.4px 0 0 currentColor; }
+.os-bar .seg-btn { min-width: 5.4rem; justify-content: center; text-align: center; }
+html[data-os] .os-switch { display: grid; grid-template-columns: minmax(0, 1fr); }
+html[data-os] .os-switch > .os-bar { grid-row: 1; }
+html[data-os] body .os-switch > .output-block[data-os],
+html[data-os] body .os-switch > .code-block[data-os] { display: block !important; grid-row: 2; grid-column: 1; visibility: hidden; margin-top: 0; }
+html[data-os="win"] body .os-switch > [data-os="win"],
+html[data-os="mac"] body .os-switch > [data-os="mac"],
+html[data-os="linux"] body .os-switch > [data-os="linux"] { visibility: visible !important; }
+
+/* версия 38: ссылка на главную сайта в верхней панели страниц практики */
+.tb-home { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.7rem; margin-right: 0.2rem;
+  border: 1px solid var(--c-control-border); border-radius: var(--radius-full); color: var(--c-text-2);
+  font-family: var(--font-ui); font-size: var(--t-sm); text-decoration: none; white-space: nowrap; }
+.tb-home:hover { color: var(--c-accent); border-color: var(--c-accent); }
+.tb-home:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 2px; }
+@media (max-width: 600px) { .tb-home-text { display: none; } }
+[data-profile="game"] .tb-home { border-radius: 0; border-width: 2px; }
+/* версия 38: карточка-ссылка не красится как посещенная ссылка; метка темы в одну строку */
+.home-card, .home-card:visited, .home-card:hover { color: var(--c-text); }
+.home-card.is-soon, .home-card.is-soon:visited { color: var(--c-text-2); }
+.home-tag { white-space: nowrap; flex: 0 0 auto; }
+.home-ring-cap { text-align: right; }
+
+/* ---------- Версия 40: шапка «путь над заголовком», терминал T2, кнопка «домой» ----------
+   Шапка: путь «Практика 1 › тема» мелко над заголовком, под ним время и автор обычным
+   регистром с иконками (строит build_pager.py). Прежняя строка подзаголовка с чертой
+   больше не используется. */
+.page-author { display: inline-flex; margin: 0; padding: 0; border: 0; }
+@media (max-width: 700px) { .page-author { display: inline-flex; margin: 0; } }
+.page-path { margin: 0.35rem 0 0.15rem; font-size: 0.9rem; color: var(--c-text-2); }
+.page-path-sep { margin: 0 0.4rem; color: var(--c-muted); }
+.page-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 1.4rem; margin: 0.6rem 0 0; font-size: 0.9rem; color: var(--c-text-2); }
+.page-time, .page-author { align-items: center; gap: 0.4rem; white-space: nowrap; }
+.page-time { display: inline-flex; }
+.page-ic { width: 1.05em; height: 1.05em; flex: 0 0 auto; }
+/* терминал T2: переключатель систем в полосе заголовка окна, как у окон кода */
+html[data-os] .os-switch .os-bar { margin: 0; padding: 0.3rem 0.5rem 0 1rem; background: var(--win-out-bg);
+  border: 1px solid var(--win-out-border); border-bottom: 1px solid var(--win-code-gutter);
+  border-radius: var(--win-radius) var(--win-radius) 0 0; align-items: flex-end; }
+html[data-os] .os-bar-label { display: flex; align-items: center; gap: 0.7rem; padding-bottom: 0.55rem; color: var(--win-out-title); }
+html[data-os] .os-bar-label::before { content: ""; width: 46px; height: 10px; flex: 0 0 auto;
+  background: radial-gradient(circle at 5px 5px, #FF5F57 4.5px, transparent 5px), radial-gradient(circle at 23px 5px, #FEBC2E 4.5px, transparent 5px),
+              radial-gradient(circle at 41px 5px, #28C840 4.5px, transparent 5px); }
+html[data-os] .os-bar .seg { background: none; border: 0; padding: 0; gap: 0; box-shadow: none; border-radius: 0; }
+html[data-os] .os-bar .seg-btn { background: none; border: 0; border-radius: 0; box-shadow: none; color: var(--win-out-title);
+  border-bottom: 2px solid transparent; padding: 0.4rem 0.9rem 0.5rem; }
+html[data-os] .os-bar .seg-btn:hover { color: var(--win-out-text); }
+html[data-os] .os-bar .seg-btn[aria-pressed="true"] { color: var(--win-out-text); border-bottom-color: #3FBF8F; }
+html[data-os] .os-switch > .output-block { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
+@media (max-width: 600px) { html[data-os] .os-bar-label::before { display: none; } html[data-os] .os-bar .seg-btn { min-width: 0; padding: 0.4rem 0.6rem 0.5rem; } }
+/* кнопка «домой»: круглая с домиком, левый край на одной линии с активным пунктом меню */
+.tb-home { width: 2.2rem; height: 2.2rem; padding: 0; margin: 0 0.5rem 0 calc(1.1rem - 1.5rem); justify-content: center; border-radius: 50%; }
+@media (max-width: 900px) { .tb-home { margin-left: 0; } }
+[data-profile="game"] .tb-home { border-radius: 0; }
+.tb-home svg { width: 1.15rem; height: 1.15rem; }
+
+/* версия 40: карточка практики M2. Баннер: номер слева, справа кольцо и уровень под ним
+   (у будущей замок и «скоро»). Тело: «Практика N» мелко зеленым, крупное название,
+   краткое описание, внизу объем и полоса прогресса. */
+.home-ban { flex-direction: row; justify-content: space-between; align-items: flex-start; height: 112px; }
+.home-num { align-self: flex-end; }
+.home-rcol { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+.home-ring { position: relative; right: auto; top: auto; width: 54px; height: 54px; }
+.home-lvl { font: 700 0.66rem var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em; color: #9FD8BC; white-space: nowrap; }
+.home-lock { display: grid; place-items: center; width: 54px; height: 54px; color: #D8D5CD; }
+.home-lock svg { width: 24px; height: 24px; }
+.home-card.is-soon .home-lvl { color: #D8D5CD; }
+.home-kick { font: 700 0.7rem var(--font-ui); text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-accent); }
+.home-card.is-soon .home-kick { color: var(--c-text-2); }
+.home-title { font-size: 1.15rem; line-height: 1.3; }
+.home-fill { flex: 1; }
+.home-progress { display: block; height: 6px; border-radius: 3px; background: var(--c-track); overflow: hidden; }
+.home-progress i { display: block; width: 0; height: 100%; border-radius: 3px; background: var(--c-accent); transition: width 400ms var(--ease); }
+.home-sub, .home-foot { display: none; }
+
+/* ---------- Версия 41: карточка практики «одна высота» ----------
+   Все карточки 400 px, между рядами 36 px; описание не длиннее 3 строк, объем и полоса
+   прогресса на одной линии во всем ряду. Уровень внизу баннера, центр подписи на линии
+   зеленой полоски под номером. Карточка не ссылка целиком: a.home-card-link растянута
+   поверх, поэтому текст карточки никогда не подчеркивается. */
+.home-grid { row-gap: 2.25rem; }
+.home-card { position: relative; height: 400px; }
+.home-ban { height: 140px; padding: 1.2rem 1.3rem; align-items: stretch; }
+.home-body { padding: 1.2rem 1.3rem 1.35rem; gap: 0.6rem; }
+.home-desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.home-rcol { justify-content: space-between; }
+.home-lvl { line-height: 1; transform: translateY(calc(50% - 2px)); }
+.home-card, .home-card * { text-decoration: none !important; }
+.home-card-link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.home-card-link:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; }
+.home-card:has(.home-card-link:hover) { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--c-accent); }
+@media (prefers-reduced-motion: reduce) { .home-card:has(.home-card-link:hover) { transform: none; } }
+
+/* ---------- Версия 46: панель и меню настроек, вариант «две колонки» ----------
+   Подсказки при наведении и фокусе с клавиатуры (data-tip, ставит theme.js); меню в две колонки:
+   подпись слева, кнопки справа; раздел «Уровень» с точками уровней; прогресс иконками;
+   звук иконкой в панели только в игровом режиме. */
+.tip { position: relative; }
+.tip:hover::after, .tip:focus-visible::after {
+  content: attr(data-tip); position: absolute; top: calc(100% + 8px); right: -4px; z-index: 60; white-space: nowrap;
+  padding: 0.35rem 0.6rem; border-radius: 6px; background: var(--c-text); color: var(--c-bg);
+  font: 600 0.75rem/1.3 var(--font-ui); letter-spacing: 0; text-transform: none; box-shadow: var(--shadow-md); pointer-events: none; }
+.tip:hover::before, .tip:focus-visible::before {
+  content: ""; position: absolute; top: calc(100% + 3px); left: 50%; transform: translateX(-50%); z-index: 61;
+  border: 5px solid transparent; border-top: 0; border-bottom-color: var(--c-text); pointer-events: none; }
+.tip-left:hover::after, .tip-left:focus-visible::after { right: auto; left: -4px; }
+.tb-icon[hidden] { display: none !important; }
+.tb-icon svg { width: 1.15rem; height: 1.15rem; }
+.tb-pop.tb-pop-grid { width: 32rem; max-width: calc(100vw - 2rem); }
+[data-profile="game"] .tb-pop-grid .seg-btn { padding-left: 0.55rem; padding-right: 0.55rem; }
+.tb-pop-grid .tb-row { display: grid; grid-template-columns: 5.6rem minmax(0, 1fr); align-items: center; gap: 0.6rem; }
+.tb-pop-grid .tb-label { margin: 0; }
+.lvl-dot { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; margin-right: 0.35rem; vertical-align: 0.05em; }
+.lvl-dot-basic { background: var(--c-accent); }
+.lvl-dot-medium { background: var(--c-amber); }
+.lvl-dot-advanced { background: var(--c-error); }
+.tb-prog-ic { display: flex; gap: 0.4rem; }
+.tb-danger:hover { color: var(--c-error); border-color: var(--c-error); }
+@media (max-width: 520px) {
+  .tb-pop.tb-pop-grid { width: calc(100vw - 2rem); }
+  .tb-pop-grid .tb-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+.home-pop.tb-pop-grid { width: 27rem; }
+.home-pop .tb-row + .tb-row { margin-top: 0.6rem; }
+@media (max-width: 520px) { .home-pop.tb-pop-grid { width: calc(100vw - 2rem); } }
+
+/* ---------- Версия 47: иконка цели по мотивам 🎯 ----------
+   Строка цели страницы: красно-белая мишень и дротик с синим оперением, воткнутый в центр.
+   Цветная, поэтому рисуется картинкой, а не маской цвета текста; одинакова во всех темах.
+   Метка шага «Задача» сохраняет свою одноцветную мишень (--ic-target). */
+.goal-line .i-target { width: 1.45em; height: 1.45em; vertical-align: -0.35em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10.5' cy='13.5' r='8.9' fill='%23D83A3A' stroke='%239E2424' stroke-width='.7'/%3E%3Ccircle cx='10.5' cy='13.5' r='6.9' fill='%23FFFFFF'/%3E%3Ccircle cx='10.5' cy='13.5' r='5' fill='%23D83A3A'/%3E%3Ccircle cx='10.5' cy='13.5' r='3.1' fill='%23FFFFFF'/%3E%3Ccircle cx='10.5' cy='13.5' r='1.4' fill='%23D83A3A'/%3E%3Cpath d='M10.5 13.5 19.4 4.6' stroke='%233A4750' stroke-width='1.7' stroke-linecap='round'/%3E%3Cpath d='M19.4 4.6 18.9 1.4 21.1 3.1Z' fill='%232F7FD8' stroke='%231F5FA8' stroke-width='.5' stroke-linejoin='round'/%3E%3Cpath d='M19.4 4.6 22.6 5.1 20.9 2.9Z' fill='%232F7FD8' stroke='%231F5FA8' stroke-width='.5' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: none; mask: none; }
+
+/* ---------- Версия 49: страница преподавателя (teacher_X.html, только в python-practice-for-teacher) ----------
+   Вкладки «Сдача», «Ведомость», «Группа»; упражнения уровня студента аккордеоном (открыто одно);
+   ведомость «студенты × упражнения»; выгрузка CSV для Google-таблицы. Логика в teacher.js. */
+.tch-page { background: var(--c-bg); color: var(--c-text); }
+.tch { max-width: 1180px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+.tch-back { max-width: 1180px; margin: 0 auto; padding: 0.9rem 1.25rem 0; font-size: 0.85rem; color: var(--c-text-2); }
+.tch-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1.2rem; padding: 0.6rem 0 1rem; border-bottom: 1px solid var(--c-border-light); }
+.tch-head h1 { margin: 0; font-size: 1.4rem; margin-right: auto; }
+.tch-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; width: 100%; }
+.tch-btn { display: inline-flex; align-items: center; gap: 0.35rem; font: inherit; font-size: 0.85rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 8px;
+  border: 1px solid var(--c-control-border); background: var(--c-surface); color: var(--c-text); text-decoration: none; min-width: max-content; }
+.tch-btn:hover { border-color: var(--c-accent); }
+.tch-btn-acc { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); font-weight: 700; }
+.tch-btn:disabled { opacity: 0.6; cursor: wait; }
+.tch-main { padding-top: 1rem; }
+.tch-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.4rem; padding: 0.8rem 1rem; border: 1px solid var(--c-border); border-radius: var(--radius-md); background: var(--c-surface); }
+.tch-lab { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--c-text-2); }
+.tch-sel { font: inherit; padding: 0.3rem 0.5rem; border-radius: 6px; background: var(--c-control-bg); color: var(--c-text); border: 1px solid var(--c-control-border); }
+.tch-prog { margin-left: auto; font-weight: 700; }
+.tch-note, .tch-empty { font-size: 0.85rem; color: var(--c-text-2); margin: 0.9rem 0 0.5rem; }
+.tch-acc { border: 1px solid var(--c-border); border-radius: var(--radius-sm); margin: 0.35rem 0; background: var(--c-surface); }
+.tch-acc.open { border-color: var(--c-accent); }
+.tch-acc-h { display: flex; align-items: center; gap: 0.7rem; width: 100%; padding: 0.65rem 0.9rem; background: none; border: 0; color: var(--c-text); font: inherit; text-align: left; cursor: pointer; }
+.tch-acc-h b { flex: 1; }
+.tch-chev { color: var(--c-muted); }
+.chip { font-size: 0.72rem; padding: 0.12rem 0.5rem; border-radius: 999px; background: var(--c-bg-warm); color: var(--c-text-2); white-space: nowrap; }
+.chip.ok { background: var(--c-accent-light); color: var(--c-accent); }
+.chip.bad { background: var(--c-error-light); color: var(--c-error-text); }
+.tch-acc-b { padding: 0 0.9rem 0.9rem; }
+.tch-file { font-size: 0.8rem; color: var(--c-muted); margin: 0 0 0.5rem; }
+.tch-cond-body { font-size: 0.92rem; }
+.tch-ed { border-radius: var(--win-radius); overflow: hidden; background: var(--win-code-bg); margin: 0.8rem 0; }
+.tch-ed-bar { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.45rem 0.8rem; border-bottom: 1px solid var(--win-code-gutter);
+  font: 0.78rem var(--font-ui); color: var(--win-code-title); }
+.tch-ed-btns { display: flex; gap: 0.4rem; }
+.tch-code { display: block; width: 100%; min-height: 10rem; padding: 0.8rem 1rem; border: 0; resize: vertical; background: transparent; color: var(--win-code-text);
+  font: 0.9rem/1.6 var(--font-mono); tab-size: 4; }
+.tch-sum { font-weight: 700; margin: 0.6rem 0 0; }
+.tch-act { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0; }
+.tch-note-in { flex: 1; min-width: 14rem; font: inherit; font-size: 0.85rem; padding: 0.4rem 0.6rem; border-radius: 8px; border: 1px solid var(--c-control-border);
+  background: var(--c-control-bg); color: var(--c-text); }
+.tch-sol { margin: 0; font: 0.85rem/1.5 var(--font-mono); white-space: pre-wrap; }
+.tch-end { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+.tch-book th, .tch-book td { text-align: center; padding: 0.35rem 0.45rem; font-size: 0.82rem; }
+.tch-book .tch-stud { text-align: left; white-space: nowrap; }
+.tch-cell { cursor: pointer; }
+.tch-cell:hover { outline: 2px solid var(--c-accent); outline-offset: -2px; }
+.tch-cell.ok { color: var(--c-accent); background: var(--c-accent-light); }
+.tch-cell.bad { color: var(--c-error-text); background: var(--c-error-light); }
+.tch-tot { font-weight: 700; color: var(--c-accent); white-space: nowrap; }
+.tch-roster { display: block; width: 100%; max-width: 32rem; font: 0.95rem/1.5 var(--font-ui); padding: 0.6rem 0.8rem; border-radius: 8px;
+  border: 1px solid var(--c-control-border); background: var(--c-control-bg); color: var(--c-text); }
+/* версия 50: выбор практики в шапке страницы преподавателя, подсказка «С чего начать» */
+/* версия 52: правила порядка версии 50 убраны: они ставили иконки перед вкладками в шапке версии 51 */
+.tch-guide { max-width: 46rem; }
+.tch-guide ol { margin: 0.4rem 0 0.8rem; padding-left: 1.3rem; }
+.tch-guide li + li { margin-top: 0.3rem; }
+
+/* ---------- Версия 51: страница преподавателя, утвержденный макет ----------
+   Шапка «Преподавателю › практика › группа» (вариант D), вкладки с подчеркиванием и иконки действий;
+   код студента и эталон рядом с подсветкой и отметкой различий (K2); раскрываемый результат проверки;
+   отметки «Принято / На доработку / Не сдано» и сброс; комментарий для студента и заметка для себя;
+   группы карточками, карандаш открывает таблицу группы (G1); окно подтверждения. */
+.tch-head { display: block; padding: 0.4rem 0 0; border-bottom: 0; }
+.tch-path { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0 0 0.6rem; font-size: 1.05rem; }
+.tch-path b { font-size: 1.3rem; }
+.tch-sep { color: var(--c-muted); }
+.tch-row2 { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 0.6rem; border-bottom: 1px solid var(--c-border-light); }
+.tch-tabs { display: flex; gap: 1.2rem; }
+.tch-tab { font: inherit; font-size: 0.95rem; background: none; border: 0; border-bottom: 2px solid transparent; padding: 0.5rem 0.1rem; color: var(--c-text-2); cursor: pointer; }
+.tch-tab[aria-pressed="true"] { color: var(--c-text); border-bottom-color: var(--c-accent); text-shadow: 0.4px 0 0 currentColor; }
+.tch-acts-top { display: flex; gap: 0.4rem; padding-bottom: 0.45rem; }
+.tch-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.8rem; margin: 0.8rem 0; }
+.tch-two > details { margin: 0; }
+@media (max-width: 800px) { .tch-two { grid-template-columns: 1fr; } }
+.tch-win { border-radius: var(--win-radius); overflow: hidden; background: var(--win-code-bg); min-width: 0; }
+.tch-win-bar { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; min-height: 2.7rem; padding: 0.45rem 0.8rem;
+  border-bottom: 1px solid var(--win-code-gutter); font: 0.78rem var(--font-ui); color: var(--win-code-title); }
+.tch-win-btns { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tch-hl { display: grid; grid-template-columns: auto minmax(0, 1fr); font: 0.9rem/1.6 var(--font-mono); }
+.tch-hl-gut { margin: 0; padding: 0.8rem 0.5rem 0.8rem 0.8rem; color: var(--win-code-title); opacity: 0.6; text-align: right; user-select: none; background: none; border: 0; font: inherit; }
+.tch-hl-box { position: relative; min-width: 0; }
+.tch-hl-pre, .tch-hl-ta { margin: 0; padding: 0.8rem 1rem 0.8rem 0.4rem; font: inherit; white-space: pre; overflow: auto; tab-size: 4; border: 0; background: none; min-height: 9rem; }
+.tch-hl-pre { color: var(--win-code-text); pointer-events: none; }
+.tch-hl-ta { position: absolute; inset: 0; width: 100%; height: 100%; color: transparent; caret-color: var(--win-code-text); resize: none; outline: none; }
+.tch-hl.ro .tch-hl-pre { pointer-events: auto; }
+.tch-d { display: inline-block; min-width: 100%; }
+.tch-d-stud { background: rgba(240, 80, 80, 0.2); }
+.tch-d-ref { background: rgba(80, 200, 140, 0.2); }
+.tch-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: 0.8rem; color: var(--c-text-2); margin: -0.3rem 0 0.6rem; }
+.tch-lg::before { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 2px; margin-right: 0.35rem; vertical-align: -0.1em; }
+.tch-lg-stud::before { background: rgba(240, 80, 80, 0.45); }
+.tch-lg-ref::before { background: rgba(80, 200, 140, 0.45); }
+.tch-res { border: 1px solid var(--c-border-light); border-radius: var(--radius-sm); background: var(--c-surface); margin: 0.6rem 0; }
+.tch-res > summary { cursor: pointer; padding: 0.6rem 0.8rem; font-size: 0.9rem; list-style: none; }
+.tch-res > summary::-webkit-details-marker { display: none; }
+.tch-res > summary::before { content: "▸"; margin-right: 0.5rem; color: var(--c-muted); }
+.tch-res[open] > summary::before { content: "▾"; }
+.tch-res > .checker-result { margin: 0 0.8rem 0.8rem; }
+.tch-more { color: var(--c-accent); margin-left: 0.3rem; font-size: 0.82rem; }
+.tch-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0.8rem 0; }
+.tch-st-ok.on, .tch-st-ok:hover { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
+.tch-st-ok { border-color: var(--c-accent); color: var(--c-accent); font-weight: 700; }
+.tch-st-redo { border-color: var(--c-amber); color: var(--c-amber-text); }
+.tch-st-redo.on { background: var(--c-amber-light); font-weight: 700; }
+.tch-st-none { border-color: var(--c-error); color: var(--c-error-text); }
+.tch-st-none.on { background: var(--c-error-light); font-weight: 700; }
+.chip.redo { background: var(--c-amber-light); color: var(--c-amber-text); }
+.chip.none { background: var(--c-error-light); color: var(--c-error-text); }
+.tch-cell.redo { color: var(--c-amber-text); background: var(--c-amber-light); }
+.tch-cell.none { color: var(--c-error-text); background: var(--c-error-light); }
+.tch-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 0.4rem 0; }
+@media (max-width: 800px) { .tch-notes { grid-template-columns: 1fr; } }
+.tch-nt { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.6rem 0.7rem; border: 1px solid var(--c-border-light); border-radius: var(--radius-sm); background: var(--c-surface); }
+.tch-nt-me { border-style: dashed; }
+.tch-nt-t { font-weight: 700; font-size: 0.88rem; }
+.tch-nt-s { font-size: 0.76rem; color: var(--c-text-2); }
+.tch-nt textarea { font: inherit; font-size: 0.88rem; padding: 0.4rem 0.55rem; border-radius: 6px; border: 1px solid var(--c-control-border); background: var(--c-control-bg); color: var(--c-text); resize: vertical; }
+.tch-nt-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin: 0.3rem 0 0.4rem; }
+.tch-saved { font-size: 0.8rem; color: var(--c-text-2); }
+.tch-big { padding: 0.6rem 1.1rem; }
+.tch-btn svg { width: 1rem; height: 1rem; }
+.tch-gcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.8rem; }
+.tch-gcard { display: flex; flex-direction: column; gap: 0.35rem; padding: 1rem; border: 1px solid var(--c-border); border-radius: var(--radius-md);
+  background: var(--c-surface); color: var(--c-text); cursor: pointer; text-align: left; font: inherit; }
+.tch-gcard.on { border-color: var(--c-accent); box-shadow: var(--shadow-sm); }
+.tch-gcard > span { font-size: 0.85rem; color: var(--c-text-2); }
+.tch-gc-h { display: flex; align-items: center; justify-content: space-between; }
+.tch-gc-h b { font-size: 1.15rem; }
+.tch-gbar { display: block; height: 6px; border-radius: 3px; background: var(--c-track); overflow: hidden; }
+.tch-gbar i { display: block; height: 100%; background: var(--c-accent); }
+.tch-gadd { display: grid; place-items: center; color: var(--c-accent); border-style: dashed; min-height: 7rem; }
+.tch-gedit { margin-top: 1rem; padding: 1rem; border: 1px solid var(--c-accent); border-radius: var(--radius-md); background: var(--c-surface); }
+.tch-gedit-h { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.6rem; }
+.tch-gedit-h .tch-gsub { color: var(--c-text-2); font-size: 0.85rem; margin-right: auto; }
+.tch-gname { font: inherit; font-weight: 700; padding: 0.35rem 0.55rem; border-radius: 8px; border: 1px solid var(--c-control-border); background: var(--c-control-bg); color: var(--c-text); }
+.tch-cell-in { font: inherit; font-size: 0.88rem; width: 100%; padding: 0.3rem 0.5rem; border-radius: 6px; border: 1px solid var(--c-control-border); background: var(--c-control-bg); color: var(--c-text); }
+.tch-gt td { vertical-align: middle; }
+.tch-sel-sm { font-size: 0.82rem; padding: 0.2rem 0.4rem; }
+.tb-icon.tch-sm { width: 1.9rem; height: 1.9rem; }
+.tb-icon.tch-sm svg { width: 0.95rem; height: 0.95rem; }
+.tch-flex { flex: 1; }
+.tch-dlg { border: 1px solid var(--c-border); border-radius: var(--radius-md); background: var(--c-surface); color: var(--c-text); padding: 1.3rem 1.4rem 1.1rem; max-width: 30rem; box-shadow: var(--shadow-md); }
+.tch-dlg::backdrop { background: rgba(0, 0, 0, 0.45); }
+.tch-dlg h3 { margin: 0 0 0.5rem; }
+.tch-dlg p { margin: 0 0 1rem; color: var(--c-text-2); }
+.tch-dlg-x { position: absolute; right: 0.6rem; top: 0.6rem; }
+.tch-dlg-acts { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
+/* ---------- Версия 52 ----------
+   Примеры не слипаются (вариант D): между соседними примерами двойной отступ, у заголовка каждого
+   примера короткая полоса цвета метки «Пример». Шапка страницы преподавателя: вкладки слева, иконки справа. */
+.example + .example { margin-top: 2.6rem; }
+.example > h3::before { content: ""; display: inline-block; width: 4px; height: 1.05em; margin-right: 0.55rem; vertical-align: -0.15em;
+  border-radius: 2px; background: var(--c-plum); }
+[data-profile="game"] .example > h3::before { border-radius: 0; }
+.tch-row2 .tch-tabs { order: 0; }
+.tch-row2 .tch-acts-top { order: 1; margin-left: auto; }
