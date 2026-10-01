@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обзор практики. Практика 2. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 2</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a class="current" aria-current="page" href="t2_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t2_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Строки и индексы</span></span></a></li>
+        <li class="menu-sub"><a href="t2_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Срезы</span></span></a></li>
+        <li class="menu-sub"><a href="t2_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Операции со строками</span></span></a></li>
+        <li class="menu-sub"><a href="t2_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Регистр и поиск</span></span></a></li>
+        <li class="menu-sub"><a href="t2_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Очистка и замена</span></span></a></li>
+        <li class="menu-sub"><a href="t2_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>split()</code> и <code>join()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t2_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">f-строки</span></span></a></li>
+        <li class="menu-sub"><a href="t2_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Unicode и байты</span></span></a></li>
+        <li class="menu-sub"><a href="t2_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Последовательности ДНК</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">00</span>
+      <h1>Практика 2. Строки и текстовые данные</h1>
+      <p class="page-subtitle">Язык программирования Python · 1,5 часа в аудитории и 1,5 часа самостоятельно</p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <section class="goals">
+        <h2>На этом занятии вы</h2>
+        <ul>
+          <li>научитесь брать из строки символ по индексу и часть строки срезом;</li>
+          <li>будете собирать новую строку из частей старой, потому что строку нельзя изменить;</li>
+          <li>научитесь искать, считать, чистить и заменять текст методами строк;</li>
+          <li>будете разбирать строку на поля методом <code>split()</code>, собирать ее методом <code>join()</code> и выводить результат f-строкой в нужном формате;</li>
+          <li>будете находить номер символа в Unicode и считать, сколько байтов занимает текст в кодировке UTF-8;</li>
+          <li>посчитаете GC-состав последовательности ДНК и соберете строку отчета по заголовку записи FASTA.</li>
+        </ul>
+      </section>
+      <p>Почти любые данные попадают в программу текстом: с клавиатуры, из файла, из сети. Последовательность ДНК, идентификатор записи и строка таблицы для Python имеют один тип <code>str</code>, поэтому приемы этой практики понадобятся во всех следующих. На последней странице они соберутся в одну задачу: строку отчета по записи FASTA.</p>
+      <h2>Как устроено занятие</h2>
+      <p>Каждый раздел страницы идет по шагам: <span class="step step-learn">Теория</span> объясняет понятие, <span class="step step-see">Пример</span> показывает готовый код с разбором, в шаге <span class="step step-try">Практика</span> вы меняете код и запускаете его, <span class="step step-task">Задача</span> содержит упражнение с проверкой. Раздел с меткой <span class="overview-badge">Необходимый минимум</span> касается темы следующих лекций: в нем только то, что нужно сейчас, и ссылка на тему, где она разбирается полностью. В этой практике такой раздел один, на странице 06: он коротко объясняет список, который возвращает метод <code>split()</code>. У каждого упражнения три варианта: базовый, средний и продвинутый. Первым открывается вариант вашего уровня.</p>
+      <p>Теорию на каждой странице можно читать кратко или подробно: переключатель «Объем теории» стоит в шапке страницы справа от заголовка. Подробный вариант добавляет примеры, разборы по шагам и типичные ошибки. Упражнения в обоих вариантах одинаковые, для их решения достаточно краткого.</p>
+      <p>Упражнения есть на каждой странице, от 01 до 09. Во всех упражнениях программа читает данные функцией <code>input()</code> без текста приглашения, каждое значение с новой строки, как на странице 09 первой практики.</p>
+      <h2>Как засчитывается практика</h2>
+      <p>Вы заранее выбираете уровень и в каждом упражнении решаете вариант этого уровня. Какие файлы сохранить в репозиторий, написано в конце каждой страницы с упражнениями, в блоке «Сдача работы».</p>
+      <p>Уровень можно сменить один раз за семестр, после этого смена уровня невозможна. Уровень меняется через преподавателя: кнопки выбора уровня на сайте только переключают, какие варианты упражнений вы видите. Уже засчитанные практики при смене уровня остаются засчитанными. Итоговый зачет по курсу проходит по критериям уровня, выбранного на момент зачета.</p>
+      <p>Практика засчитывается после сдачи преподавателю:</p>
+      <ol>
+        <li>Перед сдачей практики решения всех упражнений вашего уровня должны быть размещены в вашем личном репозитории.</li>
+        <li>Вы сдаете практику преподавателю целиком. Он проверяет, все ли упражнения выполнены и верны ли решения, и задает вопросы по теме практики.</li>
+        <li>Если сдача прошла успешно, практика засчитана, и в Google-таблице курса появляется отметка.</li>
+      </ol>
+      <p>Если сдача не прошла, исправьте ошибки в упражнениях или повторите теорию, в зависимости от того, какие были ошибки, и сдайте практику повторно до конца семестра.</p>
+      <aside class="important"><p><strong>ИИ-помощники.</strong> В этом семестре не просите ИИ-помощников решить упражнение. Подсказки кода с ИИ в редакторе тоже пишут решение за вас, поэтому отключите их. Спрашивать ИИ о теории и о сообщениях об ошибках можно. Цель практики в том, чтобы вы научились писать код сами. Если решение верное, но вы не можете объяснить его и ответить на вопросы по теме, практика не засчитывается.</p>
+        <p><strong>Три практики подряд не с первой попытки.</strong> Если на среднем или продвинутом уровне три практики подряд не сданы с первой попытки, уровень понижается на один: с продвинутого на средний, со среднего на базовый. Повысить его в этом семестре будет уже нельзя. Уже засчитанные практики остаются засчитанными.</p></aside>
+      <div class="ladder">
+        <div><span class="lvl-tag lvl-basic">Базовый</span><b>Базовые варианты</b><p>Воспроизвести и немного изменить разобранное. На сдаче: объяснить свой код. Итог: тест по курсу.</p></div>
+        <div><span class="lvl-tag lvl-medium">Средний</span><b>Средние варианты</b><p>Самостоятельное применение. На сдаче: изменить решение под новое условие. Итог: защита 2–3 работ.</p></div>
+        <div><span class="lvl-tag lvl-advanced">Продвинутый</span><b>Продвинутые варианты</b><p>Перенос знаний, в каждом варианте неочевидный шаг. На сдаче: решить похожую задачу. Итог: зачет автоматически.</p></div>
+      </div>
+      <p>Срок: до конца второго практического занятия после занятия по этой практике (три недели). Время: страницы 01–09 рассчитаны на 1,5 часа в аудитории и 1,5 часа самостоятельно, на продвинутом уровне нужно еще около получаса. То, что не успели на занятии, доделайте дома.</p>
+      <h2>Страницы практики</h2>
+      <ol class="topic-nav">
+          <li><span class="topic-num">01</span><span class="topic-name">Строки и индексы</span><a class="topic-link" href="t2_01.html">Открыть</a></li>
+          <li><span class="topic-num">02</span><span class="topic-name">Срезы</span><a class="topic-link" href="t2_02.html">Открыть</a></li>
+          <li><span class="topic-num">03</span><span class="topic-name">Операции со строками</span><a class="topic-link" href="t2_03.html">Открыть</a></li>
+          <li><span class="topic-num">04</span><span class="topic-name">Регистр и поиск</span><a class="topic-link" href="t2_04.html">Открыть</a></li>
+          <li><span class="topic-num">05</span><span class="topic-name">Очистка и замена</span><a class="topic-link" href="t2_05.html">Открыть</a></li>
+          <li><span class="topic-num">06</span><span class="topic-name"><code>split()</code> и <code>join()</code></span><a class="topic-link" href="t2_06.html">Открыть</a></li>
+          <li><span class="topic-num">07</span><span class="topic-name">f-строки</span><a class="topic-link" href="t2_07.html">Открыть</a></li>
+          <li><span class="topic-num">08</span><span class="topic-name">Unicode и байты</span><a class="topic-link" href="t2_08.html">Открыть</a></li>
+          <li><span class="topic-num">09</span><span class="topic-name">Последовательности ДНК</span><a class="topic-link" href="t2_09.html">Открыть</a></li>
+      </ol>
+      <aside class="nb"><p>Примеры можно изменять и запускать прямо на странице, под каждым упражнением есть проверка решения. Для этого нужен интернет; первый запуск занимает 10–30 секунд. Код можно проверять и в своем редакторе (<a href="https://code.visualstudio.com/">VS Code</a>, <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>) или в онлайн-сервисах: <a href="https://www.online-python.com/">online-python.com</a>, <a href="https://pythononline.net/">pythononline.net</a>.</p></aside>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-next" href="t2_01.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">01 Строки и индексы</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

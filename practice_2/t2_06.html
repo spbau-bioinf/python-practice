@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>split() и join(). Практика 2. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t2_06.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 2</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t2_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t2_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Строки и индексы</span></span></a></li>
+        <li class="menu-sub"><a href="t2_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Срезы</span></span></a></li>
+        <li class="menu-sub"><a href="t2_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Операции со строками</span></span></a></li>
+        <li class="menu-sub"><a href="t2_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Регистр и поиск</span></span></a></li>
+        <li class="menu-sub"><a href="t2_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Очистка и замена</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t2_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>split()</code> и <code>join()</code></span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Разбор строки</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Список: результат <code>split()</code></a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Сборка строки</a></li><li><a href="#s4" data-section="s4"><span class="anc-num">4.</span> Собираем все вместе</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">2.6.1</span> <span class="anc-ex-title" data-variant="basic">Ткань из записи о пробе</span><span class="anc-ex-title" data-variant="medium">Лишние пробелы</span><span class="anc-ex-title" data-variant="advanced">Сокращенное название вида</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t2_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">f-строки</span></span></a></li>
+        <li class="menu-sub"><a href="t2_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Unicode и байты</span></span></a></li>
+        <li class="menu-sub"><a href="t2_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Последовательности ДНК</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">06</span>
+      <p class="page-path"><span>Практика 2</span><span class="page-path-sep" aria-hidden="true">›</span><span>Разбор, сборка и форматирование</span></p>
+      <h1><code>split()</code> и <code>join()</code></h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться разбирать строку на части методом <code>split()</code>, брать нужную часть по индексу и собирать строку из частей методом <code>join()</code>.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Разбор строки</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">В одной строке часто лежит сразу несколько значений: строка таблицы, заголовок записи, перечень идентификаторов. Можно найти разделители методом <code>find()</code> и отрезать куски срезами, но каждое новое поле добавляет еще один поиск и еще один срез.</p>
+        <p>Метод <code>split(sep)</code> режет строку по разделителю <code>sep</code> и возвращает список кусков. Сам разделитель в куски не попадает. Список в выводе выглядит как значения в квадратных скобках через запятую; что с ним делать, разобрано в разделе 2.</p>
+        <p>Без аргумента <code>split()</code> делит строку по любым пробельным символам, даже по нескольким подряд, а пробелы по краям пустых кусков не дают. С явным разделителем каждый разделитель режет строку, поэтому два пробела подряд при <code>split(" ")</code> дают пустой кусок.</p>
+        <p>Аргумент <code>maxsplit</code> ограничивает число разрезов: <code>split(maxsplit=1)</code> режет только по первому пробелу, и во втором куске остается вся остальная строка. Так отделяют идентификатор записи от комментария (<a href="t2_09.html">страница 09</a>).</p>
+        <div class="th-full">
+          <p>Если разделителя в строке нет, <code>split()</code> возвращает список из одного куска, всей исходной строки. Разделитель может состоять из нескольких символов: <code>split("; ")</code> режет по точке с запятой вместе со следующим за ней пробелом.</p>
+          <div class="mistake">
+            <p class="mistake-caption">Типичная ошибка: <code>split(" ")</code> при нескольких пробелах</p>
+            <div class="code-block code-wrong"><span class="code-label">Неверно: появился пустой кусок</span><pre><code><span class="ln">line <span class="tok-op">=</span> <span class="tok-str">"S12  blood 2.5"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(line.split(<span class="tok-str">" "</span>))  <span class="tok-out"># → ['S12', '', 'blood', '2.5']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['S12', '', 'blood', '2.5']</pre></div>
+            <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">line <span class="tok-op">=</span> <span class="tok-str">"S12  blood 2.5"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(line.split())  <span class="tok-out"># → ['S12', 'blood', '2.5']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['S12', 'blood', '2.5']</pre></div>
+            <p>Между <code>S12</code> и <code>blood</code> два пробела. Разделитель <code>" "</code> режет по каждому из них, и между ними оказывается пустая строка. Без аргумента <code>split()</code> считает несколько пробелов одним разделителем.</p>
+          </div>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Разбор строки</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">split.py</span><pre><code><span class="ln">line <span class="tok-op">=</span> <span class="tok-str">"S12;blood;2.5"</span></span>
+<span class="ln">parts <span class="tok-op">=</span> line.split(<span class="tok-str">";"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(parts)                     <span class="tok-out"># → ['S12', 'blood', '2.5']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"S12  blood 2.5"</span>.split())  <span class="tok-out"># → ['S12', 'blood', '2.5']</span></span>
+<span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"gene_1 length=231 type=dna"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(header.split(maxsplit<span class="tok-op">=</span><span class="tok-num">1</span>))  <span class="tok-out"># → ['gene_1', 'length=231 type=dna']</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>['S12', 'blood', '2.5']
+['S12', 'blood', '2.5']
+['gene_1', 'length=231 type=dna']</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строки 2–3: строка разрезана по точкам с запятой на три куска, сами точки с запятой пропали.</li><li>Строка 4: без аргумента два пробела подряд сработали как один разделитель.</li><li>Строка 6: разрез только по первому пробелу, во втором куске пробел остался.</li></ol></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Посмотрите на пробелы в начале второго и третьего куска. Измените разделитель так, чтобы пробелов в кусках не осталось.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_split.py</span><pre><code><span class="ln">ids <span class="tok-op">=</span> <span class="tok-str">"S1, S2, S3"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(ids.split(<span class="tok-str">","</span>))  <span class="tok-out"># → ['S1', ' S2', ' S3']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['S1', ' S2', ' S3']</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection overview" id="s2">
+        <h2>2. Список: результат <code>split()</code></h2><span class="overview-badge">Необходимый минимум</span><p class="overview-note">Здесь только то, что нужно для работы с результатом <code>split()</code>. Подробно списки разбираются в теме 5 «Списки и кортежи».</p>
+        <div class="step step-learn">Теория</div>
+        <p class="definition"><span class="term">Список</span>&nbsp;— упорядоченный набор значений, который записывают в квадратных скобках через запятую: <code>["S12", "blood", "2.5"]</code>.</p>
+        <p>К элементу списка обращаются по индексу, как к символу строки: счет с нуля, отрицательные индексы считают с конца. <code>parts[0]</code> дает первый кусок, <code>parts[-1]</code> последний; индекс за пределами списка дает <code>IndexError</code>.</p>
+        <p>Каждый элемент списка, который вернул <code>split()</code>,&nbsp;— обычная строка. У него есть все методы строк: <code>parts[1].upper()</code>. Число из куска получают явно: <code>float(parts[2])</code>.</p>
+        <p class="th-full"><code>print()</code> показывает список так, как его пишут в коде, поэтому строки внутри видны в кавычках. Отдельный элемент <code>print()</code> печатает как обычную строку, без кавычек.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Элементы списка</h3>
+          <div class="code-explain">
+            <div class="run-pair">
+              <div class="code-block"><span class="code-label">list_items.py</span><pre><code><span class="ln">parts <span class="tok-op">=</span> <span class="tok-str">"S12;blood;2.5"</span>.split(<span class="tok-str">";"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-num">0</span>])          <span class="tok-out"># → S12</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-op">-</span><span class="tok-num">1</span>])         <span class="tok-out"># → 2.5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-num">1</span>].upper())  <span class="tok-out"># → BLOOD</span></span>
+<span class="ln">volume <span class="tok-op">=</span> <span class="tok-builtin">float</span>(parts[<span class="tok-num">2</span>])</span>
+<span class="ln"><span class="tok-builtin">print</span>(volume <span class="tok-op">*</span> <span class="tok-num">2</span>)        <span class="tok-out"># → 5.0</span></span></code></pre></div>
+              <div class="output-block"><span class="output-label">Вывод</span><pre>S12
+2.5
+BLOOD
+5.0</pre></div>
+            </div>
+            <ol class="code-explain-text">
+              <li>Список из трех строк.</li>
+              <li>Первый элемент, индекс 0, напечатан без кавычек.</li>
+              <li>Последний элемент, индекс −1.</li>
+              <li>У элемента есть методы строк.</li>
+              <li>Кусок <code>"2.5"</code> превращен в число.</li>
+              <li>С числом можно считать.</li>
+            </ol>
+          </div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Выведите предпоследний элемент списка, а затем число символов в этом элементе функцией <code>len()</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_list.py</span><pre><code><span class="ln">parts <span class="tok-op">=</span> <span class="tok-str">"P7;liver;frozen;0.8"</span>.split(<span class="tok-str">";"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-num">1</span>])  <span class="tok-out"># → liver</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>liver</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Сборка строки</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Метод <code>join()</code> делает обратное: склеивает куски в одну строку и вставляет между ними разделитель. Вызывают его у разделителя, а куски передают в скобках: <code>", ".join(parts)</code>. Разделитель может быть любой строкой, в том числе пустой: <code>"".join(parts)</code> склеивает куски вплотную.</p>
+        <p>Чтобы сменить разделитель, строку разбирают по старому и сразу собирают с новым: <code>"-".join(line.split(";"))</code>.</p>
+        <div class="th-full">
+          <p>Кажется естественным взять список и попросить его склеиться, но <code>join()</code> принадлежит строке, и эта строка служит разделителем. Так устроено потому, что собрать можно любой набор строк, не только список. Запомните порядок: сначала то, что встанет между кусками, потом точка и <code>join</code>, в скобках то, что склеивают.</p>
+          <p>Собирать можно только строки. Если среди кусков есть число, <code>join()</code> завершается ошибкой <code>TypeError</code>; число сначала превращают в строку функцией <code>str()</code>.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Сборка с разделителем</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">join.py</span><pre><code><span class="ln">names <span class="tok-op">=</span> [<span class="tok-str">"S12"</span>, <span class="tok-str">"S13"</span>, <span class="tok-str">"S14"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">", "</span>.join(names))           <span class="tok-out"># → S12, S13, S14</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">""</span>.join(names))             <span class="tok-out"># → S12S13S14</span></span>
+<span class="ln">line <span class="tok-op">=</span> <span class="tok-str">"ATG;GCC;TAA"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"-"</span>.join(line.split(<span class="tok-str">";"</span>)))  <span class="tok-out"># → ATG-GCC-TAA</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>S12, S13, S14
+S12S13S14
+ATG-GCC-TAA</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: между элементами встала запятая с пробелом, после последнего разделителя нет.</li><li>Строка 3: пустой разделитель склеил элементы вплотную.</li><li>Строка 5: строка разобрана по точкам с запятой и собрана через дефис.</li></ol></div>
+        </article>
+        <div class="mistake">
+          <p class="mistake-caption">Типичная ошибка: <code>join()</code> у списка</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: AttributeError</span><pre><code><span class="ln">names <span class="tok-op">=</span> [<span class="tok-str">"S12"</span>, <span class="tok-str">"S13"</span>, <span class="tok-str">"S14"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(names.join(<span class="tok-str">", "</span>))</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "join_error.py", line 2, in &lt;module&gt;
+    print(names.join(", "))
+          ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'join'</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">names <span class="tok-op">=</span> [<span class="tok-str">"S12"</span>, <span class="tok-str">"S13"</span>, <span class="tok-str">"S14"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">", "</span>.join(names))  <span class="tok-out"># → S12, S13, S14</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>S12, S13, S14</pre></div>
+          <p>У списка нет метода <code>join</code>. Разделитель пишут перед точкой, а список передают в скобках.</p>
+        </div>
+      </section>
+
+      <section class="subsection" id="s4">
+        <h2>4. Собираем все вместе</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Настоящая строка данных редко бывает аккуратной: поля разделены точкой с запятой, вокруг них лишние пробелы, регистр любой. Разбирают ее по шагам: очистить края и разрезать, взять куски по индексу и очистить каждый, поле с числом перевести функцией <code>float()</code>, результат собрать f-строкой.</p>
+        <p class="th-full">Поля очищают по одному, потому что <code>strip()</code> убирает пробелы только по краям строки. Пробелы рядом с точкой с запятой стоят внутри записи, и после <code>split(";")</code> они оказываются на краях полей. Регистр приводят к одному виду у тех значений, которые потом сравнивают или печатают единообразно, как код пробы в примере.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Запись о пробе</h3>
+          <div class="code-explain">
+            <div class="run-pair">
+              <div class="code-block"><span class="code-label">record.py</span><pre><code><span class="ln">record <span class="tok-op">=</span> <span class="tok-str">"  s12 ; blood;  2.5 ; Vasilisa  "</span></span>
+<span class="ln">parts <span class="tok-op">=</span> record.strip().split(<span class="tok-str">";"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(parts)</span>
+<span class="ln">sample <span class="tok-op">=</span> parts[<span class="tok-num">0</span>].strip().upper()</span>
+<span class="ln">tissue <span class="tok-op">=</span> parts[<span class="tok-num">1</span>].strip()</span>
+<span class="ln">volume <span class="tok-op">=</span> <span class="tok-builtin">float</span>(parts[<span class="tok-num">2</span>].strip())</span>
+<span class="ln">author <span class="tok-op">=</span> parts[<span class="tok-num">3</span>].strip()</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{sample}<span class="tok-str">: </span>{tissue}<span class="tok-str">, </span>{volume}<span class="tok-str"> мл, записала </span>{author}<span class="tok-str">"</span>)  <span class="tok-out"># → S12: blood, 2.5 мл, записала Vasilisa</span></span></code></pre></div>
+              <div class="output-block"><span class="output-label">Вывод</span><pre>['s12 ', ' blood', '  2.5 ', ' Vasilisa']
+S12: blood, 2.5 мл, записала Vasilisa</pre></div>
+            </div>
+            <ol class="code-explain-text">
+              <li>Одна строка, четыре поля через точку с запятой, лишние пробелы.</li>
+              <li>Сначала убраны пробелы по краям всей строки, затем строка разрезана на поля.</li>
+              <li>У полей остались пробелы у разделителей: <code>strip()</code> всей строки их не трогает.</li>
+              <li>Код пробы очищен и переведен в заглавные буквы.</li>
+              <li>Название ткани очищено.</li>
+              <li>Объем очищен и переведен в число.</li>
+              <li>Имя очищено.</li>
+              <li>Результат собран f-строкой.</li>
+            </ol>
+          </div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: поле после <code>split()</code> не очищено</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: пробел остался в поле</span><pre><code><span class="ln">record <span class="tok-op">=</span> <span class="tok-str">"S12; blood; 2.5"</span></span>
+<span class="ln">parts <span class="tok-op">=</span> record.split(<span class="tok-str">";"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-num">1</span>] <span class="tok-op">==</span> <span class="tok-str">"blood"</span>)  <span class="tok-out"># → False</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">record <span class="tok-op">=</span> <span class="tok-str">"S12; blood; 2.5"</span></span>
+<span class="ln">parts <span class="tok-op">=</span> record.split(<span class="tok-str">";"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-num">1</span>].strip() <span class="tok-op">==</span> <span class="tok-str">"blood"</span>)  <span class="tok-out"># → True</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>True</pre></div>
+          <p>После разрезания второе поле равно <code>" blood"</code>, с пробелом в начале, и сравнение <code>" blood" == "blood"</code> дает <code>False</code>. Сообщения об ошибке нет: проверка просто не срабатывает. Очищайте каждое поле методом <code>strip()</code> сразу после <code>split()</code>.</p>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t2_06_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t2_06_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t2_06_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 2.6.1. Ткань из записи о пробе</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Запись о пробе состоит из полей, разделенных точкой с запятой: код пробы, ткань, затем другие поля. Выведите ткань. Воспользуйтесь методом <code>split(";")</code> и индексом.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: не меньше трех полей через точку с запятой, без пробелов вокруг разделителей. Поле с тканью не пустое.</p>
+          <h4>Выходные данные</h4>
+          <p>Второе поле записи.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>S07;plasma;1.5</pre></td><td><pre>plasma</pre></td></tr>
+                <tr><td><pre>P1;cerebrospinal fluid;3;frozen</pre></td><td><pre>cerebrospinal fluid</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_06_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 2.6.1. Лишние пробелы</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Название вида скопировали из таблицы, и в нем оказались лишние пробелы: по краям и по несколько между словами. Выведите название, в котором слова разделены ровно одним пробелом, а по краям пробелов нет.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от одного до пяти слов из латинских букв, между словами один или несколько пробелов, по краям могут быть пробелы.</p>
+          <h4>Выходные данные</h4>
+          <p>Те же слова в том же порядке через один пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>  Homo   sapiens  </pre></td><td><pre>Homo sapiens</pre></td></tr>
+                <tr><td><pre>Escherichia coli</pre></td><td><pre>Escherichia coli</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_06_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 2.6.1. Сокращенное название вида</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В тексте статьи название вида после первого упоминания сокращают: от рода остается заглавная первая буква с точкой, вид пишут полностью строчными буквами, например <code>H. sapiens</code>. Название ввели небрежно: регистр любой, пробелы лишние. Выведите сокращенное название.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Элемент списка, который вернул <code>split()</code>,&nbsp;— обычная строка: у него есть и индексы, и методы строк.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка: род и вид латинскими буквами в любом регистре, между словами один или несколько пробелов, по краям могут быть пробелы.</p>
+          <h4>Выходные данные</h4>
+          <p>Сокращенное название: заглавная первая буква рода, точка, пробел, вид строчными буквами.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>Homo sapiens</pre></td><td><pre>H. sapiens</pre></td></tr>
+                <tr><td><pre>  escherichia   COLI </pre></td><td><pre>E. coli</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_06_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_2</code> создайте папку <code>t2_06</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t2_06_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t2_06_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t2_06_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t2_06</code> в свой репозиторий внутрь папки <code>projects_2</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_2/
+    └── t2_06/
+        └── t2_06_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_2/
+    └── t2_06/
+        └── t2_06_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_2/
+    └── t2_06/
+        └── t2_06_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t2_05.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">05 Очистка и замена</span></a>
+        <a class="pcard pcard-next" href="t2_07.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">07 f-строки</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

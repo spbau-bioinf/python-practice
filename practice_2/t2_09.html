@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Последовательности ДНК. Практика 2. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t2_09.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 2</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t2_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t2_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Строки и индексы</span></span></a></li>
+        <li class="menu-sub"><a href="t2_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Срезы</span></span></a></li>
+        <li class="menu-sub"><a href="t2_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Операции со строками</span></span></a></li>
+        <li class="menu-sub"><a href="t2_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Регистр и поиск</span></span></a></li>
+        <li class="menu-sub"><a href="t2_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Очистка и замена</span></span></a></li>
+        <li class="menu-sub"><a href="t2_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>split()</code> и <code>join()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t2_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">f-строки</span></span></a></li>
+        <li class="menu-sub"><a href="t2_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Unicode и байты</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t2_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Последовательности ДНК</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Состав и GC-состав</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Строка описания FASTA и строка отчета</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">2.9.1</span> <span class="anc-ex-title" data-variant="basic">GC-состав</span><span class="anc-ex-title" data-variant="medium">Строка отчета</span><span class="anc-ex-title" data-variant="advanced">Отчет с GC3</span></span></a></li></ul></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">09</span>
+      <p class="page-path"><span>Практика 2</span><span class="page-path-sep" aria-hidden="true">›</span><span>Строки в биоинформатике</span></p>
+      <h1>Последовательности ДНК</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться считать длину, состав и GC-состав последовательности ДНК, разбирать строку описания записи FASTA и собирать строку отчета.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Состав и GC-состав</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Для Python последовательность ДНК&nbsp;— обычная строка из букв A, C, G, T, и к ней применимо все, что было на предыдущих страницах. Длину дает <code>len()</code>, число каждого нуклеотида <code>count()</code>.</p>
+        <p class="definition"><span class="term">GC-состав</span>&nbsp;— доля гуанина и цитозина среди всех нуклеотидов последовательности, обычно в процентах: <span class="formula">(число G + число C) / длина · 100</span>.</p>
+        <p>В записях геномов строчными буквами помечают повторы (<a href="t2_04.html">страница 04</a>), а <code>count("G")</code> строчную <code>g</code> не видит. Поэтому перед подсчетом последовательность приводят к одному регистру. Результат округляют только при выводе, в f-строке.</p>
+        <div class="th-full">
+          <p>Пара G–C связана тремя водородными связями, пара A–T двумя, и соседние GC-пары взаимодействуют сильнее. Участки, богатые GC, прочнее, и по GC-составу праймера оценивают температуру его плавления.</p>
+          <p>Приведенную к заглавным буквам копию кладут в отдельную переменную: исходная строка с пометками повторов может еще понадобиться (<a href="t2_05.html">страница 05</a>). Проверить подсчет удобно суммой: числа A, C, G и T вместе дают длину последовательности, если в ней нет других букв.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Длина и GC-состав</h3>
+          <div class="code-explain">
+            <div class="run-pair">
+              <div class="code-block"><span class="code-label">gc_content.py</span><pre><code><span class="ln">raw <span class="tok-op">=</span> <span class="tok-str">"GGCATTACGGATgccg"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(raw.count(<span class="tok-str">"G"</span>))             <span class="tok-out"># → 4</span></span>
+<span class="ln">seq <span class="tok-op">=</span> raw.upper()</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq))                   <span class="tok-out"># → 16</span></span>
+<span class="ln">gc <span class="tok-op">=</span> seq.count(<span class="tok-str">"G"</span>) <span class="tok-op">+</span> seq.count(<span class="tok-str">"C"</span>)</span>
+<span class="ln">gc_percent <span class="tok-op">=</span> gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span><span class="tok-str">GC: </span>{gc_percent:<span class="tok-str">.1f</span>}<span class="tok-str"> %</span><span class="tok-str">"</span>)  <span class="tok-out"># → GC: 62.5 %</span></span></code></pre></div>
+              <div class="output-block predict"><span class="output-label">Вывод</span><pre>4
+16
+GC: 62.5 %</pre></div>
+            </div>
+            <ol class="code-explain-text">
+              <li>Последовательность с повтором в конце, записанным строчными буквами.</li>
+              <li>Подсчет без приведения регистра пропускает строчные <code>g</code>.</li>
+              <li>Копия заглавными буквами.</li>
+              <li>Длина последовательности.</li>
+              <li>Число G и C вместе.</li>
+              <li>Доля в процентах; значение не округляется.</li>
+              <li>Округление до одного знака только при выводе.</li>
+            </ol>
+          </div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Добавьте подсчет G и C и проверьте, что сумма четырех чисел равна длине последовательности.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_counts.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ATGCGATCGATCGatcg"</span>.upper()</span>
+<span class="ln"><span class="tok-builtin">print</span>(seq.count(<span class="tok-str">"A"</span>), seq.count(<span class="tok-str">"T"</span>))  <span class="tok-out"># → 4 4</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq))                        <span class="tok-out"># → 17</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>4 4
+17</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Строка описания FASTA и строка отчета</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Последовательности хранят в формате FASTA, и почти любой анализ заканчивается таблицей: по строке на запись, в строке идентификатор и посчитанные величины. На этом шаге сходится вся практика: срезы, методы, <code>split()</code> и f-строки.</p>
+        <p>Запись FASTA начинается со строки описания: первым символом в ней стоит <code>&gt;</code>, дальше до первого пробела идет идентификатор, после пробела свободный комментарий. Следом идет сама последовательность.</p>
+        <p>Метод <code>removeprefix("&gt;")</code> убирает угловую скобку, только если строка с нее начинается. Затем <code>split(maxsplit=1)</code> разрезает описание по первому пробелу (<a href="t2_06.html">страница 06</a>): идентификатор попадает в элемент с индексом 0, а весь комментарий попадает в элемент с индексом 1, даже если в нем тоже есть пробелы.</p>
+        <p>Строку отчета собирают f-строкой, а колонки разделяют табуляцией <code>\t</code>. Такие таблицы открывают и электронные таблицы, и программы для анализа данных.</p>
+        <div class="th-full">
+          <p>Метод <code>removeprefix()</code> появился в Python 3.9. Он убирает ровно одну приставку. Метод <code>strip("&gt;")</code> работает иначе: он убирает с обоих краев все символы <code>&gt;</code>, сколько бы их ни было.</p>
+          <p>Если в строке описания нет комментария, <code>split(maxsplit=1)</code> возвращает список из одного элемента, и обращение к элементу с индексом 1 дает <code>IndexError</code>. Идентификатор с индексом 0 есть всегда.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Разбор строки описания и строка отчета</h3>
+          <div class="code-explain">
+            <div class="run-pair">
+              <div class="code-block"><span class="code-label">fasta_report.py</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;gene_00284728 length=231;type=dna"</span></span>
+<span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GAGAACTGATTCTGTTACCGCAGGGCATTCGG"</span></span>
+<span class="ln">body <span class="tok-op">=</span> header.removeprefix(<span class="tok-str">"&gt;"</span>)</span>
+<span class="ln">parts <span class="tok-op">=</span> body.split(maxsplit<span class="tok-op">=</span><span class="tok-num">1</span>)</span>
+<span class="ln">seq_id <span class="tok-op">=</span> parts[<span class="tok-num">0</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(seq_id)                             <span class="tok-out"># → gene_00284728</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(parts[<span class="tok-num">1</span>])                           <span class="tok-out"># → length=231;type=dna</span></span>
+<span class="ln">gc <span class="tok-op">=</span> (seq.count(<span class="tok-str">"G"</span>) <span class="tok-op">+</span> seq.count(<span class="tok-str">"C"</span>)) <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{seq_id}<span class="tok-str">\t</span>{<span class="tok-builtin">len</span>(seq)}<span class="tok-str">\t</span>{gc:<span class="tok-str">.1f</span>}<span class="tok-str">"</span>)  <span class="tok-out"># → gene_00284728	32	53.1</span></span></code></pre></div>
+              <div class="output-block predict"><span class="output-label">Вывод</span><pre>gene_00284728
+length=231;type=dna
+gene_00284728	32	53.1</pre></div>
+            </div>
+            <ol class="code-explain-text">
+              <li>Строка описания записи FASTA.</li>
+              <li>Начало последовательности этой записи.</li>
+              <li>Угловая скобка убрана.</li>
+              <li>Разрез только по первому пробелу.</li>
+              <li>Идентификатор.</li>
+              <li>Печатается идентификатор.</li>
+              <li>Печатается комментарий целиком.</li>
+              <li>GC-состав последовательности.</li>
+              <li>Строка отчета: три колонки через табуляцию.</li>
+            </ol>
+          </div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: идентификатор вместе с <code>&gt;</code></p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: в идентификаторе осталась скобка</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;gene_00284728 length=231;type=dna"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(header.split()[<span class="tok-num">0</span>])  <span class="tok-out"># → &gt;gene_00284728</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>&gt;gene_00284728</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;gene_00284728 length=231;type=dna"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(header.removeprefix(<span class="tok-str">"&gt;"</span>).split()[<span class="tok-num">0</span>])  <span class="tok-out"># → gene_00284728</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>gene_00284728</pre></div>
+          <p>Угловая скобка обозначает начало записи и в идентификатор не входит. Сначала ее убирают, потом режут строку.</p>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t2_09_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t2_09_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t2_09_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 2.9.1. GC-состав</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Посчитайте GC-состав последовательности в процентах. Повторы в ней записаны строчными буквами: приведите последовательность к заглавным буквам до подсчета.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>GC-состав в процентах с одним знаком после точки, без знака %.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATTACA</pre></td><td><pre>28.6</pre></td></tr>
+                <tr><td><pre>GGCCggcc</pre></td><td><pre>100.0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_09_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 2.9.1. Строка отчета</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана запись FASTA: строка описания и последовательность, в которой повторы записаны строчными буквами. Выведите строку отчета: идентификатор записи, длину последовательности и ее GC-состав.</p></div>
+          <h4>Входные данные</h4>
+          <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, длина, GC-состав в процентах с одним знаком после точки.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>&gt;chr2_frag soft-masked repeats
+ATGAAAccgggtTTTGGC</pre></td><td><pre>chr2_frag	18	50.0</pre></td></tr>
+                <tr><td><pre>&gt;seq1
+atgc</pre></td><td><pre>seq1	4	50.0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_09_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 2.9.1. Отчет с GC3</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC3&nbsp;— GC-состав третьих позиций кодонов, по нему сравнивают, как организмы используют синонимичные кодоны. Дана запись FASTA с кодирующей последовательностью, которую читают кодонами с первого нуклеотида. Выведите строку отчета: идентификатор, длину, GC-состав и GC3.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Третьи позиции всех полных кодонов можно одним срезом собрать в отдельную строку (<a href="t2_02.html">страница 02</a>). GC3 считают от длины этой строки, а не всей последовательности.</p></details>
+          <h4>Входные данные</h4>
+          <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре, длина от 3 до 100; длина может не делиться на 3.</p>
+          <h4>Выходные данные</h4>
+          <p>Одна строка из четырех колонок через табуляцию: идентификатор без <code>&gt;</code>, длина, GC-состав и GC3 в процентах с одним знаком после точки.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>&gt;TP53_cds first 9 codons
+ATGGAGGAGCCGCAGTCAGATCCTAGC</pre></td><td><pre>TP53_cds	27	59.3	66.7</pre></td></tr>
+                <tr><td><pre>&gt;frag_7 partial
+atgcatgcatgca</pre></td><td><pre>frag_7	13	46.2	50.0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_09_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_2</code> создайте папку <code>t2_09</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t2_09_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t2_09_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t2_09_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t2_09</code> в свой репозиторий внутрь папки <code>projects_2</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_2/
+    └── t2_09/
+        └── t2_09_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_2/
+    └── t2_09/
+        └── t2_09_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_2/
+    └── t2_09/
+        └── t2_09_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t2_08.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">08 Unicode и байты</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

@@ -371,7 +371,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s3",
      "id": "ex-2-advanced-task",
-     "title": "Упражнение 1.7.2. Три пробирки и свой порог",
+     "title": "Упражнение 1.7.2. Концентрация после разведения",
      "group": "ex-2",
      "variant": "advanced"
     }
@@ -427,7 +427,7 @@ window.PRACTICE_MANIFEST = {
    "href": "t1_09.html",
    "kind": "theory",
    "number": "09",
-   "name": "print()иinput()",
+   "name": "print() и input()",
    "title": "print() и input()",
    "sections": [
     {
@@ -614,7 +614,7 @@ window.PRACTICE_MANIFEST = {
    "href": "t1_09.html",
    "soon": false,
    "code": "09",
-   "name": "print()иinput()"
+   "name": "print() и input()"
   },
   {
    "href": "t1_10.html",
@@ -857,7 +857,7 @@ window.PRACTICE_MANIFEST = {
     "file": "t1_07_2_advanced.py",
     "page": "t1_07.html",
     "id": "ex-2-advanced-task",
-    "title": "Упражнение 1.7.2. Три пробирки и свой порог",
+    "title": "Упражнение 1.7.2. Концентрация после разведения",
     "group": "ex-2",
     "variant": "advanced"
    },
@@ -1060,7 +1060,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t1_07_2_advanced.py",
    "page": "t1_07.html",
    "id": "ex-2-advanced-task",
-   "title": "Упражнение 1.7.2. Три пробирки и свой порог",
+   "title": "Упражнение 1.7.2. Концентрация после разведения",
    "group": "ex-2",
    "variant": "advanced"
   },

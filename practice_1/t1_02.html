@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Экосистема. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="checker.js" defer></script>
@@ -83,7 +84,7 @@ ModuleNotFoundError: No module named 'Bio'</pre></div><div class="analysis"><ol>
 <article class="example th-full"><h3>Одно имя из модуля</h3><div class="run-pair"><div class="code-block"><span class="code-label">decimal_import.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> decimal <span class="tok-kw">import</span> Decimal</span>
 <span class="ln"><span class="tok-builtin">print</span>(Decimal(<span class="tok-str">'1.45'</span>))  <span class="tok-out"># → 1.45</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>1.45</pre></div></div><div class="analysis"><ol><li>Строка 1: из модуля <code>decimal</code> берется только имя <code>Decimal</code>.</li><li>Строка 2: <code>Decimal</code> пишется без приставки <code>decimal.</code>. Что это за число и зачем оно нужно, разобрано на странице <a href="t1_08.html">08</a>.</li></ol></div></article>
 <div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: обращение без имени модуля</p><div class="code-block code-wrong"><span class="code-label">Неверно: sqrt без math.</span><pre><code><span class="ln"><span class="tok-kw">import</span> math</span>
-<span class="ln"><span class="tok-builtin">print</span>(sqrt(<span class="tok-num">16</span>))  <span class="tok-out"># → ошибка: NameError</span></span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+<span class="ln"><span class="tok-builtin">print</span>(sqrt(<span class="tok-num">16</span>))</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "mistake.py", line 2, in &lt;module&gt;
     print(sqrt(16))
           ^^^^

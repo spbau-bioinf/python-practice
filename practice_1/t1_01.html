@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Программа и алгоритм. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="checker.js" defer></script>
@@ -80,7 +81,7 @@ Python 3.12.3</pre></div></div><p>В курсе нужен Python 3.10 или н
 <div class="step step-see">Пример</div>
 <p>Две программы ниже отличаются одной ошибкой. Предскажите, что успеет напечатать каждая.</p>
 <article class="example"><h3>Ошибка во время выполнения</h3><div class="run-pair"><div class="code-block"><span class="code-label">runtime.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Начало анализа'</span>)  <span class="tok-out"># → Начало анализа</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'126'</span> <span class="tok-op">/</span> <span class="tok-num">3</span>)         <span class="tok-out"># → ошибка: TypeError</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'126'</span> <span class="tok-op">/</span> <span class="tok-num">3</span>)</span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Конец анализа'</span>)</span></code></pre></div><div class="output-block predict"><span class="output-label">Вывод</span><pre>Начало анализа</pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "runtime.py", line 2, in &lt;module&gt;
     print('126' / 3)
@@ -111,7 +112,7 @@ SyntaxError: '(' was never closed</pre></div></div><div class="analysis"><ol><li
 <aside class="important"><p>Сообщение указывает место, где ошибка <em>обнаружена</em>, а не где она допущена. Настоящая причина часто строкой-двумя выше. Порядок действий: прочитать сообщение целиком, сформулировать гипотезу и только потом менять код.</p></aside>
 <div class="step step-see">Пример</div>
 <article class="example"><h3>Как читать трассировку</h3><div class="code-explain"><div class="run-pair"><div class="code-block"><span class="code-label">traceback.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Образец принят'</span>)  <span class="tok-out"># → Образец принят</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(sample_id)         <span class="tok-out"># → ошибка: NameError</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Образец принят</pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+<span class="ln"><span class="tok-builtin">print</span>(sample_id)</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Образец принят</pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "traceback.py", line 2, in &lt;module&gt;
     print(sample_id)
           ^^^^^^^^^
@@ -128,7 +129,7 @@ SyntaxError: '(' was never closed</pre></div><div class="code-block code-right">
 150</pre></div><p>Python дочитал файл до конца и не нашел пару для скобки, открытой в первой строке. В этом случае он показывает строку, где скобка открыта; в других синтаксических ошибках указанное место бывает ниже настоящей причины. Текст сообщений о синтаксических ошибках часто малоинформативен: позиция в нем только отправная точка поиска.</p></div>
 <details class="deep"><summary>Подробнее: почему в Python 3.12 сообщения стали понятнее</summary><p>Начиная с версии 3.10 интерпретатор подсказывает причину синтаксических ошибок точнее: вместо общего <code>invalid syntax</code> он пишет, например, <code>'(' was never closed</code>. С той же версии 3.10 для <code>NameError</code> Python предлагает похожее имя: <code>Did you mean: 'print'?</code>. В версии 3.11 появились значки <code>^^^^</code> под частью строки, где возникла ошибка. Поэтому в старых учебниках текст сообщений может отличаться от того, что видите вы.</p></details>
 <div class="step step-try">Практика</div>
-<div class="try-block"><p>Имя функции написано с большой буквы. Прочитайте последнюю строку сообщения и исправьте программу.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_name.py</span><pre><code>Print(<span class="tok-str">'Hello, lab'</span>)  <span class="tok-out"># → ошибка: NameError</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+<div class="try-block"><p>Имя функции написано с большой буквы. Прочитайте последнюю строку сообщения и исправьте программу.</p><div class="run-pair"><div class="code-block"><span class="code-label">try_name.py</span><pre><code>Print(<span class="tok-str">'Hello, lab'</span>)</code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "try_name.py", line 1, in &lt;module&gt;
     Print('Hello, lab')
     ^^^^^

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Типы данных. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t1_05.js"></script>
@@ -100,7 +101,7 @@
 100150
 ATATAT
 7</pre></div></div><div class="analysis"><ol><li>Строки 1–2: одинаковый знак <code>+</code>, но во второй строке операнды&nbsp;— строки, и цифры склеиваются.</li><li>Строка 3: мотив AT повторен три раза.</li><li>Строка 4: в последовательности GATTACA семь нуклеотидов.</li></ol></div></article>
-<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: строка и число в одном выражении</p><div class="code-block code-wrong"><span class="code-label">Неверно: склейка с числом</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-str">'Длина: '</span> <span class="tok-op">+</span> <span class="tok-num">7</span>)  <span class="tok-out"># → ошибка: TypeError</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: строка и число в одном выражении</p><div class="code-block code-wrong"><span class="code-label">Неверно: склейка с числом</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-str">'Длина: '</span> <span class="tok-op">+</span> <span class="tok-num">7</span>)</code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "mistake.py", line 1, in &lt;module&gt;
     print('Длина: ' + 7)
           ~~~~~~~~~~^~~
@@ -235,7 +236,7 @@ well = '99'</pre></td><td><pre>4100</pre></td></tr>
 <span class="ln"><span class="tok-builtin">print</span>(x)       <span class="tok-out"># → 42.9</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(x))  <span class="tok-out"># → 42</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>42.9
 42</pre></div></div><div class="analysis"><ol><li>Строка 2: строка превращается в вещественное число.</li><li>Строка 4: у числа отбрасывается дробная часть. Вызов <code>int(s)</code> сразу со строкой завершился бы ошибкой.</li></ol></div></article>
-<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: <code>int()</code> от строки с точкой</p><div class="code-block code-wrong"><span class="code-label">Неверно: ValueError</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-str">'42.9'</span>))  <span class="tok-out"># → ошибка: ValueError</span></code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+<div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: <code>int()</code> от строки с точкой</p><div class="code-block code-wrong"><span class="code-label">Неверно: ValueError</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-str">'42.9'</span>))</code></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "mistake.py", line 1, in &lt;module&gt;
     print(int('42.9'))
           ^^^^^^^^^^^

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Вещественные числа. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t1_07.js"></script>
@@ -24,7 +25,7 @@
         <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
         <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
         <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Почему 0.1 + 0.2 ≠ 0.3</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сравнение с допуском</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Сравнение с нулем</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.1</span> <span class="anc-ex-title" data-variant="basic">Совпадают ли массы</span><span class="anc-ex-title" data-variant="medium">Допуск в процентах</span><span class="anc-ex-title" data-variant="advanced">Допуск с абсолютным порогом</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.2</span> <span class="anc-ex-title" data-variant="basic">Почти ноль</span><span class="anc-ex-title" data-variant="medium">Баланс объемов</span><span class="anc-ex-title" data-variant="advanced">Три пробирки и свой порог</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Почему 0.1 + 0.2 ≠ 0.3</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сравнение с допуском</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Сравнение с нулем</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.1</span> <span class="anc-ex-title" data-variant="basic">Совпадают ли массы</span><span class="anc-ex-title" data-variant="medium">Допуск в процентах</span><span class="anc-ex-title" data-variant="advanced">Допуск с абсолютным порогом</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.2</span> <span class="anc-ex-title" data-variant="basic">Почти ноль</span><span class="anc-ex-title" data-variant="medium">Баланс объемов</span><span class="anc-ex-title" data-variant="advanced">Концентрация после разведения</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
         <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
         <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
@@ -164,7 +165,7 @@ False</pre></div>
 False
 True</pre></div>
           </div>
-          <div class="analysis"><ol><li>Строка 3: числа отличаются только погрешностью формата.</li><li>Строка 4: 1.667 и 1,6666… отличаются примерно на 0,02 %, это больше допуска по умолчанию.</li><li>Строка 5: при допуске 0,1 % они уже близки.</li></ol></div>
+          <div class="analysis"><ol><li>Строка 3: числа отличаются только погрешностью формата.</li><li>Строка 4: <code>1.667</code> и 1,6666… отличаются примерно на 0,02 %, это больше допуска по умолчанию.</li><li>Строка 5: при допуске 0,1 % они уже близки.</li></ol></div>
         </article>
         <article class="example th-full">
           <h3>Допуск в процентах</h3>
@@ -357,26 +358,25 @@ part2 = 0.4</pre></td><td><pre>False</pre></td></tr>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 1.7.2. Три пробирки и свой порог</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор объемом <code>total</code> мл разлили в три пробирки: <code>p1</code>, <code>p2</code>, <code>p3</code> мл. Остаток считается нулевым, если он не больше <code>tol</code> мл. Проверьте баланс.</p></div>
+            <h3>Упражнение 1.7.2. Концентрация после разведения</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор с концентрацией <code>c0</code> моль/л развели <code>n</code> раз подряд, каждый раз в <code>k</code> раз. В протоколе записана ожидаемая концентрация <code>target</code>. Проверьте, совпадает ли с ней концентрация после разведения. Значения считаются совпадающими, если они отличаются не больше чем на 0,0001 % от большего из них.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>После нескольких разведений концентрации бывают порядка 10<sup>−9</sup> моль/л. Подумайте, какой из двух допусков <code>math.isclose()</code> отвечает условию при таких значениях.</p></details>
           <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>total</code>, <code>p1</code>, <code>p2</code>, <code>p3</code> и <code>tol</code> (больше 0).</p>
+          <p>В начале программы задаются вещественные числа <code>c0</code> (от 10<sup>−6</sup> до 10) и <code>target</code> (больше 0) и целые числа <code>k</code> (от 2 до 100) и <code>n</code> (от 1 до 10).</p>
           <h4>Выходные данные</h4>
-          <p><code>True</code>, если остатка нет, иначе <code>False</code>.</p>
+          <p><code>True</code>, если концентрации совпадают, иначе <code>False</code>.</p>
           <div class="table-wrap">
             <table class="data tests"><caption>Примеры</caption>
               <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
               <tbody>
-                <tr><td><pre>total = 1.0
-p1 = 0.2
-p2 = 0.3
-p3 = 0.5
-tol = 1e-09</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>total = 1.0
-p1 = 0.2
-p2 = 0.3
-p3 = 0.4
-tol = 0.01</pre></td><td><pre>False</pre></td></tr>
+                <tr><td><pre>c0 = 0.5
+k = 10
+n = 3
+target = 0.0005</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>c0 = 0.01
+k = 2
+n = 5
+target = 0.0003</pre></td><td><pre>False</pre></td></tr>
               </tbody>
             </table>
           </div>

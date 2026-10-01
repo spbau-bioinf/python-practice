@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Округление и Decimal. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t1_08.js"></script>
@@ -64,7 +65,7 @@
           </div>
           <ul>
             <li>При точной половине <code>round()</code> выбирает четное число: <code>round(3.5)</code> дает <code>4</code>. Такое округление называют банковским: при многократном округлении оно не завышает суммы.</li>
-            <li>Число, которое выглядит как половина, может храниться чуть меньше или чуть больше половины. Число 2.675 хранится как 2,67499999…, поэтому округляется вниз.</li>
+            <li>Число, которое выглядит как половина, может храниться чуть меньше или чуть больше половины. Значение <code>2.675</code> хранится как 2,67499999…, поэтому округляется вниз.</li>
             <li>Отрицательное <code>n</code> округляет до десятков, сотен и так далее: <code>round(1234.5678, -2)</code> дает <code>1200.0</code>.</li>
             <li>Округляйте только при выводе. Округленное значение не делает дальнейшие сравнения надежными (<a href="t1_07.html">страница 07</a>).</li>
           </ul>
@@ -252,7 +253,7 @@ True</pre></div>
           <p class="mistake-caption">Типичная ошибка: <code>Decimal</code> вместе с <code>float</code></p>
           <div class="code-block code-wrong"><span class="code-label">Неверно: TypeError</span><pre><code><span class="ln"><span class="tok-kw">from</span> decimal <span class="tok-kw">import</span> Decimal</span>
 <span class="ln"></span>
-<span class="ln"><span class="tok-builtin">print</span>(Decimal(<span class="tok-str">'0.1'</span>) <span class="tok-op">+</span> <span class="tok-num">0.2</span>)  <span class="tok-out"># → ошибка: TypeError</span></span></code></pre></div>
+<span class="ln"><span class="tok-builtin">print</span>(Decimal(<span class="tok-str">'0.1'</span>) <span class="tok-op">+</span> <span class="tok-num">0.2</span>)</span></code></pre></div>
           <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>TypeError: unsupported operand type(s) for +: 'decimal.Decimal' and 'float'</pre></div>
           <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln"><span class="tok-kw">from</span> decimal <span class="tok-kw">import</span> Decimal</span>
 <span class="ln"></span>

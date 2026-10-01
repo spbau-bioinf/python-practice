@@ -196,6 +196,7 @@
       var h = function () { if (theme() === "system") apply(); };
       if (mq.addEventListener) mq.addEventListener("change", h); else if (mq.addListener) mq.addListener(h);
     }
+    siteCards();
     var cards = Array.prototype.slice.call(document.querySelectorAll(".home-card[data-manifest]"));
     loadAll(cards, 0);
     /* версия 38: вернулись со страницы практики (кнопка «Назад», другая вкладка): уровень
@@ -219,6 +220,45 @@
           (settings.os ? "&os=" + settings.os : ""));
         window.setTimeout(function () { a.setAttribute("href", h); }, 0);
       });
+    });
+  }
+  /* ---------- версия 59: карточки по site-config.js ----------
+     Состояние берется из файла настроек в браузере (его можно обновить без пересборки):
+     по расписанию до момента открытия карточка закрыта с датой, «скоро» закрыта, «скрыта» убрана.
+     В копии преподавателя ("preview": true) карточки открыты, внизу пометка для студентов. */
+  var MONTHS_RU = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  function openAt(s) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?$/.exec(s || "");
+    return m ? new Date(+m[1], +m[2] - 1, +m[3], +(m[4] || 0), +(m[5] || 0)) : null;
+  }
+  function ruDate(s) {
+    var d = openAt(s); if (!d) return "";
+    var t = d.getHours() || d.getMinutes() ? " в " + d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2) : "";
+    return d.getDate() + " " + MONTHS_RU[d.getMonth()] + t;
+  }
+  var LOCK = '<span class="home-lock"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>';
+  function siteCards() {
+    var cfg = window.SITE_CONFIG;
+    Array.prototype.forEach.call(document.querySelectorAll(".home-card[data-practice]"), function (card) {
+      var n = card.getAttribute("data-practice"), c = cfg && cfg.practices && cfg.practices[n];
+      var st = c ? c.state : card.getAttribute("data-site-state"), from = c ? (c.from || "") : (card.getAttribute("data-from") || "");
+      var at = openAt(from), open = st === "open" || (st === "scheduled" && at && new Date() >= at);
+      if (open) return;
+      var text = st === "scheduled" ? "Откроется " + ruDate(from) : st === "hidden" ? "Скрыта" : from ? "Ориентировочно с " + ruDate(from) : "Скоро";
+      if (cfg && cfg.preview) {
+        var note = mk("span", "home-note", "Для студентов: " + text.charAt(0).toLowerCase() + text.slice(1));
+        card.querySelector(".home-body").appendChild(note);
+        return;
+      }
+      if (st === "hidden") { card.remove(); return; }
+      card.classList.add("is-soon");
+      card.setAttribute("aria-disabled", "true");
+      card.removeAttribute("data-manifest");
+      var link = card.querySelector(".home-card-link"); if (link) link.remove();
+      var rc = card.querySelector(".home-rcol");
+      if (rc) rc.innerHTML = LOCK + '<span class="home-lvl">' + (st === "scheduled" ? "по расписанию" : "скоро") + "</span>";
+      var meta = card.querySelector(".home-meta"); if (meta) meta.textContent = text;
+      var prog = card.querySelector(".home-progress"); if (prog) prog.remove();
     });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();

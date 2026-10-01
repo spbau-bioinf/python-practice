@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>print() и input(). Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t1_09.js"></script>
@@ -108,7 +109,7 @@ GC: 0.477</pre></div></div><ol class="code-explain-text"><li>Имя <code>sample
 150150
 300</pre></div></div><div class="analysis"><ol><li>Строка 2: <code>reads</code> хранит строку <code>'150'</code>, и <code>+</code> склеивает ее саму с собой.</li><li>Строка 3: после <code>int()</code> получаются числа, и они складываются.</li></ol></div></article>
 <div class="mistake th-full"><p class="mistake-caption">Типичная ошибка: арифметика над введенной строкой</p><div class="code-block code-wrong"><span class="code-label">Неверно: нет преобразования</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
-<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">+</span> <span class="tok-num">5</span>)  <span class="tok-out"># → ошибка: TypeError</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">150</kbd></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">+</span> <span class="tok-num">5</span>)</span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">150</kbd></pre></div><div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "mistake.py", line 2, in &lt;module&gt;
     print(length + 5)
           ~~~~~~~^~~
