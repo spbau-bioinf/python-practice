@@ -235,7 +235,7 @@ strong { font-weight: 700; }
 .formula { white-space: nowrap; }
 /* метки и короткие подписи тоже не переносятся внутри себя */
 .level, .task-status, .overview-badge, .menu-progress, .topic-link, .tb-btn, .seg-btn,
-.checker-run, .checker-file, .btn, .predict-btn { white-space: nowrap; }
+.checker-run, .checker-try, .checker-file, .btn, .predict-btn { white-space: nowrap; }
 code {
   font-family: var(--font-mono); font-size: 0.88em; color: var(--c-text);
   background: var(--c-bg-warm); border: 1px solid var(--c-border-light); border-radius: 6px; padding: 0.08em 0.38em;
@@ -705,6 +705,14 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
 .checker-clear { font: inherit; font-size: var(--t-sm); cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-full);
   border: var(--border-w) solid var(--c-border); background: var(--c-surface); color: var(--c-text); }
 .checker-clear:hover { border-color: var(--c-error); color: var(--c-error); }
+/* «▶ Запустить» без тестов и поле ввода для него (версия 60) */
+.checker-try { font: inherit; font-size: var(--t-sm); font-weight: 700; cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-full);
+  border: var(--border-w) solid var(--c-accent-muted); background: var(--c-surface); color: var(--c-accent); }
+.checker-try:hover { border-color: var(--c-accent); }
+.checker-try:disabled { opacity: 0.6; cursor: wait; }
+.checker .checker-stdin-label { margin: 0.6rem 0 0.2rem; color: var(--c-text-2); }
+.checker .checker-stdin { width: 100%; margin: 0; }
+.checker-run-out { margin: 0; white-space: pre-wrap; font-family: var(--font-mono); font-size: var(--t-sm); }
 .checker-saved { font-size: var(--t-xs); color: var(--c-muted); }
 .checker-result:empty { display: none; }
 .checker-result { margin-top: 0.8rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); font-size: var(--t-sm); background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); color: var(--c-text); }
@@ -743,7 +751,9 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
 .ex-btn:hover { filter: brightness(1.2); }
 .ex-btn:disabled { opacity: 0.6; cursor: wait; }
 .ex-btn-run { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
-.code-block.is-editing { box-shadow: 0 0 0 3px var(--c-accent-muted), var(--win-shadow); }
+/* версия 63: зеленая рамка окна только при фокусе в редакторе; внутреннее поле своей рамки не рисует */
+.code-block.is-editing:focus-within, .try-block .code-block.is-editing:focus-within { box-shadow: 0 0 0 3px var(--c-accent-muted), var(--win-shadow); }
+.ex-editor-wrap:focus-within { box-shadow: none; }
 .ex-editor-wrap { background: transparent; border-radius: 0; }
 .ex-editor-wrap .code-gutter { padding-top: 0.9rem; font-size: 1rem; line-height: 1.7; background: transparent; }
 .ex-editor {
@@ -1251,7 +1261,7 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 /* ---------- 36. Текст не выходит за пределы кнопок ----------
    Кнопка не бывает уже своего текста; группы кнопок переносятся на новую строку.
    check_css.py требует это правило для всех классов кнопок. */
-.seg-btn, .tab, .btn, .tb-btn, .tb-icon, .tb-pop-item, .checker-run, .checker-file, .checker-clear,
+.seg-btn, .tab, .btn, .tb-btn, .tb-icon, .tb-pop-item, .checker-run, .checker-try, .checker-file, .checker-clear,
 .predict-btn, .ex-btn, .mine-btn, .mine-reset, .settings-link { min-width: max-content; }
 
 
