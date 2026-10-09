@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Истинность значений. Практика 3. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t3_06.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 3</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t3_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t3_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name"><code>bool</code> и сравнения</span></span></a></li>
+        <li class="menu-sub"><a href="t3_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Логические операторы</span></span></a></li>
+        <li class="menu-sub"><a href="t3_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Сокращенное вычисление</span></span></a></li>
+        <li class="menu-sub"><a href="t3_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name"><code>if</code> и <code>else</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Цепочка <code>elif</code></span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t3_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Истинность значений</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Ложные и истинные значения</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Истинность в условиях</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> <code>or</code> и <code>and</code> возвращают значение</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">3.6.1</span> <span class="anc-ex-title" data-variant="basic">Длина или нет данных</span><span class="anc-ex-title" data-variant="medium">Идентификатор по умолчанию</span><span class="anc-ex-title" data-variant="advanced">Поправка на фон</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t3_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name"><code>None</code> и <code>is</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Упрощение проверок</span></span></a></li>
+        <li class="menu-sub"><a href="t3_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Проверка записи FASTA</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">06</span>
+      <p class="page-path"><span>Практика 3</span><span class="page-path-sep" aria-hidden="true">›</span><span>Истинность и значение по умолчанию</span></p>
+      <h1>Истинность значений</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться писать в условии саму строку или число вместо сравнения, подставлять значение по умолчанию оператором <code>or</code> и замечать случаи, где ноль настоящее значение.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Ложные и истинные значения</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">На странице 02 запись <code>code == "S" or "W"</code> вела себя странно: строка <code>"W"</code> без сравнения работала как условие. Дело в том, что в условии Python принимает любое значение, а не только <code>True</code> и <code>False</code>. Это удобно, если знать правило.</p>
+        <p>В условии <code>if</code>, в <code>and</code>, <code>or</code> и <code>not</code> может стоять любое значение. Python сам решает, считать ли его истиной. Ложными считаются <code>None</code>, <code>False</code>, ноль любого числового типа (<code>0</code>, <code>0.0</code>) и пустая строка <code>""</code>, а также пустые коллекции, например пустой список (тема 5 «Списки и кортежи»). Все остальные встроенные значения истинны.</p>
+        <p>Ложна только пустая строка. Строки <code>"0"</code>, <code>" "</code> и <code>"False"</code> не пустые и потому истинны, хотя выглядят как «ничего» или «ложь». Узнать, истинно ли значение, можно функцией <code>bool()</code>: она возвращает <code>True</code> или <code>False</code>.</p>
+        <div class="table-wrap th-full">
+          <table class="data">
+            <thead><tr><th>Тип</th><th>Ложные значения</th><th>Примеры истинных</th></tr></thead>
+            <tbody>
+              <tr><td><code>bool</code></td><td><code>False</code></td><td><code>True</code></td></tr>
+              <tr><td><code>int</code>, <code>float</code></td><td><code>0</code>, <code>0.0</code></td><td><code>1</code>, <code>-1</code>, <code>0.001</code></td></tr>
+              <tr><td><code>str</code></td><td><code>""</code></td><td><code>"0"</code>, <code>" "</code>, <code>"False"</code></td></tr>
+              <tr><td><code>NoneType</code></td><td><code>None</code></td><td>нет</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="definition th-full"><span class="term">Истинность значения</span>&nbsp;— то, чем значение считается в условии: истиной или ложью. Ложные значения называют также falsy, истинные truthy.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Что ложно</h3>
+          <p>Предскажите вывод каждой строки.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">truth.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-num">0.0</span>))      <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">"0"</span>))      <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">" "</span>))      <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">"False"</span>))  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">""</span>))       <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-op">-</span><span class="tok-num">1</span>))       <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>False
+True
+True
+True
+False
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строки 1 и 5: ноль и пустая строка ложны.</li><li>Строки 2–4: непустые строки истинны, что бы в них ни было написано.</li><li>Строка 6: отрицательное число не ноль, поэтому истинно.</li></ol></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Проверьте <code>bool()</code> для строки, которую возвращает <code>input()</code>, если нажать Enter, ничего не набрав. Затем для числа <code>0.0001</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_bool.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-num">0</span>))       <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">bool</span>(<span class="tok-str">"ACGT"</span>))  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>False
+True</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Истинность в условиях</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Проверка «пусто или нет» встречается постоянно: пустая строка из ввода, пустое поле, пустая последовательность. Истинность позволяет записать ее короче и ближе к смыслу.</p>
+        <p>Вместо <code>if len(seq) &gt; 0:</code> пишут <code>if seq:</code>, вместо <code>if len(seq) == 0:</code> пишут <code>if not seq:</code>. Писать <code>if bool(seq):</code> незачем: приведение к логическому значению в <code>if</code> уже есть.</p>
+        <p>Логические значения не сравнивают с <code>True</code> и <code>False</code> через <code>==</code>: пишут <code>if ok:</code>, а не <code>if ok == True:</code>. Сравнение с <code>True</code> еще и опасно: <code>2 == True</code> дает <code>False</code>, хотя число 2 в условии истинно.</p>
+        <p>Короткая проверка не подходит там, где ноль или пустая строка — настоящее значение. GC-состав 0.0 означает последовательность из одних A и T, а не отсутствие результата. В таких случаях нужно явное сравнение; как отличать «нет значения» от нуля, разобрано на странице 07.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пустой ввод</h3>
+          <p>Программа ждет ввода. Пользователь нажимает Enter, ничего не набрав.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">empty_input.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
+<span class="ln"><span class="tok-kw">if</span> seq:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"получено нуклеотидов:"</span>, <span class="tok-builtin">len</span>(seq))</span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"последовательность не введена"</span>)  <span class="tok-out"># → последовательность не введена</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input"></kbd>
+последовательность не введена</pre></div>
+          </div>
+          <div class="analysis"><p>Функция <code>input()</code> вернула пустую строку, она ложна, и выполнилась ветвь <code>else</code>. Условие <code>if seq:</code> читается как «если последовательность есть».</p></div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: сравнение с <code>True</code></p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: ветвь не выполняется</span><pre><code><span class="ln">n_count <span class="tok-op">=</span> <span class="tok-str">"ATNNGC"</span>.count(<span class="tok-str">"N"</span>)</span>
+<span class="ln"><span class="tok-kw">if</span> n_count <span class="tok-op">==</span> <span class="tok-const">True</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"есть неизвестные нуклеотиды"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"проверка окончена"</span>)  <span class="tok-out"># → проверка окончена</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>проверка окончена</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">n_count <span class="tok-op">=</span> <span class="tok-str">"ATNNGC"</span>.count(<span class="tok-str">"N"</span>)</span>
+<span class="ln"><span class="tok-kw">if</span> n_count:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"есть неизвестные нуклеотиды"</span>)  <span class="tok-out"># → есть неизвестные нуклеотиды</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"проверка окончена"</span>)                <span class="tok-out"># → проверка окончена</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>есть неизвестные нуклеотиды
+проверка окончена</pre></div>
+          <p>Букв N две. Число 2 истинно, но <code>True</code> равно 1 (страница 01), и <code>2 == True</code> ложно. С одной буквой N ошибка не проявилась бы, поэтому ее легко пропустить при проверке.</p>
+        </div>
+        <details class="deep"><summary>Подробнее: почему <code>True</code> равно единице</summary><p>Тип <code>bool</code> устроен как разновидность <code>int</code>: <code>True</code> хранится как 1, <code>False</code> как 0. Поэтому <code>1 == True</code> истинно, а любое другое ненулевое число <code>True</code> не равно. Документ PEP 285, который ввел тип <code>bool</code>, называет правильной запись <code>if x:</code>, а примером <code>6 == True == 7</code> объясняет, почему <code>True</code> не может быть равно каждому истинному значению: тогда из этой цепочки следовало бы <code>6 == 7</code>. Руководство по стилю PEP 8 прямо называет сравнение с <code>True</code> через <code>==</code> ошибкой.</p></details>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Перепишите условие короче, через истинность строки, и проверьте программу на пустой строке и на строке <code>"GATTACA"</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_truth.py</span><pre><code><span class="ln">comment <span class="tok-op">=</span> <span class="tok-str">""</span></span>
+<span class="ln"><span class="tok-kw">if</span> <span class="tok-builtin">len</span>(comment) <span class="tok-op">==</span> <span class="tok-num">0</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"комментария нет"</span>)  <span class="tok-out"># → комментария нет</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"комментарий:"</span>, comment)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>комментария нет</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. <code>or</code> и <code>and</code> возвращают значение</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Теперь понятно, почему на странице 02 <code>print(code == "S" or "W")</code> напечатало букву. Операторы <code>and</code> и <code>or</code> не превращают результат в <code>True</code> или <code>False</code>: они возвращают одно из своих значений.</p>
+        <p><code>x or y</code> возвращает <code>x</code>, если <code>x</code> истинно, иначе <code>y</code>. <code>x and y</code> возвращает <code>x</code>, если <code>x</code> ложно, иначе <code>y</code>. Если оба значения логические, результат тот же, что в таблице истинности. Если нет, результатом будет одно из этих значений, например строка или число. Поэтому <code>code == "S" or "W"</code> вернуло строку <code>"W"</code>.</p>
+        <p>На этом строится значение по умолчанию: <code>name = seq_id or "без имени"</code> дает идентификатор, а если он пустой, запасную строку. Ограничение то же, что у проверки истинности: если ноль — настоящее значение, <code>x or 5</code> заменит и его. Сложную логику на <code>and</code> и <code>or</code> не строят: для нее есть <code>if</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Какое значение вернул оператор</h3>
+          <p>Предскажите вывод.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">or_and.py</span><pre><code><span class="ln">seq_id <span class="tok-op">=</span> <span class="tok-str">""</span></span>
+<span class="ln">name <span class="tok-op">=</span> seq_id <span class="tok-kw">or</span> <span class="tok-str">"без имени"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(name)           <span class="tok-out"># → без имени</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"ACGT"</span> <span class="tok-kw">or</span> <span class="tok-str">"N"</span>)  <span class="tok-out"># → ACGT</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0</span> <span class="tok-kw">and</span> <span class="tok-num">5</span>)        <span class="tok-out"># → 0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0</span> <span class="tok-kw">or</span> <span class="tok-num">5</span>)         <span class="tok-out"># → 5</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>без имени
+ACGT
+0
+5</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: пустая строка ложна, <code>or</code> возвращает правую часть.</li><li>Строка 4: левая часть истинна, и <code>or</code> возвращает ее, правую даже не вычисляя (страница 03).</li><li>Строка 5: левая часть <code>and</code> ложна, она и возвращается.</li><li>Строка 6: левая часть <code>or</code> ложна, возвращается правая.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Ноль заменен значением по умолчанию</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">zero_default.py</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.0</span></span>
+<span class="ln">shown <span class="tok-op">=</span> gc <span class="tok-kw">or</span> <span class="tok-num">50.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(shown)  <span class="tok-out"># → 50.0</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>50.0</pre></div>
+          </div>
+          <div class="analysis"><p>GC-состав 0.0 настоящий результат, но он ложен, и <code>or</code> подставил запасное значение. Здесь нужен <code>if</code> с явной проверкой, а не <code>or</code>.</p></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Поставьте в <code>organism</code> пустую строку, а затем строку из одного пробела. Почему во втором случае по умолчанию ничего не подставилось?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_default.py</span><pre><code><span class="ln">organism <span class="tok-op">=</span> <span class="tok-str">"Homo sapiens"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(organism <span class="tok-kw">or</span> <span class="tok-str">"не указан"</span>)  <span class="tok-out"># → Homo sapiens</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Homo sapiens</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t3_06_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t3_06_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t3_06_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 3.6.1. Длина или нет данных</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана последовательность, строка может оказаться пустой. Если последовательность есть, выведите ее длину, иначе слова <code>нет данных</code>. Проверьте строку через ее истинность: <code>if seq:</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Длина последовательности или слова <code>нет данных</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATTCGA</pre></td><td><pre>7</pre></td></tr>
+                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>нет данных</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_06_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 3.6.1. Идентификатор по умолчанию</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны идентификатор записи и последовательность. Поле идентификатора бывает не заполнено: строка пустая или состоит из одних пробелов. Тогда вместо идентификатора используют <code>без_имени</code>. Выведите идентификатор без пробелов по краям и длину последовательности.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке идентификатор длиной от 0 до 20 символов, возможно с пробелами по краям, во второй последовательность из прописных букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Идентификатор и длина через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>NM_000546
+ATGGAGGAG</pre></td><td><pre>NM_000546 9</pre></td></tr>
+                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+ACGT</pre></td><td><pre>без_имени 4</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_06_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 3.6.1. Поправка на фон</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Из сигнала пробы вычитают фон, измеренный в пустой лунке. Если фон не измерили, его поле пустое, и тогда берут фон по умолчанию, 0.05. Фон, равный нулю, настоящее измерение. Даны сигнал и фон. Выведите сигнал за вычетом фона, округленный функцией <code>round()</code> до трех знаков.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Строка <code>"0"</code> истинна, а число <code>0.0</code> ложно. Подумайте, в какой момент подставлять значение по умолчанию: до превращения в число или после.</p></details>
+          <h4>Входные данные</h4>
+          <p>В первой строке сигнал, вещественное число от 0 до 4. Во второй фон: вещественное число от 0 до 1 или пустая строка.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно число: сигнал минус фон, округленный до трех знаков после точки.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>0.82
+0.1</pre></td><td><pre>0.72</pre></td></tr>
+                <tr><td><pre>0.82
+<span class="io-empty">(пустая строка)</span></pre></td><td><pre>0.77</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_06_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_3</code> создайте папку <code>t3_06</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t3_06_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t3_06_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t3_06_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t3_06</code> в свой репозиторий внутрь папки <code>projects_3</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_3/
+    └── t3_06/
+        └── t3_06_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_3/
+    └── t3_06/
+        └── t3_06_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_3/
+    └── t3_06/
+        └── t3_06_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t3_05.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">05 Цепочка <code>elif</code></span></a>
+        <a class="pcard pcard-next" href="t3_07.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">07 <code>None</code> и <code>is</code></span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

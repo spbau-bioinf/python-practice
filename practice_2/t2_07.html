@@ -138,35 +138,35 @@ sample='s12', gc=37.5</pre></div>
         <div class="step step-learn">Теория</div>
         <p>Число в описании формата задает ширину поля: сколько символов займет значение вместе с пробелами. Знак <code>&lt;</code> прижимает значение к левому краю поля, <code>&gt;</code> к правому, <code>^</code> ставит по центру. Строки по умолчанию прижимаются влево, числа вправо. Так выводят ровные колонки отчета.</p>
         <p>Перед знаком выравнивания можно поставить символ-заполнитель: он займет место пробелов. Ширину и формат числа пишут вместе: <code>f"{gc:&gt;8.2f}"</code> выводит число с двумя знаками в поле шириной 8. Части формата идут в таком порядке: заполнитель, выравнивание, ширина, разделитель разрядов, точность и тип, например <code>f"{n:&gt;12,}"</code>. Если значение длиннее поля, поле расширяется, и значение не обрезается.</p>
-        <p>Результаты для <code>x = "test"</code>, вертикальные черты показывают начало и конец поля:</p>
+        <p>Результаты для <code>x = "test"</code>, вертикальная черта показывает конец поля:</p>
         <div class="table-wrap">
           <table class="data">
             <thead><tr><th>Знак</th><th>Выравнивание</th><th>Запись</th><th>Что получится</th></tr></thead>
             <tbody>
-              <tr><td><code>&lt;</code></td><td>по левому краю</td><td><code>f"|{x:&lt;8}|"</code></td><td><code>|test&nbsp;&nbsp;&nbsp;&nbsp;|</code></td></tr>
-              <tr><td><code>&gt;</code></td><td>по правому краю</td><td><code>f"|{x:&gt;8}|"</code></td><td><code>|&nbsp;&nbsp;&nbsp;&nbsp;test|</code></td></tr>
-              <tr><td><code>^</code></td><td>по центру</td><td><code>f"|{x:^8}|"</code></td><td><code>|&nbsp;&nbsp;test&nbsp;&nbsp;|</code></td></tr>
-              <tr><td>символ перед знаком</td><td>заполнитель вместо пробелов</td><td><code>f"|{x:*^8}|"</code></td><td><code>|**test**|</code></td></tr>
+              <tr><td><code>&lt;</code></td><td>по левому краю</td><td><code>f"{x:&lt;8}|"</code></td><td><code>test&nbsp;&nbsp;&nbsp;&nbsp;|</code></td></tr>
+              <tr><td><code>&gt;</code></td><td>по правому краю</td><td><code>f"{x:&gt;8}|"</code></td><td><code>&nbsp;&nbsp;&nbsp;&nbsp;test|</code></td></tr>
+              <tr><td><code>^</code></td><td>по центру</td><td><code>f"{x:^8}|"</code></td><td><code>&nbsp;&nbsp;test&nbsp;&nbsp;|</code></td></tr>
+              <tr><td>символ перед знаком</td><td>заполнитель вместо пробелов</td><td><code>f"{x:*^8}|"</code></td><td><code>**test**|</code></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="th-full">Пробелы в конце строки на экране не видны. Поэтому в примерах поле стоит между двумя вертикальными чертами: по ним видно, где поле начинается и где кончается. Если внутри f-строки нужна строка в кавычках, берут кавычки другого вида: <code>f"{'S12':&lt;8}"</code>. Так код работает и в версиях Python до 3.12, где кавычки того же вида внутри f-строки не допускались.</p>
+        <p class="th-full">Пробелы в конце строки на экране не видны. Поэтому в примерах после поля стоит вертикальная черта: по ней видно, где поле кончается. Если внутри f-строки нужна строка в кавычках, берут кавычки другого вида: <code>f"{'S12':&lt;8}"</code>. Так код работает и в версиях Python до 3.12, где кавычки того же вида внутри f-строки не допускались.</p>
         <div class="step step-see">Пример</div>
         <article class="example">
           <h3>Поля и заполнители</h3>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">align.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"|</span>{<span class="tok-str">'S12'</span>:<span class="tok-str">&lt;8</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)           <span class="tok-out"># → |S12     |</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"|</span>{<span class="tok-str">'S12'</span>:<span class="tok-str">&gt;8</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)           <span class="tok-out"># → |     S12|</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"|</span>{<span class="tok-str">'S12'</span>:<span class="tok-str">-^8</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)          <span class="tok-out"># → |--S12---|</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"|</span>{<span class="tok-num">42</span>:<span class="tok-str">&gt;6</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)              <span class="tok-out"># → |    42|</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"|</span>{<span class="tok-num">47.6</span>:<span class="tok-str">&gt;8.2f</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)         <span class="tok-out"># → |   47.60|</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"|</span>{<span class="tok-str">'Sample_00012'</span>:<span class="tok-str">&lt;6</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)  <span class="tok-out"># → |Sample_00012|</span></span></code></pre></div>
-            <div class="output-block predict"><span class="output-label">Вывод</span><pre>|S12     |
-|     S12|
-|--S12---|
-|    42|
-|   47.60|
-|Sample_00012|</pre></div>
+            <div class="code-block"><span class="code-label">align.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{<span class="tok-str">'S12'</span>:<span class="tok-str">&lt;8</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)           <span class="tok-out"># → S12     |</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{<span class="tok-str">'S12'</span>:<span class="tok-str">&gt;8</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)           <span class="tok-out"># →      S12|</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{<span class="tok-str">'S12'</span>:<span class="tok-str">-^8</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)          <span class="tok-out"># → --S12---|</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{<span class="tok-num">42</span>:<span class="tok-str">&gt;6</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)              <span class="tok-out"># →     42|</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{<span class="tok-num">47.6</span>:<span class="tok-str">&gt;8.2f</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)         <span class="tok-out"># →    47.60|</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f"</span>{<span class="tok-str">'Sample_00012'</span>:<span class="tok-str">&lt;6</span>}<span class="tok-str">|</span><span class="tok-str">"</span>)  <span class="tok-out"># → Sample_00012|</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>S12     |
+     S12|
+--S12---|
+    42|
+   47.60|
+Sample_00012|</pre></div>
           </div>
           <div class="analysis"><ol><li>Строки 1–2: строка из трех символов в поле шириной 8, пять пробелов справа или слева.</li><li>Строка 3: заполнитель <code>-</code> вместо пробелов; лишний символ при нечетном остатке ушел вправо.</li><li>Строка 4: число прижато вправо.</li><li>Строка 5: ширина 8 и два знака после точки вместе.</li><li>Строка 6: значение длиннее поля, поле расширилось.</li></ol></div>
         </article>

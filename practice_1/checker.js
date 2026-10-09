@@ -31,9 +31,6 @@
    4. ПРОГРЕСС. Решенные задачи отмечаются «✓ решено», в меню у страниц
       появляется счетчик «3/5» или «✓». Данные хранятся в localStorage
       этого браузера и никуда не отправляются.
-   7. ЗАПУСК БЕЗ ТЕСТОВ (версия 62). Кнопка «▶ Запустить» рядом с «Проверить» выполняет
-      программу на данных из поля «Ввод» и показывает вывод; тесты не запускаются.
-      Текст приглашения в input("…") при проверке в вывод не попадает.
    5. ШАБЛОН. В режиме set поле проверки заранее содержит строки с исходными
       данными; "template" в JSON задает свой шаблон. Код в поле сохраняется
       в этом браузере и восстанавливается при следующем открытии.
@@ -97,8 +94,7 @@
     "        def _input(prompt=''):",
     "            if prompt != '':",
     "                st['prompt'] = True",
-    "            if echo:",
-    "                out.write(str(prompt))",
+    "            out.write(str(prompt))",
     "            line = src.readline()",
     "            if line == '':",
     "                raise EOFError('EOF when reading a line')",
@@ -275,6 +271,9 @@
       var r0 = results.filter(function (r) { return !r.err && r.reads > 0 && r.reads < r.lines; })[0];
       if (r0) hints.push("Программа читает строк: " + r0.reads + ", а во входных данных их " + r0.lines +
         ". Каждое значение стоит на своей строке и читается отдельным input().");
+    }
+    if (results.some(function (r) { return r.prompt; })) {
+      hints.push("В input() передан текст приглашения, он попадает в вывод. В задачах данные читаются без него: input().");
     }
     var outs = results.map(function (r) { return normalize(r.out).join("\n"); });
     var exps = all.map(function (t) { return normalize(t.output).join("\n"); });
@@ -780,12 +779,9 @@
     var setMode = spec.tests.concat(spec.extra || []).some(function (t) { return t.set; });
 
     block.appendChild(el("p", "checker-title", "Проверка решения"));
-    block.appendChild(hintEl("p", "checker-note",
+    block.appendChild(el("p", "checker-note",
       "Вставьте код из файла " + file + " или выберите сам файл и нажмите «Проверить». Программа запускается на " +
       n + " тестах: на примерах из таблицы «Примеры» и на дополнительных, которые скрыты." +
-      (setMode ? "" : " Данные программа читает через `input()`, каждое значение со своей строки: `s = input()`, `n = int(input())`. " +
-        "Текст в скобках, например `input(\"Введите n: \")`, писать можно: проверка его не учитывает.") +
-      " Кнопка «Запустить» только выполняет программу на ваших данных, без тестов." +
       (setMode ? " Строки с исходными данными уже вставлены в поле: не меняйте имена переменных, проверка подставляет в эти строки свои значения." : "") +
       (spec.template_note ? " " + spec.template_note : "")));
     var area = el("textarea", "checker-code");
@@ -819,26 +815,9 @@
     var editor = makeEditor(area, "checker-editor");
     block.appendChild(editor);
 
-    /* «Запустить» без тестов (версия 62): программа выполняется на данных из поля «Ввод»,
-       прогресс и игровой режим не меняются */
-    var stdin = null, stdin0 = "";
-    if (!setMode) {
-      stdin0 = (spec.tests[0] && spec.tests[0].input || "").replace(/\n$/, "");
-      block.appendChild(el("span", "ex-stdin-label checker-stdin-label", "Ввод для «Запустить» (каждое значение с новой строки):"));
-      stdin = el("textarea", "ex-stdin checker-stdin");
-      stdin.value = stdin0;
-      stdin.rows = Math.max(1, stdin0.split("\n").length);
-      stdin.setAttribute("spellcheck", "false");
-      stdin.setAttribute("aria-label", "Ввод для запуска: каждое значение с новой строки");
-      block.appendChild(stdin);
-    }
-
     var bar = el("div", "checker-bar");
     var run = el("button", "checker-run", "Проверить");
     run.type = "button";
-    var tryBtn = el("button", "checker-try", "▶ Запустить");
-    tryBtn.type = "button";
-    tryBtn.title = "Выполнить программу на данных из поля «Ввод», без проверки тестами";
     var pick = el("label", "checker-file", "Выбрать файл .py");
     var input = document.createElement("input");
     input.type = "file";
@@ -850,7 +829,7 @@
     var clear = el("button", "checker-clear", "↺ Сбросить");
     clear.type = "button";
     clear.title = template ? "Вернуть шаблон и убрать результат проверки" : "Очистить поле и убрать результат проверки";
-    bar.appendChild(run); bar.appendChild(tryBtn); bar.appendChild(pick); bar.appendChild(clear);
+    bar.appendChild(run); bar.appendChild(pick); bar.appendChild(clear);
     block.appendChild(bar);
 
     var box = el("div", "checker-result");
@@ -869,7 +848,6 @@
     });
     clear.addEventListener("click", function () {
       area.value = template; resetSize(area); editor.sync(); area.scrollTop = 0;
-      if (stdin) stdin.value = stdin0;
       box.innerHTML = ""; box.className = "checker-result";
       input.value = "";                               /* тот же файл можно выбрать снова */
       try { window.localStorage.removeItem(CODE_KEY); } catch (e) { /* хранилище недоступно */ }
@@ -881,28 +859,6 @@
         document.documentElement.dispatchEvent(new CustomEvent("practice:progress"));
       }
       block.dispatchEvent(new CustomEvent("checker:reset", { bubbles: true, detail: { file: file } }));
-    });
-    tryBtn.addEventListener("click", function () {
-      var code = area.value;
-      if (!code.trim()) {
-        box.className = "checker-result is-fail";
-        box.textContent = "Вставьте код программы в поле выше.";
-        return;
-      }
-      var data = stdin ? stdin.value.replace(/\s+$/, "") + "\n" : "";
-      tryBtn.disabled = true;
-      box.className = "checker-result is-wait";
-      box.textContent = workerReady ? "Запускаю…" : LOADING;
-      runCode(code, [{ input: data, set: null }], true).then(function (res) {
-        box.innerHTML = "";
-        box.className = "checker-result is-run";
-        box.appendChild(el("p", "checker-verdict", "Вывод программы (без проверки тестами)"));
-        var pre = el("pre", "checker-run-out");
-        renderRunOutput(pre, res);
-        box.appendChild(pre);
-      })
-        .catch(function (e) { box.className = "checker-result is-fail"; box.textContent = "✗ " + failText(e); })
-        .then(function () { tryBtn.disabled = false; });
     });
     run.addEventListener("click", function () {
       var code = area.value;

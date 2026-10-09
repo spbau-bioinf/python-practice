@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Упрощение проверок. Практика 3. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t3_08.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 3</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t3_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t3_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name"><code>bool</code> и сравнения</span></span></a></li>
+        <li class="menu-sub"><a href="t3_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Логические операторы</span></span></a></li>
+        <li class="menu-sub"><a href="t3_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Сокращенное вычисление</span></span></a></li>
+        <li class="menu-sub"><a href="t3_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name"><code>if</code> и <code>else</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Цепочка <code>elif</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Истинность значений</span></span></a></li>
+        <li class="menu-sub"><a href="t3_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name"><code>None</code> и <code>is</code></span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t3_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Упрощение проверок</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Вложенные условия</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Плоская цепочка и цепочка сравнений</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Условное выражение</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">3.8.1</span> <span class="anc-ex-title" data-variant="basic">Температура плавления праймера</span><span class="anc-ex-title" data-variant="medium">Первое нарушенное правило</span><span class="anc-ex-title" data-variant="advanced">Лунка планшета</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t3_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Проверка записи FASTA</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">08</span>
+      <p class="page-path"><span>Практика 3</span><span class="page-path-sep" aria-hidden="true">›</span><span>Вложенные условия, цепочка сравнений, условное выражение</span></p>
+      <h1>Упрощение проверок</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться заменять вложенные условия плоской цепочкой, записывать двойное сравнение цепочкой <code>a &lt;= x &lt;= b</code> и выбирать одно из двух значений условным выражением.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Вложенные условия</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Проверка данных обычно состоит из нескольких правил: заголовок начинается с <code>&gt;</code>, в идентификаторе нет пробелов, идентификатор не длиннее 25 символов. Самый прямой способ записать такие правила: вложить каждую проверку в предыдущую. Это работает, но с каждым правилом код уходит вправо лесенкой.</p>
+        <p>Внутри ветви может стоять другая инструкция <code>if</code> со своим блоком и своим отступом. Такое условие называют вложенным. Вложенные условия работают правильно, но их трудно читать: чтобы понять, когда печатается сообщение из ветви <code>else</code>, приходится искать ее <code>if</code> по отступу на много строк выше. Сообщение о нарушении правила оказывается далеко от проверки этого правила.</p>
+        <p class="definition th-full"><span class="term">Вложенное условие</span>&nbsp;— условная инструкция внутри ветви другой условной инструкции.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Проверка заголовка: лесенка</h3>
+          <p>По правилам NCBI строка-определение FASTA начинается с <code>&gt;</code>, а идентификатор после нее не содержит пробелов и не длиннее 25 символов. В учебном примере заголовок состоит только из идентификатора.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">ladder.py</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;Seq1"</span></span>
+<span class="ln">sid <span class="tok-op">=</span> header[<span class="tok-num">1</span>:]</span>
+<span class="ln"><span class="tok-kw">if</span> header.startswith(<span class="tok-str">"&gt;"</span>):</span>
+<span class="ln">    <span class="tok-kw">if</span> <span class="tok-str">" "</span> <span class="tok-kw">not</span> <span class="tok-kw">in</span> sid:</span>
+<span class="ln">        <span class="tok-kw">if</span> <span class="tok-builtin">len</span>(sid) <span class="tok-op">&lt;=</span> <span class="tok-num">25</span>:</span>
+<span class="ln">            <span class="tok-builtin">print</span>(<span class="tok-str">"OK"</span>)  <span class="tok-out"># → OK</span></span>
+<span class="ln">        <span class="tok-kw">else</span>:</span>
+<span class="ln">            <span class="tok-builtin">print</span>(<span class="tok-str">"длина ID"</span>)</span>
+<span class="ln">    <span class="tok-kw">else</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(<span class="tok-str">"пробел в ID"</span>)</span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"нет &gt;"</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>OK</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строки 3–5: три правила вложены друг в друга, каждое на своем уровне отступа.</li><li>Строки 7–12: три сообщения об ошибках стоят в обратном порядке, и каждое далеко от своей проверки. Сообщение «нет &gt;» в последней строке относится к условию в строке 3.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Незаметная ошибка лесенки</h3>
+          <p>Та же программа для заголовка из одного знака <code>&gt;</code>. Предскажите вывод.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">ladder_empty.py</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;"</span></span>
+<span class="ln">sid <span class="tok-op">=</span> header[<span class="tok-num">1</span>:]</span>
+<span class="ln"><span class="tok-kw">if</span> header.startswith(<span class="tok-str">"&gt;"</span>):</span>
+<span class="ln">    <span class="tok-kw">if</span> <span class="tok-str">" "</span> <span class="tok-kw">not</span> <span class="tok-kw">in</span> sid:</span>
+<span class="ln">        <span class="tok-kw">if</span> <span class="tok-builtin">len</span>(sid) <span class="tok-op">&lt;=</span> <span class="tok-num">25</span>:</span>
+<span class="ln">            <span class="tok-builtin">print</span>(<span class="tok-str">"OK"</span>)  <span class="tok-out"># → OK</span></span>
+<span class="ln">        <span class="tok-kw">else</span>:</span>
+<span class="ln">            <span class="tok-builtin">print</span>(<span class="tok-str">"длина ID"</span>)</span>
+<span class="ln">    <span class="tok-kw">else</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(<span class="tok-str">"пробел в ID"</span>)</span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"нет &gt;"</span>)</span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>OK</pre></div>
+          </div>
+          <div class="analysis"><p>Идентификатор пустой, но все три проверки проходят: знак <code>&gt;</code> есть, пробела в пустой строке нет, длина 0 не больше 25. В лесенке не хватает правила «идентификатор не пустой». В плоской записи следующего раздела его легко добавить: нижняя граница в цепочке сравнений <code>1 &lt;= len(sid) &lt;= 25</code>.</p></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Запустите лесенку для заголовков <code>"&gt;seq 1"</code> и <code>"Seq1"</code>. Найдите в коде строку, которая печатает каждое из сообщений.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_ladder.py</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;NM_000546"</span></span>
+<span class="ln">sid <span class="tok-op">=</span> header[<span class="tok-num">1</span>:]</span>
+<span class="ln"><span class="tok-kw">if</span> header.startswith(<span class="tok-str">"&gt;"</span>):</span>
+<span class="ln">    <span class="tok-kw">if</span> <span class="tok-str">" "</span> <span class="tok-kw">not</span> <span class="tok-kw">in</span> sid:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(<span class="tok-str">"OK"</span>)  <span class="tok-out"># → OK</span></span>
+<span class="ln">    <span class="tok-kw">else</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(<span class="tok-str">"пробел в ID"</span>)</span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"нет &gt;"</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>OK</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Плоская цепочка и цепочка сравнений</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Лесенку можно выпрямить, сохранив все ее проверки, а заодно добавить недостающее правило о пустом идентификаторе. Приемов три, и все они опираются на то, что уже знакомо: <code>and</code> со страницы 02, цепочку <code>elif</code> со страницы 05 и новую запись двойного сравнения.</p>
+        <p>Вложенный <code>if</code> без <code>else</code> заменяют одним условием с <code>and</code>: <code>if a:</code> и внутри <code>if b:</code> равносильно <code>if a and b:</code>. Проверки с сообщениями об ошибках переворачивают и ставят первыми ветвями плоской цепочки <code>elif</code>: каждая ветвь проверяет нарушение правила и тут же сообщает о нем, а верному случаю достается последняя ветвь <code>else</code>. Цепочка останавливается на первом нарушенном правиле.</p>
+        <p>Двойное сравнение записывают как в математике: <code>1 &lt;= n &lt;= 25</code> означает <code>1 &lt;= n and n &lt;= 25</code>, только <code>n</code> вычисляется один раз. Сравнения связывают сильнее <code>not</code>, поэтому <code>not 1 &lt;= n &lt;= 25</code> читается как <code>not (1 &lt;= n &lt;= 25)</code>.</p>
+        <p class="definition th-full"><span class="term">Цепочка сравнений</span>&nbsp;— запись нескольких сравнений подряд, например <code>a &lt; b &lt;= c</code>; она истинна, если истинны все соседние сравнения.</p>
+        <div class="table-wrap th-full">
+          <table class="data">
+            <thead><tr><th>Было</th><th>Стало</th><th>Прием</th></tr></thead>
+            <tbody>
+              <tr><td><code>if a:</code> / <code>if b:</code></td><td><code>if a and b:</code></td><td>вложенность заменена <code>and</code></td></tr>
+              <tr><td><code>x &gt;= 1 and x &lt;= 25</code></td><td><code>1 &lt;= x &lt;= 25</code></td><td>цепочка сравнений</td></tr>
+              <tr><td><code>if ok:</code> … <code>else:</code> ошибка</td><td><code>if not ok:</code> ошибка</td><td>ошибка первой ветвью</td></tr>
+              <tr><td><code>if c:</code> <code>x = a</code> <code>else:</code> <code>x = b</code></td><td><code>x = a if c else b</code></td><td>условное выражение (раздел 3)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Проверка заголовка: плоская цепочка</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">flat.py</span><pre><code><span class="ln">header <span class="tok-op">=</span> <span class="tok-str">"&gt;Seq1"</span></span>
+<span class="ln">sid <span class="tok-op">=</span> header[<span class="tok-num">1</span>:]</span>
+<span class="ln"><span class="tok-kw">if</span> <span class="tok-kw">not</span> header.startswith(<span class="tok-str">"&gt;"</span>):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"нет &gt;"</span>)</span>
+<span class="ln"><span class="tok-kw">elif</span> <span class="tok-str">" "</span> <span class="tok-kw">in</span> sid:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"пробел в ID"</span>)</span>
+<span class="ln"><span class="tok-kw">elif</span> <span class="tok-kw">not</span> <span class="tok-num">1</span> <span class="tok-op">&lt;=</span> <span class="tok-builtin">len</span>(sid) <span class="tok-op">&lt;=</span> <span class="tok-num">25</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"длина ID"</span>)</span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"OK"</span>)  <span class="tok-out"># → OK</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>OK</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строки 3–8: каждое правило стоит рядом со своим сообщением, и читать их можно сверху вниз, как список требований.</li><li>Условия перевернулись: вместо «начинается с <code>&gt;</code>» стоит «не начинается», потому что ветвь описывает ошибку.</li><li>Строка 7: цепочка <code>1 &lt;= len(sid) &lt;= 25</code> отсекает и пустой идентификатор, который пропускала лесенка.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Вложенность заменена <code>and</code></h3>
+          <p>Предскажите, напечатают ли обе программы одно и то же.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">nested_and.py</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.47</span></span>
+<span class="ln"><span class="tok-kw">if</span> gc <span class="tok-op">&gt;</span> <span class="tok-num">0.4</span>:</span>
+<span class="ln">    <span class="tok-kw">if</span> gc <span class="tok-op">&lt;</span> <span class="tok-num">0.6</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(<span class="tok-str">"средний GC"</span>)  <span class="tok-out"># → средний GC</span></span>
+<span class="ln"><span class="tok-kw">if</span> <span class="tok-num">0.4</span> <span class="tok-op">&lt;</span> gc <span class="tok-op">&lt;</span> <span class="tok-num">0.6</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"средний GC"</span>)      <span class="tok-out"># → средний GC</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>средний GC
+средний GC</pre></div>
+          </div>
+          <div class="analysis"><p>Строки 2–4 и строки 5–6 проверяют одно и то же. Во второй записи один уровень отступа и одно условие, которое читается как математическое неравенство.</p></div>
+        </article>
+        <details class="deep"><summary>Подробнее: необычные цепочки сравнений</summary><p>Цепочку можно составить из любых операторов сравнения: <code>1 &lt; x &gt; 3</code> означает <code>1 &lt; x and x &gt; 3</code>, а <code>a == b == c</code> проверяет, что равны все три значения. Такие записи допустимы, но читаются плохо. Пишите цепочки только в виде <code>a &lt; x &lt; b</code> или <code>a &lt;= x &lt;= b</code>, как неравенство в математике. В большинстве других языков, например в C и JavaScript, запись <code>1 &lt; x &lt; 10</code> означает совсем другое, поэтому опытные программисты иногда избегают ее и в Python.</p></details>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Перепишите условие цепочкой сравнений и проверьте его на значениях 0.3, 0.5 и 0.6.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_chain.py</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.5</span></span>
+<span class="ln"><span class="tok-kw">if</span> gc <span class="tok-op">&gt;=</span> <span class="tok-num">0.4</span> <span class="tok-kw">and</span> gc <span class="tok-op">&lt;=</span> <span class="tok-num">0.6</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"средний GC"</span>)  <span class="tok-out"># → средний GC</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"вне диапазона"</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>средний GC</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Условное выражение</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Часто ветви <code>if</code> и <code>else</code> отличаются только значением, которое получает переменная. Четыре строки ради выбора одного из двух слов выглядят тяжеловесно, и для этого случая в Python есть запись в одну строку.</p>
+        <p>Условное выражение <code>a if условие else b</code> дает значение <code>a</code>, если условие истинно, и <code>b</code>, если ложно. Сначала вычисляется условие, затем только одно из двух значений. Часть <code>else</code> обязательна: выражение должно дать значение в любом случае. Условное выражение уместно в простых случаях, когда нужно выбрать одно из двух значений; если ветви длинные или вариантов больше двух, пишите обычный <code>if</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Выбор одного из двух слов</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">cond_expr.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ATGNNCGT"</span></span>
+<span class="ln">status <span class="tok-op">=</span> <span class="tok-str">"чистая"</span> <span class="tok-kw">if</span> <span class="tok-str">"N"</span> <span class="tok-kw">not</span> <span class="tok-kw">in</span> seq <span class="tok-kw">else</span> <span class="tok-str">"есть N"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(status)  <span class="tok-out"># → есть N</span></span>
+<span class="ln">line <span class="tok-op">=</span> <span class="tok-str">"&gt;Seq1"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"заголовок"</span> <span class="tok-kw">if</span> line.startswith(<span class="tok-str">"&gt;"</span>) <span class="tok-kw">else</span> <span class="tok-str">"последовательность"</span>)  <span class="tok-out"># → заголовок</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>есть N
+заголовок</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: условие ложно, переменная получает значение после <code>else</code>.</li><li>Строка 5: условное выражение можно сразу передать в <code>print()</code>.</li></ol></div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: условное выражение без <code>else</code></p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: SyntaxError</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.5</span></span>
+<span class="ln">status <span class="tok-op">=</span> <span class="tok-str">"высокий"</span> <span class="tok-kw">if</span> gc <span class="tok-op">&gt;</span> <span class="tok-num">0.6</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(status)</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>  File "cond.py", line 2
+    status = "высокий" if gc &gt; 0.6
+             ^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.5</span></span>
+<span class="ln">status <span class="tok-op">=</span> <span class="tok-str">"высокий"</span> <span class="tok-kw">if</span> gc <span class="tok-op">&gt;</span> <span class="tok-num">0.6</span> <span class="tok-kw">else</span> <span class="tok-str">"не высокий"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(status)  <span class="tok-out"># → не высокий</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>не высокий</pre></div>
+          <p>Инструкция <code>if</code> может пропустить блок, а выражение обязано дать значение. Без <code>else</code> Python не знает, что положить в <code>status</code> при ложном условии.</p>
+        </div>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените четыре строки с <code>if</code> и <code>else</code> одной строкой с условным выражением. Проверьте на длинах 15 и 30.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_cond.py</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-num">15</span></span>
+<span class="ln"><span class="tok-kw">if</span> length <span class="tok-op">&lt;</span> <span class="tok-num">20</span>:</span>
+<span class="ln">    kind <span class="tok-op">=</span> <span class="tok-str">"короткая"</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    kind <span class="tok-op">=</span> <span class="tok-str">"длинная"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(kind)  <span class="tok-out"># → короткая</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>короткая</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t3_08_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t3_08_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t3_08_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 3.8.1. Температура плавления праймера</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Праймер подходит для ПЦР, если его температура плавления от 52 до 65 градусов включительно. Дана температура плавления. Выведите <code>подходит</code> или <code>не подходит</code>. Запишите условие цепочкой сравнений, а выбор слова условным выражением.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: вещественное число от 20 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Слово <code>подходит</code> или слова <code>не подходит</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>70</pre></td><td><pre>не подходит</pre></td></tr>
+                <tr><td><pre>65</pre></td><td><pre>подходит</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_08_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 3.8.1. Первое нарушенное правило</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>При приемке пробы проверяют два правила по порядку: объем от 10 до 200&nbsp;мкл включительно, концентрация не меньше 5&nbsp;нг/мкл. Даны объем и концентрация. Выведите сообщение о первом нарушенном правиле: <code>объем вне диапазона</code> или <code>мало вещества</code>. Если оба правила выполнены, выведите <code>OK</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Две строки: объем и концентрация, вещественные числа от 0 до 1000.</p>
+          <h4>Выходные данные</h4>
+          <p>Одна строка: <code>объем вне диапазона</code>, <code>мало вещества</code> или <code>OK</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>50
+12.5</pre></td><td><pre>OK</pre></td></tr>
+                <tr><td><pre>5
+2</pre></td><td><pre>объем вне диапазона</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_08_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 3.8.1. Лунка планшета</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Лунку 96-луночного планшета обозначают строкой из буквы ряда от A до H и двузначного номера столбца от 01 до 12, например <code>B07</code>. Лунки нумеруют по рядам: A01 имеет номер 1, A12 номер 12, B01 номер 13, H12 номер 96. Дано обозначение лунки. Проверьте его и выведите номер лунки или сообщение о первой найденной ошибке.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Строки тоже сравниваются цепочкой: <code>"A" &lt;= row &lt;= "H"</code>. Номер ряда дает функция <code>ord()</code>. Прежде чем превращать столбец в число, проверьте методом <code>isdigit()</code>, что в нем одни цифры: <code>"07".isdigit()</code> дает <code>True</code>, <code>"7a".isdigit()</code> дает <code>False</code>.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка длиной от 0 до 10 символов.</p>
+          <h4>Выходные данные</h4>
+          <p>Номер лунки от 1 до 96. Если обозначение неверно, сообщение о первой ошибке в таком порядке проверки: <code>неверная длина</code>, если длина не равна 3; <code>неверный ряд</code>, если первый символ не прописная буква от A до H; <code>неверный столбец</code>, если два последних символа не число от 01 до 12.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>B07</pre></td><td><pre>19</pre></td></tr>
+                <tr><td><pre>I05</pre></td><td><pre>неверный ряд</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_08_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_3</code> создайте папку <code>t3_08</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t3_08_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t3_08_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t3_08_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t3_08</code> в свой репозиторий внутрь папки <code>projects_3</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_3/
+    └── t3_08/
+        └── t3_08_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_3/
+    └── t3_08/
+        └── t3_08_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_3/
+    └── t3_08/
+        └── t3_08_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t3_07.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">07 <code>None</code> и <code>is</code></span></a>
+        <a class="pcard pcard-next" href="t3_09.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">09 Проверка записи FASTA</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

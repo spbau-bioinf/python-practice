@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>None и is. Практика 3. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t3_07.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 3</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t3_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t3_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name"><code>bool</code> и сравнения</span></span></a></li>
+        <li class="menu-sub"><a href="t3_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Логические операторы</span></span></a></li>
+        <li class="menu-sub"><a href="t3_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Сокращенное вычисление</span></span></a></li>
+        <li class="menu-sub"><a href="t3_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name"><code>if</code> и <code>else</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Цепочка <code>elif</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Истинность значений</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t3_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name"><code>None</code> и <code>is</code></span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Значения нет: <code>None</code></a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> <code>==</code> и <code>is</code></a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> <code>not x</code> и <code>x is None</code></a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">3.7.1</span> <span class="anc-ex-title" data-variant="basic">Масса в миллиграммах</span><span class="anc-ex-title" data-variant="medium">Меньшее из двух измерений</span><span class="anc-ex-title" data-variant="advanced">Первый цикл выше порога</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t3_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Упрощение проверок</span></span></a></li>
+        <li class="menu-sub"><a href="t3_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Проверка записи FASTA</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">07</span>
+      <p class="page-path"><span>Практика 3</span><span class="page-path-sep" aria-hidden="true">›</span><span>Отсутствие значения</span></p>
+      <h1><code>None</code> и <code>is</code></h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться обозначать отсутствие значения через <code>None</code>, проверять его оператором <code>is</code> и не путать отсутствие значения с нулем и пустой строкой.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Значения нет: <code>None</code></h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Пустая строка означает «строка есть, но в ней ничего нет». Ноль означает «измерили и получили ноль». А бывает, что значения нет совсем: анализ еще не проводили, прибор не дал результата, поле не заполнили. Такой случай нужно отличать от пустого и от нулевого значения.</p>
+        <p>Отсутствие значения в Python обозначает специальный объект <code>None</code>. Это единственный объект типа <code>NoneType</code>: во всей программе <code>None</code> один. Он не равен ни <code>0</code>, ни <code>""</code>, хотя в условии, как и они, ложен (страница 06).</p>
+        <p><code>None</code> возвращает функция, которая ничего не возвращает явно. Например, <code>print()</code> печатает текст, но результата не отдает: после <code>result = print("A")</code> в переменной <code>result</code> лежит <code>None</code>. Свои функции вы будете писать в теме 7 «Функции и декомпозиция».</p>
+        <p>Чаще всего <code>None</code> служит начальным значением переменной, которая получит настоящее значение только в одной из ветвей: <code>mass = None</code>, а затем <code>mass = float(text)</code>, если поле заполнено.</p>
+        <p class="th-full">В биоинформатических программах <code>None</code> встречается часто. Функция readfq Хэна Ли, которую разбирает книга В.&nbsp;Буффало «Bioinformatics Data Skills», читает записи файлов FASTA и FASTQ и для каждой возвращает идентификатор, последовательность и строку качества прочтения. У записи FASTA качества нет, и вместо него приходит <code>None</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Что такое <code>None</code></h3>
+          <p>Предскажите вывод.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">none.py</span><pre><code><span class="ln">result <span class="tok-op">=</span> <span class="tok-builtin">print</span>(<span class="tok-str">"A"</span>)           <span class="tok-out"># → A</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(result)                 <span class="tok-out"># → None</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-const">None</span>))             <span class="tok-out"># → &lt;class 'NoneType'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-const">None</span> <span class="tok-op">==</span> <span class="tok-num">0</span>, <span class="tok-const">None</span> <span class="tok-op">==</span> <span class="tok-str">""</span>)  <span class="tok-out"># → False False</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>A
+None
+&lt;class 'NoneType'&gt;
+False False</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: <code>print()</code> печатает <code>A</code> и возвращает <code>None</code>.</li><li>Строка 2: <code>None</code> печатается словом <code>None</code>.</li><li>Строка 4: <code>None</code> не равен ни нулю, ни пустой строке.</li></ol></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Введите в поле ввода число, а затем запустите программу с пустым вводом. Что напечатано во втором случае?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_none.py</span><pre><code><span class="ln">text <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
+<span class="ln">mass <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-kw">if</span> text:</span>
+<span class="ln">    mass <span class="tok-op">=</span> <span class="tok-builtin">float</span>(text)</span>
+<span class="ln"><span class="tok-builtin">print</span>(mass)  <span class="tok-out"># → 2.5</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">2.5</kbd>
+2.5</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. <code>==</code> и <code>is</code></h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Два близнеца одинаковы, но это два разных человека. Так и с объектами: два значения могут быть равны и при этом быть разными объектами в памяти. Ссылочную модель, в которой имя указывает на объект, вы видели на странице 04 первой практики.</p>
+        <p>Оператор <code>==</code> отвечает на вопрос «равны ли значения». Оператор <code>is</code> отвечает на вопрос «один ли это объект». Равные значения не обязаны быть одним объектом. <code>is not</code> дает противоположный ответ.</p>
+        <p class="rule"><code>None</code> существует в одном экземпляре, поэтому его проверяют через <code>is</code>: <code>x is None</code> и <code>x is not None</code>. Во всех остальных случаях значения сравнивают через <code>==</code>.</p>
+        <p class="th-full">Проверка <code>x == None</code> тоже работает, но руководство по стилю PEP 8 требует сравнивать с <code>None</code> только через <code>is</code> или <code>is not</code> и никогда через <code>==</code>: вопрос «это он?» точнее вопроса «равен ли ему». Проверка на <code>None</code> почти единственный частый случай, где нужен <code>is</code>. Если сомневаетесь, пишите <code>==</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Проверка на <code>None</code></h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">is_none.py</span><pre><code><span class="ln">quality <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(quality <span class="tok-kw">is</span> <span class="tok-const">None</span>)      <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(quality <span class="tok-kw">is</span> <span class="tok-kw">not</span> <span class="tok-const">None</span>)  <span class="tok-out"># → False</span></span>
+<span class="ln">reads <span class="tok-op">=</span> <span class="tok-num">0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(reads <span class="tok-kw">is</span> <span class="tok-const">None</span>)        <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True
+False
+False</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строки 2–3: строки качества нет, и <code>is None</code> это подтверждает.</li><li>Строка 5: ноль прочтений это значение, а не его отсутствие.</li></ol></div>
+        </article>
+        <details class="deep"><summary>Подробнее: почему <code>is</code> с числами «иногда работает»</summary><p>Для списков <code>a = [1, 2, 3]</code> и <code>b = [1, 2, 3]</code> выражение <code>a == b</code> истинно, а <code>a is b</code> ложно: это два разных списка с одинаковым содержимым (списки разбираются в теме 5 «Списки и кортежи»). С небольшими целыми числами <code>is</code> иногда отвечает <code>True</code>: интерпретатор CPython заранее создает целые от −5 до 256 в одном экземпляре. Для больших чисел и для строк ответ зависит от того, как получено значение. Полагаться на это нельзя, поэтому значения сравнивают через <code>==</code>.</p></details>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Поставьте в <code>seq_id</code> значение <code>None</code>, затем пустую строку. Для какого из двух значений <code>is None</code> дает <code>True</code>?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_is.py</span><pre><code><span class="ln">seq_id <span class="tok-op">=</span> <span class="tok-str">"NM_000546"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(seq_id <span class="tok-kw">is</span> <span class="tok-const">None</span>)  <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(seq_id <span class="tok-op">==</span> <span class="tok-str">""</span>)    <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>False
+False</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. <code>not x</code> и <code>x is None</code></h2>
+        <div class="step step-learn">Теория</div>
+        <p>Проверка <code>if not x:</code> истинна для всех ложных значений сразу: для <code>None</code>, для нуля и для пустой строки. Поэтому она не отличает «значения нет» от «значение равно нулю». Последовательность из одних A и T имеет GC-состав ровно 0.0, и это честный результат; <code>if not gc:</code> примет его за отсутствие результата.</p>
+        <p class="rule">Если ноль или пустая строка могут быть настоящим значением, отсутствие значения проверяют через <code>x is None</code>, а не через <code>not x</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>GC-состав равен нулю</h3>
+          <p>Предскажите, сколько раз программа напечатает сообщение.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">not_vs_none.py</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.0</span></span>
+<span class="ln"><span class="tok-kw">if</span> <span class="tok-kw">not</span> gc:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"GC не посчитан"</span>)  <span class="tok-out"># → GC не посчитан</span></span>
+<span class="ln"><span class="tok-kw">if</span> gc <span class="tok-kw">is</span> <span class="tok-const">None</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"GC не посчитан"</span>)</span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>GC не посчитан</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: <code>not 0.0</code> истинно, и программа ошибочно сообщает, что результата нет.</li><li>Строка 4: <code>0.0</code> не <code>None</code>, и вторая проверка отвечает верно.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Три состояния одного поля</h3>
+          <p>Программа ждет ввода. Пользователь набирает <kbd class="user-input">0</kbd> и нажимает Enter.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">three_states.py</span><pre><code><span class="ln">text <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
+<span class="ln">reads <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-kw">if</span> text:</span>
+<span class="ln">    reads <span class="tok-op">=</span> <span class="tok-builtin">int</span>(text)</span>
+<span class="ln"><span class="tok-kw">if</span> reads <span class="tok-kw">is</span> <span class="tok-const">None</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"не измерено"</span>)</span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"прочтений:"</span>, reads)  <span class="tok-out"># → прочтений: 0</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">0</kbd>
+прочтений: 0</pre></div>
+          </div>
+          <div class="analysis"><p>У поля три состояния: пустое (значения нет, <code>reads</code> остается <code>None</code>), ноль и положительное число. Проверка <code>is None</code> отделяет первое состояние от двух других. С <code>if not reads:</code> ноль прочтений превратился бы в «не измерено».</p></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Программа считает ноль прочтений отсутствием измерения. Замените проверку на <code>is None</code> и запустите с вводом 0 и с пустым вводом.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_zero.py</span><pre><code><span class="ln">text <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
+<span class="ln">reads <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-kw">if</span> text:</span>
+<span class="ln">    reads <span class="tok-op">=</span> <span class="tok-builtin">int</span>(text)</span>
+<span class="ln"><span class="tok-kw">if</span> <span class="tok-kw">not</span> reads:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"не измерено"</span>)  <span class="tok-out"># → не измерено</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"прочтений:"</span>, reads)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">0</kbd>
+не измерено</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t3_07_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t3_07_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t3_07_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 3.7.1. Масса в миллиграммах</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана масса пробы в граммах. Если поле пустое, массу не измеряли. Переведите массу в миллиграммы. Масса 0 означает пустую пробирку, и это тоже измерение. Если поле пустое, сохраните в переменной массы <code>None</code>, а затем проверьте ее через <code>is None</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: число от 0 до 100, кратное 0,25 (например, <code>3.5</code> или <code>0.25</code>), или пустая строка.</p>
+          <h4>Выходные данные</h4>
+          <p>Масса в миллиграммах в том виде, в каком ее печатает Python, или слова <code>не измерено</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>0.25</pre></td><td><pre>250.0</pre></td></tr>
+                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>не измерено</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_07_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 3.7.1. Меньшее из двух измерений</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрацию измеряли двумя приборами, но любой из них мог не дать результата: тогда его поле пустое. Выведите меньшее из полученных значений. Если результат дал только один прибор, выведите его значение. Если ни один, выведите <code>нет данных</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Две строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно число в том виде, в каком его печатает Python, или слова <code>нет данных</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>4.2
+3.9</pre></td><td><pre>3.9</pre></td></tr>
+                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+5.1</pre></td><td><pre>5.1</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_07_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 3.7.1. Первый цикл выше порога</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Флуоресценцию измерили в циклах 0, 1 и 2, но некоторые измерения могли не записаться: их поля пустые. Найдите номер первого цикла, в котором измерение есть и оно строго больше порога. Если такого цикла нет, выведите <code>нет сигнала</code>.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Незаписанное измерение удобно хранить как <code>None</code>, но сравнивать <code>None</code> с числом нельзя: сначала проверьте, что значение есть (страница 03). Найденный номер цикла тоже можно хранить в переменной, начав с <code>None</code>. Подумайте, чем опасна проверка <code>if not cycle:</code>.</p></details>
+          <h4>Входные данные</h4>
+          <p>В первой строке порог, в следующих трех строках измерения циклов 0, 1 и 2. Порог и измерения вещественные, от 0 до 100; поле измерения может быть пустым.</p>
+          <h4>Выходные данные</h4>
+          <p>Номер цикла: 0, 1 или 2, или слова <code>нет сигнала</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>10
+3.5
+12.1
+15</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>10
+11
+2
+<span class="io-empty">(пустая строка)</span></pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_07_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_3</code> создайте папку <code>t3_07</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t3_07_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t3_07_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t3_07_1_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t3_07</code> в свой репозиторий внутрь папки <code>projects_3</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_3/
+    └── t3_07/
+        └── t3_07_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_3/
+    └── t3_07/
+        └── t3_07_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_3/
+    └── t3_07/
+        └── t3_07_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t3_06.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">06 Истинность значений</span></a>
+        <a class="pcard pcard-next" href="t3_08.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">08 Упрощение проверок</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

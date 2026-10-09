@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bool и сравнения. Практика 3. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t3_01.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 3</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t3_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t3_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name"><code>bool</code> и сравнения</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Логический тип</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Операторы сравнения</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Строки и разные типы</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">3.1.1</span> <span class="anc-ex-title" data-variant="basic">Кислая среда</span><span class="anc-ex-title" data-variant="medium">Хватит ли буфера</span><span class="anc-ex-title" data-variant="advanced">Сколько измерений выше порога</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">3.1.2</span> <span class="anc-ex-title" data-variant="basic">Номер с ведущими нулями</span><span class="anc-ex-title" data-variant="medium">Порядок генов</span><span class="anc-ex-title" data-variant="advanced">Одна ли это проба</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t3_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Логические операторы</span></span></a></li>
+        <li class="menu-sub"><a href="t3_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Сокращенное вычисление</span></span></a></li>
+        <li class="menu-sub"><a href="t3_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name"><code>if</code> и <code>else</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Цепочка <code>elif</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Истинность значений</span></span></a></li>
+        <li class="menu-sub"><a href="t3_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name"><code>None</code> и <code>is</code></span></span></a></li>
+        <li class="menu-sub"><a href="t3_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Упрощение проверок</span></span></a></li>
+        <li class="menu-sub"><a href="t3_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Проверка записи FASTA</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">01</span>
+      <p class="page-path"><span>Практика 3</span><span class="page-path-sep" aria-hidden="true">›</span><span>Логический тип и сравнения</span></p>
+      <h1><code>bool</code> и сравнения</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>30 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Научиться получать ответ «да» или «нет» сравнением, сравнивать числа из ввода и считать истинные ответы сложением логических значений.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Логический тип</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Любое решение программы начинается с ответа «да» или «нет»: начинается ли строка с <code>&gt;</code>, длиннее ли последовательность 100 нуклеотидов, превышает ли концентрация порог. Записать такой ответ строкой «да» неудобно: строку можно написать с опечаткой, а на вопрос «да или нет» ответов ровно два. Поэтому у ответа есть свой тип данных.</p>
+        <p>Ответ «да» или «нет» в программе имеет тип <code>bool</code>. У этого типа ровно два значения: <code>True</code> (истина) и <code>False</code> (ложь). Тип <code>bool</code> встречался на странице 05 первой практики; в этой практике он становится главным.</p>
+        <p class="definition"><span class="term">Логическое значение</span>&nbsp;— значение типа <code>bool</code>, то есть <code>True</code> или <code>False</code>.</p>
+        <p><code>True</code> и <code>False</code> пишутся с прописной буквы и без кавычек. <code>"True"</code> в кавычках уже строка из четырех букв, а слово <code>true</code> со строчной буквы Python не знает. В арифметике <code>True</code> ведет себя как 1, а <code>False</code> как 0: <code>True + True</code> дает 2. Поэтому сумма нескольких логических значений равна числу истинных среди них.</p>
+        <p class="th-full">Тип <code>bool</code> появился в Python 2.3 (предложение PEP 285). До этого вместо истины и лжи писали 1 и 0, и новый тип сохранил это родство: <code>bool</code> устроен как разновидность целого типа <code>int</code>. Поэтому сумма логических значений получается целым числом.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Значения типа <code>bool</code></h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">bool_type.py</span><pre><code><span class="ln">answer <span class="tok-op">=</span> <span class="tok-const">True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(answer)               <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(answer))         <span class="tok-out"># → &lt;class 'bool'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(<span class="tok-str">"True"</span>))         <span class="tok-out"># → &lt;class 'str'&gt;</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-const">True</span> <span class="tok-op">+</span> <span class="tok-const">True</span> <span class="tok-op">+</span> <span class="tok-const">False</span>)  <span class="tok-out"># → 2</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True
+&lt;class 'bool'&gt;
+&lt;class 'str'&gt;
+2</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: переменная <code>answer</code> связана с логическим значением <code>True</code>.</li><li>Строки 3–4: <code>True</code> без кавычек имеет тип <code>bool</code>, а <code>"True"</code> в кавычках имеет тип <code>str</code>.</li><li>Строка 5: два истинных значения и одно ложное в сумме дают 2.</li></ol></div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: <code>true</code> со строчной буквы</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: NameError</span><pre><code><span class="ln">done <span class="tok-op">=</span> true</span>
+<span class="ln"><span class="tok-builtin">print</span>(done)</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "done.py", line 1, in &lt;module&gt;
+    done = true
+           ^^^^
+NameError: name 'true' is not defined. Did you mean: 'True'?</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">done <span class="tok-op">=</span> <span class="tok-const">True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(done)  <span class="tok-out"># → True</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>True</pre></div>
+          <p>Для Python <code>true</code> обычное имя переменной, а такой переменной в программе нет. В других языках (JavaScript, Java) логические значения пишут со строчной буквы, поэтому эта ошибка часто встречается у тех, кто на них программировал. Python сам подсказывает правильное написание.</p>
+        </div>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Сложите логические значения так, чтобы получилось 3. Затем выведите тип суммы: <code>print(type(True + True))</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_bool.py</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-const">True</span> <span class="tok-op">+</span> <span class="tok-const">False</span> <span class="tok-op">+</span> <span class="tok-const">False</span>)  <span class="tok-out"># → 1</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>1</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Операторы сравнения</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Чаще всего логическое значение не пишут в коде готовым, а получают сравнением: длина последовательности сравнивается с порогом, pH с семеркой, введенный номер с номером в журнале. Сравнение похоже на вопрос, который программа задает данным.</p>
+        <p>Сравнение двух значений дает <code>True</code> или <code>False</code>. Результат можно напечатать, связать с переменной и использовать в выражении, как любое значение. Операторов сравнения шесть:</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Оператор</th><th>Смысл</th><th>Пример</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt;</code></td><td>меньше</td><td><code>3 &lt; 5</code></td><td><code>True</code></td></tr>
+              <tr><td><code>&gt;</code></td><td>больше</td><td><code>3 &gt; 5</code></td><td><code>False</code></td></tr>
+              <tr><td><code>&lt;=</code></td><td>меньше или равно</td><td><code>5 &lt;= 5</code></td><td><code>True</code></td></tr>
+              <tr><td><code>&gt;=</code></td><td>больше или равно</td><td><code>4 &gt;= 5</code></td><td><code>False</code></td></tr>
+              <tr><td><code>==</code></td><td>равно</td><td><code>2 == 2.0</code></td><td><code>True</code></td></tr>
+              <tr><td><code>!=</code></td><td>не равно</td><td><code>3 != 3</code></td><td><code>False</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Один знак <code>=</code> присваивает значение, два знака <code>==</code> сравнивают. Операторов <code>=&lt;</code> и <code>=&gt;</code> нет: знак равенства в двойных операторах всегда стоит вторым. Целое и вещественное число сравниваются по значению, поэтому <code>2 == 2.0</code> дает <code>True</code>.</p>
+        <p>Функция <code>input()</code> возвращает строку. Число из ввода перед сравнением превращают функцией <code>int()</code> или <code>float()</code>, как перед вычислениями (страница 09 первой практики).</p>
+        <p class="property th-full">Результат любого сравнения имеет тип <code>bool</code>, даже если сравнивались числа или строки.</p>
+        <p class="th-full">В Python есть еще четыре оператора сравнения: <code>is</code> и <code>is not</code> (страница 07), <code>in</code> и <code>not in</code> (страница 03). Они отвечают на другие вопросы: тот же ли это объект и входит ли значение в строку как подстрока.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Длина и порог</h3>
+          <p>Программа ждет ввода. Пользователь набирает <kbd class="user-input">120</kbd> и нажимает Enter.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">length_check.py</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-builtin">int</span>(<span class="tok-builtin">input</span>())</span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">&gt;=</span> <span class="tok-num">100</span>)  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">==</span> <span class="tok-num">100</span>)  <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">!=</span> <span class="tok-num">100</span>)  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">120</kbd>
+True
+False
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: строка из ввода превращена в целое число 120.</li><li>Строка 2: 120 больше 100, поэтому «больше или равно» дает <code>True</code>.</li><li>Строки 3–4: 120 не равно 100, поэтому <code>==</code> дает <code>False</code>, а <code>!=</code> дает <code>True</code>.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Граница порога</h3>
+          <p>Значение, равное порогу, отличает строгий знак от нестрогого. Предскажите вывод, прежде чем открыть его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">border.py</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">50.0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">&gt;</span> <span class="tok-num">50</span>)   <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">&gt;=</span> <span class="tok-num">50</span>)  <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">==</span> <span class="tok-num">50</span>)  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>False
+True
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: строгий знак <code>&gt;</code> не пропускает значение, равное порогу.</li><li>Строка 3: нестрогий знак <code>&gt;=</code> его пропускает.</li><li>Строка 4: вещественное 50.0 и целое 50 равны по значению.</li></ol></div>
+        </article>
+        <article class="example th-full">
+          <h3>Результат сравнения в переменной</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">is_long.py</span><pre><code><span class="ln">min_len <span class="tok-op">=</span> <span class="tok-num">10</span></span>
+<span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ATGCGTACGT"</span></span>
+<span class="ln">is_long <span class="tok-op">=</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">&gt;=</span> min_len</span>
+<span class="ln"><span class="tok-builtin">print</span>(is_long)        <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">type</span>(is_long))  <span class="tok-out"># → &lt;class 'bool'&gt;</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True
+&lt;class 'bool'&gt;</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 3: сначала вычисляется сравнение <span class="formula">10 &gt;= 10</span>, затем его результат связывается с именем <code>is_long</code>. Знак <code>=</code> здесь присваивает, знак <code>&gt;=</code> сравнивает.</li><li>Строка 5: в переменной хранится логическое значение, его тип <code>bool</code>.</li></ol></div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: один знак равенства вместо двух</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: TypeError</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-num">120</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">=</span> <span class="tok-num">100</span>)</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "equal.py", line 2, in &lt;module&gt;
+    print(length = 100)
+TypeError: 'length' is an invalid keyword argument for print()</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-num">120</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">==</span> <span class="tok-num">100</span>)  <span class="tok-out"># → False</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
+          <p>Внутри скобок <code>print()</code> запись <code>length = 100</code> Python понимает как именованный аргумент функции, вроде <code>sep=" "</code>, и сообщает, что такого аргумента у <code>print()</code> нет. Текст ошибки не говорит о сравнении, поэтому причину приходится узнавать по знаку <code>=</code>.</p>
+        </div>
+        <details class="deep"><summary>Подробнее: вещественные числа и <code>==</code></summary><p>Сравнение <code>0.1 + 0.2 == 0.3</code> дает <code>False</code>: сумма хранится с погрешностью и равна 0.30000000000000004. Результаты вычислений с вещественными числами сравнивают с допуском функцией <code>math.isclose()</code> (страница 07 первой практики). Сравнения <code>&lt;</code> и <code>&gt;</code> с порогом погрешность почти не затрагивает, если значение не лежит на самой границе.</p></details>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Поставьте длину, равную порогу, и посмотрите, какие из двух сравнений изменят ответ.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_compare.py</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-num">150</span></span>
+<span class="ln">threshold <span class="tok-op">=</span> <span class="tok-num">100</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">&gt;</span> threshold)   <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">&gt;=</span> threshold)  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>True
+True</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t3_01_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t3_01_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t3_01_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 3.1.1. Кислая среда</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор кислый, если его pH меньше 7; при pH, равном 7, раствор нейтральный. Дано значение pH. Определите, кислый ли раствор. Воспользуйтесь оператором <code>&lt;</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: вещественное число от 0 до 14, значение pH.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если раствор кислый, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>5.5</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>7</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_01_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 3.1.1. Хватит ли буфера</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В пробирке <code>v</code>&nbsp;мл буфера. На каждую из <code>n</code> проб нужно <code>d</code>&nbsp;мл. Определите, хватит ли буфера на все пробы.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке вещественное число <code>v</code> (0 &lt; <code>v</code> ≤ 1000), во второй целое число <code>n</code> (1 ≤ <code>n</code> ≤ 100), в третьей вещественное число <code>d</code> (0 &lt; <code>d</code> ≤ 100). Объемы <code>v</code> и <code>d</code> кратны 0,25, например <code>9.5</code> или <code>2.25</code>: с такими числами произведение вычисляется без погрешности.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если буфера хватит на все пробы, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>9.5
+4
+2.5</pre></td><td><pre>False</pre></td></tr>
+                <tr><td><pre>10
+4
+2.5</pre></td><td><pre>True</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_01_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 3.1.1. Сколько измерений выше порога</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрацию белка в пробе измерили три раза. Определите, сколько измерений превышает порог. Ветвления на этой странице еще не нужны.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Сравнение дает <code>True</code> или <code>False</code>, а в арифметике они ведут себя как 1 и 0.</p></details>
+          <h4>Входные данные</h4>
+          <p>В первой строке порог, в следующих трех строках измерения. Все значения вещественные, от 0 до 1000.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно целое число от 0 до 3: сколько измерений строго больше порога.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>2.5
+3.1
+2.4
+2.9</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>1.0
+1.0
+0.5
+1.2</pre></td><td><pre>1</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_01_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Строки и разные типы</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Номера проб, идентификаторы и названия генов приходят в программу текстом, а сравнивать их нужно по смыслу: номер 9 меньше номера 10, хотя строка <code>"9"</code> больше строки <code>"10"</code>. Чтобы сравнение отвечало на тот вопрос, который вы задали, нужно знать, как Python сравнивает строки и значения разных типов.</p>
+        <p>Строки сравниваются теми же операторами. Как это устроено, разобрано на странице 03 второй практики: символ за символом, по номерам символов в Unicode, с учетом регистра. Все прописные латинские буквы стоят раньше строчных, поэтому <code>"a" &lt; "B"</code> дает <code>False</code>. Чтобы сравнивать без учета регистра, обе строки приводят к одному регистру методом <code>lower()</code> или <code>upper()</code>.</p>
+        <p>Число и строка никогда не равны: <code>5 == "5"</code> дает <code>False</code>, хотя на экране оба значения выглядят как 5. Сравнить их на «больше» или «меньше» нельзя: <code>5 &lt; "5"</code> останавливает программу с ошибкой <code>TypeError</code>.</p>
+        <p>Поэтому то, что по смыслу число, сравнивают как число. Строки из цифр сравниваются как текст: <code>"10" &lt; "9"</code> дает <code>True</code>, потому что символ 1 стоит раньше символа 9. Ведущие нули строку меняют, а число нет: <code>"08" == "8"</code> дает <code>False</code>, а <code>int("08") == 8</code> дает <code>True</code>.</p>
+        <div class="table-wrap th-full">
+          <table class="data">
+            <thead><tr><th>Символ</th><th>Номер <code>ord()</code></th><th>Что из этого следует</th></tr></thead>
+            <tbody>
+              <tr><td><code>"0"</code>–<code>"9"</code></td><td>48–57</td><td>цифры раньше любых букв</td></tr>
+              <tr><td><code>"A"</code>–<code>"Z"</code></td><td>65–90</td><td>прописные раньше строчных</td></tr>
+              <tr><td><code>"a"</code>–<code>"z"</code></td><td>97–122</td><td><code>"a" &gt; "Z"</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="th-full">Функция <code>ord()</code> (страница 08 второй практики) показывает номер символа, и по номерам видно, почему <code>"a" &lt; "B"</code> ложно: номер строчной <code>a</code> равен 97, а номер прописной <code>B</code> равен 66.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Текст и число</h3>
+          <p>Предскажите вывод каждой строки, прежде чем открыть его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">types_compare.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"a"</span> <span class="tok-op">&lt;</span> <span class="tok-str">"B"</span>)       <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"10"</span> <span class="tok-op">&lt;</span> <span class="tok-str">"9"</span>)      <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">10</span> <span class="tok-op">&lt;</span> <span class="tok-num">9</span>)          <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">5</span> <span class="tok-op">==</span> <span class="tok-str">"5"</span>)        <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">int</span>(<span class="tok-str">"08"</span>) <span class="tok-op">==</span> <span class="tok-num">8</span>)  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>False
+True
+False
+False
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 1: номер строчной <code>a</code> больше номера прописной <code>B</code>.</li><li>Строки 2–3: строки из цифр сравниваются посимвольно (здесь различаются уже первые символы, 1 и 9), числа по значению.</li><li>Строка 4: число и строка разных типов, поэтому они не равны.</li><li>Строка 5: после <code>int()</code> ведущий ноль исчезает, и сравниваются два числа.</li></ol></div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: строка из ввода не превращена в число</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: TypeError</span><pre><code><span class="ln">reads <span class="tok-op">=</span> <span class="tok-str">"120"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(reads <span class="tok-op">&gt;</span> <span class="tok-num">100</span>)</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
+  File "reads.py", line 2, in &lt;module&gt;
+    print(reads &gt; 100)
+          ^^^^^^^^^^^
+TypeError: '&gt;' not supported between instances of 'str' and 'int'</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">reads <span class="tok-op">=</span> <span class="tok-builtin">int</span>(<span class="tok-str">"120"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(reads <span class="tok-op">&gt;</span> <span class="tok-num">100</span>)  <span class="tok-out"># → True</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>True</pre></div>
+          <p>Строка <code>"120"</code> здесь стоит на месте того, что вернула бы функция <code>input()</code>. Сообщение называет оба типа: слева <code>str</code>, справа <code>int</code>. Если же сравнить две строки из ввода без <code>int()</code>, ошибки не будет, но <code>"120" &gt; "99"</code> даст <code>False</code>: такую ошибку заметить труднее.</p>
+        </div>
+        <details class="deep"><summary>Подробнее: почему <code>==</code> для разных типов не дает ошибку</summary><p>На равенство можно проверить любые два объекта: если Python не знает, как их сравнить, он считает их неравными. Для порядка такого ответа по умолчанию нет, поэтому <code>&lt;</code> и <code>&gt;</code> для числа и строки дают <code>TypeError</code>. Числа разных типов (<code>int</code>, <code>float</code>, <code>bool</code>) сравниваются между собой по значению, поэтому <code>True == 1</code> тоже дает <code>True</code>.</p></details>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Сравните номера проб по числу: возьмите у каждого номера срез без первой буквы и превратите его функцией <code>int()</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_ids.py</span><pre><code><span class="ln">first <span class="tok-op">=</span> <span class="tok-str">"S9"</span></span>
+<span class="ln">second <span class="tok-op">=</span> <span class="tok-str">"S10"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(first <span class="tok-op">&lt;</span> second)  <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t3_01_2_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t3_01_2_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t3_01_2_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+            <h3>Упражнение 3.1.2. Номер с ведущими нулями</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>На этикетке номер пробы записан с ведущими нулями, а в журнале без них. Даны две записи номера. Определите, обозначают ли они одно и то же число. Сравните числа, а не строки: воспользуйтесь функцией <code>int()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Две строки, в каждой целое неотрицательное число из 1–6 цифр, возможно с ведущими нулями.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если числа равны, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>0042
+42</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>15
+51</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_01_2_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+            <h3>Упражнение 3.1.2. Порядок генов</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Названия генов в отчете расставляют по алфавиту без учета регистра. Даны два названия. Определите, должно ли первое стоять раньше второго.</p></div>
+          <h4>Входные данные</h4>
+          <p>Две строки, в каждой название гена из 1–20 латинских букв и цифр.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если без учета регистра первое название стоит раньше второго, иначе <code>False</code>. Если без учета регистра названия совпадают, выведите <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>brca1
+TP53</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>Myc
+abl1</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_01_2_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+            <h3>Упражнение 3.1.2. Одна ли это проба</h3>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пробу в журнале обозначают буквой и номером: <code>S</code> для образца, <code>C</code> для контроля, например <code>S12</code>. Василиса пишет букву прописной, Прохор строчной, и оба иногда добавляют к номеру ведущие нули, поэтому <code>s012</code> и <code>S12</code> обозначают одну пробу. Даны два обозначения. Определите, одна ли это проба.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Приведите оба обозначения к одному виду: букву к одному регистру, номер к записи без нулей. Номер без нулей получится, если превратить его в число и обратно в строку.</p></details>
+          <h4>Входные данные</h4>
+          <p>Две строки, в каждой обозначение: буква <code>S</code> или <code>C</code> (прописная или строчная), за ней целое положительное число из 1–6 цифр, возможно с ведущими нулями.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если обозначения относятся к одной пробе, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>s012
+S12</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>S12
+C12</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t3_01_2_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>Внутри личной папки создайте папку <code>projects_3</code>: в ней будут все работы практики 3.</li>
+          <li>В папке <code>projects_3</code> создайте папку <code>t3_01</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t3_01_1_basic.py</code> и <code>t3_01_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t3_01_1_medium.py</code> и <code>t3_01_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t3_01_1_advanced.py</code> и <code>t3_01_2_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t3_01</code> в свой репозиторий внутрь папки <code>projects_3</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_3/
+    └── t3_01/
+        ├── t3_01_1_basic.py
+        └── t3_01_2_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_3/
+    └── t3_01/
+        ├── t3_01_1_medium.py
+        └── t3_01_2_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_3/
+    └── t3_01/
+        ├── t3_01_1_advanced.py
+        └── t3_01_2_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t3_00.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">00 Обзор практики</span></a>
+        <a class="pcard pcard-next" href="t3_02.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">02 Логические операторы</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
