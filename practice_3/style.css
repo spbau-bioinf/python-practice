@@ -2044,3 +2044,697 @@ html.site-locked body { background: var(--c-bg); }
 .pub-warn { margin: 1rem 0 0; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--c-amber-light); color: var(--c-amber-text); max-width: 72ch; }
 .pub-acts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.2rem 0 0.4rem; }
 .pub-steps { margin: 0.6rem 0 0; padding-left: 1.3rem; max-width: 72ch; } .pub-steps li { margin: 0.35rem 0; }
+/* ---------- версия 65: режим «Только задачи» (строка «Показ» в меню ⚙) ---------- */
+.view-banner, .view-peek, .ex-nav { display: none; }
+:root[data-view="tasks"] main.has-exercises .subsection:not(.view-open) > :not(h2):not(.step-task):not(.level-tabs):not(.view-peek) { display: none; }
+:root[data-view="tasks"] .view-banner, :root[data-view="tasks"] main.has-exercises .view-peek { display: flex; }
+:root[data-view="tasks"] .sidebar > :not(.ex-nav) { display: none; }
+:root[data-view="tasks"] .ex-nav { display: block; }
+.view-banner { align-items: center; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 0 0 1.5rem; padding: 0.75rem 1rem;
+  border: var(--border-w) solid var(--c-task-border); border-radius: var(--radius-md); background: var(--c-accent-light); color: var(--c-text); }
+.view-all { margin-left: auto; padding: 0.35rem 0.9rem; border: 1px solid var(--c-accent); border-radius: var(--radius-full);
+  background: var(--c-surface); color: var(--c-accent); font: inherit; font-weight: 700; cursor: pointer; }
+.view-peek { align-items: center; gap: 0.6rem; width: 100%; margin: 0.25rem 0 1.25rem; padding: 0.7rem 1rem;
+  border: 1px dashed var(--c-border); border-radius: var(--radius-md); background: transparent; color: var(--c-text-2);
+  font: inherit; font-size: var(--t-sm); text-align: left; cursor: pointer; }
+.view-peek:hover { border-color: var(--c-accent-muted); color: var(--c-text); }
+.view-peek svg { width: 18px; height: 18px; flex: none; }
+.view-peek b { margin-left: auto; color: var(--c-accent); white-space: nowrap; }
+.ex-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.ex-item { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.6rem; padding: 0.5rem 0.65rem;
+  border-left: 3px solid transparent; border-radius: var(--radius-sm); color: var(--c-text); text-decoration: none; font-size: var(--t-sm); line-height: 1.3; }
+.ex-item:hover { background: var(--c-bg-warm); }
+.ex-item.is-here { background: var(--c-accent-light); border-left-color: var(--c-accent); }
+.ex-num { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--c-accent); font-variant-numeric: tabular-nums; }
+
+/* ---------- версия 65: цветовой профиль (строка в меню ⚙ и панель с плитками) ---------- */
+.pal-ctl { min-width: 0; }
+.pal-open { display: flex; align-items: center; gap: 0.6rem; width: 100%; padding: 0.45rem 0.7rem; border: 1px solid var(--c-control-border);
+  border-radius: var(--radius-sm); background: var(--c-control-bg); color: var(--c-text); font: inherit; text-align: left; cursor: pointer; }
+.pal-open:disabled { opacity: 0.5; cursor: not-allowed; }
+.pal-chev { margin-left: auto; color: var(--c-text-2); }
+.pal-note { margin: 0.35rem 0 0; font-size: 0.8rem; color: var(--c-text-2); }
+.pal-sw { display: inline-flex; gap: 2px; padding: 4px 5px; border-radius: 6px; flex: none; }
+.pal-sw i { display: block; width: 7px; height: 12px; border-radius: 2px; }
+.tb-pop.pal-sub > :not(.pal-panel) { display: none !important; }
+.pal-panel { grid-column: 1 / -1; }
+.pal-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.75rem; }
+.pal-back { padding: 0.2rem 0.3rem; border: 0; background: transparent; color: var(--c-accent); font: inherit; font-weight: 700; cursor: pointer; }
+.pal-title { font-weight: 700; }
+.pal-title small { margin-left: 0.35rem; font-weight: 400; font-size: 0.8rem; color: var(--c-text-2); }
+.pal-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; max-height: min(58vh, 520px); overflow: auto; padding: 4px; margin: -4px; }
+.pal-tile { display: flex; flex-direction: column; gap: 0.25rem; padding: 4px; border: 0; border-radius: 12px; background: transparent;
+  color: var(--c-text); font: inherit; text-align: left; cursor: pointer; outline: 2px solid transparent; }
+.pal-tile:hover { background: var(--c-bg-warm); }
+.pal-tile[aria-pressed="true"] { outline-color: var(--c-accent); }
+.pal-tile:focus-visible { outline-color: var(--c-accent); outline-offset: 2px; }
+.pal-tile-name { padding: 0 2px; font-size: 0.85rem; font-weight: 700; }
+.pal-tile small { padding: 0 2px; font-size: 0.75rem; line-height: 1.2; color: var(--c-text-2); }
+.pal-mini { display: flex; flex-direction: column; gap: 5px; padding: 6px; border: 1px solid; border-radius: 9px; overflow: hidden; }
+.pal-mini-bar { display: flex; align-items: center; justify-content: flex-end; height: 12px; padding: 0 4px; border: 1px solid; border-radius: 4px; }
+.pal-mini-bar i { width: 18px; height: 5px; border-radius: 3px; }
+.pal-mini-line { width: 80%; height: 4px; border-radius: 2px; opacity: 0.85; }
+.pal-mini-line.short { width: 55%; opacity: 0.6; }
+.pal-mini pre { margin: 0; padding: 5px 6px; border-radius: 5px; font-family: var(--font-mono); font-size: 9.5px; line-height: 1.4; white-space: pre; overflow: hidden; }
+.pal-hint { margin: 0.75rem 0 0; font-size: 0.8rem; line-height: 1.4; color: var(--c-text-2); }
+@media (max-width: 560px) { .pal-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* palettes:begin */
+/* ---------- версия 65: цветовые профили (собирает scripts/build_palettes.py, вручную не правится) ----------
+   data-palette ставит theme.js только в классическом режиме и только для текущей темы. */
+:root[data-palette="vscode-light"] {   /* Light+ */
+  color-scheme: light;
+  --c-bg: #F8F8F8; --c-bg-warm: #F3F3F3; --c-surface: #FFFFFF; --c-surface-warm: #FCFCFC;
+  --c-text: #1F1F1F; --c-text-2: #4D4D4D; --c-muted: #787878; --c-border: #E5E5E5;
+  --c-border-light: #F2F2F2; --c-on-accent: #FFFFFF; --c-accent: #005FB8; --c-accent-hover: #00519C;
+  --c-accent-light: #E6EFF8; --c-accent-muted: #5997D1; --c-task-bg: #F5F9FC; --c-task-border: #95B6D5;
+  --c-control-bg: #EEEEEE; --c-control-border: #AAAAAA; --c-control-on: #FFFFFF; --c-control-on-border: #787878;
+  --c-track: #ECECEC; --c-track-border: #AAAAAA; --c-extra-line: #969696; --c-extra-text: #4D4D4D;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #E5E5E5;
+  --win-out-text: #1F1F1F; --win-out-title: #4D4D4D; --win-code-bg: #FFFFFF; --win-code-text: #000000;
+  --win-code-title: #404040; --win-code-gutter: #237893; --win-code-caret: #000000; --win-code-edit: #000000;
+  --win-btn-bg: #EDEDED; --win-btn-border: #D6D6D6; --win-btn-text: #000000; --tok-kw: #AF00DB;
+  --tok-builtin: #795E26; --tok-const: #0000FF; --tok-num: #098658; --tok-str: #A31515;
+  --tok-op: #000000; --tok-com: #008000; --tok-out: #008000; --c-info: #1C7865;
+  --c-info-light: #E4F0EE;
+}
+:root[data-palette="vscode-dark"] {   /* Dark+ */
+  color-scheme: dark;
+  --c-bg: #1F1F1F; --c-bg-warm: #181818; --c-surface: #252526; --c-surface-warm: #222222;
+  --c-text: #CCCCCC; --c-text-2: #A6A6A6; --c-muted: #848484; --c-border: #3C3C3C;
+  --c-border-light: #303031; --c-on-accent: #0B1A2B; --c-accent: #55A4FF; --c-accent-hover: #55A4FF;
+  --c-accent-light: #283749; --c-accent-muted: #316DB3; --c-task-bg: #262D35; --c-task-border: #3A5B80;
+  --c-control-bg: #2C2C2C; --c-control-border: #676767; --c-control-on: #3F3F40; --c-control-on-border: #8B8B8B;
+  --c-track: #313131; --c-track-border: #676767; --c-extra-line: #767676; --c-extra-text: #A6A6A6;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #303031; --win-out-border: #3C3C3C;
+  --win-out-text: #CCCCCC; --win-out-title: #A6A6A6; --win-code-bg: #1E1E1E; --win-code-text: #D4D4D4;
+  --win-code-title: #A6A6A6; --win-code-gutter: #858585; --win-code-caret: #D4D4D4; --win-code-edit: #D4D4D4;
+  --win-btn-bg: #2E2E2E; --win-btn-border: #424242; --win-btn-text: #D4D4D4; --tok-kw: #C586C0;
+  --tok-builtin: #DCDCAA; --tok-const: #569CD6; --tok-num: #B5CEA8; --tok-str: #CE9178;
+  --tok-op: #D4D4D4; --tok-com: #6A9955; --tok-out: #6A9955; --win-link: #726C62;
+  --c-info: #6BDDC3; --c-info-light: #334A45;
+}
+:root[data-palette="intellij"] {   /* IntelliJ Light */
+  color-scheme: light;
+  --c-bg: #F7F8FA; --c-bg-warm: #F2F3F5; --c-surface: #FFFFFF; --c-surface-warm: #FBFCFC;
+  --c-text: #1E1F22; --c-text-2: #494B57; --c-muted: #747680; --c-border: #EBECF0;
+  --c-border-light: #F5F6F8; --c-on-accent: #FFFFFF; --c-accent: #2F66D4; --c-accent-hover: #2A5DC0;
+  --c-accent-light: #EAF0FC; --c-accent-muted: #7AA0EC; --c-task-bg: #F7F9FE; --c-task-border: #AAC0EB;
+  --c-control-bg: #EDEEF0; --c-control-border: #AEAEB2; --c-control-on: #FFFFFF; --c-control-on-border: #7A7B7F;
+  --c-track: #EBECEE; --c-track-border: #AEAEB2; --c-extra-line: #999A9E; --c-extra-text: #494B57;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #EBECF0;
+  --win-out-text: #1E1F22; --win-out-title: #494B57; --win-code-bg: #FFFFFF; --win-code-text: #080808;
+  --win-code-title: #464646; --win-code-gutter: #939393; --win-code-caret: #080808; --win-code-edit: #080808;
+  --win-btn-bg: #EDEDED; --win-btn-border: #D6D6D6; --win-btn-text: #080808; --tok-kw: #0033B3;
+  --tok-builtin: #000080; --tok-const: #0033B3; --tok-num: #1750EB; --tok-str: #067D17;
+  --tok-op: #080808; --tok-com: #737373; --tok-out: #737373; --c-info: #1C7865;
+  --c-info-light: #E4F0EE;
+}
+:root[data-palette="darcula"] {   /* Darcula */
+  color-scheme: dark;
+  --c-bg: #1E1F22; --c-bg-warm: #2B2D30; --c-surface: #2B2D30; --c-surface-warm: #242629;
+  --c-text: #DFE1E5; --c-text-2: #B4B8BF; --c-muted: #8E9298; --c-border: #393B40;
+  --c-border-light: #323438; --c-on-accent: #0E1A33; --c-accent: #80A8F9; --c-accent-hover: #76A2F8;
+  --c-accent-light: #333D50; --c-accent-muted: #4C6EB1; --c-task-bg: #2F343E; --c-task-border: #465980;
+  --c-control-bg: #2C2C2F; --c-control-border: #6B6D72; --c-control-on: #444649; --c-control-on-border: #94969B;
+  --c-track: #303134; --c-track-border: #6B6D72; --c-extra-line: #7B7D82; --c-extra-text: #B4B8BF;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #36383A; --win-out-border: #393B40;
+  --win-out-text: #DFE1E5; --win-out-title: #B4B8BF; --win-code-bg: #2B2B2B; --win-code-text: #A9B7C6;
+  --win-code-title: #8A949F; --win-code-gutter: #737678; --win-code-caret: #A9B7C6; --win-code-edit: #A9B7C6;
+  --win-btn-bg: #3A3A3A; --win-btn-border: #4D4D4D; --win-btn-text: #A9B7C6; --tok-kw: #CF803E;
+  --tok-builtin: #8C8CC8; --tok-const: #CF803E; --tok-num: #6897BB; --tok-str: #809972;
+  --tok-op: #A9B7C6; --tok-com: #939393; --tok-out: #939393; --win-link: #726C62;
+  --c-info: #6BDDC3; --c-info-light: #38504D;
+}
+:root[data-palette="github-light"] {   /* GitHub Light */
+  color-scheme: light;
+  --c-bg: #F6F8FA; --c-bg-warm: #F6F8FA; --c-surface: #FFFFFF; --c-surface-warm: #FAFCFC;
+  --c-text: #1F2328; --c-text-2: #59636E; --c-muted: #7C848D; --c-border: #D1D9E0;
+  --c-border-light: #E8ECF0; --c-on-accent: #FFFFFF; --c-accent: #0969DA; --c-accent-hover: #0859B9;
+  --c-accent-light: #E6F0FB; --c-accent-muted: #5F9EE7; --c-task-bg: #F5F9FE; --c-task-border: #8BB2DE;
+  --c-control-bg: #ECEEF0; --c-control-border: #9CA2A9; --c-control-on: #FFFFFF; --c-control-on-border: #6F757B;
+  --c-track: #EAECEE; --c-track-border: #9CA2A9; --c-extra-line: #8A9096; --c-extra-text: #59636E;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #D1D9E0;
+  --win-out-text: #1F2328; --win-out-title: #59636E; --win-code-bg: #F6F8FA; --win-code-text: #1F2328;
+  --win-code-title: #55585C; --win-code-gutter: #88919A; --win-code-caret: #1F2328; --win-code-edit: #1F2328;
+  --win-btn-bg: #E5E7E8; --win-btn-border: #CFD0D2; --win-btn-text: #1F2328; --tok-kw: #CF222E;
+  --tok-builtin: #8250DF; --tok-const: #0550AE; --tok-num: #0550AE; --tok-str: #0A3069;
+  --tok-op: #CF222E; --tok-com: #6B737D; --tok-out: #6B737D; --c-info: #1C7865;
+  --c-info-light: #E4F0EE;
+}
+:root[data-palette="github-dark"] {   /* GitHub Dark */
+  color-scheme: dark;
+  --c-bg: #0D1117; --c-bg-warm: #010409; --c-surface: #151B23; --c-surface-warm: #11161D;
+  --c-text: #E6EDF3; --c-text-2: #9198A1; --c-muted: #70767E; --c-border: #3D444D;
+  --c-border-light: #293038; --c-on-accent: #0D1117; --c-accent: #4A96F8; --c-accent-hover: #60A3F9;
+  --c-accent-light: #1D2E45; --c-accent-muted: #3469AD; --c-task-bg: #182332; --c-task-border: #3F6089;
+  --c-control-bg: #1C1F25; --c-control-border: #70777F; --c-control-on: #31363D; --c-control-on-border: #9AA1A8;
+  --c-track: #20242A; --c-track-border: #70777F; --c-extra-line: #81888F; --c-extra-text: #9198A1;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #21262E; --win-out-border: #3D444D;
+  --win-out-text: #E6EDF3; --win-out-title: #9198A1; --win-code-bg: #151B23; --win-code-text: #E6EDF3;
+  --win-code-title: #B2B8BF; --win-code-gutter: #6E7681; --win-code-caret: #E6EDF3; --win-code-edit: #E6EDF3;
+  --win-btn-bg: #252B32; --win-btn-border: #3A3F46; --win-btn-text: #E6EDF3; --tok-kw: #FF7B72;
+  --tok-builtin: #D2A8FF; --tok-const: #79C0FF; --tok-num: #79C0FF; --tok-str: #A5D6FF;
+  --tok-op: #FF7B72; --tok-com: #8B949E; --tok-out: #8B949E; --c-info: #6BDDC3;
+  --c-info-light: #264243;
+}
+:root[data-palette="one-light"] {   /* One Light */
+  color-scheme: light;
+  --c-bg: #FAFAFA; --c-bg-warm: #EAEAEB; --c-surface: #FFFFFF; --c-surface-warm: #FCFCFC;
+  --c-text: #383A42; --c-text-2: #5C5F69; --c-muted: #808289; --c-border: #DBDBDC;
+  --c-border-light: #EDEDEE; --c-on-accent: #FFFFFF; --c-accent: #3767CF; --c-accent-hover: #3360C1;
+  --c-accent-light: #ECF1FC; --c-accent-muted: #80A3ED; --c-task-bg: #F7F9FE; --c-task-border: #A3B6DE;
+  --c-control-bg: #F0F0F0; --c-control-border: #AAABAE; --c-control-on: #FFFFFF; --c-control-on-border: #818287;
+  --c-track: #EEEEEE; --c-track-border: #AAABAE; --c-extra-line: #9A9B9E; --c-extra-text: #5C5F69;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #DBDBDC;
+  --win-out-text: #383A42; --win-out-title: #5C5F69; --win-code-bg: #FAFAFA; --win-code-text: #383A42;
+  --win-code-title: #686A70; --win-code-gutter: #8F8F91; --win-code-caret: #383A42; --win-code-edit: #383A42;
+  --win-btn-bg: #E8E8E8; --win-btn-border: #D2D2D2; --win-btn-text: #383A42; --tok-kw: #A626A4;
+  --tok-builtin: #986801; --tok-const: #986801; --tok-num: #986801; --tok-str: #3F7F3E;
+  --tok-op: #0178AB; --tok-com: #707175; --tok-out: #707175; --c-info: #1C7865;
+  --c-info-light: #E4F0EE;
+}
+:root[data-palette="one-dark"] {   /* One Dark Pro */
+  color-scheme: dark;
+  --c-bg: #282C34; --c-bg-warm: #21252B; --c-surface: #2C313A; --c-surface-warm: #2A2E37;
+  --c-text: #D7DAE0; --c-text-2: #ABB2BF; --c-muted: #8A909C; --c-border: #3E4451;
+  --c-border-light: #353A46; --c-on-accent: #14181F; --c-accent: #74B9F1; --c-accent-hover: #79BBF1;
+  --c-accent-light: #344557; --c-accent-muted: #4E83B0; --c-task-bg: #303A47; --c-task-border: #4A6988;
+  --c-control-bg: #353940; --c-control-border: #6C717C; --c-control-on: #454A52; --c-control-on-border: #9296A0;
+  --c-track: #393D44; --c-track-border: #6C717C; --c-extra-line: #7B808A; --c-extra-text: #ABB2BF;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #373B44; --win-out-border: #3E4451;
+  --win-out-text: #D7DAE0; --win-out-title: #ABB2BF; --win-code-bg: #21252B; --win-code-text: #ABB2BF;
+  --win-code-title: #888F9A; --win-code-gutter: #687187; --win-code-caret: #ABB2BF; --win-code-edit: #ABB2BF;
+  --win-btn-bg: #31343A; --win-btn-border: #45484D; --win-btn-text: #ABB2BF; --tok-kw: #C678DD;
+  --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66; --tok-str: #98C379;
+  --tok-op: #56B6C2; --tok-com: #878B95; --tok-out: #878B95; --win-link: #7B756C;
+  --c-info: #6BDDC3; --c-info-light: #395355;
+}
+:root[data-palette="latte"] {   /* Catppuccin Latte */
+  color-scheme: light;
+  --c-bg: #EFF1F5; --c-bg-warm: #E6E9EF; --c-surface: #FFFFFF; --c-surface-warm: #F7F8FA;
+  --c-text: #4C4F69; --c-text-2: #5C5F77; --c-muted: #797C8D; --c-border: #CCD0DA;
+  --c-border-light: #E6E8EC; --c-on-accent: #FFFFFF; --c-accent: #8839EF; --c-accent-hover: #7430CB;
+  --c-accent-light: #F3EBFD; --c-accent-muted: #B27EF5; --c-task-bg: #FAF7FE; --c-task-border: #B49BE1;
+  --c-control-bg: #E5E7EB; --c-control-border: #A6A9B8; --c-control-on: #FFFFFF; --c-control-on-border: #7E8193;
+  --c-track: #E3E5E9; --c-track-border: #A6A9B8; --c-extra-line: #999CAD; --c-extra-text: #5C5F77;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #CCD0DA;
+  --win-out-text: #4C4F69; --win-out-title: #5C5F77; --win-code-bg: #E6E9EF; --win-code-text: #4C4F69;
+  --win-code-title: #646879; --win-code-gutter: #7F8293; --win-code-caret: #4C4F69; --win-code-edit: #4C4F69;
+  --win-btn-bg: #D6D9DE; --win-btn-border: #C1C4C9; --win-btn-text: #4C4F69; --tok-kw: #8437E8;
+  --tok-builtin: #1B5DDF; --tok-const: #B24608; --tok-num: #B24608; --tok-str: #2F751F;
+  --tok-op: #036F99; --tok-com: #666879; --tok-out: #666879; --c-plum: #477769;
+  --c-plum-light: #ECF4F2; --c-plum-border: #C8DFD8;
+}
+:root[data-palette="mocha"] {   /* Catppuccin Mocha */
+  color-scheme: dark;
+  --c-bg: #1E1E2E; --c-bg-warm: #181825; --c-surface: #313244; --c-surface-warm: #282839;
+  --c-text: #CDD6F4; --c-text-2: #BAC2DE; --c-muted: #9399B2; --c-border: #45475A;
+  --c-border-light: #3B3C4F; --c-on-accent: #1E1E2E; --c-accent: #CDA9F7; --c-accent-hover: #D3B3F8;
+  --c-accent-light: #4A4561; --c-accent-muted: #957DB8; --c-task-bg: #3C3A51; --c-task-border: #746891;
+  --c-control-bg: #2C2C3B; --c-control-border: #6E7288; --c-control-on: #4A4B5A; --c-control-on-border: #9096AF;
+  --c-track: #30303F; --c-track-border: #6E7288; --c-extra-line: #7B8098; --c-extra-text: #BAC2DE;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3B3C4D; --win-out-border: #45475A;
+  --win-out-text: #CDD6F4; --win-out-title: #BAC2DE; --win-code-bg: #181825; --win-code-text: #CDD6F4;
+  --win-code-title: #A0A6C0; --win-code-gutter: #7F849C; --win-code-caret: #CDD6F4; --win-code-edit: #CDD6F4;
+  --win-btn-bg: #282834; --win-btn-border: #3D3D48; --win-btn-text: #CDD6F4; --tok-kw: #CBA6F7;
+  --tok-builtin: #89B4FA; --tok-const: #FAB387; --tok-num: #FAB387; --tok-str: #A6E3A1;
+  --tok-op: #89DCEB; --tok-com: #9399B2; --tok-out: #9399B2; --win-link: #726C62;
+  --c-plum: #AAE8D7; --c-plum-light: #495661; --c-plum-border: #5B7277;
+}
+:root[data-palette="dracula"] {   /* Dracula */
+  color-scheme: dark;
+  --c-bg: #282A36; --c-bg-warm: #21222C; --c-surface: #343746; --c-surface-warm: #2E303E;
+  --c-text: #F8F8F2; --c-text-2: #C9CBD9; --c-muted: #A1A3B0; --c-border: #44475A;
+  --c-border-light: #3C3F50; --c-on-accent: #21222C; --c-accent: #CDADFA; --c-accent-hover: #C7A3FA;
+  --c-accent-light: #4A4663; --c-accent-muted: #8D73BA; --c-task-bg: #3E3D53; --c-task-border: #6E6292;
+  --c-control-bg: #353742; --c-control-border: #7A7C88; --c-control-on: #4C4F5C; --c-control-on-border: #A7A8AE;
+  --c-track: #393B46; --c-track-border: #7A7C88; --c-extra-line: #8C8E97; --c-extra-text: #C9CBD9;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3E414F; --win-out-border: #44475A;
+  --win-out-text: #F8F8F2; --win-out-title: #C9CBD9; --win-code-bg: #21222C; --win-code-text: #F8F8F2;
+  --win-code-title: #C2C2C0; --win-code-gutter: #6272A4; --win-code-caret: #F8F8F2; --win-code-edit: #F8F8F2;
+  --win-btn-bg: #31313B; --win-btn-border: #45454E; --win-btn-text: #F8F8F2; --tok-kw: #FF79C6;
+  --tok-builtin: #8BE9FD; --tok-const: #BD93F9; --tok-num: #BD93F9; --tok-str: #F1FA8C;
+  --tok-op: #FF79C6; --tok-com: #7E8BB4; --tok-out: #7E8BB4; --win-link: #7B756C;
+  --c-plum: #EAB7EB; --c-plum-light: #584E66; --c-plum-border: #725F7F;
+}
+:root[data-palette="monokai"] {   /* Monokai */
+  color-scheme: dark;
+  --c-bg: #272822; --c-bg-warm: #1E1F1C; --c-surface: #32332C; --c-surface-warm: #2C2E27;
+  --c-text: #F8F8F2; --c-text-2: #CFCFC2; --c-muted: #A5A59A; --c-border: #49483E;
+  --c-border-light: #3E3E35; --c-on-accent: #1E1F1C; --c-accent: #A6E22E; --c-accent-hover: #B3E64D;
+  --c-accent-light: #454F2C; --c-accent-muted: #7DA52D; --c-task-bg: #3A3F2C; --c-task-border: #6A7E38;
+  --c-control-bg: #34352F; --c-control-border: #7E7D74; --c-control-on: #4B4B45; --c-control-on-border: #A9A9A1;
+  --c-track: #383934; --c-track-border: #7E7D74; --c-extra-line: #8F8E86; --c-extra-text: #CFCFC2;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3C3D37; --win-out-border: #49483E;
+  --win-out-text: #F8F8F2; --win-out-title: #CFCFC2; --win-code-bg: #1E1F1C; --win-code-text: #F8F8F2;
+  --win-code-title: #C2C2BC; --win-code-gutter: #90908A; --win-code-caret: #F8F8F2; --win-code-edit: #F8F8F2;
+  --win-btn-bg: #2E2F2C; --win-btn-border: #424340; --win-btn-text: #F8F8F2; --tok-kw: #F9337A;
+  --tok-builtin: #66D9EF; --tok-const: #AE81FF; --tok-num: #AE81FF; --tok-str: #E6DB74;
+  --tok-op: #F9337A; --tok-com: #8A8676; --tok-out: #8A8676; --win-link: #7B756C;
+}
+:root[data-palette="nord"] {   /* Nord */
+  color-scheme: dark;
+  --c-bg: #2E3440; --c-bg-warm: #3B4252; --c-surface: #3B4252; --c-surface-warm: #343B49;
+  --c-text: #ECEFF4; --c-text-2: #D8DEE9; --c-muted: #AEB4BF; --c-border: #4C566A;
+  --c-border-light: #444C5E; --c-on-accent: #2E3440; --c-accent: #A8D1DD; --c-accent-hover: #9AC9D7;
+  --c-accent-light: #475666; --c-accent-muted: #6D94A4; --c-task-bg: #404B5B; --c-task-border: #617B8E;
+  --c-control-bg: #3B404B; --c-control-border: #7C8493; --c-control-on: #535967; --c-control-on-border: #A4AAB6;
+  --c-track: #3F444F; --c-track-border: #7C8493; --c-extra-line: #8C93A1; --c-extra-text: #D8DEE9;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #454B5B; --win-out-border: #4C566A;
+  --win-out-text: #ECEFF4; --win-out-title: #D8DEE9; --win-code-bg: #242933; --win-code-text: #D8DEE9;
+  --win-code-title: #ABB1BC; --win-code-gutter: #6C7485; --win-code-caret: #D8DEE9; --win-code-edit: #D8DEE9;
+  --win-btn-bg: #333841; --win-btn-border: #474B54; --win-btn-text: #D8DEE9; --tok-kw: #81A1C1;
+  --tok-builtin: #88C0D0; --tok-const: #81A1C1; --tok-num: #B48EAD; --tok-str: #A3BE8C;
+  --tok-op: #81A1C1; --tok-com: #8791A5; --tok-out: #8791A5; --win-link: #847E75;
+  --c-info: #93E6BE; --c-info-light: #456163;
+}
+:root[data-palette="material-lighter"] {   /* Material Lighter */
+  color-scheme: light;
+  --c-bg: #FAFAFA; --c-bg-warm: #F2F2F2; --c-surface: #FFFFFF; --c-surface-warm: #FCFCFC;
+  --c-text: #37474F; --c-text-2: #546E7A; --c-muted: #768891; --c-border: #E0E0E0;
+  --c-border-light: #F0F0F0; --c-on-accent: #FFFFFF; --c-accent: #007782; --c-accent-hover: #006F7A;
+  --c-accent-light: #E6F3F4; --c-accent-muted: #59AEB6; --c-task-bg: #F5FAFB; --c-task-border: #92BFC4;
+  --c-control-bg: #F0F0F0; --c-control-border: #ADB2B4; --c-control-on: #FFFFFF; --c-control-on-border: #838C90;
+  --c-track: #EEEEEE; --c-track-border: #ADB2B4; --c-extra-line: #9CA3A6; --c-extra-text: #546E7A;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #E0E0E0;
+  --win-out-text: #37474F; --win-out-title: #546E7A; --win-code-bg: #F5F5F5; --win-code-text: #37474F;
+  --win-code-title: #667278; --win-code-gutter: #808B90; --win-code-caret: #37474F; --win-code-edit: #37474F;
+  --win-btn-bg: #E4E4E4; --win-btn-border: #CECECE; --win-btn-text: #37474F; --tok-kw: #784BF7;
+  --tok-builtin: #526E9C; --tok-const: #B45034; --tok-num: #B45034; --tok-str: #5D7639;
+  --tok-op: #28797F; --tok-com: #606E75; --tok-out: #606E75; --c-info: #1C784D;
+  --c-info-light: #E4F0EB;
+}
+:root[data-palette="material-darker"] {   /* Material Darker */
+  color-scheme: dark;
+  --c-bg: #212121; --c-bg-warm: #1A1A1A; --c-surface: #292929; --c-surface-warm: #252525;
+  --c-text: #EEFFFF; --c-text-2: #B0BEC5; --c-muted: #8C979C; --c-border: #424242;
+  --c-border-light: #363636; --c-on-accent: #1A1A1A; --c-accent: #80CBC4; --c-accent-hover: #93D3CD;
+  --c-accent-light: #374342; --c-accent-muted: #62928E; --c-task-bg: #2F3434; --c-task-border: #587270;
+  --c-control-bg: #2E2E2E; --c-control-border: #767B7B; --c-control-on: #434343; --c-control-on-border: #A1AAAA;
+  --c-track: #333333; --c-track-border: #767B7B; --c-extra-line: #878E8E; --c-extra-text: #B0BEC5;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #343434; --win-out-border: #424242;
+  --win-out-text: #EEFFFF; --win-out-title: #B0BEC5; --win-code-bg: #1A1A1A; --win-code-text: #EEFFFF;
+  --win-code-title: #B9C6C6; --win-code-gutter: #6A6A6A; --win-code-caret: #EEFFFF; --win-code-edit: #EEFFFF;
+  --win-btn-bg: #2A2A2A; --win-btn-border: #3F3F3F; --win-btn-text: #EEFFFF; --tok-kw: #C792EA;
+  --tok-builtin: #82AAFF; --tok-const: #F78C6C; --tok-num: #F78C6C; --tok-str: #C3E88D;
+  --tok-op: #89DDFF; --tok-com: #828282; --tok-out: #828282; --win-link: #726C62;
+  --c-info: #6BDD8A; --c-info-light: #364D3C;
+}
+:root[data-palette="light-owl"] {   /* Light Owl */
+  color-scheme: light;
+  --c-bg: #FBFBFB; --c-bg-warm: #F0F0F0; --c-surface: #FFFFFF; --c-surface-warm: #FDFDFD;
+  --c-text: #403F53; --c-text-2: #5F5E75; --c-muted: #828192; --c-border: #D9D9D9;
+  --c-border-light: #ECECEC; --c-on-accent: #FFFFFF; --c-accent: #1F7871; --c-accent-hover: #1C6D66;
+  --c-accent-light: #E9F2F2; --c-accent-muted: #6FACA7; --c-task-bg: #F6FAFA; --c-task-border: #99BAB7;
+  --c-control-bg: #F1F1F1; --c-control-border: #ABABB1; --c-control-on: #FFFFFF; --c-control-on-border: #85848F;
+  --c-track: #EEEEEE; --c-track-border: #ABABB1; --c-extra-line: #9C9BA3; --c-extra-text: #5F5E75;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #D9D9D9;
+  --win-out-text: #403F53; --win-out-title: #5F5E75; --win-code-bg: #F6F6F6; --win-code-text: #403F53;
+  --win-code-title: #6E6D7C; --win-code-gutter: #7A8E97; --win-code-caret: #403F53; --win-code-edit: #403F53;
+  --win-btn-bg: #E5E5E5; --win-btn-border: #CFCFCF; --win-btn-text: #403F53; --tok-kw: #994CC3;
+  --tok-builtin: #426BC3; --tok-const: #B65151; --tok-num: #AA0982; --tok-str: #AB5856;
+  --tok-op: #0A7B7F; --tok-com: #6A6F7C; --tok-out: #6A6F7C; --c-info: #1C7837;
+  --c-info-light: #E4F0E8;
+}
+:root[data-palette="night-owl"] {   /* Night Owl */
+  color-scheme: dark;
+  --c-bg: #011627; --c-bg-warm: #01111D; --c-surface: #0B2942; --c-surface-warm: #062034;
+  --c-text: #D6DEEB; --c-text-2: #A7B6C7; --c-muted: #7E8E9F; --c-border: #1D3B53;
+  --c-border-light: #14324A; --c-on-accent: #011627; --c-accent: #7FDBCA; --c-accent-hover: #92E0D2;
+  --c-accent-light: #1E4558; --c-accent-muted: #569D9A; --c-task-bg: #13354C; --c-task-border: #3F737D;
+  --c-control-bg: #102434; --c-control-border: #546C81; --c-control-on: #284359; --c-control-on-border: #8395A7;
+  --c-track: #152938; --c-track-border: #546C81; --c-extra-line: #677C90; --c-extra-text: #A7B6C7;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #17344B; --win-out-border: #1D3B53;
+  --win-out-text: #D6DEEB; --win-out-title: #A7B6C7; --win-code-bg: #01111D; --win-code-text: #D6DEEB;
+  --win-code-title: #A1ABB8; --win-code-gutter: #4B6479; --win-code-caret: #D6DEEB; --win-code-edit: #D6DEEB;
+  --win-btn-bg: #13222D; --win-btn-border: #2A3741; --win-btn-text: #D6DEEB; --tok-kw: #C792EA;
+  --tok-builtin: #82AAFF; --tok-const: #FF5874; --tok-num: #F78C6C; --tok-str: #ECC48D;
+  --tok-op: #7FDBCA; --tok-com: #6C7F7F; --tok-out: #6C7F7F;
+}
+:root[data-palette="tokyo-day"] {   /* Tokyo Night Day */
+  color-scheme: light;
+  --c-bg: #E1E2E7; --c-bg-warm: #D5D6DB; --c-surface: #F2F2F5; --c-surface-warm: #EAEAEE;
+  --c-text: #3760BF; --c-text-2: #4C5A8A; --c-muted: #6A7597; --c-border: #C4C8DA;
+  --c-border-light: #DBDDE8; --c-on-accent: #FFFFFF; --c-accent: #2564BA; --c-accent-hover: #215AA8;
+  --c-accent-light: #DEE4F0; --c-accent-muted: #6E9AD6; --c-task-bg: #EAEDF3; --c-task-border: #8DA7D3;
+  --c-control-bg: #D8D9DE; --c-control-border: #9AA9D2; --c-control-on: #FFFFFF; --c-control-on-border: #6175A6;
+  --c-track: #D6D7DB; --c-track-border: #9AA9D2; --c-extra-line: #8C9ECF; --c-extra-text: #4C5A8A;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #EBEBEE; --win-out-border: #C4C8DA;
+  --win-out-text: #3760BF; --win-out-title: #4C5A8A; --win-code-bg: #E9E9ED; --win-code-text: #3760BF;
+  --win-code-title: #4F67A0; --win-code-gutter: #80849A; --win-code-caret: #3760BF; --win-code-edit: #3760BF;
+  --win-btn-bg: #D9D9DC; --win-btn-border: #C4C4C7; --win-btn-text: #3760BF; --tok-kw: #8147CD;
+  --tok-builtin: #2666BF; --tok-const: #A15400; --tok-num: #A15400; --tok-str: #557137;
+  --tok-op: #006A83; --tok-com: #606684; --tok-out: #606684; --win-link: #847D73;
+  --c-info: #1A705E; --c-info-light: #D9E5E5;
+}
+:root[data-palette="tokyo-night"] {   /* Tokyo Night */
+  color-scheme: dark;
+  --c-bg: #1A1B26; --c-bg-warm: #16161E; --c-surface: #24283B; --c-surface-warm: #1F2230;
+  --c-text: #C0CAF5; --c-text-2: #A9B1D6; --c-muted: #858CAA; --c-border: #292E42;
+  --c-border-light: #262B3E; --c-on-accent: #16161E; --c-accent: #82A8F7; --c-accent-hover: #8EB0F8;
+  --c-accent-light: #323C59; --c-accent-muted: #5C77B5; --c-task-bg: #2A3148; --c-task-border: #455781;
+  --c-control-bg: #282933; --c-control-border: #565D78; --c-control-on: #3E4253; --c-control-on-border: #7C84A4;
+  --c-track: #2C2D37; --c-track-border: #565D78; --c-extra-line: #656C8A; --c-extra-text: #A9B1D6;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #2F3345; --win-out-border: #292E42;
+  --win-out-text: #C0CAF5; --win-out-title: #A9B1D6; --win-code-bg: #16161E; --win-code-text: #C0CAF5;
+  --win-code-title: #969DBF; --win-code-gutter: #5E647D; --win-code-caret: #C0CAF5; --win-code-edit: #C0CAF5;
+  --win-btn-bg: #26262E; --win-btn-border: #3B3B42; --win-btn-text: #C0CAF5; --tok-kw: #BB9AF7;
+  --tok-builtin: #7AA2F7; --tok-const: #FF9E64; --tok-num: #FF9E64; --tok-str: #9ECE6A;
+  --tok-op: #89DDFF; --tok-com: #7981A2; --tok-out: #7981A2; --c-info: #6BDDC3;
+  --c-info-light: #324C56;
+}
+:root[data-palette="ayu-light"] {   /* Ayu Light */
+  color-scheme: light;
+  --c-bg: #FCFCFC; --c-bg-warm: #F3F4F5; --c-surface: #FFFFFF; --c-surface-warm: #FEFEFE;
+  --c-text: #5C6166; --c-text-2: #686E73; --c-muted: #82878A; --c-border: #E7EAED;
+  --c-border-light: #F3F4F6; --c-on-accent: #FFFFFF; --c-accent: #9F5A27; --c-accent-hover: #955425;
+  --c-accent-light: #F7EFEA; --c-accent-muted: #CB9A75; --c-task-bg: #FCF9F7; --c-task-border: #D3BBA9;
+  --c-control-bg: #F2F2F2; --c-control-border: #B2B5B8; --c-control-on: #FFFFFF; --c-control-on-border: #84878B;
+  --c-track: #EFEFEF; --c-track-border: #B2B5B8; --c-extra-line: #AFB3B7; --c-extra-text: #6B7177;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #E7EAED;
+  --win-out-text: #5C6166; --win-out-title: #6B7177; --win-code-bg: #F8F9FA; --win-code-text: #5C6166;
+  --win-code-title: #6F7376; --win-code-gutter: #8A9199; --win-code-caret: #5C6166; --win-code-edit: #5C6166;
+  --win-btn-bg: #E7E8E8; --win-btn-border: #D0D1D2; --win-btn-text: #5C6166; --tok-kw: #A85E2A;
+  --tok-builtin: #946A2D; --tok-const: #8664A7; --tok-num: #8664A7; --tok-str: #5E7D00;
+  --tok-op: #9F6244; --tok-com: #6F6F71; --tok-out: #6F6F71; --c-amber-text: #5B6E10;
+  --c-amber-light: #EBEEE2; --c-amber-border: #C6CCAB;
+}
+:root[data-palette="ayu-dark"] {   /* Ayu Dark */
+  color-scheme: dark;
+  --c-bg: #0B0E14; --c-bg-warm: #0D1017; --c-surface: #131721; --c-surface-warm: #0F121A;
+  --c-text: #BFBDB6; --c-text-2: #A6A49E; --c-muted: #7F7E7C; --c-border: #1E222A;
+  --c-border-light: #181C26; --c-on-accent: #0B0E14; --c-accent: #E6B450; --c-accent-hover: #EABF6A;
+  --c-accent-light: #353029; --c-accent-muted: #9C7D40; --c-task-bg: #222224; --c-task-border: #645537;
+  --c-control-bg: #1A1C22; --c-control-border: #4E5054; --c-control-on: #2F333C; --c-control-on-border: #777777;
+  --c-track: #1F2127; --c-track-border: #4E5054; --c-extra-line: #5E6062; --c-extra-text: #A6A49E;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #1F232C; --win-out-border: #1E222A;
+  --win-out-text: #BFBDB6; --win-out-title: #A6A49E; --win-code-bg: #0D1017; --win-code-text: #BFBDB6;
+  --win-code-title: #92928E; --win-code-gutter: #586274; --win-code-caret: #BFBDB6; --win-code-edit: #BFBDB6;
+  --win-btn-bg: #1E2127; --win-btn-border: #34363C; --win-btn-text: #BFBDB6; --tok-kw: #FF8F40;
+  --tok-builtin: #FFB454; --tok-const: #D2A6FF; --tok-num: #D2A6FF; --tok-str: #AAD94C;
+  --tok-op: #F29668; --tok-com: #757C84; --tok-out: #757C84; --c-amber-text: #C7F090;
+  --c-amber-light: #374237; --c-amber-border: #526348;
+}
+:root[data-palette="solarized-light"] {   /* Solarized Light */
+  color-scheme: light;
+  --c-bg: #FDF6E3; --c-bg-warm: #EEE8D5; --c-surface: #FFFBF0; --c-surface-warm: #FEF8EA;
+  --c-text: #586E75; --c-text-2: #566971; --c-muted: #768384; --c-border: #E3DCC6;
+  --c-border-light: #F1ECDB; --c-on-accent: #FFFFFF; --c-accent: #1E6FA7; --c-accent-hover: #1B6497;
+  --c-accent-light: #E9EEEA; --c-accent-muted: #6EA5C8; --c-task-bg: #F6F6EE; --c-task-border: #9FB8BF;
+  --c-control-bg: #F3ECDA; --c-control-border: #AEB0A4; --c-control-on: #FFFFFF; --c-control-on-border: #808882;
+  --c-track: #F0EAD8; --c-track-border: #AEB0A4; --c-extra-line: #ABB0A6; --c-extra-text: #62777F;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F3E9; --win-out-border: #E3DCC6;
+  --win-out-text: #586E75; --win-out-title: #5C7077; --win-code-bg: #F5EFDC; --win-code-text: #586E75;
+  --win-code-title: #616C6D; --win-code-gutter: #7D8989; --win-code-caret: #586E75; --win-code-edit: #586E75;
+  --win-btn-bg: #E4DECD; --win-btn-border: #CEC9B9; --win-btn-text: #586E75; --tok-kw: #657400;
+  --tok-builtin: #1E6EA6; --tok-const: #B94414; --tok-num: #C03176; --tok-str: #1F766F;
+  --tok-op: #657400; --tok-com: #626C6C; --tok-out: #626C6C; --c-info: #1B7462;
+  --c-info-light: #E4EDE1;
+}
+:root[data-palette="solarized-dark"] {   /* Solarized Dark */
+  color-scheme: dark;
+  --c-bg: #002B36; --c-bg-warm: #00212B; --c-surface: #073642; --c-surface-warm: #04303C;
+  --c-text: #B0BABA; --c-text-2: #8E9E9F; --c-muted: #6B8286; --c-border: #0E4A57;
+  --c-border-light: #0A404C; --c-on-accent: #000000; --c-accent: #78B7E3; --c-accent-hover: #68AEE0;
+  --c-accent-light: #12475A; --c-accent-muted: #347BA5; --c-task-bg: #0C3D4D; --c-task-border: #246885;
+  --c-control-bg: #0F3842; --c-control-border: #3C6971; --c-control-on: #254E59; --c-control-on-border: #66868B;
+  --c-track: #143C46; --c-track-border: #3C6971; --c-extra-line: #436D75; --c-extra-text: #8E9E9F;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #13404B; --win-out-border: #0E4A57;
+  --win-out-text: #9DA9A9; --win-out-title: #9CAAAB; --win-code-bg: #00212B; --win-code-text: #93A1A1;
+  --win-code-title: #77898B; --win-code-gutter: #586E75; --win-code-caret: #93A1A1; --win-code-edit: #93A1A1;
+  --win-btn-bg: #12313A; --win-btn-border: #29454D; --win-btn-text: #93A1A1; --tok-kw: #859900;
+  --tok-builtin: #268BD2; --tok-const: #D36639; --tok-num: #DA5495; --tok-str: #2AA198;
+  --tok-op: #859900; --tok-com: #76888E; --tok-out: #76888E; --win-link: #777067;
+  --c-info: #6BDDC3; --c-info-light: #1B575C;
+}
+:root[data-palette="gruvbox-light"] {   /* Gruvbox Light */
+  color-scheme: light;
+  --c-bg: #FBF1C7; --c-bg-warm: #F2E5BC; --c-surface: #F9F5D7; --c-surface-warm: #FAF3CF;
+  --c-text: #3C3836; --c-text-2: #504945; --c-muted: #7B7366; --c-border: #D5C4A1;
+  --c-border-light: #E7DCBC; --c-on-accent: #FFFFFF; --c-accent: #076678; --c-accent-hover: #065766;
+  --c-accent-light: #E1E7CE; --c-accent-muted: #5C9899; --c-task-bg: #EFEFD3; --c-task-border: #8DA393;
+  --c-control-bg: #F1E7BF; --c-control-border: #A79A81; --c-control-on: #FFFFFF; --c-control-on-border: #817766;
+  --c-track: #EEE5BD; --c-track-border: #A79A81; --c-extra-line: #988C76; --c-extra-text: #504945;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F2EED1; --win-out-border: #D5C4A1;
+  --win-out-text: #3C3836; --win-out-title: #504945; --win-code-bg: #F2E5BC; --win-code-text: #3C3836;
+  --win-code-title: #6A6358; --win-code-gutter: #8A7D6C; --win-code-caret: #3C3836; --win-code-edit: #3C3836;
+  --win-btn-bg: #E1D5AF; --win-btn-border: #CBC09E; --win-btn-text: #3C3836; --tok-kw: #9D0006;
+  --tok-builtin: #8A5A0F; --tok-const: #8F3F71; --tok-num: #8F3F71; --tok-str: #6A660C;
+  --tok-op: #3C7050; --tok-com: #6F6458; --tok-out: #6F6458; --c-info: #1A7048;
+  --c-info-light: #DFE7C7;
+}
+:root[data-palette="gruvbox-dark"] {   /* Gruvbox Dark */
+  color-scheme: dark;
+  --c-bg: #282828; --c-bg-warm: #1D2021; --c-surface: #32302F; --c-surface-warm: #2D2C2C;
+  --c-text: #EBDBB2; --c-text-2: #D5C4A1; --c-muted: #AA9D83; --c-border: #504945;
+  --c-border-light: #413C3A; --c-on-accent: #1D2021; --c-accent: #FABD2F; --c-accent-hover: #FBC74E;
+  --c-accent-light: #52472F; --c-accent-muted: #B48C2F; --c-task-bg: #403A2F; --c-task-border: #8C723D;
+  --c-control-bg: #353535; --c-control-border: #7E7566; --c-control-on: #4B4948; --c-control-on-border: #A59981;
+  --c-track: #393939; --c-track-border: #7E7566; --c-extra-line: #8E8371; --c-extra-text: #D5C4A1;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3C3A39; --win-out-border: #504945;
+  --win-out-text: #EBDBB2; --win-out-title: #D5C4A1; --win-code-bg: #1D2021; --win-code-text: #EBDBB2;
+  --win-code-title: #B8AC8E; --win-code-gutter: #7C6F64; --win-code-caret: #EBDBB2; --win-code-edit: #EBDBB2;
+  --win-btn-bg: #2D3031; --win-btn-border: #414445; --win-btn-text: #EBDBB2; --tok-kw: #FB4934;
+  --tok-builtin: #FABD2F; --tok-const: #D3869B; --tok-num: #D3869B; --tok-str: #B8BB26;
+  --tok-op: #8EC07C; --tok-com: #958778; --tok-out: #958778; --win-link: #7B756C;
+  --c-amber-text: #C7F090; --c-amber-light: #505642; --c-amber-border: #667351;
+}
+:root[data-palette="rose-pine-dawn"] {   /* Rosé Pine Dawn */
+  color-scheme: light;
+  --c-bg: #FAF4ED; --c-bg-warm: #F2E9E1; --c-surface: #FFFAF3; --c-surface-warm: #FCF7F0;
+  --c-text: #575279; --c-text-2: #68647E; --c-muted: #827F90; --c-border: #DFDAD9;
+  --c-border-light: #EFEAE6; --c-on-accent: #FFFFFF; --c-accent: #746188; --c-accent-hover: #6C5B7F;
+  --c-accent-light: #F2ECEA; --c-accent-muted: #AC9DB6; --c-task-bg: #FAF4EF; --c-task-border: #BDB3C1;
+  --c-control-bg: #F0EAE4; --c-control-border: #B6B1BC; --c-control-on: #FFFFFF; --c-control-on-border: #878295;
+  --c-track: #EEE8E1; --c-track-border: #B6B1BC; --c-extra-line: #A9A4B3; --c-extra-text: #726E8A;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F2EC; --win-out-border: #DFDAD9;
+  --win-out-text: #575279; --win-out-title: #6F6B86; --win-code-bg: #F2E9E1; --win-code-text: #575279;
+  --win-code-title: #6B667D; --win-code-gutter: #868191; --win-code-caret: #575279; --win-code-edit: #575279;
+  --win-btn-bg: #E1D9D1; --win-btn-border: #CBC4BD; --win-btn-text: #575279; --tok-kw: #286983;
+  --tok-builtin: #905754; --tok-const: #726086; --tok-num: #8F6020; --tok-str: #8F6020;
+  --tok-op: #6A6781; --tok-com: #6A6774; --tok-out: #6A6774; --c-plum: #447265;
+  --c-plum-light: #ECF0E7; --c-plum-border: #C8DCD0;
+}
+:root[data-palette="rose-pine"] {   /* Rosé Pine */
+  color-scheme: dark;
+  --c-bg: #191724; --c-bg-warm: #1F1D2E; --c-surface: #26233A; --c-surface-warm: #201D2F;
+  --c-text: #E0DEF4; --c-text-2: #A9A5C4; --c-muted: #85829C; --c-border: #403D52;
+  --c-border-light: #333046; --c-on-accent: #191724; --c-accent: #C4A7E7; --c-accent-hover: #CDB4EB;
+  --c-accent-light: #3F3856; --c-accent-muted: #8D79AA; --c-task-bg: #312C46; --c-task-border: #6E6286;
+  --c-control-bg: #272531; --c-control-border: #706D83; --c-control-on: #403D52; --c-control-on-border: #9896AB;
+  --c-track: #2B2A36; --c-track-border: #706D83; --c-extra-line: #807D93; --c-extra-text: #A9A5C4;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #312E44; --win-out-border: #403D52;
+  --win-out-text: #E0DEF4; --win-out-title: #A9A5C4; --win-code-bg: #1F1D2E; --win-code-text: #E0DEF4;
+  --win-code-title: #B0AEC2; --win-code-gutter: #6E6A86; --win-code-caret: #E0DEF4; --win-code-edit: #E0DEF4;
+  --win-btn-bg: #2F2D3D; --win-btn-border: #43414F; --win-btn-text: #E0DEF4; --tok-kw: #568DA3;
+  --tok-builtin: #EBBCBA; --tok-const: #C4A7E7; --tok-num: #F6C177; --tok-str: #F6C177;
+  --tok-op: #908CAA; --tok-com: #88859C; --tok-out: #88859C; --c-plum: #AAE8D7;
+  --c-plum-light: #404A59; --c-plum-border: #546871;
+}
+:root[data-palette="everforest-light"] {   /* Everforest Light */
+  color-scheme: light;
+  --c-bg: #FDF6E3; --c-bg-warm: #F4F0D9; --c-surface: #FFFBEF; --c-surface-warm: #FEF8E9;
+  --c-text: #5C6A72; --c-text-2: #5F6B65; --c-muted: #7A8279; --c-border: #E0DCC7;
+  --c-border-light: #F0ECDB; --c-on-accent: #FFFFFF; --c-accent: #616F01; --c-accent-hover: #5B6801;
+  --c-accent-light: #F0EED7; --c-accent-muted: #9FA754; --c-task-bg: #F9F6E5; --c-task-border: #B7BA82;
+  --c-control-bg: #F3ECDA; --c-control-border: #ADAFA4; --c-control-on: #FFFFFF; --c-control-on-border: #808581;
+  --c-track: #F0EAD8; --c-track-border: #ADAFA4; --c-extra-line: #ABAEA5; --c-extra-text: #68766F;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F3E8; --win-out-border: #E0DCC7;
+  --win-out-text: #5C6A72; --win-out-title: #626F68; --win-code-bg: #F4F0D9; --win-code-text: #5C6A72;
+  --win-code-title: #636A6A; --win-code-gutter: #838B7E; --win-code-caret: #5C6A72; --win-code-edit: #5C6A72;
+  --win-btn-bg: #E3DFCA; --win-btn-border: #CDCAB6; --win-btn-text: #5C6A72; --tok-kw: #BC413E;
+  --tok-builtin: #637101; --tok-const: #A34D88; --tok-num: #A34D88; --tok-str: #8F6600;
+  --tok-op: #A45419; --tok-com: #676F66; --tok-out: #676F66;
+}
+:root[data-palette="everforest-dark"] {   /* Everforest Dark */
+  color-scheme: dark;
+  --c-bg: #2D353B; --c-bg-warm: #232A2E; --c-surface: #343F44; --c-surface-warm: #303A40;
+  --c-text: #D6C9AF; --c-text-2: #A8B3A9; --c-muted: #89948E; --c-border: #475258;
+  --c-border-light: #3E484E; --c-on-accent: #232A2E; --c-accent: #B9CD9B; --c-accent-hover: #B4C993;
+  --c-accent-light: #46544E; --c-accent-muted: #7F936B; --c-task-bg: #3C4848; --c-task-border: #697866;
+  --c-control-bg: #3A4147; --c-control-border: #717571; --c-control-on: #4C565A; --c-control-on-border: #949285;
+  --c-track: #3E454B; --c-track-border: #717571; --c-extra-line: #7F8079; --c-extra-text: #A8B3A9;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3E494D; --win-out-border: #475258;
+  --win-out-text: #D3C6AA; --win-out-title: #B0BAB1; --win-code-bg: #232A2E; --win-code-text: #D3C6AA;
+  --win-code-title: #A79F8B; --win-code-gutter: #7A8478; --win-code-caret: #D3C6AA; --win-code-edit: #D3C6AA;
+  --win-btn-bg: #32393D; --win-btn-border: #464C4F; --win-btn-text: #D3C6AA; --tok-kw: #E67E80;
+  --tok-builtin: #A7C080; --tok-const: #D699B6; --tok-num: #D699B6; --tok-str: #DBBC7F;
+  --tok-op: #E69875; --tok-com: #89958D; --tok-out: #89958D; --win-link: #847E75;
+}
+:root[data-palette="noctis-lux"] {   /* Noctis Lux */
+  color-scheme: light;
+  --c-bg: #FEF8EC; --c-bg-warm: #F6EDDA; --c-surface: #FFFCF5; --c-surface-warm: #FEFAF0;
+  --c-text: #005661; --c-text-2: #2F6B73; --c-muted: #608A8D; --c-border: #E9DCC0;
+  --c-border-light: #F4ECDA; --c-on-accent: #FFFFFF; --c-accent: #007482; --c-accent-hover: #006C7A;
+  --c-accent-light: #E6F0EB; --c-accent-muted: #59ABB3; --c-task-bg: #F5F7F1; --c-task-border: #97BBAF;
+  --c-control-bg: #F4EEE3; --c-control-border: #A3B4A4; --c-control-on: #FFFFFF; --c-control-on-border: #668E88;
+  --c-track: #F1ECE0; --c-track-border: #A3B4A4; --c-extra-line: #8CA69A; --c-extra-text: #2F6B73;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F4EE; --win-out-border: #E9DCC0;
+  --win-out-text: #005661; --win-out-title: #2F6B73; --win-code-bg: #F9F1E1; --win-code-text: #005661;
+  --win-code-title: #3A7679; --win-code-gutter: #7A8A8A; --win-code-caret: #005661; --win-code-edit: #005661;
+  --win-btn-bg: #E8E0D1; --win-btn-border: #D1CABD; --win-btn-text: #005661; --tok-kw: #BA406B;
+  --tok-builtin: #007A8A; --tok-const: #5842FF; --tok-num: #5842FF; --tok-str: #007D49;
+  --tok-op: #CA3900; --tok-com: #5E6F6F; --tok-out: #5E6F6F; --c-info: #1C784D;
+  --c-info-light: #E4EEE2;
+}
+:root[data-palette="noctis"] {   /* Noctis */
+  color-scheme: dark;
+  --c-bg: #052529; --c-bg-warm: #041D20; --c-surface: #0A3237; --c-surface-warm: #082C30;
+  --c-text: #B2CACD; --c-text-2: #91ACB0; --c-muted: #6E8A8E; --c-border: #16474D;
+  --c-border-light: #103C42; --c-on-accent: #052529; --c-accent: #40D4E7; --c-accent-hover: #5DDAEB;
+  --c-accent-light: #134C53; --c-accent-muted: #2D9BA9; --c-task-bg: #0E3D43; --c-task-border: #257883;
+  --c-control-bg: #143236; --c-control-border: #456E73; --c-control-on: #274B4F; --c-control-on-border: #6C8F93;
+  --c-track: #19363A; --c-track-border: #456E73; --c-extra-line: #547B80; --c-extra-text: #91ACB0;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #163C41; --win-out-border: #16474D;
+  --win-out-text: #B2CACD; --win-out-title: #91ACB0; --win-code-bg: #041D20; --win-code-text: #B2CACD;
+  --win-code-title: #869FA2; --win-code-gutter: #4E7377; --win-code-caret: #B2CACD; --win-code-edit: #B2CACD;
+  --win-btn-bg: #162D30; --win-btn-border: #2C4144; --win-btn-text: #B2CACD; --tok-kw: #DF769B;
+  --tok-builtin: #16A3B6; --tok-const: #8173ED; --tok-num: #8173ED; --tok-str: #49E9A6;
+  --tok-op: #E66533; --tok-com: #60898E; --tok-out: #60898E; --win-link: #726C62;
+  --c-info: #6BDDA6; --c-info-light: #1D544D;
+}
+:root[data-palette="kanagawa-lotus"] {   /* Kanagawa Lotus */
+  color-scheme: light;
+  --c-bg: #F2ECBC; --c-bg-warm: #E7DBA0; --c-surface: #F8F3D0; --c-surface-warm: #F5F0C6;
+  --c-text: #545464; --c-text-2: #5D5C70; --c-muted: #7A787B; --c-border: #D5CEA3;
+  --c-border-light: #E6E0BA; --c-on-accent: #FFFFFF; --c-accent: #486392; --c-accent-hover: #415984;
+  --c-accent-light: #E7E5CB; --c-accent-muted: #8999AE; --c-task-bg: #F1EDCE; --c-task-border: #A5ABA0;
+  --c-control-bg: #E8E3B4; --c-control-border: #AEA990; --c-control-on: #FFFFFF; --c-control-on-border: #817E74;
+  --c-track: #E6E0B3; --c-track-border: #AEA990; --c-extra-line: #A19D8A; --c-extra-text: #5D5C70;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F1ECCA; --win-out-border: #D5CEA3;
+  --win-out-text: #545464; --win-out-title: #5D5C70; --win-code-bg: #E5DDB0; --win-code-text: #545464;
+  --win-code-title: #5F5D5E; --win-code-gutter: #7A796B; --win-code-caret: #545464; --win-code-edit: #545464;
+  --win-btn-bg: #D5CEA4; --win-btn-border: #C0BA94; --win-btn-text: #545464; --tok-kw: #624C83;
+  --tok-builtin: #46608D; --tok-const: #8F4C00; --tok-num: #8D4860; --tok-str: #516439;
+  --tok-op: #6F5E3F; --tok-com: #61605A; --tok-out: #61605A; --c-info: #1A705E;
+  --c-info-light: #DEE6C4;
+}
+:root[data-palette="kanagawa"] {   /* Kanagawa Wave */
+  color-scheme: dark;
+  --c-bg: #1F1F28; --c-bg-warm: #16161D; --c-surface: #2A2A37; --c-surface-warm: #242430;
+  --c-text: #DCD7BA; --c-text-2: #C8C093; --c-muted: #9E9878; --c-border: #363646;
+  --c-border-light: #30303E; --c-on-accent: #16161D; --c-accent: #8DA8DD; --c-accent-hover: #91ABDE;
+  --c-accent-light: #373C51; --c-accent-muted: #6174A0; --c-task-bg: #303242; --c-task-border: #4F5A79;
+  --c-control-bg: #2C2C35; --c-control-border: #686669; --c-control-on: #44444F; --c-control-on-border: #918F86;
+  --c-track: #313139; --c-track-border: #686669; --c-extra-line: #787674; --c-extra-text: #C8C093;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #353541; --win-out-border: #363646;
+  --win-out-text: #DCD7BA; --win-out-title: #C8C093; --win-code-bg: #16161D; --win-code-text: #DCD7BA;
+  --win-code-title: #AAA793; --win-code-gutter: #63637A; --win-code-caret: #DCD7BA; --win-code-edit: #DCD7BA;
+  --win-btn-bg: #26262D; --win-btn-border: #3B3B41; --win-btn-text: #DCD7BA; --tok-kw: #957FB8;
+  --tok-builtin: #7E9CD8; --tok-const: #FFA066; --tok-num: #D27E99; --tok-str: #98BB6C;
+  --tok-op: #C0A36E; --tok-com: #83827B; --tok-out: #83827B; --win-link: #726C62;
+  --c-info: #6BDDC3; --c-info-light: #374E53;
+}
+:root[data-palette="xcode-light"] {   /* Xcode Light */
+  color-scheme: light;
+  --c-bg: #FFFFFF; --c-bg-warm: #F5F5F5; --c-surface: #FFFFFF; --c-surface-warm: #FFFFFF;
+  --c-text: #262626; --c-text-2: #545454; --c-muted: #7F7F7F; --c-border: #E0E0E0;
+  --c-border-light: #F0F0F0; --c-on-accent: #FFFFFF; --c-accent: #0064E1; --c-accent-hover: #0055BF;
+  --c-accent-light: #E6F0FC; --c-accent-muted: #599AEC; --c-task-bg: #F5F9FE; --c-task-border: #92B5E0;
+  --c-control-bg: #F5F5F5; --c-control-border: #A8A8A8; --c-control-on: #FFFFFF; --c-control-on-border: #7A7A7A;
+  --c-track: #F2F2F2; --c-track-border: #A8A8A8; --c-extra-line: #969696; --c-extra-text: #545454;
+  --bg-glow: transparent; --shadow-rgb: 30, 30, 40; --win-out-bg: #F7F7F7; --win-out-border: #E0E0E0;
+  --win-out-text: #262626; --win-out-title: #545454; --win-code-bg: #FFFFFF; --win-code-text: #262626;
+  --win-code-title: #5C5C5C; --win-code-gutter: #929292; --win-code-caret: #262626; --win-code-edit: #262626;
+  --win-btn-bg: #EDEDED; --win-btn-border: #D6D6D6; --win-btn-text: #262626; --tok-kw: #9B2393;
+  --tok-builtin: #326D74; --tok-const: #9B2393; --tok-num: #1C00CF; --tok-str: #C41A16;
+  --tok-op: #262626; --tok-com: #5D6C79; --tok-out: #5D6C79; --c-info: #1C7865;
+  --c-info-light: #E4F0EE;
+}
+:root[data-palette="xcode-dark"] {   /* Xcode Dark */
+  color-scheme: dark;
+  --c-bg: #1F1F24; --c-bg-warm: #1A1A1E; --c-surface: #292A30; --c-surface-warm: #24242A;
+  --c-text: #DFDFE0; --c-text-2: #A3A3A8; --c-muted: #828287; --c-border: #3A3A40;
+  --c-border-light: #323238; --c-on-accent: #000000; --c-accent: #54AAFF; --c-accent-hover: #47A3FF;
+  --c-accent-light: #293B51; --c-accent-muted: #286EB7; --c-task-bg: #29313E; --c-task-border: #335983;
+  --c-control-bg: #2C2C31; --c-control-border: #6C6C70; --c-control-on: #434449; --c-control-on-border: #959598;
+  --c-track: #313136; --c-track-border: #6C6C70; --c-extra-line: #7C7C80; --c-extra-text: #A3A3A8;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #34353A; --win-out-border: #3A3A40;
+  --win-out-text: #DFDFE0; --win-out-title: #A3A3A8; --win-code-bg: #1F1F24; --win-code-text: #DFDFE0;
+  --win-code-title: #AFAFB1; --win-code-gutter: #747478; --win-code-caret: #DFDFE0; --win-code-edit: #DFDFE0;
+  --win-btn-bg: #2F2F33; --win-btn-border: #434347; --win-btn-text: #DFDFE0; --tok-kw: #FF7AB2;
+  --tok-builtin: #67B7A4; --tok-const: #FF7AB2; --tok-num: #D9C97C; --tok-str: #FF8170;
+  --tok-op: #DFDFE0; --tok-com: #7F8C98; --tok-out: #7F8C98; --win-link: #726C62;
+  --c-info: #6BDDC3; --c-info-light: #364E4D;
+}
+:root[data-palette="palenight"] {   /* Palenight */
+  color-scheme: dark;
+  --c-bg: #292D3E; --c-bg-warm: #1B1E2B; --c-surface: #34324A; --c-surface-warm: #2E3044;
+  --c-text: #C3C9E9; --c-text-2: #A6ACCD; --c-muted: #878CA9; --c-border: #3A3F58;
+  --c-border-light: #373851; --c-on-accent: #1B1E2B; --c-accent: #D1A6EE; --c-accent-hover: #CFA2ED;
+  --c-accent-light: #4C4164; --c-accent-muted: #9470B2; --c-task-bg: #3E3955; --c-task-border: #6B5C8B;
+  --c-control-bg: #363A4A; --c-control-border: #636884; --c-control-on: #4C4B60; --c-control-on-border: #858BA8;
+  --c-track: #3A3E4D; --c-track-border: #636884; --c-extra-line: #717692; --c-extra-text: #A6ACCD;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3E3C53; --win-out-border: #3A3F58;
+  --win-out-text: #C3C9E9; --win-out-title: #A6ACCD; --win-code-bg: #232637; --win-code-text: #A6ACCD;
+  --win-code-title: #898EAB; --win-code-gutter: #696E8D; --win-code-caret: #A6ACCD; --win-code-edit: #A6ACCD;
+  --win-btn-bg: #323545; --win-btn-border: #464957; --win-btn-text: #A6ACCD; --tok-kw: #C792EA;
+  --tok-builtin: #82AAFF; --tok-const: #F78C6C; --tok-num: #F78C6C; --tok-str: #C3E88D;
+  --tok-op: #89DDFF; --tok-com: #878CAB; --tok-out: #878CAB; --win-link: #7F7970;
+  --c-plum: #AAE8D7; --c-plum-light: #4C5666; --c-plum-border: #5D727B;
+}
+:root[data-palette="cobalt2"] {   /* Cobalt2 */
+  color-scheme: dark;
+  --c-bg: #193549; --c-bg-warm: #15232D; --c-surface: #1F4662; --c-surface-warm: #1C3E56;
+  --c-text: #FFFFFF; --c-text-2: #C2D4E2; --c-muted: #98ACBC; --c-border: #255A80;
+  --c-border-light: #225071; --c-on-accent: #15232D; --c-accent: #FFC600; --c-accent-hover: #FFCF26;
+  --c-accent-light: #435A52; --c-accent-muted: #B19922; --c-task-bg: #2F4F5B; --c-task-border: #718053;
+  --c-control-bg: #274154; --c-control-border: #668CA6; --c-control-on: #3A5C75; --c-control-on-border: #9DB5C6;
+  --c-track: #2B4558; --c-track-border: #668CA6; --c-extra-line: #7C9CB3; --c-extra-text: #C2D4E2;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #2A4F6A; --win-out-border: #255A80;
+  --win-out-text: #FFFFFF; --win-out-title: #C2D4E2; --win-code-bg: #122738; --win-code-text: #FFFFFF;
+  --win-code-title: #C4C9CD; --win-code-gutter: #4A7797; --win-code-caret: #FFFFFF; --win-code-edit: #FFFFFF;
+  --win-btn-bg: #233646; --win-btn-border: #384A58; --win-btn-text: #FFFFFF; --tok-kw: #FF9D00;
+  --tok-builtin: #FFC600; --tok-const: #FF628C; --tok-num: #FF628C; --tok-str: #3AD900;
+  --tok-op: #FF9D00; --tok-com: #088CFF; --tok-out: #088CFF; --win-link: #847E75;
+  --c-amber-text: #F5C3B8; --c-amber-light: #49586B; --c-amber-border: #686672;
+}
+:root[data-palette="shades-of-purple"] {   /* Shades of Purple */
+  color-scheme: dark;
+  --c-bg: #2D2B55; --c-bg-warm: #1E1E3F; --c-surface: #393665; --c-surface-warm: #33305D;
+  --c-text: #FFFFFF; --c-text-2: #C6BEF5; --c-muted: #A099CD; --c-border: #4A4785;
+  --c-border-light: #423E75; --c-on-accent: #1E1E3F; --c-accent: #FAD000; --c-accent-hover: #FBD726;
+  --c-accent-light: #584F55; --c-accent-muted: #B69A23; --c-task-bg: #47415E; --c-task-border: #887756;
+  --c-control-bg: #3A385F; --c-control-border: #807EAA; --c-control-on: #514E77; --c-control-on-border: #AEACC8;
+  --c-track: #3E3C63; --c-track-border: #807EAA; --c-extra-line: #9291B6; --c-extra-text: #C6BEF5;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #43406D; --win-out-border: #4A4785;
+  --win-out-text: #FFFFFF; --win-out-title: #C6BEF5; --win-code-bg: #1E1E3F; --win-code-text: #FFFFFF;
+  --win-code-title: #C7C7CF; --win-code-gutter: #A599E9; --win-code-caret: #FFFFFF; --win-code-edit: #FFFFFF;
+  --win-btn-bg: #2E2E4C; --win-btn-border: #42425E; --win-btn-text: #FFFFFF; --tok-kw: #FF9D00;
+  --tok-builtin: #FAD000; --tok-const: #FF628C; --tok-num: #FF628C; --tok-str: #A5FF90;
+  --tok-op: #FF9D00; --tok-com: #B362FF; --tok-out: #B362FF; --win-link: #7F7970;
+  --c-amber-text: #F4BAAE; --c-amber-light: #5E4B6E; --c-amber-border: #795B74;
+}
+:root[data-palette="synthwave"] {   /* SynthWave '84 */
+  color-scheme: dark;
+  --c-bg: #262335; --c-bg-warm: #171520; --c-surface: #34294F; --c-surface-warm: #2D2642;
+  --c-text: #F0EFF5; --c-text-2: #C4BFD4; --c-muted: #9C98AC; --c-border: #495495;
+  --c-border-light: #3E3E72; --c-on-accent: #171520; --c-accent: #FF86DD; --c-accent-hover: #FF91E0;
+  --c-accent-light: #543765; --c-accent-muted: #B860AA; --c-task-bg: #422F59; --c-task-border: #8963AE;
+  --c-control-bg: #333041; --c-control-border: #7B82B2; --c-control-on: #4C4364; --c-control-on-border: #A5A9CA;
+  --c-track: #373545; --c-track-border: #7B82B2; --c-extra-line: #8C92BB; --c-extra-text: #C4BFD4;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #3E3458; --win-out-border: #495495;
+  --win-out-text: #F0EFF5; --win-out-title: #C4BFD4; --win-code-bg: #241B2F; --win-code-text: #F0EFF5;
+  --win-code-title: #BDBAC4; --win-code-gutter: #6D6A80; --win-code-caret: #F0EFF5; --win-code-edit: #F0EFF5;
+  --win-btn-bg: #332B3E; --win-btn-border: #473F50; --win-btn-text: #F0EFF5; --tok-kw: #FEDE5D;
+  --tok-builtin: #36F9F6; --tok-const: #F97E72; --tok-num: #F97E72; --tok-str: #FF8B39;
+  --tok-op: #FEDE5D; --tok-com: #848BBD; --tok-out: #848BBD; --win-link: #777067;
+  --c-rose: #F2A7A6; --c-rose-light: #5A405E; --c-rose-border: #765169;
+}
+:root[data-palette="andromeda"] {   /* Andromeda */
+  color-scheme: dark;
+  --c-bg: #23262E; --c-bg-warm: #1B1D23; --c-surface: #2B2F38; --c-surface-warm: #272A33;
+  --c-text: #D5CED9; --c-text-2: #B6B0BB; --c-muted: #918E98; --c-border: #3B3F4A;
+  --c-border-light: #333741; --c-on-accent: #1B1D23; --c-accent: #00E8C6; --c-accent-hover: #26EBCF;
+  --c-accent-light: #244D4F; --c-accent-muted: #0FA794; --c-task-bg: #283C42; --c-task-border: #267A75;
+  --c-control-bg: #30333B; --c-control-border: #696A75; --c-control-on: #444850; --c-control-on-border: #908E99;
+  --c-track: #35373F; --c-track-border: #696A75; --c-extra-line: #797883; --c-extra-text: #B6B0BB;
+  --bg-glow: transparent; --shadow-rgb: 0, 0, 0; --win-out-bg: #363942; --win-out-border: #3B3F4A;
+  --win-out-text: #D5CED9; --win-out-title: #B6B0BB; --win-code-bg: #1B1D23; --win-code-text: #D5CED9;
+  --win-code-title: #A6A2AC; --win-code-gutter: #696A70; --win-code-caret: #D5CED9; --win-code-edit: #D5CED9;
+  --win-btn-bg: #2B2D32; --win-btn-border: #3F4146; --win-btn-text: #D5CED9; --tok-kw: #C74DED;
+  --tok-builtin: #FFE66D; --tok-const: #F39C12; --tok-num: #F39C12; --tok-str: #96E072;
+  --tok-op: #EE5D43; --tok-com: #A0A1A7; --tok-out: #A0A1A7; --win-link: #777067;
+}
+/* palettes:end */

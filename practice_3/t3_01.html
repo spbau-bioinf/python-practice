@@ -166,7 +166,7 @@ True</pre></div>
           <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>Traceback (most recent call last):
   File "equal.py", line 2, in &lt;module&gt;
     print(length = 100)
-TypeError: 'length' is an invalid keyword argument for print()</pre></div>
+TypeError: print() got an unexpected keyword argument 'length'</pre></div>
           <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">length <span class="tok-op">=</span> <span class="tok-num">120</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(length <span class="tok-op">==</span> <span class="tok-num">100</span>)  <span class="tok-out"># → False</span></span></code></pre></div>
           <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
@@ -419,7 +419,7 @@ C12</pre></td><td><pre>False</pre></td></tr>
         <ol class="submit-steps">
           <li>Внутри личной папки создайте папку <code>projects_3</code>: в ней будут все работы практики 3.</li>
           <li>В папке <code>projects_3</code> создайте папку <code>t3_01</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t3_01_1_basic.py</code> и <code>t3_01_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t3_01_1_medium.py</code> и <code>t3_01_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t3_01_1_advanced.py</code> и <code>t3_01_2_advanced.py</code>.</span></li>
-          <li>Загрузите папку <code>t3_01</code> в свой репозиторий внутрь папки <code>projects_3</code> и отправьте изменения до срока. Решения проверяются тем же набором тестов, что и на странице, включая скрытые.</li>
+          <li>Загрузите папку <code>t3_01</code> в свой репозиторий внутрь папки <code>projects_3</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
         <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
         <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>

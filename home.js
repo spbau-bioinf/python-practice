@@ -32,6 +32,9 @@
     root.setAttribute("data-theme", t === "system" ? (systemDark() ? "dark" : "light") : t);
     root.setAttribute("data-profile", settings.profile === "game" ? "game" : "classic");
     if (settings.track) root.setAttribute("data-track", settings.track); else root.removeAttribute("data-track");
+    /* версия 65: цветовой профиль текущей темы (выбирается в меню ⚙ страниц практики) */
+    var mode = root.getAttribute("data-theme"), pk = settings.profile === "game" ? null : (mode === "dark" ? settings.pd : settings.pl);
+    if (pk) root.setAttribute("data-palette", pk); else root.removeAttribute("data-palette");
   }
   apply();
 
