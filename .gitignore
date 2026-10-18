@@ -1,0 +1,13 @@
+# Файлы преподавателя не должны попасть на публичный сайт
+*.py
+*.pyc
+__pycache__/
+*.json
+*.csv
+specs/
+solutions_*/
+grading/
+teacher*
+results_*
+tests_report*
+python-practice-for-teacher/

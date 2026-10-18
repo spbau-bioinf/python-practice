@@ -213,6 +213,7 @@ False</pre></div>
         <div class="step step-learn">Теория</div>
         <p class="th-full">В условии с несколькими операторами важно, какой из них связывает сильнее, как в арифметике умножение связывает сильнее сложения: <code>2 + 3 * 4</code> читается как <code>2 + (3 * 4)</code>. Ошибка в группировке не вызывает сообщения: программа просто проверяет не то, что вы имели в виду.</p>
         <p>Приоритет операторов определяет, как Python расставляет невидимые скобки в сложном условии. Сильнее всех связывают арифметика и сравнения, слабее <code>not</code>, еще слабее <code>and</code>, слабее всех <code>or</code>. Поэтому <code>not x &gt; 5</code> читается как <code>not (x &gt; 5)</code>, а <code>a or b and c</code> как <code>a or (b and c)</code>.</p>
+        <p>У всех сравнений один уровень приоритета. Если сравнения стоят подряд, Python не группирует их по одному, а соединяет в цепочку сравнений: <code>a &lt; b &lt; c</code> означает <code>a &lt; b and b &lt; c</code>. Так работает любое сравнение, и <code>==</code> тоже. Подробнее цепочки разобраны на странице 08.</p>
         <p class="rule">Если в условии есть и <code>and</code>, и <code>or</code>, ставьте скобки, даже когда группировка и так верная. Скобки группируют части явно и показывают читателю, что вы имели в виду.</p>
         <div class="table-wrap th-full">
           <table class="data">
@@ -221,6 +222,7 @@ False</pre></div>
               <tr><td>1</td><td>скобки</td><td><code>(a or b) and c</code></td><td><code>a or b</code> одной группой</td></tr>
               <tr><td>2</td><td>арифметика</td><td><code>x + 1 &gt; y</code></td><td><code>(x + 1) &gt; y</code></td></tr>
               <tr><td>3</td><td>сравнения, <code>in</code></td><td><code>not x == y</code></td><td><code>not (x == y)</code></td></tr>
+              <tr><td>3</td><td>сравнения подряд (цепочка)</td><td><code>a &lt; b == c</code></td><td><code>a &lt; b and b == c</code></td></tr>
               <tr><td>4</td><td><code>not</code></td><td><code>not a and b</code></td><td><code>(not a) and b</code></td></tr>
               <tr><td>5</td><td><code>and</code></td><td><code>a or b and c</code></td><td><code>a or (b and c)</code></td></tr>
               <tr><td>6</td><td><code>or</code></td><td><code>a and b or c</code></td><td><code>(a and b) or c</code></td></tr>
@@ -242,12 +244,14 @@ False</pre></div>
           <div class="run-pair">
             <div class="code-block"><span class="code-label">priority.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-const">True</span> <span class="tok-kw">or</span> <span class="tok-const">False</span> <span class="tok-kw">and</span> <span class="tok-const">False</span>)    <span class="tok-out"># → True</span></span>
 <span class="ln"><span class="tok-builtin">print</span>((<span class="tok-const">True</span> <span class="tok-kw">or</span> <span class="tok-const">False</span>) <span class="tok-kw">and</span> <span class="tok-const">False</span>)  <span class="tok-out"># → False</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-kw">not</span> <span class="tok-num">5</span> <span class="tok-op">&gt;</span> <span class="tok-num">3</span>)                  <span class="tok-out"># → False</span></span></code></pre></div>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-kw">not</span> <span class="tok-num">5</span> <span class="tok-op">&gt;</span> <span class="tok-num">3</span>)                  <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">5</span> <span class="tok-op">&gt;</span> <span class="tok-num">3</span> <span class="tok-op">==</span> <span class="tok-const">True</span>)              <span class="tok-out"># → False</span></span></code></pre></div>
             <div class="output-block predict"><span class="output-label">Вывод</span><pre>True
+False
 False
 False</pre></div>
           </div>
-          <div class="analysis"><ol><li>Строка 1: <code>and</code> связывает сильнее, поэтому условие читается как <code>True or (False and False)</code>. Левая часть <code>or</code> истинна, и правая даже не вычисляется (страница 03).</li><li>Строка 2: скобки объединяют <code>True or False</code> в одну группу, и ответ меняется.</li><li>Строка 3: сравнение связывает сильнее <code>not</code>: <code>5 &gt; 3</code> истинно, <code>not</code> делает его ложным.</li></ol></div>
+          <div class="analysis"><ol><li>Строка 1: <code>and</code> связывает сильнее, поэтому условие читается как <code>True or (False and False)</code>. Левая часть <code>or</code> истинна, и правая даже не вычисляется (страница 03).</li><li>Строка 2: скобки объединяют <code>True or False</code> в одну группу, и ответ меняется.</li><li>Строка 3: сравнение связывает сильнее <code>not</code>: <code>5 &gt; 3</code> истинно, <code>not</code> делает его ложным.</li><li>Строка 4: два сравнения подряд образуют цепочку <code>5 &gt; 3 and 3 == True</code>. Число 3 не равно <code>True</code>, поэтому ответ <code>False</code>. Со скобками <code>(5 &gt; 3) == True</code> ответ был бы <code>True</code>.</li></ol></div>
         </article>
         <details class="deep"><summary>Подробнее: <code>&amp;</code> и <code>|</code> вместо <code>and</code> и <code>or</code></summary><p>В Python есть операторы <code>&amp;</code> и <code>|</code>, похожие на «и» и «или» из других языков. Это поразрядные операции над целыми числами, и приоритет у них выше, чем у сравнений. Поэтому при <code>a = 10</code> выражение <code>a &lt;= 10 &amp; 1 &lt; a</code> дает <code>False</code>: сначала вычисляется <code>10 &amp; 1</code>. С <code>and</code> то же условие дает <code>True</code>. В условиях пишите <code>and</code>, <code>or</code> и <code>not</code>. С <code>&amp;</code> и <code>|</code> вы встретитесь в библиотеке <code>pandas</code>, там у них свой смысл.</p></details>
         <div class="step step-try">Практика</div>

@@ -889,7 +889,7 @@
         box.textContent = "Вставьте код программы в поле выше.";
         return;
       }
-      var data = stdin ? stdin.value.replace(/\s+$/, "") + "\n" : "";
+      var data = stdin ? stdin.value.replace(/\r\n?/g, "\n") + "\n" : "";
       tryBtn.disabled = true;
       box.className = "checker-result is-wait";
       box.textContent = workerReady ? "Запускаю…" : LOADING;
@@ -1053,7 +1053,7 @@
     function run() {
       runBtn.disabled = true;
       outPre.textContent = workerReady ? "Запускаю…" : LOADING;
-      var data = stdin ? stdin.value.replace(/\s+$/, "") + "\n" : "";
+      var data = stdin ? stdin.value.replace(/\r\n?/g, "\n") + "\n" : "";
       runCode(editor.value, [{ input: data, set: null }], true)
         .then(function (res) { renderRunOutput(outPre, res); })
         .catch(function (e) { outPre.textContent = failText(e); })

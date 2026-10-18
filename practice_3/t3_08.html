@@ -117,6 +117,7 @@
         <p class="th-full">Лесенку можно выпрямить, сохранив все ее проверки, а заодно добавить недостающее правило о пустом идентификаторе. Приемов три, и все они опираются на то, что уже знакомо: <code>and</code> со страницы 02, цепочку <code>elif</code> со страницы 05 и новую запись двойного сравнения.</p>
         <p>Вложенный <code>if</code> без <code>else</code> заменяют одним условием с <code>and</code>: <code>if a:</code> и внутри <code>if b:</code> равносильно <code>if a and b:</code>. Проверки с сообщениями об ошибках переворачивают и ставят первыми ветвями плоской цепочки <code>elif</code>: каждая ветвь проверяет нарушение правила и тут же сообщает о нем, а верному случаю достается последняя ветвь <code>else</code>. Цепочка останавливается на первом нарушенном правиле.</p>
         <p>Двойное сравнение записывают как в математике: <code>1 &lt;= n &lt;= 25</code> означает <code>1 &lt;= n and n &lt;= 25</code>, только <code>n</code> вычисляется один раз. Сравнения связывают сильнее <code>not</code>, поэтому <code>not 1 &lt;= n &lt;= 25</code> читается как <code>not (1 &lt;= n &lt;= 25)</code>.</p>
+        <p>Цепочку образует любое сравнение, и <code>==</code> тоже. Python режет цепочку на соседние пары и соединяет их через <code>and</code>, поэтому <code>gc &gt; 0.4 == True</code> означает <code>gc &gt; 0.4 and 0.4 == True</code> и ложно при любом <code>gc</code>: 0.4 не равно <code>True</code>. Если нужен другой порядок, ставят скобки, но с <code>True</code> через <code>==</code> обычно не сравнивают совсем: достаточно <code>gc &gt; 0.4</code>.</p>
         <p class="definition th-full"><span class="term">Цепочка сравнений</span>&nbsp;— запись нескольких сравнений подряд, например <code>a &lt; b &lt;= c</code>; она истинна, если истинны все соседние сравнения.</p>
         <div class="table-wrap th-full">
           <table class="data">
@@ -162,7 +163,21 @@
           </div>
           <div class="analysis"><p>Строки 2–4 и строки 5–6 проверяют одно и то же. Во второй записи один уровень отступа и одно условие, которое читается как математическое неравенство.</p></div>
         </article>
-        <details class="deep"><summary>Подробнее: необычные цепочки сравнений</summary><p>Цепочку можно составить из любых операторов сравнения: <code>1 &lt; x &gt; 3</code> означает <code>1 &lt; x and x &gt; 3</code>, а <code>a == b == c</code> проверяет, что равны все три значения. Такие записи допустимы, но читаются плохо. Пишите цепочки только в виде <code>a &lt; x &lt; b</code> или <code>a &lt;= x &lt;= b</code>, как неравенство в математике. В большинстве других языков, например в C и JavaScript, запись <code>1 &lt; x &lt; 10</code> означает совсем другое, поэтому опытные программисты иногда избегают ее и в Python.</p></details>
+        <article class="example">
+          <h3>Цепочка с <code>==</code></h3>
+          <p>Предскажите вывод, прежде чем открыть его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">chain_eq.py</span><pre><code><span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0.5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">0.4</span> <span class="tok-op">&lt;</span> gc <span class="tok-op">&lt;</span> <span class="tok-num">0.6</span>)      <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">&gt;</span> <span class="tok-num">0.4</span> <span class="tok-op">==</span> <span class="tok-const">True</span>)    <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((gc <span class="tok-op">&gt;</span> <span class="tok-num">0.4</span>) <span class="tok-op">==</span> <span class="tok-const">True</span>)  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>True
+False
+True</pre></div>
+          </div>
+          <div class="analysis"><ol><li>Строка 2: обычное двойное сравнение, <code>0.4 &lt; gc and gc &lt; 0.6</code>.</li><li>Строка 3: тоже цепочка, <code>gc &gt; 0.4 and 0.4 == True</code>. Первая пара истинна, вторая ложна, и все условие ложно.</li><li>Строка 4: скобки вычисляют сравнение первым, и его результат <code>True</code> равен <code>True</code>.</li></ol></div>
+        </article>
+        <details class="deep"><summary>Подробнее: необычные цепочки сравнений</summary><p>Из правила «цепочку образует любое сравнение» следуют и странные записи: <code>1 &lt; x &gt; 3</code> означает <code>1 &lt; x and x &gt; 3</code>, а <code>a == b == c</code> проверяет, что равны все три значения. Такие записи допустимы, но читаются плохо. Пишите цепочки только в виде <code>a &lt; x &lt; b</code> или <code>a &lt;= x &lt;= b</code>, как неравенство в математике. В большинстве других языков, например в C и JavaScript, запись <code>1 &lt; x &lt; 10</code> означает совсем другое, поэтому опытные программисты иногда избегают ее и в Python.</p></details>
         <div class="step step-try">Практика</div>
         <div class="try-block">
           <p>Перепишите условие цепочкой сравнений и проверьте его на значениях 0.3, 0.5 и 0.6.</p>
