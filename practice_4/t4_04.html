@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Выход из цикла. Практика 4. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t4_04.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 4</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t4_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Цикл <code>for</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Функция <code>range()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Цикл <code>while</code></span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t4_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Выход из цикла</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Поиск до первой находки</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Два выхода из цикла</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Пропуск шага</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">4.4.1</span> <span class="anc-ex-title" data-variant="basic">Первая буква N</span><span class="anc-ex-title" data-variant="medium">Проверка алфавита</span><span class="anc-ex-title" data-variant="advanced">Открытая рамка считывания</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">4.4.2</span> <span class="anc-ex-title" data-variant="basic">Без пропусков</span><span class="anc-ex-title" data-variant="medium">FASTA в одну строку</span><span class="anc-ex-title" data-variant="advanced">Первое прочтение с мотивом</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">4.4</span> <span class="anc-ex-title" data-variant="basic">Первая плохая позиция</span><span class="anc-ex-title" data-variant="medium">Проверка FASTA с комментариями</span><span class="anc-ex-title" data-variant="advanced">Чистый участок</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t4_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Счетчики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Поиск максимума</span></span></a></li>
+        <li class="menu-sub"><a href="t4_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Инвариант цикла</span></span></a></li>
+        <li class="menu-sub"><a href="t4_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Цикл в цикле</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">04</span>
+      <p class="page-path"><span>Практика 4</span><span class="page-path-sep" aria-hidden="true">›</span><span>Циклы</span></p>
+      <h1>Выход из цикла</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Завершать поиск командой <code>break</code>, пропускать ненужные элементы командой <code>continue</code> и проверять после цикла, нашлось ли искомое.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Поиск до первой находки</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Когда первая N найдена, остальные буквы проверять незачем, а их может быть миллион. Нужно уметь выйти из цикла раньше, чем кончились элементы.</p>
+        <p>Команда <code>break</code> сразу завершает ближайший цикл, в котором стоит; выполнение продолжается со строки после цикла. После <code>break</code> переменная цикла <code>for</code> хранит элемент, на котором цикл остановился.</p>
+        <p class="definition"><span class="term">Линейный поиск</span>&nbsp;— перебор элементов по порядку до первой находки.</p>
+        <p>Если искомого нет, <code>break</code> не сработает, и после цикла переменная цикла укажет на последний элемент. По ней одной не понять, нашлось ли искомое: нужна отдельная проверка (раздел 2).</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Первая неоднозначная буква</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">first_ambiguous.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ACGTRACN"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-kw">not</span> <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>:</span>
+<span class="ln">        <span class="tok-kw">break</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(i, seq[i])  <span class="tok-out"># → 4 R</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>4 R</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строки 3–4: на <code>i = 4</code> буква R не входит в ACGT, и <code>break</code> завершает цикл; буквы после R не проверялись.</li>
+            <li>Строка 5: <code>i</code> хранит индекс, на котором цикл остановился. Для строки <code>"ACGT"</code> программа напечатала бы <code>3 T</code>, хотя неоднозначных букв там нет.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "first_ambiguous.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACGTRACN\"<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-builtin\">len<\/span>(seq)):", "    <span class=\"tok-kw\">if<\/span> seq[i] <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "        <span class=\"tok-kw\">break<\/span>", "<span class=\"tok-builtin\">print<\/span>(i, seq[i])  "], "columns": ["i"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACGTRACN\"<\/span>", "vars": [["seq", "\"ACGTRACN\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"ACGTRACN\"."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>):", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "0", true]], "out": "", "row": null, "note": "Строка 2: i получает первое значение, i = 0."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "0", false]], "out": "", "row": ["0"], "note": "Строка 3: условие \"A\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>):", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "1", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 1."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "1", false]], "out": "", "row": ["1"], "note": "Строка 3: условие \"C\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>):", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "2", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 2."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "2", false]], "out": "", "row": ["2"], "note": "Строка 3: условие \"G\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>):", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "3", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 3."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "3", false]], "out": "", "row": ["3"], "note": "Строка 3: условие \"T\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>):", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "4", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 4."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"R\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "4", false]], "out": "", "row": null, "note": "Строка 3: условие \"R\" not in \"ACGT\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-kw\">break<\/span>", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "4", false]], "out": "", "row": ["4"], "note": "Строка 4."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>, <span class=\"tv\"><span class=\"tok-str\">\"R\"<\/span><\/span>)", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "4", false]], "out": "4 R\n", "row": null, "note": "Строка 5: печатается 4 R."}, {"line": 0, "html": "", "vars": [["seq", "\"ACGTRACN\"", false], ["i", "4", false]], "out": "4 R\n", "row": null, "note": "Программа закончилась. Вывод: 4 R."}]}</script>
+        </article>
+        <div class="table-wrap th-full">
+          <table class="data trace">
+            <thead><tr><th>Шаг</th><th>Строка</th><th>Значения переменных</th><th>Вывод</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2–3</td><td><code>i = 0</code>, A входит в ACGT</td><td></td></tr>
+              <tr><td>2</td><td>2–3</td><td><code>i = 1</code>, C входит</td><td></td></tr>
+              <tr><td>3</td><td>2–3</td><td><code>i = 2</code>, G входит</td><td></td></tr>
+              <tr><td>4</td><td>2–3</td><td><code>i = 3</code>, T входит</td><td></td></tr>
+              <tr><td>5</td><td>2–4</td><td><code>i = 4</code>, R не входит, <code>break</code></td><td></td></tr>
+              <tr><td>6</td><td>5</td><td><code>i = 4</code></td><td>4 R</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените строку на <code>"ACGT"</code> и запустите: убедитесь, что программа «находит» букву, которой нет. Затем поставьте N первой буквой.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_search.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GGYTA"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-kw">not</span> <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>:</span>
+<span class="ln">        <span class="tok-kw">break</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(i, seq[i])  <span class="tok-out"># → 2 Y</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>2 Y</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Два выхода из цикла</h2>
+        <div class="step step-learn">Теория</div>
+        <p>У цикла два выхода: элементы кончились или сработал <code>break</code>. Чтобы после цикла узнать, каким выходом он закончился, есть два способа.</p>
+        <p>Первый способ: ветвь <code>else</code> цикла. Она пишется на уровне <code>for</code>, а не <code>if</code>, и выполняется, только если цикл закончился без <code>break</code>.</p>
+        <p class="rule">Ветвь <code>else</code> цикла выполняется, когда элементы кончились, и не выполняется после <code>break</code>; для пустой строки она тоже выполняется.</p>
+        <p>Второй способ: флаг. До цикла <code>found = False</code>, перед <code>break</code> <code>found = True</code>, после цикла обычная проверка <code>if found:</code> или <code>if not found:</code>.</p>
+        <div class="th-full">
+          <p>Документация Python приводит <code>else</code> цикла как прием для поиска. В книге «Effective Python» советуют его избегать: слово <code>else</code> легко понять наоборот, как «если цикл не выполнился». Флаг длиннее на две строки, но читается однозначно. Пользуйтесь тем, что вам понятнее, и умейте читать оба.</p>
+          <ol>
+            <li>Ветвь <code>else</code> цикла стоит с тем же отступом, что и <code>for</code>.</li>
+            <li>Итераций не было, значит, не было и <code>break</code>: для пустой строки <code>else</code> выполняется.</li>
+            <li>Пустую строку, если она не должна считаться допустимой, проверяют до цикла: <code>if not seq:</code>.</li>
+          </ol>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Проверка алфавита: <code>for</code> и <code>else</code></h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">alphabet.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ACGTTGCA"</span></span>
+<span class="ln"><span class="tok-kw">for</span> base <span class="tok-kw">in</span> seq:</span>
+<span class="ln">    <span class="tok-kw">if</span> base <span class="tok-kw">not</span> <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(<span class="tok-str">"недопустимая:"</span>, base)</span>
+<span class="ln">        <span class="tok-kw">break</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"все буквы допустимы"</span>)  <span class="tok-out"># → все буквы допустимы</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>все буквы допустимы</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строки 3–5: при первой недопустимой букве программа печатает ее и выходит из цикла.</li>
+            <li>Строки 6–7: <code>else</code> стоит на уровне <code>for</code>. Здесь <code>break</code> не сработал, поэтому ветвь выполнилась. При <code>seq = "ACGN"</code> программа напечатала бы <code>недопустимая: N</code>, и <code>else</code> не выполнился бы.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "alphabet.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACGTTGCA\"<\/span>", "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> seq:", "    <span class=\"tok-kw\">if<\/span> base <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "        <span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"недопустимая:\"<\/span>, base)", "        <span class=\"tok-kw\">break<\/span>", "<span class=\"tok-kw\">else<\/span>:", "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"все буквы допустимы\"<\/span>)  "], "columns": ["base", "напечатано"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACGTTGCA\"<\/span>", "vars": [["seq", "\"ACGTTGCA\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"ACGTTGCA\"."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", true]], "out": "", "row": null, "note": "Строка 2: base получает первое значение, base = \"A\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", false]], "out": "", "row": ["A", ""], "note": "Строка 3: условие \"A\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"C\"", true]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"C\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"C\"", false]], "out": "", "row": ["C", ""], "note": "Строка 3: условие \"C\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"G\"", true]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"G\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"G\"", false]], "out": "", "row": ["G", ""], "note": "Строка 3: условие \"G\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"T\"", true]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"T\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"T\"", false]], "out": "", "row": ["T", ""], "note": "Строка 3: условие \"T\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"T\"", false]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"T\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"T\"", false]], "out": "", "row": ["T", ""], "note": "Строка 3: условие \"T\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"G\"", true]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"G\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"G\"", false]], "out": "", "row": ["G", ""], "note": "Строка 3: условие \"G\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"C\"", true]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"C\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"C\"", false]], "out": "", "row": ["C", ""], "note": "Строка 3: условие \"C\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", true]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"A\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", false]], "out": "", "row": ["A", ""], "note": "Строка 3: условие \"A\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGTTGCA\"<\/span><\/span>:", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", false]], "out": "", "row": null, "note": "Строка 2: base получает следующее значение, base = \"A\"."}, {"line": 7, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"все буквы допустимы\"<\/span>)", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", false]], "out": "все буквы допустимы\n", "row": ["A", "все буквы допустимы"], "note": "Строка 7: печатается все буквы допустимы."}, {"line": 0, "html": "", "vars": [["seq", "\"ACGTTGCA\"", false], ["base", "\"A\"", false]], "out": "все буквы допустимы\n", "row": null, "note": "Программа закончилась. Вывод: все буквы допустимы."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>То же с флагом</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">alphabet_flag.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ACGN"</span></span>
+<span class="ln">found <span class="tok-op">=</span> <span class="tok-const">False</span></span>
+<span class="ln"><span class="tok-kw">for</span> base <span class="tok-kw">in</span> seq:</span>
+<span class="ln">    <span class="tok-kw">if</span> base <span class="tok-kw">not</span> <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>:</span>
+<span class="ln">        found <span class="tok-op">=</span> <span class="tok-const">True</span></span>
+<span class="ln">        <span class="tok-kw">break</span></span>
+<span class="ln"><span class="tok-kw">if</span> found:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"недопустимая:"</span>, base)  <span class="tok-out"># → недопустимая: N</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"все буквы допустимы"</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>недопустимая: N</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: до цикла флаг говорит «не найдено».</li>
+            <li>Строка 5: перед <code>break</code> флаг ставится в <code>True</code>.</li>
+            <li>Строки 7–10: обычное ветвление после цикла; <code>else</code> здесь относится к <code>if</code>.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "alphabet_flag.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACGN\"<\/span>", "found <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">False<\/span>", "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> seq:", "    <span class=\"tok-kw\">if<\/span> base <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "        found <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">True<\/span>", "        <span class=\"tok-kw\">break<\/span>", "<span class=\"tok-kw\">if<\/span> found:", "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"недопустимая:\"<\/span>, base)  ", "<span class=\"tok-kw\">else<\/span>:", "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"все буквы допустимы\"<\/span>)"], "columns": ["base", "found"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACGN\"<\/span>", "vars": [["seq", "\"ACGN\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"ACGN\"."}, {"line": 2, "html": "found <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">False<\/span>", "vars": [["seq", "\"ACGN\"", false], ["found", "False", true]], "out": "", "row": null, "note": "Строка 2: found = False."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGN\"<\/span><\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"A\"", true]], "out": "", "row": null, "note": "Строка 3: base получает первое значение, base = \"A\"."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"A\"", false]], "out": "", "row": ["A", "False"], "note": "Строка 4: условие \"A\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGN\"<\/span><\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"C\"", true]], "out": "", "row": null, "note": "Строка 3: base получает следующее значение, base = \"C\"."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"C\"", false]], "out": "", "row": ["C", "False"], "note": "Строка 4: условие \"C\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGN\"<\/span><\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"G\"", true]], "out": "", "row": null, "note": "Строка 3: base получает следующее значение, base = \"G\"."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"G\"", false]], "out": "", "row": ["G", "False"], "note": "Строка 4: условие \"G\" not in \"ACGT\" ложно, тело пропускается."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ACGN\"<\/span><\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"N\"", true]], "out": "", "row": null, "note": "Строка 3: base получает следующее значение, base = \"N\"."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"N\"<\/span><\/span> <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "False", false], ["base", "\"N\"", false]], "out": "", "row": null, "note": "Строка 4: условие \"N\" not in \"ACGT\" истинно, тело выполняется."}, {"line": 5, "html": "        found <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">True<\/span>", "vars": [["seq", "\"ACGN\"", false], ["found", "True", true], ["base", "\"N\"", false]], "out": "", "row": null, "note": "Строка 5: found = True."}, {"line": 6, "html": "        <span class=\"tok-kw\">break<\/span>", "vars": [["seq", "\"ACGN\"", false], ["found", "True", false], ["base", "\"N\"", false]], "out": "", "row": ["N", "True"], "note": "Строка 6."}, {"line": 7, "html": "<span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-const\">True<\/span><\/span>:", "vars": [["seq", "\"ACGN\"", false], ["found", "True", false], ["base", "\"N\"", false]], "out": "", "row": null, "note": "Строка 7: условие True истинно, тело выполняется."}, {"line": 8, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"недопустимая:\"<\/span>, <span class=\"tv\"><span class=\"tok-str\">\"N\"<\/span><\/span>)", "vars": [["seq", "\"ACGN\"", false], ["found", "True", false], ["base", "\"N\"", false]], "out": "недопустимая: N\n", "row": null, "note": "Строка 8: печатается недопустимая: N."}, {"line": 0, "html": "", "vars": [["seq", "\"ACGN\"", false], ["found", "True", false], ["base", "\"N\"", false]], "out": "недопустимая: N\n", "row": null, "note": "Программа закончилась. Вывод: недопустимая: N."}]}</script>
+        </article>
+        <article class="example">
+          <h3>Пустая строка</h3>
+          <p>Предскажите вывод: был ли в цикле <code>break</code>?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">empty.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">""</span></span>
+<span class="ln"><span class="tok-kw">for</span> base <span class="tok-kw">in</span> seq:</span>
+<span class="ln">    <span class="tok-kw">if</span> base <span class="tok-kw">not</span> <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>:</span>
+<span class="ln">        <span class="tok-kw">break</span></span>
+<span class="ln"><span class="tok-kw">else</span>:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-str">"все буквы допустимы"</span>)  <span class="tok-out"># → все буквы допустимы</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>все буквы допустимы</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: итераций нет, значит, нет и <code>break</code>, поэтому ветвь <code>else</code> выполняется. Пустую строку проверяют отдельно, до цикла: <code>if not seq:</code>.</li>
+          </ol></div>
+        </article>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t4_04_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t4_04_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t4_04_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 4.4.1. Первая буква N</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Найдите позицию первой буквы N в последовательности; позиции нумеруются с 1. Остановите цикл командой <code>break</code>, как только буква найдена.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из заглавных латинских букв длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Позиция первой буквы N или 0, если буквы N в строке нет.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ACGNTN</pre></td><td><pre>4</pre></td></tr>
+                <tr><td><pre>GATTACA</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 4.4.1. Проверка алфавита</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Проверьте, что последовательность состоит только из букв A, C, G, T. Если это так, выведите <code>OK</code>. Иначе выведите первую недопустимую букву и ее позицию (нумерация с 1) через пробел. Пустая строка не считается последовательностью: для нее выведите <code>EMPTY</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из заглавных латинских букв длиной от 0 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p><code>OK</code>, <code>EMPTY</code> или буква и позиция через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ACGTRAC</pre></td><td><pre>R 5</pre></td></tr>
+                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>EMPTY</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 4.4.1. Открытая рамка считывания</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих букв (<a href="t4_02.html">страница 02</a>). Чтение гена начинается со старт-кодона, это тройка ATG, и заканчивается на стоп-кодоне, это TAA, TAG или TGA. Участок от старт-кодона до стоп-кодона, прочитанный тройками, в этой задаче называется открытой рамкой считывания. Найдите первое вхождение ATG в строке и читайте от него кодоны по три буквы до первого стоп-кодона. Выведите, сколько кодонов стоит перед стоп-кодоном, включая сам ATG. Если ATG нет или после него в рамке нет стоп-кодона, выведите NO.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Два цикла подряд: первый ищет ATG и останавливается командой <code>break</code>, второй идет от найденной позиции шагом 3. Начальное значение ответа NO подойдет для обоих случаев, когда ответа нет.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно число или NO.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>CCATGGCCTAAGT</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>ATGCCC</pre></td><td><pre>NO</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Пропуск шага</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Команда <code>continue</code> пропускает остаток тела и переходит к следующей итерации: в <code>for</code> к следующему элементу, в <code>while</code> к проверке условия. Цикл при этом продолжается.</p>
+        <p class="rule"><code>break</code> и <code>continue</code> действуют только на ближайший цикл, внутри которого стоят.</p>
+        <p class="th-full"><code>continue</code> удобен, когда часть элементов нужно отбросить, например буквы N или строки-заголовки FASTA. Проверка «этот элемент не нужен» стоит в начале тела, а вся обработка нужных элементов идет ниже без лишнего отступа. Без <code>continue</code> ту же программу пишут через <code>if</code> с обработкой внутри ветви: результат тот же, но код уходит вправо.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Последовательность без N</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">skip_n.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GGNCANNT"</span></span>
+<span class="ln"><span class="tok-kw">for</span> base <span class="tok-kw">in</span> seq:</span>
+<span class="ln">    <span class="tok-kw">if</span> base <span class="tok-op">==</span> <span class="tok-str">"N"</span>:</span>
+<span class="ln">        <span class="tok-kw">continue</span></span>
+<span class="ln">    <span class="tok-builtin">print</span>(base, end<span class="tok-op">=</span><span class="tok-str">""</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>()</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>GGCAT</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строки 3–4: для N остаток тела пропускается, и цикл переходит к следующей букве.</li>
+            <li>Строка 5: выполняется только для букв, которые не N.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "skip_n.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GGNCANNT\"<\/span>", "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> seq:", "    <span class=\"tok-kw\">if<\/span> base <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "        <span class=\"tok-kw\">continue<\/span>", "    <span class=\"tok-builtin\">print<\/span>(base, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"\"<\/span>)", "<span class=\"tok-builtin\">print<\/span>()"], "columns": ["base", "напечатано"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GGNCANNT\"<\/span>", "vars": [["seq", "\"GGNCANNT\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GGNCANNT\"."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"G\"", true]], "out": "", "row": null, "note": "Строка 2: base получает первое значение, base = \"G\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"G\"", false]], "out": "", "row": null, "note": "Строка 3: условие \"G\" == \"N\" ложно, тело пропускается."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"\"<\/span>)", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"G\"", false]], "out": "G", "row": ["G", "G"], "note": "Строка 5: печатается G (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"G\"", false]], "out": "G", "row": null, "note": "Строка 2: base получает следующее значение, base = \"G\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"G\"", false]], "out": "G", "row": null, "note": "Строка 3: условие \"G\" == \"N\" ложно, тело пропускается."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"\"<\/span>)", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"G\"", false]], "out": "GG", "row": ["G", "GG"], "note": "Строка 5: печатается G (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", true]], "out": "GG", "row": null, "note": "Строка 2: base получает следующее значение, base = \"N\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"N\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GG", "row": null, "note": "Строка 3: условие \"N\" == \"N\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-kw\">continue<\/span>", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GG", "row": ["N", "GG"], "note": "Строка 4."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"C\"", true]], "out": "GG", "row": null, "note": "Строка 2: base получает следующее значение, base = \"C\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"C\"", false]], "out": "GG", "row": null, "note": "Строка 3: условие \"C\" == \"N\" ложно, тело пропускается."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"\"<\/span>)", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"C\"", false]], "out": "GGC", "row": ["C", "GGC"], "note": "Строка 5: печатается C (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"A\"", true]], "out": "GGC", "row": null, "note": "Строка 2: base получает следующее значение, base = \"A\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"A\"", false]], "out": "GGC", "row": null, "note": "Строка 3: условие \"A\" == \"N\" ложно, тело пропускается."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"\"<\/span>)", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"A\"", false]], "out": "GGCA", "row": ["A", "GGCA"], "note": "Строка 5: печатается A (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", true]], "out": "GGCA", "row": null, "note": "Строка 2: base получает следующее значение, base = \"N\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"N\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GGCA", "row": null, "note": "Строка 3: условие \"N\" == \"N\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-kw\">continue<\/span>", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GGCA", "row": ["N", "GGCA"], "note": "Строка 4."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GGCA", "row": null, "note": "Строка 2: base получает следующее значение, base = \"N\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"N\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GGCA", "row": null, "note": "Строка 3: условие \"N\" == \"N\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-kw\">continue<\/span>", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"N\"", false]], "out": "GGCA", "row": ["N", "GGCA"], "note": "Строка 4."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"T\"", true]], "out": "GGCA", "row": null, "note": "Строка 2: base получает следующее значение, base = \"T\"."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"N\"<\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"T\"", false]], "out": "GGCA", "row": null, "note": "Строка 3: условие \"T\" == \"N\" ложно, тело пропускается."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"\"<\/span>)", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"T\"", false]], "out": "GGCAT", "row": ["T", "GGCAT"], "note": "Строка 5: печатается T (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> base <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GGNCANNT\"<\/span><\/span>:", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"T\"", false]], "out": "GGCAT", "row": null, "note": "Строка 2: значений больше нет, цикл закончен; base остается \"T\"."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>()", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"T\"", false]], "out": "GGCAT\n", "row": null, "note": "Строка 6: print() переводит строку."}, {"line": 0, "html": "", "vars": [["seq", "\"GGNCANNT\"", false], ["base", "\"T\"", false]], "out": "GGCAT\n", "row": null, "note": "Программа закончилась. Вывод: GGCAT."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3><code>continue</code> в цикле <code>while</code></h3>
+          <p>Программа ждет ввода. Пользователь набирает <kbd class="user-input">&gt;seq1</kbd>, <kbd class="user-input">ACGT</kbd>, <kbd class="user-input">done</kbd>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">skip_headers.py</span><pre><code><span class="ln"><span class="tok-kw">while</span> <span class="tok-const">True</span>:</span>
+<span class="ln">    line <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
+<span class="ln">    <span class="tok-kw">if</span> line <span class="tok-op">==</span> <span class="tok-str">"done"</span>:</span>
+<span class="ln">        <span class="tok-kw">break</span></span>
+<span class="ln">    <span class="tok-kw">if</span> line.startswith(<span class="tok-str">"&gt;"</span>):</span>
+<span class="ln">        <span class="tok-kw">continue</span></span>
+<span class="ln">    <span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(line))  <span class="tok-out"># → 4</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">&gt;seq1</kbd>
+<kbd class="user-input">ACGT</kbd>
+4
+<kbd class="user-input">done</kbd></pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строки 3–4: стоп-слово завершает цикл.</li>
+            <li>Строки 5–6: заголовок пропускается: <code>continue</code> возвращает выполнение к строке 1, и читается следующая строка.</li>
+          </ol></div>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените <code>continue</code> на <code>break</code> и сравните вывод.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_continue.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ACNGT"</span></span>
+<span class="ln"><span class="tok-kw">for</span> base <span class="tok-kw">in</span> seq:</span>
+<span class="ln">    <span class="tok-kw">if</span> base <span class="tok-op">==</span> <span class="tok-str">"N"</span>:</span>
+<span class="ln">        <span class="tok-kw">continue</span></span>
+<span class="ln">    <span class="tok-builtin">print</span>(base, end<span class="tok-op">=</span><span class="tok-str">""</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>()</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>ACGT</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t4_04_2_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t4_04_2_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t4_04_2_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 4.4.2. Без пропусков</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Чтобы сравнить две последовательности, их выравнивают: записывают одну под другой так, чтобы похожие участки стояли друг под другом, и для этого вставляют пропуски. Пропуски обозначены дефисом <code>-</code>; выравнивание подробно разбирается в теме 15 «Выравнивание последовательностей». Выведите последовательность без пропусков. Пропускайте дефисы командой <code>continue</code>, остальные буквы печатайте по одной.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T и дефисов длиной от 1 до 100; хотя бы одна буква в ней есть.</p>
+          <h4>Выходные данные</h4>
+          <p>Последовательность без дефисов одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>AC-GT--A</pre></td><td><pre>ACGTA</pre></td></tr>
+                <tr><td><pre>TTAG</pre></td><td><pre>TTAG</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_2_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 4.4.2. FASTA в одну строку</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В FASTA последовательность записана на нескольких строках, а строки, которые начинаются с <code>&gt;</code>, являются заголовками. Программа читает строки до строки <code>done</code>. Выведите все буквы последовательностей одной строкой, пропуская заголовки командой <code>continue</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Несколько строк: заголовки, которые начинаются с <code>&gt;</code>, и строки из букв A, C, G, T; последней идет строка <code>done</code>. Хотя бы одна строка с буквами есть.</p>
+          <h4>Выходные данные</h4>
+          <p>Буквы всех строк последовательностей подряд, одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>&gt;seq1
+ACGT
+GGTA
+done</pre></td><td><pre>ACGTGGTA</pre></td></tr>
+                <tr><td><pre>TTAG
+done</pre></td><td><pre>TTAG</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_2_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 4.4.2. Первое прочтение с мотивом</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор (прибор для чтения ДНК) прочитал за один раз и выдал строкой букв. Буквой N секвенатор отмечает позицию, которую не смог прочитать. Мотивом называют короткую последовательность, которую ищут внутри прочтений. В первой строке мотив, дальше прочтения, по одному в строке, до строки <code>done</code>. Прочтения нумеруются с 1 подряд, в том числе те, в которых есть буква N. Прочтения с буквой N ненадежны: их нужно пропустить. Выведите номер первого прочтения без N, в котором встречается мотив, или 0, если такого нет. Программа читает все строки до <code>done</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке мотив из букв A, C, G, T, дальше от 0 до 20 прочтений из букв A, C, G, T, N, затем строка <code>done</code>.</p>
+          <h4>Выходные данные</h4>
+          <p>Номер прочтения или 0.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GAT
+ACGT
+TTGNATG
+CCGATA
+GATT
+done</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>AAA
+CCC
+GGG
+done</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_2_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t4_04_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t4_04_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t4_04_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 4.4. Первая плохая позиция</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Секвенатор, прибор для чтения ДНК, оценивает надежность каждой прочитанной буквы. В этой задаче оценки записаны строкой цифр от 0 до 9, по одной на букву: чем больше, тем надежнее. Найдите первую позицию, где оценка ниже порога t, и выведите ее номер (позиции нумеруются с 1). Если таких позиций нет, выведите NO.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке оценки: строка цифр длиной от 1 до 100. Во второй порог t от 0 до 9.</p>
+          <h4>Выходные данные</h4>
+          <p>Номер позиции или NO.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>9987654
+6</pre></td><td><pre>6</pre></td></tr>
+                <tr><td><pre>9999
+5</pre></td><td><pre>NO</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 4.4. Проверка FASTA с комментариями</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Формат FASTA (<a href="../practice_3/t3_09.html">страница 09 практики 3</a>): строка заголовка начинается с <code>&gt;</code>, следующие строки содержат буквы последовательности. В старых файлах встречаются строки-комментарии, которые начинаются с <code>;</code>, и пустые строки; их пропускают. Первая не пропущенная строка должна быть заголовком. Строка последовательности может содержать только буквы A, C, G, T, N. Строки нумеруются с 1 все подряд, вместе с пропущенными. Выведите номер первой ошибочной строки или OK, если ошибок нет.</p></div>
+          <h4>Входные данные</h4>
+          <p>Строки файла, затем строка <code>done</code>.</p>
+          <h4>Выходные данные</h4>
+          <p>Номер первой ошибочной строки или OK.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>&gt;s1
+ACGT
+;comment
+ACXT
+done</pre></td><td><pre>4</pre></td></tr>
+                <tr><td><pre>&gt;s1
+<span class="io-empty">(пустая строка)</span>
+ACGT
+done</pre></td><td><pre>OK</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 4.4. Чистый участок</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Буквой N секвенатор отмечает позицию, которую не смог прочитать. Для анализа нужен участок из L подряд идущих букв без N. Найдите самый левый такой участок и выведите позицию его первой буквы (позиции нумеруются с 1). Если такого участка нет, выведите NO.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке последовательность из букв A, C, G, T, N длиной от 1 до 100, во второй число L от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Позиция начала участка или NO.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ACNNACGTN
+3</pre></td><td><pre>5</pre></td></tr>
+                <tr><td><pre>NNNN
+1</pre></td><td><pre>NO</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_04_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_4</code> создайте папку <code>t4_04</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t4_04_1_basic.py</code> и <code>t4_04_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t4_04_1_medium.py</code> и <code>t4_04_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t4_04_1_advanced.py</code> и <code>t4_04_2_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t4_04_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t4_04_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t4_04_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t4_04</code> в свой репозиторий внутрь папки <code>projects_4</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_4/
+    └── t4_04/
+        ├── t4_04_1_basic.py
+        └── t4_04_2_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_4/
+    └── t4_04/
+        ├── t4_04_1_medium.py
+        └── t4_04_2_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_4/
+    └── t4_04/
+        ├── t4_04_1_advanced.py
+        └── t4_04_2_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t4_03.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">03 Цикл <code>while</code></span></a>
+        <a class="pcard pcard-next" href="t4_05.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">05 Счетчики</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

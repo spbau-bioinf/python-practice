@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обзор практики. Практика 4. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 4</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a class="current" aria-current="page" href="t4_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Цикл <code>for</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Функция <code>range()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Цикл <code>while</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Выход из цикла</span></span></a></li>
+        <li class="menu-sub"><a href="t4_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Счетчики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Поиск максимума</span></span></a></li>
+        <li class="menu-sub"><a href="t4_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Инвариант цикла</span></span></a></li>
+        <li class="menu-sub"><a href="t4_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Цикл в цикле</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">00</span>
+      <h1>Практика 4. Циклы</h1>
+      <p class="page-subtitle">Язык программирования Python · 1,5 часа в аудитории и 1,5 часа самостоятельно</p>
+    </header>
+    <div class="page-body">
+    <main class="content" data-game-theme="knight">
+
+      <section class="goals">
+        <h2>На этом занятии вы</h2>
+        <ul>
+          <li>научитесь обходить последовательность циклом <code>for</code> и получать ряды чисел функцией <code>range()</code>;</li>
+          <li>будете писать цикл <code>while</code>, который останавливается по событию, и находить причину бесконечного цикла;</li>
+          <li>научитесь завершать поиск через <code>break</code>, пропускать буквы через <code>continue</code> и проверять, нашлось ли искомое;</li>
+          <li>будете считать нуклеотиды, GC-состав и наибольшее значение с помощью счетчиков и накопителей;</li>
+          <li>научитесь формулировать инвариант цикла и по нему проверять, что цикл дает верный ответ;</li>
+          <li>будете искать мотив в последовательности вложенными циклами и считать, сколько шагов они делают.</li>
+        </ul>
+        <p>До сих пор программа выполняла каждую строку один раз. Последовательность из миллиона нуклеотидов так не обработать: нужна конструкция, которая повторяет действие для каждой буквы. Упражнения практики взяты из задач <a href="https://rosalind.info/">Rosalind</a> и из работы с FASTA: подсчет нуклеотидов, GC-состав, поиск мотива.</p>
+        <p>Знать биологию и химию для этого курса не нужно. Каждое предметное понятие, без которого задачу не решить, объяснено на странице с задачей или на странице, куда с нее ведет ссылка. Если слово осталось непонятным&nbsp;— сообщите преподавателю.</p>
+      </section>
+      <h2>Как устроено занятие</h2>
+      <p>Каждый раздел страницы идет по шагам: <span class="step step-learn">Теория</span> объясняет понятие, <span class="step step-see">Пример</span> показывает готовый код с разбором, в шаге <span class="step step-try">Практика</span> вы меняете код и запускаете его, <span class="step step-task">Задача</span> содержит упражнение с проверкой. Раздел с меткой <span class="overview-badge">Необходимый минимум</span> касается темы следующих лекций: в нем только то, что нужно сейчас, и ссылка на тему, где она разбирается полностью. У каждого упражнения три варианта: базовый, средний и продвинутый. Первым открывается вариант вашего уровня. В конце каждой страницы стоит <span class="step step-star">Задача со звездочкой</span>: необязательная задача тоже в трех вариантах, каждый сложнее упражнения своего уровня. В зачет она не входит, за решение в игровом режиме дается дополнительный опыт. Теоретических страниц без упражнений в этой практике нет: упражнения есть на всех страницах 01–08.</p>
+      <p>Теорию на каждой странице можно читать кратко или подробно: переключатель «Объем теории» стоит в шапке страницы справа от заголовка. Подробный вариант добавляет примеры, разборы по шагам и типичные ошибки. Упражнения в обоих вариантах одинаковые, для их решения достаточно краткого. В подробном варианте дополнительный материал обведен пунктирной рамкой с подписью «Дополнительно».</p>
+      <h2>Предметные понятия практики</h2>
+      <p>Здесь собраны понятия из условий упражнений, по одному короткому определению. Полное объяснение с примером дано на странице, где понятие нужно для задачи.</p>
+      <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Понятие</th><th>Что это</th><th>Страницы</th></tr></thead>
+            <tbody>
+              <tr><td>Нуклеотид</td><td>звено цепи ДНК; в записи последовательности это одна буква A, C, G или T</td><td><a href="t4_01.html">01</a>, <a href="t4_05.html">05</a></td></tr>
+              <tr><td>Секвенатор</td><td>прибор, который читает ДНК и выдает прочитанные участки строками букв A, C, G, T; буквой N он отмечает позицию, которую не смог прочитать</td><td><a href="t4_03.html">03</a></td></tr>
+              <tr><td>Прочтение (read)</td><td>участок ДНК, который секвенатор прочитал за один раз; обычно он намного короче гена</td><td><a href="t4_03.html">03</a>, <a href="t4_04.html">04</a>, <a href="t4_06.html">06</a></td></tr>
+              <tr><td>Кодон</td><td>тройка подряд идущих нуклеотидов; одна тройка соответствует одной аминокислоте белка</td><td><a href="t4_02.html">02</a>, <a href="t4_04.html">04</a></td></tr>
+              <tr><td>Аминокислота, белок</td><td>белок — цепочка из звеньев-аминокислот, его строение записано в гене тройками нуклеотидов; в задачах курса это только сюжет</td><td><a href="t4_06.html">06</a></td></tr>
+<tr><td>Рамка считывания</td><td>способ разбить последовательность на тройки: с первой, второй или третьей буквы</td><td><a href="t4_02.html">02</a></td></tr>
+              <tr><td>Старт-кодон, стоп-кодон</td><td>тройка ATG, с которой начинается чтение гена, и тройка TAA, TAG или TGA, на которой оно заканчивается</td><td><a href="t4_04.html">04</a></td></tr>
+              <tr><td>Пурины, пиримидины</td><td>две группы нуклеотидов: пурины A и G, пиримидины C и T</td><td><a href="t4_05.html">05</a></td></tr>
+              <tr><td>Транзиция, трансверсия</td><td>замена буквы на букву из той же группы (транзиция) или из другой группы (трансверсия)</td><td><a href="t4_05.html">05</a></td></tr>
+              <tr><td>GC-состав</td><td>процент букв G и C среди всех букв последовательности</td><td><a href="t4_05.html">05</a></td></tr>
+              <tr><td>GC-перекос</td><td><span class="formula">(G − C) / (G + C)</span>: каких букв больше, G или C</td><td><a href="t4_05.html">05</a></td></tr>
+              <tr><td>Накопленный перекос</td><td>число G минус число C среди первых <code>i</code> букв</td><td><a href="t4_07.html">07</a></td></tr>
+              <tr><td>Гомополимер</td><td>участок из одной повторяющейся буквы, например AAAA</td><td><a href="t4_07.html">07</a></td></tr>
+              <tr><td>Расстояние Хэмминга</td><td>число позиций, в которых две строки одной длины различаются</td><td><a href="t4_07.html">07</a></td></tr>
+              <tr><td>Мотив</td><td>короткая последовательность, которую ищут в длинной, например GAATTC</td><td><a href="t4_08.html">08</a></td></tr>
+              <tr><td><code>k</code>-мер</td><td>любой участок последовательности длины <code>k</code></td><td><a href="t4_08.html">08</a></td></tr>
+            <tr><td>Экспрессия гена</td><td>насколько активно работает ген; положительное изменение значит, что ген стал работать сильнее</td><td><a href="t4_06.html">06</a></td></tr>
+<tr><td>Планшет, лунка</td><td>пластина с углублениями, лунками, в которые ставят пробы</td><td><a href="t4_02.html">02</a></td></tr>
+<tr><td>Репликация</td><td>удвоение ДНК перед делением клетки; у бактерий она начинается в одной точке кольцевой ДНК</td><td><a href="t4_07.html">07</a></td></tr>
+</tbody>
+          </table>
+      </div>
+      <h2>Как засчитывается практика</h2>
+      <p>Вы заранее выбираете уровень и в каждом упражнении решаете вариант этого уровня. Какие файлы сохранить в репозиторий, написано в конце каждой страницы с упражнениями, в блоке «Сдача работы».</p>
+      <p>Уровень можно сменить только один раз за семестр. Уровень меняется через преподавателя: кнопки выбора уровня на сайте только переключают, какие варианты упражнений вы видите. Уже засчитанные практики при смене уровня остаются засчитанными. Итоговый зачет по курсу проходит по критериям уровня, выбранного на момент зачета.</p>
+      <p>Практика засчитывается после сдачи преподавателю:</p>
+      <ol>
+        <li>Перед сдачей практики положите решения всех упражнений вашего уровня в свой личный репозиторий.</li>
+        <li>Вы сдаете практику преподавателю целиком. Он проверяет, все ли упражнения выполнены и верны ли решения, и задает вопросы по теме практики.</li>
+        <li>Если сдача прошла успешно, практика засчитана, и в <a href="https://docs.google.com/spreadsheets/d/1DneGdOkNdwsL6xDocySuoYavpd_6FKl5w8uryAztxq0/edit?gid=231019579#gid=231019579">Google-таблице курса</a> появляется отметка.</li>
+      </ol>
+      <p>Если сдача не прошла, исправьте ошибки в упражнениях или повторите теорию, в зависимости от того, какие были ошибки, и сдайте практику повторно до конца семестра.</p>
+      <aside class="important"><p><strong>Продвинутый уровень стал сложнее.</strong> С этой практики в продвинутых вариантах больше шагов и граничных случаев, а ключевой прием спрятан в раскрывающуюся подсказку. Если продвинутый уровень окажется не по силам, его можно один раз за семестр сменить через преподавателя.</p>
+        <p><strong>ИИ-помощники.</strong> В этом семестре не просите ИИ-помощников решить упражнение. Подсказки кода с ИИ в редакторе тоже пишут решение за вас, поэтому отключите их. Спрашивать ИИ о теории и о сообщениях об ошибках можно. Цель практики в том, чтобы вы научились писать код сами. Если решение верное, но вы не можете объяснить его и ответить на вопросы по теме, практика не засчитывается.</p>
+        <p><strong>Три практики подряд не с первой попытки.</strong> Если на среднем или продвинутом уровне три практики подряд не сданы с первой попытки, уровень понижается на один: с продвинутого на средний, со среднего на базовый. Повысить его в этом семестре будет уже нельзя. Уже засчитанные практики остаются засчитанными.</p></aside>
+      <div class="ladder">
+        <div><span class="lvl-tag lvl-basic">Базовый</span><b>Базовые варианты</b><p>Воспроизвести и немного изменить разобранное. На сдаче: объяснить свой код. Итог: тест по курсу.</p></div>
+        <div><span class="lvl-tag lvl-medium">Средний</span><b>Средние варианты</b><p>Самостоятельное применение. На сдаче: изменить решение под новое условие. Итог: защита 2–3 работ.</p></div>
+        <div><span class="lvl-tag lvl-advanced">Продвинутый</span><b>Продвинутые варианты</b><p>Перенос знаний, в каждом варианте неочевидный шаг. На сдаче: решить похожую задачу. Итог: зачет автоматически.</p></div>
+      </div>
+      <p>Срок: до конца второго практического занятия после занятия по этой практике. Время: страницы 01–08 рассчитаны на 1,5 часа в аудитории и 1,5 часа самостоятельно; то, что не успели на занятии, доделайте дома.</p>
+      <h2>Страницы практики</h2>
+      <ol class="topic-nav">
+          <li><span class="topic-num">01</span><span class="topic-name">Цикл <code>for</code></span><a class="topic-link" href="t4_01.html">Открыть</a></li>
+          <li><span class="topic-num">02</span><span class="topic-name">Функция <code>range()</code></span><a class="topic-link" href="t4_02.html">Открыть</a></li>
+          <li><span class="topic-num">03</span><span class="topic-name">Цикл <code>while</code></span><a class="topic-link" href="t4_03.html">Открыть</a></li>
+          <li><span class="topic-num">04</span><span class="topic-name">Выход из цикла</span><a class="topic-link" href="t4_04.html">Открыть</a></li>
+          <li><span class="topic-num">05</span><span class="topic-name">Счетчики</span><a class="topic-link" href="t4_05.html">Открыть</a></li>
+          <li><span class="topic-num">06</span><span class="topic-name">Поиск максимума</span><a class="topic-link" href="t4_06.html">Открыть</a></li>
+          <li><span class="topic-num">07</span><span class="topic-name">Инвариант цикла</span><a class="topic-link" href="t4_07.html">Открыть</a></li>
+          <li><span class="topic-num">08</span><span class="topic-name">Цикл в цикле</span><a class="topic-link" href="t4_08.html">Открыть</a></li>
+      </ol>
+      <aside class="nb"><p>Примеры можно изменять и запускать прямо на странице, под каждым упражнением есть проверка решения. Для этого нужен интернет; первый запуск занимает 10–30 секунд. Код можно проверять и в своем редакторе.</p></aside>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-next" href="t4_01.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">01 Цикл <code>for</code></span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

@@ -192,6 +192,7 @@
     if (gl.length === 0 && el.length > 0) {
       return ["Программа ничего не вывела. Проверьте, что результат передается в print()."];
     }
+    if (t.hidden) return hints;
     if (gl.length !== el.length) {
       hints.push("Ожидается строк вывода: " + el.length + ", выведено: " + gl.length +
         ". Выводите только то, что требует условие, без поясняющего текста.");
@@ -277,7 +278,7 @@
         ". Каждое значение стоит на своей строке и читается отдельным input().");
     }
     var outs = results.map(function (r) { return normalize(r.out).join("\n"); });
-    var exps = all.map(function (t) { return normalize(t.output).join("\n"); });
+    var exps = all.filter(function (t) { return !t.hidden; }).map(function (t) { return normalize(t.output).join("\n"); });
     var sameOut = outs.length > 1 && outs.every(function (o) { return o === outs[0]; }) && outs[0] !== "";
     var diffExp = exps.some(function (e) { return e !== exps[0]; });
     if (sameOut && diffExp && !miss.length) {
@@ -346,6 +347,40 @@
   function ensureLoaded() {
     if (workerReady && worker) return Promise.resolve();
     return callWorker({ warmup: true }, LOAD_LIMIT_MS).catch(function () { throw { load: true }; });
+  }
+  /* версия 72: ответы скрытых тестов на сайте хранятся как SHA-256 (поле h; соль «файл#номер теста»),
+     а не текстом. После запуска хэш вывода студента сравнивается с h: совпал, значит вывод и есть ответ,
+     и он подставляется в копию данных; не совпал, ответ остается неизвестным (NO_MATCH).
+     Дальше работает обычная проверка. Типичные ошибки скрытых тестов хранятся так же.
+     ponytail: crypto.subtle есть только в защищенном контексте (https, localhost, file://). */
+  var NO_MATCH = "\u0000";
+  function sha256(s) {
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)).then(function (b) {
+      return Array.prototype.map.call(new Uint8Array(b), function (x) { return (x + 256).toString(16).slice(1); }).join("");
+    });
+  }
+  function resolveHashed(file, spec, res) {
+    var all = spec.tests.concat(spec.extra || []);
+    if (res.syntax || !all.some(function (t) { return t.h; })) return Promise.resolve(spec);
+    return Promise.all(res.results.map(function (r, i) {
+      return sha256(file + "#" + i + "\n" + normalize(r.out).join("\n"));
+    })).then(function (hs) {
+      function fix(t, i) {
+        if (!t.h) return t;
+        var known = function (h) { return hs[i] === h ? res.results[i].out : NO_MATCH; };
+        return Object.assign({}, t, { hidden: true, output: known(t.h), wrong: (t.wrong || []).map(function (w) {
+          return w.h ? Object.assign({}, w, { output: known(w.h) }) : w;
+        }) });
+      }
+      var n = spec.tests.length;
+      return Object.assign({}, spec, { tests: spec.tests.map(fix),
+        extra: (spec.extra || []).map(function (t, j) { return fix(t, n + j); }) });
+    });
+  }
+  function checkCode(file, spec, code, tests) {
+    return runCode(code, tests, false).then(function (out) {
+      return resolveHashed(file, spec, out).then(function (sp) { out.spec = sp; return out; });
+    });
   }
   function runCode(code, tests, echo) {
     return ensureLoaded().then(function () {
@@ -488,9 +523,9 @@
   }
   function domTasks(root) {
     return Array.prototype.map.call(root.querySelectorAll(".checker[data-file]"), function (c) {
-      var art = c.closest("[data-variant]"), grp = c.closest(".ex-variants");
+      var art = c.closest("[data-variant]"), grp = c.closest(".ex-variants, .star-variants");
       return { file: c.getAttribute("data-file"), variant: art ? art.getAttribute("data-variant") : null,
-               group: grp ? grp.getAttribute("data-exercise") : null };
+               group: grp ? (grp.getAttribute("data-exercise") || grp.getAttribute("data-star")) : null };
     });
   }
   function combine(states) {
@@ -719,6 +754,9 @@
           ioBlock(li, "Вывод программы", r.out.replace(/\n$/, ""));
           if (item.visible) {
             ioBlock(li, "Ожидалось", t.output);
+          } else if (t.hidden) {
+            li.appendChild(el("p", "checker-note-test", "Ответ дополнительного теста не показывается. " +
+              "Сравните программу с условием и с примерами из таблицы."));
           } else {
             var det = el("details", "checker-reveal");
             det.appendChild(el("summary", "", "Показать ожидаемый ответ"));
@@ -916,7 +954,8 @@
       box.className = "checker-result is-wait";
       box.textContent = workerReady ? "Проверяю…" : LOADING;
       block.dispatchEvent(new CustomEvent("checker:start", { bubbles: true, detail: { file: file } }));
-      runCode(code, tests, false).then(function (res) {
+      checkCode(file, spec, code, tests).then(function (res) {
+        var spec = res.spec;
         box.solved = false;
         box.warn = false;
         render(res, spec, box);
@@ -949,7 +988,8 @@
     var tests = spec.tests.concat(spec.extra || []).map(function (t) { return { input: t.input || "", set: t.set || null }; });
     box.className = "checker-result is-wait";
     box.textContent = workerReady ? "Проверяю…" : LOADING;
-    return runCode(code, tests, false).then(function (res) {
+    return checkCode(file, spec, code, tests).then(function (res) {
+      var spec = res.spec;
       box.solved = false;
       box.warn = false;
       render(res, spec, box);
@@ -1156,12 +1196,193 @@
     card.insertBefore(res, win.nextSibling);
     card.classList.add("mistake-diff");
   }
+
+  /* ---------------- версия 69: типичная ошибка «Правка | До и после» ----------------
+     В заголовке карточки переключатель; выбор общий для сайта (настройка mv в theme.js,
+     атрибут data-mistake у <html>). «До и после»: два окна кода рядом, измененные строки
+     подсвечены, под каждым свой результат. */
+  function mvOf() { var s = window.practiceSettings ? window.practiceSettings() : {}; return s.mv === "side" ? "side" : "diff"; }
+  var mvSegs = [];
+  function refreshMv() {
+    var v = mvOf();
+    document.documentElement.setAttribute("data-mistake", v);
+    mvSegs.forEach(function (g) { Array.prototype.forEach.call(g.children, function (b) { b.setAttribute("aria-pressed", String(b._v === v)); }); });
+  }
+  function codeHtmlLines(block) {
+    var code = block.querySelector("pre code") || block.querySelector("pre");
+    var c = code.cloneNode(true);
+    Array.prototype.forEach.call(c.querySelectorAll(".tok-out"), function (x) { x.parentNode.removeChild(x); });
+    var lns = c.querySelectorAll(".ln");
+    if (lns.length) return Array.prototype.map.call(lns, function (l) { return l.innerHTML.replace(/\s+$/, ""); });
+    return c.textContent.replace(/\s+$/, "").split("\n").map(function (t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; });
+  }
+  function setupMistakeSide(card) {
+    var wrong = card.querySelector(":scope > .code-wrong"), right = card.querySelector(":scope > .code-right");
+    var cap = card.querySelector(":scope > .mistake-caption");
+    if (!wrong || !right || !cap || card.querySelector(":scope > .mside")) return;
+    var title = el("span", "mk-title"); while (cap.firstChild) title.appendChild(cap.firstChild);
+    cap.appendChild(title); cap.classList.add("mk-head");
+    var g = el("div", "seg"); g.setAttribute("role", "group"); g.setAttribute("aria-label", "Вид типичной ошибки");
+    [["diff", "Правка"], ["side", "До и после"]].forEach(function (o) {
+      var b = el("button", "seg-btn", o[1]); b.type = "button"; b._v = o[0];
+      b.addEventListener("click", function () { if (window.practiceSet) window.practiceSet("mv", o[0]); else { document.documentElement.setAttribute("data-mistake", o[0]); } refreshMv(); });
+      g.appendChild(b);
+    });
+    cap.appendChild(g); mvSegs.push(g);
+    var a = codeLines(wrong), b2 = codeLines(right), d = lineDiff(a, b2), chW = {}, chR = {}, iw = 0, ir = 0;
+    d.forEach(function (x) { if (x[0] === " ") { iw++; ir++; } else if (x[0] === "-") { chW[iw++] = 1; } else { chR[ir++] = 1; } });
+    var why = ((wrong.querySelector(".code-label") || {}).textContent || "").replace(/^\s*Неверно:?\s*/, "");
+    var side = el("div", "mside");
+    [[wrong, "С ошибкой", why, "bad", chW], [right, "Исправлено", "верно", "good", chR]].forEach(function (x) {
+      var col = el("div", "mside-col mside-" + x[3]);
+      var win = el("div", "mside-win");
+      var bar = el("div", "mside-bar"); bar.appendChild(el("b", "", x[1])); bar.appendChild(el("span", "", x[2]));
+      win.appendChild(bar);
+      var pre = el("pre", "mside-code"), code = el("code");
+      code.innerHTML = codeHtmlLines(x[0]).map(function (h, i) { return '<span class="ml' + (x[4][i] ? " is-chg" : "") + '">' + (h || " ") + "</span>"; }).join("");
+      pre.appendChild(code); win.appendChild(pre); col.appendChild(win);
+      var out = resultOf(x[0]);
+      if (out) {
+        var isErr = out.classList.contains("error-output");
+        var box = el("div", "mdiff-box mdiff-" + x[3]);
+        box.appendChild(el("span", "mdiff-sub", x[1] + (isErr ? " · сообщение об ошибке" : " · вывод")));
+        var o = el("pre", "mdiff-out" + (isErr ? " mdiff-err" : "")); o.textContent = (out.querySelector("pre") || out).textContent;
+        box.appendChild(o); col.appendChild(box);
+      }
+      side.appendChild(col);
+    });
+    var res = card.querySelector(":scope > .mdiff-res");
+    card.insertBefore(side, res ? res.nextSibling : cap.nextSibling);
+  }
+
+  /* ---------------- версия 69: пример «Сразу | По шагам» ----------------
+     Данные готовит build_steps.py (script.steps-data в article.example): строки кода, шаги
+     с подставленными значениями, переменные, строки таблицы трассировки, пояснения.
+     Высота блока по шагам постоянна: кнопки не сдвигаются, таблица прокручивается внутри. */
+  var SPEEDS = [[0.5, "0,5×"], [1, "1×"], [2, "2×"]];
+  function escHtml(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function setupStepper(art) {
+    var src = art.querySelector(":scope > script.steps-data");
+    var h3 = art.querySelector(":scope > h3");
+    if (!src || !h3 || art.querySelector(":scope > .st-head")) return;
+    var D; try { D = JSON.parse(src.textContent); } catch (e) { return; }
+    var last = D.steps.length - 1, step = 0, timer = null, speed = 1, mode = "whole";
+    var outInTable = D.columns.indexOf("напечатано") >= 0;
+    var names = []; D.steps[last].vars.forEach(function (v) { names.push(v[0]); });
+    var head = el("div", "st-head"); art.insertBefore(head, h3); head.appendChild(h3);
+    var sw = el("div", "st-switch"); sw.appendChild(el("span", "st-switch-label", "Разбор"));
+    var g = el("div", "seg"); g.setAttribute("role", "group"); g.setAttribute("aria-label", "Разбор примера");
+    [["whole", "Сразу"], ["steps", "По шагам"]].forEach(function (o) {
+      var b = el("button", "seg-btn", o[1]); b.type = "button"; b._v = o[0];
+      b.addEventListener("click", function () { stop(); mode = o[0]; step = 0; render(); });
+      g.appendChild(b);
+    });
+    sw.appendChild(g); head.appendChild(sw);
+
+    var box = el("div", "stp"); box.hidden = true; box.tabIndex = -1; art.appendChild(box);
+    box.innerHTML =
+      '<p class="st-lead">«Дальше» выполняет одну строку. Подсвечена строка, которая выполняется; в ней вместо имен стоят их значения.</p>' +
+      '<div class="st-grid"><div class="st-left"><div class="code-block st-code"><span class="code-label"></span><div class="st-lines-wrap"><div class="st-lines"></div></div></div>' +
+      '<div class="st-note" aria-live="polite"></div></div>' +
+      '<div class="st-right"><div class="st-right-in"><div class="st-vars"><span class="st-vars-h">Переменные</span><div class="st-vars-b"></div></div>' +
+      (D.columns.length ? '<div class="st-trace"><table class="data trace"><thead><tr>' + D.columns.map(function (c) { return "<th>" + escHtml(c) + "</th>"; }).join("") + '</tr></thead><tbody></tbody></table></div>' : "") +
+      (outInTable ? "" : '<div class="output-block st-out"><span class="output-label">Вывод</span><pre></pre></div>') +
+      "</div></div></div>" +
+      '<div class="st-ctrl"><button type="button" class="st-btn" data-a="back">← Назад</button><button type="button" class="st-btn is-main" data-a="next">Дальше →</button>' +
+      '<button type="button" class="st-btn is-play" data-a="auto" aria-pressed="false"></button><div class="seg st-speed" role="group" aria-label="Скорость"></div>' +
+      '<button type="button" class="st-btn" data-a="reset">Сначала</button><span class="st-count"></span></div>';
+    box.querySelector(".code-label").textContent = D.file || "";
+    var linesEl = box.querySelector(".st-lines"), noteEl = box.querySelector(".st-note"), varsEl = box.querySelector(".st-vars-b");
+    var tbody = box.querySelector("tbody"), traceEl = box.querySelector(".st-trace"), outEl = box.querySelector(".st-out pre");
+    var bBack = box.querySelector('[data-a="back"]'), bNext = box.querySelector('[data-a="next"]'), bAuto = box.querySelector('[data-a="auto"]');
+    var bReset = box.querySelector('[data-a="reset"]'), cnt = box.querySelector(".st-count"), sp = box.querySelector(".st-speed");
+    SPEEDS.forEach(function (s) {
+      var b = el("button", "seg-btn", s[1]); b.type = "button"; b._v = s[0];
+      b.addEventListener("click", function () { speed = s[0]; if (timer) play(); else render(); });
+      sp.appendChild(b);
+    });
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function play() {
+      stop(); if (step >= last) step = 0;
+      timer = setInterval(function () { if (step < last) step++; if (step >= last) stop(); render(); }, Math.round(1500 / speed));
+      render();
+    }
+    bBack.addEventListener("click", function () { stop(); step = Math.max(0, step - 1); render(); });
+    bNext.addEventListener("click", function () { stop(); step = Math.min(last, step + 1); render(); });
+    bAuto.addEventListener("click", function () { if (timer) { stop(); render(); } else play(); });
+    bReset.addEventListener("click", function () { stop(); step = 0; render(); });
+    box.addEventListener("keydown", function (e) {
+      if (e.target.closest && e.target.closest("button") && (e.key === " " || e.key === "Enter")) return;
+      if (e.key === "ArrowRight") { e.preventDefault(); bNext.click(); } else if (e.key === "ArrowLeft") { e.preventDefault(); bBack.click(); }
+    });
+    var ICON_PLAY = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1v10l9-5z"/></svg>';
+    var ICON_PAUSE = '<svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1" width="3" height="10"/><rect x="7.5" y="1" width="3" height="10"/></svg>';
+    function render() {
+      Array.prototype.forEach.call(g.children, function (b) { b.setAttribute("aria-pressed", String(b._v === mode)); });
+      art.classList.toggle("is-steps", mode === "steps");
+      box.hidden = mode !== "steps";
+      if (mode !== "steps") return;
+      if (!fitted) fit();
+      draw();
+    }
+    /* версия 69: если вся таблица трассировки выше колонки кода не больше чем на треть окна
+       кода, блок растет до полной таблицы и прокрутки нет; иначе таблица прокручивается */
+    var fitted = false;
+    function fit() {
+      fitted = true;
+      var grid = box.querySelector(".st-grid"), rin = box.querySelector(".st-right-in");
+      var left = box.querySelector(".st-left"), code = box.querySelector(".st-code");
+      grid.style.minHeight = "";
+      if (window.getComputedStyle(rin).position !== "absolute") return;
+      var keep = step; step = last; draw(); step = keep;
+      var gap = parseFloat(window.getComputedStyle(rin).rowGap) || 0, need = 0, n = 0;
+      Array.prototype.forEach.call(rin.children, function (c) {
+        need += c.classList.contains("st-trace") ? c.querySelector("table").offsetHeight + 2 : c.offsetHeight; n++;
+      });
+      need += gap * Math.max(0, n - 1);
+      var have = Math.max(left.offsetHeight, grid.offsetHeight);
+      if (need > have && need - have <= code.offsetHeight / 3) grid.style.minHeight = Math.ceil(need) + "px";
+    }
+    window.addEventListener("resize", function () { if (mode === "steps") { fitted = false; render(); } });
+    function draw() {
+      var cur = D.steps[step];
+      linesEl.innerHTML = D.code.map(function (h, i) {
+        var on = cur.line === i + 1;
+        return '<span class="st-ln' + (on ? " is-cur" : "") + '">' + ((on ? cur.html : h) || " ") + "</span>";
+      }).join("");
+      var vals = {}; cur.vars.forEach(function (v) { vals[v[0]] = v; });
+      varsEl.innerHTML = names.map(function (n) {
+        var v = vals[n];
+        return '<div class="st-var' + (v && v[2] ? " is-chg" : "") + (v ? "" : " is-none") + '"><b>' + escHtml(n) + "</b><span>" + (v ? escHtml(v[1]) : "—") + "</span></div>";
+      }).join("");
+      if (tbody) {
+        var rows = [];
+        for (var k = 0; k <= step; k++) if (D.steps[k].row) rows.push('<tr' + (k === step ? ' class="is-new"' : "") + ">" + D.steps[k].row.map(function (c) { return "<td>" + escHtml(c) + "</td>"; }).join("") + "</tr>");
+        tbody.innerHTML = rows.join("") || '<tr><td colspan="' + D.columns.length + '" class="st-empty">Строки появятся после первого прохода цикла.</td></tr>';
+        traceEl.scrollTop = traceEl.scrollHeight;
+      }
+      if (outEl) outEl.textContent = cur.out ? cur.out.replace(/\n$/, "") : "";
+      noteEl.textContent = cur.note;
+      noteEl.classList.toggle("is-final", cur.line === 0);
+      bBack.disabled = step === 0; bNext.disabled = step >= last; bReset.disabled = step === 0 && !timer;
+      bAuto.innerHTML = timer ? ICON_PAUSE + "Пауза" : ICON_PLAY + (step >= last ? "Еще раз" : "Авто");
+      bAuto.setAttribute("aria-pressed", String(!!timer));
+      Array.prototype.forEach.call(sp.children, function (b) { b.setAttribute("aria-pressed", String(b._v === speed)); });
+      cnt.textContent = "Шаг " + (step + 1) + " из " + (last + 1);
+    }
+    render();
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll(".level-tabs"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll(".output-block.predict"), setupPredict);
     initProgress();
     setupAnchors();
     Array.prototype.forEach.call(document.querySelectorAll(".mistake"), setupMistakeDiff);
+    Array.prototype.forEach.call(document.querySelectorAll(".mistake.mistake-diff"), setupMistakeSide);
+    refreshMv();
+    document.documentElement.addEventListener("practice:settings", refreshMv);
+    Array.prototype.forEach.call(document.querySelectorAll("article.example"), setupStepper);
     if (typeof Worker === "undefined" || typeof Blob === "undefined") return;
     var blocks = document.querySelectorAll(".checker");
     for (var i = 0; i < blocks.length; i++) {

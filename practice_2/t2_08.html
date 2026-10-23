@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <title>Unicode и байты. Практика 2. Python</title>
   <link rel="stylesheet" href="style.css">
   <script src="../site-config.js"></script>
@@ -27,7 +26,7 @@
         <li class="menu-sub"><a href="t2_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Очистка и замена</span></span></a></li>
         <li class="menu-sub"><a href="t2_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>split()</code> и <code>join()</code></span></span></a></li>
         <li class="menu-sub"><a href="t2_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">f-строки</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t2_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Unicode и байты</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Символ и его номер</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Байты и кодировка</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">2.8.1</span> <span class="anc-ex-title" data-variant="basic">Символ и номер</span><span class="anc-ex-title" data-variant="medium">Качество прочтения</span><span class="anc-ex-title" data-variant="advanced">Русские буквы в тексте</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t2_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Unicode и байты</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Символ и его номер</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Байты и кодировка</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">2.8.1</span> <span class="anc-ex-title" data-variant="basic">Символ и номер</span><span class="anc-ex-title" data-variant="medium">Качество прочтения</span><span class="anc-ex-title" data-variant="advanced">Русские буквы в тексте</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">2.8</span> <span class="anc-ex-title" data-variant="basic">Символ качества в другой схеме</span><span class="anc-ex-title" data-variant="medium">Испорченная кодировка</span><span class="anc-ex-title" data-variant="advanced">Верные концы прочтения</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t2_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Последовательности ДНК</span></span></a></li>
       </ul>
       <p class="menu-head">Мой уровень</p>
@@ -73,6 +72,7 @@ C
 True</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 1: у заглавной и строчной A разные номера.</li><li>Строки 2–3: <code>ord()</code> и <code>chr()</code> переводят символ в номер и обратно.</li><li>Строка 4: номер A плюс 2 дает номер буквы на два места дальше.</li><li>Строка 5: 90 меньше 97, поэтому Z стоит раньше a.</li></ol></div>
+          <script type="application/json" class="steps-data">{"file": "codepoints.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">ord<\/span>(<span class=\"tok-str\">\"A\"<\/span>), <span class=\"tok-builtin\">ord<\/span>(<span class=\"tok-str\">\"a\"<\/span>))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">ord<\/span>(<span class=\"tok-str\">\"П\"<\/span>))            ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">chr<\/span>(<span class=\"tok-num\">1055<\/span>))           ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">chr<\/span>(<span class=\"tok-builtin\">ord<\/span>(<span class=\"tok-str\">\"A\"<\/span>) <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">2<\/span>))   ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"Zebra\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"apple\"<\/span>)   "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">65<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">97<\/span><\/span>)", "vars": [], "out": "65 97\n", "row": null, "note": "Строка 1: печатается 65 97."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">1055<\/span><\/span>)", "vars": [], "out": "65 97\n1055\n", "row": null, "note": "Строка 2: печатается 1055."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"П\"<\/span><\/span>)", "vars": [], "out": "65 97\n1055\nП\n", "row": null, "note": "Строка 3: печатается П."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>)", "vars": [], "out": "65 97\n1055\nП\nC\n", "row": null, "note": "Строка 4: печатается C."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"Zebra\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"apple\"<\/span>)", "vars": [], "out": "65 97\n1055\nП\nC\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 0, "html": "", "vars": [], "out": "65 97\n1055\nП\nC\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
       </section>
 
@@ -106,6 +106,7 @@ b'\xd0\x9f\xd1\x80'
 РџСЂРѕР±Р° S12</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 3: девять символов, считая пробел.</li><li>Строки 4–5: в байтах 14, потому что каждая из пяти русских букв заняла два байта, а остальные четыре символа по одному.</li><li>Строка 6: первые четыре байта, это буквы П и р.</li><li>Строка 7: расшифровка той же кодировкой вернула текст.</li><li>Строка 8: те же байты прочитаны как cp1251, и русская часть превратилась в набор странных символов; латиница не пострадала.</li></ol></div>
+          <script type="application/json" class="steps-data">{"file": "bytes_demo.py", "code": ["text <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"Проба S12\"<\/span>", "data <span class=\"tok-op\">=<\/span> text.encode(<span class=\"tok-str\">\"utf-8\"<\/span>)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(text))              ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(data))             ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(data))              ", "<span class=\"tok-builtin\">print<\/span>(data[:<span class=\"tok-num\">4<\/span>])               ", "<span class=\"tok-builtin\">print<\/span>(data.decode(<span class=\"tok-str\">\"utf-8\"<\/span>))   ", "<span class=\"tok-builtin\">print<\/span>(data.decode(<span class=\"tok-str\">\"cp1251\"<\/span>))  "], "columns": [], "steps": [{"line": 1, "html": "text <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"Проба S12\"<\/span>", "vars": [["text", "\"Проба S12\"", true]], "out": "", "row": null, "note": "Строка 1: text = \"Проба S12\"."}, {"line": 2, "html": "data <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-str\">\"Проба S12\"<\/span><\/span>.encode(<span class=\"tok-str\">\"utf-8\"<\/span>)", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", true]], "out": "", "row": null, "note": "Строка 2: data = b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">9<\/span><\/span>)", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n", "row": null, "note": "Строка 3: печатается 9."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(data))", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n<class 'bytes'>\n", "row": null, "note": "Строка 4: печатается <class 'bytes'>."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">14<\/span><\/span>)", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n<class 'bytes'>\n14\n", "row": null, "note": "Строка 5: печатается 14."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(data[:<span class=\"tok-num\">4<\/span>])", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n<class 'bytes'>\n14\nb'\\xd0\\x9f\\xd1\\x80'\n", "row": null, "note": "Строка 6: печатается b'\\xd0\\x9f\\xd1\\x80'."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(data.decode(<span class=\"tok-str\">\"utf-8\"<\/span>))", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n<class 'bytes'>\n14\nb'\\xd0\\x9f\\xd1\\x80'\nПроба S12\n", "row": null, "note": "Строка 7: печатается Проба S12."}, {"line": 8, "html": "<span class=\"tok-builtin\">print<\/span>(data.decode(<span class=\"tok-str\">\"cp1251\"<\/span>))", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n<class 'bytes'>\n14\nb'\\xd0\\x9f\\xd1\\x80'\nПроба S12\nРџСЂРѕР±Р° S12\n", "row": null, "note": "Строка 8: печатается РџСЂРѕР±Р° S12."}, {"line": 0, "html": "", "vars": [["text", "\"Проба S12\"", false], ["data", "b'\\xd0\\x9f\\xd1\\x80\\xd0\\xbe\\xd0\\xb1\\xd0\\xb0 S12'", false]], "out": "9\n<class 'bytes'>\n14\nb'\\xd0\\x9f\\xd1\\x80'\nПроба S12\nРџСЂРѕР±Р° S12\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="step step-try">Практика</div>
         <div class="try-block">
@@ -150,7 +151,7 @@ G</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
             <h3>Упражнение 2.8.1. Качество прочтения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом. В распространенной схеме Sanger оценка качества по шкале Phred равна номеру символа минус 33: символу <code>J</code> с номером 74 соответствует оценка 41. Дана строка качества прочтения. Выведите оценки качества первого и последнего нуклеотида.</p></div>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор (прибор для чтения ДНК) прочитал за один раз. В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом. В распространенной схеме Sanger оценка качества по шкале Phred равна номеру символа минус 33: символу <code>J</code> с номером 74 соответствует оценка 41. Дана строка качества прочтения. Выведите оценки качества первого и последнего нуклеотида.</p></div>
           <h4>Входные данные</h4>
           <p>Одна строка качества длиной от 1 до 100 из символов с номерами от 33 до 126.</p>
           <h4>Выходные данные</h4>
@@ -196,12 +197,90 @@ G</pre></td></tr>
             </article>
           </div>
         </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t2_08_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t2_08_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t2_08_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 2.8. Символ качества в другой схеме</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтением называют участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом: оценка качества по шкале Phred равна номеру символа минус смещение. В распространенной схеме Sanger смещение равно 33, а в старых файлах секвенаторов Illumina (версии 1.3–1.7) равно 64 (источник: <a href="https://doi.org/10.1093/nar/gkp1137">Cock и др., 2010</a>). Дан символ качества в старой схеме Illumina. Выведите оценку качества и символ той же оценки в схеме Sanger.</p></div>
+          <h4>Входные данные</h4>
+          <p>Один символ с номером от 64 до 104.</p>
+          <h4>Выходные данные</h4>
+          <p>Две строки: оценка качества (целое число от 0 до 40) и символ этой оценки в схеме Sanger.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>h</pre></td><td><pre>40
+I</pre></td></tr>
+                <tr><td><pre>@</pre></td><td><pre>0
+!</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_08_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 2.8. Испорченная кодировка</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Комментарий к пробе сохранили в UTF-8, а прочитали как cp1251, и русские буквы превратились в набор странных символов, как в примере раздела 2. Данные при этом целы. Восстановите исходный текст.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Испорченная строка получилась так: байты UTF-8 расшифровали кодировкой cp1251. Пройдите этот путь в обратную сторону.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка: текст в UTF-8, ошибочно прочитанный как cp1251. Исходный текст состоит из латинских и русских букв, цифр, пробелов и знаков препинания.</p>
+          <h4>Выходные данные</h4>
+          <p>Исходный текст.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>РєСЂРѕРІСЊ S12</pre></td><td><pre>кровь S12</pre></td></tr>
+                <tr><td><pre>PCR ok</pre></td><td><pre>PCR ok</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_08_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 2.8. Верные концы прочтения</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтением называют участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. В формате FASTQ качество каждого нуклеотида записано символом; в схеме Sanger оценка качества <code>Q</code> по шкале Phred равна номеру символа минус 33. Оценка связана с вероятностью ошибки <code>p</code> формулой <span class="formula">p = 10<sup>−Q/10</sup></span>: оценке 20 соответствует ошибка с вероятностью 0,01 (источник: <a href="https://doi.org/10.1101/gr.8.3.186">Ewing, Green, 1998</a>). Дана строка качества прочтения. Найдите вероятность того, что первый и последний нуклеотиды прочитаны верно. Ошибки в разных позициях считайте независимыми: искомая вероятность равна произведению <span class="formula">(1 − p<sub>1</sub>) · (1 − p<sub>2</sub>)</span>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка качества длиной от 2 до 100 из символов с номерами от 33 до 126.</p>
+          <h4>Выходные данные</h4>
+          <p>Вероятность с четырьмя знаками после точки.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>5FFJJ+</pre></td><td><pre>0.8910</pre></td></tr>
+                <tr><td><pre>II</pre></td><td><pre>0.9998</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_08_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section class="then">
         <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
         <ol class="submit-steps">
           <li>В папке <code>projects_2</code> создайте папку <code>t2_08</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t2_08_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t2_08_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t2_08_1_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t2_08_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t2_08_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t2_08_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t2_08</code> в свой репозиторий внутрь папки <code>projects_2</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
         <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>

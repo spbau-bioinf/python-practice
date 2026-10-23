@@ -118,6 +118,11 @@
   function osOf(s) { return s.os === "win" || s.os === "mac" || s.os === "linux" ? s.os : detectOs(); }
   function theoryDefault() { return root.getAttribute("data-theory-default") === "full" ? "full" : "brief"; }
   function theoryOf(s) { return s.theory === "full" || s.theory === "brief" ? s.theory : theoryDefault(); }
+  /* версия 69: граница строки PEP 8 (79 символов) и перенос длинных строк кода. Граница по умолчанию
+     выключена, со страниц темы 10 (PEP 8) и дальше включена; перенос по умолчанию выключен */
+  function pageTopic() { var m = /t(\d+)_\d+\.html/.exec(window.location.pathname) || /t(\d+)_\d+/.exec(root.getAttribute("data-page") || ""); return m ? +m[1] : 0; }
+  function pep8Default() { return pageTopic() >= 10 ? "on" : "off"; }
+  function pep8Of(s) { return s.pep8 === "on" || s.pep8 === "off" ? s.pep8 : pep8Default(); }
   /* версия 65: цветовой профиль для текущей темы; в игровом режиме не действует */
   function modeOf(s) {
     if (s.theme === "light" || s.theme === "dark") return s.theme;
@@ -139,6 +144,9 @@
     root.setAttribute("data-theory", theoryOf(s));
     root.setAttribute("data-os", osOf(s));
     if (s.view === "tasks") root.setAttribute("data-view", "tasks"); else root.removeAttribute("data-view");
+    root.classList.toggle("show-ruler", pep8Of(s) === "on");
+    root.classList.toggle("wrap-code", s.wrap === "on");
+    root.setAttribute("data-mistake", s.mv === "side" ? "side" : "diff");
     var pk = paletteOf(s);
     if (pk) root.setAttribute("data-palette", pk); else root.removeAttribute("data-palette");
     window.setTimeout(function () { root.classList.remove("theme-switching"); }, 50);
@@ -154,7 +162,7 @@
   function fromQuery() {
     var q = window.location.search, out = null;
     if (!q) return null;
-    q.replace(/[?&](theme|profile|sound|track|theory|os|view|pl|pd)=([^&]*)/g, function (_, k, v) {
+    q.replace(/[?&](theme|profile|sound|track|theory|os|view|pl|pd|pep8|wrap|mv)=([^&]*)/g, function (_, k, v) {
       out = out || {};
       out[k] = k === "sound" ? v === "on" : decodeURIComponent(v);
     });
@@ -172,6 +180,8 @@
 
   /* текущие настройки для других скриптов (вкладки уровней берут отсюда свой уровень) */
   window.practiceSettings = function () { return settings; };
+  /* версия 69: смена настройки из других скриптов (вид типичной ошибки в checker.js) */
+  window.practiceSet = function (k, v) { settings[k] = v; changed(); };
 
   window.practiceTheme = function () {
     var t = root.getAttribute("data-theme");
@@ -254,6 +264,54 @@
   }
 
   /* ---------- меню настроек ---------- */
+  /* версия 69: подсказки к названиям настроек и две вкладки меню */
+  var MENU_HINTS = {
+    "Режим": "Классический вид или игровой: в игровом своя палитра, звуки и награды за решенные упражнения.",
+    "Уровень": "Ваш уровень: на страницах первыми открываются варианты упражнений этого уровня, по ним считается прогресс.",
+    "Теория": "Объем теории на всех страницах. «Кратко»: только то, что нужно для упражнений. «Подробно»: еще примеры, разборы и типичные ошибки.",
+    "Система": "Для какой операционной системы показывать команды терминала и сочетания клавиш.",
+    "Цветовой профиль": "Цвета страницы и окон кода для текущей темы, светлой или темной.",
+    "Показ": "«Все материалы» или «Только задачи»: упражнения без теории и примеров, например для повторения.",
+    "Прогресс": "Сохранить отметки и код в файл, загрузить их из файла или начать заново.",
+    "Ошибки": "Как показывать карточки «Типичная ошибка». «Правка»: одно окно, неверная строка со знаком −, исправленная со знаком +. «До и после»: неверный и исправленный код рядом.",
+    "Граница PEP\u00a08": "Тонкая вертикальная линия в окнах кода на 79-м символе. По PEP 8 строка кода не длиннее 79 символов.",
+    "Длинные строки": "Строку длиннее окна кода можно прокручивать вбок или переносить на следующую строку экрана. Перенос только на экране: сам код не меняется."
+  };
+  var EXTRA_ROWS = ["Ошибки", "Граница PEP\u00a08", "Длинные строки"];
+  var menuTab = "main";
+  function menuTabs(pop) {
+    var bar = el("div", "tb-tabs"); bar.setAttribute("role", "tablist"); bar.setAttribute("aria-label", "Разделы настроек");
+    var panes = { main: el("div", "tb-pane"), extra: el("div", "tb-pane") };
+    var tabs = {};
+    [["main", "Основные"], ["extra", "Дополнительные"]].forEach(function (t) {
+      var b = el("button", "tb-tab", t[1]); b.type = "button"; b.id = "tb-tab-" + t[0];
+      b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "tb-pane-" + t[0]);
+      panes[t[0]].id = "tb-pane-" + t[0]; panes[t[0]].setAttribute("role", "tabpanel"); panes[t[0]].setAttribute("aria-labelledby", b.id);
+      b.addEventListener("click", function (e) { e.stopPropagation(); show(t[0]); });
+      tabs[t[0]] = b; bar.appendChild(b);
+    });
+    while (pop.firstChild) panes.main.appendChild(pop.firstChild);
+    Array.prototype.forEach.call(panes.main.querySelectorAll(":scope > .tb-row"), function (row, i) {
+      var lab = row.querySelector(":scope > .tb-label"), name = lab ? lab.textContent : "";
+      if (EXTRA_ROWS.indexOf(name) >= 0) panes.extra.appendChild(row);
+      var hint = MENU_HINTS[name];
+      if (lab && hint) {
+        lab.classList.add("tb-hint"); lab.setAttribute("data-tip", hint); lab.tabIndex = 0;
+        var d = el("span", "", hint); d.id = "tb-hint-" + i; d.hidden = true; row.appendChild(d);
+        var ctl = row.querySelector(".seg, .tb-prog-ic, .pal-ctl"); if (ctl) ctl.setAttribute("aria-describedby", d.id);
+      }
+    });
+    panes.extra.appendChild(el("p", "tb-pop-note", "Эти настройки меняют вид окон кода и карточек ошибок на всех страницах."));
+    pop.appendChild(bar); pop.appendChild(panes.main); pop.appendChild(panes.extra);
+    function show(k) {
+      menuTab = k;
+      ["main", "extra"].forEach(function (x) { tabs[x].setAttribute("aria-selected", String(x === k)); tabs[x].tabIndex = x === k ? 0 : -1; panes[x].hidden = x !== k; });
+    }
+    bar.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { var k = menuTab === "main" ? "extra" : "main"; show(k); tabs[k].focus(); e.preventDefault(); }
+    });
+    show(menuTab);
+  }
   var groups = [];
   function segment(label, key, options, def) {
     var row = el("div", "tb-row");
@@ -277,7 +335,7 @@
   }
   function refreshGroups() {
     groups.forEach(function (g) {
-      var cur = g.key === "theory" ? theoryOf(settings) : g.key === "os" ? osOf(settings) :
+      var cur = g.key === "theory" ? theoryOf(settings) : g.key === "os" ? osOf(settings) : g.key === "pep8" ? pep8Of(settings) :
         (settings[g.key] === undefined ? g.def : settings[g.key]);
       Array.prototype.forEach.call(g.seg.children, function (b) { b.setAttribute("aria-pressed", String(b._value === cur)); });
       if (g.key === "sound") g.row.hidden = settings.profile !== "game";
@@ -632,7 +690,7 @@
     });
     var here = pageFile();
     groupsEx.forEach(function (g) {
-      var li = el("li"), a = el("a", "ex-item" + (g.page === here ? " is-here" : ""));
+      var li = el("li"), a = el("a", "ex-item");
       a.href = (g.page === here ? "" : g.page) + "#" + g.id;
       a.appendChild(el("span", "ex-num", g.code));
       a._g = g;
@@ -643,6 +701,21 @@
     exNav.appendChild(ol);
     side.insertBefore(exNav, side.firstChild);
     refreshExNav();
+    /* версия 66: на странице с несколькими упражнениями подсвечивается одно: то, чей блок
+       последним прошел верх экрана (как разделы в обычном меню) */
+    var mine = Array.prototype.filter.call(exNav.querySelectorAll(".ex-item"), function (a) { return a._g.page === here; });
+    if (!mine.length) return;
+    var ticking = false;
+    function spy() {
+      ticking = false;
+      var bar = document.querySelector(".topbar"), edge = (bar ? bar.getBoundingClientRect().bottom : 0) + 90, idx = 0;
+      mine.forEach(function (a, i) { var t = document.getElementById(a._g.id); if (t && t.getBoundingClientRect().top <= edge) idx = i; });
+      if (window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = mine.length - 1;
+      mine.forEach(function (a, i) { a.classList.toggle("is-here", i === idx); });
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; window.requestAnimationFrame(spy); } }, { passive: true });
+    window.addEventListener("resize", spy);
+    spy();
   }
   function refreshExNav() {
     if (!exNav) return;
@@ -690,6 +763,9 @@
     pop.appendChild(segment("Система", "os", OS_OPTS, detectOs()));
     pop.appendChild(paletteRow(pop));
     pop.appendChild(segment("Показ", "view", [["all", "Все материалы"], ["tasks", "Только задачи"]], "all"));
+    pop.appendChild(segment("Ошибки", "mv", [["diff", "Правка"], ["side", "До и после"]], "diff"));
+    pop.appendChild(segment("Граница PEP\u00a08", "pep8", [["off", "Выкл"], ["on", "79 символов"]], pep8Default()));
+    pop.appendChild(segment("Длинные строки", "wrap", [["off", "Прокрутка"], ["on", "Перенос"]], "off"));
     var pr = el("div", "tb-row");
     pr.appendChild(el("span", "tb-label", "Прогресс"));
     var links = el("div", "tb-prog-ic");
@@ -706,6 +782,7 @@
     pop.appendChild(pr);
     pop.appendChild(el("p", "tb-pop-note",
       "Отметки и код хранятся только в этом браузере. Чтобы продолжить на другом компьютере, сохраните файл и загрузите его там. Зачет ставит преподаватель на сдаче практики."));
+    menuTabs(pop);
     function close() { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); closePalettes(); }
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -901,7 +978,8 @@
     a.setAttribute("href", h + "?theme=" + currentTheme() + "&profile=" + (settings.profile === "game" ? "game" : "classic") +
       "&sound=" + (settings.sound ? "on" : "off") + (settings.track ? "&track=" + settings.track : "") +
       (settings.theory ? "&theory=" + settings.theory : "") + (settings.os ? "&os=" + settings.os : "") +
-      (settings.view ? "&view=" + settings.view : "") + (settings.pl ? "&pl=" + settings.pl : "") + (settings.pd ? "&pd=" + settings.pd : "") + hash);
+      (settings.view ? "&view=" + settings.view : "") + (settings.pl ? "&pl=" + settings.pl : "") + (settings.pd ? "&pd=" + settings.pd : "") +
+      (settings.pep8 ? "&pep8=" + settings.pep8 : "") + (settings.wrap ? "&wrap=" + settings.wrap : "") + (settings.mv ? "&mv=" + settings.mv : "") + hash);
     window.setTimeout(function () { a.setAttribute("href", h + hash); }, 0);
   }
   function resync() {

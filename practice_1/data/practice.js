@@ -8,7 +8,8 @@ window.PRACTICE_MANIFEST = {
    "name": "Обзор практики",
    "title": "Практика 1. Введение в Python",
    "sections": [],
-   "tasks": []
+   "tasks": [],
+   "stars": []
   },
   {
    "href": "t1_01.html",
@@ -30,7 +31,8 @@ window.PRACTICE_MANIFEST = {
      "title": "Три вида ошибок"
     }
    ],
-   "tasks": []
+   "tasks": [],
+   "stars": []
   },
   {
    "href": "t1_02.html",
@@ -52,7 +54,8 @@ window.PRACTICE_MANIFEST = {
      "title": "Стиль кода: PEP 8"
     }
    ],
-   "tasks": []
+   "tasks": [],
+   "stars": []
   },
   {
    "href": "t1_03.html",
@@ -74,7 +77,8 @@ window.PRACTICE_MANIFEST = {
      "title": "Редактор"
     }
    ],
-   "tasks": []
+   "tasks": [],
+   "stars": []
   },
   {
    "href": "t1_04.html",
@@ -126,6 +130,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 1.4.1. Три цикла роста",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t1_04_star_basic.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.4. Заражение культуры",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_04_star_medium.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.4. Три стадии роста",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_04_star_advanced.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.4. Рост за 31 час",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -213,6 +246,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t1_05_star_basic.py",
+     "level": "star",
+     "section": "s5",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.5. Длина тандемного повтора",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_05_star_medium.py",
+     "level": "star",
+     "section": "s5",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.5. Сквозная нумерация",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_05_star_advanced.py",
+     "level": "star",
+     "section": "s5",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.5. Номер с ведущими нулями",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -298,6 +360,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t1_06_star_basic.py",
+     "level": "star",
+     "section": "s5",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.6. Кодоны участка",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_06_star_medium.py",
+     "level": "star",
+     "section": "s5",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.6. Планшеты для партии",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_06_star_advanced.py",
+     "level": "star",
+     "section": "s5",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.6. Шаг назад по кольцу",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -375,6 +466,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t1_07_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.7. Навеска в граммах и миллиграммах",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_07_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.7. Процент от номинала",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_07_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.7. Погрешность термометра",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -419,6 +539,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 1.8.1. AT-богатая последовательность",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t1_08_star_basic.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.8. Удачный прогон",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_08_star_medium.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.8. GC-состав праймера",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_08_star_advanced.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.8. Половина вверх",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -502,6 +651,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t1_09_star_basic.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.9. Координаты участка",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_09_star_medium.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.9. Часы, минуты, секунды",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_09_star_advanced.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.9. Сколько длилась инкубация",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -539,7 +717,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s2",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 1.10.1. GC-асимметрия",
+     "title": "Упражнение 1.10.1. GC-перекос",
      "group": "ex-1",
      "variant": "medium"
     },
@@ -550,6 +728,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 1.10.1. GC-состав без N",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t1_10_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 1.10. Запись FASTA",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t1_10_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 1.10. GC-состав двух последовательностей",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t1_10_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 1.10. Сборка из двух прочтений",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -799,7 +1006,7 @@ window.PRACTICE_MANIFEST = {
     "file": "t1_10_1_medium.py",
     "page": "t1_10.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 1.10.1. GC-асимметрия",
+    "title": "Упражнение 1.10.1. GC-перекос",
     "group": "ex-1",
     "variant": "medium"
    }
@@ -1148,7 +1355,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t1_10_1_medium.py",
    "page": "t1_10.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 1.10.1. GC-асимметрия",
+   "title": "Упражнение 1.10.1. GC-перекос",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -1158,6 +1365,176 @@ window.PRACTICE_MANIFEST = {
    "id": "ex-1-advanced-task",
    "title": "Упражнение 1.10.1. GC-состав без N",
    "group": "ex-1",
+   "variant": "advanced"
+  }
+ ],
+ "stars": [
+  {
+   "file": "t1_04_star_basic.py",
+   "page": "t1_04.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.4. Заражение культуры",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_04_star_medium.py",
+   "page": "t1_04.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.4. Три стадии роста",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_04_star_advanced.py",
+   "page": "t1_04.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.4. Рост за 31 час",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t1_05_star_basic.py",
+   "page": "t1_05.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.5. Длина тандемного повтора",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_05_star_medium.py",
+   "page": "t1_05.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.5. Сквозная нумерация",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_05_star_advanced.py",
+   "page": "t1_05.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.5. Номер с ведущими нулями",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t1_06_star_basic.py",
+   "page": "t1_06.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.6. Кодоны участка",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_06_star_medium.py",
+   "page": "t1_06.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.6. Планшеты для партии",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_06_star_advanced.py",
+   "page": "t1_06.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.6. Шаг назад по кольцу",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t1_07_star_basic.py",
+   "page": "t1_07.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.7. Навеска в граммах и миллиграммах",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_07_star_medium.py",
+   "page": "t1_07.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.7. Процент от номинала",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_07_star_advanced.py",
+   "page": "t1_07.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.7. Погрешность термометра",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t1_08_star_basic.py",
+   "page": "t1_08.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.8. Удачный прогон",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_08_star_medium.py",
+   "page": "t1_08.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.8. GC-состав праймера",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_08_star_advanced.py",
+   "page": "t1_08.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.8. Половина вверх",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t1_09_star_basic.py",
+   "page": "t1_09.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.9. Координаты участка",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_09_star_medium.py",
+   "page": "t1_09.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.9. Часы, минуты, секунды",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_09_star_advanced.py",
+   "page": "t1_09.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.9. Сколько длилась инкубация",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t1_10_star_basic.py",
+   "page": "t1_10.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 1.10. Запись FASTA",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t1_10_star_medium.py",
+   "page": "t1_10.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 1.10. GC-состав двух последовательностей",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t1_10_star_advanced.py",
+   "page": "t1_10.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 1.10. Сборка из двух прочтений",
+   "group": "ex-star",
    "variant": "advanced"
   }
  ],

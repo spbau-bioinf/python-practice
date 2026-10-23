@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <title>Очистка и замена. Практика 2. Python</title>
   <link rel="stylesheet" href="style.css">
   <script src="../site-config.js"></script>
@@ -24,7 +23,7 @@
         <li class="menu-sub"><a href="t2_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Срезы</span></span></a></li>
         <li class="menu-sub"><a href="t2_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Операции со строками</span></span></a></li>
         <li class="menu-sub"><a href="t2_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Регистр и поиск</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t2_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Очистка и замена</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Очистка краев и цепочка методов</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Замена</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Проверка содержимого</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">2.5.1</span> <span class="anc-ex-title" data-variant="basic">Транскрипция</span><span class="anc-ex-title" data-variant="medium">Жесткое маскирование</span><span class="anc-ex-title" data-variant="advanced">Обратная комплементарная цепь</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t2_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Очистка и замена</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Очистка краев и цепочка методов</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Замена</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Проверка содержимого</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">2.5.1</span> <span class="anc-ex-title" data-variant="basic">Транскрипция</span><span class="anc-ex-title" data-variant="medium">Жесткое маскирование</span><span class="anc-ex-title" data-variant="advanced">Обратная комплементарная цепь</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">2.5</span> <span class="anc-ex-title" data-variant="basic">Последовательность из статьи</span><span class="anc-ex-title" data-variant="medium">Только A, C, G, T</span><span class="anc-ex-title" data-variant="advanced">Обратная цепь с повторами</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t2_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>split()</code> и <code>join()</code></span></span></a></li>
         <li class="menu-sub"><a href="t2_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">f-строки</span></span></a></li>
         <li class="menu-sub"><a href="t2_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Unicode и байты</span></span></a></li>
@@ -72,6 +71,7 @@
 True</pre></div>
           </div>
           <div class="analysis"><ol><li>Строки 2–4: квадратные скобки приклеены к строке, чтобы пробелы по краям стали видны.</li><li>Строка 2: <code>strip()</code> убрал пробелы с обоих краев, а пробел между словами остался.</li><li>Строки 3–4: <code>lstrip()</code> и <code>rstrip()</code> чистят по одному краю.</li><li>Строка 5: после очистки строка совпадает с образцом.</li></ol></div>
+          <script type="application/json" class="steps-data">{"file": "strip.py", "code": ["sample <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"  S12 blood  \"<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"[\"<\/span> <span class=\"tok-op\">+<\/span> sample.strip() <span class=\"tok-op\">+<\/span> <span class=\"tok-str\">\"]\"<\/span>)     ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"[\"<\/span> <span class=\"tok-op\">+<\/span> sample.lstrip() <span class=\"tok-op\">+<\/span> <span class=\"tok-str\">\"]\"<\/span>)    ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"[\"<\/span> <span class=\"tok-op\">+<\/span> sample.rstrip() <span class=\"tok-op\">+<\/span> <span class=\"tok-str\">\"]\"<\/span>)    ", "<span class=\"tok-builtin\">print<\/span>(sample.strip() <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"S12 blood\"<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "sample <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"  S12 blood  \"<\/span>", "vars": [["sample", "\"  S12 blood  \"", true]], "out": "", "row": null, "note": "Строка 1: sample = \"  S12 blood  \"."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"[\"<\/span> <span class=\"tok-op\">+<\/span> sample.strip() <span class=\"tok-op\">+<\/span> <span class=\"tok-str\">\"]\"<\/span>)", "vars": [["sample", "\"  S12 blood  \"", false]], "out": "[S12 blood]\n", "row": null, "note": "Строка 2: печатается [S12 blood]."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"[\"<\/span> <span class=\"tok-op\">+<\/span> sample.lstrip() <span class=\"tok-op\">+<\/span> <span class=\"tok-str\">\"]\"<\/span>)", "vars": [["sample", "\"  S12 blood  \"", false]], "out": "[S12 blood]\n[S12 blood  ]\n", "row": null, "note": "Строка 3: печатается [S12 blood  ]."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"[\"<\/span> <span class=\"tok-op\">+<\/span> sample.rstrip() <span class=\"tok-op\">+<\/span> <span class=\"tok-str\">\"]\"<\/span>)", "vars": [["sample", "\"  S12 blood  \"", false]], "out": "[S12 blood]\n[S12 blood  ]\n[  S12 blood]\n", "row": null, "note": "Строка 4: печатается [  S12 blood]."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(sample.strip() <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"S12 blood\"<\/span>)", "vars": [["sample", "\"  S12 blood  \"", false]], "out": "[S12 blood]\n[S12 blood  ]\n[  S12 blood]\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 0, "html": "", "vars": [["sample", "\"  S12 blood  \"", false]], "out": "[S12 blood]\n[S12 blood  ]\n[  S12 blood]\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <article class="example">
           <h3>Ввод и цепочка методов</h3>
@@ -138,6 +138,7 @@ X1 S12 S13
 ATGCGTACC</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 2: <code>S1</code> заменен везде, в том числе внутри <code>S12</code> и <code>S13</code>.</li><li>Строка 3: с третьим аргументом 1 заменено только первое вхождение.</li><li>Строка 5: замена пробела на пустую строку убрала пробелы внутри последовательности.</li></ol></div>
+          <script type="application/json" class="steps-data">{"file": "replace.py", "code": ["ids <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"S1 S12 S13\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(ids.replace(<span class=\"tok-str\">\"S1\"<\/span>, <span class=\"tok-str\">\"X1\"<\/span>))     ", "<span class=\"tok-builtin\">print<\/span>(ids.replace(<span class=\"tok-str\">\"S1\"<\/span>, <span class=\"tok-str\">\"X1\"<\/span>, <span class=\"tok-num\">1<\/span>))  ", "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ATG CGT ACC\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(seq.replace(<span class=\"tok-str\">\" \"<\/span>, <span class=\"tok-str\">\"\"<\/span>))        "], "columns": [], "steps": [{"line": 1, "html": "ids <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"S1 S12 S13\"<\/span>", "vars": [["ids", "\"S1 S12 S13\"", true]], "out": "", "row": null, "note": "Строка 1: ids = \"S1 S12 S13\"."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"S1 S12 S13\"<\/span><\/span>.replace(<span class=\"tok-str\">\"S1\"<\/span>, <span class=\"tok-str\">\"X1\"<\/span>))", "vars": [["ids", "\"S1 S12 S13\"", false]], "out": "X1 X12 X13\n", "row": null, "note": "Строка 2: печатается X1 X12 X13."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"S1 S12 S13\"<\/span><\/span>.replace(<span class=\"tok-str\">\"S1\"<\/span>, <span class=\"tok-str\">\"X1\"<\/span>, <span class=\"tok-num\">1<\/span>))", "vars": [["ids", "\"S1 S12 S13\"", false]], "out": "X1 X12 X13\nX1 S12 S13\n", "row": null, "note": "Строка 3: печатается X1 S12 S13."}, {"line": 4, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ATG CGT ACC\"<\/span>", "vars": [["ids", "\"S1 S12 S13\"", false], ["seq", "\"ATG CGT ACC\"", true]], "out": "X1 X12 X13\nX1 S12 S13\n", "row": null, "note": "Строка 4: seq = \"ATG CGT ACC\"."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"ATG CGT ACC\"<\/span><\/span>.replace(<span class=\"tok-str\">\" \"<\/span>, <span class=\"tok-str\">\"\"<\/span>))", "vars": [["ids", "\"S1 S12 S13\"", false], ["seq", "\"ATG CGT ACC\"", false]], "out": "X1 X12 X13\nX1 S12 S13\nATGCGTACC\n", "row": null, "note": "Строка 5: печатается ATGCGTACC."}, {"line": 0, "html": "", "vars": [["ids", "\"S1 S12 S13\"", false], ["seq", "\"ATG CGT ACC\"", false]], "out": "X1 X12 X13\nX1 S12 S13\nATGCGTACC\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="mistake th-full">
           <p class="mistake-caption">Типичная ошибка: <code>replace()</code> вместо замены в позиции</p>
@@ -165,7 +166,7 @@ ATGCGTACC</pre></div>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
             <h3>Упражнение 2.5.1. Транскрипция</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>При транскрипции по гену строится мРНК. Ее последовательность совпадает с кодирующей цепью ДНК, только вместо тимина T в РНК стоит урацил U. Получите последовательность мРНК методом <code>replace()</code>.</p></div>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Транскрипция&nbsp;— построение молекулы РНК по участку ДНК. Так получают мРНК, копию гена, по которой затем строится белок. У ДНК две цепи, и последовательность мРНК совпадает с одной из них, кодирующей цепью, только вместо тимина T в РНК стоит урацил U. Получите последовательность мРНК методом <code>replace()</code>.</p></div>
           <h4>Входные данные</h4>
           <p>Одна строка: кодирующая цепь ДНК из заглавных букв A, C, G, T длиной от 1 до 100.</p>
           <h4>Выходные данные</h4>
@@ -188,7 +189,7 @@ ATGCGTACC</pre></div>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
             <h3>Упражнение 2.5.1. Жесткое маскирование</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В записи генома повторы помечены строчными буквами: это мягкое маскирование. Некоторые программы требуют жесткого маскирования, при котором каждый нуклеотид повтора заменен буквой N. Переведите последовательность в жестко маскированную.</p></div>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Повторами называют участки, которые много раз встречаются в геноме. В записи генома повторы помечены строчными буквами: это мягкое маскирование. Некоторые программы требуют жесткого маскирования, при котором каждый нуклеотид повтора заменен буквой N. Переведите последовательность в жестко маскированную.</p></div>
           <h4>Входные данные</h4>
           <p>Одна строка длиной от 1 до 100 из букв A, C, G, T: заглавные буквы вне повторов, строчные внутри повторов.</p>
           <h4>Выходные данные</h4>
@@ -260,6 +261,7 @@ True
 False</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 1: только цифры.</li><li>Строка 2: буквы и цифры.</li><li>Строка 3: пробел не буква, поэтому <code>False</code>.</li><li>Строка 4: все буквы строчные.</li><li>Строка 5: минус не цифра, хотя <code>"-5"</code> и записывает число.</li></ol></div>
+          <script type="application/json" class="steps-data">{"file": "checks.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"2026\"<\/span>.isdigit())       ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"S12\"<\/span>.isalnum())        ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"S12 blood\"<\/span>.isalpha())  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"gattaca\"<\/span>.islower())    ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"-5\"<\/span>.isdigit())         "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"2026\"<\/span>.isdigit())", "vars": [], "out": "True\n", "row": null, "note": "Строка 1: печатается True."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"S12\"<\/span>.isalnum())", "vars": [], "out": "True\nTrue\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"S12 blood\"<\/span>.isalpha())", "vars": [], "out": "True\nTrue\nFalse\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"gattaca\"<\/span>.islower())", "vars": [], "out": "True\nTrue\nFalse\nTrue\n", "row": null, "note": "Строка 4: печатается True."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"-5\"<\/span>.isdigit())", "vars": [], "out": "True\nTrue\nFalse\nTrue\nFalse\n", "row": null, "note": "Строка 5: печатается False."}, {"line": 0, "html": "", "vars": [], "out": "True\nTrue\nFalse\nTrue\nFalse\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="step step-try">Практика</div>
         <div class="try-block">
@@ -270,12 +272,91 @@ False</pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
           </div>
         </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t2_05_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t2_05_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t2_05_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 2.5. Последовательность из статьи</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В статьях и базах данных длинную последовательность часто печатают строчными буквами, группами по 10 нуклеотидов через пробел. Скопированный текст нужно превратить в обычную запись: заглавными буквами и без пробелов. Выведите такую запись и ее длину.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: буквы A, C, G, T в любом регистре и пробелы, в том числе по краям. Букв от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Две строки: последовательность заглавными буквами без пробелов и ее длина.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre> ggatccatta cgtaa </pre></td><td><pre>GGATCCATTACGTAA
+15</pre></td></tr>
+                <tr><td><pre>tagc</pre></td><td><pre>TAGC
+4</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_05_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 2.5. Только A, C, G, T</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Перед анализом проверяют, что строка состоит только из букв A, C, G, T, заглавных или строчных. Пробелы по краям строки допустимы, их убирают перед проверкой. Любой другой символ, в том числе пробел внутри строки, делает строку непригодной. Определите, пригодна ли строка.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Методы <code>is…</code> здесь не помогут: им все равно, какие именно это буквы. Подумайте, что останется от строки, если убрать из нее все допустимые буквы.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка длиной от 1 до 100: латинские буквы, цифры, пробелы и знаки препинания. Хотя бы один символ строки не пробел.</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если после удаления пробелов по краям в строке только буквы A, C, G, T в любом регистре, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre> acgTTGa </pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>ACGNT</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_05_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 2.5. Обратная цепь с повторами</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вторая цепь ДНК комплементарна первой: напротив A стоит T, напротив T стоит A, напротив G стоит C, напротив C стоит G. Читают ее в обратном направлении. В записи генома повторы помечены строчными буквами, и в обратной комплементарной цепи пометка сохраняется: строчная буква заменяется строчной, заглавная заглавной. Постройте обратную комплементарную последовательность с сохранением регистра.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Если заменить A на T, а затем T на A, все эти буквы станут A. Сначала переведите букву во временный символ, которого в последовательности нет, например в цифру.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка длиной от 1 до 100 из букв A, C, G, T, заглавных и строчных.</p>
+          <h4>Выходные данные</h4>
+          <p>Обратная комплементарная последовательность; регистр каждой буквы такой же, как у буквы, которую она заменила.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ATGcgtTA</pre></td><td><pre>TAacgCAT</pre></td></tr>
+                <tr><td><pre>ggatcc</pre></td><td><pre>ggatcc</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t2_05_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section class="then">
         <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
         <ol class="submit-steps">
           <li>В папке <code>projects_2</code> создайте папку <code>t2_05</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t2_05_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t2_05_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t2_05_1_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t2_05_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t2_05_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t2_05_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t2_05</code> в свой репозиторий внутрь папки <code>projects_2</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
         <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>

@@ -8,7 +8,8 @@ window.PRACTICE_MANIFEST = {
    "name": "Обзор практики",
    "title": "Практика 2. Строки и текстовые данные",
    "sections": [],
-   "tasks": []
+   "tasks": [],
+   "stars": []
   },
   {
    "href": "t2_01.html",
@@ -56,6 +57,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 2.1.1. Индекс с конца",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t2_01_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.1. Позиция с обоих концов",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_01_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.1. Начало последнего кодона",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_01_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.1. Участок на кольце",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -129,6 +159,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-2-advanced-task",
      "title": "Упражнение 2.2.2. Участок справа налево",
      "group": "ex-2",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t2_02_star_basic.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.2. Другое место разреза",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_02_star_medium.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.2. Справа налево через два",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_02_star_advanced.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.2. Полные кодоны рамки",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -208,6 +267,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t2_03_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.3. Делеция",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_03_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.3. Замена кодона",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_03_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.3. Задетый сайт",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -285,6 +373,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t2_04_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.4. Мотив в повторах",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_04_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.4. Номер кодона с мотивом",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_04_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.4. Сайты на кольце",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -333,6 +450,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 2.5.1. Обратная комплементарная цепь",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t2_05_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.5. Последовательность из статьи",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_05_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.5. Только A, C, G, T",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_05_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.5. Обратная цепь с повторами",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -389,6 +535,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-1",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t2_06_star_basic.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.6. Разбор имени файла",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_06_star_medium.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.6. Коды без пустых мест",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_06_star_advanced.py",
+     "level": "star",
+     "section": "s4",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.6. Организм из записи UniProt",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -439,6 +614,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-1",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t2_07_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.7. Изменение числа прочтений",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_07_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.7. Участок для геномного браузера",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_07_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.7. Обозначение лунки",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -485,6 +689,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-1",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t2_08_star_basic.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.8. Символ качества в другой схеме",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_08_star_medium.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.8. Испорченная кодировка",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_08_star_advanced.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.8. Верные концы прочтения",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -529,6 +762,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 2.9.1. Отчет с GC3",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t2_09_star_basic.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 2.9. GC-перекос последовательности",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t2_09_star_medium.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 2.9. GC-состав с пропусками",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t2_09_star_advanced.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 2.9. Пары CG",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -1179,6 +1441,224 @@ window.PRACTICE_MANIFEST = {
    "id": "ex-1-advanced-task",
    "title": "Упражнение 2.9.1. Отчет с GC3",
    "group": "ex-1",
+   "variant": "advanced"
+  }
+ ],
+ "stars": [
+  {
+   "file": "t2_01_star_basic.py",
+   "page": "t2_01.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.1. Позиция с обоих концов",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_01_star_medium.py",
+   "page": "t2_01.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.1. Начало последнего кодона",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_01_star_advanced.py",
+   "page": "t2_01.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.1. Участок на кольце",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_02_star_basic.py",
+   "page": "t2_02.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.2. Другое место разреза",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_02_star_medium.py",
+   "page": "t2_02.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.2. Справа налево через два",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_02_star_advanced.py",
+   "page": "t2_02.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.2. Полные кодоны рамки",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_03_star_basic.py",
+   "page": "t2_03.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.3. Делеция",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_03_star_medium.py",
+   "page": "t2_03.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.3. Замена кодона",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_03_star_advanced.py",
+   "page": "t2_03.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.3. Задетый сайт",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_04_star_basic.py",
+   "page": "t2_04.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.4. Мотив в повторах",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_04_star_medium.py",
+   "page": "t2_04.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.4. Номер кодона с мотивом",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_04_star_advanced.py",
+   "page": "t2_04.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.4. Сайты на кольце",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_05_star_basic.py",
+   "page": "t2_05.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.5. Последовательность из статьи",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_05_star_medium.py",
+   "page": "t2_05.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.5. Только A, C, G, T",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_05_star_advanced.py",
+   "page": "t2_05.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.5. Обратная цепь с повторами",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_06_star_basic.py",
+   "page": "t2_06.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.6. Разбор имени файла",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_06_star_medium.py",
+   "page": "t2_06.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.6. Коды без пустых мест",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_06_star_advanced.py",
+   "page": "t2_06.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.6. Организм из записи UniProt",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_07_star_basic.py",
+   "page": "t2_07.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.7. Изменение числа прочтений",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_07_star_medium.py",
+   "page": "t2_07.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.7. Участок для геномного браузера",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_07_star_advanced.py",
+   "page": "t2_07.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.7. Обозначение лунки",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_08_star_basic.py",
+   "page": "t2_08.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.8. Символ качества в другой схеме",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_08_star_medium.py",
+   "page": "t2_08.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.8. Испорченная кодировка",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_08_star_advanced.py",
+   "page": "t2_08.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.8. Верные концы прочтения",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t2_09_star_basic.py",
+   "page": "t2_09.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 2.9. GC-перекос последовательности",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t2_09_star_medium.py",
+   "page": "t2_09.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 2.9. GC-состав с пропусками",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t2_09_star_advanced.py",
+   "page": "t2_09.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 2.9. Пары CG",
+   "group": "ex-star",
    "variant": "advanced"
   }
  ],

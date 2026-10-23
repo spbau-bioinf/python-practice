@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Функция range(). Практика 4. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t4_02.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 4</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t4_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Цикл <code>for</code></span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t4_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Функция <code>range()</code></span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Ряд чисел</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Индексы строки</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">4.2.1</span> <span class="anc-ex-title" data-variant="basic">Номера лунок</span><span class="anc-ex-title" data-variant="medium">Кодоны</span><span class="anc-ex-title" data-variant="advanced">Кодоны с конца</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">4.2</span> <span class="anc-ex-title" data-variant="basic">Позиции буквы G</span><span class="anc-ex-title" data-variant="medium">Участки кольцевой ДНК</span><span class="anc-ex-title" data-variant="advanced">Запись в формате GenBank</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t4_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Цикл <code>while</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Выход из цикла</span></span></a></li>
+        <li class="menu-sub"><a href="t4_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Счетчики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Поиск максимума</span></span></a></li>
+        <li class="menu-sub"><a href="t4_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Инвариант цикла</span></span></a></li>
+        <li class="menu-sub"><a href="t4_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Цикл в цикле</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">02</span>
+      <p class="page-path"><span>Практика 4</span><span class="page-path-sep" aria-hidden="true">›</span><span>Циклы</span></p>
+      <h1>Функция <code>range()</code></h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>15 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Получать ряды чисел функцией <code>range()</code> и обходить строку по индексам.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Ряд чисел</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Строка дает циклу <code>for</code> буквы. Часто нужны не буквы, а числа 0, 1, 2, …: например, чтобы повторить действие ровно 5 раз или пронумеровать лунки планшета. Такой ряд чисел дает функция <code>range()</code>, и цикл <code>for</code> обходит его так же, как строку.</p>
+        <p>Функция <code>range()</code> дает ряд целых чисел, который цикл <code>for</code> обходит по одному числу. У нее от одного до трех аргументов: <code>range(stop)</code>, <code>range(start, stop)</code>, <code>range(start, stop, step)</code>. Ряд начинается с <code>start</code> (по умолчанию 0) и идет с шагом <code>step</code> (по умолчанию 1).</p>
+        <p class="rule">Конец <code>stop</code> в ряд не входит: числа от 1 до 5 дает <code>range(1, 6)</code>.</p>
+        <p>При отрицательном шаге ряд идет вниз, и конец снова не входит: <code>range(5, 0, -1)</code> дает 5, 4, 3, 2, 1.</p>
+        <div class="table-wrap th-brief">
+          <table class="data">
+            <thead><tr><th>Вызов</th><th>Числа</th></tr></thead>
+            <tbody>
+              <tr><td><code>range(5)</code></td><td>0 1 2 3 4</td></tr>
+              <tr><td><code>range(1, 6)</code></td><td>1 2 3 4 5</td></tr>
+              <tr><td><code>range(0, 10, 3)</code></td><td>0 3 6 9</td></tr>
+              <tr><td><code>range(5, 0, -1)</code></td><td>5 4 3 2 1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap th-full">
+          <table class="data">
+            <thead><tr><th>Вызов</th><th>Числа</th><th>Что заметить</th></tr></thead>
+            <tbody>
+              <tr><td><code>range(5)</code></td><td>0 1 2 3 4</td><td>начало 0, число 5 не входит</td></tr>
+              <tr><td><code>range(1, 5)</code></td><td>1 2 3 4</td><td>конец не входит</td></tr>
+              <tr><td><code>range(1, 6)</code></td><td>1 2 3 4 5</td><td>так получают числа от 1 до 5</td></tr>
+              <tr><td><code>range(0, 10, 3)</code></td><td>0 3 6 9</td><td>шаг 3; число 12 уже за концом</td></tr>
+              <tr><td><code>range(5, 0, -1)</code></td><td>5 4 3 2 1</td><td>счет вниз, 0 не входит</td></tr>
+              <tr><td><code>range(1, 0)</code></td><td>нет чисел</td><td>тело цикла не выполнится ни разу</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="th-full">
+          <li>Сколько чисел в <code>range(start, stop)</code> с шагом 1: ровно <span class="formula">stop − start</span>, если <code>stop</code> больше <code>start</code>, иначе ни одного. В <code>range(1, 6)</code> пять чисел.</li>
+          <li>С шагом больше 1 ряд останавливается на последнем числе, которое меньше <code>stop</code>: в <code>range(0, 10, 3)</code> это 9.</li>
+          <li>С отрицательным шагом числа должны оставаться больше <code>stop</code>. Если <code>start</code> уже не больше <code>stop</code>, ряд пустой.</li>
+        </ol>
+        <details class="deep"><summary>Подробнее: что такое <code>range</code> на самом деле</summary><p>Функция <code>range()</code> не хранит все числа сразу, а вычисляет очередное по формуле <span class="formula">start + k · step</span>, когда его просит цикл. Поэтому <code>range(10 ** 9)</code> занимает в памяти столько же места, сколько <code>range(5)</code>. Если напечатать сам объект, <code>print(range(5))</code>, Python выведет <code>range(0, 5)</code>, а не числа. Аргументы только целые: <code>range(2.5)</code> дает <code>TypeError</code>.</p></details>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Числа от 1 до 5</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">one_to_five.py</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">1</span>, <span class="tok-num">6</span>):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, end<span class="tok-op">=</span><span class="tok-str">" "</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>()</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>1 2 3 4 5 </pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 1: <code>i</code> по очереди получает 1, 2, 3, 4, 5; число 6 в ряд не входит.</li>
+            <li>Строка 2: тело выполнилось 5 раз.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "one_to_five.py", "code": ["<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "    <span class=\"tok-builtin\">print<\/span>(i, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "<span class=\"tok-builtin\">print<\/span>()"], "columns": ["i", "напечатано"], "steps": [{"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "vars": [["i", "1", true]], "out": "", "row": null, "note": "Строка 1: i получает первое значение, i = 1."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "1", false]], "out": "1 ", "row": ["1", "1 "], "note": "Строка 2: печатается 1  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "vars": [["i", "2", true]], "out": "1 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 2."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "2", false]], "out": "1 2 ", "row": ["2", "1 2 "], "note": "Строка 2: печатается 2  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "vars": [["i", "3", true]], "out": "1 2 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 3."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "3", false]], "out": "1 2 3 ", "row": ["3", "1 2 3 "], "note": "Строка 2: печатается 3  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "vars": [["i", "4", true]], "out": "1 2 3 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 4."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "4", false]], "out": "1 2 3 4 ", "row": ["4", "1 2 3 4 "], "note": "Строка 2: печатается 4  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "vars": [["i", "5", true]], "out": "1 2 3 4 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 5."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "5", false]], "out": "1 2 3 4 5 ", "row": ["5", "1 2 3 4 5 "], "note": "Строка 2: печатается 5  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">6<\/span>):", "vars": [["i", "5", false]], "out": "1 2 3 4 5 ", "row": null, "note": "Строка 1: значений больше нет, цикл закончен; i остается 5."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>()", "vars": [["i", "5", false]], "out": "1 2 3 4 5 \n", "row": null, "note": "Строка 3: print() переводит строку."}, {"line": 0, "html": "", "vars": [["i", "5", false]], "out": "1 2 3 4 5 \n", "row": null, "note": "Программа закончилась. Вывод: 1 2 3 4 5 ."}]}</script>
+        </article>
+        <article class="example">
+          <h3>Счет вниз</h3>
+          <p>Предскажите вывод: с какого числа начнется счет и какое число первым выйдет за конец?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">countdown.py</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">10</span>, <span class="tok-num">0</span>, <span class="tok-op">-</span><span class="tok-num">3</span>):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, end<span class="tok-op">=</span><span class="tok-str">" "</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>()</span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>10 7 4 1 </pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 1: счет идет от 10 вниз с шагом 3. Следующим после 1 было бы −2, но при отрицательном шаге числа должны оставаться больше 0, поэтому −2 не входит.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "countdown.py", "code": ["<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">0<\/span>, <span class=\"tok-op\">-<\/span><span class=\"tok-num\">3<\/span>):", "    <span class=\"tok-builtin\">print<\/span>(i, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "<span class=\"tok-builtin\">print<\/span>()"], "columns": ["i", "напечатано"], "steps": [{"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">0<\/span>, <span class=\"tok-op\">-<\/span><span class=\"tok-num\">3<\/span>):", "vars": [["i", "10", true]], "out": "", "row": null, "note": "Строка 1: i получает первое значение, i = 10."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "10", false]], "out": "10 ", "row": ["10", "10 "], "note": "Строка 2: печатается 10  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">0<\/span>, <span class=\"tok-op\">-<\/span><span class=\"tok-num\">3<\/span>):", "vars": [["i", "7", true]], "out": "10 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 7."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">7<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "7", false]], "out": "10 7 ", "row": ["7", "10 7 "], "note": "Строка 2: печатается 7  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">0<\/span>, <span class=\"tok-op\">-<\/span><span class=\"tok-num\">3<\/span>):", "vars": [["i", "4", true]], "out": "10 7 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 4."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "4", false]], "out": "10 7 4 ", "row": ["4", "10 7 4 "], "note": "Строка 2: печатается 4  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">0<\/span>, <span class=\"tok-op\">-<\/span><span class=\"tok-num\">3<\/span>):", "vars": [["i", "1", true]], "out": "10 7 4 ", "row": null, "note": "Строка 1: i получает следующее значение, i = 1."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["i", "1", false]], "out": "10 7 4 1 ", "row": ["1", "10 7 4 1 "], "note": "Строка 2: печатается 1  (без перевода строки)."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">0<\/span>, <span class=\"tok-op\">-<\/span><span class=\"tok-num\">3<\/span>):", "vars": [["i", "1", false]], "out": "10 7 4 1 ", "row": null, "note": "Строка 1: значений больше нет, цикл закончен; i остается 1."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>()", "vars": [["i", "1", false]], "out": "10 7 4 1 \n", "row": null, "note": "Строка 3: print() переводит строку."}, {"line": 0, "html": "", "vars": [["i", "1", false]], "out": "10 7 4 1 \n", "row": null, "note": "Программа закончилась. Вывод: 10 7 4 1 ."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Измените только аргументы <code>range()</code> так, чтобы программа напечатала 2 4 6 8 10.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_range.py</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">0</span>, <span class="tok-num">5</span>):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, end<span class="tok-op">=</span><span class="tok-str">" "</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>()</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>0 1 2 3 4 </pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Индексы строки</h2>
+        <div class="step step-learn">Теория</div>
+        <p><code>range(len(seq))</code> дает все индексы строки <code>seq</code>: от 0 до <span class="formula">len(seq) − 1</span>. По индексу берут букву, <code>seq[i]</code>, как в теме 2. Обход по индексам нужен, когда важна не только буква, но и ее место: позиция или кусок строки, который начинается с этой буквы.</p>
+        <p>В задачах <a href="https://rosalind.info/">Rosalind</a> и в биологических базах позиции нумеруют с 1, а индексы Python начинаются с 0.</p>
+        <p class="property">Позиция буквы в нумерации с 1 равна ее индексу плюс 1: <span class="formula">позиция = i + 1</span>.</p>
+        <p class="definition"><span class="term">Кодон</span>&nbsp;— тройка подряд идущих нуклеотидов. Три буквы читаются вместе как одна аминокислота белка, поэтому участок ДНК, по которому строится белок, делят на тройки.</p>
+        <p>Разбивка по шагам: <code>ATGTTTGGA</code> делим на тройки <code>ATG</code>, <code>TTT</code>, <code>GGA</code>. Это три кодона, их буквы стоят на индексах 0–2, 3–5 и 6–8. Если в конце осталась одна или две буквы, полного кодона из них не получится.</p>
+        <p class="definition"><span class="term">Рамка считывания</span>&nbsp;— способ разбить последовательность на кодоны; его задает буква, с которой начинают чтение. Начать можно с первой, второй или третьей буквы, поэтому рамок три: если начать с четвертой, получится первая рамка без первого кодона.</p>
+        <p class="th-full">Например, <code>AATGGC</code> в первой рамке дает кодоны <code>AAT</code> и <code>GGC</code>, во второй кодон <code>ATG</code> и остаток <code>GC</code>, в третьей кодон <code>TGG</code> и остаток <code>C</code>. Одни и те же буквы в разных рамках читаются как разные кодоны.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Индекс и буква</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">indexes.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATC"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, seq[i])</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>0 G
+1 A
+2 T
+3 C</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: <code>len(seq)</code> равно 4, поэтому <code>i</code> пробегает 0, 1, 2, 3.</li>
+            <li>Строка 3: по индексу берется буква с этим номером.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "indexes.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATC\"<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-builtin\">len<\/span>(seq)):", "    <span class=\"tok-builtin\">print<\/span>(i, seq[i])"], "columns": ["i", "напечатано"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATC\"<\/span>", "vars": [["seq", "\"GATC\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GATC\"."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GATC\"", false], ["i", "0", true]], "out": "", "row": null, "note": "Строка 2: i получает первое значение, i = 0."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span>, <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>)", "vars": [["seq", "\"GATC\"", false], ["i", "0", false]], "out": "0 G\n", "row": ["0", "0 G"], "note": "Строка 3: печатается 0 G."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GATC\"", false], ["i", "1", true]], "out": "0 G\n", "row": null, "note": "Строка 2: i получает следующее значение, i = 1."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>, <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>)", "vars": [["seq", "\"GATC\"", false], ["i", "1", false]], "out": "0 G\n1 A\n", "row": ["1", "0 G\n1 A"], "note": "Строка 3: печатается 1 A."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GATC\"", false], ["i", "2", true]], "out": "0 G\n1 A\n", "row": null, "note": "Строка 2: i получает следующее значение, i = 2."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>, <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span>)", "vars": [["seq", "\"GATC\"", false], ["i", "2", false]], "out": "0 G\n1 A\n2 T\n", "row": ["2", "0 G\n1 A\n2 T"], "note": "Строка 3: печатается 2 T."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GATC\"", false], ["i", "3", true]], "out": "0 G\n1 A\n2 T\n", "row": null, "note": "Строка 2: i получает следующее значение, i = 3."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>, <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>)", "vars": [["seq", "\"GATC\"", false], ["i", "3", false]], "out": "0 G\n1 A\n2 T\n3 C\n", "row": ["3", "0 G\n1 A\n2 T\n3 C"], "note": "Строка 3: печатается 3 C."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GATC\"", false], ["i", "3", false]], "out": "0 G\n1 A\n2 T\n3 C\n", "row": null, "note": "Строка 2: значений больше нет, цикл закончен; i остается 3."}, {"line": 0, "html": "", "vars": [["seq", "\"GATC\"", false], ["i", "3", false]], "out": "0 G\n1 A\n2 T\n3 C\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>Позиции гуанина</h3>
+          <p>Программа печатает позиции всех букв G в нумерации с 1, как в ответах Rosalind.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">g_positions.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GGATG"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-op">==</span> <span class="tok-str">"G"</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(i <span class="tok-op">+</span> <span class="tok-num">1</span>, end<span class="tok-op">=</span><span class="tok-str">" "</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>()</span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>1 2 5 </pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 3: сравнивается буква с индексом <code>i</code>.</li>
+            <li>Строка 4: печатается не индекс, а позиция: <span class="formula">i + 1</span>.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "g_positions.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GGATG\"<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-builtin\">len<\/span>(seq)):", "    <span class=\"tok-kw\">if<\/span> seq[i] <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"G\"<\/span>:", "        <span class=\"tok-builtin\">print<\/span>(i <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "<span class=\"tok-builtin\">print<\/span>()"], "columns": ["i", "напечатано"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GGATG\"<\/span>", "vars": [["seq", "\"GGATG\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GGATG\"."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>):", "vars": [["seq", "\"GGATG\"", false], ["i", "0", true]], "out": "", "row": null, "note": "Строка 2: i получает первое значение, i = 0."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"G\"<\/span>:", "vars": [["seq", "\"GGATG\"", false], ["i", "0", false]], "out": "", "row": null, "note": "Строка 3: условие \"G\" == \"G\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["seq", "\"GGATG\"", false], ["i", "0", false]], "out": "1 ", "row": ["0", "1 "], "note": "Строка 4: печатается 1  (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>):", "vars": [["seq", "\"GGATG\"", false], ["i", "1", true]], "out": "1 ", "row": null, "note": "Строка 2: i получает следующее значение, i = 1."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"G\"<\/span>:", "vars": [["seq", "\"GGATG\"", false], ["i", "1", false]], "out": "1 ", "row": null, "note": "Строка 3: условие \"G\" == \"G\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["seq", "\"GGATG\"", false], ["i", "1", false]], "out": "1 2 ", "row": ["1", "1 2 "], "note": "Строка 4: печатается 2  (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>):", "vars": [["seq", "\"GGATG\"", false], ["i", "2", true]], "out": "1 2 ", "row": null, "note": "Строка 2: i получает следующее значение, i = 2."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"G\"<\/span>:", "vars": [["seq", "\"GGATG\"", false], ["i", "2", false]], "out": "1 2 ", "row": ["2", "1 2 "], "note": "Строка 3: условие \"A\" == \"G\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>):", "vars": [["seq", "\"GGATG\"", false], ["i", "3", true]], "out": "1 2 ", "row": null, "note": "Строка 2: i получает следующее значение, i = 3."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"G\"<\/span>:", "vars": [["seq", "\"GGATG\"", false], ["i", "3", false]], "out": "1 2 ", "row": ["3", "1 2 "], "note": "Строка 3: условие \"T\" == \"G\" ложно, тело пропускается."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>):", "vars": [["seq", "\"GGATG\"", false], ["i", "4", true]], "out": "1 2 ", "row": null, "note": "Строка 2: i получает следующее значение, i = 4."}, {"line": 3, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"G\"<\/span>:", "vars": [["seq", "\"GGATG\"", false], ["i", "4", false]], "out": "1 2 ", "row": null, "note": "Строка 3: условие \"G\" == \"G\" истинно, тело выполняется."}, {"line": 4, "html": "        <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\" \"<\/span>)", "vars": [["seq", "\"GGATG\"", false], ["i", "4", false]], "out": "1 2 5 ", "row": ["4", "1 2 5 "], "note": "Строка 4: печатается 5  (без перевода строки)."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>):", "vars": [["seq", "\"GGATG\"", false], ["i", "4", false]], "out": "1 2 5 ", "row": null, "note": "Строка 2: значений больше нет, цикл закончен; i остается 4."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>()", "vars": [["seq", "\"GGATG\"", false], ["i", "4", false]], "out": "1 2 5 \n", "row": null, "note": "Строка 5: print() переводит строку."}, {"line": 0, "html": "", "vars": [["seq", "\"GGATG\"", false], ["i", "4", false]], "out": "1 2 5 \n", "row": null, "note": "Программа закончилась. Вывод: 1 2 5 ."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: индекс за концом строки</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: IndexError</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATC"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq) <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(seq[i], end<span class="tok-op">=</span><span class="tok-str">""</span>)</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>IndexError: string index out of range</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATC"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(seq[i], end<span class="tok-op">=</span><span class="tok-str">""</span>)</span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>GATC</pre></div>
+          <p>Последний индекс строки из 4 букв равен 3. Ряд <code>range(len(seq))</code> заканчивается как раз на нем, потому что конец не входит; прибавлять 1 не нужно.</p>
+        </div>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Сделайте так, чтобы программа печатала позиции с 1, а не индексы с 0.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_index.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"TTAG"</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, seq[i])</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>0 T
+1 T
+2 A
+3 G</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t4_02_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t4_02_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t4_02_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 4.2.1. Номера лунок</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшет&nbsp;— пластиковая пластина с углублениями, лунками, в которые ставят пробы (он встречался в упражнении <a href="../practice_3/t3_08.html#ex-1">3.8.1 «Лунка планшета»</a> практики 3). В планшете <code>n</code> лунок, их номера начинаются с 1. Выведите номера всех лунок в одну строку через пробел. Числа получите функцией <code>range()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Целое число <code>n</code>, 1 ≤ <code>n</code> ≤ 96.</p>
+          <h4>Выходные данные</h4>
+          <p>Числа от 1 до <code>n</code> через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>7</pre></td><td><pre>1 2 3 4 5 6 7 </pre></td></tr>
+                <tr><td><pre>1</pre></td><td><pre>1 </pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_02_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 4.2.1. Кодоны</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Длина последовательности кратна трем. Выведите ее кодоны, тройки подряд идущих букв (определение в теории раздела), каждый с новой строки. Кодоны не перекрываются: первый занимает буквы с индексами 0–2, второй 3–5 и так далее.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T; длина от 3 до 99 и кратна 3.</p>
+          <h4>Выходные данные</h4>
+          <p>Кодоны по одному в строке.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ATGGCCTAA</pre></td><td><pre>ATG
+GCC
+TAA</pre></td></tr>
+                <tr><td><pre>TGA</pre></td><td><pre>TGA</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_02_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 4.2.1. Кодоны с конца</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Рамка считывания f (1, 2 или 3) означает, что первый кодон начинается с позиции f; позиции нумеруются с 1. Неполный кодон в конце строки в рамку не входит. Выведите все полные кодоны рамки f в обратном порядке: сначала последний, затем предпоследний и так далее, каждый с новой строки. Буквы внутри кодона идут в прямом порядке. Если в рамке нет ни одного полного кодона, выведите NO.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Сначала найдите, где начинается последний полный кодон рамки: сколько полных кодонов помещается в строке, если начать с позиции f? Дальше <code>range()</code> с шагом −3.</p></details>
+          <h4>Входные данные</h4>
+          <p>В первой строке последовательность из букв A, C, G, T длиной от 1 до 100, во второй число f: 1, 2 или 3.</p>
+          <h4>Выходные данные</h4>
+          <p>Кодоны по одному в строке или NO.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>AATGGCCTAAG
+2</pre></td><td><pre>TAA
+GCC
+ATG</pre></td></tr>
+                <tr><td><pre>ATGCA
+3</pre></td><td><pre>GCA</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_02_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t4_02_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t4_02_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t4_02_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 4.2. Позиции буквы G</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите номера всех позиций, на которых стоит буква G, через пробел в порядке возрастания. Позиции нумеруются с 1. Если буквы G нет, выведите NO.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Номера позиций через пробел или NO.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>AGGTCG</pre></td><td><pre>2 3 6</pre></td></tr>
+                <tr><td><pre>ATTA</pre></td><td><pre>NO</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_02_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 4.2. Участки кольцевой ДНК</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмида, небольшая кольцевая молекула ДНК, замкнута в кольцо: за последней буквой сразу идет первая. Поэтому участок, который начинается у конца записи, продолжается с ее начала. Для каждой позиции записи по порядку выведите участок длины k, который с нее начинается. Например, у кольца <code>ACGTT</code> при k = 3 последние участки <code>TTA</code> и <code>TAC</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке запись кольца из букв A, C, G, T длиной от 1 до 100, во второй число k от 1 до длины записи.</p>
+          <h4>Выходные данные</h4>
+          <p>Участки по одному в строке, столько же строк, сколько букв в записи.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ACGTT
+3</pre></td><td><pre>ACG
+CGT
+GTT
+TTA
+TAC</pre></td></tr>
+                <tr><td><pre>ATG
+3</pre></td><td><pre>ATG
+TGA
+GAT</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_02_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 4.2. Запись в формате GenBank</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В базе <a href="https://www.ncbi.nlm.nih.gov/genbank/">GenBank</a> последовательность печатают так: по 60 букв в строке, буквы разбиты на группы по 10 через пробел, а в начале строки стоит номер ее первой буквы (буквы нумеруются с 1). Например, последовательность из 25 букв выглядит как <code>1 ACGTACGTAC GTACGTACGT ACGTA</code>. Напечатайте последовательность в этом формате; номер от букв отделяется одним пробелом.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Позиция i начинает новую строку, если <code>i % 60 == 0</code>, и новую группу, если <code>i % 10 == 0</code>. Готовую строку печатайте, когда начинается следующая, и не забудьте последнюю.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв длиной от 1 до 300.</p>
+          <h4>Выходные данные</h4>
+          <p>Строки записи; в последней строке может быть меньше 60 букв.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ACGTACGTACGTACGTACGTACGTA</pre></td><td><pre>1 ACGTACGTAC GTACGTACGT ACGTA</pre></td></tr>
+                <tr><td><pre>gatcctccatatacaacggtatctccacctcaggtttagatctcaacaacggaaccattgccgacatgagacagttaggtatcgtcgagagttacaagctaaaacgagcagtagtcagctctgcatctgaagc</pre></td><td><pre>1 gatcctccat atacaacggt atctccacct caggtttaga tctcaacaac ggaaccattg
+61 ccgacatgag acagttaggt atcgtcgaga gttacaagct aaaacgagca gtagtcagct
+121 ctgcatctga agc</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_02_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_4</code> создайте папку <code>t4_02</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t4_02_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t4_02_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t4_02_1_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t4_02_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t4_02_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t4_02_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t4_02</code> в свой репозиторий внутрь папки <code>projects_4</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_4/
+    └── t4_02/
+        └── t4_02_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_4/
+    └── t4_02/
+        └── t4_02_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_4/
+    └── t4_02/
+        └── t4_02_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t4_01.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">01 Цикл <code>for</code></span></a>
+        <a class="pcard pcard-next" href="t4_03.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">03 Цикл <code>while</code></span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

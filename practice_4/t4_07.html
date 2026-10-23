@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Инвариант цикла. Практика 4. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t4_07.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 4</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t4_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Цикл <code>for</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Функция <code>range()</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Цикл <code>while</code></span></span></a></li>
+        <li class="menu-sub"><a href="t4_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Выход из цикла</span></span></a></li>
+        <li class="menu-sub"><a href="t4_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Счетчики</span></span></a></li>
+        <li class="menu-sub"><a href="t4_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Поиск максимума</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t4_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Инвариант цикла</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Утверждение, верное на каждой итерации</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Цикл по инварианту</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">4.7.1</span> <span class="anc-ex-title" data-variant="basic">Расстояние Хэмминга</span><span class="anc-ex-title" data-variant="medium">Самый длинный гомополимер</span><span class="anc-ex-title" data-variant="advanced">Минимум накопленного перекоса</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">4.7</span> <span class="anc-ex-title" data-variant="basic">Возврат к нулю</span><span class="anc-ex-title" data-variant="medium">Все позиции минимума</span><span class="anc-ex-title" data-variant="advanced">Наибольший рост перекоса</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t4_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Цикл в цикле</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 11</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 11</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 11</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">07</span>
+      <p class="page-path"><span>Практика 4</span><span class="page-path-sep" aria-hidden="true">›</span><span>Циклы</span></p>
+      <h1>Инвариант цикла</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Формулировать инвариант цикла, проверять его тремя проверками и по нему писать циклы, которые дают верный ответ для любой строки.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Утверждение, верное на каждой итерации</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Запуском счетчик GC можно проверить лишь на нескольких строках, а строк бесконечно много. Пример проверяет один случай; чтобы обосновать ответ для любой строки, нужно рассуждение о самом цикле.</p>
+        <p class="definition"><span class="term">Инвариант цикла</span>&nbsp;— утверждение о переменных цикла, которое верно в начале каждой итерации.</p>
+        <p>Для счетчика GC инвариант такой: перед обработкой <code>seq[i]</code> в <code>gc</code> лежит число букв G и C в срезе <code>seq[:i]</code>, то есть среди уже просмотренных букв.</p>
+        <p>Инвариант проверяют тремя проверками (Кормен и др., «Алгоритмы: построение и анализ»):</p>
+        <ol>
+          <li><strong>Инициализация:</strong> инвариант верен перед первой итерацией.</li>
+          <li><strong>Сохранение:</strong> итерация, начатая при верном инварианте, его не нарушает.</li>
+          <li><strong>Завершение:</strong> при выходе из цикла инвариант дает нужный ответ.</li>
+        </ol>
+        <div class="th-full">
+          <p>Первые две проверки устроены как математическая индукция: база и шаг. Отличие в том, что индукция идет бесконечно, а рассуждение об инварианте останавливается вместе с циклом, и третья проверка говорит, что получилось в конце.</p>
+          <p>Для счетчика GC проверки выглядят так. Перед первой итерацией <code>i = 0</code>, срез <code>seq[:0]</code> пустой, в нем 0 букв G и C, и <code>gc = 0</code>: инвариант верен. Итерация с индексом <code>i</code> прибавляет 1, только если <code>seq[i]</code> есть G или C; после нее <code>gc</code> равно числу G и C в <code>seq[:i + 1]</code>, то есть инвариант верен перед следующей итерацией. После последней итерации, при <code>i = len(seq) - 1</code>, просмотрены все буквы: срез <code>seq[:len(seq)]</code> это вся строка, и <code>gc</code> равно ответу.</p>
+          <p>Инвариант помогает найти ошибку в начальном значении. Если начать с <code>gc = 1</code>, ломается первая проверка; если обнулять счетчик в теле, ломается вторая.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Трассировка счетчика GC</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">gc_invariant.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GACG"</span></span>
+<span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-kw">in</span> <span class="tok-str">"GC"</span>:</span>
+<span class="ln">        gc <span class="tok-op">=</span> gc <span class="tok-op">+</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(gc)  <span class="tok-out"># → 3</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>3</pre></div>
+          </div>
+          <div class="table-wrap">
+            <table class="data trace">
+              <thead><tr><th>Момент</th><th>Просмотрено</th><th><code>gc</code></th><th>Инвариант</th></tr></thead>
+              <tbody>
+                <tr><td>перед <code>i = 0</code></td><td><code>""</code></td><td>0</td><td>верен</td></tr>
+                <tr><td>перед <code>i = 1</code></td><td><code>"G"</code></td><td>1</td><td>верен</td></tr>
+                <tr><td>перед <code>i = 2</code></td><td><code>"GA"</code></td><td>1</td><td>верен</td></tr>
+                <tr><td>перед <code>i = 3</code></td><td><code>"GAC"</code></td><td>2</td><td>верен</td></tr>
+                <tr><td>после цикла</td><td><code>"GACG"</code></td><td>3</td><td>ответ</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "gc_invariant.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GACG\"<\/span>", "gc <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-builtin\">len<\/span>(seq)):", "    <span class=\"tok-kw\">if<\/span> seq[i] <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "        gc <span class=\"tok-op\">=<\/span> gc <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "<span class=\"tok-builtin\">print<\/span>(gc)  "], "columns": ["i", "gc"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GACG\"<\/span>", "vars": [["seq", "\"GACG\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GACG\"."}, {"line": 2, "html": "gc <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0<\/span>", "vars": [["seq", "\"GACG\"", false], ["gc", "0", true]], "out": "", "row": null, "note": "Строка 2: gc = 0."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GACG\"", false], ["gc", "0", false], ["i", "0", true]], "out": "", "row": null, "note": "Строка 3: i получает первое значение, i = 0."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"GACG\"", false], ["gc", "0", false], ["i", "0", false]], "out": "", "row": null, "note": "Строка 4: условие \"G\" in \"GC\" истинно, тело выполняется."}, {"line": 5, "html": "        gc <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GACG\"", false], ["gc", "1", true], ["i", "0", false]], "out": "", "row": ["0", "1"], "note": "Строка 5: gc = 1."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GACG\"", false], ["gc", "1", false], ["i", "1", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 1."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"GACG\"", false], ["gc", "1", false], ["i", "1", false]], "out": "", "row": ["1", "1"], "note": "Строка 4: условие \"A\" in \"GC\" ложно, тело пропускается."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GACG\"", false], ["gc", "1", false], ["i", "2", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 2."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"GACG\"", false], ["gc", "1", false], ["i", "2", false]], "out": "", "row": null, "note": "Строка 4: условие \"C\" in \"GC\" истинно, тело выполняется."}, {"line": 5, "html": "        gc <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GACG\"", false], ["gc", "2", true], ["i", "2", false]], "out": "", "row": ["2", "2"], "note": "Строка 5: gc = 2."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GACG\"", false], ["gc", "2", false], ["i", "3", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 3."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"GACG\"", false], ["gc", "2", false], ["i", "3", false]], "out": "", "row": null, "note": "Строка 4: условие \"G\" in \"GC\" истинно, тело выполняется."}, {"line": 5, "html": "        gc <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GACG\"", false], ["gc", "3", true], ["i", "3", false]], "out": "", "row": ["3", "3"], "note": "Строка 5: gc = 3."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"GACG\"", false], ["gc", "3", false], ["i", "3", false]], "out": "", "row": null, "note": "Строка 3: значений больше нет, цикл закончен; i остается 3."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>)", "vars": [["seq", "\"GACG\"", false], ["gc", "3", false], ["i", "3", false]], "out": "3\n", "row": null, "note": "Строка 6: печатается 3."}, {"line": 0, "html": "", "vars": [["seq", "\"GACG\"", false], ["gc", "3", false], ["i", "3", false]], "out": "3\n", "row": null, "note": "Программа закончилась. Вывод: 3."}]}</script>
+        </article>
+        <article class="example">
+          <h3>Инвариант на экране</h3>
+          <p>Программа печатает <code>i</code> и <code>gc</code> в начале каждой итерации и после цикла. Предскажите вывод.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">gc_print.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"CATG"</span></span>
+<span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, gc)</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-kw">in</span> <span class="tok-str">"GC"</span>:</span>
+<span class="ln">        gc <span class="tok-op">=</span> gc <span class="tok-op">+</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq), gc)  <span class="tok-out"># → 4 2</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>0 0
+1 1
+2 1
+3 1
+4 2</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 4: в каждой строке вывода <code>gc</code> равно числу G и C среди первых <code>i</code> букв.</li>
+            <li>Строка 7: последняя строка вывода та же пара для <code>i</code>, равного длине строки, то есть ответ.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "gc_print.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"CATG\"<\/span>", "gc <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-builtin\">len<\/span>(seq)):", "    <span class=\"tok-builtin\">print<\/span>(i, gc)", "    <span class=\"tok-kw\">if<\/span> seq[i] <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "        gc <span class=\"tok-op\">=<\/span> gc <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(seq), gc)  "], "columns": ["i", "gc", "напечатано"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"CATG\"<\/span>", "vars": [["seq", "\"CATG\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"CATG\"."}, {"line": 2, "html": "gc <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0<\/span>", "vars": [["seq", "\"CATG\"", false], ["gc", "0", true]], "out": "", "row": null, "note": "Строка 2: gc = 0."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"CATG\"", false], ["gc", "0", false], ["i", "0", true]], "out": "", "row": null, "note": "Строка 3: i получает первое значение, i = 0."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span>)", "vars": [["seq", "\"CATG\"", false], ["gc", "0", false], ["i", "0", false]], "out": "0 0\n", "row": null, "note": "Строка 4: печатается 0 0."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"CATG\"", false], ["gc", "0", false], ["i", "0", false]], "out": "0 0\n", "row": null, "note": "Строка 5: условие \"C\" in \"GC\" истинно, тело выполняется."}, {"line": 6, "html": "        gc <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"CATG\"", false], ["gc", "1", true], ["i", "0", false]], "out": "0 0\n", "row": ["0", "1", "0 0"], "note": "Строка 6: gc = 1."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "1", true]], "out": "0 0\n", "row": null, "note": "Строка 3: i получает следующее значение, i = 1."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>)", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "1", false]], "out": "0 0\n1 1\n", "row": null, "note": "Строка 4: печатается 1 1."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "1", false]], "out": "0 0\n1 1\n", "row": ["1", "1", "0 0\n1 1"], "note": "Строка 5: условие \"A\" in \"GC\" ложно, тело пропускается."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "2", true]], "out": "0 0\n1 1\n", "row": null, "note": "Строка 3: i получает следующее значение, i = 2."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>)", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "2", false]], "out": "0 0\n1 1\n2 1\n", "row": null, "note": "Строка 4: печатается 2 1."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "2", false]], "out": "0 0\n1 1\n2 1\n", "row": ["2", "1", "0 0\n1 1\n2 1"], "note": "Строка 5: условие \"T\" in \"GC\" ложно, тело пропускается."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "3", true]], "out": "0 0\n1 1\n2 1\n", "row": null, "note": "Строка 3: i получает следующее значение, i = 3."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>)", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "3", false]], "out": "0 0\n1 1\n2 1\n3 1\n", "row": null, "note": "Строка 4: печатается 3 1."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"GC\"<\/span>:", "vars": [["seq", "\"CATG\"", false], ["gc", "1", false], ["i", "3", false]], "out": "0 0\n1 1\n2 1\n3 1\n", "row": null, "note": "Строка 5: условие \"G\" in \"GC\" истинно, тело выполняется."}, {"line": 6, "html": "        gc <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"CATG\"", false], ["gc", "2", true], ["i", "3", false]], "out": "0 0\n1 1\n2 1\n3 1\n", "row": ["3", "2", "0 0\n1 1\n2 1\n3 1"], "note": "Строка 6: gc = 2."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>):", "vars": [["seq", "\"CATG\"", false], ["gc", "2", false], ["i", "3", false]], "out": "0 0\n1 1\n2 1\n3 1\n", "row": null, "note": "Строка 3: значений больше нет, цикл закончен; i остается 3."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>)", "vars": [["seq", "\"CATG\"", false], ["gc", "2", false], ["i", "3", false]], "out": "0 0\n1 1\n2 1\n3 1\n4 2\n", "row": null, "note": "Строка 7: печатается 4 2."}, {"line": 0, "html": "", "vars": [["seq", "\"CATG\"", false], ["gc", "2", false], ["i", "3", false]], "out": "0 0\n1 1\n2 1\n3 1\n4 2\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>Инвариант поиска максимума</h3>
+          <div class="code-block"><span class="code-label"></span><pre><code><span class="ln">mx <span class="tok-op">=</span> <span class="tok-const">None</span></span>
+<span class="ln"><span class="tok-kw">for</span> x <span class="tok-kw">in</span> nums:</span>
+<span class="ln">    <span class="tok-kw">if</span> mx <span class="tok-kw">is</span> <span class="tok-const">None</span> <span class="tok-kw">or</span> x <span class="tok-op">&gt;</span> mx:</span>
+<span class="ln">        mx <span class="tok-op">=</span> x</span></code></pre></div>
+          <p>Инвариант: перед каждой итерацией <code>mx</code> равно наибольшему из уже просмотренных чисел. До первой итерации чисел нет, и <code>mx</code> равно <code>None</code>: так и отмечено, что максимума пока нет. Итерация сравнивает новое число с наибольшим из прежних и оставляет большее. После цикла просмотрены все числа, и инвариант превращается в ответ: <code>mx</code> равно наибольшему числу во всей последовательности. Утверждение «<code>x &gt; mx</code>» инвариантом не является: оно верно не на каждой итерации.</p>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Начните счетчик с 1 и запустите. Какая из трех проверок нарушилась и в какой строке вывода это видно?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_invariant.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATTC"</span></span>
+<span class="ln">gc <span class="tok-op">=</span> <span class="tok-num">0</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(i, gc)</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-kw">in</span> <span class="tok-str">"GC"</span>:</span>
+<span class="ln">        gc <span class="tok-op">=</span> gc <span class="tok-op">+</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq), gc)  <span class="tok-out"># → 5 2</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>0 0
+1 1
+2 1
+3 1
+4 1
+5 2</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Цикл по инварианту</h2>
+        <div class="step step-learn">Теория</div>
+        <p>По инварианту цикл можно не только проверить, но и написать. Если сначала сформулировать, что должно быть верно перед каждой итерацией, код цикла почти следует из этого утверждения: инициализация делает его верным до цикла, тело сохраняет, а ответ читается после цикла.</p>
+        <p>Пример: длина серии одинаковых букв в конце последовательности. Инвариант: перед обработкой индекса <code>i</code> переменная <code>cur</code> равна длине серии одинаковых букв, которой кончается <code>seq[:i]</code>. Цикл начинается с <code>i = 1</code>: в срезе из одной буквы серия длины 1. Если <code>seq[i]</code> совпадает с предыдущей буквой, серия продолжается; иначе начинается новая серия длины 1.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Серия в конце строки</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">last_run.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GGTAAA"</span></span>
+<span class="ln">cur <span class="tok-op">=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">1</span>, <span class="tok-builtin">len</span>(seq)):</span>
+<span class="ln">    <span class="tok-kw">if</span> seq[i] <span class="tok-op">==</span> seq[i <span class="tok-op">-</span> <span class="tok-num">1</span>]:</span>
+<span class="ln">        cur <span class="tok-op">=</span> cur <span class="tok-op">+</span> <span class="tok-num">1</span></span>
+<span class="ln">    <span class="tok-kw">else</span>:</span>
+<span class="ln">        cur <span class="tok-op">=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(cur)  <span class="tok-out"># → 3</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>3</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: инициализация. Перед <code>i = 1</code> просмотрена одна буква, серия длины 1.</li>
+            <li>Строки 4–7: сохранение. Серия либо продолжается, либо начинается заново.</li>
+            <li>Строка 8: завершение. Просмотрена вся строка, <code>cur</code> равно длине серии AAA в ее конце.</li>
+          </ol></div>
+          <div class="table-wrap th-full">
+            <table class="data trace">
+              <thead><tr><th>Момент</th><th>Просмотрено</th><th><code>cur</code></th><th>Серия в конце</th></tr></thead>
+              <tbody>
+                <tr><td>перед <code>i = 1</code></td><td><code>"G"</code></td><td>1</td><td>G</td></tr>
+                <tr><td>перед <code>i = 2</code></td><td><code>"GG"</code></td><td>2</td><td>GG</td></tr>
+                <tr><td>перед <code>i = 3</code></td><td><code>"GGT"</code></td><td>1</td><td>T</td></tr>
+                <tr><td>перед <code>i = 4</code></td><td><code>"GGTA"</code></td><td>1</td><td>A</td></tr>
+                <tr><td>перед <code>i = 5</code></td><td><code>"GGTAA"</code></td><td>2</td><td>AA</td></tr>
+                <tr><td>после цикла</td><td><code>"GGTAAA"</code></td><td>3</td><td>AAA</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="th-full">Самая длинная серия не обязательно стоит в конце. Инвариант говорит только о серии, которой кончается просмотренная часть. Чтобы найти самую длинную серию во всей строке, к инварианту нужно добавить вторую переменную, как в поиске максимума на <a href="t4_06.html">странице 06</a>.</p>
+          <script type="application/json" class="steps-data">{"file": "last_run.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GGTAAA\"<\/span>", "cur <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tok-builtin\">len<\/span>(seq)):", "    <span class=\"tok-kw\">if<\/span> seq[i] <span class=\"tok-op\">==<\/span> seq[i <span class=\"tok-op\">-<\/span> <span class=\"tok-num\">1<\/span>]:", "        cur <span class=\"tok-op\">=<\/span> cur <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "    <span class=\"tok-kw\">else<\/span>:", "        cur <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "<span class=\"tok-builtin\">print<\/span>(cur)  "], "columns": ["i", "cur"], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GGTAAA\"<\/span>", "vars": [["seq", "\"GGTAAA\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GGTAAA\"."}, {"line": 2, "html": "cur <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", true]], "out": "", "row": null, "note": "Строка 2: cur = 1."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tv\"><span class=\"tok-num\">6<\/span><\/span>):", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "1", true]], "out": "", "row": null, "note": "Строка 3: i получает первое значение, i = 1."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>:", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "1", false]], "out": "", "row": null, "note": "Строка 4: условие \"G\" == \"G\" истинно, тело выполняется."}, {"line": 5, "html": "        cur <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "2", true], ["i", "1", false]], "out": "", "row": ["1", "2"], "note": "Строка 5: cur = 2."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tv\"><span class=\"tok-num\">6<\/span><\/span>):", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "2", false], ["i", "2", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 2."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>:", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "2", false], ["i", "2", false]], "out": "", "row": null, "note": "Строка 4: условие \"T\" == \"G\" ложно, тело пропускается."}, {"line": 7, "html": "        cur <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", true], ["i", "2", false]], "out": "", "row": ["2", "1"], "note": "Строка 7: cur = 1."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tv\"><span class=\"tok-num\">6<\/span><\/span>):", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "3", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 3."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span>:", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "3", false]], "out": "", "row": null, "note": "Строка 4: условие \"A\" == \"T\" ложно, тело пропускается."}, {"line": 7, "html": "        cur <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "3", false]], "out": "", "row": ["3", "1"], "note": "Строка 7."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tv\"><span class=\"tok-num\">6<\/span><\/span>):", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "4", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 4."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>:", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "1", false], ["i", "4", false]], "out": "", "row": null, "note": "Строка 4: условие \"A\" == \"A\" истинно, тело выполняется."}, {"line": 5, "html": "        cur <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "2", true], ["i", "4", false]], "out": "", "row": ["4", "2"], "note": "Строка 5: cur = 2."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tv\"><span class=\"tok-num\">6<\/span><\/span>):", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "2", false], ["i", "5", true]], "out": "", "row": null, "note": "Строка 3: i получает следующее значение, i = 5."}, {"line": 4, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>:", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "2", false], ["i", "5", false]], "out": "", "row": null, "note": "Строка 4: условие \"A\" == \"A\" истинно, тело выполняется."}, {"line": 5, "html": "        cur <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "3", true], ["i", "5", false]], "out": "", "row": ["5", "3"], "note": "Строка 5: cur = 3."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">1<\/span>, <span class=\"tv\"><span class=\"tok-num\">6<\/span><\/span>):", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "3", false], ["i", "5", false]], "out": "", "row": null, "note": "Строка 3: значений больше нет, цикл закончен; i остается 5."}, {"line": 8, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>)", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "3", false], ["i", "5", false]], "out": "3\n", "row": null, "note": "Строка 8: печатается 3."}, {"line": 0, "html": "", "vars": [["seq", "\"GGTAAA\"", false], ["cur", "3", false], ["i", "5", false]], "out": "3\n", "row": null, "note": "Программа закончилась. Вывод: 3."}]}</script>
+        </article>
+        <details class="deep"><summary>Подробнее: инвариант и <code>while</code></summary><p>Для цикла <code>while</code> к трем проверкам добавляется четвертая: цикл заканчивается. Ее обосновывают величиной, которая на каждой итерации уменьшается и не может уменьшаться бесконечно, например <span class="formula">len(seq) − i</span>. В обходе строки через <code>while</code> на странице 03 она уменьшается на 1 за итерацию и доходит до 0.</p></details>
+        <div class="step step-learn">Теория</div>
+        <p class="definition"><span class="term">Расстояние Хэмминга</span>&nbsp;— число позиций, в которых две строки одинаковой длины различаются.</p>
+        <p>Оно показывает, насколько похожи две последовательности. Если два прочтения взяты с одного участка ДНК, они различаются в стольких позициях, сколько букв изменили ошибки секвенатора или мутации. В задаче <a href="https://rosalind.info/problems/hamm/">Counting Point Mutations</a> на Rosalind так считают точечные мутации, замены одной буквы на другую. Если сравнивать два вектора одной размерности, это число несовпавших координат.</p>
+        <p>Как найти: строки записывают одну под другой, идут по позициям слева направо и отмечают позиции, где буквы разные. Ответ равен числу отметок.</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Позиция</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
+            <tbody>
+              <tr><td>Строка 1</td><td>A</td><td>C</td><td>G</td><td>T</td><td>T</td><td>G</td><td>C</td><td>A</td></tr>
+              <tr><td>Строка 2</td><td>A</td><td>G</td><td>G</td><td>T</td><td>C</td><td>G</td><td>T</td><td>A</td></tr>
+              <tr><td>Различие</td><td></td><td>≠</td><td></td><td></td><td>≠</td><td></td><td>≠</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Отметки стоят в позициях 2, 5 и 7, расстояние Хэмминга равно 3. Так же посчитайте первый пример из таблицы упражнения: должно получиться 7.</p>
+        <p class="th-full">Величина названа по фамилии математика Ричарда Хэмминга: в 1950 году он использовал ее в теории кодов, которые находят и исправляют ошибки при передаче данных. В упражнении «Вхождения с одной заменой» на <a href="t4_08.html">странице 08</a> ищут участки, расстояние Хэмминга от которых до мотива не больше 1.</p>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t4_07_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t4_07_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t4_07_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 4.7.1. Расстояние Хэмминга</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Две последовательности одной длины записаны одна под другой: буквы с одинаковым индексом стоят друг под другом. Найдите расстояние Хэмминга между ними, то есть число позиций, в которых буквы различаются (ручной подсчет показан в теории перед упражнением). Инвариант цикла: перед обработкой индекса <code>i</code> счетчик равен числу различий среди первых <code>i</code> позиций.</p></div>
+          <h4>Входные данные</h4>
+          <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
+          <h4>Выходные данные</h4>
+          <p>Расстояние Хэмминга.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GAGCCTACTAACGGGAT
+CATCGTAATGACGGCCT</pre></td><td><pre>7</pre></td></tr>
+                <tr><td><pre>ACGT
+ACGT</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_07_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 4.7.1. Самый длинный гомополимер</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Гомополимер&nbsp;— участок из одной повторяющейся буквы, например AAAA. Длинные гомополимеры плохо читаются секвенаторами. Найдите длину самого длинного гомополимера в последовательности; одна буква тоже считается участком длины 1.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Длина самого длинного участка из одинаковых букв.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GGTAAACC</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>ACGT</pre></td><td><pre>1</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_07_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 4.7.1. Минимум накопленного перекоса</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины <code>i</code> равен числу G минус число C среди первых <code>i</code> букв; у пустого префикса (<code>i</code> = 0) он равен 0. В отличие от GC-перекоса со страницы 05, разность здесь не делится на G + C. Перед делением клетки ДНК удваивается; этот процесс называется репликацией. У бактерий репликация начинается в одной точке кольцевой ДНК. Если идти по последовательности, до этой точки буква C обычно встречается чаще G и накопленный перекос убывает, а после нее G встречается чаще и перекос растет. Поэтому минимум накопленного перекоса подсказывает, где искать точку начала репликации, но не доказывает, что она там. Найдите наименьшую длину <code>i</code> (от 0 до длины строки), при которой накопленный перекос минимален.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Сформулируйте инвариант для двух переменных: перед обработкой индекса <code>i</code> одна равна перекосу префикса длины <code>i</code>, другая наименьшему перекосу среди префиксов длины от 0 до <code>i</code>. Проверьте, что он верен до первой итерации.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Наименьшая длина префикса с минимальным перекосом.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>TAAAGACTGCCGAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT</pre></td><td><pre>11</pre></td></tr>
+                <tr><td><pre>GGGG</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_07_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t4_07_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t4_07_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t4_07_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 4.7. Возврат к нулю</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины i равен числу G минус число C среди первых i букв; у пустого префикса (i = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Найдите самую короткую длину префикса, на которой перекос снова стал равен 0 после того, как хотя бы раз был ненулевым. Если такого префикса нет, выведите NO.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Длина префикса или NO.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>AGTTCA</pre></td><td><pre>5</pre></td></tr>
+                <tr><td><pre>GGGA</pre></td><td><pre>NO</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_07_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 4.7. Все позиции минимума</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины i равен числу G минус число C среди первых i букв; у пустого префикса (i = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Выведите все длины префиксов i от 0 до длины строки, на которых перекос наименьший, через пробел по возрастанию. Задача из сборника <a href="https://rosalind.info/problems/ba1f/">Rosalind</a>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 1000.</p>
+          <h4>Выходные данные</h4>
+          <p>Длины префиксов через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATACACTTCCCGAGTAGGTACTG</pre></td><td><pre>12</pre></td></tr>
+                <tr><td><pre>GGGG</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_07_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 4.7. Наибольший рост перекоса</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины i равен числу G минус число C среди первых i букв; у пустого префикса (i = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Найдите наибольший рост перекоса: наибольшую разность skew(j) − skew(i) при i ≤ j. Если перекос нигде не растет, ответ 0. Решите за один проход и сформулируйте инвариант: что хранит каждая переменная перед обработкой очередной буквы.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Две переменные: наименьший перекос среди уже пройденных префиксов и наибольший рост, найденный до сих пор. Новая буква дает новый перекос; рост до него считается от наименьшего прежнего.</p></details>
+          <h4>Входные данные</h4>
+          <p>Одна строка из букв A, C, G, T длиной от 1 до 1000.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно число.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>CCGGGCG</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>CCCC</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t4_07_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_4</code> создайте папку <code>t4_07</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t4_07_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t4_07_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t4_07_1_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t4_07_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t4_07_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t4_07_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t4_07</code> в свой репозиторий внутрь папки <code>projects_4</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_4/
+    └── t4_07/
+        └── t4_07_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_4/
+    └── t4_07/
+        └── t4_07_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_4/
+    └── t4_07/
+        └── t4_07_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t4_06.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">06 Поиск максимума</span></a>
+        <a class="pcard pcard-next" href="t4_08.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">08 Цикл в цикле</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

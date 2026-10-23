@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <title>Среда и запуск. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
   <script src="../site-config.js"></script>
@@ -77,7 +76,8 @@ $</pre></div></div><div class="analysis"><ol><li>Команда <code data-os="w
 <article class="example"><h3>Первая программа в файле</h3><div class="run-pair"><div class="code-block"><span class="code-label">hello_world.py</span><pre><code><span class="ln"><span class="tok-com"># hello_world.py: первая программа практики</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Hello Python world!'</span>)  <span class="tok-out"># → Hello Python world!</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Привет, лаборатория'</span>)  <span class="tok-out"># → Привет, лаборатория</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Hello Python world!
-Привет, лаборатория</pre></div></div><div class="analysis"><ol><li>Строка 1: комментарий, интерпретатор ее пропускает.</li><li>Строки 2–3 выполняются по порядку, каждая печатает одну строку. Русский текст печатается без проблем: файл в UTF-8.</li><li class="th-full">За доли секунды Python успел разобрать файл, перевести его в байт-код и выполнить (страница <a href="t1_01.html">01</a>).</li></ol></div></article>
+Привет, лаборатория</pre></div></div><div class="analysis"><ol><li>Строка 1: комментарий, интерпретатор ее пропускает.</li><li>Строки 2–3 выполняются по порядку, каждая печатает одну строку. Русский текст печатается без проблем: файл в UTF-8.</li><li class="th-full">За доли секунды Python успел разобрать файл, перевести его в байт-код и выполнить (страница <a href="t1_01.html">01</a>).</li></ol></div>  <script type="application/json" class="steps-data">{"file": "hello_world.py", "code": ["<span class=\"tok-com\"># hello_world.py: первая программа практики<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">'Hello Python world!'<\/span>)  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">'Привет, лаборатория'<\/span>)  "], "columns": [], "steps": [{"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">'Hello Python world!'<\/span>)", "vars": [], "out": "Hello Python world!\n", "row": null, "note": "Строка 2: печатается Hello Python world!."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">'Привет, лаборатория'<\/span>)", "vars": [], "out": "Hello Python world!\nПривет, лаборатория\n", "row": null, "note": "Строка 3: печатается Привет, лаборатория."}, {"line": 0, "html": "", "vars": [], "out": "Hello Python world!\nПривет, лаборатория\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
 <div class="step step-try">Практика</div>
 <div class="try-block"><p>Добавьте третью строку, которая печатает название вашей группы, и запустите. Затем уберите <code>print</code> из второй строки, оставив только текст в кавычках: изменится ли вывод?</p><div class="run-pair"><div class="code-block"><span class="code-label">try_hello.py</span><pre><code><span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Hello Python world!'</span>)  <span class="tok-out"># → Hello Python world!</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">'Привет, лаборатория'</span>)  <span class="tok-out"># → Привет, лаборатория</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Hello Python world!
@@ -129,13 +129,19 @@ python3: can't open file '/home/student/hello_world.py': [Errno 2] No such file 
 <div class="table-wrap"><table class="data"><thead><tr><th>Проблема</th><th>Чем помогает редактор</th></tr></thead><tbody>
 <tr><td>опечатка в имени функции</td><td>подсветка синтаксиса: <code>print</code> и текст в кавычках окрашены по-разному</td></tr>
 <tr><td>смешаны табуляция и пробелы</td><td>клавиша Tab вставляет 4 пробела</td></tr>
-<tr><td>строка уходит за край экрана</td><td>вертикальная линия на 79–80 символах</td></tr>
+<tr><td>строка уходит за край экрана</td><td>вертикальная линия на 79-м символе: по PEP&nbsp;8 строка кода не длиннее 79 символов</td></tr>
 </tbody></table></div>
+<p>Линию-границу на 79 символах включают в настройках редактора:</p>
+<ul>
+<li>VS Code: откройте настройки (<span data-os="win">Ctrl+,</span><span data-os="mac">Cmd+,</span><span data-os="linux">Ctrl+,</span>), найдите в поиске <code>editor.rulers</code>, нажмите «Edit in settings.json» и запишите <code>"editor.rulers": [79]</code>.</li>
+<li>PyCharm: <span data-os="win">File → Settings</span><span data-os="mac">PyCharm → Settings</span><span data-os="linux">File → Settings</span> → Editor → Code Style → Python, вкладка «Wrapping and Braces», поле «Visual guides»: 79.</li>
+</ul>
+<p class="th-full">Если строка не помещается в окно, редактор может показывать ее перенесенной на следующую строку экрана; сам файл при этом не меняется. В VS Code такой перенос включает сочетание <span data-os="win">Alt+Z</span><span data-os="mac">Option+Z</span><span data-os="linux">Alt+Z</span>, в PyCharm пункт меню View → Active Editor → Soft-Wrap. Как разделить длинную строку в самом коде, разобрано на странице 06.</p>
 <div class="th-full">
 <p>Перед первым практическим занятием проверьте рабочее место:</p>
 <ol><li>Python 3.10 или новее: <code>python3 --version</code>.</li>
 <li>Установлен редактор VS Code или PyCharm Community.</li>
-<li>В редакторе табуляция заменяется 4 пробелами, линейка стоит на 80 символах.</li>
+<li>В редакторе табуляция заменяется 4 пробелами, вертикальная линия стоит на 79 символах.</li>
 <li>Установлен <a href="https://git-scm.com/">Git</a>, есть доступ к личному удаленному репозиторию.</li>
 <li>Создана папка проекта; имена папок и файлов строчными латинскими буквами, через подчеркивание.</li></ol>
 </div>

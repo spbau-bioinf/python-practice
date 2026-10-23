@@ -8,7 +8,8 @@ window.PRACTICE_MANIFEST = {
    "name": "Обзор практики",
    "title": "Практика 3. Логика и ветвления",
    "sections": [],
-   "tasks": []
+   "tasks": [],
+   "stars": []
   },
   {
    "href": "t3_01.html",
@@ -83,6 +84,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-2-advanced-task",
      "title": "Упражнение 3.1.2. Одна ли это проба",
      "group": "ex-2",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t3_01_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.1. Сдвиг рамки",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_01_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.1. Число замен в кодоне",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_01_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.1. Порядок в журнале",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -162,6 +192,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t3_02_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.2. Праймер для ПЦР",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_02_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.2. Перекрытие генов",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_02_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.2. Склейка прочтений",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -212,6 +271,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-1",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t3_03_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.3. Одна буква алфавита",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_03_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.3. Кандидат в ген",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_03_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.3. Буква в паре CG",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -260,6 +348,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 3.4.1. Позиция мутации в гене",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t3_04_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.4. Разведение пробы",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_04_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.4. Расстояние на плазмиде",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_04_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.4. Позиция в участке плазмиды",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -335,6 +452,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-2",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t3_05_star_basic.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.5. Транзиция или трансверсия",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_05_star_medium.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.5. Консенсус трех прочтений",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_05_star_advanced.py",
+     "level": "star",
+     "section": "s2",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.5. Вид мутации",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -383,6 +529,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 3.6.1. Поправка на фон",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t3_06_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.6. Имя записи",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_06_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.6. Объем как в строке выше",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_06_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.6. Среднее записанных измерений",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -435,6 +610,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-1",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t3_07_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.7. Последнее взвешивание",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_07_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.7. Наименьшее из трех измерений",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_07_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.7. Скачок сигнала",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -485,6 +689,35 @@ window.PRACTICE_MANIFEST = {
      "group": "ex-1",
      "variant": "advanced"
     }
+   ],
+   "stars": [
+    {
+     "file": "t3_08_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.8. Проверка праймера",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_08_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.8. Обозначение лунки",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_08_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.8. Поворот планшета",
+     "group": "ex-star",
+     "variant": "advanced"
+    }
    ]
   },
   {
@@ -533,6 +766,35 @@ window.PRACTICE_MANIFEST = {
      "id": "ex-1-advanced-task",
      "title": "Упражнение 3.9.1. Качество последовательности",
      "group": "ex-1",
+     "variant": "advanced"
+    }
+   ],
+   "stars": [
+    {
+     "file": "t3_09_star_basic.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-basic-task",
+     "title": "Задача со звездочкой 3.9. Тип строки FASTA",
+     "group": "ex-star",
+     "variant": "basic"
+    },
+    {
+     "file": "t3_09_star_medium.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-medium-task",
+     "title": "Задача со звездочкой 3.9. Код для двух нуклеотидов",
+     "group": "ex-star",
+     "variant": "medium"
+    },
+    {
+     "file": "t3_09_star_advanced.py",
+     "level": "star",
+     "section": "s3",
+     "id": "ex-star-advanced-task",
+     "title": "Задача со звездочкой 3.9. Сколько последовательностей в записи",
+     "group": "ex-star",
      "variant": "advanced"
     }
    ]
@@ -1183,6 +1445,224 @@ window.PRACTICE_MANIFEST = {
    "id": "ex-1-advanced-task",
    "title": "Упражнение 3.9.1. Качество последовательности",
    "group": "ex-1",
+   "variant": "advanced"
+  }
+ ],
+ "stars": [
+  {
+   "file": "t3_01_star_basic.py",
+   "page": "t3_01.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.1. Сдвиг рамки",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_01_star_medium.py",
+   "page": "t3_01.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.1. Число замен в кодоне",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_01_star_advanced.py",
+   "page": "t3_01.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.1. Порядок в журнале",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_02_star_basic.py",
+   "page": "t3_02.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.2. Праймер для ПЦР",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_02_star_medium.py",
+   "page": "t3_02.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.2. Перекрытие генов",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_02_star_advanced.py",
+   "page": "t3_02.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.2. Склейка прочтений",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_03_star_basic.py",
+   "page": "t3_03.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.3. Одна буква алфавита",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_03_star_medium.py",
+   "page": "t3_03.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.3. Кандидат в ген",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_03_star_advanced.py",
+   "page": "t3_03.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.3. Буква в паре CG",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_04_star_basic.py",
+   "page": "t3_04.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.4. Разведение пробы",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_04_star_medium.py",
+   "page": "t3_04.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.4. Расстояние на плазмиде",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_04_star_advanced.py",
+   "page": "t3_04.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.4. Позиция в участке плазмиды",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_05_star_basic.py",
+   "page": "t3_05.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.5. Транзиция или трансверсия",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_05_star_medium.py",
+   "page": "t3_05.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.5. Консенсус трех прочтений",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_05_star_advanced.py",
+   "page": "t3_05.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.5. Вид мутации",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_06_star_basic.py",
+   "page": "t3_06.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.6. Имя записи",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_06_star_medium.py",
+   "page": "t3_06.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.6. Объем как в строке выше",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_06_star_advanced.py",
+   "page": "t3_06.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.6. Среднее записанных измерений",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_07_star_basic.py",
+   "page": "t3_07.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.7. Последнее взвешивание",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_07_star_medium.py",
+   "page": "t3_07.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.7. Наименьшее из трех измерений",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_07_star_advanced.py",
+   "page": "t3_07.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.7. Скачок сигнала",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_08_star_basic.py",
+   "page": "t3_08.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.8. Проверка праймера",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_08_star_medium.py",
+   "page": "t3_08.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.8. Обозначение лунки",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_08_star_advanced.py",
+   "page": "t3_08.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.8. Поворот планшета",
+   "group": "ex-star",
+   "variant": "advanced"
+  },
+  {
+   "file": "t3_09_star_basic.py",
+   "page": "t3_09.html",
+   "id": "ex-star-basic-task",
+   "title": "Задача со звездочкой 3.9. Тип строки FASTA",
+   "group": "ex-star",
+   "variant": "basic"
+  },
+  {
+   "file": "t3_09_star_medium.py",
+   "page": "t3_09.html",
+   "id": "ex-star-medium-task",
+   "title": "Задача со звездочкой 3.9. Код для двух нуклеотидов",
+   "group": "ex-star",
+   "variant": "medium"
+  },
+  {
+   "file": "t3_09_star_advanced.py",
+   "page": "t3_09.html",
+   "id": "ex-star-advanced-task",
+   "title": "Задача со звездочкой 3.9. Сколько последовательностей в записи",
+   "group": "ex-star",
    "variant": "advanced"
   }
  ],

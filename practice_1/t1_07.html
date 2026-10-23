@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <title>Вещественные числа. Практика 1. Python</title>
   <link rel="stylesheet" href="style.css">
   <script src="../site-config.js"></script>
@@ -26,7 +25,7 @@
         <li class="menu-sub"><a href="t1_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Переменные</span></span></a></li>
         <li class="menu-sub"><a href="t1_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Типы данных</span></span></a></li>
         <li class="menu-sub"><a href="t1_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Арифметика</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Почему 0.1 + 0.2 ≠ 0.3</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сравнение с допуском</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Сравнение с нулем</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.1</span> <span class="anc-ex-title" data-variant="basic">Совпадают ли массы</span><span class="anc-ex-title" data-variant="medium">Допуск в процентах</span><span class="anc-ex-title" data-variant="advanced">Допуск с абсолютным порогом</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.2</span> <span class="anc-ex-title" data-variant="basic">Почти ноль</span><span class="anc-ex-title" data-variant="medium">Баланс объемов</span><span class="anc-ex-title" data-variant="advanced">Концентрация после разведения</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t1_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Вещественные числа</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Почему 0.1 + 0.2 ≠ 0.3</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сравнение с допуском</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Сравнение с нулем</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.1</span> <span class="anc-ex-title" data-variant="basic">Совпадают ли массы</span><span class="anc-ex-title" data-variant="medium">Допуск в процентах</span><span class="anc-ex-title" data-variant="advanced">Допуск с абсолютным порогом</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">1.7.2</span> <span class="anc-ex-title" data-variant="basic">Почти ноль</span><span class="anc-ex-title" data-variant="medium">Баланс объемов</span><span class="anc-ex-title" data-variant="advanced">Концентрация после разведения</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">1.7</span> <span class="anc-ex-title" data-variant="basic">Навеска в граммах и миллиграммах</span><span class="anc-ex-title" data-variant="medium">Процент от номинала</span><span class="anc-ex-title" data-variant="advanced">Погрешность термометра</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t1_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Округление и Decimal</span></span></a></li>
         <li class="menu-sub"><a href="t1_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name"><code>print()</code> и <code>input()</code></span></span></a></li>
         <li class="menu-sub"><a href="t1_10.html"><span class="menu-title"><span class="menu-code">10</span><span class="menu-name">Биологические данные</span></span></a></li>
@@ -75,6 +74,7 @@
 False</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 1: погрешности совпали с хранимым 0,2, вывод выглядит точным.</li><li>Строка 2: результат оказался соседним двоичным числом, а не тем, что хранится для 0,3.</li><li>Строка 3: поэтому сравнение <code>==</code> дает <code>False</code>.</li></ol><p>Отсюда правило: вычисленные значения <code>float</code> обычно не сравнивают через <code>==</code>, если в результате может быть погрешность округления. Для точных значений, например <code>0.5 + 0.25 == 0.75</code>, <code>==</code> работает.</p></div>
+          <script type="application/json" class="steps-data">{"file": "same_looking.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">0.1<\/span>)         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">0.2<\/span>)         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">0.2<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">0.3<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">0.1<\/span>)", "vars": [], "out": "0.2\n", "row": null, "note": "Строка 1: печатается 0.2."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">0.2<\/span>)", "vars": [], "out": "0.2\n0.30000000000000004\n", "row": null, "note": "Строка 2: печатается 0.30000000000000004."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-num\">0.2<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">0.3<\/span>)", "vars": [], "out": "0.2\n0.30000000000000004\nFalse\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 0, "html": "", "vars": [], "out": "0.2\n0.30000000000000004\nFalse\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <article class="example th-full">
           <h3>Что на самом деле хранится</h3>
@@ -103,6 +103,7 @@ False</pre></div>
 False</pre></div>
           </div>
           <div class="analysis"><p>При каждом сложении результат округляется до ближайшего хранимого числа, и эти маленькие округления складываются. Чем длиннее вычисление, тем заметнее может быть отличие от математического ответа.</p></div>
+          <script type="application/json" class="steps-data">{"file": "ten_doses.py", "code": ["dose <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0.1<\/span>", "total <span class=\"tok-op\">=<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose <span class=\"tok-op\">+<\/span> dose", "<span class=\"tok-builtin\">print<\/span>(total)         ", "<span class=\"tok-builtin\">print<\/span>(total <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">1.0<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "dose <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0.1<\/span>", "vars": [["dose", "0.1", true]], "out": "", "row": null, "note": "Строка 1: dose = 0.1."}, {"line": 2, "html": "total <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span>", "vars": [["dose", "0.1", false], ["total", "0.9999999999999999", true]], "out": "", "row": null, "note": "Строка 2: total = 0.9999999999999999."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">0.9999999999999999<\/span><\/span>)", "vars": [["dose", "0.1", false], ["total", "0.9999999999999999", false]], "out": "0.9999999999999999\n", "row": null, "note": "Строка 3: печатается 0.9999999999999999."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">0.9999999999999999<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">1.0<\/span>)", "vars": [["dose", "0.1", false], ["total", "0.9999999999999999", false]], "out": "0.9999999999999999\nFalse\n", "row": null, "note": "Строка 4: печатается False."}, {"line": 0, "html": "", "vars": [["dose", "0.1", false], ["total", "0.9999999999999999", false]], "out": "0.9999999999999999\nFalse\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="th-full">
           <p>Сравнение вещественных чисел через <code>==</code> ненадежно по трем причинам:</p>
@@ -124,7 +125,8 @@ False</pre></div>
 False</pre></div>
             </div>
             <div class="analysis"><ol><li>Строка 1: 1.667 только запись с тремя знаками, до вычисленного значения ей далеко.</li><li>Строки 2–3: математически оба выражения равны 1/6, но разный порядок операций дал разные приближения.</li><li>Строка 4: каждое <code>round(0.1, 1)</code> снова приближение к 0,1, и сумма трех таких приближений не совпадает с хранимым 0,3.</li></ol></div>
-          </article>
+          <script type="application/json" class="steps-data">{"file": "not_equal.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">3<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">1.667<\/span>)  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">3<\/span> <span class=\"tok-op\">*<\/span> <span class=\"tok-num\">0.1<\/span>)  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">*<\/span> <span class=\"tok-num\">5<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">3<\/span>)  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">round<\/span>(<span class=\"tok-num\">0.1<\/span>, <span class=\"tok-num\">1<\/span>) <span class=\"tok-op\">+<\/span> <span class=\"tok-builtin\">round<\/span>(<span class=\"tok-num\">0.1<\/span>, <span class=\"tok-num\">1<\/span>) <span class=\"tok-op\">+<\/span> <span class=\"tok-builtin\">round<\/span>(<span class=\"tok-num\">0.1<\/span>, <span class=\"tok-num\">1<\/span>) <span class=\"tok-op\">==<\/span> <span class=\"tok-builtin\">round<\/span>(<span class=\"tok-num\">0.3<\/span>, <span class=\"tok-num\">1<\/span>))  "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">3<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">1.667<\/span>)", "vars": [], "out": "False\n", "row": null, "note": "Строка 1: печатается False."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">3<\/span> <span class=\"tok-op\">*<\/span> <span class=\"tok-num\">0.1<\/span>)", "vars": [], "out": "False\n0.16666666666666669\n", "row": null, "note": "Строка 2: печатается 0.16666666666666669."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">0.1<\/span> <span class=\"tok-op\">*<\/span> <span class=\"tok-num\">5<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">3<\/span>)", "vars": [], "out": "False\n0.16666666666666669\n0.16666666666666666\n", "row": null, "note": "Строка 3: печатается 0.16666666666666666."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">0.1<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tv\"><span class=\"tok-num\">0.3<\/span><\/span>)", "vars": [], "out": "False\n0.16666666666666669\n0.16666666666666666\nFalse\n", "row": null, "note": "Строка 4: печатается False."}, {"line": 0, "html": "", "vars": [], "out": "False\n0.16666666666666669\n0.16666666666666666\nFalse\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
         </div>
       </section>
 
@@ -360,7 +362,7 @@ part2 = 0.4</pre></td><td><pre>False</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
             <h3>Упражнение 1.7.2. Концентрация после разведения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор с концентрацией <code>c0</code> моль/л развели <code>n</code> раз подряд, каждый раз в <code>k</code> раз. В протоколе записана ожидаемая концентрация <code>target</code>. Проверьте, совпадает ли с ней концентрация после разведения. Значения считаются совпадающими, если они отличаются не больше чем на 0,0001 % от большего из них.</p></div>
+            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор с концентрацией <code>c0</code> моль/л развели <code>n</code> раз подряд, каждый раз в <code>k</code> раз: при каждом разведении концентрация уменьшается в <code>k</code> раз. В протоколе записана ожидаемая концентрация <code>target</code>. Проверьте, совпадает ли с ней концентрация после разведения. Значения считаются совпадающими, если они отличаются не больше чем на 0,0001 % от большего из них.</p></div>
           <details class="task-hint"><summary>Подсказка</summary><p>После нескольких разведений концентрации бывают порядка 10<sup>−9</sup> моль/л. Подумайте, какой из двух допусков <code>math.isclose()</code> отвечает условию при таких значениях.</p></details>
           <h4>Входные данные</h4>
           <p>В начале программы задаются вещественные числа <code>c0</code> (от 10<sup>−6</sup> до 10) и <code>target</code> (больше 0) и целые числа <code>k</code> (от 2 до 100) и <code>n</code> (от 1 до 10).</p>
@@ -387,13 +389,102 @@ target = 0.0003</pre></td><td><pre>False</pre></td></tr>
             </article>
           </div>
         </div>
-      </section>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t1_07_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t1_07_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t1_07_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 1.7. Навеска в граммах и миллиграммах</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Навеска&nbsp;— порция вещества, отвешенная на весах. По протоколу нужна навеска <code>nominal</code>&nbsp;г, весы показали <code>measured</code>&nbsp;мг (1&nbsp;г = 1000&nbsp;мг). Навеска верна, если отличается от протокольной не больше чем на <code>tol</code>&nbsp;мг. Проверьте это функцией <code>math.isclose()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>nominal</code> (больше 0, в граммах), <code>measured</code> (больше 0, в миллиграммах) и <code>tol</code> (от 0, в миллиграммах).</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если навеска верна, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>nominal = 0.25
+measured = 251.0
+tol = 2.0</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>nominal = 0.25
+measured = 254.0
+tol = 2.0</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 1.7. Процент от номинала</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дозатор исправен, если отмеренный объем <code>measured</code> отличается от номинального <code>nominal</code> не больше чем на <code>percent</code> процентов от номинального объема. Проверьте дозатор. Обратите внимание, от какого из двух чисел считается допуск <code>rel_tol</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>measured</code> и <code>nominal</code> (больше 0, в мкл) и <code>percent</code> (больше 0).</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если дозатор исправен, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>measured = 210.5
+nominal = 200.0
+percent = 5.0</pre></td><td><pre>False</pre></td></tr>
+                <tr><td><pre>measured = 95.5
+nominal = 100.0
+percent = 5.0</pre></td><td><pre>True</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 1.7. Погрешность термометра</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Термометр морозильника исправен, если его показание <code>measured</code>&nbsp;°C отличается от эталонной температуры <code>nominal</code>&nbsp;°C не больше чем на допуск. Допуск складывается из двух частей: <code>percent</code> процентов от модуля <code>nominal</code> и постоянной части <code>floor</code>&nbsp;°C. Например, при <code>nominal</code> = −20, <code>percent</code> = 1 и <code>floor</code> = 0,3 допуск равен 0,2 + 0,3 = 0,5&nbsp;°C. Модуль числа возвращает функция <code>abs()</code>. Проверьте термометр.</p></div>
+          <h4>Входные данные</h4>
+          <p>В начале программы задаются вещественные числа <code>measured</code> и <code>nominal</code> (от −100 до 100), <code>percent</code> и <code>floor</code> (от 0).</p>
+          <h4>Выходные данные</h4>
+          <p><code>True</code>, если термометр исправен, иначе <code>False</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>measured = -80.45
+nominal = -80.0
+percent = 0.5
+floor = 0.1</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>measured = -79.3
+nominal = -80.0
+percent = 0.5
+floor = 0.1</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t1_07_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+</section>
 
 
       <section class="then">
         <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
         <ol class="submit-steps">
           <li>В папке <code>projects_1</code> создайте папку <code>t1_07</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_07_1_basic.py</code> и <code>t1_07_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_07_1_medium.py</code> и <code>t1_07_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_07_1_advanced.py</code> и <code>t1_07_2_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t1_07_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t1_07_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t1_07_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t1_07</code> в свой репозиторий внутрь папки <code>projects_1</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
         <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
