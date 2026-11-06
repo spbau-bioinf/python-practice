@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Распаковка. Практика 5. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t5_04.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 5</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t5_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t5_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Список и кортеж</span></span></a></li>
+        <li class="menu-sub"><a href="t5_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Имена и копии</span></span></a></li>
+        <li class="menu-sub"><a href="t5_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Срезы и методы</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t5_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Распаковка</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Распаковка записи</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Звездочка: <code>*rest</code></a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Распаковка в цикле</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">5.4.1</span> <span class="anc-ex-title" data-variant="basic">Число букв G и C</span><span class="anc-ex-title" data-variant="medium">Заголовок FASTA</span><span class="anc-ex-title" data-variant="advanced">Перекрытие прочтений</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">5.4</span> <span class="anc-ex-title" data-variant="basic">Записи выше порога</span><span class="anc-ex-title" data-variant="medium">Записи разной длины</span><span class="anc-ex-title" data-variant="advanced">Смертные кролики</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t5_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Номера и пары</span></span></a></li>
+        <li class="menu-sub"><a href="t5_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Сортировка</span></span></a></li>
+        <li class="menu-sub"><a href="t5_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Списковые включения</span></span></a></li>
+        <li class="menu-sub"><a href="t5_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Признаки</span></span></a></li>
+        <li class="menu-sub"><a href="t5_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Профиль и консенсус</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">04</span>
+      <p class="page-path"><span>Практика 5</span><span class="page-path-sep" aria-hidden="true">›</span><span>Списки и кортежи</span></p>
+      <h1>Распаковка</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>20 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Раскладывать запись по переменным одной строкой, собирать остаток именем со звездочкой и распаковывать записи прямо в заголовке цикла.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Распаковка записи</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Запись о последовательности хранится кортежем <code>("Rosalind_1", 8, 50.0)</code>. Чтобы работать с полями, их удобно положить в переменные с понятными именами. Через индексы это три строки: <code>name = rec[0]</code>, <code>length = rec[1]</code>, <code>gc = rec[2]</code>; они длинные, и номер поля легко перепутать.</p>
+        <p>Если слева от <code>=</code> стоят несколько имен через запятую, Python раскладывает по ним элементы последовательности справа: первый элемент в первое имя, второй во второе и так далее.</p>
+        <p class="definition"><span class="term">Распаковка</span> (unpacking)&nbsp;— присваивание элементов последовательности нескольким именам сразу: <code>name, length, gc = rec</code>.</p>
+        <p>Справа годится любая последовательность: кортеж, список, строка. Имен должно быть столько же, сколько элементов, иначе <code>ValueError</code>. Поэтому строку из трех полей читают так: <code>name, length, gc = input().split()</code>; все три значения при этом строки, числа из них получают через <code>int()</code> и <code>float()</code>.</p>
+        <p>Запись <code>a, b = b, a</code> меняет значения местами. Справа <code>b, a</code> образует кортеж (это называют упаковкой), и только потом он распаковывается в <code>a</code> и <code>b</code>. Правая часть вычисляется целиком до присваивания, поэтому старое значение не теряется и временная переменная не нужна.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Поля записи</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">unpack.py</span><pre><code><span class="ln">rec <span class="tok-op">=</span> (<span class="tok-str">"Rosalind_1"</span>, <span class="tok-num">8</span>, <span class="tok-num">50.0</span>)</span>
+<span class="ln">name, length, gc <span class="tok-op">=</span> rec</span>
+<span class="ln"><span class="tok-builtin">print</span>(name)        <span class="tok-out"># → Rosalind_1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(length, gc)  <span class="tok-out"># → 8 50.0</span></span>
+<span class="ln">x, y <span class="tok-op">=</span> <span class="tok-str">"AT"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(y, x)        <span class="tok-out"># → T A</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Rosalind_1
+8 50.0
+T A</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: три элемента кортежа раскладываются по трем именам слева направо.</li>
+            <li>Строка 5: строка тоже последовательность, ее буквы раскладываются по двум именам.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "unpack.py", "code": ["rec <span class=\"tok-op\">=<\/span> (<span class=\"tok-str\">\"Rosalind_1\"<\/span>, <span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">50.0<\/span>)", "name, length, gc <span class=\"tok-op\">=<\/span> rec", "<span class=\"tok-builtin\">print<\/span>(name)        ", "<span class=\"tok-builtin\">print<\/span>(length, gc)  ", "x, y <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"AT\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(y, x)        "], "columns": [], "steps": [{"line": 1, "html": "rec <span class=\"tok-op\">=<\/span> (<span class=\"tok-str\">\"Rosalind_1\"<\/span>, <span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">50.0<\/span>)", "vars": [["rec", "('Rosalind_1', 8, 50.0)", true]], "out": "", "row": null, "note": "Строка 1: rec = ('Rosalind_1', 8, 50.0)."}, {"line": 2, "html": "name, length, gc <span class=\"tok-op\">=<\/span> rec", "vars": [["rec", "('Rosalind_1', 8, 50.0)", false], ["name", "\"Rosalind_1\"", true], ["length", "8", true], ["gc", "50.0", true]], "out": "", "row": null, "note": "Строка 2: name = \"Rosalind_1\", length = 8, gc = 50.0."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"Rosalind_1\"<\/span><\/span>)", "vars": [["rec", "('Rosalind_1', 8, 50.0)", false], ["name", "\"Rosalind_1\"", false], ["length", "8", false], ["gc", "50.0", false]], "out": "Rosalind_1\n", "row": null, "note": "Строка 3: печатается Rosalind_1."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">50.0<\/span><\/span>)", "vars": [["rec", "('Rosalind_1', 8, 50.0)", false], ["name", "\"Rosalind_1\"", false], ["length", "8", false], ["gc", "50.0", false]], "out": "Rosalind_1\n8 50.0\n", "row": null, "note": "Строка 4: печатается 8 50.0."}, {"line": 5, "html": "x, y <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"AT\"<\/span>", "vars": [["rec", "('Rosalind_1', 8, 50.0)", false], ["name", "\"Rosalind_1\"", false], ["length", "8", false], ["gc", "50.0", false], ["x", "\"A\"", true], ["y", "\"T\"", true]], "out": "Rosalind_1\n8 50.0\n", "row": null, "note": "Строка 5: x = \"A\", y = \"T\"."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>)", "vars": [["rec", "('Rosalind_1', 8, 50.0)", false], ["name", "\"Rosalind_1\"", false], ["length", "8", false], ["gc", "50.0", false], ["x", "\"A\"", false], ["y", "\"T\"", false]], "out": "Rosalind_1\n8 50.0\nT A\n", "row": null, "note": "Строка 6: печатается T A."}, {"line": 0, "html": "", "vars": [["rec", "('Rosalind_1', 8, 50.0)", false], ["name", "\"Rosalind_1\"", false], ["length", "8", false], ["gc", "50.0", false], ["x", "\"A\"", false], ["y", "\"T\"", false]], "out": "Rosalind_1\n8 50.0\nT A\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: имен меньше, чем элементов</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: три поля, два имени</span><pre><code><span class="ln">rec <span class="tok-op">=</span> (<span class="tok-str">"Rosalind_1"</span>, <span class="tok-num">8</span>, <span class="tok-num">50.0</span>)</span>
+<span class="ln">name, length <span class="tok-op">=</span> rec</span></code></pre></div>
+          <div class="output-block error-output" data-alt-error="ValueError: too many values to unpack (expected 2)"><span class="output-label">Сообщение об ошибке</span><pre>ValueError: too many values to unpack (expected 2, got 3)</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">rec <span class="tok-op">=</span> (<span class="tok-str">"Rosalind_1"</span>, <span class="tok-num">8</span>, <span class="tok-num">50.0</span>)</span>
+<span class="ln">name, length, gc <span class="tok-op">=</span> rec</span>
+<span class="ln"><span class="tok-builtin">print</span>(name, length)  <span class="tok-out"># → Rosalind_1 8</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>Rosalind_1 8</pre></div>
+          <p>Python 3.14 пишет в сообщении и сколько элементов было (<code>got 3</code>), Python 3.12 и 3.13 только сколько ожидалось. Если элементов меньше, чем имен, сообщение другое: <code>not enough values to unpack</code>.</p>
+        </div>
+        <article class="example">
+          <h3>Обмен значений в цикле</h3>
+          <p>Предскажите вывод, затем откройте его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">swap.py</span><pre><code><span class="ln">a, b <span class="tok-op">=</span> <span class="tok-num">0</span>, <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">5</span>):</span>
+<span class="ln">    a, b <span class="tok-op">=</span> b, a <span class="tok-op">+</span> b</span>
+<span class="ln"><span class="tok-builtin">print</span>(a, b)  <span class="tok-out"># → 5 8</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>5 8</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 1: тоже распаковка, <code>a</code> получает 0, <code>b</code> получает 1.</li>
+            <li>Строка 3: правая часть <code>b, a + b</code> считается по старым <code>a</code> и <code>b</code>, затем обе переменные получают новые значения.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "swap.py", "code": ["a, b <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0<\/span>, <span class=\"tok-num\">1<\/span>", "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "    a, b <span class=\"tok-op\">=<\/span> b, a <span class=\"tok-op\">+<\/span> b", "<span class=\"tok-builtin\">print<\/span>(a, b)  "], "columns": ["i"], "steps": [{"line": 1, "html": "a, b <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">0<\/span>, <span class=\"tok-num\">1<\/span>", "vars": [["a", "0", true], ["b", "1", true]], "out": "", "row": null, "note": "Строка 1: a = 0, b = 1."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "vars": [["a", "0", false], ["b", "1", false], ["i", "0", true]], "out": "", "row": null, "note": "Строка 2: i получает первое значение, i = 0."}, {"line": 3, "html": "    a, b <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>", "vars": [["a", "1", true], ["b", "1", false], ["i", "0", false]], "out": "", "row": ["0"], "note": "Строка 3: a = 1."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "vars": [["a", "1", false], ["b", "1", false], ["i", "1", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 1."}, {"line": 3, "html": "    a, b <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span>", "vars": [["a", "1", false], ["b", "2", true], ["i", "1", false]], "out": "", "row": ["1"], "note": "Строка 3: b = 2."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "vars": [["a", "1", false], ["b", "2", false], ["i", "2", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 2."}, {"line": 3, "html": "    a, b <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">1<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>", "vars": [["a", "2", true], ["b", "3", true], ["i", "2", false]], "out": "", "row": ["2"], "note": "Строка 3: a = 2, b = 3."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "vars": [["a", "2", false], ["b", "3", false], ["i", "3", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 3."}, {"line": 3, "html": "    a, b <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>", "vars": [["a", "3", true], ["b", "5", true], ["i", "3", false]], "out": "", "row": ["3"], "note": "Строка 3: a = 3, b = 5."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "vars": [["a", "3", false], ["b", "5", false], ["i", "4", true]], "out": "", "row": null, "note": "Строка 2: i получает следующее значение, i = 4."}, {"line": 3, "html": "    a, b <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span> <span class=\"tok-op\">+<\/span> <span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>", "vars": [["a", "5", true], ["b", "8", true], ["i", "4", false]], "out": "", "row": ["4"], "note": "Строка 3: a = 5, b = 8."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> i <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">range<\/span>(<span class=\"tok-num\">5<\/span>):", "vars": [["a", "5", false], ["b", "8", false], ["i", "4", false]], "out": "", "row": null, "note": "Строка 2: значений больше нет, цикл закончен; i остается 4."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>)", "vars": [["a", "5", false], ["b", "8", false], ["i", "4", false]], "out": "5 8\n", "row": null, "note": "Строка 4: печатается 5 8."}, {"line": 0, "html": "", "vars": [["a", "5", false], ["b", "8", false], ["i", "4", false]], "out": "5 8\n", "row": null, "note": "Программа закончилась. Вывод: 5 8."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Добавьте в строку в кавычках четвертое поле, например <code> 42</code>, и запустите: какую ошибку покажет Python? Затем добавьте четвертое имя слева.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_unpack.py</span><pre><code><span class="ln">name, length, gc <span class="tok-op">=</span> <span class="tok-str">"seq_5 120 41.5"</span>.split()</span>
+<span class="ln"><span class="tok-builtin">print</span>(name, <span class="tok-builtin">int</span>(length) <span class="tok-op">+</span> <span class="tok-num">1</span>, <span class="tok-builtin">float</span>(gc))  <span class="tok-out"># → seq_5 121 41.5</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>seq_5 121 41.5</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Звездочка: <code>*rest</code></h2>
+        <div class="step step-learn">Теория</div>
+        <p>Если элементов больше, чем имен, одно имя можно пометить звездочкой. Оно получит все элементы, которые не достались остальным именам.</p>
+        <p class="property">Имя со звездочкой всегда получает список, даже если распаковывается строка или кортеж, и даже если остатка нет: тогда список пустой.</p>
+        <p>Звездочка может стоять в любой позиции: <code>first, *rest = seq</code>, <code>*body, last = seq</code>, <code>head, *mid, tail = seq</code>. В одной распаковке звездочка одна.</p>
+        <p class="th-full">Так удобно разбирать строку заголовка, где первое слово особенное, а остальных может быть сколько угодно или не быть вовсе: <code>first, *rest = line.split()</code>. Обычная распаковка требует точного числа элементов и на таких строках дает <code>ValueError</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Первый, последний и остаток</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">star.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"ATGCGTAA"</span></span>
+<span class="ln">first, <span class="tok-op">*</span>rest <span class="tok-op">=</span> seq</span>
+<span class="ln"><span class="tok-builtin">print</span>(first, rest)  <span class="tok-out"># → A ['T', 'G', 'C', 'G', 'T', 'A', 'A']</span></span>
+<span class="ln"><span class="tok-op">*</span>body, last <span class="tok-op">=</span> [<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(body, last)   <span class="tok-out"># → [1, 2] 3</span></span>
+<span class="ln">head, <span class="tok-op">*</span>mid, tail <span class="tok-op">=</span> <span class="tok-str">"AT"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(mid)          <span class="tok-out"># → []</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>A ['T', 'G', 'C', 'G', 'T', 'A', 'A']
+[1, 2] 3
+[]</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: <code>first</code> получил первую букву, <code>rest</code> список остальных букв.</li>
+            <li>Строка 4: звездочка стоит первой, поэтому остаток собирается из начала.</li>
+            <li>Строка 6: двум обычным именам досталось по букве, на <code>mid</code> ничего не осталось: пустой список.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "star.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ATGCGTAA\"<\/span>", "first, <span class=\"tok-op\">*<\/span>rest <span class=\"tok-op\">=<\/span> seq", "<span class=\"tok-builtin\">print<\/span>(first, rest)  ", "<span class=\"tok-op\">*<\/span>body, last <span class=\"tok-op\">=<\/span> [<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>]", "<span class=\"tok-builtin\">print<\/span>(body, last)   ", "head, <span class=\"tok-op\">*<\/span>mid, tail <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"AT\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(mid)          "], "columns": [], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ATGCGTAA\"<\/span>", "vars": [["seq", "\"ATGCGTAA\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"ATGCGTAA\"."}, {"line": 2, "html": "first, <span class=\"tok-op\">*<\/span>rest <span class=\"tok-op\">=<\/span> <span class=\"tv\"><span class=\"tok-str\">\"ATGCGTAA\"<\/span><\/span>", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", true], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", true]], "out": "", "row": null, "note": "Строка 2: first = \"A\", rest = ['T', 'G', 'C', 'G', 'T', 'A', 'A']."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>, rest)", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", false], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", false]], "out": "A ['T', 'G', 'C', 'G', 'T', 'A', 'A']\n", "row": null, "note": "Строка 3: печатается A ['T', 'G', 'C', 'G', 'T', 'A', 'A']."}, {"line": 4, "html": "<span class=\"tok-op\">*<\/span>body, last <span class=\"tok-op\">=<\/span> [<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>]", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", false], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", false], ["body", "[1, 2]", true], ["last", "3", true]], "out": "A ['T', 'G', 'C', 'G', 'T', 'A', 'A']\n", "row": null, "note": "Строка 4: body = [1, 2], last = 3."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(body, <span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>)", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", false], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", false], ["body", "[1, 2]", false], ["last", "3", false]], "out": "A ['T', 'G', 'C', 'G', 'T', 'A', 'A']\n[1, 2] 3\n", "row": null, "note": "Строка 5: печатается [1, 2] 3."}, {"line": 6, "html": "head, <span class=\"tok-op\">*<\/span>mid, tail <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"AT\"<\/span>", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", false], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", false], ["body", "[1, 2]", false], ["last", "3", false], ["head", "\"A\"", true], ["mid", "[]", true], ["tail", "\"T\"", true]], "out": "A ['T', 'G', 'C', 'G', 'T', 'A', 'A']\n[1, 2] 3\n", "row": null, "note": "Строка 6: head = \"A\", mid = [], tail = \"T\"."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(mid)          ", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", false], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", false], ["body", "[1, 2]", false], ["last", "3", false], ["head", "\"A\"", false], ["mid", "[]", false], ["tail", "\"T\"", false]], "out": "A ['T', 'G', 'C', 'G', 'T', 'A', 'A']\n[1, 2] 3\n[]\n", "row": null, "note": "Строка 7: печатается []."}, {"line": 0, "html": "", "vars": [["seq", "\"ATGCGTAA\"", false], ["first", "\"A\"", false], ["rest", "['T', 'G', 'C', 'G', 'T', 'A', 'A']", false], ["body", "[1, 2]", false], ["last", "3", false], ["head", "\"A\"", false], ["mid", "[]", false], ["tail", "\"T\"", false]], "out": "A ['T', 'G', 'C', 'G', 'T', 'A', 'A']\n[1, 2] 3\n[]\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>Остаток из строки</h3>
+          <p>Предскажите вывод, затем откройте его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">rest.py</span><pre><code><span class="ln">first, <span class="tok-op">*</span>rest <span class="tok-op">=</span> <span class="tok-str">"ACG"</span></span>
+<span class="ln">x, <span class="tok-op">*</span>y <span class="tok-op">=</span> <span class="tok-str">"A"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(rest, y)  <span class="tok-out"># → ['C', 'G'] []</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>['C', 'G'] []</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 1: остаток строки собирается не в строку <code>"CG"</code>, а в список букв.</li>
+            <li>Строка 2: после буквы для <code>x</code> букв не осталось, поэтому <code>y</code> пустой список, а не пустая строка.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "rest.py", "code": ["first, <span class=\"tok-op\">*<\/span>rest <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACG\"<\/span>", "x, <span class=\"tok-op\">*<\/span>y <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"A\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(rest, y)  "], "columns": [], "steps": [{"line": 1, "html": "first, <span class=\"tok-op\">*<\/span>rest <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"ACG\"<\/span>", "vars": [["first", "\"A\"", true], ["rest", "['C', 'G']", true]], "out": "", "row": null, "note": "Строка 1: first = \"A\", rest = ['C', 'G']."}, {"line": 2, "html": "x, <span class=\"tok-op\">*<\/span>y <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"A\"<\/span>", "vars": [["first", "\"A\"", false], ["rest", "['C', 'G']", false], ["x", "\"A\"", true], ["y", "[]", true]], "out": "", "row": null, "note": "Строка 2: x = \"A\", y = []."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(rest, y)  ", "vars": [["first", "\"A\"", false], ["rest", "['C', 'G']", false], ["x", "\"A\"", false], ["y", "[]", false]], "out": "['C', 'G'] []\n", "row": null, "note": "Строка 3: печатается ['C', 'G'] []."}, {"line": 0, "html": "", "vars": [["first", "\"A\"", false], ["rest", "['C', 'G']", false], ["x", "\"A\"", false], ["y", "[]", false]], "out": "['C', 'G'] []\n", "row": null, "note": "Программа закончилась. Вывод: ['C', 'G'] []."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Уберите из строки в кавычках все слова после идентификатора и запустите: что получит <code>words</code>?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_star.py</span><pre><code><span class="ln">ident, <span class="tok-op">*</span>words <span class="tok-op">=</span> <span class="tok-str">"&gt;seq_1 human chromosome 7"</span>.split()</span>
+<span class="ln"><span class="tok-builtin">print</span>(ident, words, <span class="tok-builtin">len</span>(words))  <span class="tok-out"># → &gt;seq_1 ['human', 'chromosome', '7'] 3</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>&gt;seq_1 ['human', 'chromosome', '7'] 3</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Распаковка в цикле</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Переменная цикла может быть несколькими именами через запятую. Если в списке лежат записи одинаковой длины, например пары «имя, GC-состав», цикл <code>for name, gc in records:</code> на каждом шаге берет запись и сразу раскладывает ее по именам.</p>
+        <p>Распаковка в заголовке цикла подчиняется тем же правилам: имен столько, сколько полей в каждой записи. Если в списке лежат строки, а не пары, <code>for name, seq in seqs:</code> пытается разложить каждую строку на буквы: строка из восьми букв дает <code>ValueError</code>, а строка из двух букв без ошибки разложится на две буквы, и результат будет молча неверным.</p>
+        <p class="th-full">В заголовке цикла можно ставить и звездочку. Тогда записи могут быть разной длины: <code>for name, *nums in recs:</code> кладет первое поле в <code>name</code>, а остальные, сколько бы их ни было, в список <code>nums</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Записи в цикле</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">records.py</span><pre><code><span class="ln">records <span class="tok-op">=</span> [(<span class="tok-str">"Rosalind_1"</span>, <span class="tok-num">50.0</span>),</span>
+<span class="ln">           (<span class="tok-str">"Rosalind_2"</span>, <span class="tok-num">62.5</span>),</span>
+<span class="ln">           (<span class="tok-str">"Rosalind_3"</span>, <span class="tok-num">37.5</span>)]</span>
+<span class="ln"><span class="tok-kw">for</span> name, gc <span class="tok-kw">in</span> records:</span>
+<span class="ln">    <span class="tok-kw">if</span> gc <span class="tok-op">&gt;</span> <span class="tok-num">45</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(name, gc)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Rosalind_1 50.0
+Rosalind_2 62.5</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строки 1–3: список кортежей, каждая запись из двух полей.</li>
+            <li>Строка 4: на каждом шаге запись распаковывается в <code>name</code> и <code>gc</code>; индексы <code>rec[0]</code> и <code>rec[1]</code> не нужны.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "records.py", "code": ["records <span class=\"tok-op\">=<\/span> [(<span class=\"tok-str\">\"Rosalind_1\"<\/span>, <span class=\"tok-num\">50.0<\/span>),", "           (<span class=\"tok-str\">\"Rosalind_2\"<\/span>, <span class=\"tok-num\">62.5<\/span>),", "           (<span class=\"tok-str\">\"Rosalind_3\"<\/span>, <span class=\"tok-num\">37.5<\/span>)]", "<span class=\"tok-kw\">for<\/span> name, gc <span class=\"tok-kw\">in<\/span> records:", "    <span class=\"tok-kw\">if<\/span> gc <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">45<\/span>:", "        <span class=\"tok-builtin\">print<\/span>(name, gc)"], "columns": ["name", "gc", "напечатано"], "steps": [{"line": 1, "html": "records <span class=\"tok-op\">=<\/span> [(<span class=\"tok-str\">\"Rosalind_1\"<\/span>, <span class=\"tok-num\">50.0<\/span>),", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", true]], "out": "", "row": null, "note": "Строка 1: records = [('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> name, gc <span class=\"tok-kw\">in<\/span> records:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_1\"", true], ["gc", "50.0", true]], "out": "", "row": null, "note": "Строка 4: name получает первое значение, name = \"Rosalind_1\"."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-num\">50.0<\/span><\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">45<\/span>:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_1\"", false], ["gc", "50.0", false]], "out": "", "row": null, "note": "Строка 5: условие 50.0 > 45 истинно, тело выполняется."}, {"line": 6, "html": "        <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"Rosalind_1\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">50.0<\/span><\/span>)", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_1\"", false], ["gc", "50.0", false]], "out": "Rosalind_1 50.0\n", "row": ["Rosalind_1", "50.0", "Rosalind_1 50.0"], "note": "Строка 6: печатается Rosalind_1 50.0."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> name, gc <span class=\"tok-kw\">in<\/span> records:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_2\"", true], ["gc", "62.5", true]], "out": "Rosalind_1 50.0\n", "row": null, "note": "Строка 4: name получает следующее значение, name = \"Rosalind_2\"."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-num\">62.5<\/span><\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">45<\/span>:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_2\"", false], ["gc", "62.5", false]], "out": "Rosalind_1 50.0\n", "row": null, "note": "Строка 5: условие 62.5 > 45 истинно, тело выполняется."}, {"line": 6, "html": "        <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"Rosalind_2\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">62.5<\/span><\/span>)", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_2\"", false], ["gc", "62.5", false]], "out": "Rosalind_1 50.0\nRosalind_2 62.5\n", "row": ["Rosalind_2", "62.5", "Rosalind_1 50.0\nRosalind_2 62.5"], "note": "Строка 6: печатается Rosalind_2 62.5."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> name, gc <span class=\"tok-kw\">in<\/span> records:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_3\"", true], ["gc", "37.5", true]], "out": "Rosalind_1 50.0\nRosalind_2 62.5\n", "row": null, "note": "Строка 4: name получает следующее значение, name = \"Rosalind_3\"."}, {"line": 5, "html": "    <span class=\"tok-kw\">if<\/span> <span class=\"tv\"><span class=\"tok-num\">37.5<\/span><\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">45<\/span>:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_3\"", false], ["gc", "37.5", false]], "out": "Rosalind_1 50.0\nRosalind_2 62.5\n", "row": ["Rosalind_3", "37.5", "Rosalind_1 50.0\nRosalind_2 62.5"], "note": "Строка 5: условие 37.5 > 45 ложно, тело пропускается."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> name, gc <span class=\"tok-kw\">in<\/span> records:", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_3\"", false], ["gc", "37.5", false]], "out": "Rosalind_1 50.0\nRosalind_2 62.5\n", "row": null, "note": "Строка 4: значений больше нет, цикл закончен; name остается \"Rosalind_3\"."}, {"line": 0, "html": "", "vars": [["records", "[('Rosalind_1', 50.0), ('Rosalind_2', 62.5), ('Rosalind_3', 37.5)]", false], ["name", "\"Rosalind_3\"", false], ["gc", "37.5", false]], "out": "Rosalind_1 50.0\nRosalind_2 62.5\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: распаковать строку в цикле</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: элементы списка не пары</span><pre><code><span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"ATCCAGCT"</span>, <span class="tok-str">"GGGCAACT"</span>]</span>
+<span class="ln"><span class="tok-kw">for</span> name, seq <span class="tok-kw">in</span> seqs:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(name)</span></code></pre></div>
+          <div class="output-block error-output"><span class="output-label">Сообщение об ошибке</span><pre>ValueError: too many values to unpack (expected 2)</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"ATCCAGCT"</span>, <span class="tok-str">"GGGCAACT"</span>]</span>
+<span class="ln"><span class="tok-kw">for</span> seq <span class="tok-kw">in</span> seqs:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(seq)</span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>ATCCAGCT
+GGGCAACT</pre></div>
+          <p>Строка из восьми букв тоже последовательность, и Python пытается раздать ее буквы двум именам. Сколько было букв, сообщение для строки не называет даже в Python 3.14. Если нужны и номер, и элемент, поможет функция <code>enumerate()</code> со <a href="t5_05.html">страницы 05</a>.</p>
+        </div>
+        <article class="example th-full">
+          <h3>Звездочка в заголовке цикла</h3>
+          <p>Предскажите вывод, затем откройте его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">star_loop.py</span><pre><code><span class="ln">recs <span class="tok-op">=</span> [(<span class="tok-str">"R1"</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>), (<span class="tok-str">"R2"</span>, <span class="tok-num">5</span>), (<span class="tok-str">"R3"</span>,)]</span>
+<span class="ln"><span class="tok-kw">for</span> name, <span class="tok-op">*</span>nums <span class="tok-kw">in</span> recs:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(name, nums, <span class="tok-builtin">sum</span>(nums))</span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>R1 [2, 3] 5
+R2 [5] 5
+R3 [] 0</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: у записей разная длина, но имя со звездочкой забирает любой остаток; у <code>R3</code> он пустой.</li>
+            <li>Строка 3: <code>sum()</code> пустого списка равна 0.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "star_loop.py", "code": ["recs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-str\">\"R1\"<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>), (<span class=\"tok-str\">\"R2\"<\/span>, <span class=\"tok-num\">5<\/span>), (<span class=\"tok-str\">\"R3\"<\/span>,)]", "<span class=\"tok-kw\">for<\/span> name, <span class=\"tok-op\">*<\/span>nums <span class=\"tok-kw\">in<\/span> recs:", "    <span class=\"tok-builtin\">print<\/span>(name, nums, <span class=\"tok-builtin\">sum<\/span>(nums))"], "columns": ["name", "nums", "напечатано"], "steps": [{"line": 1, "html": "recs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-str\">\"R1\"<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>), (<span class=\"tok-str\">\"R2\"<\/span>, <span class=\"tok-num\">5<\/span>), (<span class=\"tok-str\">\"R3\"<\/span>,)]", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", true]], "out": "", "row": null, "note": "Строка 1: recs = [('R1', 2, 3), ('R2', 5), ('R3',)]."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> name, <span class=\"tok-op\">*<\/span>nums <span class=\"tok-kw\">in<\/span> recs:", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R1\"", true], ["nums", "[2, 3]", true]], "out": "", "row": null, "note": "Строка 2: name получает первое значение, name = \"R1\"."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"R1\"<\/span><\/span>, nums, <span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>)", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R1\"", false], ["nums", "[2, 3]", false]], "out": "R1 [2, 3] 5\n", "row": ["R1", "[2, 3]", "R1 [2, 3] 5"], "note": "Строка 3: печатается R1 [2, 3] 5."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> name, <span class=\"tok-op\">*<\/span>nums <span class=\"tok-kw\">in<\/span> recs:", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R2\"", true], ["nums", "[5]", true]], "out": "R1 [2, 3] 5\n", "row": null, "note": "Строка 2: name получает следующее значение, name = \"R2\"."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"R2\"<\/span><\/span>, nums, <span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>)", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R2\"", false], ["nums", "[5]", false]], "out": "R1 [2, 3] 5\nR2 [5] 5\n", "row": ["R2", "[5]", "R1 [2, 3] 5\nR2 [5] 5"], "note": "Строка 3: печатается R2 [5] 5."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> name, <span class=\"tok-op\">*<\/span>nums <span class=\"tok-kw\">in<\/span> recs:", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R3\"", true], ["nums", "[]", true]], "out": "R1 [2, 3] 5\nR2 [5] 5\n", "row": null, "note": "Строка 2: name получает следующее значение, name = \"R3\"."}, {"line": 3, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"R3\"<\/span><\/span>, nums, <span class=\"tv\"><span class=\"tok-num\">0<\/span><\/span>)", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R3\"", false], ["nums", "[]", false]], "out": "R1 [2, 3] 5\nR2 [5] 5\nR3 [] 0\n", "row": ["R3", "[]", "R1 [2, 3] 5\nR2 [5] 5\nR3 [] 0"], "note": "Строка 3: печатается R3 [] 0."}, {"line": 2, "html": "<span class=\"tok-kw\">for<\/span> name, <span class=\"tok-op\">*<\/span>nums <span class=\"tok-kw\">in<\/span> recs:", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R3\"", false], ["nums", "[]", false]], "out": "R1 [2, 3] 5\nR2 [5] 5\nR3 [] 0\n", "row": null, "note": "Строка 2: значений больше нет, цикл закончен; name остается \"R3\"."}, {"line": 0, "html": "", "vars": [["recs", "[('R1', 2, 3), ('R2', 5), ('R3',)]", false], ["name", "\"R3\"", false], ["nums", "[]", false]], "out": "R1 [2, 3] 5\nR2 [5] 5\nR3 [] 0\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Поменяйте порог в строке 3 на <code>40</code> и запустите снова.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_records.py</span><pre><code><span class="ln">records <span class="tok-op">=</span> [(<span class="tok-str">"chr1"</span>, <span class="tok-num">41.5</span>), (<span class="tok-str">"chr2"</span>, <span class="tok-num">38.0</span>), (<span class="tok-str">"chrX"</span>, <span class="tok-num">39.9</span>)]</span>
+<span class="ln"><span class="tok-kw">for</span> name, gc <span class="tok-kw">in</span> records:</span>
+<span class="ln">    <span class="tok-kw">if</span> gc <span class="tok-op">&lt;</span> <span class="tok-num">39</span>:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(name)  <span class="tok-out"># → chr2</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>chr2</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t5_04_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t5_04_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t5_04_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 5.4.1. Число букв G и C</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Запись о последовательности содержит три поля через пробел: имя, длину и GC-состав в процентах. GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Разложите строку по трем переменным одной распаковкой и выведите имя и число букв G и C: длину, умноженную на GC-состав и деленную на 100. Например, у последовательности длины 8 с GC-составом 37,5&nbsp;% букв G и C <span class="formula">8 · 37,5 / 100 = 3</span>. Результат вещественного вычисления бывает не ровно целым: у длины 375 и GC-состава 18,4&nbsp;% получается <code>68.99999999999999</code>. Переведите его в целое функцией <code>round()</code>, а не <code>int()</code>: <code>int()</code> отбрасывает дробную часть и дал бы 68.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: имя (латинские буквы, цифры и знак <code>_</code>), длина от 1 до 1000 и GC-состав от 0 до 100 с одной цифрой после точки. Гарантируется, что число букв G и C получается целым.</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке имя, во второй число букв G и C целым числом.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>Rosalind_12 8 37.5</pre></td><td><pre>Rosalind_12
+3</pre></td></tr>
+                <tr><td><pre>seq_7 20 0.0</pre></td><td><pre>seq_7
+0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_04_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 5.4.1. Заголовок FASTA</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В формате FASTA запись последовательности начинается со строки заголовка. Она начинается со знака <code>&gt;</code>, сразу за ним идет идентификатор (имя последовательности без пробелов), затем через пробел может идти описание из нескольких слов. Выведите идентификатор без знака <code>&gt;</code> и число слов в описании. Если описания нет, число слов 0. Разберите строку одной распаковкой с именем со звездочкой: <code>first, *rest = input().split()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка заголовка FASTA длиной до 200 символов. Слова разделены одним пробелом.</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке идентификатор, во второй число слов описания.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>&gt;Rosalind_0498 Homo sapiens chromosome 1</pre></td><td><pre>Rosalind_0498
+4</pre></td></tr>
+                <tr><td><pre>&gt;seq_2</pre></td><td><pre>seq_2
+0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_04_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 5.4.1. Перекрытие прочтений</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который прибор прочитал за один раз. Геномом называют всю ДНК организма; позиции в нем нумеруются подряд с 1. Положение прочтения на геноме задают номерами первой и последней позиции, обе включительно. Молекула ДНК состоит из двух цепей, которые читаются в противоположных направлениях. В этом упражнении, как в выводе программы BLAST, прочтение с другой цепи записано от большей позиции к меньшей: запись <code>30 21</code> означает позиции с 21 по 30. Даны два прочтения. Выведите, сколько позиций генома входят в оба прочтения; если прочтения не перекрываются, выведите 0.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Сначала приведите каждую запись к виду «начало не больше конца», поменяв значения местами одной строкой. Общий участок начинается с большего из двух начал и кончается на меньшем из двух концов.</p></details>
+          <h4>Входные данные</h4>
+          <p>Две строки, в каждой запись прочтения: имя, затем две позиции через пробел, целые числа от 1 до 1000.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно целое число: число общих позиций.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>r1 10 30
+r2 25 40</pre></td><td><pre>6</pre></td></tr>
+                <tr><td><pre>r1 30 21
+r2 18 24</pre></td><td><pre>4</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_04_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t5_04_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t5_04_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t5_04_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 5.4. Записи выше порога</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны порог и записи «имя, GC-состав». Выведите имена записей, у которых GC-состав не меньше порога, в том порядке, в каком идут записи. Если таких нет, выведите слово <code>нет</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке порог, число от 0 до 100. Во второй число записей <code>n</code> от 1 до 20. Дальше <code>n</code> строк: имя и GC-состав через пробел; GC-состав записан с одной цифрой после точки.</p>
+          <h4>Выходные данные</h4>
+          <p>Имена через пробел одной строкой или слово <code>нет</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>50
+3
+Rosalind_1 48.5
+Rosalind_2 50.0
+Rosalind_3 62.5</pre></td><td><pre>Rosalind_2 Rosalind_3</pre></td></tr>
+                <tr><td><pre>70
+2
+A 10.0
+B 69.9</pre></td><td><pre>нет</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_04_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 5.4. Записи разной длины</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В каждой записи сначала имя пробы, затем от 0 до 5 результатов измерений (целые числа). Найдите запись с наибольшей суммой измерений; сумма записи без измерений равна 0. Если таких записей несколько, выберите первую. Выведите имя и сумму через пробел.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20, дальше <code>n</code> строк: имя и числа от 0 до 1000 через пробел.</p>
+          <h4>Выходные данные</h4>
+          <p>Имя и сумма через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>3
+A 1 2 3
+B 10
+C</pre></td><td><pre>B 10</pre></td></tr>
+                <tr><td><pre>2
+x 5 5
+y 7 3</pre></td><td><pre>x 10</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_04_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 5.4. Смертные кролики</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Задача <a href="https://rosalind.info/problems/fibd/">Rosalind FIBD</a>. В первый месяц одна пара новорожденных, через месяц пара становится взрослой и с этого времени каждый месяц дает одну пару потомства. Без смерти число пар росло бы как числа Фибоначчи: 1, 1, 2, 3, 5… Но теперь каждая пара живет ровно <code>m</code> месяцев: в свой <code>m</code>-й месяц она еще есть (и дает потомство, если взрослая), а в следующем месяце ее уже нет. Выведите число пар в месяце <code>n</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: целые числа <code>n</code> от 1 до 60 и <code>m</code> от 2 до 20 через пробел.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно целое число: число пар в месяце <code>n</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>6 3</pre></td><td><pre>4</pre></td></tr>
+                <tr><td><pre>2 2</pre></td><td><pre>1</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_04_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_5</code> создайте папку <code>t5_04</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t5_04_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t5_04_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t5_04_1_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t5_04_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t5_04_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t5_04_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t5_04</code> в свой репозиторий внутрь папки <code>projects_5</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_5/
+    └── t5_04/
+        └── t5_04_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_5/
+    └── t5_04/
+        └── t5_04_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_5/
+    └── t5_04/
+        └── t5_04_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t5_03.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">03 Срезы и методы</span></a>
+        <a class="pcard pcard-next" href="t5_05.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">05 Номера и пары</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Сортировка. Практика 5. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t5_06.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 5</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t5_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t5_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Список и кортеж</span></span></a></li>
+        <li class="menu-sub"><a href="t5_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Имена и копии</span></span></a></li>
+        <li class="menu-sub"><a href="t5_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Срезы и методы</span></span></a></li>
+        <li class="menu-sub"><a href="t5_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Распаковка</span></span></a></li>
+        <li class="menu-sub"><a href="t5_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Номера и пары</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t5_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Сортировка</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Ключ сортировки</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сортировка записей</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> <code>max()</code> и <code>min()</code> с ключом</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">5.6.1</span> <span class="anc-ex-title" data-variant="basic">По длине</span><span class="anc-ex-title" data-variant="medium">По убыванию длины</span><span class="anc-ex-title" data-variant="advanced">Медиана длин</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">5.6.2</span> <span class="anc-ex-title" data-variant="basic">Самая длинная и самая короткая</span><span class="anc-ex-title" data-variant="medium">Порядок по GC-составу</span><span class="anc-ex-title" data-variant="advanced">Лидеры по GC-составу</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">5.6</span> <span class="anc-ex-title" data-variant="basic">Без крайних</span><span class="anc-ex-title" data-variant="medium">По числу букв G</span><span class="anc-ex-title" data-variant="advanced">Места по GC-составу</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t5_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Списковые включения</span></span></a></li>
+        <li class="menu-sub"><a href="t5_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Признаки</span></span></a></li>
+        <li class="menu-sub"><a href="t5_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Профиль и консенсус</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">06</span>
+      <p class="page-path"><span>Практика 5</span><span class="page-path-sep" aria-hidden="true">›</span><span>Списки и кортежи</span></p>
+      <h1>Сортировка</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>30 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Сортировать список методом <code>sort()</code> и функцией <code>sorted()</code>, задавать порядок ключом, сортировать записи-кортежи и находить элемент с наибольшим ключом.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Ключ сортировки</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">Строки Python сравнивает посимвольно: решает первая различающаяся буква, а если одна строка начало другой, меньше короткая (<code>"AT" &lt; "ATG"</code>). Длина сама по себе порядок не задает, поэтому обычная сортировка списка последовательностей идет по алфавиту. Чтобы упорядочить последовательности по длине, сортировке нужно сказать, что именно сравнивать.</p>
+        <p>Сортируют двумя способами. Метод <code>a.sort()</code> переставляет элементы того же списка и, как другие методы-изменители (<a href="t5_03.html">страница 03</a>), возвращает <code>None</code>. Функция <code>sorted(a)</code> не трогает исходный список и возвращает новый; она принимает любую последовательность, например строку или <code>range</code>.</p>
+        <p>Оба способа принимают параметр <code>key</code>: функцию одного аргумента. Python вызывает ее один раз для каждого элемента и получает <span class="term">ключ</span>. Сравниваются ключи, а в результат попадают сами элементы. Функцию передают без скобок: <code>key=len</code>, а не <code>key=len()</code>. Параметр <code>reverse=True</code> сортирует по убыванию.</p>
+        <p class="property">Сортировка в Python устойчивая: элементы с равными ключами остаются в том порядке, в каком были до сортировки. Это верно и для <code>reverse=True</code>.</p>
+        <div class="th-full">
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th></th><th><code>a.sort()</code></th><th><code>sorted(a)</code></th></tr></thead>
+              <tbody>
+                <tr><td>Что делает</td><td>переставляет элементы <code>a</code></td><td>строит новый список</td></tr>
+                <tr><td>Что возвращает</td><td><code>None</code></td><td>отсортированный список</td></tr>
+                <tr><td>Исходный список</td><td>изменен</td><td>не изменен</td></tr>
+                <tr><td>Что принимает</td><td>только список</td><td>любую последовательность</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Ключом служит любая функция одного аргумента: встроенная <code>len</code>, метод строки <code>str.lower</code> (вызов <code>str.lower(s)</code> то же, что <code>s.lower()</code>), метод конкретной строки <code>seq.count</code> (вызов <code>seq.count(b)</code> считает букву <code>b</code> в <code>seq</code>). Без ключа строки сравниваются по кодам символов: все прописные буквы раньше строчных, поэтому <code>"TTA"</code> меньше <code>"gc"</code>.</p>
+        </div>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>По длине, без учета регистра, по убыванию</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">sort_key.py</span><pre><code><span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"GATTACA"</span>, <span class="tok-str">"AT"</span>, <span class="tok-str">"gc"</span>, <span class="tok-str">"TTA"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(seqs))                         <span class="tok-out"># → ['AT', 'GATTACA', 'TTA', 'gc']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(seqs, key<span class="tok-op">=</span><span class="tok-builtin">len</span>))                <span class="tok-out"># → ['AT', 'gc', 'TTA', 'GATTACA']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(seqs, key<span class="tok-op">=</span><span class="tok-builtin">str</span>.lower))          <span class="tok-out"># → ['AT', 'GATTACA', 'gc', 'TTA']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(seqs, key<span class="tok-op">=</span><span class="tok-builtin">len</span>, reverse<span class="tok-op">=</span><span class="tok-const">True</span>))  <span class="tok-out"># → ['GATTACA', 'TTA', 'AT', 'gc']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(seqs)                                 <span class="tok-out"># → ['GATTACA', 'AT', 'gc', 'TTA']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['AT', 'GATTACA', 'TTA', 'gc']
+['AT', 'gc', 'TTA', 'GATTACA']
+['AT', 'GATTACA', 'gc', 'TTA']
+['GATTACA', 'TTA', 'AT', 'gc']
+['GATTACA', 'AT', 'gc', 'TTA']</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: без ключа прописные буквы идут раньше строчных, и <code>"gc"</code> оказался последним.</li>
+            <li>Строка 3: ключи 7, 2, 2, 3; у <code>"AT"</code> и <code>"gc"</code> ключи равны, и они остались в исходном порядке.</li>
+            <li>Строка 5: по убыванию длины; равные по-прежнему в исходном порядке.</li>
+            <li>Строка 6: <code>sorted()</code> не изменил исходный список.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "sort_key.py", "code": ["seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"GATTACA\"<\/span>, <span class=\"tok-str\">\"AT\"<\/span>, <span class=\"tok-str\">\"gc\"<\/span>, <span class=\"tok-str\">\"TTA\"<\/span>]", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs))                         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))                ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">str<\/span>.lower))          ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>, reverse<span class=\"tok-op\">=<\/span><span class=\"tok-const\">True<\/span>))  ", "<span class=\"tok-builtin\">print<\/span>(seqs)                                 "], "columns": [], "steps": [{"line": 1, "html": "seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"GATTACA\"<\/span>, <span class=\"tok-str\">\"AT\"<\/span>, <span class=\"tok-str\">\"gc\"<\/span>, <span class=\"tok-str\">\"TTA\"<\/span>]", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", true]], "out": "", "row": null, "note": "Строка 1: seqs = ['GATTACA', 'AT', 'gc', 'TTA']."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs))                         ", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", false]], "out": "['AT', 'GATTACA', 'TTA', 'gc']\n", "row": null, "note": "Строка 2: печатается ['AT', 'GATTACA', 'TTA', 'gc']."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))                ", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", false]], "out": "['AT', 'GATTACA', 'TTA', 'gc']\n['AT', 'gc', 'TTA', 'GATTACA']\n", "row": null, "note": "Строка 3: печатается ['AT', 'gc', 'TTA', 'GATTACA']."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">str<\/span>.lower))          ", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", false]], "out": "['AT', 'GATTACA', 'TTA', 'gc']\n['AT', 'gc', 'TTA', 'GATTACA']\n['AT', 'GATTACA', 'gc', 'TTA']\n", "row": null, "note": "Строка 4: печатается ['AT', 'GATTACA', 'gc', 'TTA']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>, reverse<span class=\"tok-op\">=<\/span><span class=\"tok-const\">True<\/span>))  ", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", false]], "out": "['AT', 'GATTACA', 'TTA', 'gc']\n['AT', 'gc', 'TTA', 'GATTACA']\n['AT', 'GATTACA', 'gc', 'TTA']\n['GATTACA', 'TTA', 'AT', 'gc']\n", "row": null, "note": "Строка 5: печатается ['GATTACA', 'TTA', 'AT', 'gc']."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(seqs)                                 ", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", false]], "out": "['AT', 'GATTACA', 'TTA', 'gc']\n['AT', 'gc', 'TTA', 'GATTACA']\n['AT', 'GATTACA', 'gc', 'TTA']\n['GATTACA', 'TTA', 'AT', 'gc']\n['GATTACA', 'AT', 'gc', 'TTA']\n", "row": null, "note": "Строка 6: печатается ['GATTACA', 'AT', 'gc', 'TTA']."}, {"line": 0, "html": "", "vars": [["seqs", "['GATTACA', 'AT', 'gc', 'TTA']", false]], "out": "['AT', 'GATTACA', 'TTA', 'gc']\n['AT', 'gc', 'TTA', 'GATTACA']\n['AT', 'GATTACA', 'gc', 'TTA']\n['GATTACA', 'TTA', 'AT', 'gc']\n['GATTACA', 'AT', 'gc', 'TTA']\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example">
+          <h3>Устойчивость</h3>
+          <p>Предскажите вывод, затем откройте его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">stable.py</span><pre><code><span class="ln">words <span class="tok-op">=</span> [<span class="tok-str">"TTA"</span>, <span class="tok-str">"GC"</span>, <span class="tok-str">"AAT"</span>, <span class="tok-str">"CA"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(words, key<span class="tok-op">=</span><span class="tok-builtin">len</span>))  <span class="tok-out"># → ['GC', 'CA', 'TTA', 'AAT']</span></span>
+<span class="ln">a <span class="tok-op">=</span> [<span class="tok-num">3</span>, <span class="tok-num">1</span>, <span class="tok-num">2</span>]</span>
+<span class="ln">b <span class="tok-op">=</span> a.sort()</span>
+<span class="ln"><span class="tok-builtin">print</span>(a, b)                    <span class="tok-out"># → [1, 2, 3] None</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>['GC', 'CA', 'TTA', 'AAT']
+[1, 2, 3] None</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: сравниваются только длины; внутри длины 2 и длины 3 строки идут в исходном порядке, по алфавиту их никто не переставлял.</li>
+            <li>Строка 4: <code>sort()</code> отсортировал <code>a</code> на месте и вернул <code>None</code>.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "stable.py", "code": ["words <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"TTA\"<\/span>, <span class=\"tok-str\">\"GC\"<\/span>, <span class=\"tok-str\">\"AAT\"<\/span>, <span class=\"tok-str\">\"CA\"<\/span>]", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(words, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))  ", "a <span class=\"tok-op\">=<\/span> [<span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>]", "b <span class=\"tok-op\">=<\/span> a.sort()", "<span class=\"tok-builtin\">print<\/span>(a, b)                    "], "columns": [], "steps": [{"line": 1, "html": "words <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"TTA\"<\/span>, <span class=\"tok-str\">\"GC\"<\/span>, <span class=\"tok-str\">\"AAT\"<\/span>, <span class=\"tok-str\">\"CA\"<\/span>]", "vars": [["words", "['TTA', 'GC', 'AAT', 'CA']", true]], "out": "", "row": null, "note": "Строка 1: words = ['TTA', 'GC', 'AAT', 'CA']."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(words, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))  ", "vars": [["words", "['TTA', 'GC', 'AAT', 'CA']", false]], "out": "['GC', 'CA', 'TTA', 'AAT']\n", "row": null, "note": "Строка 2: печатается ['GC', 'CA', 'TTA', 'AAT']."}, {"line": 3, "html": "a <span class=\"tok-op\">=<\/span> [<span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>]", "vars": [["words", "['TTA', 'GC', 'AAT', 'CA']", false], ["a", "[3, 1, 2]", true]], "out": "['GC', 'CA', 'TTA', 'AAT']\n", "row": null, "note": "Строка 3: a = [3, 1, 2]."}, {"line": 4, "html": "b <span class=\"tok-op\">=<\/span> a.sort()", "vars": [["words", "['TTA', 'GC', 'AAT', 'CA']", false], ["a", "[1, 2, 3]", true], ["b", "None", true]], "out": "['GC', 'CA', 'TTA', 'AAT']\n", "row": null, "note": "Строка 4: a = [1, 2, 3], b = None."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(a, b)                    ", "vars": [["words", "['TTA', 'GC', 'AAT', 'CA']", false], ["a", "[1, 2, 3]", false], ["b", "None", false]], "out": "['GC', 'CA', 'TTA', 'AAT']\n[1, 2, 3] None\n", "row": null, "note": "Строка 5: печатается [1, 2, 3] None."}, {"line": 0, "html": "", "vars": [["words", "['TTA', 'GC', 'AAT', 'CA']", false], ["a", "[1, 2, 3]", false], ["b", "None", false]], "out": "['GC', 'CA', 'TTA', 'AAT']\n[1, 2, 3] None\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените <code>key=len</code> на <code>key=str.lower</code>, затем добавьте <code>reverse=True</code> и запустите каждый раз.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_sort.py</span><pre><code><span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"cat"</span>, <span class="tok-str">"Ac"</span>, <span class="tok-str">"GATTACA"</span>, <span class="tok-str">"t"</span>]</span>
+<span class="ln">seqs.sort(key<span class="tok-op">=</span><span class="tok-builtin">len</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(seqs)  <span class="tok-out"># → ['t', 'Ac', 'cat', 'GATTACA']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['t', 'Ac', 'cat', 'GATTACA']</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t5_06_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t5_06_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t5_06_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 5.6.1. По длине</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите последовательности набора по возрастанию длины. Последовательности одинаковой длины идут в том порядке, в каком они были в наборе. Отсортируйте функцией <code>sorted()</code> с ключом <code>key=len</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Последовательности через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATTACA AT TTA C</pre></td><td><pre>C AT TTA GATTACA</pre></td></tr>
+                <tr><td><pre>CC AA GG</pre></td><td><pre>CC AA GG</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 5.6.1. По убыванию длины</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите последовательности набора по убыванию длины: сначала самые длинные. Последовательности одинаковой длины идут в том порядке, в каком они были в наборе.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Последовательности через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>AT GATTACA C TTA</pre></td><td><pre>GATTACA TTA AT C</pre></td></tr>
+                <tr><td><pre>GG TT AA</pre></td><td><pre>GG TT AA</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 5.6.1. Медиана длин</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Медиана набора чисел&nbsp;— число, которое стоит в середине, если числа упорядочить. При нечетном количестве это среднее по порядку число: у длин 7, 2, 3 медиана 3. При четном количестве в середине два числа, и медиана равна их среднему арифметическому: у длин 4, 2, 7, 3 медиана <span class="formula">(3 + 4) / 2 = 3.5</span>. Выведите медиану длин последовательностей набора. При нечетном количестве выведите целое число, при четном результат деления <code>/</code> в том виде, в каком его печатает Python, например <code>3.5</code> или <code>2.0</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Одно число: медиана длин.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATTACA AT TTA</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>ACGT AC GGGGGGG TTT</pre></td><td><pre>3.5</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Сортировка записей</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Кортежи Python сравнивает поле за полем: сначала первые поля, если они равны, то вторые, и так далее. Такой порядок называют лексикографическим, так же сравниваются слова в словаре.</p>
+        <p class="rule">Поле, по которому сортируют, ставят в кортеже первым: список записей <code>(gc, name)</code> сортируется по GC-составу, а при равном GC-составе по имени.</p>
+        <p><code>reverse=True</code> разворачивает сравнение целиком, по всем полям: при равном GC-составе имена тоже пойдут в обратном порядке.</p>
+        <p class="th-full">Если ключ нельзя передать готовой функцией, его кладут в кортеж рядом с элементом: строят список <code>(ключ, элемент)</code>, сортируют, затем забирают элементы. В документации Python этот прием называют «декорировать, отсортировать, раздекорировать».</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Записи <code>(gc, name)</code></h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">sort_tuples.py</span><pre><code><span class="ln">recs <span class="tok-op">=</span> [(<span class="tok-num">50.0</span>, <span class="tok-str">"Rosalind_7"</span>),</span>
+<span class="ln">        (<span class="tok-num">62.5</span>, <span class="tok-str">"Rosalind_2"</span>),</span>
+<span class="ln">        (<span class="tok-num">50.0</span>, <span class="tok-str">"Rosalind_1"</span>)]</span>
+<span class="ln">recs.sort()</span>
+<span class="ln"><span class="tok-builtin">print</span>(recs[<span class="tok-num">0</span>])              <span class="tok-out"># → (50.0, 'Rosalind_1')</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(recs[<span class="tok-op">-</span><span class="tok-num">1</span>])             <span class="tok-out"># → (62.5, 'Rosalind_2')</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((<span class="tok-num">1</span>, <span class="tok-str">"b"</span>) <span class="tok-op">&lt;</span> (<span class="tok-num">2</span>, <span class="tok-str">"a"</span>))  <span class="tok-out"># → True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>(50.0, 'Rosalind_1')
+(62.5, 'Rosalind_2')
+True</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 4: у двух записей GC 50.0, и порядок между ними решило второе поле, имя.</li>
+            <li>Строка 7: первые поля уже различаются, до вторых сравнение не доходит.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "sort_tuples.py", "code": ["recs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"Rosalind_7\"<\/span>),", "        (<span class=\"tok-num\">62.5<\/span>, <span class=\"tok-str\">\"Rosalind_2\"<\/span>),", "        (<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"Rosalind_1\"<\/span>)]", "recs.sort()", "<span class=\"tok-builtin\">print<\/span>(recs[<span class=\"tok-num\">0<\/span>])              ", "<span class=\"tok-builtin\">print<\/span>(recs[<span class=\"tok-op\">-<\/span><span class=\"tok-num\">1<\/span>])             ", "<span class=\"tok-builtin\">print<\/span>((<span class=\"tok-num\">1<\/span>, <span class=\"tok-str\">\"b\"<\/span>) <span class=\"tok-op\">&lt;<\/span> (<span class=\"tok-num\">2<\/span>, <span class=\"tok-str\">\"a\"<\/span>))  "], "columns": [], "steps": [{"line": 1, "html": "recs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"Rosalind_7\"<\/span>),", "vars": [["recs", "[(50.0, 'Rosalind_7'), (62.5, 'Rosalind_2'), (50.0, 'Rosalind_1')]", true]], "out": "", "row": null, "note": "Строка 1: recs = [(50.0, 'Rosalind_7'), (62.5, 'Rosalind_2'), (50.0, 'Rosalind_1')]."}, {"line": 4, "html": "recs.sort()", "vars": [["recs", "[(50.0, 'Rosalind_1'), (50.0, 'Rosalind_7'), (62.5, 'Rosalind_2')]", true]], "out": "", "row": null, "note": "Строка 4: recs = [(50.0, 'Rosalind_1'), (50.0, 'Rosalind_7'), (62.5, 'Rosalind_2')]."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(recs[<span class=\"tok-num\">0<\/span>])              ", "vars": [["recs", "[(50.0, 'Rosalind_1'), (50.0, 'Rosalind_7'), (62.5, 'Rosalind_2')]", false]], "out": "(50.0, 'Rosalind_1')\n", "row": null, "note": "Строка 5: печатается (50.0, 'Rosalind_1')."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(recs[<span class=\"tok-op\">-<\/span><span class=\"tok-num\">1<\/span>])             ", "vars": [["recs", "[(50.0, 'Rosalind_1'), (50.0, 'Rosalind_7'), (62.5, 'Rosalind_2')]", false]], "out": "(50.0, 'Rosalind_1')\n(62.5, 'Rosalind_2')\n", "row": null, "note": "Строка 6: печатается (62.5, 'Rosalind_2')."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>((<span class=\"tok-num\">1<\/span>, <span class=\"tok-str\">\"b\"<\/span>) <span class=\"tok-op\">&lt;<\/span> (<span class=\"tok-num\">2<\/span>, <span class=\"tok-str\">\"a\"<\/span>))  ", "vars": [["recs", "[(50.0, 'Rosalind_1'), (50.0, 'Rosalind_7'), (62.5, 'Rosalind_2')]", false]], "out": "(50.0, 'Rosalind_1')\n(62.5, 'Rosalind_2')\nTrue\n", "row": null, "note": "Строка 7: печатается True."}, {"line": 0, "html": "", "vars": [["recs", "[(50.0, 'Rosalind_1'), (50.0, 'Rosalind_7'), (62.5, 'Rosalind_2')]", false]], "out": "(50.0, 'Rosalind_1')\n(62.5, 'Rosalind_2')\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>По убыванию</h3>
+          <p>Предскажите вывод, затем откройте его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">reverse_tuples.py</span><pre><code><span class="ln">recs <span class="tok-op">=</span> [(<span class="tok-num">50.0</span>, <span class="tok-str">"R1"</span>), (<span class="tok-num">62.5</span>, <span class="tok-str">"R2"</span>), (<span class="tok-num">50.0</span>, <span class="tok-str">"R3"</span>)]</span>
+<span class="ln">recs.sort(reverse<span class="tok-op">=</span><span class="tok-const">True</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(recs)</span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>[(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: первой идет запись с наибольшим GC. У <code>R1</code> и <code>R3</code> GC равный, и <code>reverse=True</code> развернул и порядок имен.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "reverse_tuples.py", "code": ["recs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"R1\"<\/span>), (<span class=\"tok-num\">62.5<\/span>, <span class=\"tok-str\">\"R2\"<\/span>), (<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"R3\"<\/span>)]", "recs.sort(reverse<span class=\"tok-op\">=<\/span><span class=\"tok-const\">True<\/span>)", "<span class=\"tok-builtin\">print<\/span>(recs)"], "columns": [], "steps": [{"line": 1, "html": "recs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"R1\"<\/span>), (<span class=\"tok-num\">62.5<\/span>, <span class=\"tok-str\">\"R2\"<\/span>), (<span class=\"tok-num\">50.0<\/span>, <span class=\"tok-str\">\"R3\"<\/span>)]", "vars": [["recs", "[(50.0, 'R1'), (62.5, 'R2'), (50.0, 'R3')]", true]], "out": "", "row": null, "note": "Строка 1: recs = [(50.0, 'R1'), (62.5, 'R2'), (50.0, 'R3')]."}, {"line": 2, "html": "recs.sort(reverse<span class=\"tok-op\">=<\/span><span class=\"tok-const\">True<\/span>)", "vars": [["recs", "[(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]", true]], "out": "", "row": null, "note": "Строка 2: recs = [(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(recs)", "vars": [["recs", "[(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]", false]], "out": "[(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]\n", "row": null, "note": "Строка 3: печатается [(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]."}, {"line": 0, "html": "", "vars": [["recs", "[(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]", false]], "out": "[(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]\n", "row": null, "note": "Программа закончилась. Вывод: [(62.5, 'R2'), (50.0, 'R3'), (50.0, 'R1')]."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Поменяйте поля в кортежах местами, <code>("R1", 50.0)</code>, и запустите: по какому полю теперь идет сортировка?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_tuples.py</span><pre><code><span class="ln">recs <span class="tok-op">=</span> [(<span class="tok-num">50.0</span>, <span class="tok-str">"R3"</span>), (<span class="tok-num">37.5</span>, <span class="tok-str">"R1"</span>), (<span class="tok-num">62.5</span>, <span class="tok-str">"R2"</span>)]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(recs))</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>[(37.5, 'R1'), (50.0, 'R3'), (62.5, 'R2')]</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. <code>max()</code> и <code>min()</code> с ключом</h2>
+        <div class="step step-learn">Теория</div>
+        <p>Параметр <code>key</code> есть не только у сортировки, но и у функций <code>max()</code> и <code>min()</code>. <code>max(seqs, key=len)</code> отвечает на вопрос «какая последовательность самая длинная» и возвращает саму последовательность, а не ее длину.</p>
+        <p class="property">Если наибольший ключ у нескольких элементов, <code>max()</code> возвращает первый из них; так же <code>min()</code>.</p>
+        <p>Ключом может быть и метод конкретной строки: вызов <code>seq.count(b)</code> считает букву <code>b</code> в <code>seq</code>, поэтому <code>max("ACGT", key=seq.count)</code> дает букву, которая чаще всех встречается в <code>seq</code>.</p>
+        <p class="th-full">Без ключа <code>max()</code> для строк сравнивает их по алфавиту, а не по длине. Чтобы получить саму длину, ее считают отдельно: <code>len(max(seqs, key=len))</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Самая длинная и самая короткая</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">max_key.py</span><pre><code><span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"ATCCAGCT"</span>, <span class="tok-str">"AT"</span>, <span class="tok-str">"GATTACA"</span>, <span class="tok-str">"GC"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(seqs, key<span class="tok-op">=</span><span class="tok-builtin">len</span>))  <span class="tok-out"># → ATCCAGCT</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">min</span>(seqs, key<span class="tok-op">=</span><span class="tok-builtin">len</span>))  <span class="tok-out"># → AT</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(seqs))           <span class="tok-out"># → GC</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>ATCCAGCT
+AT
+GC</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 3: у <code>"AT"</code> и <code>"GC"</code> длина 2, вернулась первая из них.</li>
+            <li>Строка 4: без ключа строки сравниваются по алфавиту, и наибольшей оказалась <code>"GC"</code>.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "max_key.py", "code": ["seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"ATCCAGCT\"<\/span>, <span class=\"tok-str\">\"AT\"<\/span>, <span class=\"tok-str\">\"GATTACA\"<\/span>, <span class=\"tok-str\">\"GC\"<\/span>]", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">max<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">min<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">max<\/span>(seqs))           "], "columns": [], "steps": [{"line": 1, "html": "seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"ATCCAGCT\"<\/span>, <span class=\"tok-str\">\"AT\"<\/span>, <span class=\"tok-str\">\"GATTACA\"<\/span>, <span class=\"tok-str\">\"GC\"<\/span>]", "vars": [["seqs", "['ATCCAGCT', 'AT', 'GATTACA', 'GC']", true]], "out": "", "row": null, "note": "Строка 1: seqs = ['ATCCAGCT', 'AT', 'GATTACA', 'GC']."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">max<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))  ", "vars": [["seqs", "['ATCCAGCT', 'AT', 'GATTACA', 'GC']", false]], "out": "ATCCAGCT\n", "row": null, "note": "Строка 2: печатается ATCCAGCT."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">min<\/span>(seqs, key<span class=\"tok-op\">=<\/span><span class=\"tok-builtin\">len<\/span>))  ", "vars": [["seqs", "['ATCCAGCT', 'AT', 'GATTACA', 'GC']", false]], "out": "ATCCAGCT\nAT\n", "row": null, "note": "Строка 3: печатается AT."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GC\"<\/span><\/span>)", "vars": [["seqs", "['ATCCAGCT', 'AT', 'GATTACA', 'GC']", false]], "out": "ATCCAGCT\nAT\nGC\n", "row": null, "note": "Строка 4: печатается GC."}, {"line": 0, "html": "", "vars": [["seqs", "['ATCCAGCT', 'AT', 'GATTACA', 'GC']", false]], "out": "ATCCAGCT\nAT\nGC\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените <code>max</code> на <code>min</code> и запустите: какая буква самая редкая?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_max.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATTACAGATT"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(<span class="tok-str">"ACGT"</span>, key<span class="tok-op">=</span>seq.count))  <span class="tok-out"># → A</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>A</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t5_06_2_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t5_06_2_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t5_06_2_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 5.6.2. Самая длинная и самая короткая</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите самую длинную и самую короткую последовательности набора. Если самых длинных или самых коротких несколько, выведите первую из них в порядке набора. Воспользуйтесь функциями <code>max()</code> и <code>min()</code> с ключом <code>key=len</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке самая длинная последовательность, во второй самая короткая.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ATCCAGCT AT GATTACA GC</pre></td><td><pre>ATCCAGCT
+AT</pre></td></tr>
+                <tr><td><pre>GG CC</pre></td><td><pre>GG
+GG</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_2_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 5.6.2. Порядок по GC-составу</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Даны записи «имя, GC-состав в процентах». Выведите имена по возрастанию GC-состава; записи с одинаковым GC-составом идут по имени: имена сравниваются как строки, как это делает <code>sorted()</code>.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> строк: имя и GC-состав через пробел. Имена разные, из латинских букв, цифр и знака <code>_</code>; GC-состав от 0 до 100 с одной цифрой после точки.</p>
+          <h4>Выходные данные</h4>
+          <p>Имена через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>3
+Rosalind_7 50.0
+Rosalind_2 62.5
+Rosalind_1 50.0</pre></td><td><pre>Rosalind_1 Rosalind_7 Rosalind_2</pre></td></tr>
+                <tr><td><pre>2
+b 10.0
+a 90.0</pre></td><td><pre>b a</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_2_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 5.6.2. Лидеры по GC-составу</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Даны записи «имя, последовательность». Выведите имена по убыванию GC-состава последовательностей; записи с одинаковым GC-составом идут по имени, по возрастанию: имена сравниваются как строки, как это делает <code>sorted()</code>.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p><code>reverse=True</code> разворачивает сравнение по всем полям кортежа. Чтобы по убыванию шел только GC-состав, а имя по возрастанию, сортируйте по возрастанию, а GC-состав возьмите со знаком минус.</p></details>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> строк: имя и последовательность через пробел. Имена разные, из латинских букв, цифр и знака <code>_</code>; последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Имена через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>3
+s1 ATGC
+s2 GGCA
+s3 GGGC</pre></td><td><pre>s3 s2 s1</pre></td></tr>
+                <tr><td><pre>2
+b AT
+a GC</pre></td><td><pre>a b</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_2_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t5_06_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t5_06_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t5_06_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 5.6. Без крайних</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Упорядочьте набор по возрастанию длины (последовательности одинаковой длины остаются в исходном порядке) и уберите первую и последнюю последовательности упорядоченного набора. Выведите то, что осталось, в этом порядке.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 3 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Оставшиеся последовательности через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATTACA AT TTA C</pre></td><td><pre>AT TTA</pre></td></tr>
+                <tr><td><pre>AA C GG</pre></td><td><pre>AA</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 5.6. По числу букв G</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите последовательности набора по возрастанию числа букв G. Последовательности с одинаковым числом G идут в том порядке, в каком они были в наборе. Функции для ключа <code>key</code> такой сортировки среди изученных нет: сортируйте кортежи.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Последовательности через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GGA TTT AGG C GAG</pre></td><td><pre>TTT C GGA AGG GAG</pre></td></tr>
+                <tr><td><pre>AT CA TA</pre></td><td><pre>AT CA TA</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 5.6. Места по GC-составу</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Распределите последовательности по местам: место 1 у наибольшего GC-состава. Последовательности с равным GC-составом делят место, а следующее место пропускается: при долях 0,5; 1; 0,5; 0 места 2, 1, 2, 4. Выведите места последовательностей в порядке набора.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Места через пробел одной строкой.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>ATGC GGCC ATAT GCAT</pre></td><td><pre>2 1 4 2</pre></td></tr>
+                <tr><td><pre>AAAA</pre></td><td><pre>1</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_06_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_5</code> создайте папку <code>t5_06</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t5_06_1_basic.py</code> и <code>t5_06_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t5_06_1_medium.py</code> и <code>t5_06_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t5_06_1_advanced.py</code> и <code>t5_06_2_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t5_06_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t5_06_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t5_06_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t5_06</code> в свой репозиторий внутрь папки <code>projects_5</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_5/
+    └── t5_06/
+        ├── t5_06_1_basic.py
+        └── t5_06_2_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_5/
+    └── t5_06/
+        ├── t5_06_1_medium.py
+        └── t5_06_2_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_5/
+    └── t5_06/
+        ├── t5_06_1_advanced.py
+        └── t5_06_2_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t5_05.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">05 Номера и пары</span></a>
+        <a class="pcard pcard-next" href="t5_07.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">07 Списковые включения</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

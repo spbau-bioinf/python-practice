@@ -128,7 +128,7 @@ True</pre></div>
 True</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 1: левая часть <code>and</code> ложна, ответ известен, деление не выполняется.</li><li>Строка 2: левая часть <code>or</code> истинна, ответ тоже известен, и деление снова не выполняется.</li></ol></div>
-          <script type="application/json" class="steps-data">{"file": "short_circuit.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">False<\/span> <span class=\"tok-kw\">and<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-kw\">or<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)    "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">False<\/span> <span class=\"tok-kw\">and<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)", "vars": [], "out": "False\n", "row": null, "note": "Строка 1: печатается False."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-kw\">or<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)", "vars": [], "out": "False\nTrue\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 0, "html": "", "vars": [], "out": "False\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <script type="application/json" class="steps-data">{"file": "short_circuit.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">False<\/span> <span class=\"tok-kw\">and<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-kw\">or<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)    "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">False<\/span> <span class=\"tok-kw\">and<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)  ", "vars": [], "out": "False\n", "row": null, "note": "Строка 1: печатается False."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-kw\">or<\/span> <span class=\"tok-num\">1<\/span> <span class=\"tok-op\">/<\/span> <span class=\"tok-num\">0<\/span> <span class=\"tok-op\">&gt;<\/span> <span class=\"tok-num\">1<\/span>)    ", "vars": [], "out": "False\nTrue\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 0, "html": "", "vars": [], "out": "False\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="step step-try">Практика</div>
         <div class="try-block">
@@ -223,7 +223,7 @@ True</pre></div>
             </table>
           </div>
           <div class="checker" data-file="t3_03_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -250,7 +250,7 @@ C</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_03_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -276,7 +276,7 @@ C</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_03_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -304,7 +304,7 @@ C</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_03_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -327,7 +327,7 @@ C</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_03_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -353,7 +353,7 @@ C</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_03_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>

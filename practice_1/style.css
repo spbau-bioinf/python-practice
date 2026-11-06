@@ -218,7 +218,13 @@ body {
 }
 a { color: var(--c-info); text-underline-offset: 3px; text-decoration-thickness: 1px; }
 a:hover { color: var(--c-accent); }
-:focus-visible { outline: 3px solid var(--c-accent-muted); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 2px; }
+/* версия 76: «К содержанию» (theme.js) видна только при фокусе; подсказка для диктора скрыта */
+.skip-link { position: absolute; left: 0.5rem; top: 0.5rem; z-index: 1000; padding: 0.6rem 1rem; background: var(--c-surface);
+  color: var(--c-text); border-radius: var(--radius-sm); transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+main:focus { outline: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 h1, h2, h3 { font-family: var(--font-display); color: var(--c-text); }
 h1 { line-height: 1.15; font-weight: 700; }
 h2 { font-size: var(--t-2xl); line-height: 1.3; font-weight: 700; margin: 2.6rem 0 1rem; }
@@ -689,7 +695,7 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
   background: transparent; color: var(--win-code-edit); caret-color: var(--win-code-caret);
   font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55; tab-size: 4;
 }
-.code-editor:focus-within { box-shadow: 0 0 0 3px var(--c-accent-muted); }
+.code-editor:focus-within { box-shadow: 0 0 0 3px var(--c-accent); }
 .checker-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0.7rem 0 0; }
 .checker-run {
   font: inherit; font-weight: 700; cursor: pointer; border: 0; padding: 0.55rem 1.4rem; border-radius: var(--radius-full);
@@ -752,7 +758,7 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
 .ex-btn:disabled { opacity: 0.6; cursor: wait; }
 .ex-btn-run { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
 /* версия 63: зеленая рамка окна только при фокусе в редакторе; внутреннее поле своей рамки не рисует */
-.code-block.is-editing:focus-within, .try-block .code-block.is-editing:focus-within { box-shadow: 0 0 0 3px var(--c-accent-muted), var(--win-shadow); }
+.code-block.is-editing:focus-within, .try-block .code-block.is-editing:focus-within { box-shadow: 0 0 0 3px var(--c-accent), var(--win-shadow); }
 .ex-editor-wrap:focus-within { box-shadow: none; }
 .ex-editor-wrap { background: transparent; border-radius: 0; }
 .ex-editor-wrap .code-gutter { padding-top: 0.9rem; font-size: 1rem; line-height: 1.7; background: transparent; }
@@ -1991,6 +1997,8 @@ html .lvl-dot { margin-right: 0.45rem; vertical-align: -1px; }
   .topbar .tb-icon, .tb-level, .tb-pop .tb-icon { width: 44px; height: 44px; }
   .tb-menu-btn { min-height: 44px; }
   .tb-pop .seg-btn { min-height: 44px; }
+  /* версия 76: кнопки примеров, проверки и переключателей в тексте тоже 44 px (были 26–43) */
+  .ex-btn, .seg-btn, .checker-bar button, .checker-bar .checker-file, .predict-btn { min-height: 44px; }
 }
 @media (hover: none) {
   .topbar .tip:hover::after, .topbar .tip:hover::before, .topbar .tip:focus::after, .topbar .tip:focus::before { display: none; }

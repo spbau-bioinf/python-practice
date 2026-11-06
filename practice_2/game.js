@@ -22,6 +22,73 @@
 
 (function () {
   "use strict";
+  /* >>> progress-codec (версия 84). Одинаковый блок в checker.js, theme.js, game.js, home.js:
+     selftest.py сверяет копии, правится во всех четырех сразу. Глобального объекта нет, иначе
+     прогресс подделывается одной строкой в консоли.
+     Ключи practice-html-progress и practice-html-game* хранятся как "ph1:" + base64(XOR(подпись + JSON));
+     подпись: два FNV-1a от секрета, ключа и JSON. Правка значения вручную делает его недействительным.
+     Открытый JSON до версии 84 переводится один раз (отметка ph-m), потом не принимается.
+     ponytail: защита от любопытных, не от подделки: секрет лежит в браузере, оценка ставится по репозиторию. */
+  var progressCodec = (function () {
+    var S = "3f9c-ph-7a1e-2026", MARK = "ph-m", PRE = "ph1:";
+    function prot(k) { return k === "practice-html-progress" || k.indexOf("practice-html-game") === 0; }
+    function fnv(s, h) {
+      for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+      return ("0000000" + h.toString(16)).slice(-8);
+    }
+    function sig(k, s) { return fnv(S + k + s, 2166136261) + fnv(s + k + S, 84696351); }
+    function xor(u8, k) {
+      var key = S + k, out = new Uint8Array(u8.length);
+      for (var i = 0; i < u8.length; i++) out[i] = u8[i] ^ key.charCodeAt(i % key.length) ^ (i * 31 & 255);
+      return out;
+    }
+    function encode(k, v) {
+      var s = JSON.stringify(v), u = xor(new TextEncoder().encode(sig(k, s) + s), k), b = "";
+      for (var i = 0; i < u.length; i += 8192) b += String.fromCharCode.apply(null, u.subarray(i, i + 8192));
+      return PRE + btoa(b);
+    }
+    function decode(k, raw) {                       /* undefined: значение недействительно */
+      if (raw.indexOf(PRE) !== 0) return undefined;
+      try {
+        var b = atob(raw.slice(PRE.length)), u = new Uint8Array(b.length);
+        for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
+        var t = new TextDecoder().decode(xor(u, k)), s = t.slice(16);
+        return t.slice(0, 16) === sig(k, s) ? JSON.parse(s) : undefined;
+      } catch (e) { return undefined; }
+    }
+    try {                                           /* разовый перевод открытого JSON */
+      var ls = window.localStorage;
+      if (!ls.getItem(MARK)) {
+        for (var i = 0; i < ls.length; i++) {
+          var k = ls.key(i), raw = ls.getItem(k);
+          if (k && prot(k) && raw && raw.indexOf(PRE) !== 0) {
+            try { ls.setItem(k, encode(k, JSON.parse(raw))); } catch (e) { /* битый JSON оставляем */ }
+          }
+        }
+        ls.setItem(MARK, "1");
+      }
+    } catch (e) { /* хранилище недоступно */ }
+    return {
+      get: function (k, def) {
+        try {
+          var raw = window.localStorage.getItem(k);
+          if (raw == null) return def;
+          if (!prot(k)) return JSON.parse(raw);
+          var v = decode(k, raw);
+          return v === undefined ? def : v;
+        } catch (e) { return def; }
+      },
+      set: function (k, v) {
+        try { window.localStorage.setItem(k, prot(k) ? encode(k, v) : JSON.stringify(v)); } catch (e) { /* хранилище недоступно */ }
+      },
+      /* загрузка файла прогресса: открытый JSON из старого файла кодируется */
+      importRaw: function (k, raw) {
+        if (prot(k) && raw && raw.indexOf(PRE) !== 0) { try { raw = encode(k, JSON.parse(raw)); } catch (e) { return; } }
+        try { window.localStorage.setItem(k, raw); } catch (e) { /* хранилище недоступно */ }
+      }
+    };
+  })();
+  /* <<< progress-codec */
   var W = 320, H = 84, GROUND = 66;
   var root = document.documentElement;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -174,10 +241,10 @@
     c.fillStyle = PAL.K; c.fillRect(x + 8, ground - 16, 12, 16); c.fillStyle = "#2A1E14"; c.fillRect(x + 9, ground - 15, 10, 15);
   }
   function loopKey() { return "practice-html-game:loop:" + PAGE; }
-  function loopRows() { try { return JSON.parse(window.localStorage.getItem(loopKey()) || "[]"); } catch (e) { return []; } }
+  function loopRows() { return progressCodec.get(loopKey(), []) || []; }
   function addLoopRow(ok) {
     var rows = loopRows(); rows.push({ ok: !!ok, hp: dragonState().left });
-    try { window.localStorage.setItem(loopKey(), JSON.stringify(rows.slice(-50))); } catch (e) { /* недоступно */ }
+    progressCodec.set(loopKey(), rows.slice(-50));
   }
   function loopPanel(sc) {
     var box = sc.loopBox, d = dragonState(), rows = loopRows(), last = rows[rows.length - 1];
@@ -229,10 +296,10 @@
   var PAGE = (window.location.pathname.split("/").pop() || "page");
   var STATE_KEY = "practice-html-game:" + PAGE;
   function loadState() {
-    try { return JSON.parse(window.localStorage.getItem(STATE_KEY) || "{}"); } catch (e) { return {}; }
+    return progressCodec.get(STATE_KEY, {}) || {};
   }
   function saveState(st) {
-    try { window.localStorage.setItem(STATE_KEY, JSON.stringify(st)); } catch (e) { /* хранилище недоступно */ }
+    progressCodec.set(STATE_KEY, st);
   }
   var state = loadState();
   state.done = state.done || {};
@@ -260,19 +327,19 @@
   };
   function loadG() {
     var g;
-    try { g = JSON.parse(window.localStorage.getItem(GAME_KEY) || "{}"); } catch (e) { g = {}; }
+    g = progressCodec.get(GAME_KEY, {}) || {};
     g.xp = g.xp || 0; g.streak = g.streak || 0; g.best = g.best || 0;
     g.awarded = g.awarded || {}; g.attempts = g.attempts || {}; g.badges = g.badges || {};
     return g;
   }
-  function saveG(g) { try { window.localStorage.setItem(GAME_KEY, JSON.stringify(g)); } catch (e) { /* недоступно */ } }
+  function saveG(g) { progressCodec.set(GAME_KEY, g); }
   function heroLevel(xp) { return Math.floor(xp / PER_LEVEL) + 1; }
   function heroTitle(xp) { return TITLES[Math.min(TITLES.length - 1, heroLevel(xp) - 1)]; }
 
   var toastBox = null;
   function toast(title, text) {
     if (root.getAttribute("data-profile") !== "game") return;
-    if (!toastBox) { toastBox = document.createElement("div"); toastBox.className = "game-toasts"; document.body.appendChild(toastBox); }
+    if (!toastBox) { toastBox = document.createElement("div"); toastBox.className = "game-toasts"; toastBox.setAttribute("role", "status"); document.body.appendChild(toastBox); }
     var t = document.createElement("div");
     t.className = "game-toast";
     var b = document.createElement("b"); b.textContent = title; t.appendChild(b);
@@ -357,7 +424,7 @@
 
   function solvedTasks() {
     var p = {};
-    try { p = JSON.parse(window.localStorage.getItem("practice-html-progress") || "{}").tasks || {}; } catch (e) { p = {}; }
+    p = (progressCodec.get("practice-html-progress", {}) || {}).tasks || {};
     return p;
   }
 

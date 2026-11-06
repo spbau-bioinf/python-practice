@@ -69,7 +69,7 @@
 2</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 1: переменная <code>answer</code> связана с логическим значением <code>True</code>.</li><li>Строки 3–4: <code>True</code> без кавычек имеет тип <code>bool</code>, а <code>"True"</code> в кавычках имеет тип <code>str</code>.</li><li>Строка 5: два истинных значения и одно ложное в сумме дают 2.</li></ol></div>
-          <script type="application/json" class="steps-data">{"file": "bool_type.py", "code": ["answer <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">True<\/span>", "<span class=\"tok-builtin\">print<\/span>(answer)               ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(answer))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(<span class=\"tok-str\">\"True\"<\/span>))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">False<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "answer <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">True<\/span>", "vars": [["answer", "True", true]], "out": "", "row": null, "note": "Строка 1: answer = True."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-const\">True<\/span><\/span>)", "vars": [["answer", "True", false]], "out": "True\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(<span class=\"tv\"><span class=\"tok-const\">True<\/span><\/span>))", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n", "row": null, "note": "Строка 3: печатается <class 'bool'>."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(<span class=\"tok-str\">\"True\"<\/span>))", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n<class 'str'>\n", "row": null, "note": "Строка 4: печатается <class 'str'>."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">False<\/span>)", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n<class 'str'>\n2\n", "row": null, "note": "Строка 5: печатается 2."}, {"line": 0, "html": "", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n<class 'str'>\n2\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <script type="application/json" class="steps-data">{"file": "bool_type.py", "code": ["answer <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">True<\/span>", "<span class=\"tok-builtin\">print<\/span>(answer)               ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(answer))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(<span class=\"tok-str\">\"True\"<\/span>))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">False<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "answer <span class=\"tok-op\">=<\/span> <span class=\"tok-const\">True<\/span>", "vars": [["answer", "True", true]], "out": "", "row": null, "note": "Строка 1: answer = True."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-const\">True<\/span><\/span>)", "vars": [["answer", "True", false]], "out": "True\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(<span class=\"tv\"><span class=\"tok-const\">True<\/span><\/span>))", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n", "row": null, "note": "Строка 3: печатается <class 'bool'>."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">type<\/span>(<span class=\"tok-str\">\"True\"<\/span>))         ", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n<class 'str'>\n", "row": null, "note": "Строка 4: печатается <class 'str'>."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">True<\/span> <span class=\"tok-op\">+<\/span> <span class=\"tok-const\">False<\/span>)  ", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n<class 'str'>\n2\n", "row": null, "note": "Строка 5: печатается 2."}, {"line": 0, "html": "", "vars": [["answer", "True", false]], "out": "True\n<class 'bool'>\n<class 'str'>\n2\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="mistake th-full">
           <p class="mistake-caption">Типичная ошибка: <code>true</code> со строчной буквы</p>
@@ -210,7 +210,7 @@ True</pre></div>
             </table>
           </div>
           <div class="checker" data-file="t3_01_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -237,7 +237,7 @@ True</pre></div>
             </table>
           </div>
           <div class="checker" data-file="t3_01_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -267,7 +267,7 @@ True</pre></div>
             </table>
           </div>
           <div class="checker" data-file="t3_01_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -309,7 +309,7 @@ False
 True</pre></div>
           </div>
           <div class="analysis"><ol><li>Строка 1: номер строчной <code>a</code> больше номера прописной <code>B</code>.</li><li>Строки 2–3: строки из цифр сравниваются посимвольно (здесь различаются уже первые символы, 1 и 9), числа по значению.</li><li>Строка 4: число и строка разных типов, поэтому они не равны.</li><li>Строка 5: после <code>int()</code> ведущий ноль исчезает, и сравниваются два числа.</li></ol></div>
-          <script type="application/json" class="steps-data">{"file": "types_compare.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"a\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"B\"<\/span>)       ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"10\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"9\"<\/span>)      ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-num\">9<\/span>)          ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"5\"<\/span>)        ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">int<\/span>(<span class=\"tok-str\">\"08\"<\/span>) <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">8<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"a\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"B\"<\/span>)", "vars": [], "out": "False\n", "row": null, "note": "Строка 1: печатается False."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"10\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"9\"<\/span>)", "vars": [], "out": "False\nTrue\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-num\">9<\/span>)", "vars": [], "out": "False\nTrue\nFalse\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"5\"<\/span>)", "vars": [], "out": "False\nTrue\nFalse\nFalse\n", "row": null, "note": "Строка 4: печатается False."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [], "out": "False\nTrue\nFalse\nFalse\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 0, "html": "", "vars": [], "out": "False\nTrue\nFalse\nFalse\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <script type="application/json" class="steps-data">{"file": "types_compare.py", "code": ["<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"a\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"B\"<\/span>)       ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"10\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"9\"<\/span>)      ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-num\">9<\/span>)          ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"5\"<\/span>)        ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">int<\/span>(<span class=\"tok-str\">\"08\"<\/span>) <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">8<\/span>)  "], "columns": [], "steps": [{"line": 1, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"a\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"B\"<\/span>)       ", "vars": [], "out": "False\n", "row": null, "note": "Строка 1: печатается False."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"10\"<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-str\">\"9\"<\/span>)      ", "vars": [], "out": "False\nTrue\n", "row": null, "note": "Строка 2: печатается True."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-op\">&lt;<\/span> <span class=\"tok-num\">9<\/span>)          ", "vars": [], "out": "False\nTrue\nFalse\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">5<\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-str\">\"5\"<\/span>)        ", "vars": [], "out": "False\nTrue\nFalse\nFalse\n", "row": null, "note": "Строка 4: печатается False."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span> <span class=\"tok-op\">==<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [], "out": "False\nTrue\nFalse\nFalse\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 0, "html": "", "vars": [], "out": "False\nTrue\nFalse\nFalse\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="mistake th-full">
           <p class="mistake-caption">Типичная ошибка: строка из ввода не превращена в число</p>
@@ -360,7 +360,7 @@ TypeError: '&gt;' not supported between instances of 'str' and 'int'</pre></div>
             </table>
           </div>
           <div class="checker" data-file="t3_01_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -385,7 +385,7 @@ abl1</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_01_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -411,7 +411,7 @@ C12</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_01_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -441,7 +441,7 @@ ATGTTAGGA</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_01_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -467,7 +467,7 @@ AAG</pre></td><td><pre>0</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_01_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>
@@ -493,7 +493,7 @@ c12</pre></td><td><pre>False</pre></td></tr>
             </table>
           </div>
           <div class="checker" data-file="t3_01_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите входные данные из левой колонки таблицы «Примеры» (каждое значение в своей строке) и сравните вывод с правой колонкой.</p>
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
           </div>

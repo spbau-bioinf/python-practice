@@ -275,7 +275,7 @@
     } else if (usesInput) {
       var r0 = results.filter(function (r) { return !r.err && r.reads > 0 && r.reads < r.lines; })[0];
       if (r0) hints.push("Программа читает строк: " + r0.reads + ", а во входных данных их " + r0.lines +
-        ". Каждое значение стоит на своей строке и читается отдельным input().");
+        ". Каждая строка входных данных читается отдельным input().");
     }
     var outs = results.map(function (r) { return normalize(r.out).join("\n"); });
     var exps = all.filter(function (t) { return !t.hidden; }).map(function (t) { return normalize(t.output).join("\n"); });
@@ -395,11 +395,23 @@
   var LOADING = "Загружаю интерпретатор Python. Первый раз это занимает 10–30 секунд, дальше запуск идет быстро.";
 
   /* ---------------- DOM-помощники ---------------- */
+  /* версия 76: значок в начале надписи кнопки («▶ Запустить») скрыт от экранного диктора */
+  var BTN_ICON = /^([\u2190-\u2BFF]) /;
   function el(tag, cls, text) {
     var node = document.createElement(tag);
     if (cls) node.className = cls;
-    if (text !== undefined) node.textContent = text;
+    var m = tag === "button" && text !== undefined && BTN_ICON.exec(text);
+    if (m) {
+      var ic = document.createElement("span"); ic.setAttribute("aria-hidden", "true"); ic.textContent = m[0];
+      node.appendChild(ic); node.appendChild(document.createTextNode(text.slice(m[0].length)));
+    } else if (text !== undefined) node.textContent = text;
     return node;
+  }
+  /* одна скрытая подсказка на страницу для всех полей кода (aria-describedby) */
+  function editorHint() {
+    if (document.getElementById("kbd-editor-hint")) return;
+    var h = el("span", "sr-only", "Tab вставляет четыре пробела. Чтобы выйти из поля: Esc, затем Tab.");
+    h.id = "kbd-editor-hint"; document.body.appendChild(h);
   }
   function ioBlock(parent, label, text, markEmpty) {
     var wrap = el("div", "checker-io");
@@ -434,14 +446,20 @@
     }
     area.addEventListener("input", sync);
     area.addEventListener("scroll", function () { gutter.scrollTop = area.scrollTop; });
+    /* версия 76: Tab вставляет 4 пробела; Esc, затем Tab переводят фокус дальше по странице */
+    var escOut = false;
+    area.setAttribute("aria-describedby", "kbd-editor-hint");
+    editorHint();
     area.addEventListener("keydown", function (e) {
-      if (e.key === "Tab" && !e.shiftKey) {
+      if (e.key === "Escape") { escOut = true; return; }
+      if (e.key === "Tab" && !e.shiftKey && !escOut) {
         e.preventDefault();
         var a = area.selectionStart, b = area.selectionEnd;
         area.value = area.value.slice(0, a) + "    " + area.value.slice(b);
         area.selectionStart = area.selectionEnd = a + 4;
         sync();
       }
+      escOut = false;
     });
     wrap.appendChild(gutter);
     wrap.appendChild(area);
@@ -459,12 +477,79 @@
   }
 
   /* ---------------- прогресс (хранится только в этом браузере) ---------------- */
+  /* >>> progress-codec (версия 84). Одинаковый блок в checker.js, theme.js, game.js, home.js:
+     selftest.py сверяет копии, правится во всех четырех сразу. Глобального объекта нет, иначе
+     прогресс подделывается одной строкой в консоли.
+     Ключи practice-html-progress и practice-html-game* хранятся как "ph1:" + base64(XOR(подпись + JSON));
+     подпись: два FNV-1a от секрета, ключа и JSON. Правка значения вручную делает его недействительным.
+     Открытый JSON до версии 84 переводится один раз (отметка ph-m), потом не принимается.
+     ponytail: защита от любопытных, не от подделки: секрет лежит в браузере, оценка ставится по репозиторию. */
+  var progressCodec = (function () {
+    var S = "3f9c-ph-7a1e-2026", MARK = "ph-m", PRE = "ph1:";
+    function prot(k) { return k === "practice-html-progress" || k.indexOf("practice-html-game") === 0; }
+    function fnv(s, h) {
+      for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+      return ("0000000" + h.toString(16)).slice(-8);
+    }
+    function sig(k, s) { return fnv(S + k + s, 2166136261) + fnv(s + k + S, 84696351); }
+    function xor(u8, k) {
+      var key = S + k, out = new Uint8Array(u8.length);
+      for (var i = 0; i < u8.length; i++) out[i] = u8[i] ^ key.charCodeAt(i % key.length) ^ (i * 31 & 255);
+      return out;
+    }
+    function encode(k, v) {
+      var s = JSON.stringify(v), u = xor(new TextEncoder().encode(sig(k, s) + s), k), b = "";
+      for (var i = 0; i < u.length; i += 8192) b += String.fromCharCode.apply(null, u.subarray(i, i + 8192));
+      return PRE + btoa(b);
+    }
+    function decode(k, raw) {                       /* undefined: значение недействительно */
+      if (raw.indexOf(PRE) !== 0) return undefined;
+      try {
+        var b = atob(raw.slice(PRE.length)), u = new Uint8Array(b.length);
+        for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
+        var t = new TextDecoder().decode(xor(u, k)), s = t.slice(16);
+        return t.slice(0, 16) === sig(k, s) ? JSON.parse(s) : undefined;
+      } catch (e) { return undefined; }
+    }
+    try {                                           /* разовый перевод открытого JSON */
+      var ls = window.localStorage;
+      if (!ls.getItem(MARK)) {
+        for (var i = 0; i < ls.length; i++) {
+          var k = ls.key(i), raw = ls.getItem(k);
+          if (k && prot(k) && raw && raw.indexOf(PRE) !== 0) {
+            try { ls.setItem(k, encode(k, JSON.parse(raw))); } catch (e) { /* битый JSON оставляем */ }
+          }
+        }
+        ls.setItem(MARK, "1");
+      }
+    } catch (e) { /* хранилище недоступно */ }
+    return {
+      get: function (k, def) {
+        try {
+          var raw = window.localStorage.getItem(k);
+          if (raw == null) return def;
+          if (!prot(k)) return JSON.parse(raw);
+          var v = decode(k, raw);
+          return v === undefined ? def : v;
+        } catch (e) { return def; }
+      },
+      set: function (k, v) {
+        try { window.localStorage.setItem(k, prot(k) ? encode(k, v) : JSON.stringify(v)); } catch (e) { /* хранилище недоступно */ }
+      },
+      /* загрузка файла прогресса: открытый JSON из старого файла кодируется */
+      importRaw: function (k, raw) {
+        if (prot(k) && raw && raw.indexOf(PRE) !== 0) { try { raw = encode(k, JSON.parse(raw)); } catch (e) { return; } }
+        try { window.localStorage.setItem(k, raw); } catch (e) { /* хранилище недоступно */ }
+      }
+    };
+  })();
+  /* <<< progress-codec */
   var STORE_KEY = "practice-html-progress";
   function loadProgress() {
-    try { return JSON.parse(window.localStorage.getItem(STORE_KEY) || "{}"); } catch (e) { return {}; }
+    return progressCodec.get(STORE_KEY, {}) || {};
   }
   function saveProgress(p) {
-    try { window.localStorage.setItem(STORE_KEY, JSON.stringify(p)); } catch (e) { /* хранилище недоступно */ }
+    progressCodec.set(STORE_KEY, p);
   }
   function pageName() {
     var parts = window.location.pathname.split("/");
@@ -821,7 +906,7 @@
     block.appendChild(hintEl("p", "checker-note",
       "Вставьте код из файла " + file + " или выберите сам файл и нажмите «Проверить». Программа запускается на " +
       n + " тестах: на примерах из таблицы «Примеры» и на дополнительных, которые скрыты." +
-      (setMode ? "" : " Данные программа читает через `input()`, каждое значение со своей строки: `s = input()`, `n = int(input())`. " +
+      (setMode ? "" : " Данные программа читает через `input()`, каждую строку входных данных отдельным `input()`: `s = input()`, `n = int(input())`. " +
         "Текст в скобках, например `input(\"Введите n: \")`, писать можно: проверка его не учитывает.") +
       " Кнопка «Запустить» только выполняет программу на ваших данных, без тестов." +
       (setMode ? " Строки с исходными данными уже вставлены в поле: не меняйте имена переменных, проверка подставляет в эти строки свои значения." : "") +
@@ -862,12 +947,12 @@
     var stdin = null, stdin0 = "";
     if (!setMode) {
       stdin0 = (spec.tests[0] && spec.tests[0].input || "").replace(/\n$/, "");
-      block.appendChild(el("span", "ex-stdin-label checker-stdin-label", "Ввод для «Запустить» (каждое значение с новой строки):"));
+      block.appendChild(el("span", "ex-stdin-label checker-stdin-label", "Ввод для «Запустить» (строки ввода, как в левой колонке «Примеров»):"));
       stdin = el("textarea", "ex-stdin checker-stdin");
       stdin.value = stdin0;
       stdin.rows = Math.max(1, stdin0.split("\n").length);
       stdin.setAttribute("spellcheck", "false");
-      stdin.setAttribute("aria-label", "Ввод для запуска: каждое значение с новой строки");
+      stdin.setAttribute("aria-label", "Ввод для запуска: строки ввода, как в левой колонке «Примеров»");
       block.appendChild(stdin);
     }
 
@@ -906,6 +991,8 @@
       reader.readAsText(f, "utf-8");
     });
     clear.addEventListener("click", function () {
+      /* версия 76: свой код стирается только после подтверждения */
+      if (area.value !== template && !window.confirm("Стереть ваш код и вернуть шаблон?")) return;
       area.value = template; resetSize(area); editor.sync(); area.scrollTop = 0;
       if (stdin) stdin.value = stdin0;
       box.innerHTML = ""; box.className = "checker-result";
@@ -1075,8 +1162,8 @@
         stdin = el("textarea", "ex-stdin");
         stdin.value = stdin0;
         stdin.rows = Math.max(1, kbds.length);
-        stdin.setAttribute("aria-label", "Ввод: каждое значение с новой строки");
-        var lab = el("span", "ex-stdin-label", "Ввод (каждое значение с новой строки):");
+        stdin.setAttribute("aria-label", "Ввод: строки, которые прочитает input()");
+        var lab = el("span", "ex-stdin-label", "Ввод (строки, которые прочитает input()):");
         out.insertBefore(lab, outPre);
         out.insertBefore(stdin, outPre);
       }

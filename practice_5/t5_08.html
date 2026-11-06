@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Признаки. Практика 5. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t5_08.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 5</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t5_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t5_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Список и кортеж</span></span></a></li>
+        <li class="menu-sub"><a href="t5_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Имена и копии</span></span></a></li>
+        <li class="menu-sub"><a href="t5_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Срезы и методы</span></span></a></li>
+        <li class="menu-sub"><a href="t5_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Распаковка</span></span></a></li>
+        <li class="menu-sub"><a href="t5_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Номера и пары</span></span></a></li>
+        <li class="menu-sub"><a href="t5_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name">Сортировка</span></span></a></li>
+        <li class="menu-sub"><a href="t5_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Списковые включения</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t5_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Признаки</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Записи FASTA в списке</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Векторы и матрица</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">5.8.1</span> <span class="anc-ex-title" data-variant="basic">Вектор признаков</span><span class="anc-ex-title" data-variant="medium">Матрица из FASTA</span><span class="anc-ex-title" data-variant="advanced">Ближе всех к среднему</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">5.8</span> <span class="anc-ex-title" data-variant="basic">Суммы признаков</span><span class="anc-ex-title" data-variant="medium">Доли букв</span><span class="anc-ex-title" data-variant="advanced">Ближайшая пара</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t5_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Профиль и консенсус</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 12</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 12</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 12</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: выберите во вкладках любого упражнения</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">08</span>
+      <p class="page-path"><span>Практика 5</span><span class="page-path-sep" aria-hidden="true">›</span><span>Списки и кортежи</span></p>
+      <h1>Признаки</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Разбирать записи FASTA в список пар, описывать последовательность вектором признаков и собирать векторы в матрицу.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Записи FASTA в списке</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">На этой и следующей странице собирается все, что было в практике: списки, кортежи, срезы, <code>zip()</code>, включения. Данные приходят в формате FASTA, и первым делом их нужно разложить по записям.</p>
+        <p class="definition"><span class="term">FASTA</span>&nbsp;— текстовый формат последовательностей. Запись начинается со строки заголовка: знак <code>&gt;</code>, сразу за ним идентификатор (имя последовательности), затем, через пробел, необязательное описание. Следующая строка содержит саму последовательность.</p>
+        <p>Если каждая последовательность занимает одну строку, строки текста чередуются: заголовок, последовательность, заголовок, последовательность. Список строк дает метод <code>split()</code>; заголовки стоят на местах с четными индексами 0, 2, 4 (<code>lines[0::2]</code>), последовательности на местах с нечетными индексами (<code>lines[1::2]</code>). Срез <code>[1:]</code> снимает с заголовка знак <code>&gt;</code>, а <code>zip()</code> соединяет имена и последовательности в пары <code>(id, seq)</code>.</p>
+        <p>В упражнениях записи читаются через <code>input()</code>: сначала число записей <code>n</code>, затем по две строки на запись.</p>
+        <p>Читать файлы мы пока не умеем (это тема 9 «Файлы, исключения, сквозной проект»), поэтому в примере текст FASTA записан строкой в тройных кавычках: такая строка может занимать несколько строк кода, переводы строк входят в нее. Метод <code>split()</code> без аргументов режет и по пробелам, и по переводам строк; если в заголовках есть описание через пробел, текст режут по переводам строк: <code>text.split("\n")</code>.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>FASTA в список записей</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">fasta.py</span><pre><code>text <span class="tok-op">=</span> <span class="tok-str">"""&gt;Rosalind_1
+ATCCAGCT
+&gt;Rosalind_2
+GGGCAACT
+&gt;Rosalind_3
+ATGGATCT"""</span>
+lines <span class="tok-op">=</span> text.split()
+names <span class="tok-op">=</span> [x[<span class="tok-num">1</span>:] <span class="tok-kw">for</span> x <span class="tok-kw">in</span> lines[<span class="tok-num">0</span>::<span class="tok-num">2</span>]]
+seqs <span class="tok-op">=</span> lines[<span class="tok-num">1</span>::<span class="tok-num">2</span>]
+recs <span class="tok-op">=</span> <span class="tok-builtin">list</span>(<span class="tok-builtin">zip</span>(names, seqs))
+<span class="tok-builtin">print</span>(recs[<span class="tok-num">0</span>])    <span class="tok-out"># → ('Rosalind_1', 'ATCCAGCT')</span>
+<span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(recs))  <span class="tok-out"># → 3</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>('Rosalind_1', 'ATCCAGCT')
+3</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строки 1–6: текст FASTA из трех записей.</li>
+            <li>Строка 7: шесть строк текста в одном списке.</li>
+            <li>Строки 8–9: имена без знака <code>&gt;</code> и последовательности.</li>
+            <li>Строка 10: <code>zip()</code> собирает пары; <code>list()</code> нужен, чтобы обращаться к ним по индексу.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "fasta.py", "code": ["text <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"\"\"&gt;Rosalind_1<\/span>", "<span class=\"tok-str\">ATCCAGCT<\/span>", "<span class=\"tok-str\">&gt;Rosalind_2<\/span>", "<span class=\"tok-str\">GGGCAACT<\/span>", "<span class=\"tok-str\">&gt;Rosalind_3<\/span>", "<span class=\"tok-str\">ATGGATCT\"\"\"<\/span>", "lines <span class=\"tok-op\">=<\/span> text.split()", "names <span class=\"tok-op\">=<\/span> [x[<span class=\"tok-num\">1<\/span>:] <span class=\"tok-kw\">for<\/span> x <span class=\"tok-kw\">in<\/span> lines[<span class=\"tok-num\">0<\/span>::<span class=\"tok-num\">2<\/span>]]", "seqs <span class=\"tok-op\">=<\/span> lines[<span class=\"tok-num\">1<\/span>::<span class=\"tok-num\">2<\/span>]", "recs <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">list<\/span>(<span class=\"tok-builtin\">zip<\/span>(names, seqs))", "<span class=\"tok-builtin\">print<\/span>(recs[<span class=\"tok-num\">0<\/span>])    ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(recs))  "], "columns": [], "steps": [{"line": 1, "html": "text <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"\"\"&gt;Rosalind_1<\/span>", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", true]], "out": "", "row": null, "note": "Строка 1: text = \">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"."}, {"line": 7, "html": "lines <span class=\"tok-op\">=<\/span> text.split()", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", true]], "out": "", "row": null, "note": "Строка 7: lines = ['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']."}, {"line": 8, "html": "names <span class=\"tok-op\">=<\/span> [x[<span class=\"tok-num\">1<\/span>:] <span class=\"tok-kw\">for<\/span> x <span class=\"tok-kw\">in<\/span> lines[<span class=\"tok-num\">0<\/span>::<span class=\"tok-num\">2<\/span>]]", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["x (во включении)", "\">Rosalind_1\"", true]], "out": "", "row": null, "note": "Строка 8: x (во включении) = \">Rosalind_1\"."}, {"line": 8, "html": "names <span class=\"tok-op\">=<\/span> [x[<span class=\"tok-num\">1<\/span>:] <span class=\"tok-kw\">for<\/span> x <span class=\"tok-kw\">in<\/span> lines[<span class=\"tok-num\">0<\/span>::<span class=\"tok-num\">2<\/span>]]", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["x (во включении)", "\">Rosalind_2\"", true]], "out": "", "row": null, "note": "Строка 8: x (во включении) = \">Rosalind_2\"."}, {"line": 8, "html": "names <span class=\"tok-op\">=<\/span> [x[<span class=\"tok-num\">1<\/span>:] <span class=\"tok-kw\">for<\/span> x <span class=\"tok-kw\">in<\/span> lines[<span class=\"tok-num\">0<\/span>::<span class=\"tok-num\">2<\/span>]]", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["x (во включении)", "\">Rosalind_3\"", true]], "out": "", "row": null, "note": "Строка 8: x (во включении) = \">Rosalind_3\"."}, {"line": 8, "html": "names <span class=\"tok-op\">=<\/span> [x[<span class=\"tok-num\">1<\/span>:] <span class=\"tok-kw\">for<\/span> x <span class=\"tok-kw\">in<\/span> lines[<span class=\"tok-num\">0<\/span>::<span class=\"tok-num\">2<\/span>]]", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["names", "['Rosalind_1', 'Rosalind_2', 'Rosalind_3']", true]], "out": "", "row": null, "note": "Строка 8: names = ['Rosalind_1', 'Rosalind_2', 'Rosalind_3']."}, {"line": 9, "html": "seqs <span class=\"tok-op\">=<\/span> lines[<span class=\"tok-num\">1<\/span>::<span class=\"tok-num\">2<\/span>]", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["names", "['Rosalind_1', 'Rosalind_2', 'Rosalind_3']", false], ["seqs", "['ATCCAGCT', 'GGGCAACT', 'ATGGATCT']", true]], "out": "", "row": null, "note": "Строка 9: seqs = ['ATCCAGCT', 'GGGCAACT', 'ATGGATCT']."}, {"line": 10, "html": "recs <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">list<\/span>(<span class=\"tok-builtin\">zip<\/span>(names, seqs))", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["names", "['Rosalind_1', 'Rosalind_2', 'Rosalind_3']", false], ["seqs", "['ATCCAGCT', 'GGGCAACT', 'ATGGATCT']", false], ["recs", "[('Rosalind_1', 'ATCCAGCT'), ('Rosalind_2', 'GGGCAACT'), ('Rosalind_3', 'ATGGATCT')]", true]], "out": "", "row": null, "note": "Строка 10: recs = [('Rosalind_1', 'ATCCAGCT'), ('Rosalind_2', 'GGGCAACT'), ('Rosalind_3', 'ATGGATCT')]."}, {"line": 11, "html": "<span class=\"tok-builtin\">print<\/span>(recs[<span class=\"tok-num\">0<\/span>])    ", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["names", "['Rosalind_1', 'Rosalind_2', 'Rosalind_3']", false], ["seqs", "['ATCCAGCT', 'GGGCAACT', 'ATGGATCT']", false], ["recs", "[('Rosalind_1', 'ATCCAGCT'), ('Rosalind_2', 'GGGCAACT'), ('Rosalind_3', 'ATGGATCT')]", false]], "out": "('Rosalind_1', 'ATCCAGCT')\n", "row": null, "note": "Строка 11: печатается ('Rosalind_1', 'ATCCAGCT')."}, {"line": 12, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>)", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["names", "['Rosalind_1', 'Rosalind_2', 'Rosalind_3']", false], ["seqs", "['ATCCAGCT', 'GGGCAACT', 'ATGGATCT']", false], ["recs", "[('Rosalind_1', 'ATCCAGCT'), ('Rosalind_2', 'GGGCAACT'), ('Rosalind_3', 'ATGGATCT')]", false]], "out": "('Rosalind_1', 'ATCCAGCT')\n3\n", "row": null, "note": "Строка 12: печатается 3."}, {"line": 0, "html": "", "vars": [["text", "\">Rosalind_1\nATCCAGCT\n>Rosalind_2\nGGGCAACT\n>Rosalind_3\nATGGATCT\"", false], ["lines", "['>Rosalind_1', 'ATCCAGCT', '>Rosalind_2', 'GGGCAACT', '>Rosalind_3', 'ATGGATCT']", false], ["names", "['Rosalind_1', 'Rosalind_2', 'Rosalind_3']", false], ["seqs", "['ATCCAGCT', 'GGGCAACT', 'ATGGATCT']", false], ["recs", "[('Rosalind_1', 'ATCCAGCT'), ('Rosalind_2', 'GGGCAACT'), ('Rosalind_3', 'ATGGATCT')]", false]], "out": "('Rosalind_1', 'ATCCAGCT')\n3\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Допишите в цикл чтения печать длины: <code>print(name, len(seq))</code> после строки 5. Программа ждет ввода: пользователь набирает число записей <kbd class="user-input">2</kbd>, затем две записи FASTA, каждую строку завершая Enter.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_fasta.py</span><pre><code><span class="ln">n <span class="tok-op">=</span> <span class="tok-builtin">int</span>(<span class="tok-builtin">input</span>())</span>
+<span class="ln">recs <span class="tok-op">=</span> []</span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(n):</span>
+<span class="ln">    name <span class="tok-op">=</span> <span class="tok-builtin">input</span>()[<span class="tok-num">1</span>:]</span>
+<span class="ln">    seq <span class="tok-op">=</span> <span class="tok-builtin">input</span>()</span>
+<span class="ln">    recs.append((name, seq))</span>
+<span class="ln"><span class="tok-builtin">print</span>(recs)  <span class="tok-out"># → [('s1', 'ACGT'), ('s2', 'GGC')]</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre><kbd class="user-input">2</kbd>
+<kbd class="user-input">&gt;s1</kbd>
+<kbd class="user-input">ACGT</kbd>
+<kbd class="user-input">&gt;s2</kbd>
+<kbd class="user-input">GGC</kbd>
+[('s1', 'ACGT'), ('s2', 'GGC')]</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Векторы и матрица</h2>
+        <div class="step step-learn">Теория</div>
+        <p class="th-full">На <a href="t5_09.html">странице 09</a> мы будем описывать столбцы выравнивания. Здесь, наоборот, нужно описать каждую последовательность целиком несколькими числами, чтобы потом сравнивать последовательности между собой по этим числам.</p>
+        <p class="definition"><span class="term">Признак</span> (feature) сопоставляет объекту число: длину, GC-состав, число букв A. <span class="term">Вектор признаков</span> (feature vector)&nbsp;— список значений признаков одного объекта.</p>
+        <p>Для последовательности <code>"ATCCAGCT"</code> вектор из чисел букв A, C, G, T равен <code>[2, 3, 1, 2]</code>; его строит включение <code>[s.count(b) for b in "ACGT"]</code>. Список таких векторов образует <span class="term">матрицу признаков</span>: в строках последовательности, в столбцах признаки. Строку матрицы берут индексом <code>X[i]</code>, столбец собирают включением <code>[v[2] for v in X]</code> или берут из <code>zip(*X)</code>.</p>
+        <p class="rule">Строки матрицы создают включением, а не умножением списка: <code>[[0] * 3] * 2</code> повторяет ссылку на одну и ту же строку.</p>
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Матрица признаков</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">features.py</span><pre><code><span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"ATCCAGCT"</span>, <span class="tok-str">"GGGCAACT"</span>, <span class="tok-str">"TTGGAACT"</span>]</span>
+<span class="ln">X <span class="tok-op">=</span> [[s.count(b) <span class="tok-kw">for</span> b <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>] <span class="tok-kw">for</span> s <span class="tok-kw">in</span> seqs]</span>
+<span class="ln"><span class="tok-kw">for</span> v <span class="tok-kw">in</span> X:</span>
+<span class="ln">    <span class="tok-builtin">print</span>(v)</span>
+<span class="ln">col_g <span class="tok-op">=</span> [v[<span class="tok-num">2</span>] <span class="tok-kw">for</span> v <span class="tok-kw">in</span> X]</span>
+<span class="ln"><span class="tok-builtin">print</span>(col_g)  <span class="tok-out"># → [1, 3, 2]</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>[2, 3, 1, 2]
+[2, 2, 3, 1]
+[2, 1, 2, 3]
+[1, 3, 2]</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 2: внутреннее включение строит вектор одной последовательности, внешнее повторяет это для каждой.</li>
+            <li>Строка 5: из каждой строки берется элемент с индексом 2, число букв G: получается столбец признака.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "features.py", "code": ["seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"ATCCAGCT\"<\/span>, <span class=\"tok-str\">\"GGGCAACT\"<\/span>, <span class=\"tok-str\">\"TTGGAACT\"<\/span>]", "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "<span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X:", "    <span class=\"tok-builtin\">print<\/span>(v)", "col_g <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "<span class=\"tok-builtin\">print<\/span>(col_g)  "], "columns": ["v", "напечатано"], "steps": [{"line": 1, "html": "seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"ATCCAGCT\"<\/span>, <span class=\"tok-str\">\"GGGCAACT\"<\/span>, <span class=\"tok-str\">\"TTGGAACT\"<\/span>]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", true]], "out": "", "row": null, "note": "Строка 1: seqs = ['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"ATCCAGCT\"", true], ["b (во включении)", "\"A\"", true]], "out": "", "row": null, "note": "Строка 2: s (во включении) = \"ATCCAGCT\", b (во включении) = \"A\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"ATCCAGCT\"", false], ["b (во включении)", "\"C\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"C\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"ATCCAGCT\"", false], ["b (во включении)", "\"G\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"G\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"ATCCAGCT\"", false], ["b (во включении)", "\"T\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"T\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"ATCCAGCT\"", false]], "out": "", "row": null, "note": "Строка 2."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"GGGCAACT\"", true], ["b (во включении)", "\"A\"", true]], "out": "", "row": null, "note": "Строка 2: s (во включении) = \"GGGCAACT\", b (во включении) = \"A\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"GGGCAACT\"", false], ["b (во включении)", "\"C\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"C\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"GGGCAACT\"", false], ["b (во включении)", "\"G\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"G\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"GGGCAACT\"", false], ["b (во включении)", "\"T\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"T\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"GGGCAACT\"", false]], "out": "", "row": null, "note": "Строка 2."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"TTGGAACT\"", true], ["b (во включении)", "\"A\"", true]], "out": "", "row": null, "note": "Строка 2: s (во включении) = \"TTGGAACT\", b (во включении) = \"A\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"TTGGAACT\"", false], ["b (во включении)", "\"C\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"C\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"TTGGAACT\"", false], ["b (во включении)", "\"G\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"G\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"TTGGAACT\"", false], ["b (во включении)", "\"T\"", true]], "out": "", "row": null, "note": "Строка 2: b (во включении) = \"T\"."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["s (во включении)", "\"TTGGAACT\"", false]], "out": "", "row": null, "note": "Строка 2."}, {"line": 2, "html": "X <span class=\"tok-op\">=<\/span> [[s.count(b) <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tok-str\">\"ACGT\"<\/span>] <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", true]], "out": "", "row": null, "note": "Строка 2: X = [[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X:", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 3, 1, 2]", true]], "out": "", "row": null, "note": "Строка 3: v получает первое значение, v = [2, 3, 1, 2]."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(v)", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 3, 1, 2]", false]], "out": "[2, 3, 1, 2]\n", "row": ["[2, 3, 1, 2]", "[2, 3, 1, 2]"], "note": "Строка 4: печатается [2, 3, 1, 2]."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X:", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 2, 3, 1]", true]], "out": "[2, 3, 1, 2]\n", "row": null, "note": "Строка 3: v получает следующее значение, v = [2, 2, 3, 1]."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(v)", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 2, 3, 1]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n", "row": ["[2, 2, 3, 1]", "[2, 3, 1, 2]\n[2, 2, 3, 1]"], "note": "Строка 4: печатается [2, 2, 3, 1]."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X:", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 1, 2, 3]", true]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n", "row": null, "note": "Строка 3: v получает следующее значение, v = [2, 1, 2, 3]."}, {"line": 4, "html": "    <span class=\"tok-builtin\">print<\/span>(v)", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 1, 2, 3]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n", "row": ["[2, 1, 2, 3]", "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]"], "note": "Строка 4: печатается [2, 1, 2, 3]."}, {"line": 3, "html": "<span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X:", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 1, 2, 3]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n", "row": null, "note": "Строка 3: значений больше нет, цикл закончен; v остается [2, 1, 2, 3]."}, {"line": 5, "html": "col_g <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v (во включении)", "[2, 3, 1, 2]", true], ["v", "[2, 1, 2, 3]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n", "row": null, "note": "Строка 5: v (во включении) = [2, 3, 1, 2]."}, {"line": 5, "html": "col_g <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v (во включении)", "[2, 2, 3, 1]", true], ["v", "[2, 1, 2, 3]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n", "row": null, "note": "Строка 5: v (во включении) = [2, 2, 3, 1]."}, {"line": 5, "html": "col_g <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v (во включении)", "[2, 1, 2, 3]", true], ["v", "[2, 1, 2, 3]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n", "row": null, "note": "Строка 5: v (во включении) = [2, 1, 2, 3]."}, {"line": 5, "html": "col_g <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 1, 2, 3]", false], ["col_g", "[1, 3, 2]", true]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n", "row": null, "note": "Строка 5: col_g = [1, 3, 2]."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(col_g)  ", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 1, 2, 3]", false], ["col_g", "[1, 3, 2]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n[1, 3, 2]\n", "row": null, "note": "Строка 6: печатается [1, 3, 2]."}, {"line": 0, "html": "", "vars": [["seqs", "['ATCCAGCT', 'GGGCAACT', 'TTGGAACT']", false], ["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v", "[2, 1, 2, 3]", false], ["col_g", "[1, 3, 2]", false]], "out": "[2, 3, 1, 2]\n[2, 2, 3, 1]\n[2, 1, 2, 3]\n[1, 3, 2]\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake">
+          <p class="mistake-caption">Типичная ошибка: строки матрицы через <code>*</code></p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: две ссылки на одну строку</span><pre><code><span class="ln">bad <span class="tok-op">=</span> [[<span class="tok-num">0</span>] <span class="tok-op">*</span> <span class="tok-num">3</span>] <span class="tok-op">*</span> <span class="tok-num">2</span></span>
+<span class="ln">bad[<span class="tok-num">0</span>][<span class="tok-num">0</span>] <span class="tok-op">=</span> <span class="tok-num">5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(bad)  <span class="tok-out"># → [[5, 0, 0], [5, 0, 0]]</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>[[5, 0, 0], [5, 0, 0]]</pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">good <span class="tok-op">=</span> [[<span class="tok-num">0</span>] <span class="tok-op">*</span> <span class="tok-num">3</span> <span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">2</span>)]</span>
+<span class="ln">good[<span class="tok-num">0</span>][<span class="tok-num">0</span>] <span class="tok-op">=</span> <span class="tok-num">5</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(good)  <span class="tok-out"># → [[5, 0, 0], [0, 0, 0]]</span></span></code></pre></div>
+          <div class="output-block"><span class="output-label">Вывод</span><pre>[[5, 0, 0], [0, 0, 0]]</pre></div>
+          <p><code>[0] * 3</code> дает три нуля: числа неизменяемы, и повтор ссылки на ноль безопасен. Но <code>* 2</code> над списком <code>[[0, 0, 0]]</code> не копирует строку, а дважды кладет ссылку на один и тот же список (<a href="t5_02.html">страница 02</a>). Включение строит каждую строку заново.</p>
+        </div>
+        <article class="example th-full">
+          <h3>Сумма двух столбцов</h3>
+          <p>Предскажите вывод, затем откройте его.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">gc_column.py</span><pre><code><span class="ln">X <span class="tok-op">=</span> [[<span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">1</span>, <span class="tok-num">2</span>],</span>
+<span class="ln">     [<span class="tok-num">2</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">1</span>],</span>
+<span class="ln">     [<span class="tok-num">2</span>, <span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>]]</span>
+<span class="ln">gc <span class="tok-op">=</span> [v[<span class="tok-num">1</span>] <span class="tok-op">+</span> v[<span class="tok-num">2</span>] <span class="tok-kw">for</span> v <span class="tok-kw">in</span> X]</span>
+<span class="ln"><span class="tok-builtin">print</span>(gc)                 <span class="tok-out"># → [4, 5, 3]</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sum</span>(gc) <span class="tok-op">/</span> <span class="tok-builtin">len</span>(gc))  <span class="tok-out"># → 4.0</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>[4, 5, 3]
+4.0</pre></div>
+          </div>
+          <div class="analysis"><ol>
+            <li>Строка 4: для каждой строки складываются столбцы C и G: число букв G и C в последовательности.</li>
+            <li>Строка 6: среднее по всем последовательностям; деление <code>/</code> всегда дает вещественное число (<code>float</code>), даже если делится нацело.</li>
+          </ol></div>
+          <script type="application/json" class="steps-data">{"file": "gc_column.py", "code": ["X <span class=\"tok-op\">=<\/span> [[<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>],", "     [<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>],", "     [<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>]]", "gc <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">+<\/span> v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "<span class=\"tok-builtin\">print<\/span>(gc)                 ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sum<\/span>(gc) <span class=\"tok-op\">/<\/span> <span class=\"tok-builtin\">len<\/span>(gc))  "], "columns": [], "steps": [{"line": 1, "html": "X <span class=\"tok-op\">=<\/span> [[<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>],", "vars": [], "out": "", "row": null, "note": "Строка 1."}, {"line": 2, "html": "     [<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>],", "vars": [], "out": "", "row": null, "note": "Строка 2."}, {"line": 3, "html": "     [<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>]]", "vars": [], "out": "", "row": null, "note": "Строка 3."}, {"line": 1, "html": "X <span class=\"tok-op\">=<\/span> [[<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>],", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", true]], "out": "", "row": null, "note": "Строка 1: X = [[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]."}, {"line": 4, "html": "gc <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">+<\/span> v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v (во включении)", "[2, 3, 1, 2]", true]], "out": "", "row": null, "note": "Строка 4: v (во включении) = [2, 3, 1, 2]."}, {"line": 4, "html": "gc <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">+<\/span> v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v (во включении)", "[2, 2, 3, 1]", true]], "out": "", "row": null, "note": "Строка 4: v (во включении) = [2, 2, 3, 1]."}, {"line": 4, "html": "gc <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">+<\/span> v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["v (во включении)", "[2, 1, 2, 3]", true]], "out": "", "row": null, "note": "Строка 4: v (во включении) = [2, 1, 2, 3]."}, {"line": 4, "html": "gc <span class=\"tok-op\">=<\/span> [v[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">+<\/span> v[<span class=\"tok-num\">2<\/span>] <span class=\"tok-kw\">for<\/span> v <span class=\"tok-kw\">in<\/span> X]", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["gc", "[4, 5, 3]", true]], "out": "", "row": null, "note": "Строка 4: gc = [4, 5, 3]."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(gc)                 ", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["gc", "[4, 5, 3]", false]], "out": "[4, 5, 3]\n", "row": null, "note": "Строка 5: печатается [4, 5, 3]."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">12<\/span><\/span> <span class=\"tok-op\">/<\/span> <span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>)", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["gc", "[4, 5, 3]", false]], "out": "[4, 5, 3]\n4.0\n", "row": null, "note": "Строка 6: печатается 4.0."}, {"line": 0, "html": "", "vars": [["X", "[[2, 3, 1, 2], [2, 2, 3, 1], [2, 1, 2, 3]]", false], ["gc", "[4, 5, 3]", false]], "out": "[4, 5, 3]\n4.0\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените в строке 2 строку <code>"ACGT"</code> на <code>"GC"</code> и запустите: какие признаки остались?</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">try_vector.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATTACAGC"</span></span>
+<span class="ln">v <span class="tok-op">=</span> [seq.count(b) <span class="tok-kw">for</span> b <span class="tok-kw">in</span> <span class="tok-str">"ACGT"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(v, <span class="tok-builtin">sum</span>(v) <span class="tok-op">==</span> <span class="tok-builtin">len</span>(seq))  <span class="tok-out"># → [3, 2, 2, 2] True</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>[3, 2, 2, 2] True</pre></div>
+          </div>
+        </div>
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t5_08_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t5_08_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t5_08_1_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+          <h3>Упражнение 5.8.1. Вектор признаков</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Опишите последовательность вектором из четырех признаков: числа букв A, C, G и T, именно в таком порядке. Соберите вектор списковым включением и выведите его числа через пробел.</p></div>
+          <h4>Входные данные</h4>
+          <p>Одна строка: последовательность из букв A, C, G, T длиной от 1 до 100.</p>
+          <h4>Выходные данные</h4>
+          <p>Четыре целых числа через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>GATTACA</pre></td><td><pre>3 1 1 2</pre></td></tr>
+                <tr><td><pre>CCCC</pre></td><td><pre>0 4 0 0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_08_1_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+          <h3>Упражнение 5.8.1. Матрица из FASTA</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Разберите записи FASTA и для каждой выведите строку матрицы признаков: идентификатор без знака <code>&gt;</code> и вектор из чисел букв A, C, G, T. Векторы собирайте списковым включением.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p><code>n</code> строк по порядку записей: идентификатор и четыре числа через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>2
+&gt;seq_1
+GATTACA
+&gt;seq_2
+CCGG</pre></td><td><pre>seq_1 3 1 1 2
+seq_2 0 2 2 0</pre></td></tr>
+                <tr><td><pre>1
+&gt;x
+A</pre></td><td><pre>x 1 0 0 0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_08_1_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+          <h3>Упражнение 5.8.1. Ближе всех к среднему</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T) и найдите средний вектор: среднее арифметическое каждого столбца. Расстоянием между двумя векторами будем считать сумму модулей разностей их чисел (модуль числа дает функция <code>abs()</code>): у <code>[1, 2, 0, 1]</code> и <code>[2, 2, 1, 1]</code> расстояние <span class="formula">1 + 0 + 1 + 0 = 2</span>. Выведите средний вектор, округлив каждое число функцией <code>round()</code> до двух цифр после точки, и идентификатор записи, ближайшей к среднему вектору; если таких несколько, первой по порядку. Сравнивайте расстояния до неокругленного среднего.</p></div>
+          <details class="task-hint"><summary>Подсказка</summary><p>Столбцы матрицы дает <code>zip(*X)</code>. Чтобы не сравнивать дробные расстояния, умножьте все на <code>n</code>: разность <span class="formula">n · x − S</span>, где <span class="formula">S</span> сумма столбца, вместо <span class="formula">x − S / n</span> меняет расстояния в <code>n</code> раз, но не меняет их порядок.</p></details>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>В первой строке четыре числа среднего вектора через пробел в том виде, в каком их печатает Python после <code>round(x, 2)</code> (например, <code>1.33</code> или <code>1.0</code>); во второй идентификатор.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>3
+&gt;s1
+ACGT
+&gt;s2
+AAGG
+&gt;s3
+CCCT</pre></td><td><pre>1.0 1.33 1.0 0.67
+s1</pre></td></tr>
+                <tr><td><pre>1
+&gt;only
+GATTACA</pre></td><td><pre>3.0 1.0 1.0 2.0
+only</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_08_1_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t5_08_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t5_08_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t5_08_star_advanced.py">Продвинутый</button></div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+          <h3>Задача со звездочкой 5.8. Суммы признаков</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T) и выведите сумму каждого столбца: сколько всего букв A, C, G, T во всех последовательностях.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Четыре целых числа через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>2
+&gt;s1
+GATTACA
+&gt;s2
+CCGG</pre></td><td><pre>3 3 3 2</pre></td></tr>
+                <tr><td><pre>1
+&gt;x
+ACGT</pre></td><td><pre>1 1 1 1</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_08_star_basic.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+          <h3>Задача со звездочкой 5.8. Доли букв</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Для каждой записи FASTA выведите идентификатор и доли букв A, C, G, T: число буквы, деленное на длину последовательности, округленное функцией <code>round()</code> до двух цифр после точки.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p><code>n</code> строк: идентификатор и четыре доли через пробел в том виде, в каком их печатает Python после <code>round(x, 2)</code>.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>2
+&gt;s1
+GATTACA
+&gt;s2
+CCGG</pre></td><td><pre>s1 0.43 0.14 0.14 0.29
+s2 0.0 0.5 0.5 0.0</pre></td></tr>
+                <tr><td><pre>1
+&gt;x
+ACGT</pre></td><td><pre>x 0.25 0.25 0.25 0.25</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_08_star_medium.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+          <h3>Задача со звездочкой 5.8. Ближайшая пара</h3>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T). Расстояние между векторами&nbsp;— сумма модулей разностей их чисел, как в упражнении 5.8.1 продвинутого уровня. Найдите две разные записи с наименьшим расстоянием. Если таких пар несколько, выберите первую: с наименьшим номером первой записи, а при равном с наименьшим номером второй.</p></div>
+          <h4>Входные данные</h4>
+          <p>В первой строке число записей <code>n</code> от 2 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках, как в упражнении 5.8.1 среднего уровня: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+          <h4>Выходные данные</h4>
+          <p>Идентификаторы пары в порядке записей и расстояние через пробел.</p>
+          <div class="table-wrap">
+            <table class="data tests"><caption>Примеры</caption>
+              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
+              <tbody>
+                <tr><td><pre>3
+&gt;s1
+ACGT
+&gt;s2
+AAGG
+&gt;s3
+ACGG</pre></td><td><pre>s1 s3 2</pre></td></tr>
+                <tr><td><pre>2
+&gt;a
+AAAA
+&gt;b
+CCCC</pre></td><td><pre>a b 8</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="checker" data-file="t5_08_star_advanced.py">
+            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+          </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_5</code> создайте папку <code>t5_08</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t5_08_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t5_08_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t5_08_1_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t5_08_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t5_08_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t5_08_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t5_08</code> в свой репозиторий внутрь папки <code>projects_5</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_5/
+    └── t5_08/
+        └── t5_08_1_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_5/
+    └── t5_08/
+        └── t5_08_1_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_5/
+    └── t5_08/
+        └── t5_08_1_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t5_07.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">07 Списковые включения</span></a>
+        <a class="pcard pcard-next" href="t5_09.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">09 Профиль и консенсус</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
