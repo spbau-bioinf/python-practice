@@ -180,8 +180,44 @@
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
           <h3>Упражнение 4.5.1. Транзиции, трансверсии и N</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Две последовательности одной длины выровнены: буква с индексом i первой строки стоит под буквой с тем же индексом второй. Замена пурина на пурин (A и G) или пиримидина на пиримидин (C и T) называется транзицией, остальные замены трансверсиями. В практике 3 (упражнение <a href="../practice_3/t3_02.html#ex-2">3.2.2 «Транзиция»</a>) так проверяли одну пару букв. Буквой N отмечена позиция, которую не удалось прочитать: если N стоит хотя бы в одной из строк, позиция пропускается. Выведите отношение числа транзиций к числу трансверсий, округленное функцией <code>round()</code> до двух знаков. Если трансверсий нет, выведите NA.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Счетчиков два, по одному на группу замен. Деление только после цикла, и только если делитель не ноль.</p></details>
+          <p class="definition"><span class="term">Пурины</span>: аденин A и гуанин G.</p>
+          <p class="definition"><span class="term">Пиримидины</span>: цитозин C и тимин T.</p>
+          <p class="definition"><span class="term">Транзиция</span>: замена пурина на пурин (A↔G) или пиримидина на пиримидин (C↔T).</p>
+          <p class="definition"><span class="term">Трансверсия</span>: замена пурина на пиримидин или наоборот (A/G↔C/T).</p>
+          <div class="table-wrap">
+            <table class="data">
+              <caption>Типы замен</caption>
+              <thead><tr><th>Замена</th><th>Примеры</th><th>Название</th></tr></thead>
+              <tbody>
+                <tr><td>пурин на пурин или пиримидин на пиримидин</td><td>A↔G, C↔T</td><td>транзиция</td></tr>
+                <tr><td>пурин на пиримидин или наоборот</td><td>A↔C, A↔T, G↔C, G↔T</td><td>трансверсия</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="todo-box"><p class="todo-title">Что нужно сделать</p>
+            <p><strong>Дано.</strong> Две строки одной длины из букв A, C, G, T, N. Буква N отмечает позицию, которую не удалось прочитать.</p>
+            <p><strong>Найти.</strong> Пройдите по позициям циклом <code>for</code> и сравните строки. Если буквы совпадают, позиция не считается заменой. Если различаются, отнесите замену к транзициям или трансверсиям. Посчитайте число транзиций и число трансверсий.</p>
+            <p><strong>Ответ.</strong> Отношение числа транзиций к числу трансверсий, округленное функцией <code>round()</code> до двух знаков. Если трансверсий нет, выведите <code>NA</code>.</p>
+            <p><strong>Границы.</strong> Позиции с N не считаются ни транзицией, ни трансверсией. Если замен нет, трансверсий тоже нет, ответ <code>NA</code>.</p>
+          </div>
+          <p><strong>Разбор примера.</strong> В первом примере позиции такие:</p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Позиция</th><th>Первая строка</th><th>Вторая строка</th><th>Замена</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>A</td><td>G</td><td>транзиция</td></tr>
+                <tr><td>2</td><td>G</td><td>G</td><td>нет</td></tr>
+                <tr><td>3</td><td>C</td><td>T</td><td>транзиция</td></tr>
+                <tr><td>4</td><td>T</td><td>T</td><td>нет</td></tr>
+                <tr><td>5</td><td>A</td><td>C</td><td>трансверсия</td></tr>
+                <tr><td>6</td><td>G</td><td>A</td><td>транзиция</td></tr>
+                <tr><td>7</td><td>N</td><td>N</td><td>пропуск</td></tr>
+                <tr><td>8</td><td>T</td><td>C</td><td>транзиция</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Транзиций 4, трансверсий 1, отношение 4 / 1 = 4.0. Ответ 4.0. В практике 3 (упражнение <a href="../practice_3/t3_02.html#ex-2">3.2.2 «Транзиция»</a>) так проверяли одну пару букв.</p>
+          <details class="task-hint"><summary>Подсказка</summary><p>Счетчиков два, по одному на группу замен. Позиции с N пропускайте до сравнения. Деление только после цикла, и только если делитель не ноль.</p></details>
           <h4>Входные данные</h4>
           <p>Две строки одной длины от 1 до 100 из букв A, C, G, T, N.</p>
           <h4>Выходные данные</h4>

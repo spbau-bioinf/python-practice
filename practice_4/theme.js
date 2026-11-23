@@ -211,6 +211,7 @@
     root.setAttribute("data-theory", theoryOf(s));
     root.setAttribute("data-os", osOf(s));
     if (s.view === "tasks") root.setAttribute("data-view", "tasks"); else root.removeAttribute("data-view");
+    root.classList.toggle("hide-stars", s.stars === false);
     root.classList.toggle("show-ruler", pep8Of(s) === "on");
     root.classList.toggle("wrap-code", s.wrap === "on");
     root.setAttribute("data-mistake", s.mv === "side" ? "side" : "diff");
@@ -271,41 +272,84 @@
   }
 
   /* ---------- прогресс всей практики ---------- */
-  var progFill = null, progText = null, progSub = null;
+  var progFill = null, progStarFill = null, progText = null, progSub = null;
   var TRACK_RU = { basic: "базовый", medium: "средний", advanced: "продвинутый" };
+  function starsOn() { return settings.stars !== false; }
   function practiceProgress() {
     var m = window.PRACTICE_MANIFEST, p = read(PROGRESS_KEY), solved = (p.tasks || {});
     if (!m) return null;
     /* Засчитываются упражнения своего уровня (версия 22). Выбран уровень: считаются
        варианты этого уровня; не выбран: упражнение решено, если решен любой вариант. */
+    var done, total;
     if (settings.track && m.graded && m.graded[settings.track]) {
       var g = m.graded[settings.track];
-      return { done: g.filter(function (t) { return solved[t.file]; }).length, total: g.length };
+      done = g.filter(function (t) { return solved[t.file]; }).length;
+      total = g.length;
+    } else {
+      var groups = {};
+      (m.exercises || []).forEach(function (t) {
+        var key = t.page + "#" + (t.group || t.file);
+        (groups[key] = groups[key] || []).push(t);
+      });
+      var keys = Object.keys(groups);
+      done = keys.filter(function (k) { return groups[k].some(function (t) { return solved[t.file]; }); }).length;
+      total = keys.length;
     }
-    var groups = {};
-    (m.exercises || []).forEach(function (t) {
-      var key = t.page + "#" + (t.group || t.file);
-      (groups[key] = groups[key] || []).push(t);
+    /* звездочки считаются по задачам страницы, а не по вариантам: 8 задач на практику */
+    var starGroups = {};
+    (m.stars || []).forEach(function (s) {
+      var key = s.page + "#" + (s.group || s.id);
+      (starGroups[key] = starGroups[key] || []).push(s);
     });
-    var keys = Object.keys(groups), ed = 0;
-    keys.forEach(function (k) { if (groups[k].some(function (t) { return solved[t.file]; })) ed++; });
-    return { done: ed, total: keys.length };
+    var starTotal = Object.keys(starGroups).length, starDone = 0;
+    Object.keys(starGroups).forEach(function (k) {
+      var arr = starGroups[k];
+      var hit = settings.track ? arr.some(function (s) { return s.variant === settings.track && solved[s.file]; })
+        : arr.some(function (s) { return solved[s.file]; });
+      if (hit) starDone++;
+    });
+    return { done: done, total: total, starDone: starDone, starTotal: starTotal };
   }
   function refreshProgress() {
     if (!progText) return;
     var pr = practiceProgress();
     if (!pr) { progText.parentNode.parentNode.hidden = true; return; }
-    progText.textContent = (settings.track ? "Уровень " + TRACK_RU[settings.track] + ": " : "Упражнения: ") +
-      pr.done + " из " + pr.total;
-    progSub.textContent = settings.track ? "" : "уровень не выбран";
-    progSub.hidden = !!settings.track;
-    progFill.style.width = pr.total ? Math.round(100 * pr.done / pr.total) + "%" : "0";
-    progFill.parentNode.setAttribute("aria-valuenow", String(pr.done));
-    progFill.parentNode.setAttribute("aria-valuemax", String(pr.total));
+    var on = starsOn(), total = pr.total + (on ? pr.starTotal : 0);
+    var green = total ? pr.done / total * 100 : 0;
+    var amber = on && total ? pr.starDone / total * 100 : 0;
+    progText.textContent = on ? pr.done + " + " + pr.starDone + "★ / " + total : pr.done + " / " + pr.total;
+    progSub.textContent = "";
+    progSub.hidden = true;
+    progFill.style.width = green + "%";
+    if (progStarFill) { progStarFill.style.width = amber + "%"; progStarFill.hidden = !on; }
+    var track = progFill.parentNode;
+    track.setAttribute("aria-valuenow", String(on ? pr.done + pr.starDone : pr.done));
+    track.setAttribute("aria-valuemax", String(total));
+    refreshLevelCounts();
+  }
+  function refreshLevelCounts() {
+    var m = window.PRACTICE_MANIFEST, solved = (read(PROGRESS_KEY).tasks || {});
+    if (!m || !m.graded) return;
+    ["basic", "medium", "advanced"].forEach(function (level) {
+      var files = m.graded[level] || [];
+      var done = files.filter(function (t) { return solved[t.file || t]; }).length;
+      Array.prototype.forEach.call(document.querySelectorAll('.menu-levels li[data-level="' + level + '"] .lvl-count'), function (c) {
+        c.textContent = done + " / " + files.length;
+      });
+    });
+  }
+  function refreshStar() {
+    var b = document.querySelector(".tb-star-btn");
+    if (!b) return;
+    var on = starsOn();
+    b.setAttribute("aria-pressed", String(on));
+    tip(b, on ? "Задачи со звёздочкой показаны и учитываются в прогрессе. Нажмите, чтобы скрыть"
+      : "Задачи со звёздочкой скрыты. Нажмите, чтобы показать и учитывать в прогрессе");
   }
 
   /* версия 46: иконки панели и меню (звук, прогресс); подсказки при наведении дает CSS по data-tip */
   var SVG = {"spk": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M4 9.5h3.5L12 5.5v13l-4.5-4H4Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "mute": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M4 9.5h3.5L12 5.5v13l-4.5-4H4Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M16 9.5l5 5M21 9.5l-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "dl": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "ul": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 15V4M7.5 8.5 12 4l4.5 4.5M5 19.5h14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "trash": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 7h14M10 11v6M14 11v6M6.5 7l1 12.5h9L17.5 7M9.5 7V4.5h5V7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"};
+  SVG.star = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.4l2.95 6.2 6.75.92-4.9 4.7 1.22 6.72L12 17.7l-6.02 3.24 1.22-6.72-4.9-4.7 6.75-.92z"/></svg>';
   function tip(elm, text) { elm.setAttribute("data-tip", text); elm.setAttribute("aria-label", text); elm.removeAttribute("title"); }
 
   /* ---------- кнопка темы ---------- */
@@ -404,7 +448,10 @@
     groups.forEach(function (g) {
       var cur = g.key === "theory" ? theoryOf(settings) : g.key === "os" ? osOf(settings) : g.key === "pep8" ? pep8Of(settings) :
         (settings[g.key] === undefined ? g.def : settings[g.key]);
-      Array.prototype.forEach.call(g.seg.children, function (b) { b.setAttribute("aria-pressed", String(b._value === cur)); });
+      Array.prototype.forEach.call(g.seg.children, function (b) {
+        if (b._value === undefined) return;
+        b.setAttribute("aria-pressed", String(b._value === cur));
+      });
       if (g.key === "sound") g.row.hidden = settings.profile !== "game";
     });
   }
@@ -436,7 +483,7 @@
     settings.track = b.getAttribute("data-track");
     changed();
   });
-  function refresh() { refreshGroups(); refreshThemeBtn(); refreshSound(); refreshProgress(); refreshTrack(); refreshLevel(); refreshPalette(); refreshExNav(); }
+  function refresh() { refreshGroups(); refreshThemeBtn(); refreshSound(); refreshProgress(); refreshTrack(); refreshLevel(); refreshPalette(); refreshExNav(); refreshStar(); }
 
   function stamp() {
     var d = new Date(), p = function (n) { return (n < 10 ? "0" : "") + n; };
@@ -709,6 +756,16 @@
 
   /* ---------- версия 65: режим «Только задачи» ---------- */
   var exNav = null;
+  function nextCode(code) {
+    var parts = (code || "").split(".");
+    if (parts.length < 2) return code;
+    parts[parts.length - 1] = String(parseInt(parts[parts.length - 1], 10) + 1);
+    return parts.join(".");
+  }
+  function starName(title) {
+    return (title || "").replace(/^Задача со звездочкой\s+/, "").replace(/^\d+(?:\.\d+)+\.\s*/, "");
+  }
+  var STAR_SVG = '<svg class="ex-star-sup" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.4l2.95 6.2 6.75.92-4.9 4.7 1.22 6.72L12 17.7l-6.02 3.24 1.22-6.72-4.9-4.7 6.75-.92z"/></svg>';
   function pageFile() { var p = window.location.pathname; return p.slice(p.lastIndexOf("/") + 1) || "index.html"; }
   function tasksMode() {
     var main = document.querySelector("main");
@@ -764,6 +821,28 @@
       a.appendChild(el("span", "ex-name"));
       a.appendChild(el("span", "st"));
       li.appendChild(a); ol.appendChild(li);
+    });
+    /* звездочки идут сразу после упражнений своей страницы: 4.1.1, 4.1.2★, 4.2.1… */
+    var starTrack = settings.track || "basic", starByPage = {};
+    (m.stars || []).filter(function (s) { return s.variant === starTrack; }).forEach(function (s) { starByPage[s.page] = s; });
+    var mandatoryItems = Array.prototype.slice.call(ol.querySelectorAll(".ex-item"));
+    (m.pages || []).forEach(function (p) {
+      var s = starByPage[p.href];
+      if (!s) return;
+      var pageItems = mandatoryItems.filter(function (a) { return a._g && a._g.page === p.href; });
+      if (!pageItems.length) return;
+      var last = pageItems[pageItems.length - 1], code = nextCode(last._g.code);
+      var li = el("li"), a = el("a", "ex-item ex-item-star");
+      a.href = (s.page === here ? "" : s.page) + "#" + (s.group || "ex-star");
+      a.title = s.title;
+      a.innerHTML = '<span class="ex-num">' + code + STAR_SVG + '</span><span class="ex-name">' + starName(s.title) + '</span><span class="st"></span>';
+      a._g = { page: s.page, id: s.group || "ex-star", code: code, titles: {}, files: {} };
+      (m.stars || []).filter(function (x) { return x.page === s.page && (x.group || x.id) === (s.group || s.id); }).forEach(function (x) {
+        a._g.titles[x.variant] = starName(x.title);
+        a._g.files[x.variant] = x.file;
+      });
+      li.appendChild(a);
+      last.parentNode.parentNode.insertBefore(li, last.parentNode.nextSibling);
     });
     exNav.appendChild(ol);
     side.insertBefore(exNav, side.firstChild);
@@ -829,7 +908,16 @@
     pop.appendChild(segment("Теория", "theory", THEORY_OPTS, theoryDefault()));
     pop.appendChild(segment("Система", "os", OS_OPTS, detectOs()));
     pop.appendChild(paletteRow(pop));
-    pop.appendChild(segment("Показ", "view", [["all", "Все материалы"], ["tasks", "Только задачи"]], "all"));
+    var show = segment("Показ", "view", [["all", "Все материалы"], ["tasks", "Только задачи"]], "all");
+    pop.appendChild(show);
+    /* звездочки: отдельная ячейка справа от «Показ», без рамки и фона */
+    var starCell = el("span", "tb-star-cell");
+    var starBtn = el("button", "tb-star-btn");
+    starBtn.type = "button";
+    starBtn.innerHTML = SVG.star;
+    starCell.appendChild(starBtn);
+    show.querySelector(".seg").appendChild(starCell);
+    starBtn.addEventListener("click", function () { settings.stars = !starsOn(); changed(); });
     pop.appendChild(segment("Ошибки", "mv", [["diff", "Правка"], ["side", "До и после"]], "diff"));
     pop.appendChild(segment("Граница PEP\u00a08", "pep8", [["off", "Выкл"], ["on", "79 символов"]], pep8Default()));
     pop.appendChild(segment("Длинные строки", "wrap", [["off", "Прокрутка"], ["on", "Перенос"]], "off"));
@@ -936,6 +1024,37 @@
     });
   }
 
+  var PRACTICE_NAMES = {1: "Введение в Python", 2: "Строки и текстовые данные", 3: "Логика и ветвления",
+    4: "Циклы", 5: "Списки и кортежи"};
+  function practiceBrand() {
+    var title = document.querySelector(".sidebar-title");
+    var text = title ? title.textContent.replace(/\s+/g, " ").trim() : "Python";
+    var path = window.location.pathname;
+    var n = (/practice_(\d+)/.exec(path) || [])[1] || (/Практика\s+(\d+)/.exec(text) || [])[1];
+    var wrap = el("div", "tb-brand tb-brand-nav");
+    if (!n) { wrap.textContent = text; return wrap; }
+    var items = "";
+    for (var k = 1; k <= 5; k++) {
+      items += '<a class="tb-practice-item' + (String(k) === String(n) ? " is-current" : "") + '" href="../practice_' + k + '/t' + k + '_00.html"' +
+        (String(k) === String(n) ? ' aria-current="page"' : '') + '><span class="tb-practice-num">' + k + '</span><span><b>' +
+        PRACTICE_NAMES[k] + '</b><small>Практика ' + k + (String(k) === String(n) ? " · текущая" : "") + '</small></span></a>';
+    }
+    wrap.innerHTML = '<span class="tb-brand-name">Python ·</span>' +
+      '<button class="tb-practice-trigger" type="button" aria-haspopup="true" aria-expanded="false">Практика ' + n +
+      ' <span class="tb-caret" aria-hidden="true">▾</span></button>' +
+      '<div class="tb-practice-pop" hidden><p class="tb-practice-pop-title">Перейти к практике</p>' + items + '</div>';
+    var trigger = wrap.querySelector(".tb-practice-trigger"), pop = wrap.querySelector(".tb-practice-pop");
+    function close() { pop.hidden = true; trigger.setAttribute("aria-expanded", "false"); }
+    trigger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      pop.hidden = !pop.hidden;
+      trigger.setAttribute("aria-expanded", String(!pop.hidden));
+    });
+    document.addEventListener("click", function (e) { if (!pop.hidden && !wrap.contains(e.target)) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    return wrap;
+  }
+
   function buildTopbar() {
     if (document.querySelector(".topbar")) return;
     var bar = el("header", "topbar");
@@ -984,19 +1103,16 @@
       tip(hl, "Все практики курса");
       bar.appendChild(hl);
     }
-    var brand = el("a", "tb-brand");
-    brand.href = (document.querySelector('.menu a[href$=".html"]') || { getAttribute: function () { return "#"; } }).getAttribute("href");
-    var title = document.querySelector(".sidebar-title");
-    brand.textContent = title ? title.textContent.replace(/\s+/g, " ").trim() : "Python";
-    bar.appendChild(brand);
+    bar.appendChild(practiceBrand());
 
     var prog = el("div", "tb-progress");
-    prog.appendChild(el("span", "tb-progress-label", "Практика"));
     var track = el("span", "tb-track");
     track.setAttribute("role", "progressbar");
     track.setAttribute("aria-valuemin", "0");
     progFill = el("span", "tb-fill");
+    progStarFill = el("span", "tb-star-fill");
     track.appendChild(progFill);
+    track.appendChild(progStarFill);
     prog.appendChild(track);
     var txt = el("span", "tb-progress-text");
     progText = el("b", "");
@@ -1096,9 +1212,51 @@
     document.body.insertBefore(a, document.body.firstChild);
   }
 
+  /* Все материалы: номер звездочки продолжает нумерацию страницы: 4.7.1, затем 4.7.2. */
+  function normalizeAncStars() {
+    Array.prototype.forEach.call(document.querySelectorAll(".anc-star"), function (a) {
+      if (a.dataset.starNum) return;
+      var num = a.querySelector(".anc-ex-num");
+      if (!num) return;
+      var li = a.closest("li"), prev = li ? li.previousElementSibling : null;
+      while (prev && !prev.querySelector(".anc-ex-num")) prev = prev.previousElementSibling;
+      var code = prev ? prev.querySelector(".anc-ex-num").textContent.trim() : num.textContent.trim();
+      num.textContent = nextCode(code);
+      a.classList.add("is-star");
+      a.dataset.starNum = "1";
+    });
+  }
+  /* уровень — под пунктами меню, отделенной линией; после него примечание о зачете */
+  function sidebarNote() {
+    var nav = document.querySelector(".sidebar nav");
+    if (!nav || nav.querySelector(".side-star-note")) return;
+    var head = Array.prototype.filter.call(nav.querySelectorAll(".menu-head"), function (p) {
+      return p.textContent.replace(/\s+/g, " ").trim() === "Мой уровень";
+    })[0];
+    var levels = nav.querySelector(".menu-levels");
+    if (head) head.parentNode.insertBefore(el("hr", "side-rule"), head);
+    if (levels) levels.insertAdjacentHTML("afterend",
+      '<hr class="side-rule side-rule-note"><p class="side-star-note">Для зачёта: только обязательные упражнения; задачи со звёздочкой не входят.</p>');
+  }
+  /* ширина полосы и ее положение — по текстовому блоку страницы */
+  function syncProgressWidth() {
+    var p = document.querySelector(".topbar .tb-progress"), main = document.querySelector("main"), bar = document.querySelector(".topbar");
+    if (!p || !main || !bar) return;
+    var mr = main.getBoundingClientRect(), br = bar.getBoundingClientRect();
+    var mc = getComputedStyle(main), bc = getComputedStyle(bar);
+    var left = mr.left + parseFloat(mc.paddingLeft || 0);
+    var width = mr.width - parseFloat(mc.paddingLeft || 0) - parseFloat(mc.paddingRight || 0);
+    p.style.setProperty("--progress-w", Math.round(width) + "px");
+    p.style.setProperty("--progress-left", Math.round(left + width / 2 - br.left) + "px");
+    p.style.setProperty("--progress-offset", Math.round(left - br.left - parseFloat(bc.paddingLeft || 0)) + "px");
+  }
+
   function init() {
     siteStub();
     buildTopbar();
+    normalizeAncStars();
+    sidebarNote();
+    syncProgressWidth();
     skipLink();
     levelNames();
     theorySwitch();
@@ -1106,6 +1264,9 @@
     osSwitches();
     refresh();
     document.addEventListener("click", carrySettings, true);
+    window.addEventListener("resize", syncProgressWidth);
+    window.addEventListener("load", syncProgressWidth);
+    window.setTimeout(syncProgressWidth, 80);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();

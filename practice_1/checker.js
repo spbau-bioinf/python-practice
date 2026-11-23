@@ -274,8 +274,15 @@
         "проверка запускает программу с другими данными и ждет, что программа прочитает их через input().");
     } else if (usesInput) {
       var r0 = results.filter(function (r) { return !r.err && r.reads > 0 && r.reads < r.lines; })[0];
-      if (r0) hints.push("Программа читает строк: " + r0.reads + ", а во входных данных их " + r0.lines +
-        ". Каждая строка входных данных читается отдельным input().");
+      if (r0) {
+        if (spec.read_all) {
+          hints.push("Программа прочитала строк: " + r0.reads + " из " + r0.lines +
+            ". В этой задаче нужно прочитать все строки ввода до конца: не завершайте программу досрочно.");
+        } else {
+          hints.push("Программа читает строк: " + r0.reads + ", а во входных данных их " + r0.lines +
+            ". Каждая строка входных данных читается отдельным input().");
+        }
+      }
     }
     var outs = results.map(function (r) { return normalize(r.out).join("\n"); });
     var exps = all.filter(function (t) { return !t.hidden; }).map(function (t) { return normalize(t.output).join("\n"); });
@@ -874,7 +881,11 @@
       hints.forEach(function (h) { ul.appendChild(hintEl("li", "", h)); });
       hbox.appendChild(ul);
       box.appendChild(hbox);
-      var reqFailed = (spec.require || []).some(function (r) { return !new RegExp(r.re).test(result.nc || ""); }) ||
+      var readAllFailed = !!spec.read_all && results.some(function (r) {
+        return !r.err && r.lines > 0 && r.reads < r.lines;
+      });
+      var reqFailed = readAllFailed ||
+        (spec.require || []).some(function (r) { return !new RegExp(r.re).test(result.nc || ""); }) ||
         (spec.forbid || []).some(function (r) { return new RegExp(r.re).test(result.nc || ""); });
       if (passed === total && reqFailed) {
         /* результат верный, но не использован прием, ради которого дана задача:
@@ -941,6 +952,23 @@
     });
     var editor = makeEditor(area, "checker-editor");
     block.appendChild(editor);
+    /* сохранение .py: только стрелка в правом верхнем углу редактора */
+    var saveBtn = el("button", "tb-save-code");
+    saveBtn.type = "button";
+    saveBtn.title = "Сохранить как " + file;
+    saveBtn.setAttribute("aria-label", "Сохранить как " + file);
+    saveBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>';
+    saveBtn.addEventListener("click", function () {
+      var blob = new Blob([area.value], {type: "text/x-python"});
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = file;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+    editor.appendChild(saveBtn);
 
     /* «Запустить» без тестов (версия 62): программа выполняется на данных из поля «Ввод»,
        прогресс и игровой режим не меняются */

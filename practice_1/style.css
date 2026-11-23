@@ -2926,3 +2926,105 @@ script.steps-data { display: none; }
 .arc-pad { display: none; justify-content: space-between; gap: 0.5rem; }
 .arc-pad button { min-width: 64px; min-height: 48px; font-size: 1.4rem; border: 3px solid #FFF8E6; background: #2A2E5C; color: #FFF8E6; }
 @media (pointer: coarse) { .arc-pad { display: flex; } }
+
+/* ---------- Версия 90: навигация по практикам, звезды и прогресс всей практики ---------- */
+.topbar .tb-brand-nav { display: inline-flex; flex-direction: row; align-items: center; gap: 0.22rem; position: relative;
+  margin-right: 1.5rem; font-family: var(--font-display); font-weight: 700; font-size: var(--t-lg);
+  color: var(--c-text); white-space: nowrap; text-decoration: none; }
+.tb-brand-name { color: var(--c-text); }
+.tb-practice-trigger { border: 0; background: none; color: var(--c-accent); font: inherit; font-weight: 700;
+  padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.22rem; }
+.tb-practice-trigger:hover { color: var(--c-accent-hover); text-decoration: underline; text-underline-offset: 3px; }
+.tb-caret { font-size: 0.7em; color: var(--c-text-2); transition: transform 0.15s ease; }
+.tb-practice-trigger[aria-expanded="true"] .tb-caret { transform: rotate(180deg); }
+.tb-practice-pop { position: absolute; z-index: 80; top: calc(100% + 0.8rem); left: 0; width: 22rem;
+  padding: 0.45rem; background: var(--c-surface); border: var(--border-w) solid var(--c-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-lg); }
+.tb-practice-pop[hidden] { display: none; }
+.tb-practice-pop-title { margin: 0.15rem 0.45rem 0.35rem; font-size: 0.62rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--c-muted); font-weight: 700; }
+.tb-practice-item { width: 100%; display: flex; align-items: center; gap: 0.55rem; text-align: left;
+  border: 0; background: none; color: var(--c-text); font: inherit; padding: 0.42rem 0.45rem;
+  border-radius: 7px; text-decoration: none; }
+.tb-practice-item:hover { background: var(--c-bg-warm); }
+.tb-practice-item.is-current { background: var(--c-accent-light); color: var(--c-accent); }
+.tb-practice-num { flex: 0 0 1.5rem; height: 1.5rem; display: grid; place-items: center; border: 1px solid var(--c-border);
+  border-radius: 6px; background: var(--c-surface); font-size: 0.68rem; font-weight: 700; }
+.tb-practice-item.is-current .tb-practice-num { border-color: var(--c-accent-muted); color: var(--c-accent); }
+.tb-practice-item b { display: block; font-size: 0.78rem; }
+.tb-practice-item small { display: block; font-size: 0.66rem; color: var(--c-muted); }
+.tb-practice-item.is-current small { color: var(--c-accent); }
+
+/* полоса прогресса: 10 px, счетчик 12 px справа, ширина по текстовому блоку */
+.topbar .tb-progress { position: absolute; left: var(--progress-left, 50%); transform: translateX(-50%);
+  width: var(--progress-w, min(812px, calc(100vw - 3rem))); display: flex; align-items: center; gap: 0.5rem;
+  flex: 0 0 auto; justify-content: flex-start; margin: 0; max-width: none; }
+.topbar .tb-progress-label { display: none; }
+.topbar .tb-progress .tb-track { flex: 1 1 auto; width: auto; min-width: 0; height: 10px; display: flex; }
+.topbar .tb-progress .tb-fill, .topbar .tb-progress .tb-star-fill { display: block; height: 100%; flex: 0 0 auto; }
+.topbar .tb-progress .tb-fill { border-radius: 0; background: var(--c-accent); }
+.topbar .tb-progress .tb-star-fill { background: var(--c-amber); }
+.topbar .tb-progress-text { position: static; transform: none; display: inline-block; flex: 0 0 auto;
+  font-size: 12px; line-height: 1; font-weight: 700; color: var(--c-text); white-space: nowrap; }
+.topbar .tb-progress-text b { color: var(--c-text); font-weight: 700; }
+.topbar .tb-progress-sub { display: none; }
+@media (max-width: 1200px) {
+  .has-topbar { --topbar-h: 88px; }
+  .topbar { flex-wrap: wrap; }
+  .topbar .tb-progress { position: static; transform: none; order: 3; width: var(--progress-w, 100%);
+    margin: 0.55rem 0 0 var(--progress-offset, 0); }
+}
+@media (max-width: 900px) {
+  .has-topbar { --topbar-h: 0px; }
+  .topbar .tb-progress { display: flex !important; }
+}
+
+/* «Мой уровень»: кнопка целиком в цвете уровня, счетчик только обязательных */
+.menu-levels li.is-mine[data-level="basic"] .lvl-row { background: var(--c-lv1); color: #fff; }
+.menu-levels li.is-mine[data-level="medium"] .lvl-row { background: var(--c-lv2); color: #fff; }
+.menu-levels li.is-mine[data-level="advanced"] .lvl-row { background: var(--c-lv3); color: #fff; }
+.menu-levels li.is-mine .lvl-row { box-shadow: var(--shadow-sm); }
+.menu-levels li.is-mine .lvl-tag { background: transparent !important; color: #fff; padding: 0; }
+.menu-levels li.is-mine .lvl-count { color: #fff; }
+:root[data-theme="dark"] .menu-levels li.is-mine[data-level] .lvl-row { color: #15181F; }
+:root[data-theme="dark"] .menu-levels li.is-mine .lvl-tag,
+:root[data-theme="dark"] .menu-levels li.is-mine .lvl-count { color: #15181F; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .menu-levels li.is-mine[data-level] .lvl-row { color: #15181F; }
+  :root:not([data-theme="light"]) .menu-levels li.is-mine .lvl-tag,
+  :root:not([data-theme="light"]) .menu-levels li.is-mine .lvl-count { color: #15181F; }
+}
+
+/* звезда в настройках: 32×32, без рамки и фона */
+.tb-row .seg { align-items: stretch; }
+.tb-star-cell { flex: 0 0 2.8rem; align-self: stretch; min-height: 0; display: flex;
+  align-items: center; justify-content: center; }
+.tb-row .tb-star-btn { width: 2rem; height: 2rem; display: inline-grid; place-items: center;
+  border: 0; background: none; color: var(--c-muted); cursor: pointer; padding: 0; margin: 0; border-radius: 6px; }
+.tb-row .tb-star-btn:hover { color: var(--c-amber); }
+.tb-row .tb-star-btn[aria-pressed="true"] { color: var(--c-amber); }
+.tb-row .tb-star-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
+.tb-row .tb-star-btn[aria-pressed="true"] svg { fill: currentColor; stroke: none; }
+
+/* звездочки в меню и в задачах */
+.ex-nav .ex-num { min-width: 3.25rem; }
+.ex-item-star .ex-num { color: var(--c-amber-text); }
+.ex-star-sup { display: inline-block; width: 0.8em; height: 0.8em; margin-left: 2px; vertical-align: super;
+  fill: var(--c-amber); flex: 0 0 auto; }
+.anc-star.is-star .anc-ex-num { color: var(--c-amber-text); }
+.hide-stars .ex-item-star, .hide-stars .anc-star, .hide-stars #ex-star, .hide-stars .task-star,
+.hide-stars .step-star, .hide-stars .star-intro { display: none !important; }
+
+/* разделитель и примечание под меню */
+.side-rule { border: 0; border-top: 1px solid var(--c-border); margin: 0.85rem 0.2rem 0.15rem; }
+.side-rule-note { margin-top: 0.6rem; }
+.side-star-note { margin: 0.5rem 0.2rem 0.8rem; font-size: 0.68rem; line-height: 1.4; color: var(--c-muted); }
+
+/* сохранение .py: стрелка в правом верхнем углу редактора */
+.checker-editor { position: relative; }
+.tb-save-code { position: absolute; top: 0.45rem; right: 0.45rem; z-index: 2; width: 2rem; height: 2rem;
+  display: inline-grid; place-items: center; border: 0; background: transparent; color: rgba(255,255,255,0.82);
+  cursor: pointer; padding: 0; border-radius: 6px; }
+.tb-save-code:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.tb-save-code svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round; }
