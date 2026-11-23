@@ -3028,3 +3028,48 @@ script.steps-data { display: none; }
 .tb-save-code:hover { background: rgba(255,255,255,0.14); color: #fff; }
 .tb-save-code svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;
   stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Версия 91: окно редактора проверки, подсветка и подсказка ---------- */
+.code-editor { display: flex; flex-direction: column; align-items: stretch; background: var(--win-code-bg);
+  border-radius: 12px; overflow: hidden; }
+.code-editor-head { position: relative; display: flex; align-items: center; min-height: 2.35rem;
+  padding: 0 0.55rem; background: rgba(0, 0, 0, 0.18); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.code-dots { display: flex; align-items: center; gap: 0.35rem; }
+.code-dot-r, .code-dot-y, .code-dot-g { display: block; width: 0.62rem; height: 0.62rem; border-radius: 50%; }
+.code-dot-r { background: #FF5F57; } .code-dot-y { background: #FEBC2E; } .code-dot-g { background: #28C840; }
+.code-file { position: absolute; left: 50%; transform: translateX(-50%); max-width: calc(100% - 7rem);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono);
+  font-size: 0.78rem; color: var(--win-code-text); opacity: 0.75; }
+.code-editor-body { position: relative; display: flex; align-items: stretch; min-height: 9rem; }
+.code-area { position: relative; flex: 1 1 auto; min-width: 0; }
+.code-highlight { position: absolute; inset: 0; z-index: 0; margin: 0; padding: 0.8rem 1rem; overflow: hidden;
+  pointer-events: none; font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55;
+  tab-size: 4; white-space: pre; color: var(--win-code-edit); }
+.code-editor textarea { position: relative; z-index: 1; display: block; width: 100%; flex: none; margin: 0;
+  border: 0; outline: none; background: transparent; color: transparent; -webkit-text-fill-color: transparent;
+  caret-color: var(--win-code-caret); }
+.code-editor textarea::selection { background: rgba(80, 160, 130, 0.35); }
+.code-editor-head .tb-save-code { position: absolute; top: 50%; right: 0.4rem; transform: translateY(-50%);
+  width: 1.8rem; height: 1.8rem; }
+.ex-editor-wrap { background: transparent; border-radius: 0; }
+.ex-editor-wrap .code-editor-body { min-height: 0; }
+.ex-editor-wrap .code-highlight { padding: 0.9rem 1.5rem 1.4rem 0.6rem; font-size: 1rem; line-height: 1.7; }
+.ex-editor-wrap .ex-editor { padding: 0.9rem 1.5rem 1.4rem 0.6rem; color: transparent; -webkit-text-fill-color: transparent; }
+
+.checker-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin: 0 0 0.35rem; }
+.checker-head .checker-title { margin: 0; }
+.checker-help-wrap { position: relative; flex: 0 0 auto; }
+.checker-help { width: 1.4rem; height: 1.4rem; display: inline-grid; place-items: center; padding: 0;
+  border: 1px solid var(--c-border); border-radius: 50%; background: var(--c-surface); color: var(--c-text-2); cursor: pointer; }
+.checker-help:hover, .checker-help:focus-visible { color: var(--c-accent); border-color: var(--c-accent); }
+.checker-help svg { width: 14px; height: 14px; }
+.checker-help-pop { position: absolute; right: 0; top: calc(100% + 0.45rem); z-index: 30;
+  width: min(34rem, calc(100vw - 5rem)); padding: 0.7rem 0.85rem; background: var(--c-surface);
+  border: var(--border-w) solid var(--c-border); border-radius: 10px; box-shadow: var(--shadow-lg);
+  font-size: 0.82rem; line-height: 1.55; color: var(--c-text); }
+.checker-help-pop[hidden] { display: none; }
+.checker-note-short { margin: 0 0 0.55rem; font-size: var(--t-sm); color: var(--c-text-2); }
+
+/* номера строк не должны получать горизонтальную прокрутку от общих правил .code-block pre */
+.code-block pre.code-gutter,
+.checker-editor .code-gutter { overflow: hidden; }

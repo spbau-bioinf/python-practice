@@ -439,20 +439,93 @@
   }
 
 
-  /* ---------------- редактор с номерами строк ---------------- */
-  function makeEditor(area, cls) {
+  /* ---------------- подсветка Python в редакторах ---------------- */
+  var PY_KW = {}, PY_BI = {};
+  "False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield match case".split(" ").forEach(function (w) { PY_KW[w] = 1; });
+  "abs all any bool bytes chr dict divmod enumerate eval filter float format frozenset getattr hasattr hash hex id input int isinstance issubclass iter len list map max min next object oct open ord pow print range repr reversed round set setattr slice sorted str sum super tuple type zip".split(" ").forEach(function (w) { PY_BI[w] = 1; });
+  function escHTML(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  var PY_WORDS = Object.keys(PY_KW).concat(Object.keys(PY_BI)).sort(function (a, b) { return b.length - a.length; }).join("|");
+  var PY_RE_SRC = '(?:[fFrRbBuU]{0,2})(?:"""[\\s\\S]*?"""|\'\'\'[\\s\\S]*?\'\'\'|"(?:\\\\.|[^"\\\\])*"|\'(?:\\\\.|[^\'\\\\])*\')|#[^\\n]*|\\b(?:' + PY_WORDS + ')\\b|\\b\\d[\\d_]*(?:\\.[\\d_]+)?\\b|[+\\-*/%=<>!&|^~]+';
+  function pyHighlight(code) {
+    var re = new RegExp(PY_RE_SRC, "g");
+    var out = "", last = 0, m;
+    while ((m = re.exec(code))) {
+      out += escHTML(code.slice(last, m.index));
+      var tok = m[0], cls = "tok-op";
+      if (tok.charAt(0) === "#") cls = "tok-com";
+      else if (/^(?:[fFrRbBuU]{0,2})(?:"""|'''|"|')/.test(tok)) cls = "tok-str";
+      else if (/^\d/.test(tok)) cls = "tok-num";
+      else if (tok === "True" || tok === "False" || tok === "None") cls = "tok-const";
+      else if (PY_KW[tok]) cls = "tok-kw";
+      else if (PY_BI[tok]) cls = "tok-builtin";
+      out += '<span class="' + cls + '">' + escHTML(tok) + '</span>';
+      last = m.index + tok.length;
+    }
+    out += escHTML(code.slice(last));
+    return out || "\n";
+  }
+
+  /* ---------------- редактор с номерами строк и подсветкой ---------------- */
+  function makeEditor(area, cls, opts) {
+    opts = opts || {};
     var wrap = el("div", "code-editor " + (cls || ""));
+    if (opts.header) {
+      var head = el("div", "code-editor-head");
+      var dots = el("span", "code-dots");
+      ["r", "y", "g"].forEach(function (c) { dots.appendChild(el("i", "code-dot-" + c)); });
+      head.appendChild(dots);
+      head.appendChild(el("span", "code-file", opts.file || "solution.py"));
+      if (opts.save && opts.file) {
+        var saveBtn = el("button", "tb-save-code");
+        saveBtn.type = "button";
+        saveBtn.title = "Сохранить как " + opts.file;
+        saveBtn.setAttribute("aria-label", "Сохранить как " + opts.file);
+        saveBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>';
+        saveBtn.addEventListener("click", function () {
+          var blob = new Blob([area.value], {type: "text/x-python"});
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = opts.file;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+        head.appendChild(saveBtn);
+      }
+      wrap.appendChild(head);
+    }
+    var body = el("div", "code-editor-body");
     var gutter = el("pre", "code-gutter");
     gutter.setAttribute("aria-hidden", "true");
+    var areaBox = el("div", "code-area");
+    var highlight = el("pre", "code-highlight");
+    highlight.setAttribute("aria-hidden", "true");
+    areaBox.appendChild(highlight);
+    areaBox.appendChild(area);
+    body.appendChild(gutter);
+    body.appendChild(areaBox);
+    wrap.appendChild(body);
+    area.setAttribute("wrap", "off");
+    area.setAttribute("spellcheck", "false");
     function sync() {
       var n = area.value.split("\n").length;
       var t = "";
       for (var i = 1; i <= n; i++) t += i + "\n";
       gutter.textContent = t;
+      highlight.innerHTML = pyHighlight(area.value);
       gutter.scrollTop = area.scrollTop;
+      highlight.scrollTop = area.scrollTop;
+      highlight.scrollLeft = area.scrollLeft;
     }
     area.addEventListener("input", sync);
-    area.addEventListener("scroll", function () { gutter.scrollTop = area.scrollTop; });
+    area.addEventListener("scroll", function () {
+      gutter.scrollTop = area.scrollTop;
+      highlight.scrollTop = area.scrollTop;
+      highlight.scrollLeft = area.scrollLeft;
+    });
     /* версия 76: Tab вставляет 4 пробела; Esc, затем Tab переводят фокус дальше по странице */
     var escOut = false;
     area.setAttribute("aria-describedby", "kbd-editor-hint");
@@ -468,8 +541,6 @@
       }
       escOut = false;
     });
-    wrap.appendChild(gutter);
-    wrap.appendChild(area);
     wrap.sync = sync;
     setTimeout(sync, 0);
     return wrap;
@@ -901,6 +972,24 @@
     box.appendChild(list);
   }
 
+  function testWord(n, prep) {
+    var d = n % 10, h = n % 100;
+    if (d === 1 && h !== 11) return prep ? "тесте" : "тест";
+    if (d >= 2 && d <= 4 && (h < 12 || h > 14)) return prep ? "тестах" : "теста";
+    return prep ? "тестах" : "тестов";
+  }
+  function checkerHelpText(file, n, setMode, spec) {
+    return "Вставьте код из файла `" + file + "` или выберите сам файл и нажмите «Проверить». " +
+      "Программа запускается на " + n + " " + testWord(n, true) + ": на примерах из таблицы «Примеры» и на дополнительных, которые скрыты. " +
+      (setMode
+        ? "Строки с исходными данными уже вставлены в поле: не меняйте имена переменных, проверка подставляет в эти строки свои значения."
+        : "Данные программа читает через `input()`, каждую строку входных данных отдельным `input()`: `s = input()`, `n = int(input())`. " +
+          "Текст в скобках, например `input(\"Введите n: \")`, писать можно: проверка его не учитывает.") +
+      " Кнопка «Запустить» только выполняет программу на ваших данных, без тестов." +
+      (spec.template_note ? " " + spec.template_note : "");
+  }
+  var helpSeq = 0;
+
   function setupChecker(block) {
     var file = block.getAttribute("data-file") || "решение.py";
     /* данные задачи: data/<страница>.js (PRACTICE_DATA), для старых страниц JSON внутри блока */
@@ -913,15 +1002,42 @@
     var n = spec.tests.length + (spec.extra || []).length;
     var setMode = spec.tests.concat(spec.extra || []).some(function (t) { return t.set; });
 
-    block.appendChild(el("p", "checker-title", "Проверка решения"));
-    block.appendChild(hintEl("p", "checker-note",
-      "Вставьте код из файла " + file + " или выберите сам файл и нажмите «Проверить». Программа запускается на " +
-      n + " тестах: на примерах из таблицы «Примеры» и на дополнительных, которые скрыты." +
-      (setMode ? "" : " Данные программа читает через `input()`, каждую строку входных данных отдельным `input()`: `s = input()`, `n = int(input())`. " +
-        "Текст в скобках, например `input(\"Введите n: \")`, писать можно: проверка его не учитывает.") +
-      " Кнопка «Запустить» только выполняет программу на ваших данных, без тестов." +
-      (setMode ? " Строки с исходными данными уже вставлены в поле: не меняйте имена переменных, проверка подставляет в эти строки свои значения." : "") +
-      (spec.template_note ? " " + spec.template_note : "")));
+    var head = el("div", "checker-head");
+    head.appendChild(el("p", "checker-title", "Проверка решения"));
+    var helpWrap = el("span", "checker-help-wrap");
+    var helpBtn = el("button", "checker-help");
+    helpBtn.type = "button";
+    helpBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 9.1a2.7 2.7 0 0 1 5.2.8c0 1.8-2.7 2-2.7 3.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16.9" r="1" fill="currentColor"/></svg>';
+    helpBtn.setAttribute("aria-label", "Как проверяется задача");
+    var helpPop = el("div", "checker-help-pop");
+    helpPop.id = "checker-help-" + (++helpSeq);
+    helpPop.hidden = true;
+    helpPop.appendChild(hintEl("div", "", checkerHelpText(file, n, setMode, spec)));
+    helpBtn.setAttribute("aria-describedby", helpPop.id);
+    helpWrap.appendChild(helpBtn);
+    helpWrap.appendChild(helpPop);
+    head.appendChild(helpWrap);
+    block.appendChild(head);
+    block.appendChild(hintEl("p", "checker-note checker-note-short",
+      "Тестов: " + n + " · примеры и скрытые · " + (setMode ? "данные уже вставлены" : "ввод через `input()`")));
+    var helpPinned = false;
+    function showHelp() { helpPop.hidden = false; }
+    function hideHelp() { if (!helpPinned) helpPop.hidden = true; }
+    helpWrap.addEventListener("mouseenter", showHelp);
+    helpWrap.addEventListener("mouseleave", hideHelp);
+    helpBtn.addEventListener("focus", showHelp);
+    helpBtn.addEventListener("blur", hideHelp);
+    helpBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      helpPinned = !helpPinned;
+      helpPop.hidden = !helpPinned;
+    });
+    document.addEventListener("click", function (e) {
+      if (!helpWrap.contains(e.target)) { helpPinned = false; helpPop.hidden = true; }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { helpPinned = false; helpPop.hidden = true; }
+    });
     var area = el("textarea", "checker-code");
     area.setAttribute("spellcheck", "false");
     area.setAttribute("aria-label", "Код решения " + file);
@@ -950,25 +1066,8 @@
         if (cur === "todo" && area.value.trim() !== template.trim()) setState(file, "progress");
       }, 400);
     });
-    var editor = makeEditor(area, "checker-editor");
+    var editor = makeEditor(area, "checker-editor", {file: file, header: true, save: true});
     block.appendChild(editor);
-    /* сохранение .py: только стрелка в правом верхнем углу редактора */
-    var saveBtn = el("button", "tb-save-code");
-    saveBtn.type = "button";
-    saveBtn.title = "Сохранить как " + file;
-    saveBtn.setAttribute("aria-label", "Сохранить как " + file);
-    saveBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>';
-    saveBtn.addEventListener("click", function () {
-      var blob = new Blob([area.value], {type: "text/x-python"});
-      var a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = file;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-    });
-    editor.appendChild(saveBtn);
 
     /* «Запустить» без тестов (версия 62): программа выполняется на данных из поля «Ввод»,
        прогресс и игровой режим не меняются */
@@ -1183,7 +1282,8 @@
       editor.setAttribute("aria-label", "Код примера");
       editor.rows = Math.max(3, original.text.split("\n").length + 1);
       codePre.hidden = true;
-      editorWrap = makeEditor(editor, "ex-editor-wrap");
+      var codeLabel = codeBlock.querySelector(".code-label");
+      editorWrap = makeEditor(editor, "ex-editor-wrap", {file: codeLabel ? codeLabel.textContent.trim() : ""});
       codeBlock.insertBefore(editorWrap, codePre.nextSibling);
       reveal(out);
       if (kbds.length) {
