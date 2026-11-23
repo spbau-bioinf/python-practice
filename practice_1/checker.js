@@ -467,6 +467,63 @@
     return out || "\n";
   }
 
+  /* ---------------- копирование кода ---------------- */
+  var COPY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="11" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+  var CHECK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var PENCIL_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l4.2-1 10.6-10.6a2.1 2.1 0 0 0-3-3L5.2 16 4 20zM14 6.5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var PLAY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
+  function fallbackCopy(text) {
+    var t = document.createElement("textarea");
+    t.value = text;
+    t.setAttribute("readonly", "");
+    t.style.position = "fixed";
+    t.style.left = "-9999px";
+    document.body.appendChild(t);
+    t.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    return ok;
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return fallbackCopy(text); });
+    }
+    return Promise.resolve(fallbackCopy(text));
+  }
+  function copyButton(getText, cls) {
+    var b = el("button", "tb-copy-code " + (cls || ""));
+    b.type = "button";
+    b.innerHTML = COPY_SVG;
+    b.setAttribute("aria-label", "Скопировать код");
+    b.setAttribute("title", "Скопировать код");
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      copyText(getText() || "").then(function (ok) {
+        if (!ok) return;
+        b.classList.add("is-copied");
+        b.innerHTML = CHECK_SVG;
+        b.setAttribute("aria-label", "Скопировано");
+        b.setAttribute("title", "Скопировано");
+        window.setTimeout(function () {
+          b.classList.remove("is-copied");
+          b.innerHTML = COPY_SVG;
+          b.setAttribute("aria-label", "Скопировать код");
+          b.setAttribute("title", "Скопировать код");
+        }, 1400);
+      });
+    });
+    return b;
+  }
+  function iconButton(svg, label, cls) {
+    var b = el("button", "ex-btn ex-btn-icon " + (cls || ""));
+    b.type = "button";
+    b.innerHTML = svg;
+    b.title = label;
+    b.setAttribute("aria-label", label);
+    return b;
+  }
+
   /* ---------------- редактор с номерами строк и подсветкой ---------------- */
   function makeEditor(area, cls, opts) {
     opts = opts || {};
@@ -477,6 +534,7 @@
       ["r", "y", "g"].forEach(function (c) { dots.appendChild(el("i", "code-dot-" + c)); });
       head.appendChild(dots);
       head.appendChild(el("span", "code-file", opts.file || "solution.py"));
+      if (opts.copy) head.appendChild(copyButton(function () { return area.value; }, "tb-copy-head"));
       if (opts.save && opts.file) {
         var saveBtn = el("button", "tb-save-code");
         saveBtn.type = "button";
@@ -989,6 +1047,1614 @@
       (spec.template_note ? " " + spec.template_note : "");
   }
   var helpSeq = 0;
+          var REC_NAMES = {
+    "t4_01_1_basic.py": [
+      "seq",
+      "base",
+      "rna"
+    ],
+    "t4_01_1_medium.py": [
+      "seq",
+      "base",
+      "masked"
+    ],
+    "t4_01_1_advanced.py": [
+      "seq",
+      "base",
+      "prev",
+      "count",
+      "code"
+    ],
+    "t4_01_star_basic.py": [
+      "seq",
+      "base",
+      "masked"
+    ],
+    "t4_01_star_medium.py": [
+      "seq",
+      "base",
+      "rc"
+    ],
+    "t4_01_star_advanced.py": [
+      "code",
+      "seq",
+      "letter",
+      "digits"
+    ],
+    "t4_02_1_basic.py": [
+      "count",
+      "index"
+    ],
+    "t4_02_1_medium.py": [
+      "seq",
+      "index"
+    ],
+    "t4_02_1_advanced.py": [
+      "seq",
+      "frame",
+      "length",
+      "last",
+      "index"
+    ],
+    "t4_02_star_basic.py": [
+      "seq",
+      "position",
+      "index"
+    ],
+    "t4_02_star_medium.py": [
+      "seq",
+      "window",
+      "length",
+      "index"
+    ],
+    "t4_02_star_advanced.py": [
+      "seq",
+      "line",
+      "index"
+    ],
+    "t4_03_1_basic.py": [
+      "count",
+      "cells",
+      "hours"
+    ],
+    "t4_03_1_medium.py": [
+      "number",
+      "count"
+    ],
+    "t4_03_1_advanced.py": [
+      "number",
+      "bits"
+    ],
+    "t4_03_2_basic.py": [
+      "count",
+      "line"
+    ],
+    "t4_03_2_medium.py": [
+      "total",
+      "length"
+    ],
+    "t4_03_2_advanced.py": [
+      "capacity",
+      "cells",
+      "free",
+      "length"
+    ],
+    "t4_03_star_basic.py": [
+      "number",
+      "total"
+    ],
+    "t4_03_star_medium.py": [
+      "count",
+      "month",
+      "older",
+      "young",
+      "born"
+    ],
+    "t4_03_star_advanced.py": [
+      "seq",
+      "passes",
+      "collapsed"
+    ],
+    "t4_04_1_basic.py": [
+      "seq",
+      "position",
+      "index"
+    ],
+    "t4_04_1_medium.py": [
+      "seq",
+      "answer",
+      "index"
+    ],
+    "t4_04_1_advanced.py": [
+      "seq",
+      "result",
+      "start",
+      "index",
+      "count",
+      "codon"
+    ],
+    "t4_04_2_basic.py": [
+      "seq",
+      "base"
+    ],
+    "t4_04_2_medium.py": [
+      "line",
+      "sequence",
+      "count"
+    ],
+    "t4_04_2_advanced.py": [
+      "motif",
+      "number",
+      "answer",
+      "read"
+    ],
+    "t4_04_star_basic.py": [
+      "quality",
+      "threshold",
+      "answer",
+      "index"
+    ],
+    "t4_04_star_medium.py": [
+      "number",
+      "bad_line",
+      "header",
+      "line",
+      "letter"
+    ],
+    "t4_04_star_advanced.py": [
+      "seq",
+      "size",
+      "answer",
+      "run",
+      "index"
+    ],
+    "t4_05_1_basic.py": [
+      "seq",
+      "count",
+      "base"
+    ],
+    "t4_05_1_medium.py": [
+      "seq",
+      "mass",
+      "base"
+    ],
+    "t4_05_1_advanced.py": [
+      "first",
+      "second",
+      "transitions",
+      "transversions",
+      "index"
+    ],
+    "t4_05_2_basic.py": [
+      "seq",
+      "gc",
+      "base"
+    ],
+    "t4_05_2_medium.py": [
+      "gc",
+      "total",
+      "line"
+    ],
+    "t4_05_2_advanced.py": [
+      "seq",
+      "gc",
+      "total",
+      "base"
+    ],
+    "t4_05_star_basic.py": [
+      "count",
+      "total",
+      "read"
+    ],
+    "t4_05_star_medium.py": [
+      "seq",
+      "count_c",
+      "count_g",
+      "cpg",
+      "index"
+    ],
+    "t4_05_star_advanced.py": [
+      "seq",
+      "window",
+      "difference",
+      "count",
+      "index"
+    ],
+    "t4_06_1_basic.py": [
+      "count",
+      "maximum",
+      "index",
+      "value"
+    ],
+    "t4_06_1_medium.py": [
+      "count",
+      "maximum",
+      "index",
+      "value",
+      "position"
+    ],
+    "t4_06_1_advanced.py": [
+      "count",
+      "first",
+      "second",
+      "index",
+      "value"
+    ],
+    "t4_06_star_basic.py": [
+      "names",
+      "best",
+      "name"
+    ],
+    "t4_06_star_medium.py": [
+      "values",
+      "best",
+      "run",
+      "index"
+    ],
+    "t4_06_star_advanced.py": [
+      "values",
+      "best",
+      "current",
+      "value"
+    ],
+    "t4_07_1_basic.py": [
+      "first",
+      "second",
+      "distance",
+      "index"
+    ],
+    "t4_07_1_medium.py": [
+      "seq",
+      "current",
+      "best",
+      "index"
+    ],
+    "t4_07_1_advanced.py": [
+      "seq",
+      "skew",
+      "min_skew",
+      "position",
+      "index"
+    ],
+    "t4_07_star_basic.py": [
+      "seq",
+      "skew",
+      "moved",
+      "answer",
+      "index"
+    ],
+    "t4_07_star_medium.py": [
+      "seq",
+      "skew",
+      "low",
+      "position",
+      "index"
+    ],
+    "t4_07_star_advanced.py": [
+      "seq",
+      "skew",
+      "low",
+      "best",
+      "base"
+    ],
+    "t4_08_1_basic.py": [
+      "text",
+      "motif",
+      "count",
+      "start"
+    ],
+    "t4_08_1_medium.py": [
+      "text",
+      "motif",
+      "count",
+      "start",
+      "differences"
+    ],
+    "t4_08_1_advanced.py": [
+      "seq",
+      "k",
+      "best",
+      "best_count",
+      "index",
+      "kmer",
+      "count"
+    ],
+    "t4_08_star_basic.py": [
+      "seq",
+      "first",
+      "second",
+      "count",
+      "index"
+    ],
+    "t4_08_star_medium.py": [
+      "seq",
+      "length",
+      "count",
+      "index",
+      "first",
+      "second",
+      "pair"
+    ],
+    "t4_08_star_advanced.py": [
+      "first",
+      "second",
+      "best",
+      "index",
+      "length"
+    ],
+    "t5_01_1_basic.py": [
+      "sequences"
+    ],
+    "t5_01_1_medium.py": [
+      "sequences",
+      "sequence"
+    ],
+    "t5_01_1_advanced.py": [
+      "sequences",
+      "seen",
+      "repeats"
+    ],
+    "t5_01_star_basic.py": [
+      "sequences",
+      "total",
+      "average",
+      "result"
+    ],
+    "t5_01_star_medium.py": [
+      "first",
+      "second",
+      "common"
+    ],
+    "t5_01_star_advanced.py": [
+      "sequences",
+      "unique",
+      "counts",
+      "best",
+      "index"
+    ],
+    "t5_02_1_basic.py": [
+      "sequences",
+      "draft"
+    ],
+    "t5_02_1_medium.py": [
+      "sequences",
+      "masked",
+      "index"
+    ],
+    "t5_02_1_advanced.py": [
+      "sequences",
+      "shift",
+      "length",
+      "shifted",
+      "index"
+    ],
+    "t5_02_star_basic.py": [
+      "sequences",
+      "masked",
+      "number",
+      "index"
+    ],
+    "t5_02_star_medium.py": [
+      "sequences",
+      "swapped",
+      "index"
+    ],
+    "t5_02_star_advanced.py": [
+      "first",
+      "second",
+      "length",
+      "answer",
+      "shift",
+      "index"
+    ],
+    "t5_03_1_basic.py": [
+      "sequences",
+      "count"
+    ],
+    "t5_03_1_medium.py": [
+      "sequences"
+    ],
+    "t5_03_1_advanced.py": [
+      "sequences",
+      "start",
+      "end",
+      "part"
+    ],
+    "t5_03_2_basic.py": [
+      "sequences",
+      "first"
+    ],
+    "t5_03_2_medium.py": [
+      "sequences",
+      "min_length",
+      "sequence"
+    ],
+    "t5_03_2_advanced.py": [
+      "sequences",
+      "skipped",
+      "command",
+      "sequence",
+      "text"
+    ],
+    "t5_03_star_basic.py": [
+      "sequences",
+      "result",
+      "sequence"
+    ],
+    "t5_03_star_medium.py": [
+      "sequences",
+      "k",
+      "result",
+      "index"
+    ],
+    "t5_03_star_advanced.py": [
+      "sequences",
+      "step",
+      "order",
+      "index"
+    ],
+    "t5_04_1_basic.py": [
+      "name",
+      "length",
+      "gc"
+    ],
+    "t5_04_1_medium.py": [
+      "first",
+      "rest"
+    ],
+    "t5_04_1_advanced.py": [
+      "name1",
+      "start1",
+      "end1",
+      "name2",
+      "start2",
+      "end2",
+      "start",
+      "end"
+    ],
+    "t5_04_star_basic.py": [
+      "threshold",
+      "count",
+      "names",
+      "index",
+      "name",
+      "gc"
+    ],
+    "t5_04_star_medium.py": [
+      "count",
+      "best_name",
+      "best_sum",
+      "index",
+      "name",
+      "values",
+      "total",
+      "value"
+    ],
+    "t5_04_star_advanced.py": [
+      "month",
+      "lifespan",
+      "ages",
+      "index",
+      "month_index",
+      "newborn"
+    ],
+    "t5_05_1_basic.py": [
+      "seq",
+      "letter",
+      "positions",
+      "index",
+      "base"
+    ],
+    "t5_05_1_medium.py": [
+      "sequences",
+      "motif",
+      "numbers",
+      "index",
+      "sequence"
+    ],
+    "t5_05_1_advanced.py": [
+      "seq",
+      "scores",
+      "quality",
+      "last",
+      "index",
+      "score",
+      "trimmed"
+    ],
+    "t5_05_2_basic.py": [
+      "first",
+      "second",
+      "same",
+      "index"
+    ],
+    "t5_05_2_medium.py": [
+      "first",
+      "second",
+      "positions",
+      "index"
+    ],
+    "t5_05_2_advanced.py": [
+      "first",
+      "second",
+      "distance",
+      "index"
+    ],
+    "t5_05_star_basic.py": [
+      "sequences",
+      "position",
+      "column"
+    ],
+    "t5_05_star_medium.py": [
+      "sequences",
+      "columns",
+      "column"
+    ],
+    "t5_05_star_advanced.py": [
+      "sequences",
+      "distance",
+      "best",
+      "best_count",
+      "count",
+      "index",
+      "difference"
+    ],
+    "t5_06_1_basic.py": [
+      "sequences"
+    ],
+    "t5_06_1_medium.py": [
+      "sequences"
+    ],
+    "t5_06_1_advanced.py": [
+      "lengths",
+      "sequence",
+      "count"
+    ],
+    "t5_06_2_basic.py": [
+      "sequences"
+    ],
+    "t5_06_2_medium.py": [
+      "count",
+      "records",
+      "index",
+      "names",
+      "gc",
+      "name"
+    ],
+    "t5_06_2_advanced.py": [
+      "count",
+      "records",
+      "index",
+      "sequence",
+      "gc",
+      "names",
+      "gc_desc",
+      "name"
+    ],
+    "t5_06_star_basic.py": [
+      "sequences"
+    ],
+    "t5_06_star_medium.py": [
+      "sequences",
+      "records",
+      "index",
+      "sequence",
+      "result",
+      "count_g"
+    ],
+    "t5_06_star_advanced.py": [
+      "sequences",
+      "gcs",
+      "sequence",
+      "order",
+      "ranks",
+      "gc"
+    ],
+    "t5_07_1_basic.py": [
+      "sequences",
+      "counts",
+      "sequence"
+    ],
+    "t5_07_1_medium.py": [
+      "sequences",
+      "threshold",
+      "gcs",
+      "sequence",
+      "rich",
+      "count_g"
+    ],
+    "t5_07_1_advanced.py": [
+      "first",
+      "second",
+      "k",
+      "hits",
+      "index",
+      "inner"
+    ],
+    "t5_07_star_basic.py": [
+      "sequences",
+      "sequence"
+    ],
+    "t5_07_star_medium.py": [
+      "sequences",
+      "count",
+      "pairs",
+      "index",
+      "inner"
+    ],
+    "t5_07_star_advanced.py": [
+      "sequences",
+      "consensus",
+      "index",
+      "column"
+    ],
+    "t5_08_1_basic.py": [
+      "seq",
+      "vector",
+      "base"
+    ],
+    "t5_08_1_medium.py": [
+      "count",
+      "records",
+      "index",
+      "name",
+      "seq",
+      "vector",
+      "base"
+    ],
+    "t5_08_1_advanced.py": [
+      "count",
+      "names",
+      "matrix",
+      "index",
+      "seq",
+      "base",
+      "sums",
+      "column",
+      "best",
+      "best_distance",
+      "value",
+      "distance"
+    ],
+    "t5_08_star_basic.py": [
+      "count",
+      "matrix",
+      "index",
+      "seq",
+      "base",
+      "column"
+    ],
+    "t5_08_star_medium.py": [
+      "count",
+      "index",
+      "name",
+      "seq",
+      "shares",
+      "base"
+    ],
+    "t5_08_star_advanced.py": [
+      "count",
+      "names",
+      "matrix",
+      "index",
+      "seq",
+      "base",
+      "best",
+      "inner",
+      "first",
+      "distance"
+    ],
+    "t5_09_1_basic.py": [
+      "sequences",
+      "letter",
+      "row",
+      "column"
+    ],
+    "t5_09_1_medium.py": [
+      "sequences",
+      "consensus",
+      "column",
+      "distances",
+      "index",
+      "sequence"
+    ],
+    "t5_09_1_advanced.py": [
+      "sequences",
+      "consensus",
+      "column",
+      "counts",
+      "base",
+      "best"
+    ],
+    "t5_09_star_basic.py": [
+      "sequences",
+      "best_position",
+      "best_count",
+      "index",
+      "column",
+      "top"
+    ],
+    "t5_09_star_medium.py": [
+      "group_a",
+      "group_b",
+      "consensus_a",
+      "column",
+      "consensus_b",
+      "difference",
+      "index"
+    ],
+    "t5_09_star_advanced.py": [
+      "count",
+      "sequences",
+      "index",
+      "line",
+      "columns",
+      "base"
+    ],
+    "t1_04_1_basic.py": [
+      "cells"
+    ],
+    "t1_04_1_medium.py": [
+      "volume",
+      "sample"
+    ],
+    "t1_04_1_advanced.py": [
+      "count",
+      "sample"
+    ],
+    "t1_04_star_basic.py": [
+      "healthy",
+      "infected"
+    ],
+    "t1_04_star_medium.py": [
+      "stage1",
+      "stage2",
+      "stage3",
+      "born"
+    ],
+    "t1_04_star_advanced.py": [
+      "stage1",
+      "stage2",
+      "stage3",
+      "total"
+    ],
+    "t1_05_1_basic.py": [
+      "first",
+      "second"
+    ],
+    "t1_05_1_medium.py": [
+      "motif",
+      "times"
+    ],
+    "t1_05_1_advanced.py": [
+      "plate",
+      "well"
+    ],
+    "t1_05_2_basic.py": [
+      "volume"
+    ],
+    "t1_05_2_medium.py": [
+      "text"
+    ],
+    "t1_05_2_advanced.py": [
+      "flag1",
+      "flag2"
+    ],
+    "t1_05_star_basic.py": [
+      "motif",
+      "times"
+    ],
+    "t1_05_star_medium.py": [
+      "plate",
+      "well"
+    ],
+    "t1_05_star_advanced.py": [
+      "last",
+      "width"
+    ],
+    "t1_06_1_basic.py": [
+      "length"
+    ],
+    "t1_06_1_medium.py": [
+      "length"
+    ],
+    "t1_06_1_advanced.py": [
+      "length",
+      "shift"
+    ],
+    "t1_06_2_basic.py": [
+      "read1",
+      "read2",
+      "read3"
+    ],
+    "t1_06_2_medium.py": [
+      "sample",
+      "buffer"
+    ],
+    "t1_06_2_advanced.py": [
+      "concentration1",
+      "concentration2",
+      "volume1",
+      "volume2"
+    ],
+    "t1_06_star_basic.py": [
+      "start",
+      "end"
+    ],
+    "t1_06_star_medium.py": [
+      "samples",
+      "wells",
+      "plates"
+    ],
+    "t1_06_star_advanced.py": [
+      "length",
+      "position",
+      "shift"
+    ],
+    "t1_07_1_basic.py": [
+      "mass1",
+      "mass2"
+    ],
+    "t1_07_1_medium.py": [
+      "measured",
+      "nominal",
+      "percent"
+    ],
+    "t1_07_1_advanced.py": [
+      "measured",
+      "nominal",
+      "percent",
+      "floor"
+    ],
+    "t1_07_2_basic.py": [
+      "value"
+    ],
+    "t1_07_2_medium.py": [
+      "total",
+      "part1",
+      "part2"
+    ],
+    "t1_07_2_advanced.py": [
+      "initial",
+      "dilution",
+      "steps",
+      "target"
+    ],
+    "t1_07_star_basic.py": [
+      "nominal",
+      "measured",
+      "tolerance"
+    ],
+    "t1_07_star_medium.py": [
+      "measured",
+      "nominal",
+      "percent"
+    ],
+    "t1_07_star_advanced.py": [
+      "measured",
+      "nominal",
+      "percent",
+      "floor"
+    ],
+    "t1_08_1_basic.py": [
+      "length",
+      "count_g",
+      "count_c"
+    ],
+    "t1_08_1_medium.py": [
+      "length",
+      "count_g",
+      "count_c",
+      "gc"
+    ],
+    "t1_08_1_advanced.py": [
+      "length",
+      "count_g",
+      "count_c",
+      "count_at"
+    ],
+    "t1_08_star_basic.py": [
+      "reads",
+      "passed",
+      "percent"
+    ],
+    "t1_08_star_medium.py": [
+      "length",
+      "gc",
+      "percent"
+    ],
+    "t1_08_star_advanced.py": [
+      "length",
+      "gc"
+    ],
+    "t1_09_1_basic.py": [
+      "reads",
+      "duplicates"
+    ],
+    "t1_09_1_medium.py": [
+      "seconds"
+    ],
+    "t1_09_1_advanced.py": [
+      "hours",
+      "minutes",
+      "days",
+      "total"
+    ],
+    "t1_09_2_basic.py": [
+      "name",
+      "volume"
+    ],
+    "t1_09_2_medium.py": [
+      "first",
+      "second",
+      "third",
+      "mean"
+    ],
+    "t1_09_2_advanced.py": [
+      "concentration",
+      "volume",
+      "mass"
+    ],
+    "t1_09_star_basic.py": [
+      "name",
+      "start",
+      "size"
+    ],
+    "t1_09_star_medium.py": [
+      "total_seconds",
+      "hours",
+      "minutes",
+      "seconds"
+    ],
+    "t1_09_star_advanced.py": [
+      "start_hours",
+      "start_minutes",
+      "end_hours",
+      "end_minutes",
+      "days",
+      "total_minutes"
+    ],
+    "t1_10_1_basic.py": [
+      "count_a",
+      "count_t",
+      "count_g",
+      "count_c",
+      "length"
+    ],
+    "t1_10_1_medium.py": [
+      "count_g",
+      "count_c",
+      "skew"
+    ],
+    "t1_10_1_advanced.py": [
+      "length",
+      "count_g",
+      "count_c",
+      "count_n",
+      "gc"
+    ],
+    "t1_10_star_basic.py": [
+      "record_id",
+      "seq"
+    ],
+    "t1_10_star_medium.py": [
+      "length1",
+      "gc1",
+      "length2",
+      "gc2",
+      "gc"
+    ],
+    "t1_10_star_advanced.py": [
+      "length1",
+      "gc1",
+      "length2",
+      "gc2",
+      "k",
+      "gc_k",
+      "total",
+      "gc"
+    ],
+    "t2_01_1_basic.py": [
+      "seq"
+    ],
+    "t2_01_1_medium.py": [
+      "seq"
+    ],
+    "t2_01_1_advanced.py": [
+      "seq",
+      "position"
+    ],
+    "t2_01_star_basic.py": [
+      "seq",
+      "position"
+    ],
+    "t2_01_star_medium.py": [
+      "seq",
+      "start"
+    ],
+    "t2_01_star_advanced.py": [
+      "seq",
+      "length",
+      "end"
+    ],
+    "t2_02_1_basic.py": [
+      "seq",
+      "length"
+    ],
+    "t2_02_1_medium.py": [
+      "seq",
+      "index"
+    ],
+    "t2_02_1_advanced.py": [
+      "seq",
+      "trim"
+    ],
+    "t2_02_2_basic.py": [
+      "seq"
+    ],
+    "t2_02_2_medium.py": [
+      "seq",
+      "start"
+    ],
+    "t2_02_2_advanced.py": [
+      "seq",
+      "start",
+      "end"
+    ],
+    "t2_02_star_basic.py": [
+      "seq",
+      "cut"
+    ],
+    "t2_02_star_medium.py": [
+      "seq",
+      "start",
+      "step"
+    ],
+    "t2_02_star_advanced.py": [
+      "seq",
+      "frame",
+      "length"
+    ],
+    "t2_03_1_basic.py": [
+      "seq",
+      "motif"
+    ],
+    "t2_03_1_medium.py": [
+      "seq",
+      "motif",
+      "offset"
+    ],
+    "t2_03_1_advanced.py": [
+      "seq",
+      "motif"
+    ],
+    "t2_03_2_basic.py": [
+      "seq"
+    ],
+    "t2_03_2_medium.py": [
+      "seq",
+      "position",
+      "replacement"
+    ],
+    "t2_03_2_advanced.py": [
+      "seq",
+      "start",
+      "end"
+    ],
+    "t2_03_star_basic.py": [
+      "seq",
+      "start",
+      "end"
+    ],
+    "t2_03_star_medium.py": [
+      "seq",
+      "k",
+      "codon"
+    ],
+    "t2_03_star_advanced.py": [
+      "seq",
+      "motif",
+      "position",
+      "length",
+      "padded"
+    ],
+    "t2_04_1_basic.py": [
+      "name"
+    ],
+    "t2_04_1_medium.py": [
+      "symbol"
+    ],
+    "t2_04_1_advanced.py": [
+      "first",
+      "second"
+    ],
+    "t2_04_2_basic.py": [
+      "seq",
+      "motif"
+    ],
+    "t2_04_2_medium.py": [
+      "seq",
+      "motif"
+    ],
+    "t2_04_2_advanced.py": [
+      "seq",
+      "motif",
+      "start",
+      "stop"
+    ],
+    "t2_04_star_basic.py": [
+      "seq",
+      "motif"
+    ],
+    "t2_04_star_medium.py": [
+      "seq",
+      "motif"
+    ],
+    "t2_04_star_advanced.py": [
+      "seq",
+      "motif",
+      "ring"
+    ],
+    "t2_05_1_basic.py": [
+      "seq"
+    ],
+    "t2_05_1_medium.py": [
+      "seq",
+      "masked"
+    ],
+    "t2_05_1_advanced.py": [
+      "seq",
+      "complement"
+    ],
+    "t2_05_star_basic.py": [
+      "seq"
+    ],
+    "t2_05_star_medium.py": [
+      "seq",
+      "rest"
+    ],
+    "t2_05_star_advanced.py": [
+      "seq",
+      "complement"
+    ],
+    "t2_06_1_basic.py": [
+      "record",
+      "parts"
+    ],
+    "t2_06_1_medium.py": [
+      "name"
+    ],
+    "t2_06_1_advanced.py": [
+      "parts",
+      "genus",
+      "species"
+    ],
+    "t2_06_star_basic.py": [
+      "parts"
+    ],
+    "t2_06_star_medium.py": [
+      "line"
+    ],
+    "t2_06_star_advanced.py": [
+      "header"
+    ],
+    "t2_07_1_basic.py": [
+      "share"
+    ],
+    "t2_07_1_medium.py": [
+      "sample",
+      "reads",
+      "gc"
+    ],
+    "t2_07_1_advanced.py": [
+      "position",
+      "bar"
+    ],
+    "t2_07_star_basic.py": [
+      "before",
+      "after"
+    ],
+    "t2_07_star_medium.py": [
+      "chrom",
+      "start",
+      "end"
+    ],
+    "t2_07_star_advanced.py": [
+      "row",
+      "column"
+    ],
+    "t2_08_1_basic.py": [
+      "symbol",
+      "number"
+    ],
+    "t2_08_1_medium.py": [
+      "quality"
+    ],
+    "t2_08_1_advanced.py": [
+      "text"
+    ],
+    "t2_08_star_basic.py": [
+      "symbol",
+      "quality"
+    ],
+    "t2_08_star_medium.py": [
+      "text"
+    ],
+    "t2_08_star_advanced.py": [
+      "quality",
+      "first_position",
+      "last_position"
+    ],
+    "t2_09_1_basic.py": [
+      "seq",
+      "gc"
+    ],
+    "t2_09_1_medium.py": [
+      "header",
+      "seq",
+      "seq_id",
+      "gc"
+    ],
+    "t2_09_1_advanced.py": [
+      "header",
+      "seq",
+      "seq_id",
+      "gc",
+      "third",
+      "gc3"
+    ],
+    "t2_09_star_basic.py": [
+      "seq",
+      "count_g",
+      "count_c"
+    ],
+    "t2_09_star_medium.py": [
+      "header",
+      "seq",
+      "seq_id",
+      "count_n",
+      "gc"
+    ],
+    "t2_09_star_advanced.py": [
+      "header",
+      "seq",
+      "seq_id",
+      "count_c",
+      "count_g",
+      "gc",
+      "ratio"
+    ],
+    "t3_01_1_basic.py": [
+      "ph"
+    ],
+    "t3_01_1_medium.py": [
+      "volume",
+      "count",
+      "dilution"
+    ],
+    "t3_01_1_advanced.py": [
+      "limit",
+      "first",
+      "second",
+      "third"
+    ],
+    "t3_01_2_basic.py": [
+      "first",
+      "second"
+    ],
+    "t3_01_2_medium.py": [
+      "first",
+      "second"
+    ],
+    "t3_01_2_advanced.py": [
+      "first",
+      "second",
+      "key1",
+      "key2"
+    ],
+    "t3_01_star_basic.py": [
+      "before",
+      "after"
+    ],
+    "t3_01_star_medium.py": [
+      "first",
+      "second"
+    ],
+    "t3_01_star_advanced.py": [
+      "first",
+      "second",
+      "key1",
+      "key2"
+    ],
+    "t3_02_1_basic.py": [
+      "primer"
+    ],
+    "t3_02_1_medium.py": [
+      "low",
+      "high",
+      "value"
+    ],
+    "t3_02_1_advanced.py": [
+      "limit",
+      "first",
+      "second"
+    ],
+    "t3_02_2_basic.py": [
+      "base"
+    ],
+    "t3_02_2_medium.py": [
+      "first",
+      "second"
+    ],
+    "t3_02_2_advanced.py": [
+      "old",
+      "new",
+      "old_purine",
+      "new_purine"
+    ],
+    "t3_02_star_basic.py": [
+      "primer",
+      "good_len"
+    ],
+    "t3_02_star_medium.py": [
+      "start1",
+      "end1",
+      "start2",
+      "end2"
+    ],
+    "t3_02_star_advanced.py": [
+      "start1",
+      "end1",
+      "start2",
+      "end2",
+      "limit",
+      "lengths_ok",
+      "cross_ok"
+    ],
+    "t3_03_1_basic.py": [
+      "primer"
+    ],
+    "t3_03_1_medium.py": [
+      "seq",
+      "position",
+      "base"
+    ],
+    "t3_03_1_advanced.py": [
+      "seq",
+      "limit",
+      "gc"
+    ],
+    "t3_03_star_basic.py": [
+      "base"
+    ],
+    "t3_03_star_medium.py": [
+      "seq",
+      "last",
+      "is_stop"
+    ],
+    "t3_03_star_advanced.py": [
+      "seq",
+      "position",
+      "index",
+      "right",
+      "left"
+    ],
+    "t3_04_1_basic.py": [
+      "density"
+    ],
+    "t3_04_1_medium.py": [
+      "seq"
+    ],
+    "t3_04_1_advanced.py": [
+      "start",
+      "end",
+      "strand",
+      "position",
+      "pos"
+    ],
+    "t3_04_star_basic.py": [
+      "concentration",
+      "volume"
+    ],
+    "t3_04_star_medium.py": [
+      "length",
+      "start",
+      "end",
+      "distance"
+    ],
+    "t3_04_star_advanced.py": [
+      "length",
+      "start",
+      "end",
+      "position",
+      "size"
+    ],
+    "t3_05_1_basic.py": [
+      "temperature",
+      "group"
+    ],
+    "t3_05_1_medium.py": [
+      "ct",
+      "result"
+    ],
+    "t3_05_1_advanced.py": [
+      "first",
+      "second",
+      "third",
+      "median"
+    ],
+    "t3_05_2_basic.py": [
+      "quality",
+      "grade"
+    ],
+    "t3_05_2_medium.py": [
+      "volume",
+      "concentration",
+      "ratio",
+      "errors"
+    ],
+    "t3_05_2_advanced.py": [
+      "systolic",
+      "diastolic",
+      "category"
+    ],
+    "t3_05_star_basic.py": [
+      "old",
+      "new",
+      "old_purine",
+      "new_purine",
+      "kind"
+    ],
+    "t3_05_star_medium.py": [
+      "first",
+      "second",
+      "third",
+      "base"
+    ],
+    "t3_05_star_advanced.py": [
+      "before",
+      "after",
+      "difference",
+      "kind"
+    ],
+    "t3_06_1_basic.py": [
+      "seq"
+    ],
+    "t3_06_1_medium.py": [
+      "seq_id",
+      "seq",
+      "name"
+    ],
+    "t3_06_1_advanced.py": [
+      "signal",
+      "background"
+    ],
+    "t3_06_star_basic.py": [
+      "gene",
+      "seq_id"
+    ],
+    "t3_06_star_medium.py": [
+      "value1",
+      "value2",
+      "value3"
+    ],
+    "t3_06_star_advanced.py": [
+      "value1",
+      "value2",
+      "value3",
+      "count",
+      "total"
+    ],
+    "t3_07_1_basic.py": [
+      "text",
+      "mass"
+    ],
+    "t3_07_1_medium.py": [
+      "text_a",
+      "text_b",
+      "mass_a",
+      "mass_b",
+      "result"
+    ],
+    "t3_07_1_advanced.py": [
+      "limit",
+      "text0",
+      "text1",
+      "text2",
+      "value0",
+      "value1",
+      "value2",
+      "cycle"
+    ],
+    "t3_07_star_basic.py": [
+      "value1",
+      "value2",
+      "value3",
+      "last"
+    ],
+    "t3_07_star_medium.py": [
+      "value1",
+      "value2",
+      "value3",
+      "low"
+    ],
+    "t3_07_star_advanced.py": [
+      "difference",
+      "value0",
+      "value1",
+      "value2",
+      "previous",
+      "jump"
+    ],
+    "t3_08_1_basic.py": [
+      "tm"
+    ],
+    "t3_08_1_medium.py": [
+      "volume",
+      "concentration",
+      "message"
+    ],
+    "t3_08_1_advanced.py": [
+      "well",
+      "result"
+    ],
+    "t3_08_star_basic.py": [
+      "primer",
+      "gc",
+      "result"
+    ],
+    "t3_08_star_medium.py": [
+      "number",
+      "row",
+      "column",
+      "result"
+    ],
+    "t3_08_star_advanced.py": [
+      "well",
+      "result",
+      "row",
+      "column"
+    ],
+    "t3_09_1_basic.py": [
+      "base",
+      "group"
+    ],
+    "t3_09_1_medium.py": [
+      "header",
+      "seq",
+      "seq_id",
+      "result"
+    ],
+    "t3_09_1_advanced.py": [
+      "seq",
+      "text",
+      "known",
+      "result"
+    ],
+    "t3_09_star_basic.py": [
+      "line",
+      "text",
+      "known",
+      "kind"
+    ],
+    "t3_09_star_medium.py": [
+      "first",
+      "second",
+      "pair",
+      "code"
+    ],
+    "t3_09_star_advanced.py": [
+      "text",
+      "exact",
+      "two",
+      "three",
+      "four",
+      "result"
+    ]
+  };
+
+
+
+
 
   function setupChecker(block) {
     var file = block.getAttribute("data-file") || "решение.py";
@@ -1018,8 +2684,10 @@
     helpWrap.appendChild(helpPop);
     head.appendChild(helpWrap);
     block.appendChild(head);
+    var rec = REC_NAMES[file];
     block.appendChild(hintEl("p", "checker-note checker-note-short",
-      "Тестов: " + n + " · примеры и скрытые · " + (setMode ? "данные уже вставлены" : "ввод через `input()`")));
+      rec ? "Рекомендуемые имена переменных: " + rec.map(function (x) { return "`" + x + "`"; }).join(", ") + "."
+        : "Тестов: " + n + " · примеры и скрытые · " + (setMode ? "данные уже вставлены" : "ввод через `input()`")));
     var helpPinned = false;
     function showHelp() { helpPop.hidden = false; }
     function hideHelp() { if (!helpPinned) helpPop.hidden = true; }
@@ -1066,7 +2734,7 @@
         if (cur === "todo" && area.value.trim() !== template.trim()) setState(file, "progress");
       }, 400);
     });
-    var editor = makeEditor(area, "checker-editor", {file: file, header: true, save: true});
+    var editor = makeEditor(area, "checker-editor", {file: file, header: true, save: true, copy: true});
     block.appendChild(editor);
 
     /* «Запустить» без тестов (версия 62): программа выполняется на данных из поля «Ввод»,
@@ -1267,10 +2935,12 @@
     var stdin0 = Array.prototype.map.call(kbds, function (k) { return k.textContent; }).join("\n");
 
     var tools = el("span", "ex-tools");
-    var edit = el("button", "ex-btn", "✎ Изменить и запустить");
-    edit.type = "button";
-    edit.title = "Изменить код и запустить";
+    var copyBtn = copyButton(function () { return editor ? editor.value : original.text; });
+    var edit = iconButton(PENCIL_SVG, "Изменить");
+    var play = iconButton(PLAY_SVG, "Изменить и запустить", "ex-btn-run");
+    tools.appendChild(copyBtn);
     tools.appendChild(edit);
+    tools.appendChild(play);
     codeBlock.appendChild(tools);
 
     var editor = null, editorWrap = null, stdin = null, runBtn = null, resetBtn = null;
@@ -1299,7 +2969,7 @@
       runBtn = el("button", "ex-btn ex-btn-run", "▶ Запустить");
       resetBtn = el("button", "ex-btn", "↺ Сбросить");
       runBtn.type = resetBtn.type = "button";
-      tools.appendChild(runBtn); tools.appendChild(resetBtn);
+      tools.appendChild(copyBtn); tools.appendChild(runBtn); tools.appendChild(resetBtn);
       runBtn.addEventListener("click", run);
       resetBtn.addEventListener("click", reset);
       codeBlock.classList.add("is-editing");
@@ -1322,10 +2992,13 @@
       codePre.hidden = false;
       outPre.innerHTML = original.out;
       tools.innerHTML = "";
+      tools.appendChild(copyBtn);
       tools.appendChild(edit);
+      tools.appendChild(play);
       codeBlock.classList.remove("is-editing");
     }
-    edit.addEventListener("click", enterEdit);
+    edit.addEventListener("click", function () { enterEdit(false); });
+    play.addEventListener("click", function () { enterEdit(true); run(); });
     /* «Практика»: пример сразу открыт для правки; «Сбросить» возвращает исходный код */
     if (codeBlock.closest(".try-block")) {
       enterEdit(true);
@@ -1588,6 +3261,18 @@
     render();
   }
 
+  function addCopyButtons() {
+    Array.prototype.forEach.call(document.querySelectorAll(".code-block"), function (block) {
+      if (block.querySelector(".ex-tools .tb-copy-code") || block.querySelector(":scope > .tb-copy-floating")) return;
+      var pre = block.querySelector("pre");
+      if (!pre) return;
+      block.appendChild(copyButton(function () {
+        var ed = block.querySelector(".ex-editor");
+        return ed ? ed.value : pre.textContent;
+      }, "tb-copy-floating"));
+    });
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll(".level-tabs"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll(".output-block.predict"), setupPredict);
@@ -1598,7 +3283,7 @@
     refreshMv();
     document.documentElement.addEventListener("practice:settings", refreshMv);
     Array.prototype.forEach.call(document.querySelectorAll("article.example"), setupStepper);
-    if (typeof Worker === "undefined" || typeof Blob === "undefined") return;
+    if (typeof Worker === "undefined" || typeof Blob === "undefined") { addCopyButtons(); return; }
     var blocks = document.querySelectorAll(".checker");
     for (var i = 0; i < blocks.length; i++) {
       var fb = blocks[i].querySelector(".checker-fallback");
@@ -1607,6 +3292,7 @@
     }
     var codes = document.querySelectorAll(".code-block");
     for (var j = 0; j < codes.length; j++) setupExample(codes[j]);
+    addCopyButtons();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

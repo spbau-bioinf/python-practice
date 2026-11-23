@@ -3073,3 +3073,23 @@ script.steps-data { display: none; }
 /* номера строк не должны получать горизонтальную прокрутку от общих правил .code-block pre */
 .code-block pre.code-gutter,
 .checker-editor .code-gutter { overflow: hidden; }
+
+/* ---------- Версия 92: копирование кода, иконки примера, скругление кнопок ---------- */
+.tb-copy-code { display: inline-grid; place-items: center; width: 2rem; height: 2rem; padding: 0; border: 0;
+  background: transparent; color: var(--win-code-text); opacity: 0.78; cursor: pointer; border-radius: 6px; z-index: 3; }
+.tb-copy-code:hover { opacity: 1; background: rgba(255, 255, 255, 0.14); color: #fff; }
+.tb-copy-code.is-copied { color: var(--c-accent); opacity: 1; }
+.tb-copy-code svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.code-editor-head .tb-copy-code { position: absolute; top: 50%; right: 2.2rem; transform: translateY(-50%); width: 1.8rem; height: 1.8rem; }
+.code-block > .tb-copy-floating { position: absolute; top: 0.45rem; right: 0.6rem; z-index: 2; }
+.ex-tools .tb-copy-code { color: var(--win-btn-text); opacity: 0.9; }
+.ex-tools .tb-copy-code:hover { background: rgba(0, 0, 0, 0.12); color: var(--win-code-title); }
+
+.ex-btn-icon { width: 2rem; height: 2rem; padding: 0; display: inline-grid; place-items: center; border-radius: var(--win-radius); }
+.ex-btn-icon svg { width: 16px; height: 16px; }
+
+/* Кнопки проверки и примеров: то же скругление, что у окна кода. */
+.checker-run, .checker-try, .checker-file, .checker-clear, .predict-btn, .ex-btn { border-radius: var(--win-radius); }
+@media (max-width: 900px) {
+  .ex-tools { position: absolute; top: 0.45rem; right: 0.6rem; padding: 0; }
+}
