@@ -108,7 +108,7 @@ GC: 0.477</pre></div></div><ol class="code-explain-text"><li>Имя <code>sample
 <p>Программа ждет ввода. Пользователь набирает <kbd class="user-input">S12</kbd> и нажимает Enter.</p>
 <article class="example"><h3>Приглашение и ввод</h3><div class="run-pair"><div class="code-block"><span class="code-label">ask.py</span><pre><code><span class="ln">name <span class="tok-op">=</span> <span class="tok-builtin">input</span>(<span class="tok-str">'Как называется образец? '</span>)</span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">f'</span><span class="tok-str">Образец </span>{name}<span class="tok-str"> принят</span><span class="tok-str">'</span>)  <span class="tok-out"># → Образец S12 принят</span></span></code></pre></div><div class="output-block"><span class="output-label">Вывод</span><pre>Как называется образец? <kbd class="user-input">S12</kbd>
-Образец S12 принят</pre></div></div><div class="analysis"><ol><li>Строка 1: печатается приглашение, программа останавливается. Набранный текст становится значением <code>name</code>.</li><li>Строка 2: значение подставляется в ответ. В окне вывода введенное выделено: это не вывод программы, а то, что набрал человек.</li></ol></div></article>
+Образец S12 принят</pre></div></div><div class="analysis"><ol><li>Строка 1: печатается приглашение, программа останавливается. Набранный текст становится значением <code>name</code>.</li><li>Строка 2: значение подставляется в ответ. Набранное показано в окне «Ввод»: это не вывод программы, а то, что набрал человек.</li></ol></div></article>
 <p>Программа ждет ввода. Пользователь набирает <kbd class="user-input">150</kbd> и нажимает Enter.</p>
 <article class="example"><h3>Ввод всегда строка</h3><div class="run-pair"><div class="code-block"><span class="code-label">always_str.py</span><pre><code><span class="ln">reads <span class="tok-op">=</span> <span class="tok-builtin">input</span>(<span class="tok-str">'Сколько прочтений? '</span>)</span>
 <span class="ln"><span class="tok-builtin">print</span>(reads <span class="tok-op">+</span> reads)            <span class="tok-out"># → 150150</span></span>
@@ -129,77 +129,215 @@ TypeError: can only concatenate str (not "int") to str</pre></div><div class="co
 <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
 <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-<h3>Упражнение 1.9.1. Уникальные прочтения</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Секвенатор&nbsp;— прибор, который читает ДНК и выдает прочитанные участки; каждый такой участок называют прочтением. Дубликат повторяет уже полученное прочтение. Секвенатор выдал <code>reads</code> прочтений, из них <code>duplicates</code> оказались дубликатами. Найдите число уникальных прочтений. Прочитайте числа функцией <code>input()</code> и преобразуйте их <code>int()</code>.</p></div>
-<h4>Входные данные</h4>
-<p>В первой строке целое число <code>reads</code>, во второй целое число <code>duplicates</code> (0 ≤ <code>duplicates</code> ≤ <code>reads</code>).</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>1500
+              <h3>Упражнение 1.9.1. Уникальные прочтения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Секвенатор выдал <code>reads</code> прочтений, из них <code>duplicates</code> оказались дубликатами. Найдите число уникальных прочтений.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке целое число <code>reads</code> — всего прочтений, во второй целое <code>duplicates</code> — сколько из них дубликаты (0 ≤ <code>duplicates</code> ≤ <code>reads</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">1500<br>120</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1380</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Из 1500 прочтений 120 — дубликаты, поэтому уникальных 1500 − 120 = 1380.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>1500
 120</pre></td><td><pre>1380</pre></td></tr>
-                <tr><td><pre>10
+                      <tr><td><pre>10
 10</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_09_1_basic.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Секвенатор читает ДНК участками — прочтениями. Часть прочтений повторяет уже полученные: это дубликаты, их отбрасывают, чтобы не считать один и тот же участок дважды. Число уникальных прочтений — это все прочтения без дубликатов.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Секвенатор</strong> — прибор, который читает ДНК и выдает прочтения.</li>
+                  <li><strong>Прочтение</strong> — участок ДНК, прочитанный за один раз.</li>
+                  <li><strong>Дубликат</strong> — прочтение, которое повторяет уже полученное.</li>
+                  <li><strong>Уникальное прочтение</strong> — прочтение, у которого нет дубликатов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>reads = int(input())</code> и <code>duplicates = int(input())</code>.</li>
+                  <li>Уникальные — это все прочтения без дубликатов: <code>reads − duplicates</code>.</li>
+                  <li>Выведите разность: <code>print(reads - duplicates)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
 <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-<h3>Упражнение 1.9.1. Время прогона</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прогон&nbsp;— один запуск прибора. Прибор сообщает длительность прогона в секундах. Переведите ее в полные минуты и оставшиеся секунды.</p></div>
-<h4>Входные данные</h4>
-<p>Одно целое неотрицательное число: длительность в секундах.</p>
-<h4>Выходные данные</h4>
-<p>Два целых числа в одной строке через пробел: минуты и секунды.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>125</pre></td><td><pre>2 5</pre></td></tr>
-                <tr><td><pre>59</pre></td><td><pre>0 59</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_09_1_medium.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.9.1. Время прогона</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прибор сообщает длительность прогона в секундах. Переведите ее в полные минуты и оставшиеся секунды и выведите оба числа через пробел.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно целое неотрицательное число <code>seconds</code> — длительность прогона в секундах.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Два целых числа в одной строке через пробел: минуты и секунды.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">125</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2 5</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">125 // 60 = 2 полные минуты, 125 % 60 = 5 секунд остаются; печатаются через пробел в одной строке.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>125</pre></td><td><pre>2 5</pre></td></tr>
+                      <tr><td><pre>59</pre></td><td><pre>0 59</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Прибор сообщает длительность прогона в секундах, а в отчете удобнее минуты и секунды. Полные минуты — это целая часть от деления на 60, остаток — оставшиеся секунды.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прогон</strong> — один запуск прибора.</li>
+                  <li><strong>Полные минуты</strong> — целое число минут без остатка секунд.</li>
+                  <li><strong>Остаток от деления</strong> — то, что остается после деления нацело.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>seconds = int(input())</code>.</li>
+                  <li>Полные минуты: <code>seconds // 60</code>.</li>
+                  <li>Остаток секунд: <code>seconds % 60</code>.</li>
+                  <li>Напечатайте оба числа через пробел: <code>print(seconds // 60, seconds % 60)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
 <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-<h3>Упражнение 1.9.1. Конец инкубации</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Инкубация&nbsp;— выдерживание пробы при заданной температуре в течение заданного времени. Инкубация началась в <code>h</code> часов <code>m</code> минут и длится <code>d</code> минут. Во сколько она закончится? Время показывают часы с циферблатом на 24 часа: после 23:59 идет 0:00.</p></div>
-<details class="task-hint"><summary>Подсказка</summary><p>Удобно сначала перевести все в минуты от полуночи.</p></details><h4>Входные данные</h4>
-<p>Три целых числа, каждое в своей строке: <code>h</code> (0–23), <code>m</code> (0–59), <code>d</code> (0 ≤ <code>d</code> ≤ 10000).</p>
-<h4>Выходные данные</h4>
-<p>Два целых числа в одной строке через пробел: часы (0–23) и минуты (0–59) окончания.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>22
+              <h3>Упражнение 1.9.1. Конец инкубации</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Инкубация началась в <code>hours</code> часов <code>minutes</code> минут и длится <code>duration</code> минут. Во сколько она закончится? Время показывают часы с циферблатом на 24 часа: после 23:59 идет 0:00. Выведите часы и минуты через пробел.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три целых числа, каждое в своей строке: <code>hours</code> — часы (0–23), <code>minutes</code> — минуты (0–59), <code>duration</code> — длительность в минутах (0 ≤ <code>duration</code> ≤ 10000).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Два целых числа в одной строке через пробел: часы (0–23) и минуты (0–59) окончания.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">22<br>50<br>90</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0 20</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">22:50 — это 1370 минут от полуночи; прибавляем 90 минут, получаем 1460, а 1460 % 1440 = 20 минут после полуночи, то есть 0:20.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>22
 50
 90</pre></td><td><pre>0 20</pre></td></tr>
-                <tr><td><pre>23
+                      <tr><td><pre>23
 59
 1</pre></td><td><pre>0 0</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_09_1_advanced.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Инкубация — выдерживание пробы при заданной температуре в течение заданного времени. Время на часах с 24-часовым циферблатом циклическое: после 23:59 идет 0:00, поэтому лишние сутки отбрасывают остатком от деления на число минут в сутках.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Инкубация</strong> — выдерживание пробы при заданной температуре в течение заданного времени.</li>
+                  <li><strong>Циферблат на 24 часа</strong> — запись времени, в которой после 23:59 идет 0:00.</li>
+                  <li><strong>Остаток от деления</strong> — то, что остается после деления нацело.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>hours = int(input())</code>, <code>minutes = int(input())</code>, <code>duration = int(input())</code>.</li>
+                  <li>Переведите начало в минуты от полуночи: <code>hours * 60 + minutes</code>.</li>
+                  <li>Прибавьте длительность: <code>total = hours * 60 + minutes + duration</code>.</li>
+                  <li>Часы: <code>total // 60 % 24</code>, минуты: <code>total % 60</code>; напечатайте через пробел: <code>print(total // 60 % 24, total % 60)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 </div>
 </section>
@@ -222,79 +360,215 @@ TypeError: can only concatenate str (not "int") to str</pre></div><div class="co
 <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
 <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-<h3>Упражнение 1.9.2. Подпись пробы</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Напечатайте подпись для пробирки: имя пробы <code>name</code>, двоеточие, пробел, объем <code>volume</code> и через пробел единицы <code>мкл</code>. Воспользуйтесь f-строкой.</p></div>
-<h4>Входные данные</h4>
-<p>В первой строке имя пробы (строка без пробелов), во второй целое число <code>volume</code>.</p>
-<h4>Выходные данные</h4>
-<p>Одна строка вида <code>S12: 250 мкл</code>.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>S12
+              <h3>Упражнение 1.9.2. Подпись пробы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Напечатайте подпись для пробирки: имя пробы <code>name</code>, двоеточие, пробел, объем <code>volume</code> и через пробел единицы <code>мкл</code>. Воспользуйтесь f-строкой.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два значения, каждое в своей строке: <code>name</code> — имя пробы (строка без пробелов), <code>volume</code> — объем в мкл (целое неотрицательное число).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка вида <code>S12: 250 мкл</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">S12<br>250</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">S12: 250 мкл</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">f-строка <code>f"{name}: {volume} мкл"</code> подставляет имя и объем в шаблон: получается S12: 250 мкл.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>S12
 250</pre></td><td><pre>S12: 250 мкл</pre></td></tr>
-                <tr><td><pre>A1
+                      <tr><td><pre>A1
 0</pre></td><td><pre>A1: 0 мкл</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_09_2_basic.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Подпись на пробирке должна быть короткой и однозначной: имя пробы, объем и единицы. f-строка собирает такую подпись из значений переменных.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>f-строка</strong> — строка с фигурными скобками, в которые подставляют значения переменных.</li>
+                  <li><strong>Проба</strong> — небольшой объем материала, отобранный для анализа.</li>
+                  <li><strong>Микролитр</strong> — тысячная доля миллилитра, сокращенно мкл.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте имя: <code>name = input()</code>, затем объем: <code>volume = int(input())</code>.</li>
+                  <li>Соберите подпись f-строкой: <code>f'{name}: {volume} мкл'</code>.</li>
+                  <li>Выведите ее: <code>print(f'{name}: {volume} мкл')</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
 <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-<h3>Упражнение 1.9.2. Средняя оптическая плотность</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Оптическая плотность&nbsp;— число, которое показывает, насколько проба ослабляет проходящий через нее свет. Оптическую плотность пробы измерили три раза. Найдите среднее значение и выведите его ровно с двумя знаками после точки.</p></div>
-<h4>Входные данные</h4>
-<p>Три вещественных неотрицательных числа, каждое в своей строке.</p>
-<h4>Выходные данные</h4>
-<p>Одно число с двумя знаками после точки.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>0.5
+              <h3>Упражнение 1.9.2. Средняя оптическая плотность</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Оптическую плотность пробы измерили три раза. Найдите среднее значение и выведите его ровно с двумя знаками после точки.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три вещественных неотрицательных числа, каждое в своей строке: результаты трех измерений оптической плотности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число с двумя знаками после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.5<br>0.52<br>0.54</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0.52</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Среднее (0.5 + 0.52 + 0.54) / 3 = 1.56 / 3 = 0.52; формат <code>:.2f</code> печатает ровно два знака после точки.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.5
 0.52
 0.54</pre></td><td><pre>0.52</pre></td></tr>
-                <tr><td><pre>1
+                      <tr><td><pre>1
 1
 1</pre></td><td><pre>1.00</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_09_2_medium.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Оптическая плотность показывает, насколько проба ослабляет проходящий свет. Три измерения усредняют, чтобы уменьшить случайную ошибку, и записывают среднее с двумя знаками после точки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Оптическая плотность</strong> — число, которое показывает, насколько проба ослабляет проходящий свет.</li>
+                  <li><strong>Среднее значение</strong> — сумма значений, деленная на их число.</li>
+                  <li><strong>Формат :0.2f</strong> — запись числа ровно с двумя знаками после точки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>first = float(input())</code>, <code>second = float(input())</code>, <code>third = float(input())</code>.</li>
+                  <li>Среднее: <code>mean = (first + second + third) / 3</code>.</li>
+                  <li>Выведите ровно с двумя знаками: <code>print(f'{mean:0.2f}')</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
 <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-<h3>Упражнение 1.9.2. Выход ДНК в микрограммах</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Элюат&nbsp;— раствор, в котором оказывается ДНК после очистки. Концентрация ДНК в элюате <code>conc</code> нг/мкл, объем элюата <code>volume</code> мкл. Найдите общую массу ДНК в микрограммах и выведите ее с тремя знаками после точки и единицами: <code>1.020 мкг</code>.</p></div>
-<h4>Входные данные</h4>
-<p>Два вещественных неотрицательных числа, каждое в своей строке: <code>conc</code> и <code>volume</code>.</p>
-<h4>Выходные данные</h4>
-<p>Одна строка: число с тремя знаками после точки, пробел, <code>мкг</code>.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>25.5
+              <h3>Упражнение 1.9.2. Выход ДНК в микрограммах</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Концентрация ДНК в элюате <code>conc</code> нг/мкл, объем элюата <code>volume</code> мкл. Найдите общую массу ДНК в микрограммах и выведите ее с тремя знаками после точки и единицами: 1.020 мкг.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два вещественных неотрицательных числа, каждое в своей строке: <code>conc</code> — концентрация в нг/мкл, <code>volume</code> — объем в мкл.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: число с тремя знаками после точки, пробел, <code>мкг</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">25.5<br>40</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1.020 мкг</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">25.5 нг/мкл · 40 мкл = 1020 нг = 1.020 мкг; формат <code>:.3f</code> и слово мкг дают 1.020 мкг.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>25.5
 40</pre></td><td><pre>1.020 мкг</pre></td></tr>
-                <tr><td><pre>0
+                      <tr><td><pre>0
 50</pre></td><td><pre>0.000 мкг</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_09_2_advanced.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Элюат — раствор, в котором оказывается ДНК после очистки. Масса ДНК — это концентрация, умноженная на объем; нанограммы переводят в микрограммы делением на 1000.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Элюат</strong> — раствор, в котором оказывается ДНК после очистки.</li>
+                  <li><strong>Концентрация</strong> — количество вещества в единице объема раствора.</li>
+                  <li><strong>Нанограмм</strong> — одна тысячная микрограмма, сокращенно нг.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>conc = float(input())</code> и <code>volume = float(input())</code>.</li>
+                  <li>Масса в нанограммах: <code>conc * volume</code>.</li>
+                  <li>Переведите в микрограммы: <code>conc * volume / 1000</code>.</li>
+                  <li>Выведите с тремя знаками и единицами: <code>print(f'{mass:0.3f} мкг')</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 </div>
         <div class="step step-star">Задача со звездочкой</div>
@@ -304,80 +578,217 @@ TypeError: can only concatenate str (not "int") to str</pre></div><div class="co
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 1.9. Координаты участка</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Участок последовательности записывают в виде <code>имя:начало-конец</code>: запись <code>plasmid:5-9</code> означает позиции с 5 по 9 включительно (позиции нумеруют с 1). Даны имя последовательности, позиция начала участка и его длина. Выведите запись участка.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке имя последовательности (строка без пробелов), во второй позиция начала участка, в третьей длина участка; оба числа целые и больше 0.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка вида <code>имя:начало-конец</code> без пробелов.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>chr2
+              <h3>Задача со звездочкой 1.9. Координаты участка</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Участок последовательности записывают в виде <code>имя:начало-конец</code>: запись <code>plasmid:5-9</code> означает позиции с 5 по 9 включительно (позиции нумеруют с 1). Даны имя последовательности, позиция начала участка и его длина. Выведите запись участка.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три значения, каждое в своей строке: <code>name</code> — имя последовательности (строка без пробелов), <code>start</code> — позиция начала участка, <code>size</code> — длина участка (целые числа больше 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка вида <code>имя:начало-конец</code> без пробелов.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">chr2<br>1000<br>250</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">chr2:1000-1249</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Конец участка — это начало + длина − 1 = 1000 + 250 − 1 = 1249, потому что обе границы входят в участок.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>chr2
 1000
 250</pre></td><td><pre>chr2:1000-1249</pre></td></tr>
-                <tr><td><pre>pUC19
+                      <tr><td><pre>pUC19
 7
 1</pre></td><td><pre>pUC19:7-7</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_09_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Участок последовательности записывают координатами: имя, начало и конец через дефис. Позиции нумеруют с единицы, поэтому участок длиной <code>size</code> от позиции <code>start</code> заканчивается на <code>start + size − 1</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Координаты участка</strong> — запись имя:начало-конец, например plasmid:5-9.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида в последовательности; нумерация начинается с 1.</li>
+                  <li><strong>Длина участка</strong> — число нуклеотидов в нем.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте имя: <code>name = input()</code>, затем числа <code>start = int(input())</code> и <code>size = int(input())</code>.</li>
+                  <li>Конец участка: <code>start + size − 1</code>.</li>
+                  <li>Соберите запись f-строкой: <code>f'{name}:{start}-{start + size - 1}'</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 1.9. Часы, минуты, секунды</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прогоном называют один запуск прибора. Прогон длился <code>s</code> секунд. Выведите длительность в виде <code>Ч:ММ:СС</code>: часы без ведущего нуля, минуты и секунды всегда двумя цифрами, например <code>1:02:03</code>. Формат <code>:0.Nf</code> не дописывает нули слева, но каждую цифру числа можно вычислить отдельно (<a href="t1_06.html">страница 06</a>).</p></div>
-          <h4>Входные данные</h4>
-          <p>Одно целое число <code>s</code> от 0 до 359999.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка вида <code>Ч:ММ:СС</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>4000</pre></td><td><pre>1:06:40</pre></td></tr>
-                <tr><td><pre>47</pre></td><td><pre>0:00:47</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_09_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.9. Часы, минуты, секунды</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прогоном называют один запуск прибора. Прогон длился <code>total_seconds</code> секунд. Выведите длительность в виде <code>Ч:ММ:СС</code>: часы без ведущего нуля, минуты и секунды всегда двумя цифрами, например <code>1:02:03</code>. Формат <code>:0.Nf</code> не дописывает нули слева, но каждую цифру числа можно вычислить отдельно (<a href="t1_06.html">страница 06</a>).</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно целое число <code>total_seconds</code> — длительность прогона в секундах (от 0 до 359999).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка вида <code>Ч:ММ:СС</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">4000</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1:06:40</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">4000 секунд — это 1 час (3600), 6 минут (400 // 60) и 40 секунд; минуты и секунды печатаются форматом <code>:02d</code>, поэтому 6 становится 06.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>4000</pre></td><td><pre>1:06:40</pre></td></tr>
+                      <tr><td><pre>47</pre></td><td><pre>0:00:47</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Длительность прогона удобно записывать как Ч:ММ:СС. Часы считают делением на 3600, минуты — остатком от деления на 3600, деленным на 60. Две цифры минут и секунд получают делением и остатком от деления на 10.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прогон</strong> — один запуск прибора.</li>
+                  <li><strong>Ведущий ноль</strong> — ноль в начале записи числа, который выравнивает записи по длине.</li>
+                  <li><strong>Деление нацело</strong> — деление без остатка, записывается двумя косыми чертами.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>total_seconds = int(input())</code>.</li>
+                  <li>Часы: <code>hours = total_seconds // 3600</code>.</li>
+                  <li>Минуты: <code>minutes = total_seconds // 60 % 60</code>, секунды: <code>seconds = total_seconds % 60</code>.</li>
+                  <li>Каждую цифру минут и секунд выведите отдельно: в f-строке после часов подставьте <code>{minutes // 10}</code>, затем <code>{minutes % 10}</code>; для секунд те же две подстановки: <code>{seconds // 10}</code> и <code>{seconds % 10}</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 1.9. Сколько длилась инкубация</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Инкубацией называют выдерживание пробы при заданной температуре в течение заданного времени. Инкубация началась в <code>h1</code> часов <code>m1</code> минут и закончилась в <code>h2</code> часов <code>m2</code> минут. Она длилась меньше суток и могла перейти через полночь. Найдите длительность в виде <code>Ч:ММ</code>: часы без ведущего нуля, минуты двумя цифрами. Если время начала и конца совпало, длительность равна <code>0:00</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Четыре целых числа, каждое в своей строке: <code>h1</code> (0–23), <code>m1</code> (0–59), <code>h2</code> (0–23), <code>m2</code> (0–59).</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка вида <code>Ч:ММ</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>22
+              <h3>Задача со звездочкой 1.9. Сколько длилась инкубация</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Инкубация началась в <code>start_hours</code> часов <code>start_minutes</code> минут и закончилась в <code>end_hours</code> часов <code>end_minutes</code> минут. Она длилась меньше суток и могла перейти через полночь. Найдите длительность в виде Ч:ММ: часы без ведущего нуля, минуты двумя цифрами. Если время начала и конца совпало, длительность равна 0:00.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Четыре целых числа, каждое в своей строке: <code>start_hours</code> (0–23), <code>start_minutes</code> (0–59), <code>end_hours</code> (0–23), <code>end_minutes</code> (0–59).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка вида <code>Ч:ММ</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">22<br>40<br>1<br>5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2:25</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">От 22:40 до полуночи 80 минут, плюс 65 минут до 1:05 — всего 145 минут, то есть 2 часа 25 минут.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>22
 40
 1
 5</pre></td><td><pre>2:25</pre></td></tr>
-                <tr><td><pre>9
+                      <tr><td><pre>9
 15
 9
 15</pre></td><td><pre>0:00</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_09_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Инкубация начинается и заканчивается в разное время суток и может перейти через полночь. Разность моментов в минутах берут по модулю суток: остаток от деления на 1440 убирает переход через полночь.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Инкубация</strong> — выдерживание пробы при заданной температуре в течение заданного времени.</li>
+                  <li><strong>Полночь</strong> — граница суток: 0:00.</li>
+                  <li><strong>Остаток от деления</strong> — то, что остается после деления нацело.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте четыре числа: <code>start_hours = int(input())</code>, <code>start_minutes = int(input())</code>, <code>end_hours = int(input())</code>, <code>end_minutes = int(input())</code>.</li>
+                  <li>Переведите оба момента в минуты: <code>start_hours * 60 + start_minutes</code> и <code>end_hours * 60 + end_minutes</code>.</li>
+                  <li>В <code>total_minutes</code> запишите разность <code>end_hours * 60 + end_minutes</code> и <code>start_hours * 60 + start_minutes</code> и возьмите остаток от деления на <code>1440</code>.</li>
+                  <li>Минуты двумя цифрами: <code>minutes = total_minutes % 60</code>, затем f-строка из часов <code>{total_minutes // 60}</code> и двух цифр минут — <code>{minutes // 10}</code> и <code>{minutes % 10}</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_09_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

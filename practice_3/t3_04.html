@@ -269,77 +269,217 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.4.1. Отрицательный контроль</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В отрицательном контроле нет образца, и оптическая плотность должна быть не больше 0,05. Если это так, результат серии принимают, иначе серию повторяют. Дана оптическая плотность контроля. Выведите решение. Воспользуйтесь инструкциями <code>if</code> и <code>else</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: вещественное число от 0 до 4.</p>
-          <h4>Выходные данные</h4>
-          <p>Слово <code>принять</code>, если плотность не больше 0,05, иначе слово <code>повторить</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>0.12</pre></td><td><pre>повторить</pre></td></tr>
-                <tr><td><pre>0.05</pre></td><td><pre>принять</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_04_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.4.1. Отрицательный контроль</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В отрицательном контроле нет образца, и оптическая плотность должна быть не больше 0,05. Если это так, результат серии принимают, иначе серию повторяют. Дана оптическая плотность контроля. Выведите решение. Воспользуйтесь инструкциями <code>if</code> и <code>else</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: вещественное число от 0 до 4.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Слово <code>принять</code>, если плотность не больше 0,05, иначе слово <code>повторить</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">0.12</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">повторить</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">0.12 больше 0.05, поэтому условие «не больше 0,05» ложно и ветка else выводит «повторить». При плотности 0.05 серия была бы принята.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.12</pre></td><td><pre>повторить</pre></td></tr>
+                      <tr><td><pre>0.05</pre></td><td><pre>принять</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Отрицательный контроль — проба без образца: если в ней все равно регистрируется сигнал, реактивы загрязнены, и серию повторяют. Порог 0,05 задает границу допустимого фона.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Отрицательный контроль</strong> — проба без образца; сигнал в ней показывает загрязнение реактивов.</li>
+                  <li><strong>Оптическая плотность</strong> — показатель прибора, который растет вместе с количеством вещества в пробе.</li>
+                  <li><strong>Порог</strong> — граничное значение показателя, с которым сравнивают измерение.</li>
+                  <li><strong>if и else</strong> — ветвление: if выполняет один блок, else — другой, когда условие ложно.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оптическую плотность: <code>od = float(input())</code>.</li>
+                  <li>Условие приема: <code>od &lt;= 0.05</code>.</li>
+                  <li>Внутри if выведите <code>принять</code>, внутри else — <code>повторить</code>.</li>
+                  <li>Сверьтесь с примером: 0.12 дает повторить, а 0.05 — принять, потому что граница входит в норму.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_04_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.4.1. Число кодонов</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Последовательность кодирующей области должна состоять из целого числа кодонов, то есть ее длина делится на 3. Дана последовательность. Если ее длина делится на 3, выведите число кодонов. Иначе выведите, сколько нуклеотидов лишних.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 300.</p>
-          <h4>Выходные данные</h4>
-          <p>Если длина делится на 3, одно целое число: число кодонов. Иначе строка <code>лишних: k</code>, где <code>k</code> число нуклеотидов сверх целого числа кодонов.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGGCCTAA</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ATGCGTA</pre></td><td><pre>лишних: 1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_04_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.4.1. Число кодонов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательность кодирующей области должна состоять из целого числа кодонов, то есть ее длина делится на 3. Дана последовательность. Если ее длина делится на 3, выведите число кодонов. Иначе выведите, сколько нуклеотидов лишних.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 300.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Если длина делится на 3, одно целое число: число кодонов. Иначе слово <code>лишних</code>, двоеточие и число нуклеотидов сверх целого числа кодонов.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATGGCCTAA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длина последовательности 9 делится на 3, поэтому выводится число кодонов: 9 / 3 = 3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGGCCTAA</pre></td><td><pre>3</pre></td></tr>
+                      <tr><td><pre>ATGCGTA</pre></td><td><pre>лишних: 1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Кодон — тройка нуклеотидов, поэтому число полных кодонов — целая часть деления длины на 3, а лишние нуклеотиды — остаток от этого деления. Оператор // дает целую часть, оператор % — остаток.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Кодирующая область</strong> — участок гена, который переводится в белок.</li>
+                  <li><strong>Оператор //</strong> — целочисленное деление: отбрасывает дробную часть.</li>
+                  <li><strong>Оператор %</strong> — остаток от деления.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Проверка кратности: остаток от деления на 3 равен нулю, <code>len(seq) % 3 == 0</code>.</li>
+                  <li>Если делится, число кодонов — <code>len(seq) // 3</code>.</li>
+                  <li>Иначе выведите остаток: <code>print("лишних:", len(seq) % 3)</code>; сверьтесь с примером: ATGGCCTAA дает 3, а ATGCGTA — лишних: 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_04_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.4.1. Позиция мутации в гене</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Ген занимает на хромосоме участок с позиции <code>start</code> по позицию <code>end</code> включительно. Ген на цепи <code>+</code> читается в сторону возрастания позиций, ген на цепи <code>-</code> в сторону убывания. Мутация найдена в позиции <code>p</code> хромосомы. Определите номер мутантного нуклеотида в гене: первый прочитанный нуклеотид гена имеет номер 1.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Возьмите маленький ген, например с позиции 10 по 14, и пронумеруйте его нуклеотиды для каждой цепи. С какой позиции начинается ген на цепи <code>-</code>?</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке целое число <code>start</code>, во второй целое число <code>end</code> (1 ≤ <code>start</code> &lt; <code>end</code> ≤ 10<sup>9</sup>), в третьей знак цепи <code>+</code> или <code>-</code>, в четвертой целое число <code>p</code> (<code>start</code> ≤ <code>p</code> ≤ <code>end</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: номер мутантного нуклеотида в гене.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>32315507
+              <h3>Упражнение 3.4.1. Позиция мутации в гене</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Ген занимает на хромосоме участок с позиции <code>start</code> по позицию <code>end</code> включительно. Ген на цепи <code>+</code> читается в сторону возрастания позиций, ген на цепи <code>-</code> в сторону убывания. Мутация найдена в позиции <code>position</code> хромосомы. Определите номер мутантного нуклеотида в гене: первый прочитанный нуклеотид гена имеет номер 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке целое число <code>start</code>, во второй целое число <code>end</code> (1 ≤ <code>start</code> &lt; <code>end</code> ≤ 10<sup>9</sup>), в третьей знак цепи <code>+</code> или <code>-</code>, в четвертой целое число <code>position</code> (<code>start</code> ≤ <code>position</code> ≤ <code>end</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: номер мутантного нуклеотида в гене.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">32315507<br>32400268<br><span class="we-hl">+</span><br>32315600</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">94</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">На цепи + ген читается в сторону возрастания позиций, поэтому номер мутантного нуклеотида это p − start + 1 = 32315600 − 32315507 + 1 = 94.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>32315507
 32400268
 +
 32315600</pre></td><td><pre>94</pre></td></tr>
-                <tr><td><pre>7668421
+                      <tr><td><pre>7668421
 7687490
 -
 7687377</pre></td><td><pre>114</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_04_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Номер нуклеотида в гене считают от начала чтения. На цепи + чтение идет от start к end, поэтому номер равен position - start + 1; на цепи − в обратную сторону, и номер равен end - position + 1.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Цепь +</strong> — цепь ДНК, ген на которой читается в сторону возрастания позиций.</li>
+                  <li><strong>Цепь −</strong> — цепь ДНК, ген на которой читается в сторону убывания позиций.</li>
+                  <li><strong>Позиция включительно</strong> — обе границы участка входят в него.</li>
+                  <li><strong>if и else</strong> — ветвление: if выполняет один блок, else — другой, когда условие ложно.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте начало, конец, знак цепи и позицию: <code>start</code>, <code>end</code>, <code>strand</code>, <code>position</code> — три числа через <code>int(input())</code> и строку через <code>input()</code>.</li>
+                  <li>Для цепи + номер считается от начала: <code>position - start + 1</code>.</li>
+                  <li>Для цепи − номер считается от конца: <code>end - position + 1</code>.</li>
+                  <li>Выберите формулу ветвлением <code>if strand == "+"</code> и выведите результат; сверьтесь с примером: на цепи + позиция 32315600 в участке 32315507–32400268 дает 94, а на цепи − позиция 7687377 в участке 7668421–7687490 — 114.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_04_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -350,84 +490,223 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.4. Разведение пробы</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрация ДНК в пробе <code>C</code> нг/мкл, объем <code>V</code> мкл. Для анализа нужна концентрация не больше 50 нг/мкл. Если концентрация выше, пробу разбавляют водой до 50 нг/мкл. Количество ДНК при этом не меняется, поэтому <span class="formula">C · V = 50 · V2</span>, где V2 означает объем пробы после разведения. Выведите, сколько микролитров воды нужно добавить. Если разводить не нужно, выведите <code>не нужно</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке концентрация <code>C</code>, во второй объем <code>V</code>: вещественные числа, 0 &lt; <code>C</code> ≤ 1000, 0 &lt; <code>V</code> ≤ 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Объем воды в мкл, округленный функцией <code>round()</code> до одного знака после точки, или слова <code>не нужно</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>80
+              <h3>Задача со звездочкой 3.4. Разведение пробы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Концентрация ДНК в пробе — <code>concentration</code> нг/мкл, объем — <code>volume</code> мкл. Для анализа нужна концентрация не больше 50 нг/мкл. Если концентрация выше, пробу разбавляют водой до 50 нг/мкл. Количество ДНК при этом не меняется, поэтому <span class="formula">concentration · volume = 50 · diluted_volume</span>, где diluted_volume — объем пробы после разведения. Выведите, сколько микролитров воды нужно добавить. Если разводить не нужно, выведите <code>не нужно</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке концентрация <code>concentration</code>, во второй объем <code>volume</code>: вещественные числа, 0 &lt; <code>concentration</code> ≤ 1000, 0 &lt; <code>volume</code> ≤ 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Объем воды в мкл, округленный функцией <code>round()</code> до одного знака после точки, или слова <code>не нужно</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">80</span><br>10</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">6.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">80 · 10 = 800 нг ДНК; чтобы получить 50 нг/мкл, нужно 800 / 50 = 16 мкл раствора, значит добавить 16 − 10 = 6.0 мкл воды.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>80
 10</pre></td><td><pre>6.0</pre></td></tr>
-                <tr><td><pre>50
+                      <tr><td><pre>50
 12</pre></td><td><pre>не нужно</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_04_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При разведении количество ДНК остается прежним: концентрация падает, а объем растет. Из равенства concentration · volume = 50 · diluted_volume находят diluted_volume = concentration · volume / 50, а объем воды — разность diluted_volume − volume.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Концентрация</strong> — количество ДНК в единице объема, здесь в нг/мкл.</li>
+                  <li><strong>Разведение</strong> — добавление воды, которое снижает концентрацию.</li>
+                  <li><strong>Количество ДНК</strong> — произведение концентрации на объем; при разведении не меняется.</li>
+                  <li><strong>Функция round()</strong> — округляет число до заданного числа знаков после точки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте концентрацию и объем: <code>concentration = float(input())</code>, <code>volume = float(input())</code>.</li>
+                  <li>Разведение нужно, только если <code>concentration &gt; 50</code>.</li>
+                  <li>Объем после разведения — <code>concentration * volume / 50</code>, вода — разность <code>concentration * volume / 50 - volume</code>.</li>
+                  <li>Результат — <code>concentration * volume / 50</code> минус <code>volume</code>; округлите его до одного знака: <code>round(..., 1)</code>, иначе выведите <code>не нужно</code>; сверьтесь с примером: 80 и 10 дают 6.0, а 50 и 12 — не нужно.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_04_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.4. Расстояние на плазмиде</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмида&nbsp;— небольшая кольцевая молекула ДНК. Позиции на ней нумеруют от 1 до <code>L</code>, и за позицией <code>L</code> сразу идет позиция 1. Расстояние между двумя позициями считают по кольцу в ту сторону, где оно короче: на плазмиде длиной 10 от позиции 2 до позиции 9 три шага (2, 1, 10, 9), а не семь. Даны длина плазмиды и две позиции. Выведите расстояние между ними.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Путей между двумя позициями по кольцу два, и вместе они дают <code>L</code> шагов.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке длина <code>L</code> (2 ≤ <code>L</code> ≤ 10<sup>6</sup>), во второй и третьей позиции <code>a</code> и <code>b</code> (1 ≤ <code>a</code>, <code>b</code> ≤ <code>L</code>). Все числа целые.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: расстояние по кольцу в короткую сторону.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>4000
+              <h3>Задача со звездочкой 3.4. Расстояние на плазмиде</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Плазмида&nbsp;— небольшая кольцевая молекула ДНК. Позиции на ней нумеруют от 1 до <code>length</code>, и за позицией <code>length</code> сразу идет позиция 1. Расстояние между двумя позициями считают по кольцу в ту сторону, где оно короче: на плазмиде длиной 10 от позиции 2 до позиции 9 три шага (2, 1, 10, 9), а не семь. Даны длина плазмиды и две позиции. Выведите расстояние между ними.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке длина <code>length</code> (2 ≤ <code>length</code> ≤ 10<sup>6</sup>), во второй и третьей позиции <code>position1</code> и <code>position2</code> (1 ≤ <code>position1</code>, <code>position2</code> ≤ <code>length</code>). Все числа целые.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: расстояние по кольцу в короткую сторону.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">4000<br>150<br>3900</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">250</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Прямой путь по кольцу 3900 − 150 = 3750 шагов, обратный 4000 − 3750 = 250. Короче обратный, поэтому ответ 250.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>4000
 150
 3900</pre></td><td><pre>250</pre></td></tr>
-                <tr><td><pre>4000
+                      <tr><td><pre>4000
 1200
 700</pre></td><td><pre>500</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_04_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>На кольце из length позиций расстояние от position1 до position2 в сторону роста номеров — остаток (position2 - position1) % length. В обратную сторону — length - distance; берут меньшее из двух.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
+                  <li><strong>Кольцевая нумерация</strong> — за позицией length сразу идет позиция 1.</li>
+                  <li><strong>Оператор %</strong> — остаток от деления; на кольце он возвращает номер позиции после length.</li>
+                  <li><strong>Расстояние по кольцу</strong> — число шагов между позициями в короткую сторону.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте длину и две позиции: <code>length = int(input())</code>, <code>position1 = int(input())</code>, <code>position2 = int(input())</code>.</li>
+                  <li>Расстояние в сторону роста номеров: <code>distance = (position2 - position1)</code>, затем остаток от деления на <code>length</code>.</li>
+                  <li>В обратную сторону: <code>length - distance</code>; если оно меньше, замените distance на него.</li>
+                  <li>Выведите меньшее расстояние; сверьтесь с примером: на плазмиде 4000 позиции 150 и 3900 отстоят на 250 шагов, а 1200 и 700 — на 500.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_04_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.4. Позиция в участке плазмиды</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмида&nbsp;— небольшая кольцевая молекула ДНК: позиции на ней нумеруют от 1 до <code>L</code>, и за позицией <code>L</code> сразу идет позиция 1. Ген занимает участок с позиции <code>start</code> по позицию <code>end</code> в сторону роста номеров. Участок может проходить через место, где за <code>L</code> идет 1: тогда <code>start</code> больше <code>end</code>. Например, на плазмиде длиной 10 участок с 8 по 2 состоит из позиций 8, 9, 10, 1, 2. Дана позиция <code>p</code>. Выведите ее номер внутри участка (позиция <code>start</code> имеет номер 1) или слова <code>вне участка</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Разбирать отдельно случай, когда <code>start</code> больше <code>end</code>, не обязательно. Число шагов по кольцу от <code>start</code> до <code>p</code> и от <code>start</code> до <code>end</code> дает остаток от деления на <code>L</code>: в Python он не бывает отрицательным при положительном <code>L</code> (<a href="../practice_1/t1_06.html">страница 06 практики 1</a>, раздел об остатке и отрицательных числах).</p></details>
-          <h4>Входные данные</h4>
-          <p>Четыре строки: длина <code>L</code> (2 ≤ <code>L</code> ≤ 10<sup>6</sup>), затем <code>start</code>, <code>end</code> и <code>p</code>, каждое от 1 до <code>L</code>. Все числа целые.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер позиции <code>p</code> внутри участка или слова <code>вне участка</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3000
+              <h3>Задача со звездочкой 3.4. Позиция в участке плазмиды</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Плазмида&nbsp;— небольшая кольцевая молекула ДНК: позиции на ней нумеруют от 1 до <code>length</code>, и за позицией <code>length</code> сразу идет позиция 1. Ген занимает участок с позиции <code>start</code> по позицию <code>end</code> в сторону роста номеров. Участок может проходить через место, где за <code>length</code> идет 1: тогда <code>start</code> больше <code>end</code>. Например, на плазмиде длиной 10 участок с 8 по 2 состоит из позиций 8, 9, 10, 1, 2. Дана позиция <code>position</code>. Выведите ее номер внутри участка (позиция <code>start</code> имеет номер 1) или слова <code>вне участка</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Четыре строки: длина <code>length</code> (2 ≤ <code>length</code> ≤ 10<sup>6</sup>), затем <code>start</code>, <code>end</code> и <code>position</code>, каждое от 1 до <code>length</code>. Все числа целые.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер позиции <code>position</code> внутри участка или слова <code>вне участка</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3000<br>2900<br>150<br>20</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">121</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">От start до p по кольцу 3000 − 2880 = 120 шагов, до end — 250 шагов. p не дальше end, значит номер внутри участка 120 + 1 = 121.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3000
 2900
 150
 20</pre></td><td><pre>121</pre></td></tr>
-                <tr><td><pre>3000
+                      <tr><td><pre>3000
 2900
 150
 1500</pre></td><td><pre>вне участка</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_04_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>На кольце участок и позицию удобно отсчитывать остатками от start: номер позиции position внутри участка — (position - start) % length + 1, длина участка — (end - start) % length + 1. Позиция внутри участка, если ее номер не превышает длину.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
+                  <li><strong>Кольцевой участок</strong> — отрезок плазмиды, который может проходить через позицию length на позицию 1.</li>
+                  <li><strong>Оператор %</strong> — остаток от деления; на кольце он возвращает номер позиции после length.</li>
+                  <li><strong>Номер внутри участка</strong> — порядковый номер позиции, начиная с 1 у start.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте длину, начало, конец и позицию: <code>length</code>, <code>start</code>, <code>end</code>, <code>position</code> через <code>int(input())</code>.</li>
+                  <li>Номер позиции внутри участка: <code>pos = (position - start) % length + 1</code>.</li>
+                  <li>Длина участка: <code>size = (end - start) % length + 1</code>.</li>
+                  <li>Позиция внутри, если <code>pos &lt;= size</code>: выведите pos или <code>вне участка</code>; сверьтесь с примером: на плазмиде 3000 в участке 2900–150 позиция 20 имеет номер 121, а позиция 1500 лежит вне участка.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_04_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

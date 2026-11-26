@@ -140,97 +140,237 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.6.1. Наибольшее изменение</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Экспрессия гена показывает, насколько активно он работает. Для <code>n</code> генов измерили изменение экспрессии: положительное число значит, что ген стал работать сильнее, отрицательное, что слабее. Числа целые. Найдите наибольшее значение. Начните поиск с <code>None</code>, как в примере, и не пользуйтесь функцией <code>max()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке <code>n</code> (1 ≤ <code>n</code> ≤ 100), дальше <code>n</code> целых чисел от −1000 до 1000, по одному в строке.</p>
-          <h4>Выходные данные</h4>
-          <p>Наибольшее число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5
+              <h3>Упражнение 4.6.1. Наибольшее изменение</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Экспрессия гена показывает, насколько активно он работает. Для <code>count</code> генов измерили изменение экспрессии: положительное число значит, что ген стал работать сильнее, отрицательное, что слабее. Числа целые. Найдите наибольшее значение. Начните поиск с <code>None</code>, как в примере, и не пользуйтесь функцией <code>max()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке <code>count</code> (1 ≤ <code>count</code> ≤ 100), дальше <code>count</code> целых чисел от −1000 до 1000, по одному в строке.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Наибольшее число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5<br>3<br>-7<br><span class="we-hl">12</span><br>0<br>4</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Сравнение с None позволяет начать с любого первого числа: 12 больше всех остальных значений последовательности.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5
 3
 -7
 12
 0
 4</pre></td><td><pre>12</pre></td></tr>
-                <tr><td><pre>3
+                      <tr><td><pre>3
 -8
 -2
 -15</pre></td><td><pre>-2</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_06_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Максимум без max() ищут переменной, которая начинается с None. Первое число задает значение, а каждое следующее сравнивают с ним и заменяют, только если оно больше; None в конце не останется, ведь чисел хотя бы одно.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Экспрессия гена</strong> — показатель того, насколько активно работает ген.</li>
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>is None</strong> — проверка, что значение еще не задано.</li>
+                  <li><strong>Сравнение и замена</strong> — новое число больше текущего максимума — переменную перезаписывают.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте количество чисел: <code>count = int(input())</code>; заведите <code>mx = None</code>.</li>
+                  <li>Читайте числа в цикле: <code>for index in range(count):</code> — первой строкой тела <code>value = int(input())</code>.</li>
+                  <li>Заменяйте максимум при <code>mx is None or value &gt; mx</code>.</li>
+                  <li>Выведите mx; сверьтесь с примером: 3, -7, 12, 0 и 4 дают 12, а -8, -2 и -15 — -2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_06_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.6.1. Позиция максимума</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дано <code>n</code> целых чисел. Найдите позицию наибольшего из них; позиции нумеруются с 1. Если наибольшее значение встречается несколько раз, выведите позицию первого. Функцией <code>max()</code> не пользуйтесь.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке <code>n</code> (1 ≤ <code>n</code> ≤ 100), дальше <code>n</code> целых чисел от −1000 до 1000, по одному в строке.</p>
-          <h4>Выходные данные</h4>
-          <p>Позиция первого наибольшего числа.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5
+              <h3>Упражнение 4.6.1. Позиция максимума</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дано <code>count</code> целых чисел. Найдите позицию наибольшего из них; позиции нумеруются с 1. Если наибольшее значение встречается несколько раз, выведите позицию первого. Функцией <code>max()</code> не пользуйтесь.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке <code>count</code> (1 ≤ <code>count</code> ≤ 100), дальше <code>count</code> целых чисел от −1000 до 1000, по одному в строке.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Позиция первого наибольшего числа.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5<br>3<br>-7<br><span class="we-hl">12</span><br>0<br>4</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Наибольшее число 12 стоит третьим; строгий знак сравнения сохраняет позицию первого из равных максимумов.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5
 3
 -7
 12
 0
 4</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>4
+                      <tr><td><pre>4
 9
 2
 9
 5</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_06_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Вместе со значением максимума хранят его позицию. Номер цикла index начинается с нуля, поэтому позиция равна index + 1; пару заменяют только при строгом value &gt; mx, и тогда при повторе максимума остается первая позиция.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Позиция</strong> — порядковый номер числа; нумерация начинается с 1.</li>
+                  <li><strong>Строгое сравнение</strong> — value &gt; mx не считает равное значение новым максимумом.</li>
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>Первое вхождение</strong> — позиция самого раннего из равных максимумов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте количество чисел: <code>count = int(input())</code>; заведите <code>mx = None</code>.</li>
+                  <li>Читайте числа в цикле: <code>for index in range(count):</code> — первой строкой тела <code>value = int(input())</code>.</li>
+                  <li>При <code>mx is None or value &gt; mx</code> запоминайте и значение, и номер: <code>mx = value</code>, <code>pos = index + 1</code>.</li>
+                  <li>Выведите pos; сверьтесь с примером: 3, -7, 12, 0 и 4 дают 3, а 9, 2, 9 и 5 — 1, потому что равный максимум не заменяет первый.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_06_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.6.1. Два наибольших</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор прочитал за один раз (<a href="t4_03.html">страница 03</a>). Дано <code>n</code> длин прочтений. Найдите два наибольших значения за один проход по вводу, без функций <code>max()</code> и <code>sorted()</code>. Если наибольшее значение встречается дважды, оба ответа равны ему.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Храните два значения: наибольшее и второе. Когда приходит новое наибольшее, прежнее наибольшее не пропадает, а становится вторым.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке <code>n</code> (2 ≤ <code>n</code> ≤ 100), дальше <code>n</code> целых положительных чисел, по одному в строке.</p>
-          <h4>Выходные данные</h4>
-          <p>Наибольшее и второе по величине значения через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5
+              <h3>Упражнение 4.6.1. Два наибольших</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прочтение&nbsp;— участок ДНК, который секвенатор прочитал за один раз (<a href="t4_03.html">страница 03</a>). Дано <code>count</code> длин прочтений. Найдите два наибольших значения за один проход по вводу, без функций <code>max()</code> и <code>sorted()</code>. Если наибольшее значение встречается дважды, оба ответа равны ему.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке <code>count</code> (2 ≤ <code>count</code> ≤ 100), дальше <code>count</code> целых положительных чисел, по одному в строке.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Наибольшее и второе по величине значения через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5<br>150<br><span class="we-hl">300</span><br>120<br><span class="we-hl">250</span><br>90</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">300 250</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Когда приходит 300, прежнее наибольшее 150 становится вторым; затем 250 вытесняет 150 со второго места.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5
 150
 300
 120
 250
 90</pre></td><td><pre>300 250</pre></td></tr>
-                <tr><td><pre>4
+                      <tr><td><pre>4
 100
 300
 300
 50</pre></td><td><pre>300 300</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_06_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Два максимума хранят двумя переменными. Число больше первого — оно становится первым, а прежний максимум сдвигается во второе; иначе число сравнивают со вторым. Повтор первого значения проходит ветку elif и тоже становится вторым.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Второй максимум</strong> — наибольшее значение, не превосходящее первого максимума.</li>
+                  <li><strong>Один проход</strong> — все числа читают последовательно и запоминают только два значения.</li>
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>Ветка elif</strong> — срабатывает, когда условие if оказалось ложным.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте количество чисел: <code>count = int(input())</code>; заведите <code>first = None</code> и <code>second = None</code>.</li>
+                  <li>Читайте числа в цикле: <code>for index in range(count):</code> — первой строкой тела <code>value = int(input())</code>.</li>
+                  <li>Если <code>first is None or value &gt; first</code>, сдвиньте прежний максимум во second, а в first запишите value.</li>
+                  <li>Иначе при <code>second is None or value &gt; second</code> обновите second; выведите оба через пробел; сверьтесь с примером: 150, 300, 120, 250 и 90 дают 300 250, а повторы 300 — 300 300.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_06_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -282,71 +422,211 @@
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.6. Самое длинное название</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В строке через пробел записаны названия генов. Выведите самое длинное название. Если таких несколько, выведите первое из них.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 названий из латинских букв через пробел.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно название.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>lacZ rpoB gyrA recA</pre></td><td><pre>lacZ</pre></td></tr>
-                <tr><td><pre>dnaK</pre></td><td><pre>dnaK</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_06_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.6. Самое длинное название</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В строке через пробел записаны названия генов. Выведите самое длинное название. Если таких несколько, выведите первое из них.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 названий из латинских букв через пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно название.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">lacZ</span> rpoB gyrA recA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">lacZ</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Все четыре названия одной длины, поэтому побеждает первое: строгое сравнение не заменяет лучший ответ равным.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>lacZ rpoB gyrA recA</pre></td><td><pre>lacZ</pre></td></tr>
+                      <tr><td><pre>dnaK</pre></td><td><pre>dnaK</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Слова получают методом split(): он режет строку по пробелам и выдает список. Лучшее название начинают с первого элемента списка, а заменяют, только когда новое строго длиннее, поэтому при равенстве остается первое.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод split()</strong> — режет строку по пробелам и выдает список слов.</li>
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Длина строки</strong> — число символов; ее дает функция len().</li>
+                  <li><strong>Строгое сравнение</strong> — len(name) &gt; len(best) не пропускает равную длину.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Разберите строку на названия: <code>names = input().split()</code>.</li>
+                  <li>Лучшее начните с первого: <code>best = names[0]</code>.</li>
+                  <li>Перебирайте названия циклом: <code>for name in names:</code> — при <code>len(name) &gt; len(best)</code> замените best.</li>
+                  <li>Выведите best; сверьтесь с примером: lacZ rpoB gyrA recA все длины 4, и ответ lacZ — первое из равных, а dnaK остается сам.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_06_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.6. Самый длинный рост</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор записал значения подряд через пробел. Найдите длину самого длинного отрезка подряд идущих значений, в котором каждое следующее не меньше предыдущего. Отрезок из одного значения тоже подходит.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 100 целых чисел от 0 до 1000 через пробел.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: длина отрезка.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5 3 4 4 7 2 8</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>9 10 11</pre></td><td><pre>3</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_06_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.6. Самый длинный рост</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прибор записал значения подряд через пробел. Найдите длину самого длинного отрезка подряд идущих значений, в котором каждое следующее не меньше предыдущего. Отрезок из одного значения тоже подходит.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 100 целых чисел от 0 до 1000 через пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: длина отрезка.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5 <span class="we-hl">3 4 4 7</span> 2 8</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Отрезок 3, 4, 4, 7 не убывает и содержит четыре числа; следующее за ним 2 меньше 7 и начинает новый отрезок.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5 3 4 4 7 2 8</pre></td><td><pre>4</pre></td></tr>
+                      <tr><td><pre>9 10 11</pre></td><td><pre>3</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Длину текущего неубывающего отрезка хранят в run. Каждая пара соседних значений либо продлевает его, либо обрывает: тогда run начинают заново с единицы. Лучшую длину обновляют после каждого шага.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Неубывающий отрезок</strong> — каждое следующее значение не меньше предыдущего.</li>
+                  <li><strong>Соседние значения</strong> — значение и то, что стоит перед ним.</li>
+                  <li><strong>Счетчик run</strong> — длина текущего отрезка.</li>
+                  <li><strong>Метод split()</strong> — режет строку по пробелам и выдает список слов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Разберите строку: <code>values = input().split()</code>; заведите <code>best = 1</code> и <code>run = 1</code>.</li>
+                  <li>Сравнивайте соседей по индексам: <code>for index in range(1, len(values)):</code>.</li>
+                  <li>Если <code>int(values[index])</code> не меньше <code>int(values[index - 1])</code>, увеличьте <code>run</code>, иначе начните заново: <code>run = 1</code>.</li>
+                  <li>После сравнения обновите best при <code>run &gt; best</code>; сверьтесь с примером: 5 3 4 4 7 2 8 дают 4, а 9 10 11 — 3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_06_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.6. Участок с наибольшей суммой</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вдоль последовательности записаны показатели, положительные и отрицательные, например оценки гидрофобности аминокислот белка. Найдите участок подряд идущих значений с наибольшей суммой и выведите эту сумму. Участок не может быть пустым. Решите за один проход: перебор всех пар начала и конца здесь не нужен.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Храните сумму лучшего участка, который заканчивается на текущем значении. Если эта сумма отрицательна, новому участку выгоднее начаться с текущего значения.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 1000 целых чисел от −100 до 100 через пробел.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: наибольшая сумма.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2 -3 4 -1 2 -5 3</pre></td><td><pre>5</pre></td></tr>
-                <tr><td><pre>-3 -1 -2</pre></td><td><pre>-1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_06_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.6. Участок с наибольшей суммой</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Вдоль последовательности записаны показатели, положительные и отрицательные, например оценки гидрофобности аминокислот белка. Найдите участок подряд идущих значений с наибольшей суммой и выведите эту сумму. Участок не может быть пустым. Решите за один проход: перебор всех пар начала и конца здесь не нужен.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 1000 целых чисел от −100 до 100 через пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: наибольшая сумма.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2 -3 <span class="we-hl">4 -1 2</span> -5 3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">5</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Лучший участок 4, −1, 2 дает сумму 5; начинать с него выгодно, потому что сумма предыдущего участка 2 − 3 отрицательна.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2 -3 4 -1 2 -5 3</pre></td><td><pre>5</pre></td></tr>
+                      <tr><td><pre>-3 -1 -2</pre></td><td><pre>-1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Сумму лучшего участка, который заканчивается текущим значением, хранят в cur: если она положительна, следующее значение выгодно добавить, иначе участок начинают заново с этого числа. Ответ best обновляют после каждого шага, поэтому перебор пар не нужен.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Участок</strong> — несколько подряд идущих значений.</li>
+                  <li><strong>Сумма участка</strong> — результат сложения всех его значений.</li>
+                  <li><strong>Один проход</strong> — каждое значение читают и учитывают один раз.</li>
+                  <li><strong>Отрицательные значения</strong> — числа меньше нуля уменьшают сумму участка.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Разберите строку: <code>values = input().split()</code>; заведите <code>best = int(values[0])</code> и <code>cur = 0</code>.</li>
+                  <li>Перебирайте значения: <code>for token in values:</code> — первым делом приведите число: <code>value = int(token)</code>.</li>
+                  <li>Если <code>cur &gt; 0</code>, добавьте value к cur, иначе начните участок заново: <code>cur = value</code>.</li>
+                  <li>Обновляйте best при <code>cur &gt; best</code>; сверьтесь с примером: 2 -3 4 -1 2 -5 3 дают 5, а -3 -1 -2 — -1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_06_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

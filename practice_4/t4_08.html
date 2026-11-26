@@ -179,77 +179,218 @@ GC GT </pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.8.1. Число вхождений мотива</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Посчитайте, сколько раз мотив встречается в последовательности; вхождения могут перекрываться. Внешний цикл перебирает позиции начала, внутренний сравнивает буквы мотива, как в примере; срезы и методы <code>count()</code> и <code>find()</code> не используйте.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив; обе из букв A, C, G, T, мотив не длиннее последовательности, длина последовательности до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Число вхождений.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGACGTACG
+              <h3>Упражнение 4.8.1. Число вхождений мотива</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Посчитайте, сколько раз мотив встречается в последовательности; вхождения могут перекрываться. Внешний цикл перебирает позиции начала, внутренний сравнивает буквы мотива, как в примере; срезы и методы <code>count()</code> и <code>find()</code> не используйте.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив; обе из букв A, C, G, T, мотив не длиннее последовательности, длина последовательности до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Число вхождений.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">ACG</span><span class="we-hl">ACG</span>T<span class="we-hl">ACG</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Вхождения ACG начинаются на позициях 1, 4 и 8; внутренний цикл сравнивает буквы мотива с участком на каждой позиции.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGACGTACG
 ACG</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>TTTT
+                      <tr><td><pre>TTTT
 TT</pre></td><td><pre>3</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_08_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Вложенные циклы проверяют каждое возможное начало: внешний перебирает start от 0 до len(text) - len(motif), внутренний сравнивает буквы. Ветка else у цикла for срабатывает, только когда все буквы совпали и break не случился.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Мотив</strong> — короткая последовательность, которую ищут в длинной.</li>
+                  <li><strong>Вхождение</strong> — место, где мотив совпал с участком последовательности.</li>
+                  <li><strong>Перекрывающиеся вхождения</strong> — следующее вхождение может начаться внутри предыдущего.</li>
+                  <li><strong>Вложенные циклы</strong> — цикл внутри цикла: внешний задает начало, внутренний перебирает буквы.</li>
+                  <li><strong>Ветка else у цикла</strong> — срабатывает, когда цикл завершился без break.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>text = input()</code>, <code>motif = input()</code>; заведите <code>count = 0</code>.</li>
+                  <li>Внешний цикл перебирает начала: <code>start</code> пробегает <code>range(len(text) - len(motif) + 1)</code>.</li>
+                  <li>Внутренний сравнивает буквы: <code>for offset in range(len(motif)):</code> — при несовпадении <code>text[start + offset] != motif[offset]</code> выходите через break.</li>
+                  <li>Ветка <code>else</code> у внутреннего цикла увеличивает count; выведите count; сверьтесь с примером: ACGACGTACG и ACG дают 3, а TTTT и TT — тоже 3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_08_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.8.1. Вхождения с одной заменой</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Мотивы в ДНК часто встречаются с небольшими отличиями, поэтому ищут и участки, расстояние Хэмминга от которых до мотива (<a href="t4_07.html">страница 07</a>) не больше 1. Посчитайте, во скольких позициях последовательности мотив отличается от участка такой же длины не более чем в одной букве, то есть максимум одной заменой. Буквы сравнивайте во внутреннем цикле, без срезов и методов строк.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив; обе из букв A, C, G, T, мотив не длиннее последовательности, длина последовательности до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Число позиций.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTTCGAACG
+              <h3>Упражнение 4.8.1. Вхождения с одной заменой</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Мотивы в ДНК часто встречаются с небольшими отличиями, поэтому ищут и участки, расстояние Хэмминга от которых до мотива (<a href="t4_07.html">страница 07</a>) не больше 1. Посчитайте, во скольких позициях последовательности мотив отличается от участка такой же длины не более чем в одной букве, то есть максимум одной заменой. Буквы сравнивайте во внутреннем цикле, без срезов и методов строк.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив; обе из букв A, C, G, T, мотив не длиннее последовательности, длина последовательности до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Число позиций.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">ACG</span>TT<span class="we-hl">TCG</span>A<span class="we-hl">ACG</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Подходят вхождения на позициях 1 и 9 (точное совпадение) и участок TCG на позиции 5 — в нем отличается только первая буква.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTTCGAACG
 ACG</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>AAAA
+                      <tr><td><pre>AAAA
 CC</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_08_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Расстояние Хэмминга между участком и мотивом считают внутренним циклом: счетчик diff растет на каждой несовпавшей букве. После внутреннего цикла позиция подходит, если diff не больше единицы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Мотив</strong> — короткая последовательность, которую ищут в длинной.</li>
+                  <li><strong>Расстояние Хэмминга</strong> — число позиций, в которых две строки различаются.</li>
+                  <li><strong>Замена</strong> — одна различающаяся буква.</li>
+                  <li><strong>Вложенные циклы</strong> — цикл внутри цикла: внешний задает начало, внутренний перебирает буквы.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>text = input()</code>, <code>motif = input()</code>; заведите <code>count = 0</code>.</li>
+                  <li>Внешний цикл перебирает начала: <code>start</code> пробегает <code>range(len(text) - len(motif) + 1)</code>; внутри заводите <code>diff = 0</code>.</li>
+                  <li>Внутренний цикл сравнивает буквы: <code>for offset in range(len(motif)):</code> — каждое несовпадение увеличивает diff.</li>
+                  <li>После внутреннего цикла при <code>diff &lt;= 1</code> увеличьте count; сверьтесь с примером: ACGTTCGAACG и ACG дают 3, а AAAA и CC — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_08_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.8.1. Самый частый k-мер</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p><code>k</code>-мер&nbsp;— участок последовательности длины <code>k</code>. Найдите <code>k</code>-мер, который встречается в последовательности чаще всех (вхождения могут перекрываться). Если таких несколько, выведите тот, который встречается в последовательности раньше. Словари не нужны: хватит вложенных циклов.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Для каждой позиции <code>i</code> возьмите <code>k</code>-мер, который с нее начинается, и внутренним циклом посчитайте, сколько раз он встречается во всей последовательности. Дальше это поиск максимума со страницы 06.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из букв A, C, G, T длиной до 100, во второй целое <code>k</code>, 1 ≤ <code>k</code> ≤ длины последовательности.</p>
-          <h4>Выходные данные</h4>
-          <p>Самый частый <code>k</code>-мер и число его вхождений через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTTGCATGTCGCATGATGCATGAGAGCT
+              <h3>Упражнение 4.8.1. Самый частый k-мер</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>k-мер&nbsp;— участок последовательности длины <code>kmer_length</code>. Найдите k-мер, который встречается в последовательности чаще всех (вхождения могут перекрываться). Если таких несколько, выведите тот, который встречается в последовательности раньше. Словари не нужны: хватит вложенных циклов.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из букв A, C, G, T длиной до 100, во второй целое <code>kmer_length</code>, 1 ≤ <code>kmer_length</code> ≤ длины последовательности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Самый частый k-мер и число его вхождений через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGTT<span class="we-hl">GCAT</span>GTC<span class="we-hl">GCAT</span>GAT<span class="we-hl">GCAT</span>GAGAGCT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">GCAT 3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">GCAT начинается на позициях 6, 13 и 20 и встречается три раза; его вхождения перекрываются с соседними k-мерами.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTTGCATGTCGCATGATGCATGAGAGCT
 4</pre></td><td><pre>GCAT 3</pre></td></tr>
-                <tr><td><pre>AAAA
+                      <tr><td><pre>AAAA
 2</pre></td><td><pre>AA 3</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_08_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждый k-мер получают срезом, а его число вхождений считают вложенным циклом по всем началам. Лучший вариант обновляют только при строго большем счете, поэтому при равенстве остается тот, что встретился раньше.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>k-мер</strong> — участок последовательности длины kmer_length.</li>
+                  <li><strong>Вхождение</strong> — место, где k-мер совпал с участком последовательности.</li>
+                  <li><strong>Срез</strong> — кусок строки, вырезанный по индексам.</li>
+                  <li><strong>Вложенные циклы</strong> — цикл внутри цикла: внешний берет k-мер, внутренний считает его вхождения.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и kmer_length: <code>seq = input()</code>, <code>kmer_length = int(input())</code>; заведите <code>best = None</code> и <code>best_count = 0</code>.</li>
+                  <li>Внешний цикл берет k-мер: <code>index</code> пробегает <code>range(len(seq) - kmer_length + 1)</code>, в теле присвойте <code>kmer</code> срез <code>seq[index:index + kmer_length]</code>.</li>
+                  <li>Внутренний цикл считает его вхождения: для каждого начала сравните срез длиной <code>kmer_length</code> с <code>kmer</code>.</li>
+                  <li>При <code>count &gt; best_count</code> запомните kmer и счет; выведите оба через пробел; сверьтесь с примером: первый пример дает GCAT 3, а AAAA при kmer_length = 2 — AA 3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_08_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -260,17 +401,43 @@ CC</pre></td><td><pre>0</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.8. Все динуклеотиды</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Динуклеотид&nbsp;— пара соседних букв. Для каждой из 16 пар из букв A, C, G, T выведите ее и число вхождений в последовательность. Пары идут в порядке AA, AC, AG, AT, CA и так далее: первая буква по порядку ACGT, внутри нее вторая. Вхождения могут перекрываться: в <code>AAA</code> пара AA встречается дважды.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>16 строк: пара и число вхождений через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AAAC</pre></td><td><pre>AA 2
+              <h3>Задача со звездочкой 4.8. Все динуклеотиды</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Динуклеотид&nbsp;— пара соседних букв. Для каждой из 16 пар из букв A, C, G, T выведите ее и число вхождений в последовательность. Пары идут в порядке AA, AC, AG, AT, CA и так далее: первая буква по порядку ACGT, внутри нее вторая. Вхождения могут перекрываться: в <code>AAA</code> пара AA встречается дважды.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>16 строк: пара и число вхождений через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AAAC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AA 2<br>AC 1<br>AG 0<br>AT 0<br>CA 0<br>CC 0<br>CG 0<br>CT 0<br>GA 0<br>GC 0<br>GG 0<br>GT 0<br>TA 0<br>TC 0<br>TG 0<br>TT 0</code>
+                    </div>
+                  </div>
+                  <p class="we-note">В AAAC есть две пары AA и одна AC, остальные пары не встречаются; порядок строк задает перебор пар в двух вложенных циклах.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AAAC</pre></td><td><pre>AA 2
 AC 1
 AG 0
 AT 0
@@ -286,7 +453,7 @@ TA 0
 TC 0
 TG 0
 TT 0</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>AA 0
+                      <tr><td><pre>ACGT</pre></td><td><pre>AA 0
 AC 1
 AG 0
 AT 0
@@ -302,63 +469,177 @@ TA 0
 TC 0
 TG 0
 TT 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_08_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пары перебирают двумя циклами по алфавиту ACGT, и порядок вывода задают сами циклы. Для каждой пары внутренний цикл считает совпадения соседних букв, поэтому перекрывающиеся вхождения учитываются.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Динуклеотид</strong> — пара соседних букв.</li>
+                  <li><strong>Вложенные циклы</strong> — цикл внутри цикла: первые два задают пару, третий считает ее вхождения.</li>
+                  <li><strong>Перекрывающиеся вхождения</strong> — следующая пара может начаться с последней буквы предыдущей.</li>
+                  <li><strong>Алфавит</strong> — строка ACGT, по которой перебирают буквы пары.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Переберите пары двумя циклами: <code>for first_base in "ACGT":</code> и вложенным <code>for second_base in "ACGT":</code>.</li>
+                  <li>Для пары посчитайте совпадения соседей: при <code>seq[index] == first_base</code> и <code>seq[index + 1] == second_base</code> увеличьте счетчик; цикл идет по <code>range(len(seq) - 1)</code>.</li>
+                  <li>Напечатайте пару и счет через пробел; сверьтесь с примером: AAAC дает AA 2, AC 1, а остальные пары — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_08_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.8. Палиндромные сайты</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Многие ферменты режут ДНК в местах, где участок совпадает со своей обратной комплементарной цепью: например, <code>GAATTC</code> читается одинаково на обеих цепях. Обратную комплементарную цепь вы строили в упражнении 4.1.1. Сколько участков длины k совпадают со своей обратной комплементарной цепью? Участки идут с каждой позиции и могут перекрываться. Сравнивайте буквы попарно с двух концов участка: первую с последней, вторую с предпоследней.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из букв A, C, G, T длиной от 1 до 100, во второй число k от 1 до длины последовательности.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GAATTCGAATTC
+              <h3>Задача со звездочкой 4.8. Палиндромные сайты</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Многие ферменты режут ДНК в местах, где участок совпадает со своей обратной комплементарной цепью: например, <code>GAATTC</code> читается одинаково на обеих цепях. Обратную комплементарную цепь вы строили в упражнении 4.1.1. Сколько участков длины site_length совпадают со своей обратной комплементарной цепью? Участки идут с каждой позиции и могут перекрываться. Сравнивайте буквы попарно с двух концов участка: первую с последней, вторую с предпоследней.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из букв A, C, G, T длиной от 1 до 100, во второй число site_length от 1 до длины последовательности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GAATTCGAATTC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Палиндромны участки на позициях 1, 4 и 7: GAATTC, TTCGAA и снова GAATTC; сравнение идет парами букв с концов участка.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GAATTCGAATTC
 6</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 4</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_08_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Палиндром в ДНК читается одинаково на обеих цепях: буква с одного конца комплементарна букве с другого. Проверка идет парами с двух концов, а флаг ok сбрасывается при первой неподходящей паре.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Палиндромный сайт</strong> — участок, который совпадает со своей обратной комплементарной цепью.</li>
+                  <li><strong>Обратная комплементарная цепь</strong> — последовательность, прочитанная от конца к началу с заменой букв на комплементарные.</li>
+                  <li><strong>Комплементарные пары</strong> — A с T и C с G.</li>
+                  <li><strong>Флаг ok</strong> — переменная-признак: все пары участка подошли.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и site_length: <code>seq = input()</code>, <code>site_length = int(input())</code>; заведите <code>count = 0</code>.</li>
+                  <li>Внешний цикл перебирает начала: <code>index</code> пробегает <code>range(len(seq) - site_length + 1)</code>; внутри заводите <code>ok = True</code>.</li>
+                  <li>Внутренний цикл сравнивает пары с двух концов: буква <code>seq[index + offset]</code> и буква <code>seq[index + site_length - 1 - offset]</code>.</li>
+                  <li>Пара допустима, только если она AT, TA, CG или GC; иначе <code>ok = False</code> и break; после цикла при ok увеличьте count; сверьтесь с примером: GAATTCGAATTC при site_length = 6 дает 3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_08_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.8. Самая длинная общая подстрока</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Найдите самый длинный участок, который есть в обеих последовательностях. Если таких несколько, выведите тот, что встречается в первой последовательности раньше. Если общих букв нет, выведите дефис. Похожая задача есть в сборнике <a href="https://rosalind.info/problems/lcsm/">Rosalind</a>, там последовательностей больше двух.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Переберите пары начал: i в первой строке и j во второй. Для каждой пары внутренним циклом <code>while</code> продлевайте совпадение, пока буквы равны.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки из букв A, C, G, T длиной от 1 до 50.</p>
-          <h4>Выходные данные</h4>
-          <p>Общий участок или <code>-</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA
+              <h3>Задача со звездочкой 4.8. Самая длинная общая подстрока</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Найдите самый длинный участок, который есть в обеих последовательностях. Если таких несколько, выведите тот, что встречается в первой последовательности раньше. Если общих букв нет, выведите дефис. Похожая задача есть в сборнике <a href="https://rosalind.info/problems/lcsm/">Rosalind</a>, там последовательностей больше двух.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки из букв A, C, G, T длиной от 1 до 50.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Общий участок или <code>-</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA<br>TAGACCA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">GA</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Общие участки длины 2: GA и TA; в первой строке GA начинается раньше, поэтому выбирают его.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA
 TAGACCA</pre></td><td><pre>GA</pre></td></tr>
-                <tr><td><pre>ACGTTTGCA
+                      <tr><td><pre>ACGTTTGCA
 CCTTTGG</pre></td><td><pre>TTTG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_08_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Общий участок ищут от каждого начала в обеих строках: внутренний while продлевает совпадение, пока буквы равны и не кончилась строка. Длину лучшего сравнивают строго через &gt;, поэтому при равенстве остается участок, который встретился в первой строке раньше.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Общая подстрока</strong> — участок, который встречается в обеих последовательностях.</li>
+                  <li><strong>Совпадение</strong> — цепочка одинаковых букв на одних и тех же местах участков.</li>
+                  <li><strong>Вложенные циклы</strong> — цикл внутри цикла: внешний берет начало в первой строке, внутренний — во второй.</li>
+                  <li><strong>Цикл while</strong> — продлевает совпадение, пока буквы равны.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>first = input()</code>, <code>second = input()</code>; заведите <code>best = ""</code>.</li>
+                  <li>Переберите начала в обеих строках: <code>for index in range(len(first)):</code> и вложенным <code>for second_index in range(len(second)):</code>.</li>
+                  <li>Продлевайте совпадение, пока <code>index + match_length</code> меньше <code>len(first)</code> и <code>second_index + match_length</code> меньше <code>len(second)</code>, а буквы <code>first[index + match_length]</code> и <code>second[second_index + match_length]</code> равны. На каждом шаге увеличивайте <code>match_length</code>.</li>
+                  <li>При <code>match_length &gt; len(best)</code> запишите <code>best = first[index:index + match_length]</code>; пустой best замените дефисом; сверьтесь с примером: GATTACA и TAGACCA дают GA, а ACGTTTGCA и CCTTTGG — TTTG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_08_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

@@ -207,82 +207,217 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.7.1. Расстояние Хэмминга</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Две последовательности одной длины записаны одна под другой: буквы с одинаковым индексом стоят друг под другом. Найдите расстояние Хэмминга между ними, то есть число позиций, в которых буквы различаются (ручной подсчет показан в теории перед упражнением). Инвариант цикла: перед обработкой индекса <code>i</code> счетчик равен числу различий среди первых <code>i</code> позиций.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Расстояние Хэмминга.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GAGCCTACTAACGGGAT
+              <h3>Упражнение 4.7.1. Расстояние Хэмминга</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Две последовательности одной длины записаны одна под другой: буквы с одинаковым индексом стоят друг под другом. Найдите расстояние Хэмминга между ними, то есть число позиций, в которых буквы различаются (ручной подсчет показан в теории перед упражнением). Инвариант цикла: перед обработкой позиции с номером <code>index</code> счетчик равен числу различий среди позиций с номерами от 0 до <code>index - 1</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Расстояние Хэмминга.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GAGCCTACTAACGGGAT<br>CATCGTAATGACGGCCT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">7</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строки различаются в позициях 1, 3, 5, 8, 10, 15 и 16 — семь позиций; одинаковые буквы в счет не входят.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GAGCCTACTAACGGGAT
 CATCGTAATGACGGCCT</pre></td><td><pre>7</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 ACGT</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_07_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Две последовательности одной длины читают по индексам вместе. Каждая пара несовпавших букв увеличивает счетчик, поэтому перед индексом index счетчик равен числу различий среди первых index позиций — это и есть инвариант цикла.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Расстояние Хэмминга</strong> — число позиций, в которых две строки одной длины различаются.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                  <li><strong>Инвариант цикла</strong> — утверждение, которое верно перед каждым шагом цикла.</li>
+                  <li><strong>Счетчик</strong> — переменная, которая растет на единицу за каждое различие.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>first = input()</code>, <code>second = input()</code>; заведите <code>distance = 0</code>.</li>
+                  <li>Перебирайте индексы: <code>for index in range(len(first)):</code>.</li>
+                  <li>Сравнивайте буквы на одной позиции: при <code>first[index] != second[index]</code> увеличьте distance.</li>
+                  <li>Выведите distance; сверьтесь с примером: две строки из условия дают 7, а ACGT и ACGT — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_07_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.7.1. Самый длинный гомополимер</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Гомополимер&nbsp;— участок из одной повторяющейся буквы, например AAAA. Длинные гомополимеры плохо читаются секвенаторами. Найдите длину самого длинного гомополимера в последовательности; одна буква тоже считается участком длины 1.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Длина самого длинного участка из одинаковых букв.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GGTAAACC</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_07_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.7.1. Самый длинный гомополимер</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Гомополимер&nbsp;— участок из одной повторяющейся буквы, например AAAA. Длинные гомополимеры плохо читаются секвенаторами. Найдите длину самого длинного гомополимера в последовательности; одна буква тоже считается участком длины 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Длина самого длинного участка из одинаковых букв.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GGT<span class="we-hl">AAA</span>CC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Самый длинный участок — AAA из трех букв; серии GG и CC короче.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GGTAAACC</pre></td><td><pre>3</pre></td></tr>
+                      <tr><td><pre>ACGT</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Текущую длину серии хранят в cur: совпадение с предыдущей буквой продлевает ее, смена буквы начинает новую серию с единицы. Лучшую длину обновляют после каждого шага, поэтому ответ — максимум длины по всем сериям.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Гомополимер</strong> — участок из одной повторяющейся буквы, например AAAA.</li>
+                  <li><strong>Серия</strong> — подряд идущие одинаковые буквы.</li>
+                  <li><strong>Счетчик cur</strong> — длина текущей серии.</li>
+                  <li><strong>Соседние буквы</strong> — буква и та, что стоит перед ней.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>cur = 1</code> и <code>best = 1</code>.</li>
+                  <li>Сравнивайте соседей: <code>for index in range(1, len(seq)):</code>.</li>
+                  <li>При <code>seq[index] == seq[index - 1]</code> увеличьте cur, иначе начните серию заново: <code>cur = 1</code>.</li>
+                  <li>После сравнения обновите best при <code>cur &gt; best</code>; сверьтесь с примером: GGTAAACC дает 3, а ACGT — 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_07_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.7.1. Минимум накопленного перекоса</h3>
-          <details class="deep"><summary>Биологический контекст</summary>
-            <p>Перед делением клетки ДНК удваивается; этот процесс называется репликацией. У бактерий репликация начинается в одной точке кольцевой ДНК. Если идти по последовательности, до этой точки буква C обычно встречается чаще G и накопленный перекос убывает, а после нее G встречается чаще и перекос растет. Поэтому минимум накопленного перекоса подсказывает, где искать точку начала репликации, но не доказывает, что она там.</p>
-          </details>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p>
-            <p><strong>Дано.</strong> Строка <code>seq</code> из букв A, C, G, T. Для каждого <code>k</code> от 0 до <code>len(seq)</code> накопленный перекос <code>skew(k)</code> — это число G минус число C среди первых <code>k</code> букв. У пустого префикса <code>skew(0) = 0</code>. Это не GC-состав со страницы 05: здесь разность не делится на число G и C.</p>
-            <p><strong>Найти.</strong> Наименьшее <code>k</code>, при котором <code>skew(k)</code> минимален.</p>
-            <p><strong>Ответ.</strong> Одно число <code>k</code>.</p>
-            <p><strong>Границы.</strong> <code>k</code> может быть 0; если минимум достигается в нескольких местах, нужно наименьшее <code>k</code>.</p>
-            <p>Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Минимум −1 впервые достигается при <code>k = 1</code>, ответ 1.</p>
-          </div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сформулируйте инвариант: перед обработкой буквы с индексом <code>i</code> переменная <code>skew</code> равна перекосу префикса длины <code>i</code>; <code>min_skew</code> хранит наименьший перекос среди префиксов длины от 0 до <code>i</code>; <code>answer</code> хранит наименьшую длину, на которой этот минимум достигнут. Проверьте три проверки: до цикла, после каждой итерации и после выхода.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Наименьшая длина префикса с минимальным перекосом.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TAAAGACTGCCGAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT</pre></td><td><pre>11</pre></td></tr>
-                <tr><td><pre>GGGG</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_07_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.7.1. Минимум накопленного перекоса</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p><strong>Дано.</strong> Строка <code>seq</code> из букв A, C, G, T. Для каждого <code>prefix_length</code> от 0 до <code>len(seq)</code> накопленный перекос <code>skew(prefix_length)</code> — это число G минус число C среди первых <code>prefix_length</code> букв. У пустого префикса <code>skew(0) = 0</code>. Это не GC-состав со страницы 05: здесь разность не делится на число G и C.</p>
+                <p><strong>Найти.</strong> Наименьшее <code>prefix_length</code>, при котором <code>skew(prefix_length)</code> минимален.</p>
+                <p><strong>Ответ.</strong> Одно число <code>prefix_length</code>.</p>
+                <p><strong>Границы.</strong> <code>prefix_length</code> может быть 0; если минимум достигается в нескольких местах, нужно наименьшее <code>prefix_length</code>.</p>
+                <p>Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Минимум −1 впервые достигается при <code>prefix_length = 1</code>, ответ 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Наименьшая длина префикса с минимальным перекосом.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">TAAAGACTGCC</span>GAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">11</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Перекос впервые достигает минимума −1 после одиннадцатой буквы: в префиксе TAAAGACTGCC две G и три C.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TAAAGACTGCCGAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT</pre></td><td><pre>11</pre></td></tr>
+                      <tr><td><pre>GGGG</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Перекос меняется на единицу с каждой буквой: G прибавляет, C отнимает. Чтобы найти первое место минимума, перекос сравнивают с текущим минимумом строго через &lt;: при равенстве позицию не меняют, и в ответе остается наименьшее prefix_length.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Перекос</strong> — разность числа G и числа C.</li>
+                  <li><strong>Префикс</strong> — начало строки; префикс длины prefix_length — первые prefix_length букв.</li>
+                  <li><strong>Строгое сравнение</strong> — skew &lt; mn не срабатывает при равенстве.</li>
+                  <li><strong>Инвариант цикла</strong> — утверждение, которое верно перед каждым шагом цикла.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>skew = 0</code>, <code>mn = 0</code> и <code>pos = 0</code>.</li>
+                  <li>В цикле по индексам меняйте перекос: G увеличивает его, C уменьшает.</li>
+                  <li>При <code>skew &lt; mn</code> запоминайте новый минимум и позицию: <code>mn = skew</code>, <code>pos = index + 1</code>.</li>
+                  <li>Выведите pos; сверьтесь с примером: у CAG ответ 1, а у GGGG — 0, потому что минимум достигается уже на пустом префиксе.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_07_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -293,71 +428,211 @@ ACGT</pre></td><td><pre>0</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.7. Возврат к нулю</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины i равен числу G минус число C среди первых i букв; у пустого префикса (i = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Найдите самую короткую длину префикса, на которой перекос снова стал равен 0 после того, как хотя бы раз был ненулевым. Если такого префикса нет, выведите NO.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Длина префикса или NO.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AGTTCA</pre></td><td><pre>5</pre></td></tr>
-                <tr><td><pre>GGGA</pre></td><td><pre>NO</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_07_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.7. Возврат к нулю</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Накопленный перекос префикса длины prefix_length равен числу G минус число C среди первых prefix_length букв; у пустого префикса (prefix_length = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Найдите самую короткую длину префикса, на которой перекос снова стал равен 0 после того, как хотя бы раз был ненулевым. Если такого префикса нет, выведите NO.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Длина префикса или NO.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">AGTTC</span>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">5</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После буквы G перекос равен 1; буква C на позиции 5 возвращает его к нулю — это первый возврат.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AGTTCA</pre></td><td><pre>5</pre></td></tr>
+                      <tr><td><pre>GGGA</pre></td><td><pre>NO</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Флаг moved запоминает, был ли перекос хотя бы раз ненулевым. Ноль после такого момента означает возврат: первый такой префикс и есть ответ, поэтому цикл обрывают командой break. Если ноль так и не вернулся, ответ остается NO.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Перекос</strong> — разность числа G и числа C.</li>
+                  <li><strong>Префикс</strong> — начало строки; префикс длины prefix_length — первые prefix_length букв.</li>
+                  <li><strong>Флаг moved</strong> — переменная-признак: перекос уже уходил от нуля.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>skew = 0</code>, <code>moved = False</code> и <code>answer = "NO"</code>.</li>
+                  <li>В цикле по индексам меняйте перекос: G увеличивает его, C уменьшает.</li>
+                  <li>Если <code>skew != 0</code>, поднимите флаг moved.</li>
+                  <li>Иначе, когда <code>moved</code> истинен, запишите <code>answer = index + 1</code> и выйдите через break; сверьтесь с примером: AGTTCA дает 5, а GGGA — NO.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_07_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.7. Все позиции минимума</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины i равен числу G минус число C среди первых i букв; у пустого префикса (i = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Выведите все длины префиксов i от 0 до длины строки, на которых перекос наименьший, через пробел по возрастанию. Задача из сборника <a href="https://rosalind.info/problems/ba1f/">Rosalind</a>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Длины префиксов через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATACACTTCCCGAGTAGGTACTG</pre></td><td><pre>12</pre></td></tr>
-                <tr><td><pre>GGGG</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_07_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.7. Все позиции минимума</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Накопленный перекос префикса длины prefix_length равен числу G минус число C среди первых prefix_length букв; у пустого префикса (prefix_length = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Выведите все длины префиксов prefix_length от 0 до длины строки, на которых перекос наименьший, через пробел по возрастанию. Задача из сборника <a href="https://rosalind.info/problems/ba1f/">Rosalind</a>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Длины префиксов через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GATACACTTCCC</span>GAGTAGGTACTG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Минимум −4 достигается только после двенадцатой буквы: в префиксе GATACACTTCCC одна G и пять C.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATACACTTCCCGAGTAGGTACTG</pre></td><td><pre>12</pre></td></tr>
+                      <tr><td><pre>GGGG</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Текущий минимум low и строку позиций where ведут одним проходом: новый минимум заменяет и значение, и строку, а равенство минимуму дописывает позицию через пробел. Нулевой префикс входит в ответ по умолчанию, поэтому where начинается с 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Перекос</strong> — разность числа G и числа C.</li>
+                  <li><strong>Минимум перекоса</strong> — наименьшее значение перекоса среди всех префиксов.</li>
+                  <li><strong>Строка позиций</strong> — длины префиксов, записанные через пробел.</li>
+                  <li><strong>Инвариант цикла</strong> — утверждение, которое верно перед каждым шагом цикла.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>skew = 0</code>, <code>low = 0</code> и <code>where = "0"</code>.</li>
+                  <li>В цикле по индексам меняйте перекос: G увеличивает его, C уменьшает.</li>
+                  <li>При <code>skew &lt; low</code> замените минимум и строку: <code>low = skew</code>, <code>where = str(index + 1)</code>.</li>
+                  <li>При <code>skew == low</code> допишите позицию через пробел; выведите where; сверьтесь с примером: у GGGG перекос только растет, и ответ — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_07_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.7. Наибольший рост перекоса</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Накопленный перекос префикса длины i равен числу G минус число C среди первых i букв; у пустого префикса (i = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Найдите наибольший рост перекоса: наибольшую разность skew(j) − skew(i) при i ≤ j. Если перекос нигде не растет, ответ 0. Решите за один проход и сформулируйте инвариант: что хранит каждая переменная перед обработкой очередной буквы.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Две переменные: наименьший перекос среди уже пройденных префиксов и наибольший рост, найденный до сих пор. Новая буква дает новый перекос; рост до него считается от наименьшего прежнего.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CCGGGCG</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>CCCC</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_07_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.7. Наибольший рост перекоса</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Накопленный перекос префикса длины prefix_length равен числу G минус число C среди первых prefix_length букв; у пустого префикса (prefix_length = 0) он равен 0. Например, у <code>CAG</code> перекосы префиксов длины 0, 1, 2, 3 равны 0, −1, −1, 0. Найдите наибольший рост перекоса: наибольшую разность skew(right_length) − skew(left_length) при left_length ≤ right_length. Если перекос нигде не растет, ответ 0. Решите за один проход и сформулируйте инвариант: что хранит каждая переменная перед обработкой очередной буквы.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CCGGGCG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Перекос падает до −2 на первых двух буквах, а затем поднимается до 1: рост 1 − (−2) = 3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CCGGGCG</pre></td><td><pre>3</pre></td></tr>
+                      <tr><td><pre>CCCC</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Нужны два инварианта сразу: low — наименьший перекос среди пройденных префиксов, best — наибольший рост к текущему месту. Рост считают до обновления low, ведь пара left_length = right_length дала бы нулевую разность и не испортила бы ответ.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Перекос</strong> — разность числа G и числа C.</li>
+                  <li><strong>Рост перекоса</strong> — разность skew(right_length) - skew(left_length) при left_length &lt;= right_length.</li>
+                  <li><strong>Инвариант цикла</strong> — утверждение, которое верно перед каждым шагом цикла.</li>
+                  <li><strong>Наименьший перекос low</strong> — минимум перекоса среди уже пройденных префиксов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>skew = 0</code>, <code>low = 0</code> и <code>best = 0</code>.</li>
+                  <li>В цикле <code>for base in seq:</code> меняйте перекос: G увеличивает его, C уменьшает.</li>
+                  <li>Сначала обновите рост: при <code>skew - low &gt; best</code> запишите разность в best.</li>
+                  <li>Затем обновите минимум: при <code>skew &lt; low</code> запишите <code>low = skew</code>; сверьтесь с примером: CCGGGCG дает 3, а CCCC — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_07_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

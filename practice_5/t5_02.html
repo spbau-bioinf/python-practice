@@ -222,79 +222,222 @@ True True
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.2.1. Черновик набора</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Перед правкой набора с ним работают в черновике: в копию добавляют новую последовательность, а исходный набор остается прежним. Сделайте копию набора методом <code>copy()</code> или срезом <code>[:]</code>, допишите в конец копии новую последовательность и выведите исходный набор и копию.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Во второй строке новая последовательность из тех же букв.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке исходный набор через пробел, во второй копия с добавленной последовательностью.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATG CCA
+              <h3>Упражнение 5.2.1. Черновик набора</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Перед правкой набор копируют: изменения в копии не должны затрагивать исходный набор. Сделайте копию набора, допишите в конец копии новую последовательность и выведите исходный набор и копию.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Во второй строке новая последовательность из тех же букв.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке исходный набор через пробел, во второй копия с добавленной последовательностью.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG CCA<br><span class="we-hl">TTTT</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATG CCA<br>ATG CCA <span class="we-hl">TTTT</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">copy() создает независимую копию: TTTT добавляется только в копию, а исходный набор остается ATG CCA.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATG CCA
 TTTT</pre></td><td><pre>ATG CCA
 ATG CCA TTTT</pre></td></tr>
-                <tr><td><pre>GATTACA
+                      <tr><td><pre>GATTACA
 GATTACA</pre></td><td><pre>GATTACA
 GATTACA GATTACA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_02_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Метод copy() создает новый список с теми же элементами, а срез [:] делает то же самое. Присваивание draft = seqs копией не является: обе переменные смотрят на один список, и append в draft изменил бы и seqs.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
+                  <li><strong>Метод copy()</strong> — возвращает копию списка.</li>
+                  <li><strong>Срез [:]</strong> — копия всего списка.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>.</li>
+                  <li>Сделайте копию: <code>draft = seqs.copy()</code> или <code>draft = seqs[:]</code>.</li>
+                  <li>Допишите новую последовательность в копию: <code>draft.append(input())</code>.</li>
+                  <li>Напечатайте <code>" ".join(seqs)</code>, затем <code>" ".join(draft)</code>; сверьтесь с примером: ATG CCA и TTTT дают ATG CCA, а во второй строке ATG CCA TTTT.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_02_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.2.1. Маскировка в копии</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Буквой N отмечают позицию, которую прибор не смог прочитать. Сделайте копию набора и замените в копии каждую последовательность, в которой есть хотя бы одна буква N, на знак <code>-</code>. Исходный набор должен остаться прежним. Выведите исходный набор и копию.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, N, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке исходный набор через пробел, во второй копия после замены.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGT ANNT GGNC TTAA</pre></td><td><pre>ACGT ANNT GGNC TTAA
+              <h3>Упражнение 5.2.1. Маскировка в копии</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Буквой N отмечают позицию, которую прибор не смог прочитать. Сделайте копию набора и замените в копии каждую последовательность, в которой есть хотя бы одна буква N, на знак <code>-</code>. Исходный набор должен остаться прежним. Выведите исходный набор и копию.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, N, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке исходный набор через пробел, во второй копия после замены.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT <span class="we-hl">ANNT</span> <span class="we-hl">GGNC</span> TTAA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACGT ANNT GGNC TTAA<br>ACGT <span class="we-hl">-</span> <span class="we-hl">-</span> TTAA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">ANNT и GGNC содержат букву N, поэтому в копии обе заменены на дефис; в исходном наборе они остались прежними.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGT ANNT GGNC TTAA</pre></td><td><pre>ACGT ANNT GGNC TTAA
 ACGT - - TTAA</pre></td></tr>
-                <tr><td><pre>ACGT GGCC</pre></td><td><pre>ACGT GGCC
+                      <tr><td><pre>ACGT GGCC</pre></td><td><pre>ACGT GGCC
 ACGT GGCC</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_02_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Копию перебирают по индексам: элемент списка можно заменить только по индексу. Условие "N" in masked[index] проверяет всю последовательность целиком, а исходный список seqs при этом остается нетронутым.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
+                  <li><strong>Метод copy()</strong> — возвращает копию списка.</li>
+                  <li><strong>Оператор in</strong> — проверяет, встречается ли подстрока в строке.</li>
+                  <li><strong>Индекс</strong> — номер элемента в списке; нумерация начинается с 0.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и сделайте копию: <code>seqs = input().split()</code>, <code>masked = seqs.copy()</code>.</li>
+                  <li>Перебирайте индексы копии: <code>for index in range(len(masked)):</code>.</li>
+                  <li>Если в последовательности есть N (<code>"N" in masked[index]</code>), замените элемент: <code>masked[index] = "-"</code>.</li>
+                  <li>Напечатайте обе строки через <code>" ".join</code>; сверьтесь с примером: ACGT ANNT GGNC TTAA дают во второй строке ACGT - - TTAA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_02_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.2.1. Сдвиг по кругу</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Последовательности стоят по кругу. Сдвиньте набор на <code>k</code> позиций вправо: каждая последовательность переходит на <code>k</code> мест дальше, а те, что выходят за конец, встают в начало в том же порядке. Набор <code>A C G T</code> после сдвига на 1 становится <code>T A C G</code>. Выведите набор после сдвига.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>На место <code>i</code> встает последовательность, которая стояла на месте <code>i - k</code>. Сдвиг на число позиций, равное числу последовательностей <code>n</code>, возвращает набор на место, поэтому номер места считают по остатку: <code>(i - k) % n</code>. В Python остаток от деления отрицательного числа на <code>n</code> лежит от 0 до <code>n - 1</code>: <code>-1 % 4</code> равно 3.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Во второй строке целое число <code>k</code> от 0 до 100; оно может быть больше числа последовательностей.</p>
-          <h4>Выходные данные</h4>
-          <p>Набор после сдвига через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>A C G T
+              <h3>Упражнение 5.2.1. Сдвиг по кругу</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательности стоят по кругу. Сдвиньте набор на <code>shift</code> позиций вправо: каждая последовательность переходит на <code>shift</code> мест дальше, а те, что выходят за конец, встают в начало в том же порядке. Выведите набор после сдвига.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Во второй строке целое число <code>shift</code> от 0 до 100; оно может быть больше числа последовательностей.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Набор после сдвига через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A C G <span class="we-hl">T</span><br>1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">T</span> A C G</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Сдвиг вправо на 1 отправляет последний элемент T в начало, а остальные сдвигает на место вправо; набор переходит в T A C G.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>A C G T
 1</pre></td><td><pre>T A C G</pre></td></tr>
-                <tr><td><pre>ACG TTA
+                      <tr><td><pre>ACG TTA
 0</pre></td><td><pre>ACG TTA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_02_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Новое место элемента при сдвиге считают остатком от деления: элемент с номером (index - shift) % length встает на место index. Остаток работает и при сдвиге, большем длины списка, поэтому заранее уменьшать сдвиг не нужно; копию заполняют по номерам исходного списка.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сдвиг по кругу</strong> — элементы переходят на заданное число мест вправо, вышедшие за конец встают в начало.</li>
+                  <li><strong>Остаток от деления %</strong> — номер по кругу: (index - shift) % length остается в пределах от 0 до length - 1.</li>
+                  <li><strong>Индекс</strong> — номер элемента в списке; нумерация начинается с 0.</li>
+                  <li><strong>Копия списка</strong> — новый список с теми же элементами; его заполняют по номерам исходного.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и число: <code>seqs = input().split()</code>, <code>shift = int(input())</code>; запомните <code>length = len(seqs)</code>.</li>
+                  <li>Заведите копию: <code>shifted = seqs.copy()</code>.</li>
+                  <li>Заполните ее по номерам: в цикле <code>for index in range(length):</code> присвойте <code>shifted[index]</code> элемент исходного списка с номером <code>(index - shift) % length</code>.</li>
+                  <li>Напечатайте <code>" ".join(shifted)</code>; сверьтесь с примером: A C G T при shift = 1 дает T A C G, а при shift = 0 набор не меняется.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_02_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -305,78 +448,221 @@ ACGT GGCC</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.2. Маскировка по номерам</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Сделайте копию набора и замените в копии последовательности с указанными номерами на строку из букв N той же длины. Номера считаются с 1 и могут повторяться. Выведите исходный набор и копию.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Во второй строке номера последовательностей через пробел, от 1 до числа последовательностей.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке исходный набор через пробел, во второй копия после замены.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGT GGCC TTAA
+              <h3>Задача со звездочкой 5.2. Маскировка по номерам</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Сделайте копию набора и замените в копии последовательности с указанными номерами на строку из букв N той же длины. Номера считаются с 1 и могут повторяться. Выведите исходный набор и копию.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Во второй строке номера последовательностей через пробел, от 1 до числа последовательностей.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке исходный набор через пробел, во второй копия после замены.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT <span class="we-hl">GGCC</span> TTAA<br>2</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACGT GGCC TTAA<br>ACGT <span class="we-hl">NNNN</span> TTAA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Номер 2 указывает на GGCC: в копии эта последовательность заменяется на NNNN той же длины, а исходный набор не меняется.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGT GGCC TTAA
 2</pre></td><td><pre>ACGT GGCC TTAA
 ACGT NNNN TTAA</pre></td></tr>
-                <tr><td><pre>AC GT CA
+                      <tr><td><pre>AC GT CA
 3 1</pre></td><td><pre>AC GT CA
 NN GT NN</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_02_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Номер из ввода считают с 1, а индексы списка — с 0, поэтому из номера вычитают единицу. Строку из букв N нужной длины получают умножением "N" * len(...). Повторный номер просто еще раз заменит уже замаскированную последовательность.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
+                  <li><strong>Метод copy()</strong> — возвращает копию списка.</li>
+                  <li><strong>Номера с 1</strong> — из номера вычитают единицу, чтобы получить индекс.</li>
+                  <li><strong>Умножение строки</strong> — "N" * 4 дает NNNN.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и сделайте копию: <code>seqs = input().split()</code>, <code>masked = seqs.copy()</code>.</li>
+                  <li>Переберите номера: <code>for num in input().split():</code>.</li>
+                  <li>Переведите номер в индекс: <code>index = int(num) - 1</code>.</li>
+                  <li>Замените элемент: <code>masked[index] = "N" * len(masked[index])</code>; напечатайте обе строки; сверьтесь с примером: AC GT CA и номера 3 1 дают во второй строке NN GT NN.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_02_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.2. Обмен соседей</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Сделайте копию набора, в которой первая и вторая последовательности поменялись местами, третья и четвертая, и так далее. Если последовательностей нечетное число, последняя остается на месте. Выведите исходный набор и копию.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке исходный набор через пробел, во второй копия после обмена.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>A C G T</pre></td><td><pre>A C G T
+              <h3>Задача со звездочкой 5.2. Обмен соседей</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Сделайте копию набора, в которой первая и вторая последовательности поменялись местами, третья и четвертая, и так далее. Если последовательностей нечетное число, последняя остается на месте. Выведите исходный набор и копию.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке исходный набор через пробел, во второй копия после обмена.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">A C</span> <span class="we-seg we-seg-2">G T</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">A C G T<br><span class="we-seg we-seg-1">C A</span> <span class="we-seg we-seg-2">T G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Пары обмениваются местами: первая со второй, третья с четвертой, поэтому в копии получается C A T G.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>A C G T</pre></td><td><pre>A C G T
 C A T G</pre></td></tr>
-                <tr><td><pre>AT GC CG</pre></td><td><pre>AT GC CG
+                      <tr><td><pre>AT GC CG</pre></td><td><pre>AT GC CG
 GC AT CG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_02_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пары обходят циклом range(0, len(seqs) - 1, 2): шаг 2 перескакивает через пару, а граница len(seqs) - 1 не пускает цикл на последний индекс при нечетном числе. Оба элемента пары берут из исходного списка, поэтому обмен не портит данные.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
+                  <li><strong>Шаг цикла</strong> — третий аргумент range задает шаг: 2 значит через один индекс.</li>
+                  <li><strong>Пара соседей</strong> — элементы с номерами index и index + 1.</li>
+                  <li><strong>Нечетное число элементов</strong> — последняя последовательность остается на месте.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и сделайте копию: <code>seqs = input().split()</code>, <code>swapped = seqs.copy()</code>.</li>
+                  <li>Идите по парам: <code>for index in range(0, len(seqs) - 1, 2):</code>.</li>
+                  <li>Поменяйте местами: <code>swapped[index] = seqs[index + 1]</code> и <code>swapped[index + 1] = seqs[index]</code>.</li>
+                  <li>Напечатайте обе строки; сверьтесь с примером: A C G T дают во второй строке C A T G, а AT GC CG — GC AT CG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_02_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.2. Сдвиг до совпадения</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны два набора с одинаковым числом последовательностей. Найдите наименьшее <code>k</code> от 0, при котором сдвиг первого набора по кругу на <code>k</code> позиций вправо (как в упражнении 5.2.1 продвинутого уровня) дает второй набор. Если такого <code>k</code> нет, выведите <code>-1</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке первый набор, во второй строке второй набор: от 1 до 20 последовательностей через пробел, число последовательностей в наборах одинаковое. Последовательности состоят из букв A, C, G, T, длина каждой от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: наименьший сдвиг или <code>-1</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>A C G T
+              <h3>Задача со звездочкой 5.2. Сдвиг до совпадения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны два набора с одинаковым числом последовательностей. Найдите наименьшее <code>shift</code> от 0, при котором сдвиг первого набора по кругу на <code>shift</code> позиций вправо дает второй набор: каждая последовательность переходит на <code>shift</code> мест дальше, а вышедшие за конец встают в начало в том же порядке. Если такого сдвига нет, выведите <code>-1</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке первый набор, во второй строке второй набор: от 1 до 20 последовательностей через пробел, число последовательностей в наборах одинаковое. Последовательности состоят из букв A, C, G, T, длина каждой от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: наименьший сдвиг или <code>-1</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A C G T<br><span class="we-hl">G T A C</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После сдвига на 1 получается T A C G, после сдвига на 2 — G T A C; это и есть второй набор, поэтому ответ 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>A C G T
 G T A C</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>AT GC
+                      <tr><td><pre>AT GC
 GC GC</pre></td><td><pre>-1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_02_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Перебирают shift от 0 до length - 1: большие сдвиги повторяют уже проверенные, ведь сдвиг на length возвращает набор в исходный вид. Для каждого shift строят сдвинутую копию и сравнивают списки оператором ==; при совпадении запоминают shift и выходят через break, поэтому остается наименьший.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сдвиг по кругу</strong> — элементы переходят на shift мест вправо, вышедшие за конец встают в начало.</li>
+                  <li><strong>Остаток от деления %</strong> — номер по кругу: (index - shift) % length остается в пределах от 0 до length - 1.</li>
+                  <li><strong>Сравнение списков</strong> — == сравнивает элементы по порядку.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба набора: <code>first = input().split()</code>, <code>second = input().split()</code>; заведите <code>answer = -1</code> и <code>length = len(first)</code>.</li>
+                  <li>Перебирайте сдвиги: <code>for shift in range(length):</code>.</li>
+                  <li>Стройте сдвинутую копию: <code>shifted = first.copy()</code>, затем в цикле по <code>index</code> заполните <code>shifted[index]</code> элементом с номером <code>(index - shift) % length</code>.</li>
+                  <li>При <code>shifted == second</code> запишите <code>answer = shift</code> и выйдите через break; выведите answer; сверьтесь с примером: A C G T и G T A C дают 2, а AT GC и GC GC — -1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_02_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

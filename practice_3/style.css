@@ -29,6 +29,9 @@
 
   --c-accent: #257A48;      --c-accent-hover: #1D633A;
   --c-accent-light: #E8F5EE; --c-accent-muted: #6DB38C;
+  /* версия 102: нажатие на имя файла меняет оттенок и сдвигает подпись на 1 px (вариант 5C) */
+  --file-copy-hover: var(--c-accent);
+  --file-copy-press: color-mix(in srgb, var(--c-accent) 58%, #000);
 
   --c-info: #1F6784;        --c-info-light: #E4F2F7;
   --c-error: #B02E2E;       --c-error-light: #FDE8E8;  --c-error-border: #F1C3C3;  --c-error-text: #8E2525;
@@ -45,16 +48,16 @@
   --c-track: #EEE8DF; --c-track-border: #B8AE9F;
   --c-extra-line: #948A7D; --c-extra-text: #6F675D;
 
-  /* окна кода и вывода */
-  --win-code-bg: #282C34;   --win-code-text: #ABB2BF;  --win-code-title: #8A919E;
-  --win-code-gutter: #7D8594; --win-code-caret: #F5E0DC; --win-code-edit: #E6E9EF;
-  --win-btn-bg: #323842;    --win-btn-border: #3E4451; --win-btn-text: #C8CDD6;
+  /* окна кода и вывода: светлая тема — светлое окно кода */
+  --win-code-bg: #FAFAFA;   --win-code-text: #383A42;  --win-code-title: #686A70;
+  --win-code-gutter: #7C8394; --win-code-caret: #383A42; --win-code-edit: #383A42;
+  --win-btn-bg: #EEF1F4;    --win-btn-border: #D8DDE4; --win-btn-text: #4A5160;
   --win-out-bg: #F3F4F6;    --win-out-border: #E5E7EB; --win-out-text: #1F2328; --win-out-title: #5B6270; --win-link: #8C857A;
   --win-dot-1: #FF5F57;     --win-dot-2: #FEBC2E;      --win-dot-3: #28C840;
 
-  /* подсветка синтаксиса (One Dark) */
-  --tok-kw: #C678DD; --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66;
-  --tok-str: #98C379; --tok-op: #56B6C2; --tok-com: #7F848E; --tok-out: #9DA5B4;
+  /* подсветка синтаксиса: светлый вариант One Light */
+  --tok-kw: #A626A4; --tok-builtin: #986801; --tok-const: #986801; --tok-num: #986801;
+  --tok-str: #3F7F3E; --tok-op: #0070A0; --tok-com: #7C8394; --tok-out: #707175;
   --out-str: #A31515; --out-const: #0000E6;
 
   --shadow-rgb: 44, 42, 40;
@@ -96,7 +99,11 @@
     --c-teal: #4FD1C5; --c-teal-light: #1D302E;
     --c-task-bg: #1A2A21; --c-task-border: #2F4A3B;
     --c-input: #8FD3EE; --c-input-bg: #1B3642;
-    --win-code-bg: #1C1F25; --win-out-bg: #2A2D33; --win-out-border: #3A3E46; --win-out-text: #E6E6E6; --win-out-title: #A3A9B5; --win-link: #6E675D;
+    --win-code-bg: #1C1F25; --win-code-gutter: #7D8594; --win-out-bg: #2A2D33; --win-out-border: #3A3E46; --win-out-text: #E6E6E6; --win-out-title: #A3A9B5; --win-link: #6E675D;
+    --win-code-text: #ABB2BF; --win-code-title: #8A919E; --win-code-caret: #F5E0DC; --win-code-edit: #E6E9EF;
+    --win-btn-bg: #323842; --win-btn-border: #3E4451; --win-btn-text: #C8CDD6;
+    --tok-kw: #C678DD; --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66;
+    --tok-str: #98C379; --tok-op: #56B6C2; --tok-com: #7F848E; --tok-out: #9DA5B4;
     --out-str: #F28B82; --out-const: #8AB4F8;
     --shadow-rgb: 0, 0, 0; --bg-glow: rgba(82, 201, 143, 0.04);
     --c-control-bg: #2C2925; --c-control-border: #5E574E; --c-control-on: #46403A; --c-control-on-border: #B0A79B;
@@ -119,7 +126,11 @@
   --c-teal: #4FD1C5; --c-teal-light: #1D302E;
   --c-task-bg: #1A2A21; --c-task-border: #2F4A3B;
   --c-input: #8FD3EE; --c-input-bg: #1B3642;
-  --win-code-bg: #1C1F25; --win-out-bg: #2A2D33; --win-out-border: #3A3E46; --win-out-text: #E6E6E6; --win-out-title: #A3A9B5; --win-link: #6E675D;
+  --win-code-bg: #1C1F25; --win-code-gutter: #7D8594; --win-out-bg: #2A2D33; --win-out-border: #3A3E46; --win-out-text: #E6E6E6; --win-out-title: #A3A9B5; --win-link: #6E675D;
+  --win-code-text: #ABB2BF; --win-code-title: #8A919E; --win-code-caret: #F5E0DC; --win-code-edit: #E6E9EF;
+  --win-btn-bg: #323842; --win-btn-border: #3E4451; --win-btn-text: #C8CDD6;
+  --tok-kw: #C678DD; --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66;
+  --tok-str: #98C379; --tok-op: #56B6C2; --tok-com: #7F848E; --tok-out: #9DA5B4;
   --out-str: #F28B82; --out-const: #8AB4F8;
   --shadow-rgb: 0, 0, 0; --bg-glow: rgba(82, 201, 143, 0.04);
   --c-control-bg: #2C2925; --c-control-border: #5E574E; --c-control-on: #46403A; --c-control-on-border: #B0A79B;
@@ -145,7 +156,11 @@
   --c-teal: #00665F; --c-teal-light: #D2F3EE;
   --c-task-bg: #E6FFE9; --c-task-border: #1A1C2C;
   --c-input: #0D4F8A; --c-input-bg: #D8ECFF;
-  --win-code-bg: #1A1C2C; --win-code-gutter: #8A90A8; --win-out-bg: #F4F4F4; --win-out-border: #1A1C2C; --win-out-text: #1A1C2C; --win-link: #1A1C2C;
+  /* версия 102: окна кода — тёмная шапка и светлое тело (вариант 2D) */
+  --win-code-bg: #FFFDF6; --win-code-gutter: #8A90A8; --win-out-bg: #F4F4F4; --win-out-border: #1A1C2C; --win-out-text: #1A1C2C; --win-link: #1A1C2C;
+  --win-code-text: #262A3D; --win-code-title: #7C8095; --win-code-caret: #262A3D; --win-code-edit: #262A3D;
+  --tok-kw: #7A3FC8; --tok-builtin: #955800; --tok-const: #955800; --tok-num: #0D4F8A;
+  --tok-str: #137A3F; --tok-op: #B03A20; --tok-com: #7C8095; --tok-out: #6F7488;
   --win-dot-1: #D62839; --win-dot-2: #F2C230; --win-dot-3: #1F9D55;
   --shadow-rgb: 26, 28, 44;
   --shadow-sm: 3px 3px 0 #1A1C2C; --shadow-md: 4px 4px 0 #1A1C2C; --shadow-lg: 6px 6px 0 #1A1C2C;
@@ -157,6 +172,10 @@
   --c-control-bg: #FFE9B8; --c-control-border: #1A1C2C; --c-control-on: #FFFFFF; --c-control-on-border: #1A1C2C;
   --c-track: #FFE9B8; --c-track-border: #1A1C2C;
   --c-extra-line: #1A1C2C; --c-extra-text: #3B3F5C;
+  --win-cap-bg: var(--c-border); --win-cap-text: #F4F1DE;
+  --win-cap-pad: 0.62rem; --win-cap-min: 3rem; --win-cap-dots: 1rem; --win-cap-tools: 0.42rem;
+  --file-copy-hover: var(--c-accent-muted);
+  --file-copy-press: color-mix(in srgb, var(--c-accent) 52%, var(--c-accent-muted));
 }
 /* ночной уровень: игровой профиль + темная тема */
 :root[data-profile="game"][data-theme="dark"] {
@@ -174,13 +193,20 @@
   --c-teal: #5EE6D6; --c-teal-light: #173B3A;
   --c-task-bg: #173326; --c-task-border: #06070F;
   --c-input: #9BD6FF; --c-input-bg: #1C2F57;
-  --win-code-bg: #0B0C1A; --win-out-bg: #2A2E5C; --win-out-text: #F4F1DE; --win-out-title: #C9C6E8; --win-link: #8A90D0;
+  --win-code-bg: #0B0C1A; --win-code-gutter: #8A90A8; --win-out-bg: #2A2E5C; --win-out-text: #F4F1DE; --win-out-title: #C9C6E8; --win-link: #8A90D0;
+  --win-code-text: #ABB2BF; --win-code-title: #8A919E; --win-code-caret: #F5E0DC; --win-code-edit: #E6E9EF;
+  --tok-kw: #C678DD; --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66;
+  --tok-str: #98C379; --tok-op: #56B6C2; --tok-com: #7F848E; --tok-out: #9DA5B4;
   --out-str: #FF9AA2; --out-const: #9BD6FF;
   --shadow-sm: 3px 3px 0 #06070F; --shadow-md: 4px 4px 0 #06070F; --shadow-lg: 6px 6px 0 #06070F;
   --win-shadow: 4px 4px 0 #06070F;
   --c-control-bg: #2A2E5C; --c-control-border: #8A90D0; --c-control-on: #454B94; --c-control-on-border: #F4F1DE;
   --c-track: #2A2E5C; --c-track-border: #8A90D0;
   --c-extra-line: #8A90D0; --c-extra-text: #C9C6E8;
+  --win-cap-bg: transparent; --win-cap-text: var(--win-code-title);
+  --win-cap-pad: 0.2rem; --win-cap-min: 2.2rem; --win-cap-dots: 0.85rem; --win-cap-tools: 0.22rem;
+  --file-copy-hover: var(--c-accent);
+  --file-copy-press: color-mix(in srgb, var(--c-accent) 58%, #000);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-profile="game"]:not([data-theme="light"]) {
@@ -198,13 +224,20 @@
     --c-teal: #5EE6D6; --c-teal-light: #173B3A;
     --c-task-bg: #173326; --c-task-border: #06070F;
     --c-input: #9BD6FF; --c-input-bg: #1C2F57;
-    --win-code-bg: #0B0C1A; --win-out-bg: #2A2E5C; --win-out-text: #F4F1DE; --win-out-title: #C9C6E8; --win-link: #8A90D0;
+    --win-code-bg: #0B0C1A; --win-code-gutter: #8A90A8; --win-out-bg: #2A2E5C; --win-out-text: #F4F1DE; --win-out-title: #C9C6E8; --win-link: #8A90D0;
+    --win-code-text: #ABB2BF; --win-code-title: #8A919E; --win-code-caret: #F5E0DC; --win-code-edit: #E6E9EF;
+    --tok-kw: #C678DD; --tok-builtin: #E5C07B; --tok-const: #D19A66; --tok-num: #D19A66;
+    --tok-str: #98C379; --tok-op: #56B6C2; --tok-com: #7F848E; --tok-out: #9DA5B4;
     --out-str: #FF9AA2; --out-const: #9BD6FF;
     --shadow-sm: 3px 3px 0 #06070F; --shadow-md: 4px 4px 0 #06070F; --shadow-lg: 6px 6px 0 #06070F;
     --win-shadow: 4px 4px 0 #06070F;
     --c-control-bg: #2A2E5C; --c-control-border: #8A90D0; --c-control-on: #454B94; --c-control-on-border: #F4F1DE;
     --c-track: #2A2E5C; --c-track-border: #8A90D0;
     --c-extra-line: #8A90D0; --c-extra-text: #C9C6E8;
+    --win-cap-bg: transparent; --win-cap-text: var(--win-code-title);
+    --win-cap-pad: 0.2rem; --win-cap-min: 2.2rem; --win-cap-dots: 0.85rem; --win-cap-tools: 0.22rem;
+    --file-copy-hover: var(--c-accent);
+    --file-copy-press: color-mix(in srgb, var(--c-accent) 58%, #000);
   }
 }
 
@@ -419,9 +452,11 @@ code {
 
 /* ---------- 9. Окна кода и вывода ---------- */
 .code-block, .output-block {
-  position: relative; margin: 1.1rem 0; border-radius: var(--win-radius); box-shadow: var(--win-shadow); overflow: hidden;
+  position: relative; margin: 1.1rem 0; border-radius: var(--win-radius); overflow: hidden;
 }
-.code-block { background: var(--win-code-bg); }
+.code-block { background: var(--win-code-bg); box-shadow: var(--win-shadow); }
+/* версия 113: у окон «Вывод» и «Ввода» тени вокруг блока нет */
+.output-block { box-shadow: none; }
 .output-block { background: var(--win-out-bg); border: var(--border-w) solid var(--win-out-border); }
 .code-label, .output-label {
   display: block; position: relative; margin: 0; padding: 0.7rem 4.5rem 0.2rem; min-height: 2.2rem; text-align: center;
@@ -446,7 +481,9 @@ code {
 .code-block pre { color: var(--win-code-text); }
 .output-block pre { color: var(--win-out-text); }
 .code-block pre code, .output-block pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
-.code-block pre code { counter-reset: line; }
+/* версия 99: код — блочный, иначе Chrome считает отступ номеров строк переполнением
+   и показывает горизонтальную прокрутку, хотя строки помещаются */
+.code-block pre code { display: block; counter-reset: line; }
 .code-block pre code .ln { counter-increment: line; }
 .code-block pre code .ln::before {
   content: counter(line); display: inline-block; width: 1.6em; margin-right: 1em; text-align: right;
@@ -465,31 +502,74 @@ code {
 .error-output pre { color: var(--c-error-text); }
 
 .run-pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9rem; margin: 1.1rem 0; }
-.run-pair > .code-block, .run-pair > .output-block { margin: 0; }
-.run-pair > .code-block + .output-block { overflow: visible; }
-.run-pair > .code-block + .output-block::after {
+.run-pair > .code-block, .run-pair > .output-block, .run-pair > .input-block { margin: 0; }
+.run-pair > .output-block { overflow: visible; }
+.run-pair > .code-block + .output-block::after,
+.run-pair > .input-block + .output-block::after,
+.run-pair > .input-block[hidden] + .output-block::after {
+  content: ""; position: absolute; left: 2rem; top: calc(-0.9rem - var(--border-w)); width: 2px; height: 0.9rem; background: var(--win-link, var(--c-border));
+}
+.run-pair > .code-block + .input-block::before {
   content: ""; position: absolute; left: 2rem; top: calc(-0.9rem - var(--border-w)); width: 2px; height: 0.9rem; background: var(--win-link, var(--c-border));
 }
 
-/* ввод пользователя в окне вывода и подпись-легенда */
+/* отдельное окно ввода: показывает строки, которые программа прочитает через input() */
+.input-block {
+  position: relative; border-radius: var(--win-radius); background: var(--win-out-bg);
+  border: var(--border-w) dashed var(--c-border); box-shadow: none; overflow: visible;
+}
+.input-block[hidden] { display: none; }
+.input-block .input-line.is-empty { color: var(--c-muted); }
+.input-label {
+  display: block; margin: 0; padding: 0.55rem 1.5rem 0.1rem; font-family: var(--font-ui);
+  font-size: var(--t-xs); font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--win-out-title);
+}
+.input-block pre {
+  margin: 0; padding: 0.45rem 1.5rem 0.85rem; overflow-x: auto; white-space: pre; tab-size: 4;
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1.7; background: transparent; border: 0;
+  color: var(--c-text);
+}
+.input-block .input-line { display: block; }
+:root[data-profile="game"] .input-block { border-style: solid; border-color: var(--c-border); box-shadow: none; }
+@media (max-width: 600px) {
+  .input-label { padding: 0.45rem 1rem 0; }
+  .input-block pre, .input-block .ex-stdin.is-inline { padding: 0.35rem 1rem 0.7rem; }
+}
+
+/* версия 112: ввод пользователя оформлен как код — плашка и подсветка как у code;
+   внутри окон кода и вывода плашки нет, только токены */
 kbd.user-input {
-  font-family: var(--font-mono); font-size: inherit; font-weight: 700; color: var(--c-input); background: var(--c-input-bg);
-  border-radius: 4px; padding: 0 0.3em; box-shadow: inset 0 -2px 0 var(--c-input);
+  font-family: var(--font-mono); font-size: 0.88em; font-weight: 400; color: var(--c-text);
+  background: var(--c-bg-warm); border: 1px solid var(--c-border-light); border-radius: 6px; padding: 0.08em 0.38em;
   white-space: pre;   /* версия 56: пробелы во вводе видны и в тексте абзаца */
 }
-kbd.user-input::after { content: " ⏎"; font-weight: 400; opacity: 0.55; font-size: 0.85em; }
+.output-block pre kbd.user-input, .input-block pre kbd.user-input, .code-block pre kbd.user-input {
+  font-size: inherit; border: 0; border-radius: 0; background: none; padding: 0;
+}
 .io-legend {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.5rem; margin: 0 1.5rem;
   padding: 0.35rem 0 0; font-size: var(--t-xs); color: var(--win-out-title);
 }
 .io-legend kbd.user-input { font-size: 0.8rem; }
+/* версия 107: текст, который набирает пользователь, в абзаце: теплая плашка с тонкой
+   рамкой и моноширинным шрифтом; пробелы по краям показаны точками (span.sp) */
+.typed-input {
+  display: inline-block; padding: 0.08em 0.38em;
+  border: 1px solid var(--c-border-light); border-radius: 6px;
+  background: var(--c-bg-warm); color: var(--c-text);
+  font-family: var(--font-mono); font-size: 0.88em; line-height: 1.4; white-space: pre;
+}
+.typed-input .sp { position: relative; display: inline-block; width: 2ch; color: transparent; }
+.typed-input .sp::after {
+  content: "··"; position: absolute; left: 0; top: 0;
+  letter-spacing: 0.45ch; color: var(--c-text-2);
+}
 
 /* подсветка синтаксиса (span расставляет scripts/highlight.py) */
 .tok-kw { color: var(--tok-kw); } .tok-builtin { color: var(--tok-builtin); } .tok-const { color: var(--tok-const); }
 .tok-num { color: var(--tok-num); } .tok-str { color: var(--tok-str); } .tok-op { color: var(--tok-op); }
-.tok-com { color: var(--tok-com); font-style: italic; }
-/* комментарий-вывод «# → 14»: цвет окна вывода, чтобы глаз связывал строку кода и результат */
-.tok-out { color: var(--tok-out); font-style: normal; }
+.tok-com, .tok-out { color: var(--win-code-gutter); font-style: normal; }
 .out-str { color: var(--out-str); } .out-const { color: var(--out-const); }
 
 /* разбор по строкам */
@@ -683,29 +763,36 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
 .checker-note, .checker-fallback { margin: 0 0 0.7rem; font-size: var(--t-base); line-height: 1.55; color: var(--c-text); }
 .checker-fallback:last-child { margin-bottom: 0; }
 .code-editor { display: flex; align-items: stretch; background: var(--win-code-bg); border-radius: var(--radius-sm); overflow: hidden; }
-.code-gutter {
+.code-editor .code-gutter {
   margin: 0; padding: 0.8rem 0.5rem 0.8rem 0.7rem; min-width: 2.6rem; overflow: hidden; text-align: right;
   color: var(--win-code-gutter); user-select: none; background: rgba(0, 0, 0, 0.14);
   font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55; white-space: pre;
 }
+/* Версия 99: номера строк проверки стоят по центру своей полосы. */
+.checker-editor .code-gutter { text-align: center; }
+/* Версия 99: номера строк — колонка шириной 2ch; версия 102: номер стоит по центру колонки */
+.code-block pre code .ln::before {
+  width: 2ch; text-align: center; margin-left: -0.7rem; margin-right: 0.75em;
+}
 .code-editor textarea { flex: 1 1 auto; min-width: 0; }
 .checker-editor { margin: 0; }
 .checker-code {
-  display: block; width: 100%; min-height: 9rem; resize: vertical; padding: 0.8rem 1rem; border: 0; outline: none;
+  display: block; width: 100%; min-height: 9rem; padding: 0.8rem 1rem; border: 0; outline: none;
   background: transparent; color: var(--win-code-edit); caret-color: var(--win-code-caret);
   font-family: var(--font-mono); font-size: var(--t-sm); line-height: 1.55; tab-size: 4;
 }
-.code-editor:focus-within { box-shadow: 0 0 0 3px var(--c-accent); }
+/* Версия 104: та же рамка 2px, что у примеров: поля правки выглядят одинаково */
+.code-editor:has(textarea:focus) { box-shadow: 0 0 0 2px var(--c-accent); }
 .checker-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0.7rem 0 0; }
 .checker-run {
   font: inherit; font-weight: 700; cursor: pointer; border: 0; padding: 0.55rem 1.4rem; border-radius: var(--radius-full);
   background: var(--c-accent); color: var(--c-on-accent); box-shadow: var(--shadow-sm);
   transition: background 150ms var(--ease), transform 150ms var(--ease);
 }
-.checker-run:hover { background: var(--c-accent-hover); transform: translateY(-1px); }
+.checker-run:hover { background: var(--c-accent-hover); }
 .checker-run:disabled { opacity: 0.6; cursor: wait; transform: none; }
 .checker-file { cursor: pointer; font-size: var(--t-sm); padding: 0.5rem 1rem; border-radius: var(--radius-full); border: var(--border-w) solid var(--c-border); background: var(--c-surface); color: var(--c-text); }
-.checker-file:hover { border-color: var(--c-accent-muted); }
+.checker-file:hover { border-color: var(--c-accent-muted); background: var(--c-accent-light); }
 .checker-file input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
 /* «↺ Сбросить»: настоящая кнопка в стиле «Выбрать файл», а не ссылка (версия 24) */
 .checker-clear { font: inherit; font-size: var(--t-sm); cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-full);
@@ -716,9 +803,27 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
   border: var(--border-w) solid var(--c-accent-muted); background: var(--c-surface); color: var(--c-accent); }
 .checker-try:hover { border-color: var(--c-accent); }
 .checker-try:disabled { opacity: 0.6; cursor: wait; }
+/* версия 108: «Проверить» и «Выбрать файл .py» одного размера; наведение меняет только фон,
+   нажатие «вдавливает» кнопку, как иконки действий в шапке окна кода */
+.checker-bar .checker-run,
+.checker-bar .checker-file {
+  box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 10.5rem; min-height: 2.75rem; padding: 0.5rem 1rem;
+  font-family: var(--font-ui); font-size: var(--t-sm); line-height: 1.2; text-align: center;
+  transition: background 150ms var(--ease), border-color 150ms var(--ease),
+    transform 120ms var(--ease), box-shadow 120ms var(--ease);
+}
+.checker-bar .checker-file { border-color: var(--c-surface); }
+.checker-bar .checker-file:hover { background: var(--c-accent-light); border-color: var(--c-accent-light); }
+.checker-bar .checker-run:active:not(:disabled) { background: color-mix(in srgb, var(--c-accent-hover) 82%, #000); }
+.checker-bar .checker-file:active { background: var(--c-accent-light); border-color: var(--c-accent-light); }
+:root:not([data-profile="game"]) .checker-bar .checker-run:active:not(:disabled),
+:root:not([data-profile="game"]) .checker-bar .checker-file:active {
+  transform: translateY(1px); box-shadow: none;
+}
 .checker .checker-stdin-label { margin: 0.6rem 0 0.2rem; color: var(--c-text-2); }
 .checker .checker-stdin { width: 100%; margin: 0; }
-.checker-run-out { margin: 0; white-space: pre-wrap; font-family: var(--font-mono); font-size: var(--t-sm); }
+.checker-result .checker-run-out { margin: 0; padding: 0; white-space: pre-wrap; font-family: var(--font-mono); font-size: var(--t-sm); }
 .checker-saved { font-size: var(--t-xs); color: var(--c-muted); }
 .checker-result:empty { display: none; }
 .checker-result { margin-top: 0.8rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); font-size: var(--t-sm); background: var(--c-surface); border: var(--border-w) solid var(--c-border-light); color: var(--c-text); }
@@ -743,10 +848,58 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
 .checker-tests-list .checker-hint { margin: 0.35rem 0 0.2rem 1.3rem; padding: 0.4rem 0.6rem; border-radius: 6px; background: var(--c-amber-light); color: var(--c-text); font-weight: 400; }
 .checker-io { margin: 0.35rem 0 0.2rem 1.3rem; color: var(--c-text); }
 .checker-io-label { display: block; font-family: var(--font-ui); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-text-2); }
-.checker-io-text { margin: 0.15rem 0 0; padding: 0.4rem 0.6rem; background: var(--c-surface); border: 1px solid var(--c-border-light); border-radius: 6px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; white-space: pre; color: var(--c-text); }
+.checker-result .checker-io-text { margin: 0.15rem 0 0; padding: 0.4rem 0.6rem; background: var(--c-surface); border: 1px solid var(--c-border-light); border-radius: 6px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; white-space: pre; color: var(--c-text); }
 .checker-reveal { margin: 0.35rem 0 0.2rem 1.3rem; color: var(--c-text-2); }
 .checker-reveal > summary { cursor: pointer; font-size: var(--t-sm); }
 .checker-tests { display: none; }
+/* версия 107: блок проверки с data-split собирается как примеры страницы: поле кода,
+   окно «Ввод» с кнопками, «Вывод» программы и «Тесты». Строки ввода не повторяются
+   в выводе, поэтому справа в «Вводе» отступ не нужен. */
+.checker-run-pair { margin: 0.15rem 0 0; }
+.run-pair > .input-block > pre { padding-right: 0; }
+.checker-run-pair > .checker-editor + .input-block::before {
+  content: ""; position: absolute; left: 2rem; top: calc(-0.9rem - var(--border-w));
+  width: 2px; height: 0.9rem; background: var(--win-link, var(--c-border));
+}
+.checker-input-block .checker-stdin {
+  display: block; width: 100%; margin: 0; padding: 0.45rem 0 0.85rem 1.5rem;
+  border: 0; outline: none; background: transparent; color: var(--c-text);
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1.7; tab-size: 4;
+  resize: none; overflow-y: hidden; min-height: 2.8rem;
+}
+/* Версия 111: ползунка растягивания нет, высоту поля задают строки ввода (checker.js):
+   растет до 8 строк, дальше — вертикальная прокрутка. */
+.checker-input-block .checker-stdin.is-overflow { overflow-y: auto; }
+.checker-input-block .checker-stdin:focus-visible { box-shadow: inset 0 0 0 2px var(--c-accent); }
+.checker-input-block .checker-bar { margin: 0; padding: 0.55rem 1.5rem 0.85rem; border-top: 1px dashed var(--c-border-light); }
+.checker-output-block > .checker-result,
+.checker-tests-block > .checker-result {
+  margin: 0; padding: 0.45rem 1.5rem 1.1rem; border: 0; border-radius: 0;
+  background: transparent; color: var(--win-out-text); font-size: var(--t-sm);
+}
+.checker-output-block > .checker-result.is-pass,
+.checker-output-block > .checker-result.is-fail,
+.checker-tests-block > .checker-result.is-pass,
+.checker-tests-block > .checker-result.is-fail { background: transparent; border: 0; }
+.checker-output-block .checker-run-out { font-size: 1rem; line-height: 1.7; }
+.checker-output-block .checker-io-text { background: var(--c-bg-warm); border-color: var(--c-border-light); }
+.checker-output-block > .checker-result.is-pass > .checker-verdict,
+.checker-tests-block > .checker-result.is-pass > .checker-verdict { color: var(--c-accent); }
+.checker-output-block > .checker-result.is-fail > .checker-verdict,
+.checker-tests-block > .checker-result.is-fail > .checker-verdict { color: var(--c-error); }
+.checker-output-block:has(> .checker-result:empty),
+.checker-tests-block:has(> .checker-result:empty) { display: none; }
+.checker-run-pair > .checker-output-block + .checker-tests-block::after {
+  content: ""; position: absolute; left: 2rem; top: calc(-0.9rem - var(--border-w));
+  width: 2px; height: 0.9rem; background: var(--win-link, var(--c-border));
+}
+@media (max-width: 600px) {
+  .checker-input-block .checker-stdin { padding: 0.35rem 0 0.7rem 1rem; font-size: 0.95rem; }
+  .run-pair > .input-block > pre { padding-right: 0; }
+  .checker-input-block .checker-bar { padding: 0.5rem 1rem 0.75rem; }
+  .checker-output-block > .checker-result,
+  .checker-tests-block > .checker-result { padding: 0.35rem 1rem 0.9rem; }
+}
 
 /* ---------- 15. Живые примеры и «предскажите вывод» ---------- */
 .ex-tools { position: absolute; top: 0.45rem; right: 0.7rem; display: flex; gap: 0.35rem; z-index: 2; }
@@ -757,27 +910,43 @@ table.tests td pre { margin: 0; padding: 0.6rem 0.8rem; font-family: var(--font-
 .ex-btn:hover { filter: brightness(1.2); }
 .ex-btn:disabled { opacity: 0.6; cursor: wait; }
 .ex-btn-run { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
-/* версия 63: зеленая рамка окна только при фокусе в редакторе; внутреннее поле своей рамки не рисует */
-.code-block.is-editing:focus-within, .try-block .code-block.is-editing:focus-within { box-shadow: 0 0 0 3px var(--c-accent), var(--win-shadow); }
-.ex-editor-wrap:focus-within { box-shadow: none; }
+/* Версия 103: зелёная рамка — только у поля кода, в котором стоит курсор;
+   кнопки окна (запуск, сброс, копирование) рамку не включают и не мигают ею.
+   Внутреннее поле своей рамки не рисует.
+   Версия 104: рамка тоньше — 2px вместо 3px (вариант D): контраст с фоном
+   остаётся выше 3:1, а рамка не спорит с тенью окна. */
+.code-block.is-editing:has(.ex-editor:focus), .try-block .code-block.is-editing:has(.ex-editor:focus) { box-shadow: 0 0 0 2px var(--c-accent), var(--win-shadow); }
+.ex-editor-wrap:has(textarea:focus) { box-shadow: none; }
 .ex-editor-wrap { background: transparent; border-radius: 0; }
-.ex-editor-wrap .code-gutter { padding-top: 0.9rem; font-size: 1rem; line-height: 1.7; background: transparent; }
+/* Версия 99: гуттер примера повторяет геометрию статического блока (код начинается в той же колонке) */
+/* Версия 104: колонка номеров в редакторе совпадает со статической: 2ch по центру
+   с отступом 0.8rem (1.5rem padding минус 0.7rem margin), код начинается там же */
+.ex-editor-wrap .code-gutter { padding: 0.9rem 0 1.4rem 0.8rem; width: calc(2ch + 0.8rem); min-width: 0; font-size: 1rem; line-height: 1.7; text-align: center; background: transparent; }
 .ex-editor {
-  display: block; width: 100%; margin: 0; padding: 0.9rem 1.5rem 1.4rem 0.6rem; border: 0; resize: vertical; outline: none;
+  display: block; width: 100%; margin: 0; padding: 0.9rem 1.5rem 1.4rem 0.75em; border: 0; outline: none;
   background: transparent; color: var(--win-code-edit); caret-color: var(--win-code-caret);
   font-family: var(--font-mono); font-size: 1rem; line-height: 1.7; tab-size: 4; white-space: pre; overflow-x: auto;
 }
 .ex-stdin-label { display: block; margin: 0.2rem 1.5rem; font-size: var(--t-xs); color: var(--win-out-title); }
 .ex-stdin {
-  display: block; width: calc(100% - 3rem); margin: 0 1.5rem 0.4rem; padding: 0.35rem 0.6rem; resize: vertical;
+  display: block; width: calc(100% - 3rem); margin: 0 1.5rem 0.4rem; padding: 0.35rem 0.6rem;
+  resize: none; overflow-y: hidden;
   border: 1px solid var(--win-out-border); border-radius: 6px; background: var(--c-surface); color: var(--c-input);
   font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700;
+}
+/* Версия 111: высоту задают строки ввода (checker.js), ползунка нет */
+.ex-stdin.is-overflow { overflow-y: auto; }
+/* Версия 112: поле ввода стоит в окне «Ввод» и выглядит как строки ввода: без рамки и жирного */
+.input-block .ex-stdin.is-inline {
+  width: 100%; margin: 0; padding: 0.45rem 1.5rem 0.85rem; border: 0; border-radius: 0;
+  background: transparent; color: var(--c-text); font-size: 1rem; line-height: 1.7; font-weight: 400;
 }
 .ex-error { color: var(--c-error); }
 .ex-empty { color: var(--win-out-title); font-style: italic; }
 .output-block.predict { min-height: 7rem; }
-/* пока вывод скрыт, комментарии «# → …» в коде тоже скрыты, иначе ответ виден заранее */
-.code-block.predict-pending .tok-out { visibility: hidden; }
+/* пока вывод скрыт, комментарии «# → …» в коде тоже скрыты, иначе ответ виден заранее;
+   версия 99: скрытый комментарий не занимает место и не создает лишнюю полосу прокрутки */
+.code-block.predict-pending .tok-out { display: none; }
 .predict-cover { padding: 1rem 1.5rem 1.3rem; text-align: center; }
 .predict-text { margin: 0 0 0.7rem; font-size: var(--t-sm); color: var(--win-out-title); }
 .predict-btn {
@@ -828,7 +997,7 @@ pre.tree { margin: 0.9rem 0; padding: 1rem 1.2rem; background: var(--c-surface-w
   border: 3px solid var(--c-border); box-shadow: 4px 4px 0 var(--c-border); text-transform: uppercase; letter-spacing: 0.04em;
   font-family: var(--font-ui);
 }
-[data-profile="game"] .btn:active, [data-profile="game"] .checker-run:active, [data-profile="game"] .predict-btn:active {
+[data-profile="game"] .btn:active, [data-profile="game"] .checker-run:active, [data-profile="game"] .checker-file:active, [data-profile="game"] .predict-btn:active {
   transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-border);
 }
 [data-profile="game"] .menu a.current { box-shadow: 3px 3px 0 var(--c-border); }
@@ -906,17 +1075,15 @@ pre.tree { margin: 0.9rem 0; padding: 1rem 1.2rem; background: var(--c-surface-w
   .output-block pre, pre.tree, table.tests td pre { white-space: pre-wrap; }
   .gloss::after { display: none; }
   .theory, .goal, .overview, .example, .task, .task-final, .task-summary, .hint, .warning, .important, .then, .mistake, .code-explain { break-inside: avoid; box-shadow: none; }
-  details.deep, details.task-hint { display: block; }
+  details.deep, details.task-hint, details.task-spoiler { display: block; }
   a { color: #000; text-decoration: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* ---------- 21. Подпись к вводу пользователя в окне вывода ---------- */
-.output-block:has(kbd.user-input) > .output-label::after {
-  content: " · выделено: ввод с клавиатуры"; color: var(--c-input); font-size: var(--t-xs);
-}
+/* ---------- 21. Ввод пользователя ---------- */
+/* Строки ввода стоят в отдельном окне «Ввод»; в «Выводе» — только результат программы. */
 
 /* ---------- 22. Верхняя панель (строит theme.js) ---------- */
 .has-topbar { --topbar-h: 60px; }
@@ -1149,12 +1316,35 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 .try-block { margin: 0.4rem 0 1rem; }
 .try-block > p { margin-bottom: 0.6rem; }
 .try-block .code-block { box-shadow: 0 0 0 2px var(--c-amber-light), var(--win-shadow); }
+/* версия 105: код в «Практике» кликается и копируется. В покое — обычный встроенный код с подсветкой
+   синтаксиса (классы tok-*); наведение, нажатие и «скопировано» меняют цвет текста, как у имени файла
+   в шапке окна кода. Фон и рамку не меняем. Разметку токенов и обработчик ставит checker.js */
+.try-block :not(pre):not(a) > code {
+  cursor: copy; position: relative; top: 0;
+  transition: color 0.12s ease, top 0.08s ease;
+}
+.try-block :not(pre):not(a) > code [class^="tok-"] { transition: color 0.12s ease; }
+.try-block :not(pre):not(a) > code:hover,
+.try-block :not(pre):not(a) > code:focus-visible,
+.try-block :not(pre):not(a) > code.is-copied { color: var(--file-copy-hover); }
+.try-block :not(pre):not(a) > code:hover [class^="tok-"],
+.try-block :not(pre):not(a) > code:focus-visible [class^="tok-"],
+.try-block :not(pre):not(a) > code.is-copied [class^="tok-"] { color: inherit; }
+.try-block :not(pre):not(a) > code:focus-visible { outline: 2px solid var(--file-copy-hover); outline-offset: 2px; }
+.try-block :not(pre):not(a) > code:active { color: var(--file-copy-press); top: 1px; }
+.try-block :not(pre):not(a) > code:active [class^="tok-"] { color: inherit; }
+@media (prefers-reduced-motion: reduce) {
+  .try-block :not(pre):not(a) > code, .try-block :not(pre):not(a) > code [class^="tok-"] { transition: none; }
+}
 
 /* «Что нужно сделать»: главный элемент задачи */
 .todo-box { background: var(--c-surface); border: 2px solid var(--c-accent); border-radius: var(--radius-sm); padding: 0.7rem 1rem; margin: 0.6rem 0 0.8rem; }
 .todo-title { margin: 0 0 0.2rem; font-family: var(--font-ui); font-size: var(--t-xs); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.07em; color: var(--c-accent); }
 .todo-box > p:last-child { margin-bottom: 0; }
+/* версия 106: примеры стоят внутри «Что нужно сделать» (вариант A): условие и данные видны
+   вместе, блок задания заканчивается таблицей — у нее только верхний отступ */
+.todo-box > .table-wrap { margin: 0.85rem 0 0; }
 .task > h3::before { content: none; display: none; }
 .task-exercise { background: var(--c-task-bg); border: 0; border-left: 4px solid var(--c-accent-muted); border-radius: var(--radius-sm); box-shadow: none; }
 .task-graded { background: var(--c-task-bg); border: 1px solid var(--c-task-border); border-left: 6px solid var(--c-accent); }
@@ -1374,38 +1564,40 @@ html[data-theory="full"] .th-brief { display: none !important; }
    подпись «Дополнительно» стоит в разрыве верхней границы (утвержденный вариант «Рамка с подписью»).
    Подряд идущие блоки сливаются в одну рамку с одной подписью. Замена формулировки (.th-brief + .th-full)
    и span.th-full в абзаце не отмечаются: это обязательный текст другими словами. Пункт списка li
-   отмечен только пунктиром слева. Разметка страниц не меняется. */
-html[data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li) {
+   отмечен только пунктиром слева. Разметка страниц не меняется.
+   Версия 105: рамка включается настройкой «Доп. материал» (раздел «Дополнительные», по умолчанию
+   «Без рамки»): без нее дополнительные блоки оформлены как остальной текст страницы. */
+html[data-extra="on"][data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li) {
   position: relative; border: 1px dashed var(--c-extra-line); border-radius: var(--radius-md);
   padding: 1rem 1.1rem 0.9rem; margin: 1.7rem 0 1.2rem;
 }
-html[data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li) > :first-child { margin-top: 0; }
-html[data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li) > :last-child { margin-bottom: 0; }
-html[data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li)::after {
+html[data-extra="on"][data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li) > :first-child { margin-top: 0; }
+html[data-extra="on"][data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li) > :last-child { margin-bottom: 0; }
+html[data-extra="on"][data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li)::after {
   content: "Дополнительно"; position: absolute; top: -0.68rem; left: 0.9rem; padding: 0 0.45rem;
   background: var(--c-bg); font-family: var(--font-ui); font-size: 0.8rem; font-weight: 700; line-height: 1.3;
   color: var(--c-extra-text); pointer-events: none;
 }
 /* подряд идущие блоки: одна рамка, одна подпись */
-html[data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li):not(.mistake):has(+ .th-full:not(.mistake):not(li):not(span)) {
+html[data-extra="on"][data-theory="full"] .th-full:not(.th-brief + .th-full):not(span):not(code):not(li):not(.mistake):has(+ .th-full:not(.mistake):not(li):not(span)) {
   border-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-bottom: 0; padding-bottom: 0.5rem;
 }
-html[data-theory="full"] .th-full:not(.mistake):not(li):not(span) + .th-full:not(.mistake):not(li):not(span) {
+html[data-extra="on"][data-theory="full"] .th-full:not(.mistake):not(li):not(span) + .th-full:not(.mistake):not(li):not(span) {
   border-top: 0; border-top-left-radius: 0; border-top-right-radius: 0; margin-top: 0; padding-top: 0.5rem;
 }
-html[data-theory="full"] .th-full:not(.mistake):not(li):not(span) + .th-full:not(.mistake):not(li):not(span)::after { content: none; }
+html[data-extra="on"][data-theory="full"] .th-full:not(.mistake):not(li):not(span) + .th-full:not(.mistake):not(li):not(span)::after { content: none; }
 /* таблица прокручивается и обрезала бы подпись на границе: подпись внутри рамки */
-html[data-theory="full"] .table-wrap.th-full:not(.th-brief + .th-full) { padding-top: 1.8rem; }
-html[data-theory="full"] .table-wrap.th-full:not(.th-brief + .th-full)::after { top: 0.45rem; left: 0.65rem; background: none; }
+html[data-extra="on"][data-theory="full"] .table-wrap.th-full:not(.th-brief + .th-full) { padding-top: 1.8rem; }
+html[data-extra="on"][data-theory="full"] .table-wrap.th-full:not(.th-brief + .th-full)::after { top: 0.45rem; left: 0.65rem; background: none; }
 /* карточка ошибки: своя сплошная рамка остается, пунктир идет вокруг нее */
-html[data-theory="full"] .mistake.th-full:not(.th-brief + .th-full) {
+html[data-extra="on"][data-theory="full"] .mistake.th-full:not(.th-brief + .th-full) {
   overflow: visible; border: var(--border-w) solid var(--c-border-light); outline: 1px dashed var(--c-extra-line);
   outline-offset: 0.55rem; padding: 0; margin: 2.4rem 0.55rem 1.6rem;
 }
-html[data-theory="full"] .mistake.th-full:not(.th-brief + .th-full)::after { top: calc(-0.55rem - 0.68rem); left: 0.4rem; }
-html[data-theory="full"] .mistake.th-full > .mistake-caption { border-radius: var(--radius-md) var(--radius-md) 0 0; }
-html[data-theory="full"] .mistake.th-full > :last-child { border-radius: 0 0 var(--radius-md) var(--radius-md); }
-html[data-theory="full"] li.th-full:not(.th-brief + .th-full) { border-left: 1px dashed var(--c-extra-line); padding-left: 0.8rem; }
+html[data-extra="on"][data-theory="full"] .mistake.th-full:not(.th-brief + .th-full)::after { top: calc(-0.55rem - 0.68rem); left: 0.4rem; }
+html[data-extra="on"][data-theory="full"] .mistake.th-full > .mistake-caption { border-radius: var(--radius-md) var(--radius-md) 0 0; }
+html[data-extra="on"][data-theory="full"] .mistake.th-full > :last-child { border-radius: 0 0 var(--radius-md) var(--radius-md); }
+html[data-extra="on"][data-theory="full"] li.th-full:not(.th-brief + .th-full) { border-left: 1px dashed var(--c-extra-line); padding-left: 0.8rem; }
 /* версия 31: переключатель в шапке страницы справа от заголовка (вариант D), без подписи о времени */
 .ph-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 1rem 2rem; }
 .theory-switch { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; margin-bottom: 0.3rem; font-family: var(--font-ui); }
@@ -1878,8 +2070,9 @@ html[data-os] .os-switch > .output-block { border-top-left-radius: 0; border-top
    Иконка «стрелка с точкой» всегда в верхней панели (на страницах практики и на главной);
    окно подтверждения перечисляет, что сбросится; файл с прогрессом скачивается перед сбросом всегда. */
 .tb-reset svg, .home-reset svg { width: 1.15rem; height: 1.15rem; }
-.rs-dlg { border: 1px solid var(--c-border); border-radius: var(--radius-md); background: var(--c-surface); color: var(--c-text);
-  padding: 1.3rem 1.4rem 1.1rem; max-width: 34rem; box-shadow: var(--shadow-md); font-family: var(--font-ui); }
+/* версия 108: окно шире ровно настолько, чтобы три кнопки стояли в одну строку; на узком экране — поля 1rem */
+.rs-dlg { border: 1px solid var(--c-border); border-radius: 8px; background: var(--c-surface); color: var(--c-text);
+  padding: 1.3rem 1.4rem 1.1rem; max-width: min(36rem, calc(100vw - 2rem)); box-shadow: var(--shadow-md); font-family: var(--font-ui); }
 .rs-dlg::backdrop { background: rgba(0, 0, 0, 0.45); }
 .rs-dlg h3 { margin: 0 0.8rem 0.6rem 0; }
 .rs-dlg ul { margin: 0.2rem 0 0.7rem; padding-left: 1.2rem; color: var(--c-text-2); }
@@ -1889,7 +2082,11 @@ html[data-os] .os-switch > .output-block { border-top-left-radius: 0; border-top
 .rs-x { position: absolute; right: 0.6rem; top: 0.6rem; }
 .rs-x svg { width: 1rem; height: 1rem; }
 .rs-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.8rem; }
+/* версия 108: «Сбросить все» и «Отмена» — одна группа: переносятся вместе и всегда справа */
+.rs-pair { display: inline-flex; align-items: center; gap: 0.5rem; margin-left: auto; }
 .rs-acts .tb-btn { display: inline-flex; align-items: center; gap: 0.35rem; }
+/* версия 108: кнопки диалогов «Начать заново?» и «Сбросить код?» скруглены на 8px */
+.rs-dlg .tb-btn { border-radius: var(--radius-sm); }
 .rs-acts svg { width: 1rem; height: 1rem; }
 .rs-flex { flex: 1; }
 .rs-yes { border-color: var(--c-error); color: var(--c-error-text); font-weight: 700; }
@@ -1904,8 +2101,7 @@ html[data-os] .os-switch > .output-block { border-top-left-radius: 0; border-top
    фиолетовый); красный остается только у ошибок. Шапка на узком экране в одну строку: меню слева,
    уровень, тема и настройки справа; прогресс и «Все практики курса» в меню «Содержание».
    Вкладки уровней на телефоне: подписана только открытая. Уровни в меню ⚙ тремя кружками. */
-:root { --c-pip-off: #DDD6CA; --c-lv1: #257A48; --c-lv2: #A8700F; --c-lv3: #6F61A3; --c-lv3-text: #5A4D8E;
-  --win-code-title: #969DA9; }
+:root { --c-pip-off: #DDD6CA; --c-lv1: #257A48; --c-lv2: #A8700F; --c-lv3: #6F61A3; --c-lv3-text: #5A4D8E; }
 :root[data-theme="dark"] { --c-pip-off: #4A453F; --c-lv1: #52C98F; --c-lv2: #E3B75E; --c-lv3: #B8AAE8; --c-lv3-text: #B8AAE8; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --c-pip-off: #4A453F; --c-lv1: #52C98F; --c-lv2: #E3B75E; --c-lv3: #B8AAE8; --c-lv3-text: #B8AAE8; } }
 
@@ -2769,7 +2965,7 @@ html.site-locked body { background: var(--c-bg); }
 /* перенос длинных строк: настройка «Длинные строки: Перенос», класс wrap-code у <html>.
    Продолжение строки сдвинуто вправо, номер строки один; в код ничего не вставляется */
 .wrap-code .code-block pre > code { white-space: normal; display: block; }
-.wrap-code .code-block pre > code .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: calc(2.6em + 2ch); text-indent: calc(-2.6em - 2ch); }
+.wrap-code .code-block pre > code .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: calc(2ch + 0.75em - 0.7rem); text-indent: calc(-2ch - 0.75em + 0.7rem); }
 .wrap-code .st-ln, .wrap-code .mside-code .ml, .wrap-code .mdiff-l { white-space: pre-wrap; overflow-wrap: anywhere; }
 .wrap-code .st-ln { padding-left: calc(3.6em + 2ch); text-indent: calc(-3.6em - 2ch); }
 .wrap-code .mside-code .ml { padding-left: calc(3.1em + 2ch); text-indent: calc(-3.1em - 2ch); }
@@ -2817,8 +3013,8 @@ html.site-locked body { background: var(--c-bg); }
 .st-trace td { font-family: var(--font-mono); font-size: 0.88rem; }
 .st-trace tr.is-new td { background: var(--st-new) !important; }
 .st-empty { color: var(--c-muted); font-family: var(--font-body) !important; }
+/* версия 112: окно вывода в шагах без своего отступа — одинаково со всеми окнами «Вывод» */
 .st-out.output-block { flex: 0 0 auto; margin: 0; }
-.st-out pre { padding-block: 0.4rem 0.8rem; }
 .st-ctrl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 0.8rem; font-family: var(--font-ui); }
 .st-btn { font: inherit; font-size: 0.9rem; min-height: 40px; padding: 0.4rem 0.95rem; border-radius: var(--radius-sm); border: 1px solid var(--c-control-border); background: var(--c-surface); color: var(--c-text); cursor: pointer; display: inline-flex; align-items: center; gap: 0.45rem; }
 .st-btn:hover:not(:disabled) { border-color: var(--c-accent); }
@@ -2937,23 +3133,25 @@ script.steps-data { display: none; }
 .tb-practice-trigger:hover { color: var(--c-accent-hover); text-decoration: underline; text-underline-offset: 3px; }
 .tb-caret { font-size: 0.7em; color: var(--c-text-2); transition: transform 0.15s ease; }
 .tb-practice-trigger[aria-expanded="true"] .tb-caret { transform: rotate(180deg); }
-.tb-practice-pop { position: absolute; z-index: 80; top: calc(100% + 0.8rem); left: 0; width: 22rem;
+.tb-practice-pop { position: absolute; z-index: 80; top: calc(100% + 0.8rem); left: 0; width: 300px;
+  max-width: calc(100vw - 2rem);
   padding: 0.45rem; background: var(--c-surface); border: var(--border-w) solid var(--c-border);
   border-radius: var(--radius-md); box-shadow: var(--shadow-lg); }
 .tb-practice-pop[hidden] { display: none; }
 .tb-practice-pop-title { margin: 0.15rem 0.45rem 0.35rem; font-size: 0.62rem; text-transform: uppercase;
   letter-spacing: 0.08em; color: var(--c-muted); font-weight: 700; }
+/* версия 102: строка списка без номерной плашки, со счётчиком решённых справа (вариант 4.1A) */
 .tb-practice-item { width: 100%; display: flex; align-items: center; gap: 0.55rem; text-align: left;
   border: 0; background: none; color: var(--c-text); font: inherit; padding: 0.42rem 0.45rem;
   border-radius: 7px; text-decoration: none; }
 .tb-practice-item:hover { background: var(--c-bg-warm); }
-.tb-practice-item.is-current { background: var(--c-accent-light); color: var(--c-accent); }
-.tb-practice-num { flex: 0 0 1.5rem; height: 1.5rem; display: grid; place-items: center; border: 1px solid var(--c-border);
-  border-radius: 6px; background: var(--c-surface); font-size: 0.68rem; font-weight: 700; }
-.tb-practice-item.is-current .tb-practice-num { border-color: var(--c-accent-muted); color: var(--c-accent); }
-.tb-practice-item b { display: block; font-size: 0.78rem; }
-.tb-practice-item small { display: block; font-size: 0.66rem; color: var(--c-muted); }
-.tb-practice-item.is-current small { color: var(--c-accent); }
+.tb-practice-item.is-current { background: var(--c-accent); color: var(--c-on-accent); }
+.tb-practice-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1 1 auto; }
+.tb-practice-name { display: block; font-size: 0.78rem; font-weight: 700; }
+.tb-practice-sub { display: block; font-size: 0.66rem; color: var(--c-muted); }
+.tb-practice-count { flex: 0 0 auto; font-size: 0.72rem; color: var(--c-muted); white-space: nowrap; }
+.tb-practice-item.is-current .tb-practice-sub,
+.tb-practice-item.is-current .tb-practice-count { color: inherit; opacity: 0.8; }
 
 /* полоса прогресса: 10 px, счетчик 12 px справа, ширина по текстовому блоку */
 .topbar .tb-progress { position: absolute; left: var(--progress-left, 50%); transform: translateX(-50%);
@@ -3020,24 +3218,21 @@ script.steps-data { display: none; }
 .side-rule-note { margin-top: 0.6rem; }
 .side-star-note { margin: 0.5rem 0.2rem 0.8rem; font-size: 0.68rem; line-height: 1.4; color: var(--c-muted); }
 
-/* сохранение .py: стрелка в правом верхнем углу редактора */
+/* сохранение .py: стрелка в шапке редактора */
 .checker-editor { position: relative; }
-.tb-save-code { position: absolute; top: 0.45rem; right: 0.45rem; z-index: 2; width: 2rem; height: 2rem;
-  display: inline-grid; place-items: center; border: 0; background: transparent; color: rgba(255,255,255,0.82);
-  cursor: pointer; padding: 0; border-radius: 6px; }
-.tb-save-code:hover { background: rgba(255,255,255,0.14); color: #fff; }
-.tb-save-code svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;
-  stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- Версия 91: окно редактора проверки, подсветка и подсказка ---------- */
 .code-editor { display: flex; flex-direction: column; align-items: stretch; background: var(--win-code-bg);
   border-radius: 12px; overflow: hidden; }
-.code-editor-head { position: relative; display: flex; align-items: center; min-height: 2.35rem;
-  padding: 0 0.55rem; background: rgba(0, 0, 0, 0.18); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.code-editor-head { position: relative; display: flex; align-items: center; min-height: 2.9rem;
+  padding: 0 0.55rem; background: rgba(128, 128, 128, 0.10);
+  background: color-mix(in srgb, var(--win-code-bg) 88%, var(--win-code-text) 12%);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.22);
+  border-bottom: 1px solid color-mix(in srgb, var(--win-code-text) 16%, transparent); }
 .code-dots { display: flex; align-items: center; gap: 0.35rem; }
 .code-dot-r, .code-dot-y, .code-dot-g { display: block; width: 0.62rem; height: 0.62rem; border-radius: 50%; }
 .code-dot-r { background: #FF5F57; } .code-dot-y { background: #FEBC2E; } .code-dot-g { background: #28C840; }
-.code-file { position: absolute; left: 50%; transform: translateX(-50%); max-width: calc(100% - 7rem);
+.code-file { position: absolute; left: 50%; transform: translateX(-50%); max-width: calc(100% - 12rem);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono);
   font-size: 0.78rem; color: var(--win-code-text); opacity: 0.75; }
 .code-editor-body { position: relative; display: flex; align-items: stretch; min-height: 9rem; }
@@ -3047,49 +3242,529 @@ script.steps-data { display: none; }
   tab-size: 4; white-space: pre; color: var(--win-code-edit); }
 .code-editor textarea { position: relative; z-index: 1; display: block; width: 100%; flex: none; margin: 0;
   border: 0; outline: none; background: transparent; color: transparent; -webkit-text-fill-color: transparent;
-  caret-color: var(--win-code-caret); }
+  caret-color: var(--win-code-caret); resize: none; overflow-y: hidden; }
 .code-editor textarea::selection { background: rgba(80, 160, 130, 0.35); }
-.code-editor-head .tb-save-code { position: absolute; top: 50%; right: 0.4rem; transform: translateY(-50%);
-  width: 1.8rem; height: 1.8rem; }
+.code-actions { display: flex; align-items: center; gap: 3px; margin-left: auto; z-index: 2; }
 .ex-editor-wrap { background: transparent; border-radius: 0; }
 .ex-editor-wrap .code-editor-body { min-height: 0; }
-.ex-editor-wrap .code-highlight { padding: 0.9rem 1.5rem 1.4rem 0.6rem; font-size: 1rem; line-height: 1.7; }
-.ex-editor-wrap .ex-editor { padding: 0.9rem 1.5rem 1.4rem 0.6rem; color: transparent; -webkit-text-fill-color: transparent; }
+.ex-editor-wrap .code-highlight { padding: 0.9rem 1.5rem 1.4rem 0.75em; font-size: 1rem; line-height: 1.7; }
+.ex-editor-wrap .ex-editor { padding: 0.9rem 1.5rem 1.4rem 0.75em; color: transparent; -webkit-text-fill-color: transparent; }
+/* Версия 94: на мобильном статический pre уменьшается — редактор повторяет его шрифт и отступы */
+@media (max-width: 900px) {
+  .ex-editor-wrap .code-gutter { padding: 0.8rem 0 1.1rem 1.1rem; width: calc(1rem + 1.6em); font-size: 0.9rem; line-height: 1.7; }
+  .ex-editor-wrap .code-highlight,
+  .ex-editor-wrap .ex-editor { padding: 0.8rem 1rem 1.1rem 1em; font-size: 0.9rem; line-height: 1.7; }
+}
 
-.checker-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin: 0 0 0.35rem; }
+.checker-head { position: relative; display: flex; align-items: center; justify-content: flex-start; gap: 0.45rem; margin: 0 0 0.35rem; }
 .checker-head .checker-title { margin: 0; }
-.checker-help-wrap { position: relative; flex: 0 0 auto; }
+.checker-help-wrap { position: static; display: flex; align-items: center; flex: 0 0 auto; }
 .checker-help { width: 1.4rem; height: 1.4rem; display: inline-grid; place-items: center; padding: 0;
   border: 1px solid var(--c-border); border-radius: 50%; background: var(--c-surface); color: var(--c-text-2); cursor: pointer; }
 .checker-help:hover, .checker-help:focus-visible { color: var(--c-accent); border-color: var(--c-accent); }
 .checker-help svg { width: 14px; height: 14px; }
-.checker-help-pop { position: absolute; right: 0; top: calc(100% + 0.45rem); z-index: 30;
-  width: min(34rem, calc(100vw - 5rem)); padding: 0.7rem 0.85rem; background: var(--c-surface);
+.checker-help-pop { position: absolute; left: 0; top: calc(100% + 0.45rem); z-index: 30;
+  width: min(34rem, 100%); padding: 0.7rem 0.85rem; background: var(--c-surface);
   border: var(--border-w) solid var(--c-border); border-radius: 10px; box-shadow: var(--shadow-lg);
   font-size: 0.82rem; line-height: 1.55; color: var(--c-text); }
 .checker-help-pop[hidden] { display: none; }
+@media (max-width: 760px) {
+  .checker-help-pop { left: 0; right: 0; width: auto; max-width: none; }
+}
 .checker-note-short { margin: 0 0 0.55rem; font-size: var(--t-sm); color: var(--c-text-2); }
 
 /* номера строк не должны получать горизонтальную прокрутку от общих правил .code-block pre */
 .code-block pre.code-gutter,
 .checker-editor .code-gutter { overflow: hidden; }
 
-/* ---------- Версия 92: копирование кода, иконки примера, скругление кнопок ---------- */
-.tb-copy-code { display: inline-grid; place-items: center; width: 2rem; height: 2rem; padding: 0; border: 0;
-  background: transparent; color: var(--win-code-text); opacity: 0.78; cursor: pointer; border-radius: 6px; z-index: 3; }
-.tb-copy-code:hover { opacity: 1; background: rgba(255, 255, 255, 0.14); color: #fff; }
-.tb-copy-code.is-copied { color: var(--c-accent); opacity: 1; }
-.tb-copy-code svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.code-editor-head .tb-copy-code { position: absolute; top: 50%; right: 2.2rem; transform: translateY(-50%); width: 1.8rem; height: 1.8rem; }
-.code-block > .tb-copy-floating { position: absolute; top: 0.45rem; right: 0.6rem; z-index: 2; }
-.ex-tools .tb-copy-code { color: var(--win-btn-text); opacity: 0.9; }
-.ex-tools .tb-copy-code:hover { background: rgba(0, 0, 0, 0.12); color: var(--win-code-title); }
+/* ---------- Версия 96: компактные иконки действий без фона ---------- */
+/* frost: знак 16 px, кнопка 28 px; на телефоне (до 600 px) кнопка 32 px.
+   В покое видны только знаки, плитка появляется при наведении. */
+.icon-btn {
+  display: inline-grid; place-items: center; flex: 0 0 auto;
+  width: 28px; height: 28px; padding: 0; border: 1px solid transparent; border-radius: 8px;
+  background: transparent; color: var(--win-code-text); cursor: pointer;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: none;
+  transition: background 160ms var(--ease), color 160ms var(--ease), transform 120ms var(--ease), box-shadow 120ms var(--ease);
+}
+.icon-btn svg { display: block; width: 16px; height: 16px; fill: none; stroke: currentColor;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn:hover { background: rgba(128, 128, 128, 0.16);
+  background: color-mix(in srgb, var(--win-code-text) 16%, transparent);
+  border-color: rgba(128, 128, 128, 0.22);
+  border-color: color-mix(in srgb, var(--win-code-text) 22%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11); color: var(--c-accent); }
+.icon-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn:disabled { opacity: 0.55; cursor: default; }
+.icon-btn.ic-play:disabled { cursor: wait; }
+.icon-btn:disabled:hover, .icon-btn:disabled:active {
+  background: transparent; border-color: transparent; box-shadow: none;
+  color: var(--win-code-text); transform: none;
+}
+.icon-btn[hidden] { display: none; }
+.ex-tools .ic-reset:disabled { opacity: 0.38; }
+.icon-btn.is-copied, .icon-btn.is-copied:hover { color: var(--c-accent); }
 
-.ex-btn-icon { width: 2rem; height: 2rem; padding: 0; display: inline-grid; place-items: center; border-radius: var(--win-radius); }
-.ex-btn-icon svg { width: 16px; height: 16px; }
+/* цвет иконок следует за цветом текста окна кода: тёмный на светлом, светлый на тёмном */
+
+/* brutal: весь набор переключается игровым профилем, frost и brutal не смешиваются */
+:root[data-profile="game"] .icon-btn {
+  width: 34px; height: 34px; border: 2px solid #12141A; border-radius: 4px;
+  background: #EFECE3; color: #12141A; box-shadow: 3px 3px 0 #22C078;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+:root[data-profile="game"] .icon-btn:hover { background: #EFECE3; color: #12141A;
+  box-shadow: 4px 4px 0 #22C078; transform: translate(-1px, -1px); }
+:root[data-profile="game"] .icon-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #22C078; }
+:root[data-profile="game"] .icon-btn:disabled:hover,
+:root[data-profile="game"] .icon-btn:disabled:active {
+  background: #EFECE3; color: #12141A; border-color: #12141A;
+  box-shadow: 3px 3px 0 #22C078; transform: none;
+}
+:root[data-profile="game"] .icon-btn svg { stroke-width: 2; }
+:root[data-profile="game"] .icon-btn.ic-play svg path,
+:root[data-profile="game"] .icon-btn.ic-pencil svg path { fill: currentColor; }
+:root[data-profile="game"] .icon-btn.is-copied,
+:root[data-profile="game"] .icon-btn.is-copied:hover { color: #12141A; }
+
+/* на телефоне кнопка крупнее, под палец; brutal сохраняет свои 34 px */
+@media (max-width: 600px) {
+  .icon-btn { width: 32px; height: 32px; }
+  /* шапка редактора уже: убираем декоративные точки, имя файла ужимается многоточием */
+  .code-editor .code-dots { display: none; }
+  .code-editor .code-file { position: static; transform: none; max-width: none;
+    flex: 1 1 auto; min-width: 0; text-align: left; }
+  /* шапка окна примера: имя файла не уходит под кнопки */
+  .code-block .code-label { padding-right: 7.4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* версия 98: у примеров четыре кнопки — оставляем имя файла слева от них */
+  .code-block:has(> .ex-tools) > .code-label { padding-right: 9.2rem; }
+  :root[data-profile="game"] .code-block:has(> .ex-tools) > .code-label { padding-right: 9.7rem; }
+}
+
+/* волосяной разделитель между «сохранить» и «запустить/сбросить» */
+.code-actions .code-sep { width: 1px; height: 16px; background: rgba(128, 128, 128, 0.32);
+  background: color-mix(in srgb, var(--win-code-text) 24%, transparent); flex: 0 0 auto; }
+
+/* имя файла в окне кода: кнопка копирования, выглядит как обычная подпись */
+.code-label > .file-copy, .code-file > .file-copy {
+  display: inline; max-width: 100%; margin: 0; padding: 0; border: 0; border-radius: 4px;
+  background: none; color: inherit; font: inherit; letter-spacing: inherit; line-height: inherit;
+  text-align: left; text-transform: inherit; cursor: copy;
+  transition: color 0.12s ease, transform 0.08s ease;
+}
+.code-file > .file-copy { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.code-label > .file-copy:hover, .code-file > .file-copy:hover,
+.code-label > .file-copy:focus-visible, .code-file > .file-copy:focus-visible {
+  color: var(--file-copy-hover);
+}
+.code-label > .file-copy:focus-visible, .code-file > .file-copy:focus-visible {
+  outline: 2px solid var(--file-copy-hover); outline-offset: 2px;
+}
+/* версия 102: нажатие — другой оттенок и сдвиг на 1 px, без подчёркивания (вариант 5C) */
+.code-label > .file-copy:active, .code-file > .file-copy:active {
+  color: var(--file-copy-press); transform: translateY(1px);
+}
+.code-label > .file-copy.is-copied, .code-file > .file-copy.is-copied { color: var(--file-copy-hover); }
+@media (prefers-reduced-motion: reduce) {
+  .code-label > .file-copy, .code-file > .file-copy { transition: none; }
+}
+
+/* короткое сообщение после копирования и сброса */
+.copy-toast {
+  position: fixed; left: 50%; bottom: 1.25rem; z-index: 80;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.25rem 0.75rem;
+  width: max-content; max-width: calc(100vw - 2rem); padding: 0.55rem 0.9rem;
+  border: var(--border-w) solid var(--c-border); border-radius: 10px;
+  background: var(--c-surface); color: var(--c-text); box-shadow: var(--shadow-lg);
+  font-family: var(--font-ui); font-size: var(--t-sm); line-height: 1.4;
+  opacity: 0; pointer-events: none; transform: translate(-50%, 0.5rem);
+  transition: opacity 160ms var(--ease), transform 160ms var(--ease);
+}
+.copy-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+.copy-toast.has-action { pointer-events: auto; }
+.copy-toast-text { min-width: 0; }
+.copy-toast-action {
+  margin: 0; padding: 0; border: 0; background: none;
+  color: var(--c-accent); font: inherit; font-weight: 700; line-height: inherit;
+  text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
+}
+.copy-toast-action:hover { color: var(--c-accent-hover); }
+.copy-toast-action:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; border-radius: 4px; }
+:root[data-profile="game"] .copy-toast { border-width: 2px; border-radius: 0; box-shadow: var(--shadow-md); }
+@media (prefers-reduced-motion: reduce) { .copy-toast { transition: none; } }
+
+/* места: шапка окна, углы блоков кода */
+.ex-tools { position: absolute; top: 0.22rem; right: 0.55rem; display: flex; gap: 3px; z-index: 2; padding: 0; }
+.code-block > .tb-copy-floating { position: absolute; top: 0.22rem; right: 0.55rem; z-index: 3; }
+@media (max-width: 900px) {
+  .ex-tools { position: absolute; top: 0.22rem; right: 0.55rem; padding: 0; }
+}
 
 /* Кнопки проверки и примеров: то же скругление, что у окна кода. */
 .checker-run, .checker-try, .checker-file, .checker-clear, .predict-btn, .ex-btn { border-radius: var(--win-radius); }
+
+/* ===== Версия 99: одно скругление 8px у блоков и кнопок страницы (обычный профиль) ===== */
+:root:not([data-profile="game"]) .code-block,
+:root:not([data-profile="game"]) .output-block,
+:root:not([data-profile="game"]) .input-block,
+:root:not([data-profile="game"]) .task,
+:root:not([data-profile="game"]) .task-final,
+:root:not([data-profile="game"]) .task-summary,
+:root:not([data-profile="game"]) .nb,
+:root:not([data-profile="game"]) .then,
+:root:not([data-profile="game"]) .checker,
+:root:not([data-profile="game"]) .overview-badge,
+:root:not([data-profile="game"]) .step,
+:root:not([data-profile="game"]) .level,
+:root:not([data-profile="game"]) .task-status,
+:root:not([data-profile="game"]) .lvl-tag,
+:root:not([data-profile="game"]) .topic-link,
+:root:not([data-profile="game"]) .pcard,
+:root:not([data-profile="game"]) .btn,
+:root:not([data-profile="game"]) .checker-run,
+:root:not([data-profile="game"]) .checker-try,
+:root:not([data-profile="game"]) .checker-file,
+:root:not([data-profile="game"]) .checker-clear,
+:root:not([data-profile="game"]) .predict-btn,
+:root:not([data-profile="game"]) .ex-btn { border-radius: 8px; }
+/* блок с акцентной полосой слева: левые углы прямые, чтобы полоса не закруглялась */
+:root:not([data-profile="game"]) .hint,
+:root:not([data-profile="game"]) .nb,
+:root:not([data-profile="game"]) .warning,
+:root:not([data-profile="game"]) .important,
+:root:not([data-profile="game"]) .task-exercise,
+:root:not([data-profile="game"]) .task-star,
+:root:not([data-profile="game"]) .task-graded { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+/* полоса прокрутки бокового меню: тонкая, видна только при наведении */
+.sidebar { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.sidebar:hover { scrollbar-color: var(--c-border) transparent; }
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
+.sidebar:hover::-webkit-scrollbar-thumb { background: var(--c-border); }
+/* линейка PEP 8 отсчитывается от нового начала кода */
+.show-ruler .code-block pre > code { --gut: calc(2ch + 0.75em - 0.7rem); }
+/* на узком экране в режиме переноса комментарий стоит над своей строкой */
 @media (max-width: 900px) {
-  .ex-tools { position: absolute; top: 0.45rem; right: 0.6rem; padding: 0; }
+  .wrap-code .code-block pre > code .ln-split { display: grid; grid-template-columns: calc(2ch + 0.75em - 0.7rem) 1fr; padding-left: 0; text-indent: 0; }
+  .wrap-code .code-block pre > code .ln-split::before { grid-row: 2; grid-column: 1; }
+  .wrap-code .code-block pre > code .ln-split > .ln-main { grid-row: 2; grid-column: 2; }
+  .wrap-code .code-block pre > code .ln-split > .tok-com,
+  .wrap-code .code-block pre > code .ln-split > .tok-out { grid-row: 1; grid-column: 2; }
 }
+
+/* ===== Версия 101: в игровом ночном уровне кнопки-иконки в окнах кода
+   повторяют кнопку «Выбрать файл .py» — тёмное поле, светлый знак,
+   чернильная рамка; зелёная подложка остаётся ===== */
+:root[data-profile="game"][data-theme="dark"] .icon-btn {
+  background: var(--c-surface);
+  color: var(--c-text);
+  border-color: var(--c-border);
+  box-shadow: 3px 3px 0 #22C078;
+}
+:root[data-profile="game"][data-theme="dark"] .icon-btn:hover {
+  background: var(--c-surface);
+  color: var(--c-text);
+  border-color: var(--c-accent-muted);
+  box-shadow: 4px 4px 0 #22C078;
+}
+:root[data-profile="game"][data-theme="dark"] .icon-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #22C078;
+}
+:root[data-profile="game"][data-theme="dark"] .icon-btn:disabled:hover,
+:root[data-profile="game"][data-theme="dark"] .icon-btn:disabled:active {
+  background: var(--c-surface);
+  color: var(--c-text);
+  border-color: var(--c-border);
+  box-shadow: 3px 3px 0 #22C078;
+  transform: none;
+}
+:root[data-profile="game"][data-theme="dark"] .icon-btn.is-copied,
+:root[data-profile="game"][data-theme="dark"] .icon-btn.is-copied:hover {
+  color: var(--c-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn {
+    background: var(--c-surface);
+    color: var(--c-text);
+    border-color: var(--c-border);
+    box-shadow: 3px 3px 0 #22C078;
+  }
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn:hover {
+    background: var(--c-surface);
+    color: var(--c-text);
+    border-color: var(--c-accent-muted);
+    box-shadow: 4px 4px 0 #22C078;
+  }
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #22C078;
+  }
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn:disabled:hover,
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn:disabled:active {
+    background: var(--c-surface);
+    color: var(--c-text);
+    border-color: var(--c-border);
+    box-shadow: 3px 3px 0 #22C078;
+    transform: none;
+  }
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn.is-copied,
+  :root[data-profile="game"]:not([data-theme="light"]) .icon-btn.is-copied:hover {
+    color: var(--c-accent);
+  }
+}
+
+@media print {
+  .icon-btn, .code-actions, .ex-tools, .tb-copy-floating { display: none !important; }
+}
+
+/* ---------- Версия 102: тонкая линия прогресса и дневные окна кода ---------- */
+
+/* 1B: в игровом профиле прогресс — линия 5 px по нижней кромке шапки, без счётчика */
+[data-profile="game"] .topbar .tb-progress {
+  display: flex; position: absolute; left: 0; right: 0; bottom: 0; top: auto;
+  transform: none; width: 100%; max-width: none; margin: 0; padding: 0; gap: 0;
+  justify-content: flex-start; pointer-events: none;
+}
+[data-profile="game"] .topbar .tb-progress[hidden] { display: none; }
+[data-profile="game"] .topbar .tb-progress-label,
+[data-profile="game"] .topbar .tb-progress-text { display: none; }
+[data-profile="game"] .topbar .tb-progress .tb-track {
+  flex: 1 1 auto; width: 100%; height: 5px; min-width: 0; border: 0; border-radius: 0;
+  background: var(--c-track); overflow: hidden;
+}
+[data-profile="game"] .topbar .tb-progress .tb-fill {
+  height: 100%; border-radius: 0; background: var(--c-accent); background-image: none;
+}
+[data-profile="game"] .topbar .tb-progress .tb-star-fill { height: 100%; border-radius: 0; }
+@media (max-width: 900px) {
+  /* на телефоне шапка не липкая и потоковая: линия остаётся у её нижней кромки */
+  [data-profile="game"] .topbar { position: relative; }
+}
+
+/* 2D: в дневной игре у окон кода тёмная шапка и светлое тело;
+   метки «ошибка/верно» в разборах сохраняют свои цвета */
+[data-profile="game"] .code-block:not(.code-wrong):not(.code-right) > .code-label,
+[data-profile="game"] .file-output .output-label,
+[data-profile="game"] .mdiff-bar,
+[data-profile="game"] .mside-bar,
+[data-profile="game"] .tch-ed-bar,
+[data-profile="game"] .tch-win-bar {
+  background: var(--win-cap-bg); color: var(--win-cap-text);
+}
+[data-profile="game"] .code-block:not(.code-wrong):not(.code-right) > .code-label {
+  padding-bottom: var(--win-cap-pad); min-height: var(--win-cap-min);
+}
+[data-profile="game"] .code-block:not(.code-wrong):not(.code-right) > .code-label::before { top: var(--win-cap-dots); }
+[data-profile="game"] .code-block > .ex-tools { top: var(--win-cap-tools); }
+
+/* ---------- Версия 109: блок упражнения — условие, окна данных и спойлеры ----------
+   По согласованному макету блока 4.1.1: условие в нейтральной карточке, данные двумя
+   окнами, разборы в спойлерах «Пример», «Контекст», «Подсказка».
+   Правила для условия действуют только на блоки с .task-io: блоки, ещё не переведённые
+   на новую разметку, выглядят как раньше (версия 106). */
+.task:has(> .task-io) > .todo-box {
+  margin: 1.4rem 0 0.9rem;
+  padding: 0.8rem 1rem 0.85rem;
+  background: var(--c-bg-warm);
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-sm);
+}
+.task:has(> .task-io) > .todo-box > .todo-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-text-2);
+}
+
+.task-io {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin: 0.6rem 0 1rem;
+}
+.task-io .io-col {
+  background: var(--c-bg-warm);
+  border: 1px solid var(--c-border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem 0.85rem;
+}
+.task-io h4 { margin: 0 0 0.35rem; padding: 0; border: 0; }
+.task-io p { margin: 0; line-height: 1.5; }
+@media (max-width: 640px) {
+  .task-io { grid-template-columns: 1fr; }
+}
+
+details.task-spoiler {
+  margin: 0.75rem 0;
+  padding: 0.15rem 1rem 0.1rem;
+  background: var(--c-surface);
+  border: var(--border-w) solid var(--c-border-light);
+  border-radius: var(--radius-sm);
+}
+details.task-spoiler > summary {
+  padding: 0.55rem 0;
+  font-weight: 650;
+  color: var(--c-accent);
+  cursor: pointer;
+}
+details.task-spoiler > p,
+details.task-spoiler > ul,
+details.task-spoiler > ol { margin-top: 0.35rem; }
+details.task-spoiler > *:last-child { margin-bottom: 0.75rem; }
+
+/* пример: нейтральная зеленая панель */
+details.task-spoiler.sp-example {
+  background: var(--c-task-bg);
+  border-color: var(--c-task-border);
+}
+details.task-spoiler.sp-example > summary { color: var(--c-text); }
+
+/* биологический контекст: мятная панель */
+details.task-spoiler.sp-bio {
+  background: var(--c-accent-light);
+  border-color: var(--c-task-border);
+  border-color: color-mix(in srgb, var(--c-accent) 30%, var(--c-border-light));
+}
+details.task-spoiler.sp-bio > summary { color: var(--c-accent-hover); }
+
+/* подсказка: теплая панель */
+details.task-spoiler.sp-hint {
+  background: var(--c-amber-light);
+  border-color: var(--c-amber-border);
+}
+details.task-spoiler.sp-hint > summary { color: var(--c-amber-text); }
+
+.task-spoiler .table-wrap { margin: 0.55rem 0 0.2rem; }
+.task-spoiler .table-wrap caption { display: none; }
+.task-spoiler .hint-steps { margin: 0.35rem 0 0.65rem; padding-left: 1.35rem; }
+.task-spoiler .hint-steps li { margin: 0.3rem 0; line-height: 1.5; }
+.task-spoiler .hint-steps li::marker { color: var(--c-amber-text); font-weight: 700; }
+
+.worked-example {
+  background: #203E38;
+  color: #F3F8F4;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 0.15rem 0 0.9rem;
+  box-shadow: none;
+}
+.we-title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.we-pair {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 32px);
+  padding: 12px 0;
+}
+.we-side { flex: 0 1 auto; min-width: 0; }
+.we-label {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #BFD5C9;
+}
+.we-seq {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 3.3vw, 1.8rem);
+  letter-spacing: 0.06em;
+  color: #F3F8F4;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.we-arrow {
+  flex: 0 0 auto;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #B7CEBF;
+}
+.we-hl {
+  background: #CBE9B4;
+  color: #1F3628;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.we-seg {
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.we-seg-1 { background: #CBE9B4; color: #1F3628; }
+.we-seg-2 { background: #F4D98B; color: #3B2A00; }
+.we-seg-3 { background: #A9CDF2; color: #11283F; }
+.we-note {
+  margin: 0.2rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #E0EDE5;
+}
+.we-note code {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+@media (max-width: 560px) {
+  .worked-example { padding: 14px 16px; }
+  .we-pair { flex-direction: column; align-items: stretch; gap: 9px; }
+  .we-arrow { align-self: center; transform: rotate(90deg); }
+}
+
+/* рекомендуемые имена: копирование по нажатию, без подчеркивания */
+.checker-note-short code.copy-name {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 140ms var(--ease), color 140ms var(--ease),
+    box-shadow 140ms var(--ease), transform 90ms var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.checker-note-short code.copy-name:hover {
+  background: var(--c-accent-light);
+  color: var(--c-accent-hover);
+  box-shadow: inset 0 0 0 1px var(--c-accent-muted);
+}
+.checker-note-short code.copy-name:active { transform: scale(0.93); }
+.checker-note-short code.copy-name.is-copied {
+  background: var(--c-accent);
+  color: var(--c-on-accent);
+  box-shadow: none;
+}
+.checker-note-short code.copy-name:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+details.task-spoiler .definitions-title {
+  margin: 0.9rem 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--c-text);
+}
+.definitions-list { margin: 0 0 0.4rem; padding-left: 1.2rem; }
+.definitions-list li { margin: 0.35rem 0; line-height: 1.5; }
+.definitions-list strong { color: var(--c-text); }

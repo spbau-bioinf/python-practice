@@ -110,79 +110,216 @@ TypeError: can only concatenate str (not "int") to str</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.3.1. Есть ли мотив</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны последовательность и мотив. Определите, встречается ли мотив в последовательности. Воспользуйтесь оператором <code>in</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если мотив есть в последовательности, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CCGGATCCTA
+              <h3>Упражнение 2.3.1. Есть ли мотив</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны последовательность и мотив. Определите, встречается ли мотив в последовательности. Воспользуйтесь оператором <code>in</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если мотив есть в последовательности, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CC<span class="we-hl">GGATCC</span>TA<br><span class="we-hl">GGATCC</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив GGATCC стоит в CCGGATCCTA целиком, поэтому оператор in дает True; в ACGTACGT мотива GAATTC нет.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CCGGATCCTA
 GGATCC</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ACGTACGT
+                      <tr><td><pre>ACGTACGT
 GAATTC</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Мотив — короткая последовательность, которую ищут в ДНК: место связывания белка, сайт рестрикции или другой заметный участок. Оператор <code>in</code> проверяет, есть ли такая подстрока в строке.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Мотив</strong> — короткая последовательность нуклеотидов, которую ищут в ДНК.</li>
+                  <li><strong>Оператор in</strong> — проверяет, встречается ли подстрока в строке, и возвращает True или False.</li>
+                  <li><strong>Подстрока</strong> — непрерывный кусок строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Ответ дает одна проверка: <code>motif in seq</code>.</li>
+                  <li>Выведите результат: <code>print(motif in seq)</code>.</li>
+                  <li>Сверьтесь с примером: GGATCC есть в CCGGATCCTA, а GAATTC в ACGTACGT нет.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.3.1. Тандемный повтор</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Тандемный повтор&nbsp;— несколько копий одного мотива, стоящих подряд без промежутков, например <code>CACACA</code>. Определите, есть ли в последовательности не меньше <code>n</code> копий мотива подряд.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй мотив из тех же букв, в третьей целое число <code>n</code> (<code>n</code> ≥ 2).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если в последовательности есть <code>n</code> копий мотива подряд, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GACACACAT
+              <h3>Упражнение 2.3.1. Тандемный повтор</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Определите, есть ли в последовательности не меньше <code>repeat_count</code> копий мотива подряд.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй мотив из тех же букв, в третьей целое число <code>repeat_count</code> (<code>repeat_count</code> ≥ 2).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если в последовательности есть <code>repeat_count</code> копий мотива подряд, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GA<span class="we-hl">CACACA</span>T<br>CA<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив CA стоит подряд три раза — CACACA; в CACAGTCA после двух копий CA идет GT, и третьей копии нет.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GACACACAT
 CA
 3</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>CACAGTCA
+                      <tr><td><pre>CACAGTCA
 CA
 3</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Тандемные повторы встречаются в геномах всех организмов, и число копий в них может меняться от особи к особи. Повтор из repeat_count копий — это строка мотива, записанная repeat_count раз подряд.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Тандемный повтор</strong> — несколько копий одного мотива, стоящих подряд без промежутков, например CACACA.</li>
+                  <li><strong>Копия мотива</strong> — одно вхождение мотива в повтор.</li>
+                  <li><strong>Оператор *</strong> — повторяет строку заданное число раз: <code>motif * repeat_count</code>.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку, мотив и число: <code>seq = input()</code>, <code>motif = input()</code>, <code>repeat_count = int(input())</code>.</li>
+                  <li>Повтор из repeat_count копий собирает оператор *: <code>motif * repeat_count</code>.</li>
+                  <li>Проверьте, входит ли этот повтор в последовательность: <code>motif * repeat_count in seq</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: CA, повторенный трижды, есть в GACACACAT.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.3.1. Мотив в кольцевой ДНК</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>ДНК плазмиды замкнута в кольцо, а в файле ее записывают строкой, разрезав кольцо в одном месте. Поэтому мотив может начинаться в конце записи и продолжаться в ее начале. Определите, встречается ли мотив в кольцевой последовательности.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Представьте, что кольцо обошли два раза подряд и записали все, что встретилось по пути.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T; длина последовательности от 1 до 100, мотив не длиннее последовательности.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если мотив встречается в кольцевой последовательности, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TTCAGGAA
+              <h3>Упражнение 2.3.1. Мотив в кольцевой ДНК</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>ДНК плазмиды замкнута в кольцо, а в файле ее записывают строкой, разрезав кольцо в одном месте. Поэтому мотив может начинаться в конце записи и продолжаться в ее начале. Определите, встречается ли мотив в кольцевой последовательности.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T; длина последовательности от 1 до 100, мотив не длиннее последовательности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если мотив встречается в кольцевой последовательности, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">TTCAG<span class="we-hl">GAA</span><br><span class="we-hl">GAATTC</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив начинается в конце записи на GAA и продолжается в ее начале буквами TTC; для кольцевой ДНК такое вхождение считается.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TTCAGGAA
 GAATTC</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ACGTACGT
+                      <tr><td><pre>ACGTACGT
 TTT</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В кольцевой молекуле мотив может переходить через место разреза записи: его начало стоит в конце строки, а конец — в начале. Чтобы не потерять такие вхождения, запись повторяют дважды.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
+                  <li><strong>Кольцевая ДНК</strong> — молекула без концов: после последнего нуклеотида записи идет первый.</li>
+                  <li><strong>Вхождение</strong> — место в строке, где начинается мотив.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Вхождение через место разреза видно, если записать кольцо два раза подряд: <code>seq + seq</code>.</li>
+                  <li>Проверьте мотив в двойной записи: <code>motif in seq + seq</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: GAATTC переходит через разрез в TTCAGGAA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -308,79 +445,216 @@ ATACGATCG</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.3.2. Замена старт-кодона</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Старт-кодон&nbsp;— первый кодон гена, с которого начинается его чтение (кодоном называют тройку подряд идущих нуклеотидов); обычно это <code>ATG</code>. Чтобы ген в бактерии работал активнее (сильнее экспрессировался), альтернативный старт-кодон, например <code>GTG</code> или <code>TTG</code>, иногда заменяют на <code>ATG</code>. Замените первый кодон последовательности на <code>ATG</code>: склейте <code>"ATG"</code> со срезом последовательности, начиная с четвертого нуклеотида.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из заглавных букв A, C, G, T длиной от 3 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность, в которой первые три нуклеотида заменены на <code>ATG</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GTGCCATAA</pre></td><td><pre>ATGCCATAA</pre></td></tr>
-                <tr><td><pre>TTG</pre></td><td><pre>ATG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.3.2. Замена старт-кодона</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Замените первый кодон последовательности на <code>ATG</code>: склейте <code>"ATG"</code> со срезом последовательности, начиная с четвертого нуклеотида.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из заглавных букв A, C, G, T длиной от 3 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность, в которой первые три нуклеотида заменены на <code>ATG</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GTG</span>CCATAA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">ATG</span>CCATAA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первые три нуклеотида GTG заменяются на ATG; остальная часть CCATAA остается на месте.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GTGCCATAA</pre></td><td><pre>ATGCCATAA</pre></td></tr>
+                      <tr><td><pre>TTG</pre></td><td><pre>ATG</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Старт-кодон задает начало гена: с него начинается чтение. В бактериях ген может начинаться с альтернативных кодонов GTG или TTG; замена такого кодона на ATG иногда усиливает экспрессию гена.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Старт-кодон</strong> — первый кодон гена, с которого начинается его чтение; обычно это ATG.</li>
+                  <li><strong>Альтернативный старт-кодон</strong> — другой кодон в начале гена, например GTG или TTG.</li>
+                  <li><strong>Экспрессия гена</strong> — то, насколько активно ген работает: сколько белка с него получается.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Четвертый нуклеотид стоит по индексу 3, поэтому хвост после первого кодона — <code>seq[3:]</code>.</li>
+                  <li>Приклейте к хвосту новый кодон: <code>"ATG" + seq[3:]</code>.</li>
+                  <li>Выведите: <code>print("ATG" + seq[3:])</code>; сверьтесь с примером: GTGCCATAA превращается в ATGCCATAA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.3.2. Точечная мутация</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Точечная мутация заменяет один нуклеотид другим. Замените нуклеотид в позиции <code>p</code> на нуклеотид <code>x</code>; позиции нумеруются с 1.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>p</code> (1 ≤ <code>p</code> ≤ длины последовательности), в третьей нуклеотид <code>x</code>: одна из букв A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность после замены.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCCATAG
+              <h3>Упражнение 2.3.2. Точечная мутация</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Замените нуклеотид в позиции <code>position</code> на нуклеотид <code>replacement</code>; позиции нумеруются с 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>position</code> (1 ≤ <code>position</code> ≤ длины последовательности), в третьей нуклеотид <code>replacement</code>: одна из букв A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность после замены.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG<span class="we-hl">C</span>CATAG<br>4<br>T</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATG<span class="we-hl">T</span>CATAG</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Позиция 4 — это индекс 3; буква C заменяется на T, остальные нуклеотиды не меняются.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCCATAG
 4
 T</pre></td><td><pre>ATGTCATAG</pre></td></tr>
-                <tr><td><pre>CCGA
+                      <tr><td><pre>CCGA
 1
 T</pre></td><td><pre>TCGA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Точечная мутация заменяет один нуклеотид и может изменить кодон, а значит, и аминокислоту в белке. В записи такую замену делают склейкой трех частей: до позиции, новый нуклеотид, после позиции.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Точечная мутация</strong> — замена одного нуклеотида другим.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Нуклеотид</strong> — буква A, C, G или T в записи ДНК.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку, число и букву: <code>seq = input()</code>, <code>position = int(input())</code>, <code>replacement = input()</code>.</li>
+                  <li>Часть до позиции position — срез <code>seq[:position - 1]</code>, часть после нее — <code>seq[position:]</code>.</li>
+                  <li>Склейте три части: <code>seq[:position - 1]</code> + <code>replacement</code> + <code>seq[position:]</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: ATGCCATAG, position = 4, replacement = T дает ATGTCATAG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.3.2. Дупликация участка</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>При тандемной дупликации участок гена копируется, и копия встает сразу после него. Постройте последовательность после дупликации участка с позиции <code>i</code> по позицию <code>j</code> включительно; позиции нумеруются с 1.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Выпишите на бумаге результат для короткого примера и найдите в нем два куска исходной последовательности, которые идут друг за другом.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй и третьей целые числа <code>i</code> и <code>j</code> (1 ≤ <code>i</code> ≤ <code>j</code> ≤ длины последовательности).</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность после дупликации.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCCGTA
+              <h3>Упражнение 2.3.2. Дупликация участка</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>При тандемной дупликации участок гена копируется, и копия встает сразу после него. Постройте последовательность после дупликации участка с позиции <code>start</code> по позицию <code>end</code> включительно; позиции нумеруются с 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй и третьей целые числа <code>start</code> и <code>end</code> (1 ≤ <code>start</code> ≤ <code>end</code> ≤ длины последовательности).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность после дупликации.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AT<span class="we-hl">GCC</span>GTA<br>3<br>5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AT<span class="we-seg we-seg-1">GCC</span><span class="we-seg we-seg-2">GCC</span>GTA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Участок с позиции 3 по позицию 5 — это GCC; после дупликации он стоит два раза подряд: AT + GCC + GCC + GTA.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCCGTA
 3
 5</pre></td><td><pre>ATGCCGCCGTA</pre></td></tr>
-                <tr><td><pre>CAG
+                      <tr><td><pre>CAG
 1
 3</pre></td><td><pre>CAGCAG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Тандемная дупликация удваивает участок: копия встает вплотную за исходным участком. Так в геномах появляются новые копии генов, которые затем могут разойтись по функции.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Дупликация</strong> — удвоение участка ДНК.</li>
+                  <li><strong>Тандемная дупликация</strong> — дупликация, при которой копия встает сразу после исходного участка.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и два числа: <code>seq = input()</code>, <code>start = int(input())</code>, <code>end = int(input())</code>.</li>
+                  <li>Участок с позиции start по позицию end включительно — срез <code>seq[start - 1:end]</code>.</li>
+                  <li>Копия встает сразу за участком, поэтому начало строки берется до позиции end: <code>seq[:end]</code>, а хвост — с позиции start: <code>seq[start - 1:]</code>.</li>
+                  <li>Выведите: <code>print(seq[:end] + seq[start - 1:])</code>; сверьтесь с примером: ATGCCGTA, start = 3, end = 5 дает ATGCCGCCGTA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -391,83 +665,221 @@ T</pre></td><td><pre>TCGA</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 2.3. Делеция</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Делеция&nbsp;— мутация, при которой участок ДНК выпадает из последовательности. Постройте последовательность после делеции участка с позиции <code>i</code> по позицию <code>j</code> включительно; позиции нумеруются с 1.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 2 до 100, во второй и третьей целые числа <code>i</code> и <code>j</code> (1 ≤ <code>i</code> ≤ <code>j</code> ≤ длины последовательности). Участок короче всей последовательности.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность после делеции.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCCGTTAGC
+              <h3>Задача со звездочкой 2.3. Делеция</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Постройте последовательность после делеции участка с позиции <code>start</code> по позицию <code>end</code> включительно; позиции нумеруются с 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 2 до 100, во второй и третьей целые числа <code>start</code> и <code>end</code> (1 ≤ <code>start</code> ≤ <code>end</code> ≤ длины последовательности). Участок короче всей последовательности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность после делеции.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG<span class="we-hl">CCG</span>TTAGC<br>4<br>6</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATGTTAGC</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Участок с позиции 4 по позицию 6 — CCG — выпадает, и соседние куски ATG и TTAGC склеиваются.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCCGTTAGC
 4
 6</pre></td><td><pre>ATGTTAGC</pre></td></tr>
-                <tr><td><pre>CTTAGCA
+                      <tr><td><pre>CTTAGCA
 1
 2</pre></td><td><pre>TAGCA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Делеция — потеря участка ДНК. Если из гена выпадает число нуклеотидов, не кратное трем, сбивается рамка считывания и белок меняется.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Делеция</strong> — мутация, при которой участок ДНК выпадает из последовательности.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Рамка считывания</strong> — разбиение последовательности на кодоны с первого нуклеотида.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и два числа: <code>seq = input()</code>, <code>start = int(input())</code>, <code>end = int(input())</code>.</li>
+                  <li>Часть до участка — срез <code>seq[:start - 1]</code>, часть после него — <code>seq[end:]</code>.</li>
+                  <li>Остается склеить эти две части: <code>seq[:start - 1] + seq[end:]</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: ATGCCGTTAGC без позиций 4–6 дает ATGTTAGC.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 2.3. Замена кодона</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих нуклеотидов. Последовательность гена читают кодонами с первого нуклеотида: в позициях 1–3 стоит кодон 1, в позициях 4–6 кодон 2 и так далее. В опыте кодон с номером <code>k</code> заменяют другим кодоном. Постройте последовательность после замены.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T, ее длина делится на 3 и лежит в пределах от 3 до 99. Во второй строке целое число <code>k</code> (кодон с этим номером есть в последовательности), в третьей новый кодон: три заглавные буквы A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность после замены.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGAAACCCTGA
+              <h3>Задача со звездочкой 2.3. Замена кодона</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательность гена читают кодонами с первого нуклеотида: в позициях 1–3 стоит кодон 1, в позициях 4–6 кодон 2 и так далее. В опыте кодон с номером <code>codon_number</code> заменяют другим кодоном. Постройте последовательность после замены.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T, ее длина делится на 3 и лежит в пределах от 3 до 99. Во второй строке целое число <code>codon_number</code> (кодон с этим номером есть в последовательности), в третьей новый кодон: три заглавные буквы A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность после замены.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG<span class="we-hl">AAA</span>CCCTGA<br>2<br>GGG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATG<span class="we-hl">GGG</span>CCCTGA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Кодон 2 занимает позиции 4–6: AAA заменяется на GGG, остальные кодоны остаются на месте.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGAAACCCTGA
 2
 GGG</pre></td><td><pre>ATGGGGCCCTGA</pre></td></tr>
-                <tr><td><pre>CTAGCATTT
+                      <tr><td><pre>CTAGCATTT
 3
 AAG</pre></td><td><pre>CTAGCAAAG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Замена целого кодона моделирует направленный мутагенез: в ген вносят заранее выбранную тройку, чтобы проверить, как она повлияет на белок.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Рамка считывания</strong> — разбиение последовательности на кодоны с первого нуклеотида.</li>
+                  <li><strong>Направленный мутагенез</strong> — внесение в ген заранее выбранного изменения.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку, число и кодон: <code>seq = input()</code>, <code>codon_number = int(input())</code>, <code>codon = input()</code>.</li>
+                  <li>Кодон codon_number начинается с индекса <code>3 * (codon_number - 1)</code> и занимает три нуклеотида до индекса <code>3 * codon_number</code>.</li>
+                  <li>Склейте часть до кодона, новый кодон и часть после него: <code>seq[:3 * (codon_number - 1)]</code> + <code>codon</code> + <code>seq[3 * codon_number:]</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: ATGAAACCCTGA, codon_number = 2, GGG дает ATGGGGCCCTGA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 2.3. Задетый сайт</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Сайтом рестрикции называют участок ДНК, который узнает и разрезает фермент; его последовательность записывают мотивом, как <code>GAATTC</code> в разделе 1. Перед опытом проверяют, не попадает ли место точечной мутации, замены одного нуклеотида, на такой сайт. Даны последовательность, мотив сайта и позиция мутации <code>p</code>. Определите, лежит ли позиция <code>p</code> внутри хотя бы одного вхождения мотива. Позиции нумеруются с 1.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Позицию <code>p</code> накрывают вхождения, которые начинаются не раньше чем за <code>m</code> − 1 позиций до нее и не позже нее самой (<code>m</code> обозначает длину мотива). Следите, чтобы левая граница среза не стала отрицательной.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй мотив из тех же букв, не длиннее последовательности, в третьей целое число <code>p</code> (1 ≤ <code>p</code> ≤ длины последовательности).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если позиция <code>p</code> лежит внутри хотя бы одного вхождения мотива, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CAGGATCCTTGA
+              <h3>Задача со звездочкой 2.3. Задетый сайт</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Перед опытом проверяют, не попадает ли место точечной мутации на сайт рестрикции. Даны последовательность, мотив сайта и позиция мутации <code>position</code>. Определите, лежит ли позиция <code>position</code> внутри хотя бы одного вхождения мотива. Позиции нумеруются с 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй мотив из тех же букв, не длиннее последовательности, в третьей целое число <code>position</code> (1 ≤ <code>position</code> ≤ длины последовательности).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если позиция <code>position</code> лежит внутри хотя бы одного вхождения мотива, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CA<span class="we-hl">GGATCC</span>TTGA<br>GGATCC<br>6</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив GGATCC занимает позиции с 3 по 8, поэтому мутация в позиции 6 попадает внутрь сайта.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CAGGATCCTTGA
 GGATCC
 6</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>AAGCTTAGGC
+                      <tr><td><pre>AAGCTTAGGC
 AAGCTT
 1</pre></td><td><pre>True</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_03_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Рестрикционные ферменты разрезают ДНК в местах с определенной последовательностью. Если мутация попадает в такой сайт, фермент перестанет его узнавать, и опыт пойдет иначе.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сайт рестрикции</strong> — участок ДНК, который узнает и разрезает фермент.</li>
+                  <li><strong>Мотив</strong> — последовательность сайта, записанная строкой.</li>
+                  <li><strong>Точечная мутация</strong> — замена одного нуклеотида другим.</li>
+                  <li><strong>Вхождение</strong> — место в строке, где начинается мотив.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку, мотив и позицию: <code>seq = input()</code>, <code>motif = input()</code>, <code>position = int(input())</code>.</li>
+                  <li>Вхождение, которое накрывает позицию position, начинается не позже position и не раньше position − motif_length + 1.</li>
+                  <li>Чтобы срез не вышел за начало строки, припишите спереди motif_length символов-заполнителей, которых нет в последовательности: <code>padded = "-" * motif_length + seq</code>.</li>
+                  <li>Вырежьте из дополненной строки срез от <code>position</code> длиной 2 · motif_length − 1 — правую границу дает <code>position + 2 * motif_length - 1</code>. Проверьте в нем мотив оператором <code>in</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_03_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

@@ -156,77 +156,215 @@ TypeError: can only concatenate str (not "int") to str</pre></div><div class="co
 <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
 <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-<h3>Упражнение 1.5.1. Сумма из протокола</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор записал длины двух фрагментов ДНК строками <code>a</code> и <code>b</code>, например <code>'1200'</code>. Найдите общую длину фрагментов. Воспользуйтесь функцией <code>int()</code>.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задаются строки <code>a</code> и <code>b</code>, каждая содержит целое неотрицательное число.</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>a = '1200'
-b = '350'</pre></td><td><pre>1550</pre></td></tr>
-                <tr><td><pre>a = '0'
-b = '75'</pre></td><td><pre>75</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_05_1_basic.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.5.1. Сумма из протокола</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прибор записал длины двух фрагментов ДНК строками <code>length1</code> и <code>length2</code>, например <code>'1200'</code>. Найдите общую длину фрагментов. Воспользуйтесь функцией <code>int()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, каждая в своей строке: <code>length1</code> и <code>length2</code> — длины двух фрагментов ДНК, записанные целыми неотрицательными числами.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">1200<br>350</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1550</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>int('1200')</code> дает 1200, <code>int('350')</code> дает 350; сумма 1200 + 350 = 1550.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>1200
+350</pre></td><td><pre>1550</pre></td></tr>
+                      <tr><td><pre>0
+75</pre></td><td><pre>75</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Секвенатор записывает результаты в файл, и в файле любое значение хранится строкой: <code>'1200'</code> — это четыре символа, а не число. Чтобы сложить длины фрагментов, строки превращают в числа функцией <code>int()</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Фрагмент ДНК</strong> — участок последовательности нуклеотидов, который рассматривают отдельно.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>Строка</strong> — значение из символов; в файлах прибора числа записаны строками.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>length1 = input()</code> и <code>length2 = input()</code>.</li>
+                  <li>Сложить строки сразу нельзя: <code>'1200' + '350'</code> дает <code>'1200350'</code>.</li>
+                  <li>Превратите каждую строку в число функцией <code>int()</code>: <code>int(length1) + int(length2)</code>.</li>
+                  <li>Выведите сумму: <code>print(int(length1) + int(length2))</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
 <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-<h3>Упражнение 1.5.1. Повтор мотива</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Мотив&nbsp;— короткая последовательность нуклеотидов, например <code>CA</code>. Прибор выдает все значения строками: мотив <code>motif</code> и число повторов <code>times</code>. Постройте последовательность, в которой мотив повторен <code>times</code> раз подряд.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задаются строка <code>motif</code> из букв A, C, G, T и строка <code>times</code> с целым числом от 1 до 20.</p>
-<h4>Выходные данные</h4>
-<p>Одна строка из букв.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>motif = 'CAG'
-times = '3'</pre></td><td><pre>CAGCAGCAG</pre></td></tr>
-                <tr><td><pre>motif = 'A'
-times = '1'</pre></td><td><pre>A</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_05_1_medium.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.5.1. Повтор мотива</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прибор выдает все значения строками: мотив <code>motif</code> и число повторов <code>times</code>. Постройте последовательность, в которой мотив повторен <code>times</code> раз подряд.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, каждая в своей строке: <code>motif</code> — мотив из букв A, C, G, T (от 1 до 10 букв), <code>times</code> — число повторов (целое от 1 до 20).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка из букв.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CAG<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">CAG</span><span class="we-seg we-seg-2">CAG</span><span class="we-seg we-seg-1">CAG</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>int('3')</code> дает 3, и мотив CAG повторяется три раза подряд: CAG + CAG + CAG.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CAG
+3</pre></td><td><pre>CAGCAGCAG</pre></td></tr>
+                      <tr><td><pre>A
+1</pre></td><td><pre>A</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Мотивы встречаются в ДНК много раз, часто подряд: так получается тандемный повтор. Прибор записывает и сам мотив, и число повторов строками, поэтому число повторов сначала превращают в число.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Мотив</strong> — короткая последовательность нуклеотидов, которая встречается в ДНК.</li>
+                  <li><strong>Тандемный повтор</strong> — несколько копий мотива, стоящих подряд.</li>
+                  <li><strong>Нуклеотид</strong> — буква A, C, G или T в записи ДНК.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>motif = input()</code> и <code>times = input()</code>.</li>
+                  <li>Функция <code>int()</code> превращает строку <code>times</code> в число.</li>
+                  <li>Строку можно умножить на число: <code>motif * int(times)</code> повторяет мотив нужное число раз.</li>
+                  <li>Проверьте на примере: <code>'CAG' * 3</code> дает <code>'CAGCAGCAG'</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
 <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-<h3>Упражнение 1.5.1. Номер следующего образца</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшет&nbsp;— пластина с углублениями, лунками, в которые ставят пробы. Номер образца составляется из номера планшета <code>plate</code> и двух цифр номера лунки <code>well</code>: планшет 12 и лунка 07 дают образец 1207. Найдите номер следующего образца, то есть на единицу больше.</p></div>
-<details class="task-hint"><summary>Подсказка</summary><p>Сначала склейте строки, затем преобразуйте результат в число.</p></details><h4>Входные данные</h4>
-<p>В начале программы задаются строки <code>plate</code> (целое число от 1 до 99) и <code>well</code> (ровно две цифры, от <code>'00'</code> до <code>'99'</code>).</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>plate = '12'
-well = '07'</pre></td><td><pre>1208</pre></td></tr>
-                <tr><td><pre>plate = '40'
-well = '99'</pre></td><td><pre>4100</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_05_1_advanced.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.5.1. Номер следующего образца</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Номер образца составляется из номера планшета <code>plate</code> и двух цифр номера лунки <code>well</code>: планшет 12 и лунка 07 дают образец 1207. Найдите номер следующего образца, то есть на единицу больше.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, каждая в своей строке: <code>plate</code> — номер планшета (целое число от 1 до 99), <code>well</code> — номер лунки (ровно две цифры, от 00 до 99).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">12<br>07</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1208</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Склейка строк дает <code>'1207'</code>, <code>int()</code> превращает ее в 1207, а следующий образец — это 1207 + 1 = 1208.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>12
+07</pre></td><td><pre>1208</pre></td></tr>
+                      <tr><td><pre>40
+99</pre></td><td><pre>4100</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пробы хранят в планшетах, и номер лунки всегда записывают двумя цифрами: лунка 7 — это 07. Номер образца склеивают из номера планшета и номера лунки, поэтому ведущий ноль лунки сохраняют: планшет 12 и лунка 07 дают образец 1207.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Планшет</strong> — пластина с углублениями для проб.</li>
+                  <li><strong>Лунка</strong> — углубление в планшете, в которое ставят пробу.</li>
+                  <li><strong>Номер образца</strong> — номер планшета и две цифры номера лунки, склеенные в одно число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>plate = input()</code> и <code>well = input()</code>.</li>
+                  <li>Склейте строки: <code>plate + well</code> — при <code>'12'</code> и <code>'07'</code> получится <code>'1207'</code>.</li>
+                  <li>Превратите склейку в число и прибавьте единицу: <code>int(plate + well) + 1</code>.</li>
+                  <li>Склейка строк сохраняет ведущий ноль лунки: <code>'40' + '99'</code> — это <code>'4099'</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 </div>
 </section>
@@ -260,73 +398,210 @@ ValueError: invalid literal for int() with base 10: '42.9'</pre></div><div class
 <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
 <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-<h3>Упражнение 1.5.2. Целые микролитры</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дозатор показывает объем <code>volume</code> в мкл с дробной частью. В протокол записывают только целые микролитры: дробную часть отбрасывают. Найдите число для протокола.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задается вещественное неотрицательное число <code>volume</code>.</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>volume = 36.6</pre></td><td><pre>36</pre></td></tr>
-                <tr><td><pre>volume = 7.0</pre></td><td><pre>7</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_05_2_basic.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.5.2. Целые микролитры</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дозатор показывает объем <code>volume</code> в мкл с дробной частью. В протокол записывают только целые микролитры: дробную часть отбрасывают. Найдите число для протокола.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно вещественное неотрицательное число <code>volume</code> — объем в мкл, записанный с дробной частью.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">36.6</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">36</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>int(36.6)</code> отбрасывает дробную часть, поэтому в протокол идет 36.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>36.6</pre></td><td><pre>36</pre></td></tr>
+                      <tr><td><pre>7.0</pre></td><td><pre>7</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Дозатор отмеряет объем с точностью до долей микролитра, но в протокол записывают только целые микролитры. Дробную часть отбрасывают, не округляя: 36.6 мкл записывают как 36 мкл.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Дозатор</strong> — прибор, который отмеряет малые объемы жидкости.</li>
+                  <li><strong>Микролитр</strong> — тысячная доля миллилитра, сокращенно мкл.</li>
+                  <li><strong>Протокол</strong> — запись хода работы с числовыми данными.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>volume = float(input())</code>.</li>
+                  <li><code>int()</code> от вещественного числа отбрасывает дробную часть: <code>int(36.6)</code> дает <code>36</code>.</li>
+                  <li>Выведите результат: <code>print(int(volume))</code>.</li>
+                  <li>Сверьтесь с примером: 7.0 мкл записывают как 7 мкл.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
 <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-<h3>Упражнение 1.5.2. Целая часть из протокола</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В протоколе масса образца записана строкой <code>s</code>, например <code>'18.75'</code> или <code>'7'</code>. Найдите целое число миллиграммов: отбросьте дробную часть.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задается строка <code>s</code> с записью неотрицательного числа, с точкой или без нее.</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>s = '18.75'</pre></td><td><pre>18</pre></td></tr>
-                <tr><td><pre>s = '7'</pre></td><td><pre>7</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_05_2_medium.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.5.2. Целая часть из протокола</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В протоколе масса образца записана строкой <code>mass_text</code>, например <code>'18.75'</code> или <code>'7'</code>. Найдите целое число миллиграммов: отбросьте дробную часть.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка <code>mass_text</code> — запись неотрицательного числа в протоколе, с точкой или без нее.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">18.75</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">18</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>float('18.75')</code> дает 18.75, а <code>int()</code> отбрасывает дробную часть — остается 18.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>18.75</pre></td><td><pre>18</pre></td></tr>
+                      <tr><td><pre>7</pre></td><td><pre>7</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В протоколах массу образца записывают как получилось: <code>'18.75'</code> или <code>'7'</code>. Чтобы получить целое число миллиграммов, дробную часть отбрасывают. Строку с точкой сначала превращают в вещественное число, а затем в целое.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Протокол</strong> — запись результатов работы.</li>
+                  <li><strong>Целая часть</strong> — часть числа до запятой, без дробной.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>mass_text = input()</code>.</li>
+                  <li>Строку <code>'18.75'</code> нельзя сразу превратить в целое число: <code>int('18.75')</code> вызывает ошибку.</li>
+                  <li>Сначала превратите строку в вещественное число: <code>float(mass_text)</code>.</li>
+                  <li>Затем отбросьте дробную часть: <code>int(float(mass_text))</code>; строка <code>'7'</code> тоже подходит.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
 <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-<h3>Упражнение 1.5.2. Сумма двоичных флагов</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. Флаги качества двух прочтений прибор записывает двоичными строками <code>f1</code> и <code>f2</code>, например <code>'1011'</code>. Найдите сумму двух значений флагов в обычной десятичной записи.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задаются строки <code>f1</code> и <code>f2</code> из символов 0 и 1 (от 1 до 16 символов).</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>f1 = '1011'
-f2 = '1'</pre></td><td><pre>12</pre></td></tr>
-                <tr><td><pre>f1 = '0'
-f2 = '0'</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_05_2_advanced.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.5.2. Сумма двоичных флагов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Флаги качества двух прочтений прибор записывает двоичными строками <code>flag1</code> и <code>flag2</code>, например '1011'. Найдите сумму двух значений флагов в обычной десятичной записи.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, каждая в своей строке: <code>flag1</code> и <code>flag2</code> — двоичные записи флагов качества (от 1 до 16 символов 0 и 1).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">1011<br>1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>int('1011', 2)</code> — это 11, <code>int('1', 2)</code> — это 1; сумма 11 + 1 = 12.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>1011
+1</pre></td><td><pre>12</pre></td></tr>
+                      <tr><td><pre>0
+0</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждому прочтению прибор присваивает флаг качества и может записать его в двоичном виде: 1011 означает 11. Двоичную запись читают функцией <code>int()</code> с основанием 2.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Флаг качества</strong> — число, которым прибор оценивает качество прочтения.</li>
+                  <li><strong>Двоичная запись</strong> — запись числа из нулей и единиц по основанию 2.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>flag1 = input()</code> и <code>flag2 = input()</code>.</li>
+                  <li>Двоичную запись читают с основанием 2: <code>int(flag1, 2)</code>.</li>
+                  <li>Сложите два значения: <code>int(flag1, 2) + int(flag2, 2)</code>.</li>
+                  <li>Проверьте на примере: <code>int('1011', 2)</code> — это 11, <code>int('1', 2)</code> — 1, сумма 12.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 </div>
 </section>
@@ -353,76 +628,211 @@ True</pre></div></div><div class="analysis"><ol><li>Строки 1–2: ноль
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 1.5. Длина тандемного повтора</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Мотив&nbsp;— короткая последовательность нуклеотидов, например <code>CA</code>. Тандемный повтор получается, если мотив повторить несколько раз подряд: <code>CACACA</code> состоит из мотива <code>CA</code>, повторенного три раза. Прибор записал мотив строкой <code>motif</code>, а число повторов строкой <code>times</code>. Найдите длину тандемного повтора, то есть число нуклеотидов в нем.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются строка <code>motif</code> из букв A, C, G, T (от 1 до 10 букв) и строка <code>times</code> с целым числом от 1 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>motif = 'GT'
-times = '4'</pre></td><td><pre>8</pre></td></tr>
-                <tr><td><pre>motif = 'CCCTAA'
-times = '1'</pre></td><td><pre>6</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_05_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.5. Длина тандемного повтора</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Тандемный повтор получается, если мотив повторить несколько раз подряд: CACACA состоит из мотива CA, повторенного три раза. Прибор записал мотив строкой <code>motif</code>, а число повторов строкой <code>times</code>. Найдите длину тандемного повтора, то есть число нуклеотидов в нем.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, каждая в своей строке: <code>motif</code> — мотив из букв A, C, G, T (от 1 до 10 букв), <code>times</code> — число повторов (целое от 1 до 1000).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GT<br>4</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">8</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В мотиве GT две буквы, повторов четыре: 2 · 4 = 8 нуклеотидов. Собирать саму строку не нужно — достаточно умножить длину на число повторов.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GT
+4</pre></td><td><pre>8</pre></td></tr>
+                      <tr><td><pre>CCCTAA
+1</pre></td><td><pre>6</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Тандемный повтор — это мотив, повторенный несколько раз подряд: CACACA — мотив CA три раза. Длина повтора — число нуклеотидов в нем, то есть длина мотива, умноженная на число повторов.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Тандемный повтор</strong> — несколько копий мотива, стоящих подряд.</li>
+                  <li><strong>Мотив</strong> — короткая последовательность нуклеотидов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>motif = input()</code> и <code>times = input()</code>.</li>
+                  <li><code>len(motif)</code> — число нуклеотидов в мотиве.</li>
+                  <li>Умножьте длину мотива на число повторов: <code>len(motif) * int(times)</code>.</li>
+                  <li>Проверьте на примере: <code>len('GT') * 4 = 8</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 1.5. Сквозная нумерация</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. За два прогона, то есть два запуска прибора, получено <code>a</code> и <code>b</code> прочтений. Прочтения нумеруют подряд через оба прогона числами от 1 до <code>a</code> + <code>b</code>. Чтобы номера в отчете занимали одинаковое место, каждый номер записывают столькими знаками, сколько цифр в самом большом номере. Найдите это число цифр.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>a</code> и <code>b</code> (от 1 до 10<sup>9</sup>).</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>a = 950
-b = 60</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>a = 3
-b = 4</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_05_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.5. Сквозная нумерация</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>За два прогона получено <code>first_run_reads</code> и <code>second_run_reads</code> прочтений. Прочтения нумеруют подряд через оба прогона числами от 1 до <code>first_run_reads + second_run_reads</code>. Чтобы номера в отчете занимали одинаковое место, каждый номер записывают столькими знаками, сколько цифр в самом большом номере. Найдите это число цифр.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>first_run_reads</code> и <code>second_run_reads</code> — число прочтений за первый и второй прогоны (от 1 до 10<sup>9</sup>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">950<br>60</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Всего 950 + 60 = 1010 прочтений — четырехзначное число, значит, каждый номер записывают четырьмя знаками.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>950
+60</pre></td><td><pre>4</pre></td></tr>
+                      <tr><td><pre>3
+4</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>За два прогона прибор получил <code>first_run_reads</code> и <code>second_run_reads</code> прочтений, и их нумеруют подряд: последний номер равен <code>first_run_reads + second_run_reads</code>. Чтобы номера в отчете занимали одинаковое место, число знаков берут по самому большому номеру: это число цифр в записи <code>first_run_reads + second_run_reads</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, прочитанный за один запуск прибора.</li>
+                  <li><strong>Прогон</strong> — один запуск секвенатора.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>first_run_reads = int(input())</code> и <code>second_run_reads = int(input())</code>.</li>
+                  <li>Всего прочтений <code>first_run_reads + second_run_reads</code> — это последний номер.</li>
+                  <li>Число цифр в числе — это длина его записи строкой: возьмите <code>str</code> от суммы прочтений, затем <code>len</code>.</li>
+                  <li>Проверьте на примере: 950 + 60 = 1010, в записи 4 цифры.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 1.5. Номер с ведущими нулями</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтения нумеруют от 1 до <code>last</code>. Чтобы все номера в отчете были одной длины, номер дополняют слева нулями до числа цифр в <code>last</code>: при <code>last</code> = 1500 номер 42 записывают как <code>0042</code>. Найдите запись номера <code>k</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>last</code> (от 1 до 10<sup>9</sup>) и <code>k</code> (от 1 до <code>last</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>Запись номера одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>last = 20000
-k = 7</pre></td><td><pre>00007</pre></td></tr>
-                <tr><td><pre>last = 99
-k = 99</pre></td><td><pre>99</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_05_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.5. Номер с ведущими нулями</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прочтения нумеруют от 1 до <code>last_number</code>. Чтобы все номера в отчете были одной длины, номер дополняют слева нулями до числа цифр в <code>last_number</code>: при <code>last_number</code> = 1500 номер 42 записывают как <code>0042</code>. Найдите запись номера <code>read_number</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>last_number</code> — последний номер (от 1 до 10<sup>9</sup>), <code>read_number</code> — номер прочтения (от 1 до <code>last_number</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Запись номера одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">20000<br>7</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0000</span>7</code>
+                    </div>
+                  </div>
+                  <p class="we-note">В числе 20000 пять цифр, поэтому номер 7 дополняется слева нулями до пяти знаков: 00007.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>20000
+7</pre></td><td><pre>00007</pre></td></tr>
+                      <tr><td><pre>99
+99</pre></td><td><pre>99</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Когда номера прочтений дополняют нулями до одной длины, все записи занимают одинаковое место. Число нулей зависит от того, насколько номер короче последнего номера.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ведущие нули</strong> — нули в начале записи числа.</li>
+                  <li><strong>Номер прочтения</strong> — порядковое число прочтения в отчете.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>last_number = int(input())</code> и <code>read_number = int(input())</code>.</li>
+                  <li>Число цифр в <code>last_number</code> — это <code>len(str(last_number))</code>.</li>
+                  <li>Номер <code>read_number</code> короче на разницу длин записей: <code>len(str(last_number))</code> минус <code>len(str(read_number))</code>; столько нулей нужно дописать слева.</li>
+                  <li>Строка из нулей получается умножением <code>'0'</code> на их число; склейте нули и запись номера: <code>'0' * zeros_count</code> + <code>str(read_number)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_05_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

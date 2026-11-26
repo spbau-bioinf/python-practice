@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Перебор словаря. Практика 6. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t6_03.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 6</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t6_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t6_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Словарь и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Перебор ключей, значений и пар</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Порядок вставки и <code>sorted()</code></a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Построение словаря из данных</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.3.1</span> <span class="anc-ex-title" data-variant="basic">Значения букв</span><span class="anc-ex-title" data-variant="medium">Ключи по порогу</span><span class="anc-ex-title" data-variant="advanced">Среднее букв</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.3.2</span> <span class="anc-ex-title" data-variant="basic">Алфавитный порядок</span><span class="anc-ex-title" data-variant="medium">Значения по алфавиту</span><span class="anc-ex-title" data-variant="advanced">Сумма между названиями</span></span></a></li><li><a class="anc-ex" href="#ex-3" data-ex-link="ex-3"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.3.3</span> <span class="anc-ex-title" data-variant="basic">Длина образца</span><span class="anc-ex-title" data-variant="medium">Длина по запросу</span><span class="anc-ex-title" data-variant="advanced">Общая длина</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.3</span> <span class="anc-ex-title" data-variant="basic">Обратный алфавит</span><span class="anc-ex-title" data-variant="medium">Все, кроме одного</span><span class="anc-ex-title" data-variant="advanced">Не короче k</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
+        <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
+        <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
+        <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
+        <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">03</span>
+      <p class="page-path"><span>Практика 6</span><span class="page-path-sep" aria-hidden="true">›</span><span>Словари и множества</span></p>
+      <h1>Перебор словаря</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Перебирать ключи, значения и пары словаря, получать ключи в нужном порядке функцией <code>sorted()</code> и строить словарь из двух последовательностей.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Перебор ключей, значений и пар</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Цикл <code>for</code> по словарю перебирает его ключи. Значения возвращает метод <code>values()</code>, пары «ключ, значение» кортежами возвращает метод <code>items()</code>. Пару удобно сразу распаковать в заголовке цикла: <code>for b, n in counts.items():</code>.</p>
+        <p>Методы <code>keys()</code>, <code>values()</code> и <code>items()</code> возвращают не списки, а представления: они не копируют данные и меняются вместе со словарем. Если нужен список, его получают вызовом <code>list()</code>.</p>
+        <p class="th-full">Почему это удобно: данные о последовательности часто считают по словарю — например, сумма значений счетчика нуклеотидов равна длине последовательности. Цикл по парам <code>items()</code> дает сразу и ключ, и значение, без повторного обращения к словарю.</p>
+        <div class="table-wrap th-full">
+          <table class="data">
+            <thead><tr><th>Запись</th><th>Что перебирает</th></tr></thead>
+            <tbody>
+              <tr><td><code>for k in d:</code></td><td>ключи (то же, что <code>d.keys()</code>)</td></tr>
+              <tr><td><code>for v in d.values():</code></td><td>значения</td></tr>
+              <tr><td><code>for k, v in d.items():</code></td><td>пары, распакованные в две переменные</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 1. Ключи, значения и пары</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">counts.py</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>,</span>
+<span class="ln">          <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">list</span>(counts))          <span class="tok-out"># → ['A', 'T', 'G', 'C']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(counts))        <span class="tok-out"># → ['A', 'C', 'G', 'T']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sum</span>(counts.values()))  <span class="tok-out"># → 46</span></span>
+<span class="ln"><span class="tok-kw">for</span> b, n <span class="tok-kw">in</span> counts.items():</span>
+<span class="ln">    <span class="tok-builtin">print</span>(b, n, end<span class="tok-op">=</span><span class="tok-str">"; "</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['A', 'T', 'G', 'C']
+['A', 'C', 'G', 'T']
+46
+A 12; T 8; G 15; C 11; </pre></div>
+          </div>
+          <div class="analysis">
+            <p><code>list(counts)</code> дает список ключей, <code>sorted(counts)</code> — те же ключи по алфавиту. Если счетчики получены подсчетом букв последовательности, сумма значений, здесь 46, равна ее длине. В цикле пара распаковывается: буква попадает в <code>b</code>, число в <code>n</code>.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "counts.py", "code": ["counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>, <span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>,", "          <span class=\"tok-str\">\"G\"<\/span>: <span class=\"tok-num\">15<\/span>, <span class=\"tok-str\">\"C\"<\/span>: <span class=\"tok-num\">11<\/span>}", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(counts))          ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(counts))        ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sum<\/span>(counts.values()))  ", "<span class=\"tok-kw\">for<\/span> b, n <span class=\"tok-kw\">in<\/span> counts.items():", "    <span class=\"tok-builtin\">print<\/span>(b, n, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"; \"<\/span>)"], "columns": ["b", "n", "напечатано"], "steps": [{"line": 1, "html": "counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>, <span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>,", "vars": [], "out": "", "row": null, "note": "Строка 1."}, {"line": 2, "html": "          <span class=\"tok-str\">\"G\"<\/span>: <span class=\"tok-num\">15<\/span>, <span class=\"tok-str\">\"C\"<\/span>: <span class=\"tok-num\">11<\/span>}", "vars": [], "out": "", "row": null, "note": "Строка 2."}, {"line": 1, "html": "counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>, <span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>,", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", true]], "out": "", "row": null, "note": "Строка 1: counts = {'A': 12, 'T': 8, 'G': 15, 'C': 11}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(counts))          ", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false]], "out": "['A', 'T', 'G', 'C']\n", "row": null, "note": "Строка 3: печатается ['A', 'T', 'G', 'C']."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(counts))        ", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n", "row": null, "note": "Строка 4: печатается ['A', 'C', 'G', 'T']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">46<\/span><\/span>)", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\n", "row": null, "note": "Строка 5: печатается 46."}, {"line": 6, "html": "<span class=\"tok-kw\">for<\/span> b, n <span class=\"tok-kw\">in<\/span> counts.items():", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"A\"", true], ["n", "12", true]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\n", "row": null, "note": "Строка 6: b получает первое значение, b = \"A\"."}, {"line": 7, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">12<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"; \"<\/span>)", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"A\"", false], ["n", "12", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; ", "row": ["A", "12", "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; "], "note": "Строка 7: печатается A 12;  (без перевода строки)."}, {"line": 6, "html": "<span class=\"tok-kw\">for<\/span> b, n <span class=\"tok-kw\">in<\/span> counts.items():", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"T\"", true], ["n", "8", true]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; ", "row": null, "note": "Строка 6: b получает следующее значение, b = \"T\"."}, {"line": 7, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"T\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">8<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"; \"<\/span>)", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"T\"", false], ["n", "8", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; ", "row": ["T", "8", "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; "], "note": "Строка 7: печатается T 8;  (без перевода строки)."}, {"line": 6, "html": "<span class=\"tok-kw\">for<\/span> b, n <span class=\"tok-kw\">in<\/span> counts.items():", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"G\"", true], ["n", "15", true]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; ", "row": null, "note": "Строка 6: b получает следующее значение, b = \"G\"."}, {"line": 7, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">15<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"; \"<\/span>)", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"G\"", false], ["n", "15", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; ", "row": ["G", "15", "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; "], "note": "Строка 7: печатается G 15;  (без перевода строки)."}, {"line": 6, "html": "<span class=\"tok-kw\">for<\/span> b, n <span class=\"tok-kw\">in<\/span> counts.items():", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"C\"", true], ["n", "11", true]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; ", "row": null, "note": "Строка 6: b получает следующее значение, b = \"C\"."}, {"line": 7, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">11<\/span><\/span>, end<span class=\"tok-op\">=<\/span><span class=\"tok-str\">\"; \"<\/span>)", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"C\"", false], ["n", "11", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; C 11; ", "row": ["C", "11", "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; C 11; "], "note": "Строка 7: печатается C 11;  (без перевода строки)."}, {"line": 6, "html": "<span class=\"tok-kw\">for<\/span> b, n <span class=\"tok-kw\">in<\/span> counts.items():", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"C\"", false], ["n", "11", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; C 11; ", "row": null, "note": "Строка 6: значений больше нет, цикл закончен; b остается \"C\"."}, {"line": 0, "html": "", "vars": [["counts", "{'A': 12, 'T': 8, 'G': 15, 'C': 11}", false], ["b", "\"C\"", false], ["n", "11", false]], "out": "['A', 'T', 'G', 'C']\n['A', 'C', 'G', 'T']\n46\nA 12; T 8; G 15; C 11; ", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>Пример 2. Представление меняется вместе со словарем</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">keys.py</span><pre><code><span class="ln">d <span class="tok-op">=</span> {<span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"A"</span>: <span class="tok-num">12</span>}</span>
+<span class="ln">keys <span class="tok-op">=</span> d.keys()</span>
+<span class="ln">d[<span class="tok-str">"G"</span>] <span class="tok-op">=</span> <span class="tok-num">15</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(keys)        <span class="tok-out"># → dict_keys(['T', 'A', 'G'])</span></span>
+<span class="ln"><span class="tok-kw">del</span> d[<span class="tok-str">"T"</span>]</span>
+<span class="ln">d[<span class="tok-str">"T"</span>] <span class="tok-op">=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">list</span>(keys))  <span class="tok-out"># → ['A', 'G', 'T']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>dict_keys(['T', 'A', 'G'])
+['A', 'G', 'T']</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Представление <code>keys</code> получено до изменений, но видит новый ключ <code>"G"</code>. После удаления и повторного добавления ключ <code>"T"</code> встал в конец. Обратиться к представлению по индексу нельзя: если нужен список, его получают вызовом <code>list()</code>.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "keys.py", "code": ["d <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>, <span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>}", "keys <span class=\"tok-op\">=<\/span> d.keys()", "d[<span class=\"tok-str\">\"G\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">15<\/span>", "<span class=\"tok-builtin\">print<\/span>(keys)        ", "<span class=\"tok-kw\">del<\/span> d[<span class=\"tok-str\">\"T\"<\/span>]", "d[<span class=\"tok-str\">\"T\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(keys))  "], "columns": [], "steps": [{"line": 1, "html": "d <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>, <span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>}", "vars": [["d", "{'T': 8, 'A': 12}", true]], "out": "", "row": null, "note": "Строка 1: d = {'T': 8, 'A': 12}."}, {"line": 2, "html": "keys <span class=\"tok-op\">=<\/span> d.keys()", "vars": [["d", "{'T': 8, 'A': 12}", false], ["keys", "dict_keys(['T', 'A'])", true]], "out": "", "row": null, "note": "Строка 2: keys = dict_keys(['T', 'A'])."}, {"line": 3, "html": "d[<span class=\"tok-str\">\"G\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">15<\/span>", "vars": [["d", "{'T': 8, 'A': 12, 'G': 15}", true], ["keys", "dict_keys(['T', 'A', 'G'])", true]], "out": "", "row": null, "note": "Строка 3: d = {'T': 8, 'A': 12, 'G': 15}, keys = dict_keys(['T', 'A', 'G'])."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(keys)        ", "vars": [["d", "{'T': 8, 'A': 12, 'G': 15}", false], ["keys", "dict_keys(['T', 'A', 'G'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n", "row": null, "note": "Строка 4: печатается dict_keys(['T', 'A', 'G'])."}, {"line": 5, "html": "<span class=\"tok-kw\">del<\/span> d[<span class=\"tok-str\">\"T\"<\/span>]", "vars": [["d", "{'A': 12, 'G': 15}", true], ["keys", "dict_keys(['A', 'G'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n", "row": null, "note": "Строка 5: d = {'A': 12, 'G': 15}, keys = dict_keys(['A', 'G'])."}, {"line": 6, "html": "d[<span class=\"tok-str\">\"T\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["d", "{'A': 12, 'G': 15, 'T': 1}", true], ["keys", "dict_keys(['A', 'G', 'T'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n", "row": null, "note": "Строка 6: d = {'A': 12, 'G': 15, 'T': 1}, keys = dict_keys(['A', 'G', 'T'])."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(keys))  ", "vars": [["d", "{'A': 12, 'G': 15, 'T': 1}", false], ["keys", "dict_keys(['A', 'G', 'T'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n['A', 'G', 'T']\n", "row": null, "note": "Строка 7: печатается ['A', 'G', 'T']."}, {"line": 0, "html": "", "vars": [["d", "{'A': 12, 'G': 15, 'T': 1}", false], ["keys", "dict_keys(['A', 'G', 'T'])", false]], "out": "dict_keys(['T', 'A', 'G'])\n['A', 'G', 'T']\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Прохор перебирает пары. Измените цикл так, чтобы он печатал только значения, большие 10, и запустите.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">counts.py</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</span>
+<span class="ln"><span class="tok-kw">for</span> b, n <span class="tok-kw">in</span> counts.items():</span>
+<span class="ln">    <span class="tok-builtin">print</span>(b, n, end<span class="tok-op">=</span><span class="tok-str">"; "</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>A 12; T 8; G 15; C 11; </pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t6_03_1_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t6_03_1_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t6_03_1_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.3.1. Значения букв</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте строку из нуклеотидов (букв <code>A</code>, <code>T</code>, <code>G</code>, <code>C</code>) и выведите значение каждой буквы в словаре, каждое на своей строке, перебирая буквы циклом <code>for</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 букв <code>A</code>, <code>T</code>, <code>G</code>, <code>C</code>.</p>
+              <h4>Выходные данные</h4>
+              <p>Для каждой буквы строки — ее значение из словаря, по одному в строке, в порядке букв.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>ACG</pre></td><td><pre>12
+11
+15</pre></td></tr>
+                <tr><td><pre>TT</pre></td><td><pre>8
+8</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_1_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.3.1. Ключи по порогу</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте число <code>p</code>. Выведите ключи словаря, значения которых не меньше <code>p</code>, через пробел в порядке вставки, перебирая пары методом <code>items()</code> в цикле <code>for</code>; если таких ключей нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка — целое число <code>p</code> от 0 до 100.</p>
+              <h4>Выходные данные</h4>
+              <p>Ключи с подходящими значениями через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>12</pre></td><td><pre>A G</pre></td></tr>
+                <tr><td><pre>8</pre></td><td><pre>A T G C</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_1_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.3.1. Среднее букв</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте строку из нуклеотидов. Сложите числа, сопоставленные буквам этой строки, циклом <code>for</code>, разделите сумму нацело на длину строки и выведите целую часть среднего.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 букв <code>A</code>, <code>T</code>, <code>G</code>, <code>C</code>.</p>
+              <h4>Выходные данные</h4>
+              <p>Целая часть среднего значения букв.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>AC</pre></td><td><pre>11</pre></td></tr>
+                <tr><td><pre>AAAG</pre></td><td><pre>12</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_1_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Порядок вставки и <code>sorted()</code></h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Словарь сохраняет порядок вставки: ключи перебираются в том порядке, в каком их добавляли. Замена значения существующего ключа порядок не меняет, а ключ, добавленный после удаления, встает в конец. Это гарантировано в Python 3.7 и новее.</p>
+        <p>Порядок вставки не обязан быть алфавитным. Если нужен алфавитный порядок (или любой другой), ключи сортируют функцией <code>sorted()</code>. Она не меняет словарь, а строит новый список: <code>sorted(counts)</code> — это список ключей по алфавиту, сам <code>counts</code> остается прежним.</p>
+        <p class="rule">Хеш помогает искать место для ключа (<a href="t6_02.html">страница 02</a>), а порядок обхода задает вставка: при одинаковом порядке вставки он один и тот же при каждом обращении и в каждом запуске.</p>
+        <p class="th-full">Утверждение «словарь не хранит порядок» встречается в книгах о Python 2 и для современных версий неверно. Меняться между запусками может порядок множества — оно перебирается по ячейкам, а хеши строк зависят от запуска. Поэтому для предсказуемого вывода порядок задают сами: функцией <code>sorted()</code>.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 3. Порядок вставки и <code>sorted()</code></h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">order.py</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"A"</span>: <span class="tok-num">12</span>}</span>
+<span class="ln">keys <span class="tok-op">=</span> counts.keys()</span>
+<span class="ln">counts[<span class="tok-str">"G"</span>] <span class="tok-op">=</span> <span class="tok-num">15</span></span>
+<span class="ln">counts[<span class="tok-str">"T"</span>] <span class="tok-op">=</span> <span class="tok-num">9</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(keys)            <span class="tok-out"># → dict_keys(['T', 'A', 'G'])</span></span>
+<span class="ln"><span class="tok-kw">del</span> counts[<span class="tok-str">"T"</span>]</span>
+<span class="ln">counts[<span class="tok-str">"T"</span>] <span class="tok-op">=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">list</span>(keys))      <span class="tok-out"># → ['A', 'G', 'T']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(counts))  <span class="tok-out"># → ['A', 'G', 'T']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>dict_keys(['T', 'A', 'G'])
+['A', 'G', 'T']
+['A', 'G', 'T']</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Замена значения ключа <code>"T"</code> не сдвинула его место, а после удаления и повторного добавления он встал в конец. <code>sorted(counts)</code> строит новый список по алфавиту; сам словарь не изменился.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "order.py", "code": ["counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>, <span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>}", "keys <span class=\"tok-op\">=<\/span> counts.keys()", "counts[<span class=\"tok-str\">\"G\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">15<\/span>", "counts[<span class=\"tok-str\">\"T\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">9<\/span>", "<span class=\"tok-builtin\">print<\/span>(keys)            ", "<span class=\"tok-kw\">del<\/span> counts[<span class=\"tok-str\">\"T\"<\/span>]", "counts[<span class=\"tok-str\">\"T\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(keys))      ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(counts))  "], "columns": [], "steps": [{"line": 1, "html": "counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"T\"<\/span>: <span class=\"tok-num\">8<\/span>, <span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">12<\/span>}", "vars": [["counts", "{'T': 8, 'A': 12}", true]], "out": "", "row": null, "note": "Строка 1: counts = {'T': 8, 'A': 12}."}, {"line": 2, "html": "keys <span class=\"tok-op\">=<\/span> counts.keys()", "vars": [["counts", "{'T': 8, 'A': 12}", false], ["keys", "dict_keys(['T', 'A'])", true]], "out": "", "row": null, "note": "Строка 2: keys = dict_keys(['T', 'A'])."}, {"line": 3, "html": "counts[<span class=\"tok-str\">\"G\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">15<\/span>", "vars": [["counts", "{'T': 8, 'A': 12, 'G': 15}", true], ["keys", "dict_keys(['T', 'A', 'G'])", true]], "out": "", "row": null, "note": "Строка 3: counts = {'T': 8, 'A': 12, 'G': 15}, keys = dict_keys(['T', 'A', 'G'])."}, {"line": 4, "html": "counts[<span class=\"tok-str\">\"T\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">9<\/span>", "vars": [["counts", "{'T': 9, 'A': 12, 'G': 15}", true], ["keys", "dict_keys(['T', 'A', 'G'])", true]], "out": "", "row": null, "note": "Строка 4: counts = {'T': 9, 'A': 12, 'G': 15}, keys = dict_keys(['T', 'A', 'G'])."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(keys)            ", "vars": [["counts", "{'T': 9, 'A': 12, 'G': 15}", false], ["keys", "dict_keys(['T', 'A', 'G'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n", "row": null, "note": "Строка 5: печатается dict_keys(['T', 'A', 'G'])."}, {"line": 6, "html": "<span class=\"tok-kw\">del<\/span> counts[<span class=\"tok-str\">\"T\"<\/span>]", "vars": [["counts", "{'A': 12, 'G': 15}", true], ["keys", "dict_keys(['A', 'G'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n", "row": null, "note": "Строка 6: counts = {'A': 12, 'G': 15}, keys = dict_keys(['A', 'G'])."}, {"line": 7, "html": "counts[<span class=\"tok-str\">\"T\"<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-num\">1<\/span>", "vars": [["counts", "{'A': 12, 'G': 15, 'T': 1}", true], ["keys", "dict_keys(['A', 'G', 'T'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n", "row": null, "note": "Строка 7: counts = {'A': 12, 'G': 15, 'T': 1}, keys = dict_keys(['A', 'G', 'T'])."}, {"line": 8, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(keys))      ", "vars": [["counts", "{'A': 12, 'G': 15, 'T': 1}", false], ["keys", "dict_keys(['A', 'G', 'T'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n['A', 'G', 'T']\n", "row": null, "note": "Строка 8: печатается ['A', 'G', 'T']."}, {"line": 9, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(counts))  ", "vars": [["counts", "{'A': 12, 'G': 15, 'T': 1}", false], ["keys", "dict_keys(['A', 'G', 'T'])", true]], "out": "dict_keys(['T', 'A', 'G'])\n['A', 'G', 'T']\n['A', 'G', 'T']\n", "row": null, "note": "Строка 9: печатается ['A', 'G', 'T']."}, {"line": 0, "html": "", "vars": [["counts", "{'A': 12, 'G': 15, 'T': 1}", false], ["keys", "dict_keys(['A', 'G', 'T'])", false]], "out": "dict_keys(['T', 'A', 'G'])\n['A', 'G', 'T']\n['A', 'G', 'T']\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: <code>sorted()</code> вместо списка</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: ожидание словаря</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"A"</span>: <span class="tok-num">12</span>}</span>
+<span class="ln">counts <span class="tok-op">=</span> <span class="tok-builtin">sorted</span>(counts)</span>
+<span class="ln"><span class="tok-builtin">print</span>(counts[<span class="tok-str">"A"</span>])</span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"A"</span>: <span class="tok-num">12</span>}</span>
+<span class="ln">keys <span class="tok-op">=</span> <span class="tok-builtin">sorted</span>(counts)</span>
+<span class="ln"><span class="tok-builtin">print</span>(counts[<span class="tok-str">"A"</span>])  <span class="tok-out"># → 12</span></span></code></pre></div>
+          <p>В неверном варианте <code>counts</code> стал списком ключей, и обращение по ключу поднимает <code>TypeError</code>. Результат <code>sorted()</code> сохраняют в отдельную переменную: это новый список, а не словарь.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Василиса печатает ключи по алфавиту. Добавьте строку, которая печатает отсортированные ключи, и запустите.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">order.py</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">list</span>(counts))  <span class="tok-out"># → ['T', 'A', 'G']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['T', 'A', 'G']</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t6_03_2_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t6_03_2_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t6_03_2_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.3.2. Алфавитный порядок</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий нуклеотидов через пробел и выведите их в алфавитном порядке через пробел, отсортировав функцией <code>sorted()</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 названий нуклеотидов через пробел: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>; названия могут повторяться.</p>
+              <h4>Выходные данные</h4>
+              <p>Названия в алфавитном порядке через пробел.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>T A</pre></td><td><pre>A T</pre></td></tr>
+                <tr><td><pre>C G</pre></td><td><pre>C G</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_2_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.3.2. Значения по алфавиту</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов. Выведите их значения в алфавитном порядке ключей: сначала значение того ключа, который в алфавите раньше, затем другого. Отсортируйте два ключа функцией <code>sorted()</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки, в каждой название нуклеотида: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>. Названия могут совпадать.</p>
+              <h4>Выходные данные</h4>
+              <p>Два значения, каждое на своей строке, в алфавитном порядке ключей.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>T
+A</pre></td><td><pre>12
+8</pre></td></tr>
+                <tr><td><pre>G
+C</pre></td><td><pre>11
+15</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_2_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.3.2. Сумма между названиями</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов. Выведите сумму значений всех ключей, которые в алфавите между этими двумя названиями включительно, перебирая срез отсортированного функцией <code>sorted()</code> списка ключей циклом <code>for</code>. Названия можно читать в любом порядке.</p></div>
+              <details class="task-hint"><summary>Подсказка</summary><p>Найдите места обоих названий методом <code>index()</code>. Если первое место больше второго, обменяйте их, затем сложите значения среза от меньшего места до большего.</p></details>
+              <h4>Входные данные</h4>
+              <p>Две строки, в каждой название нуклеотида: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>. Названия могут совпадать.</p>
+              <h4>Выходные данные</h4>
+              <p>Сумма значений ключей между названиями включительно.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>A
+G</pre></td><td><pre>38</pre></td></tr>
+                <tr><td><pre>G
+A</pre></td><td><pre>38</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_2_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Построение словаря из данных</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Данные часто приходят двумя параллельными списками: названия образцов и их длины. Функция <code>zip()</code> составляет из них пары, а <code>dict()</code> строит из пар словарь. Образец (sample) — биологический материал, последовательность которого читают (<a href="t6_05.html">страница 05</a>).</p>
+        <p>Второй способ — словарное включение: оно устроено как списковое, только скобки фигурные и вместо одного выражения два через двоеточие: ключ и значение.</p>
+        <p class="rule">Если при построении словаря ключ встречается несколько раз, в словаре остается последнее значение.</p>
+        <p class="th-full">Словарные включения появились в языке по предложению PEP 274. Включение удобно, когда значение вычисляется из самого ключа: <code>{s: len(s) for s in seqs}</code> строит словарь «название: длина названия» без второго списка.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 4. Словарь из двух списков</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">zip.py</span><pre><code><span class="ln">ids <span class="tok-op">=</span> [<span class="tok-str">"s1"</span>, <span class="tok-str">"s2"</span>, <span class="tok-str">"s3"</span>]</span>
+<span class="ln">lens <span class="tok-op">=</span> [<span class="tok-num">8</span>, <span class="tok-num">12</span>, <span class="tok-num">8</span>]</span>
+<span class="ln">d <span class="tok-op">=</span> <span class="tok-builtin">dict</span>(<span class="tok-builtin">zip</span>(ids, lens))</span>
+<span class="ln"><span class="tok-builtin">print</span>(d)                          <span class="tok-out"># → {'s1': 8, 's2': 12, 's3': 8}</span></span>
+<span class="ln">seqs <span class="tok-op">=</span> [<span class="tok-str">"ATG"</span>, <span class="tok-str">"GATTACA"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>({s: <span class="tok-builtin">len</span>(s) <span class="tok-kw">for</span> s <span class="tok-kw">in</span> seqs})  <span class="tok-out"># → {'ATG': 3, 'GATTACA': 7}</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>{'s1': 8, 's2': 12, 's3': 8}
+{'ATG': 3, 'GATTACA': 7}</pre></div>
+          </div>
+          <div class="analysis">
+            <p><code>zip(ids, lens)</code> составляет пары <code>("s1", 8)</code>, <code>("s2", 12)</code>, <code>("s3", 8)</code>, и <code>dict()</code> строит из них словарь. Включение строит словарь «название: длина» прямо из списка строк.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "zip.py", "code": ["ids <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"s1\"<\/span>, <span class=\"tok-str\">\"s2\"<\/span>, <span class=\"tok-str\">\"s3\"<\/span>]", "lens <span class=\"tok-op\">=<\/span> [<span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">12<\/span>, <span class=\"tok-num\">8<\/span>]", "d <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">dict<\/span>(<span class=\"tok-builtin\">zip<\/span>(ids, lens))", "<span class=\"tok-builtin\">print<\/span>(d)                          ", "seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"ATG\"<\/span>, <span class=\"tok-str\">\"GATTACA\"<\/span>]", "<span class=\"tok-builtin\">print<\/span>({s: <span class=\"tok-builtin\">len<\/span>(s) <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs})  "], "columns": [], "steps": [{"line": 1, "html": "ids <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"s1\"<\/span>, <span class=\"tok-str\">\"s2\"<\/span>, <span class=\"tok-str\">\"s3\"<\/span>]", "vars": [["ids", "['s1', 's2', 's3']", true]], "out": "", "row": null, "note": "Строка 1: ids = ['s1', 's2', 's3']."}, {"line": 2, "html": "lens <span class=\"tok-op\">=<\/span> [<span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">12<\/span>, <span class=\"tok-num\">8<\/span>]", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", true]], "out": "", "row": null, "note": "Строка 2: lens = [8, 12, 8]."}, {"line": 3, "html": "d <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">dict<\/span>(<span class=\"tok-builtin\">zip<\/span>(ids, lens))", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", true]], "out": "", "row": null, "note": "Строка 3: d = {'s1': 8, 's2': 12, 's3': 8}."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(d)                          ", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", false]], "out": "{'s1': 8, 's2': 12, 's3': 8}\n", "row": null, "note": "Строка 4: печатается {'s1': 8, 's2': 12, 's3': 8}."}, {"line": 5, "html": "seqs <span class=\"tok-op\">=<\/span> [<span class=\"tok-str\">\"ATG\"<\/span>, <span class=\"tok-str\">\"GATTACA\"<\/span>]", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", false], ["seqs", "['ATG', 'GATTACA']", true]], "out": "{'s1': 8, 's2': 12, 's3': 8}\n", "row": null, "note": "Строка 5: seqs = ['ATG', 'GATTACA']."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>({s: <span class=\"tok-builtin\">len<\/span>(s) <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs})  ", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", false], ["seqs", "['ATG', 'GATTACA']", false], ["s (во включении)", "\"ATG\"", true]], "out": "{'s1': 8, 's2': 12, 's3': 8}\n", "row": null, "note": "Строка 6: s (во включении) = \"ATG\"."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>({s: <span class=\"tok-builtin\">len<\/span>(s) <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs})  ", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", false], ["seqs", "['ATG', 'GATTACA']", false], ["s (во включении)", "\"GATTACA\"", true]], "out": "{'s1': 8, 's2': 12, 's3': 8}\n", "row": null, "note": "Строка 6: s (во включении) = \"GATTACA\"."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>({s: <span class=\"tok-builtin\">len<\/span>(s) <span class=\"tok-kw\">for<\/span> s <span class=\"tok-kw\">in<\/span> seqs})  ", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", false], ["seqs", "['ATG', 'GATTACA']", false]], "out": "{'s1': 8, 's2': 12, 's3': 8}\n{'ATG': 3, 'GATTACA': 7}\n", "row": null, "note": "Строка 6: печатается {'ATG': 3, 'GATTACA': 7}."}, {"line": 0, "html": "", "vars": [["ids", "['s1', 's2', 's3']", false], ["lens", "[8, 12, 8]", false], ["d", "{'s1': 8, 's2': 12, 's3': 8}", false], ["seqs", "['ATG', 'GATTACA']", false]], "out": "{'s1': 8, 's2': 12, 's3': 8}\n{'ATG': 3, 'GATTACA': 7}\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <article class="example th-full">
+          <h3>Пример 5. Повтор ключа</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">dups.py</span><pre><code><span class="ln">pairs <span class="tok-op">=</span> [(<span class="tok-str">"s1"</span>, <span class="tok-num">8</span>), (<span class="tok-str">"s2"</span>, <span class="tok-num">12</span>), (<span class="tok-str">"s1"</span>, <span class="tok-num">5</span>)]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">dict</span>(pairs))  <span class="tok-out"># → {'s1': 5, 's2': 12}</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>{'s1': 5, 's2': 12}</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Ключ <code>"s1"</code> встретился дважды: в словаре осталось последнее значение 5, а не первое 8. Это работает и для <code>dict(zip(...))</code>, и для включений.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "dups.py", "code": ["pairs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-str\">\"s1\"<\/span>, <span class=\"tok-num\">8<\/span>), (<span class=\"tok-str\">\"s2\"<\/span>, <span class=\"tok-num\">12<\/span>), (<span class=\"tok-str\">\"s1\"<\/span>, <span class=\"tok-num\">5<\/span>)]", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">dict<\/span>(pairs))  "], "columns": [], "steps": [{"line": 1, "html": "pairs <span class=\"tok-op\">=<\/span> [(<span class=\"tok-str\">\"s1\"<\/span>, <span class=\"tok-num\">8<\/span>), (<span class=\"tok-str\">\"s2\"<\/span>, <span class=\"tok-num\">12<\/span>), (<span class=\"tok-str\">\"s1\"<\/span>, <span class=\"tok-num\">5<\/span>)]", "vars": [["pairs", "[('s1', 8), ('s2', 12), ('s1', 5)]", true]], "out": "", "row": null, "note": "Строка 1: pairs = [('s1', 8), ('s2', 12), ('s1', 5)]."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">dict<\/span>(pairs))  ", "vars": [["pairs", "[('s1', 8), ('s2', 12), ('s1', 5)]", false]], "out": "{'s1': 5, 's2': 12}\n", "row": null, "note": "Строка 2: печатается {'s1': 5, 's2': 12}."}, {"line": 0, "html": "", "vars": [["pairs", "[('s1', 8), ('s2', 12), ('s1', 5)]", false]], "out": "{'s1': 5, 's2': 12}\n", "row": null, "note": "Программа закончилась. Вывод: {'s1': 5, 's2': 12}."}]}</script>
+        </article>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Прохор строит словарь образцов. Добавьте строку, которая печатает построенный словарь, и запустите.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">zip.py</span><pre><code><span class="ln">ids <span class="tok-op">=</span> [<span class="tok-str">"s1"</span>, <span class="tok-str">"s2"</span>, <span class="tok-str">"s3"</span>]</span>
+<span class="ln">lens <span class="tok-op">=</span> [<span class="tok-num">8</span>, <span class="tok-num">12</span>, <span class="tok-num">8</span>]</span>
+<span class="ln">d <span class="tok-op">=</span> <span class="tok-builtin">dict</span>(<span class="tok-builtin">zip</span>(ids, lens))</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre></pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-3" data-exercise="ex-3">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-3-tab-basic" aria-controls="ex-3-basic" data-level="basic" data-task="t6_03_3_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-3-tab-medium" aria-controls="ex-3-medium" data-level="medium" data-task="t6_03_3_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-3-tab-advanced" aria-controls="ex-3-advanced" data-level="advanced" data-task="t6_03_3_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-3-basic" role="tabpanel" aria-labelledby="ex-3-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.3.3. Длина образца</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел, затем строку из заданных длин последовательностей через пробел: во второй строке столько же длин, сколько названий, в том же порядке. Постройте словарь функцией <code>dict()</code> из пар, составленных функцией <code>zip()</code>, и выведите длину образца, название которого вы прочитаете третьей строкой; это название обязательно есть в первой строке.</p></div>
+              <h4>Входные данные</h4>
+              <p>Три строки: названия образцов через пробел; во второй строке столько же заданных длин последовательностей, сколько названий, в том же порядке (целые числа); название образца. Число образцов от 1 до 20, длины от 1 до 10000. Все названия образцов в первой строке различны.</p>
+              <h4>Выходные данные</h4>
+              <p>Длина образца из третьей строки.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>s1 s2 s3
+8 12 8
+s2</pre></td><td><pre>12</pre></td></tr>
+                <tr><td><pre>a b
+3 5
+a</pre></td><td><pre>3</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_3_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.3.3. Длина по запросу</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел и строку из заданных длин последовательностей через пробел: во второй строке столько же длин, сколько названий, в том же порядке. Постройте словарь функцией <code>dict()</code> из пар, составленных функцией <code>zip()</code>. Считайте название образца: если образец есть в словаре, выведите его длину, иначе выведите слово «нет».</p></div>
+              <h4>Входные данные</h4>
+              <p>Три строки: названия образцов через пробел; во второй строке столько же заданных длин последовательностей, сколько названий, в том же порядке (целые числа); название образца. Число образцов от 1 до 20, длины от 1 до 10000. Все названия образцов в первой строке различны.</p>
+              <h4>Выходные данные</h4>
+              <p>Длина образца или слово «нет».</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>s1 s2 s3
+8 12 8
+s2</pre></td><td><pre>12</pre></td></tr>
+                <tr><td><pre>s1 s2 s3
+8 12 8
+x</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_3_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.3.3. Общая длина</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел. Постройте словарным включением словарь «название: длина названия» и выведите общую длину всех названий, сложив значения функцией <code>sum()</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 названий через пробел; в названии только буквы и цифры, без пробелов. Повторяющиеся названия учитываются один раз.</p>
+              <h4>Выходные данные</h4>
+              <p>Общая длина всех названий.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>ATG GATTACA</pre></td><td><pre>10</pre></td></tr>
+                <tr><td><pre>ACGT</pre></td><td><pre>4</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_3_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача, в зачет не входит. За решение дается дополнительный опыт в игровом режиме.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой">
+            <button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t6_03_star_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t6_03_star_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t6_03_star_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+              <h3>Задача со звездочкой 6.3. Обратный алфавит</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов. Выведите их значения в обратном алфавитном порядке ключей: сначала значение того ключа, который в алфавите позже. Отсортируйте два ключа функцией <code>sorted()</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки, в каждой название нуклеотида: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>. Названия могут совпадать.</p>
+              <h4>Выходные данные</h4>
+              <p>Два значения, каждое на своей строке, в обратном алфавитном порядке ключей.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>A
+T</pre></td><td><pre>8
+12</pre></td></tr>
+                <tr><td><pre>C
+G</pre></td><td><pre>15
+11</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_star_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+              <h3>Задача со звездочкой 6.3. Все, кроме одного</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел и строку из заданных длин последовательностей через пробел: во второй строке столько же длин, сколько названий, в том же порядке. Постройте словарь функцией <code>dict()</code> из пар, составленных функцией <code>zip()</code>. Считайте название образца. Выведите общую длину всех образцов, кроме этого: сложите все длины функцией <code>sum()</code> и вычтите длину прочитанного образца. Если такого образца нет, выведите общую длину всех.</p></div>
+              <h4>Входные данные</h4>
+              <p>Три строки: названия образцов через пробел; во второй строке столько же заданных длин последовательностей, сколько названий, в том же порядке (целые числа); название образца. Число образцов от 1 до 20, длины от 1 до 10000. Все названия образцов в первой строке различны.</p>
+              <h4>Выходные данные</h4>
+              <p>Общая длина всех образцов, кроме прочитанного.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>s1 s2 s3
+8 12 8
+s1</pre></td><td><pre>20</pre></td></tr>
+                <tr><td><pre>s1 s2 s3
+8 12 8
+s2</pre></td><td><pre>16</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_star_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+              <h3>Задача со звездочкой 6.3. Не короче k</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел. Постройте словарным включением словарь «название: длина названия». Считайте число <code>k</code>. Выведите названия, длина которых не меньше <code>k</code>, в алфавитном порядке (функцией <code>sorted()</code>) через пробел; если таких названий нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов; повторяющиеся названия учитываются один раз) и целое число <code>k</code> от 1 до 100.</p>
+              <h4>Выходные данные</h4>
+              <p>Названия через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>ATG GATTACA ACGT
+4</pre></td><td><pre>ACGT GATTACA</pre></td></tr>
+                <tr><td><pre>ATG GATTACA ACGT
+8</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_03_star_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_03_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_6</code> создайте папку <code>t6_03</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_03_1_basic.py</code>, <code>t6_03_2_basic.py</code> и <code>t6_03_3_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_03_1_medium.py</code>, <code>t6_03_2_medium.py</code> и <code>t6_03_3_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_03_1_advanced.py</code>, <code>t6_03_2_advanced.py</code> и <code>t6_03_3_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_03_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_03_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_03_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t6_03</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_6/
+    └── t6_03/
+        ├── t6_03_1_basic.py
+        ├── t6_03_2_basic.py
+        └── t6_03_3_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_6/
+    └── t6_03/
+        ├── t6_03_1_medium.py
+        ├── t6_03_2_medium.py
+        └── t6_03_3_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_6/
+    └── t6_03/
+        ├── t6_03_1_advanced.py
+        ├── t6_03_2_advanced.py
+        └── t6_03_3_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t6_02.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">02 Хеширование и ключи</span></a>
+        <a class="pcard pcard-next" href="t6_04.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">04 Счетчик и группировка</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

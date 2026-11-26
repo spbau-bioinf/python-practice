@@ -277,77 +277,214 @@ IndexError: string index out of range</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.1.1. Первый и последний нуклеотид</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана последовательность ДНК. Выведите ее первый и последний нуклеотид. Воспользуйтесь индексами <code>0</code> и <code>-1</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из заглавных букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой первый нуклеотид, во второй последний.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TGCCA</pre></td><td><pre>T
+              <h3>Упражнение 2.1.1. Первый и последний нуклеотид</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана последовательность ДНК. Выведите ее первый и последний нуклеотид. Воспользуйтесь индексами <code>0</code> и <code>-1</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из заглавных букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой первый нуклеотид, во второй последний.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">T</span>GCC<span class="we-hl">A</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">T</span><br><span class="we-hl">A</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Индекс 0 дает первую букву T, индекс −1 — последнюю A; ответ печатается на двух строках.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TGCCA</pre></td><td><pre>T
 A</pre></td></tr>
-                <tr><td><pre>G</pre></td><td><pre>G
+                      <tr><td><pre>G</pre></td><td><pre>G
 G</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_01_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>ДНК — длинная цепь из нуклеотидов, и ее участки принято адресовать по номеру нуклеотида. Первый и последний нуклеотиды задают границы записи: по ним проверяют, что последовательность прочитана целиком.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Нуклеотид</strong> — буква A, C, G или T в записи ДНК.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; в Python нумерация начинается с 0.</li>
+                  <li><strong>Отрицательный индекс</strong> — индекс, который отсчитывают с конца строки: −1 — последний символ, −2 — предпоследний.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Первый нуклеотид стоит по индексу 0: <code>seq[0]</code>.</li>
+                  <li>Последний нуклеотид — по индексу −1: <code>seq[-1]</code>.</li>
+                  <li>Напечатайте оба: <code>print(seq[0])</code> и <code>print(seq[-1])</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_01_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.1.1. Центральный нуклеотид</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Длина последовательности нечетная. Найдите нуклеотид, который стоит точно в середине: слева и справа от него одинаковое число нуклеотидов.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из заглавных букв A, C, G, T нечетной длины от 1 до 99.</p>
-          <h4>Выходные данные</h4>
-          <p>Один символ: центральный нуклеотид.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTA</pre></td><td><pre>G</pre></td></tr>
-                <tr><td><pre>T</pre></td><td><pre>T</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_01_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.1.1. Центральный нуклеотид</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Длина последовательности нечетная. Найдите нуклеотид, который стоит точно в середине: слева и справа от него одинаковое число нуклеотидов.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из заглавных букв A, C, G, T нечетной длины от 1 до 99.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Один символ: центральный нуклеотид.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AC<span class="we-hl">G</span>TA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В строке из пяти букв центральная стоит на индексе 2: слева и справа от нее по две буквы.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTA</pre></td><td><pre>G</pre></td></tr>
+                      <tr><td><pre>T</pre></td><td><pre>T</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>У последовательности нечетной длины есть ровно один центральный нуклеотид: слева и справа от него одинаковое число букв. Такой нуклеотид берут за точку привязки, когда участок делят пополам.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Нечетная длина</strong> — длина, которая не делится на 2 нацело.</li>
+                  <li><strong>Центральный нуклеотид</strong> — нуклеотид, у которого слева и справа одинаковое число нуклеотидов.</li>
+                  <li><strong>Целочисленное деление</strong> — деление без остатка, записывается двумя косыми чертами.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Индекс середины — половина длины без остатка: <code>len(seq) // 2</code>; для длины 5 это индекс 2.</li>
+                  <li>Выведите нуклеотид по этому индексу: <code>print(seq[len(seq) // 2])</code>.</li>
+                  <li>Сверьтесь с примером: в ACGTA индекс 2 — буква G.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_01_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.1.1. Индекс с конца</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Позиции нуклеотидов биологи нумеруют с 1: первый нуклеотид стоит в позиции 1. Дана последовательность и позиция <code>p</code>. Выведите нуклеотид в этой позиции и отрицательный индекс, по которому к тому же нуклеотиду можно обратиться с конца строки.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Выпишите оба индекса каждого символа короткой строки, например <code>"ACG"</code>. На сколько отличаются индекс с начала и индекс с конца одного и того же символа?</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>p</code> (1 ≤ <code>p</code> ≤ длины последовательности).</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой нуклеотид в позиции <code>p</code>, во второй его отрицательный индекс (целое число от минус длины последовательности до −1).</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CGTAC
+              <h3>Упражнение 2.1.1. Индекс с конца</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана последовательность и номер позиции <code>position</code>; позиции нумеруются с 1. Выведите нуклеотид в этой позиции и отрицательный индекс, по которому к тому же нуклеотиду можно обратиться с конца строки.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>position</code> (1 ≤ <code>position</code> ≤ длины последовательности).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой нуклеотид в позиции с номером <code>position</code>, во второй его отрицательный индекс (целое число от минус длины последовательности до −1).</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">C<span class="we-hl">G</span>TAC<br>2</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">G</span><br><span class="we-hl">-4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Позиция 2 — это индекс 1, буква G; тот же символ с конца строки имеет индекс 1 − 5 = −4.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CGTAC
 2</pre></td><td><pre>G
 -4</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 4</pre></td><td><pre>T
 -1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_01_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В биологии позиции нуклеотидов нумеруют с единицы, а в Python символы строки индексируют с нуля: позиции с номером position соответствует индекс position − 1. Отрицательный индекс удобен тем, что не требует знать длину: −1 всегда последний нуклеотид.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Позиция</strong> — номер нуклеотида в последовательности; биологи нумеруют с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; в Python нумерация начинается с 0.</li>
+                  <li><strong>Отрицательный индекс</strong> — индекс, который отсчитывают с конца строки: −1 — последний символ.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и число: <code>seq = input()</code>, <code>position = int(input())</code>.</li>
+                  <li>Позиции с номером position соответствует индекс position − 1: <code>seq[position - 1]</code>.</li>
+                  <li>Отрицательный индекс того же символа: <code>position - 1 - len(seq)</code>.</li>
+                  <li>Напечатайте оба значения; сверьтесь с примером: CGTAC, position = 2 — это G и −4.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_01_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -358,84 +495,220 @@ G</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 2.1. Позиция с обоих концов</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Чтобы сравнить последовательность с ней же, прочитанной с конца, берут пары нуклеотидов на одинаковом расстоянии от концов: первый и последний, второй и предпоследний. Дана последовательность и число <code>p</code>. Выведите нуклеотид в позиции <code>p</code>, считая с начала, и нуклеотид в позиции <code>p</code>, считая с конца. Позиции нумеруются с 1: в позиции 1 с начала стоит первый нуклеотид, в позиции 1 с конца&nbsp;— последний.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>p</code> (1 ≤ <code>p</code> ≤ длины последовательности).</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой нуклеотид в позиции <code>p</code> с начала, во второй нуклеотид в позиции <code>p</code> с конца.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TTACGGA
+              <h3>Задача со звездочкой 2.1. Позиция с обоих концов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Чтобы сравнить последовательность с ней же, прочитанной с конца, берут пары нуклеотидов на одинаковом расстоянии от концов: первый и последний, второй и предпоследний. Дана последовательность и номер <code>position</code>. Выведите нуклеотид в позиции с номером <code>position</code>, считая с начала, и нуклеотид в позиции с номером <code>position</code>, считая с конца. Позиции нумеруются с 1: в позиции 1 с начала стоит первый нуклеотид, в позиции 1 с конца&nbsp;— последний.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>position</code> (1 ≤ <code>position</code> ≤ длины последовательности).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой нуклеотид в позиции с номером <code>position</code> с начала, во второй нуклеотид в позиции с номером <code>position</code> с конца.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">T<span class="we-hl">T</span>ACG<span class="we-hl">G</span>A<br>2</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">T</span><br><span class="we-hl">G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">С начала позиция 2 — вторая буква T, с конца — вторая с конца G.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TTACGGA
 2</pre></td><td><pre>T
 G</pre></td></tr>
-                <tr><td><pre>CAG
+                      <tr><td><pre>CAG
 3</pre></td><td><pre>G
 C</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_01_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Сравнение последовательности с ее обратным прочтением лежит в основе поиска повторов и проверки симметрии участка. Пару нуклеотидов на одинаковом расстоянии от концов задают одним номером position: с начала это позиция с номером position, с конца — та же позиция.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Отрицательный индекс</strong> — индекс, который отсчитывают с конца строки: −1 — последний символ.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и число: <code>seq = input()</code>, <code>position = int(input())</code>.</li>
+                  <li>Нуклеотид в позиции с номером position с начала — это <code>seq[position - 1]</code>.</li>
+                  <li>Тот же номер с конца дает отрицательный индекс: <code>seq[-position]</code>.</li>
+                  <li>Напечатайте оба; сверьтесь с примером: TTACGGA, position = 2 — это T и G.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_01_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 2.1. Начало последнего кодона</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих нуклеотидов. Последовательность делят на кодоны с первого нуклеотида: в позициях 1–3 стоит первый кодон, в позициях 4–6 второй и так далее. Если длина не делится на 3, в конце остаются один или два нуклеотида: это неполный кодон, его не учитывают. Найдите последний полный кодон и выведите позицию его первого нуклеотида и сам этот нуклеотид. Позиции нумеруются с 1.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сначала найдите, сколько нуклеотидов занимают все полные кодоны вместе.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из заглавных букв A, C, G, T длиной от 3 до 100. Длина может не делиться на 3.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой позиция первого нуклеотида последнего полного кодона, во второй этот нуклеотид.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGGCATTAGC</pre></td><td><pre>7
+              <h3>Задача со звездочкой 2.1. Начало последнего кодона</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательность делят на кодоны с первого нуклеотида: в позициях 1–3 стоит первый кодон, в позициях 4–6 второй и так далее. Если длина не делится на 3, в конце остаются один или два нуклеотида: это неполный кодон, его не учитывают. Найдите последний полный кодон и выведите позицию его первого нуклеотида и сам этот нуклеотид. Позиции нумеруются с 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из заглавных букв A, C, G, T длиной от 3 до 100. Длина может не делиться на 3.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой позиция первого нуклеотида последнего полного кодона, во второй этот нуклеотид.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">ATG</span><span class="we-seg we-seg-2">GCA</span><span class="we-hl">TTA</span>GC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">7<br><span class="we-hl">T</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Полных кодонов три: ATG, GCA и TTA; последний начинается с позиции 7, оставшиеся GC — неполный кодон.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGGCATTAGC</pre></td><td><pre>7
 T</pre></td></tr>
-                <tr><td><pre>CCGTAA</pre></td><td><pre>4
+                      <tr><td><pre>CCGTAA</pre></td><td><pre>4
 T</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_01_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Кодоны — тройки нуклеотидов, которые при трансляции задают аминокислоты. Рамка считывания начинается с первого нуклеотида записи, поэтому при разборе важно, где начинается последний полный кодон.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Рамка считывания</strong> — разбиение последовательности на кодоны с первого нуклеотида.</li>
+                  <li><strong>Неполный кодон</strong> — остаток из одного или двух нуклеотидов в конце записи; его не учитывают.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Сколько нуклеотидов занимают все полные кодоны: <code>len(seq) // 3 * 3</code>.</li>
+                  <li>Начало последнего полного кодона — на три нуклеотида раньше: <code>start = len(seq) // 3 * 3 - 3</code>.</li>
+                  <li>Выведите позицию и нуклеотид: <code>print(start + 1)</code>, затем <code>print(seq[start])</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_01_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 2.1. Участок на кольце</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмида&nbsp;— небольшая кольцевая молекула ДНК. В файл ее записывают строкой, разрезав кольцо в одном месте, поэтому после последней позиции записи на кольце снова идет позиция 1. Участок длины <code>L</code> начинается в позиции <code>s</code> и идет в сторону больших позиций; дойдя до конца записи, он продолжается с ее начала. Выведите позицию, в которой участок кончается, и нуклеотид в этой позиции. Позиции нумеруются с 1.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>С позициями от 1 до <code>n</code> деление с остатком работает неудобно. Переведите позицию в индекс от 0 до <code>n</code> − 1, найдите остаток от деления на длину, затем переведите индекс обратно в позицию.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность плазмиды из заглавных букв A, C, G, T длиной <code>n</code> от 1 до 100, во второй целое число <code>s</code>, в третьей целое число <code>L</code> (1 ≤ <code>s</code> ≤ <code>n</code>, 1 ≤ <code>L</code> ≤ <code>n</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой позиция последнего нуклеотида участка (от 1 до <code>n</code>), во второй сам этот нуклеотид.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCCGTTAG
+              <h3>Задача со звездочкой 2.1. Участок на кольце</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В файл кольцевую молекулу записывают строкой, разрезав кольцо в одном месте, поэтому после последней позиции записи снова идет позиция 1. Участок длины <code>segment_length</code> начинается с позиции <code>start</code> и идет в сторону больших позиций; дойдя до конца записи, он продолжается с ее начала. Выведите позицию, в которой участок кончается, и нуклеотид в этой позиции. Позиции нумеруются с 1.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность плазмиды из заглавных букв A, C, G, T длиной <code>seq_length</code> от 1 до 100, во второй целое число <code>start</code>, в третьей целое число <code>segment_length</code> (1 ≤ <code>start</code> ≤ <code>seq_length</code>, 1 ≤ <code>segment_length</code> ≤ <code>seq_length</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой позиция последнего нуклеотида участка (от 1 до <code>seq_length</code>), во второй сам этот нуклеотид.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATGCCGT<span class="we-hl">T</span>AG<br>8<br>5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span><br><span class="we-hl">T</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Участок из пяти букв начинается в позиции 8: T, A, G, затем после конца записи A и T; пятая буква стоит в позиции 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCCGTTAG
 8
 5</pre></td><td><pre>2
 T</pre></td></tr>
-                <tr><td><pre>GGATCCA
+                      <tr><td><pre>GGATCCA
 3
 5</pre></td><td><pre>7
 A</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_01_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Плазмиды — кольцевые молекулы, и участок на кольце может переходить через место разреза записи. Чтобы не разрывать такой участок, кольцо мысленно продолжают: после последнего нуклеотида записи снова идет первый.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
+                  <li><strong>Кольцевая ДНК</strong> — молекула без концов: после последнего нуклеотида идет первый.</li>
+                  <li><strong>Остаток от деления</strong> — то, что остается после деления нацело; им отбрасывают лишние круги по кольцу.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и два числа: <code>seq = input()</code>, <code>start = int(input())</code>, <code>segment_length = int(input())</code>.</li>
+                  <li>Переведите позицию начала в индекс: <code>start - 1</code>.</li>
+                  <li>Конец участка — на <code>segment_length - 1</code> шагов дальше, лишние круги отбрасывает остаток: <code>end</code> — остаток от деления <code>start - 1 + segment_length - 1</code> на <code>len(seq)</code>.</li>
+                  <li>Выведите позицию и нуклеотид: <code>print(end + 1)</code>, затем <code>print(seq[end])</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_01_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

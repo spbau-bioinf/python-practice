@@ -90,75 +90,215 @@ SyntaxError: cannot assign to literal here. Maybe you meant '==' instead of '='?
 <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
 <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-<h3>Упражнение 1.4.1. Два деления</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В пробирке <code>count</code> клеток. При каждом делении число клеток удваивается. Найдите, сколько клеток станет после двух делений. Используйте переприсваивание, как в примере.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задается целое неотрицательное число <code>count</code>.</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>count = 5</pre></td><td><pre>20</pre></td></tr>
-                <tr><td><pre>count = 0</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_04_1_basic.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.4.1. Два деления</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В пробирке <code>count</code> клеток. При каждом делении число клеток удваивается. Найдите, сколько клеток станет после двух делений. Используйте переприсваивание, как в примере.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно целое неотрицательное число <code>count</code> — начальное число клеток в пробирке.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">20</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После первого деления count = 5 · 2 = 10, после второго count = 10 · 2 = 20: каждое деление заменяет переменную удвоенным значением.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5</pre></td><td><pre>20</pre></td></tr>
+                      <tr><td><pre>0</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Клетки размножаются делением: одна клетка дает две, поэтому за одно деление число клеток в культуре удваивается. Чтобы узнать число клеток после нескольких делений, удвоение повторяют столько раз, сколько делений происходит.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Клетка</strong> — мельчайшая единица живого; в культуре клетки живут и размножаются вне организма.</li>
+                  <li><strong>Деление клетки</strong> — процесс, в котором одна клетка дает две новые; для числа клеток это удвоение.</li>
+                  <li><strong>Культура клеток</strong> — клетки, которые выращивают в питательной среде в пробирке или колбе.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>count = int(input())</code>.</li>
+                  <li>Одно деление заменяет число клеток удвоенным: <code>count = count * 2</code>.</li>
+                  <li>Выполните такое присваивание дважды подряд, как в примере.</li>
+                  <li>Сверьтесь с примером: после первого деления 10 клеток, после второго 20.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_04_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
 <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-<h3>Упражнение 1.4.1. Пересев культуры</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В колбе <code>volume</code> мл культуры. Сначала из нее отбирают <code>sample</code> мл на анализ. Затем добавляют столько среды, сколько в колбе осталось культуры, и объем удваивается. После этого снова отбирают <code>sample</code> мл. Найдите объем в колбе после второго отбора.</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задаются целые числа <code>volume</code> и <code>sample</code> (0 ≤ 2 · <code>sample</code> ≤ <code>volume</code>).</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число: объем в мл.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>volume = 100
-sample = 10</pre></td><td><pre>170</pre></td></tr>
-                <tr><td><pre>volume = 50
-sample = 25</pre></td><td><pre>25</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_04_1_medium.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.4.1. Пересев культуры</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В колбе <code>volume</code> мл культуры. Сначала из нее отбирают <code>sample</code> мл на анализ. Затем добавляют столько среды, сколько в колбе осталось культуры, и объем удваивается. После этого снова отбирают <code>sample</code> мл. Найдите объем в колбе после второго отбора.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>volume</code> — объем культуры в колбе, <code>sample</code> — объем пробы (0 ≤ 2 · <code>sample</code> ≤ <code>volume</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: объем в мл.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">100<br>10</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">170</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После первого отбора остается 100 − 10 = 90 мл; среда удваивает объем до 90 · 2 = 180 мл; после второго отбора 180 − 10 = 170 мл.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>100
+10</pre></td><td><pre>170</pre></td></tr>
+                      <tr><td><pre>50
+25</pre></td><td><pre>25</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При пересеве из колбы отбирают пробу на анализ, а оставшийся объем доводят свежей питательной средой до прежнего количества питательных веществ, поэтому объем культуры удваивается. Затем снова отбирают пробу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Культура</strong> — клетки, которые растут в питательной среде.</li>
+                  <li><strong>Пересев</strong> — перенос части культуры в свежую питательную среду.</li>
+                  <li><strong>Питательная среда</strong> — раствор, в котором растут клетки.</li>
+                  <li><strong>Проба</strong> — небольшой объем культуры, отобранный для анализа.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>volume = int(input())</code> и <code>sample = int(input())</code>.</li>
+                  <li>Сначала из объема вычитается проба: <code>volume − sample</code>.</li>
+                  <li>Оставшийся объем удваивается, потому что столько же среды добавляют: <code>(volume − sample) * 2</code>.</li>
+                  <li>После этого снова вычитается проба; скобки задают порядок действий.</li>
+                  <li>Сверьтесь с примером: <code>((100 − 10) * 2) − 10 = 170</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_04_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
 <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
 <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-<h3>Упражнение 1.4.1. Три цикла роста</h3>
-<div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вечером в культуре <code>count</code> клеток. Каждую ночь число клеток удваивается, каждое утро на анализ забирают <code>sample</code> клеток. Сколько клеток останется после третьего утра?</p></div>
-<h4>Входные данные</h4>
-<p>В начале программы задаются целые числа <code>count</code> и <code>sample</code> (0 ≤ <code>sample</code> ≤ <code>count</code>).</p>
-<h4>Выходные данные</h4>
-<p>Одно целое число.</p>
-<div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-<tbody>
-                <tr><td><pre>count = 10
-sample = 5</pre></td><td><pre>45</pre></td></tr>
-                <tr><td><pre>count = 5
-sample = 5</pre></td><td><pre>5</pre></td></tr>
-              </tbody>
-</table>
-</div>
-<div class="checker" data-file="t1_04_1_advanced.py">
-<p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-</div>
-</article>
+              <h3>Упражнение 1.4.1. Три цикла роста</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Вечером в культуре <code>count</code> клеток. Каждую ночь число клеток удваивается, каждое утро на анализ забирают <code>sample</code> клеток. Сколько клеток останется после третьего утра?</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>count</code> — число клеток вечером, <code>sample</code> — сколько клеток забирают утром (0 ≤ <code>sample</code> ≤ <code>count</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">10<br>5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">45</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Каждое утро пара операций дает 10 → 20 → 15, затем 15 → 30 → 25 и 25 → 50 → 45: удвоение и вычитание чередуются три раза.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>10
+5</pre></td><td><pre>45</pre></td></tr>
+                      <tr><td><pre>5
+5</pre></td><td><pre>5</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Ночью клетки делятся, и число клеток удваивается, а утром часть клеток забирают на анализ. Такой цикл «удвоение и отбор» повторяется каждые сутки: за три ночи и три утра он проходит три раза.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Деление клетки</strong> — одна клетка дает две, поэтому число клеток удваивается.</li>
+                  <li><strong>Отбор пробы</strong> — изъятие части клеток из культуры на анализ.</li>
+                  <li><strong>Цикл роста</strong> — сутки культуры: ночное удвоение и утренний отбор.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>count = int(input())</code> и <code>sample = int(input())</code>.</li>
+                  <li>Один цикл — это два присваивания: <code>count = count * 2</code>, затем <code>count = count − sample</code>.</li>
+                  <li>Повторите пару присваиваний три раза, как в примере.</li>
+                  <li>Сверьтесь с примером: 10 → 20 → 15 → 30 → 25 → 50 → 45.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_04_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
+            </article>
 </div>
 </div>
 </section>
@@ -263,84 +403,225 @@ SyntaxError: invalid syntax</pre></div></div></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 1.4. Заражение культуры</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В культуре <code>healthy</code> здоровых клеток и <code>infected</code> зараженных вирусом. За час каждая зараженная клетка заражает одну здоровую: здоровых клеток становится меньше на число зараженных, а зараженных становится вдвое больше. Найдите, сколько здоровых и сколько зараженных клеток будет через два часа.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>healthy</code> и <code>infected</code> (0 ≤ 3 · <code>infected</code> ≤ <code>healthy</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число здоровых клеток, во второй число зараженных.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>healthy = 100
-infected = 5</pre></td><td><pre>85
+              <h3>Задача со звездочкой 1.4. Заражение культуры</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В культуре <code>healthy</code> здоровых клеток и <code>infected</code> зараженных вирусом. За час каждая зараженная клетка заражает одну здоровую: здоровых клеток становится меньше на число зараженных, а зараженных становится вдвое больше. Найдите, сколько здоровых и сколько зараженных клеток будет через два часа.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>healthy</code> — число здоровых клеток, <code>infected</code> — число зараженных (0 ≤ 3 · <code>infected</code> ≤ <code>healthy</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число здоровых клеток, во второй число зараженных.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">100<br>5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">85</span><br><span class="we-hl">20</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">За первый час здоровых становится 100 − 5 = 95, зараженных 5 · 2 = 10; за второй час 95 − 10 = 85 и 10 · 2 = 20.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>100
+5</pre></td><td><pre>85
 20</pre></td></tr>
-                <tr><td><pre>healthy = 30
-infected = 10</pre></td><td><pre>0
+                      <tr><td><pre>30
+10</pre></td><td><pre>0
 40</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_04_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Вирусная инфекция распространяется по культуре: каждая зараженная клетка за час заражает одну здоровую, после чего делится и дает две зараженные клетки. Поэтому здоровых клеток становится меньше на число зараженных, а зараженных — вдвое больше.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Зараженная клетка</strong> — клетка, в которую проник вирус.</li>
+                  <li><strong>Здоровая клетка</strong> — клетка без вируса.</li>
+                  <li><strong>Заражение</strong> — переход здоровой клетки в зараженное состояние.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>healthy = int(input())</code> и <code>infected = int(input())</code>.</li>
+                  <li>За час число здоровых уменьшается на текущее число зараженных: <code>healthy = healthy − infected</code>.</li>
+                  <li>Число зараженных за тот же час удваивается: <code>infected = infected * 2</code>.</li>
+                  <li>Порядок важен: вычитание должно использовать прежнее значение <code>infected</code>, поэтому выполните его до удвоения; повторите пару присваиваний дважды.</li>
+                  <li>Сверьтесь с примером: 100 − 5 = 95, 5 · 2 = 10; затем 95 − 10 = 85, 10 · 2 = 20.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_04_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 1.4. Три стадии роста</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Упрощенная модель роста культуры: каждая клетка проходит три стадии и на каждой проводит ровно час. За час клетки стадии 1 переходят на стадию 2, клетки стадии 2 на стадию 3, а каждая клетка стадии 3 делится на две новые клетки стадии 1. Сейчас на стадиях 1, 2 и 3 находятся <code>s1</code>, <code>s2</code> и <code>s3</code> клеток. Сколько клеток будет на стадии 1 и сколько всего через два часа?</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые неотрицательные числа <code>s1</code>, <code>s2</code>, <code>s3</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число клеток на стадии 1, во второй общее число клеток.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>s1 = 10
-s2 = 20
-s3 = 30</pre></td><td><pre>40
+              <h3>Задача со звездочкой 1.4. Три стадии роста</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Упрощенная модель роста культуры: каждая клетка проходит три стадии и на каждой проводит ровно час. За час клетки стадии 1 переходят на стадию 2, клетки стадии 2 на стадию 3, а каждая клетка стадии 3 делится на две новые клетки стадии 1. Сейчас на стадиях 1, 2 и 3 находятся <code>count_stage1</code>, <code>count_stage2</code> и <code>count_stage3</code> клеток. Сколько клеток будет на стадии 1 и сколько всего через два часа?</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три целых неотрицательных числа, каждое в своей строке: <code>count_stage1</code>, <code>count_stage2</code>, <code>count_stage3</code> — число клеток на стадиях роста 1, 2 и 3.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число клеток на стадии 1, во второй общее число клеток.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">10<br>20<br>30</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">40</span><br><span class="we-hl">110</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Через час на стадии 1 будет 2 · 30 = 60 клеток; еще через час эти 60 перейдут на стадию 2, а 20 клеток стадии 3 дадут 2 · 20 = 40 новых — всего 40 + 60 + 10 = 110.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>10
+20
+30</pre></td><td><pre>40
 110</pre></td></tr>
-                <tr><td><pre>s1 = 0
-s2 = 0
-s3 = 5</pre></td><td><pre>0
+                      <tr><td><pre>0
+0
+5</pre></td><td><pre>0
 10</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_04_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Клетки в культуре проходят стадии роста: молодые клетки созревают, зрелые готовятся к делению, а клетки третьей стадии делятся и дают две молодые клетки. Стадии сменяются каждый час по кругу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Стадия роста</strong> — этап жизни клетки; в модели их три.</li>
+                  <li><strong>Созревание</strong> — переход клетки на следующую стадию.</li>
+                  <li><strong>Деление</strong> — клетка третьей стадии дает две клетки первой стадии.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>count_stage1 = int(input())</code>, <code>count_stage2 = int(input())</code>, <code>count_stage3 = int(input())</code>.</li>
+                  <li>За час клетки стадии 3 делятся: новые клетки стадии 1 — это удвоенное прежнее <code>count_stage3</code>.</li>
+                  <li>Новые <code>count_stage2</code> — прежнее <code>count_stage1</code>, новые <code>count_stage3</code> — прежнее <code>count_stage2</code>; сохраните прежние значения до замены.</li>
+                  <li>Повторите сдвиг дважды: через два часа на стадии 1 окажутся клетки, родившиеся на втором часу.</li>
+                  <li>Всего клеток — сумма трех стадий; сверьтесь с примером: 40 + 60 + 10 = 110.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_04_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 1.4. Рост за 31 час</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Упрощенная модель роста культуры: каждая клетка проходит три стадии и на каждой проводит ровно час. За час клетки стадии 1 переходят на стадию 2, клетки стадии 2 на стадию 3, а каждая клетка стадии 3 делится на две новые клетки стадии 1. Сейчас на стадиях 1, 2 и 3 находятся <code>s1</code>, <code>s2</code> и <code>s3</code> клеток. Сколько всего клеток будет через 31 час?</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>s1</code>, <code>s2</code>, <code>s3</code> (от 0 до 1000).</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>s1 = 10
-s2 = 20
-s3 = 30</pre></td><td><pre>92160</pre></td></tr>
-                <tr><td><pre>s1 = 0
-s2 = 0
-s3 = 1</pre></td><td><pre>2048</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_04_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.4. Рост за 31 час</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Упрощенная модель роста культуры: каждая клетка проходит три стадии и на каждой проводит ровно час. За час клетки стадии 1 переходят на стадию 2, клетки стадии 2 на стадию 3, а каждая клетка стадии 3 делится на две новые клетки стадии 1. Сейчас на стадиях 1, 2 и 3 находятся <code>count_stage1</code>, <code>count_stage2</code> и <code>count_stage3</code> клеток. Сколько всего клеток будет через 31 час?</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три целых числа, каждое в своей строке: <code>count_stage1</code>, <code>count_stage2</code>, <code>count_stage3</code> — число клеток на стадиях роста 1, 2 и 3 (от 0 до 1000).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">10<br>20<br>30</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">92160</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Каждый час общее число клеток растет на текущее число клеток стадии 3: 60 → 90 → 110 → 120 → …, и после 31 часа получается 92160.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>10
+20
+30</pre></td><td><pre>92160</pre></td></tr>
+                      <tr><td><pre>0
+0
+1</pre></td><td><pre>2048</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Клетки в культуре проходят стадии роста: молодые клетки созревают, зрелые готовятся к делению, а клетки третьей стадии делятся и дают две молодые клетки. Стадии сменяются каждый час по кругу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Стадия роста</strong> — этап жизни клетки; в модели их три.</li>
+                  <li><strong>Созревание</strong> — переход клетки на следующую стадию.</li>
+                  <li><strong>Деление</strong> — клетка третьей стадии дает две клетки первой стадии.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>count_stage1 = int(input())</code>, <code>count_stage2 = int(input())</code>, <code>count_stage3 = int(input())</code>.</li>
+                  <li>За час клетки стадии 3 делятся: прирост общего числа клеток равен прежнему <code>count_stage3</code>.</li>
+                  <li>Стадии сдвигаются: <code>count_stage2</code> становится прежним <code>count_stage1</code>, <code>count_stage3</code> — прежним <code>count_stage2</code>, а <code>count_stage1</code> — удвоенным прежним <code>count_stage3</code>. Сохраните прежнее <code>count_stage3</code> в отдельной переменной, иначе оно потеряется.</li>
+                  <li>Повторите сдвиг 31 раз; общее число клеток — сумма трех стадий, ее и выведите в конце.</li>
+                  <li>Сверьтесь с началом примера: 60 → 90 → 110 — так меняется общее число.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_04_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

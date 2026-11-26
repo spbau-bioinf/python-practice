@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Counter и defaultdict. Практика 6. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t6_06.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 6</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t6_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t6_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Словарь и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
+        <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
+        <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Модули и Counter</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сложение и вычитание счетчиков</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> defaultdict</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.6.1</span> <span class="anc-ex-title" data-variant="basic">Число вхождений счетчиком</span><span class="anc-ex-title" data-variant="medium">Сумма по запросу</span><span class="anc-ex-title" data-variant="advanced">Самые частые буквы</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.6.2</span> <span class="anc-ex-title" data-variant="basic">Сумма счетчиков</span><span class="anc-ex-title" data-variant="medium">Разность счетчиков</span><span class="anc-ex-title" data-variant="advanced">Хватает ли букв</span></span></a></li><li><a class="anc-ex" href="#ex-3" data-ex-link="ex-3"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.6.3</span> <span class="anc-ex-title" data-variant="basic">Счетчик с defaultdict</span><span class="anc-ex-title" data-variant="medium">Группы с defaultdict</span><span class="anc-ex-title" data-variant="advanced">Самая большая группа</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.6</span> <span class="anc-ex-title" data-variant="basic">Самая редкая буква</span><span class="anc-ex-title" data-variant="medium">Пересечение счетчиков</span><span class="anc-ex-title" data-variant="advanced">Длины с двумя образцами</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
+        <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">06</span>
+      <p class="page-path"><span>Практика 6</span><span class="page-path-sep" aria-hidden="true">›</span><span>Словари и множества</span></p>
+      <h1><code>Counter</code> и <code>defaultdict</code></h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Подключать модуль <code>collections</code>, считать частоты классом <code>Counter</code>, складывать и вычитать счетчики и строить словари с умолчаниями классом <code>defaultdict</code>.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Модули и Counter</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Модуль — единица, из которой импортируют имена; стандартная библиотека состоит из модулей, которые устанавливаются вместе с интерпретатором, и <code>collections</code> один из них.</p>
+        <p>Инструкция <code>from collections import Counter</code> подключает из модуля одно имя, после чего пишут просто <code>Counter</code>. Инструкция <code>import collections</code> подключает модуль целиком, и к имени обращаются через точку: <code>collections.Counter</code>. Инструкции <code>import</code> ставят в начало программы.</p>
+        <p class="definition"><span class="term">Counter</span> — подкласс словаря из модуля <code>collections</code> для подсчета хешируемых объектов: элементы хранятся как ключи, их количества как значения.</p>
+        <p><code>Counter</code> поддерживает основные операции словаря и добавляет методы счета. Если ключа нет, <code>c[key]</code> дает 0, а <code>c.get(key)</code> работает по правилам словаря и без второго аргумента возвращает <code>None</code>.</p>
+        <p>Метод <code>most_common(n)</code> возвращает до <code>n</code> самых частых пар, от более частых к менее частым; если различных букв меньше <code>n</code>, список короче. Элементы с равными счетчиками идут в порядке первого появления. Без аргументов метод возвращает все пары от самой частой к самой редкой. Метод <code>total()</code> возвращает сумму всех счетчиков; для последовательности это ее длина. Счетчик можно построить не только из последовательности, но и из словаря или из именованных аргументов, например <code>Counter(a=3, b=1)</code>.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 1. Подсчет букв с помощью Counter</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">counter.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">c <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(c)</span>
+<span class="ln"><span class="tok-builtin">print</span>(c[<span class="tok-str">"A"</span>], c[<span class="tok-str">"N"</span>])    <span class="tok-out"># → 3 0</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(c.most_common(<span class="tok-num">2</span>))  <span class="tok-out"># → [('A', 3), ('T', 2)]</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(c.total())         <span class="tok-out"># → 7</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Counter({'A': 3, 'T': 2, 'G': 1, 'C': 1})
+3 0
+[('A', 3), ('T', 2)]
+7</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Счетчик построен одной строкой из последовательности. Для отсутствующей буквы N он возвращает 0. <code>most_common(2)</code> дает две самые частые пары, а <code>total()</code> сумму всех счетчиков.</p>
+          </div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: Counter вместо <code>import</code></p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: без import</span><pre><code>c <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">c <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span></code></pre></div>
+          <p>Без инструкции <code>import</code> имя <code>Counter</code> не определено: интерпретатор поднимает <code>NameError</code>. Имя нужно сначала подключить из модуля <code>collections</code>.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Василиса считает буквы другой последовательности. Замените <code>"GATTACA"</code> на <code>"ACGTACGT"</code> и запустите: каждый счетчик должен стать 2.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">counter.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">c <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(c)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Counter({'A': 3, 'T': 2, 'G': 1, 'C': 1})</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t6_06_1_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t6_06_1_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t6_06_1_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.6.1. Число вхождений счетчиком</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте строку из букв и постройте счетчик вызовом <code>Counter()</code>. Считайте букву и выведите число ее вхождений; если буквы нет, выведите 0.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки: последовательность из 1–50 букв и одна буква.</p>
+              <h4>Выходные данные</h4>
+              <p>Число вхождений буквы.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA
+A</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>GATTACA
+N</pre></td><td><pre>0</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_1_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.6.1. Сумма по запросу</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте строку из букв и постройте счетчик вызовом <code>Counter()</code>. Считайте вторую строку и выведите сумму счетчиков ее букв, перебирая их циклом <code>for</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Сумма счетчиков букв второй строки.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA
+AG</pre></td><td><pre>4</pre></td></tr>
+                <tr><td><pre>GATTACA
+NN</pre></td><td><pre>0</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_1_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.6.1. Самые частые буквы</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте строку из букв и постройте счетчик вызовом <code>Counter()</code>. Выведите все буквы с наибольшим счетчиком в алфавитном порядке через пробел, отсортировав ключи функцией <code>sorted()</code>.</p></div>
+              <details class="task-hint"><summary>Подсказка</summary><p>Наибольший счетчик дает метод <code>most_common(1)</code>, а буквы с ним отберите по отсортированным ключам.</p></details>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Буквы с наибольшим счетчиком через пробел.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
+                <tr><td><pre>AACC</pre></td><td><pre>A C</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_1_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Сложение и вычитание счетчиков</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Счетчики можно складывать и вычитать. Сумма счетчиков дает общий состав: числа одинаковых букв складываются. Разность вычитает счетчики соответствующих элементов, но в результат попадают только положительные числа: результаты, равные нулю или отрицательные, отбрасываются.</p>
+        <p>Метод <code>elements()</code> выполняет обратное преобразование: он перечисляет элементы, повторяя каждый столько раз, каков его счетчик, в порядке первого появления; элементы с нулевыми и отрицательными счетчиками пропускаются.</p>
+        <p class="th-full">Метод <code>update()</code> у <code>Counter</code> прибавляет новые счетчики к старым, а не заменяет их, как <code>update()</code> обычного словаря. Кроме сложения и вычитания, счетчики поддерживают пересечение <code>&amp;</code> и объединение <code>|</code>: пересечение берет для каждого элемента меньший из двух счетчиков, объединение больший. Такие результаты называют мультимножествами: в них остаются только элементы с положительными счетчиками.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 2. Сложение и вычитание счетчиков</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">reads.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">r1 <span class="tok-op">=</span> Counter(<span class="tok-str">"AACG"</span>)</span>
+<span class="ln">r2 <span class="tok-op">=</span> Counter(<span class="tok-str">"ACCT"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(r1 <span class="tok-op">+</span> r2)</span>
+<span class="ln"><span class="tok-builtin">print</span>(r1 <span class="tok-op">-</span> r2)  <span class="tok-out"># → Counter({'A': 1, 'G': 1})</span></span>
+<span class="ln">r1.update(<span class="tok-str">"GG"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(r1)       <span class="tok-out"># → Counter({'G': 3, 'A': 2, 'C': 1})</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Counter({'A': 3, 'C': 3, 'G': 1, 'T': 1})
+Counter({'A': 1, 'G': 1})
+Counter({'G': 3, 'A': 2, 'C': 1})</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Сумма дает общий состав двух прочтений. В разности у буквы C (1 − 2) и у буквы T (0 − 1) ничего не осталось: нулевые и отрицательные результаты отбрасываются. <code>update()</code> прибавил два G к старым счетчикам.</p>
+          </div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: вычитание в обратную сторону</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: вычитаем наоборот</span><pre><code><span class="tok-builtin">print</span>(r2 <span class="tok-op">-</span> r1)</code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(r1 <span class="tok-op">-</span> r2)</code></pre></div>
+          <p>Разность несимметрична: <code>r2 - r1</code> показывает, чего во втором прочтении больше, чем в первом. Порядок операндов определяется вопросом задачи.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Прохор сравнивает прочтения. Замените <code>"ACCT"</code> на <code>"ACGT"</code> и запустите: в разности должна остаться буква G.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">reads.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">r1 <span class="tok-op">=</span> Counter(<span class="tok-str">"AACG"</span>)</span>
+<span class="ln">r2 <span class="tok-op">=</span> Counter(<span class="tok-str">"ACCT"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(r1 <span class="tok-op">-</span> r2)  <span class="tok-out"># → Counter({'A': 1, 'G': 1})</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>Counter({'A': 1, 'G': 1})</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t6_06_2_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t6_06_2_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t6_06_2_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.6.2. Сумма счетчиков</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте две строки из букв и постройте два счетчика вызовом <code>Counter()</code>. Выведите общее число вхождений буквы G в обеих строках, сложив счетчики оператором <code>+</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Общее число вхождений буквы G.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>AACG
+ACCT</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>GGG
+GG</pre></td><td><pre>5</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_2_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.6.2. Разность счетчиков</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте два счетчика из двух входных строк. Выведите разность первого со вторым, найденную оператором <code>-</code>, одной строкой из букв, перечисленных методом <code>elements()</code> и склеенных методом <code>"".join()</code>; группы одинаковых букв выводятся в порядке их первого появления в первой строке. Если разность пустая, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Оставшиеся буквы одной строкой или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>AACG
+ACCT</pre></td><td><pre>AG</pre></td></tr>
+                <tr><td><pre>ACG
+ACG</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_2_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.6.2. Хватает ли букв</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте две строки из букв и постройте два счетчика. Выведите слово «да», если первая строка содержит все буквы второй (счетчиков букв второй хватает в первой), иначе «нет». Проверьте это разностью, найденной оператором <code>-</code>: если разность второго счетчика с первым пустая, букв хватает.</p></div>
+              <details class="task-hint"><summary>Подсказка</summary><p>Если в разности <code>второй - первый</code> ничего не осталось, все буквы второй строки есть в первой.</p></details>
+              <h4>Входные данные</h4>
+              <p>Две строки из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Слово «да» или «нет».</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>AACG
+AC</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>AACG
+AAT</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_2_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. defaultdict</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p class="definition"><span class="term">defaultdict</span> — подкласс словаря из модуля <code>collections</code>, который умеет сам создавать значение для отсутствующего ключа; каким оно будет, решает переданная фабрика.</p>
+        <p>Каким будет значение, решает аргумент, называемый фабрикой: то, что вызывается без аргументов и возвращает значение по умолчанию. Фабрика <code>int</code> дает 0, фабрика <code>list</code> дает пустой список. Передают сам тип, без скобок, а не результат его вызова. Фабрика срабатывает только при обращении квадратными скобками: <code>groups[key]</code> создает значение, а <code>groups.get(key)</code> и <code>key in groups</code> этого не делают. Без фабрики <code>defaultdict()</code> ведет себя как обычный словарь: обращение к отсутствующему ключу вызывает <code>KeyError</code>.</p>
+        <p>Счетчик и группировка со <a href="t6_04.html">страницы 04</a> сокращаются до одной строки в теле цикла: <code>counts[b] += 1</code> и <code>groups[len(s)].append(s)</code>.</p>
+        <p>Группировка через <code>defaultdict(list)</code> проще и быстрее, чем запись через <code>setdefault()</code>: при <code>setdefault(key, [])</code> пустой список вычисляется при каждом вызове, а фабрика <code>list</code> создает список только по необходимости.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 3. Счетчик и группировка с defaultdict</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">defaults.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> defaultdict</span>
+<span class="ln">counts <span class="tok-op">=</span> defaultdict(<span class="tok-builtin">int</span>)</span>
+<span class="ln"><span class="tok-kw">for</span> b <span class="tok-kw">in</span> <span class="tok-str">"GATTACA"</span>:</span>
+<span class="ln">    counts[b] <span class="tok-op">+=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">dict</span>(counts))     <span class="tok-out"># → {'G': 1, 'A': 3, 'T': 2, 'C': 1}</span></span>
+<span class="ln">groups <span class="tok-op">=</span> defaultdict(<span class="tok-builtin">list</span>)</span>
+<span class="ln"><span class="tok-kw">for</span> s <span class="tok-kw">in</span> [<span class="tok-str">"ATG"</span>, <span class="tok-str">"GC"</span>, <span class="tok-str">"TAA"</span>]:</span>
+<span class="ln">    groups[<span class="tok-builtin">len</span>(s)].append(s)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">dict</span>(groups))     <span class="tok-out"># → {3: ['ATG', 'TAA'], 2: ['GC']}</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(groups.get(<span class="tok-str">"x"</span>))  <span class="tok-out"># → None</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(groups[<span class="tok-str">"x"</span>])      <span class="tok-out"># → []</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">list</span>(groups))     <span class="tok-out"># → [3, 2, 'x']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>{'G': 1, 'A': 3, 'T': 2, 'C': 1}
+{3: ['ATG', 'TAA'], 2: ['GC']}
+None
+[]
+[3, 2, 'x']</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Для новой буквы <code>counts[b]</code> сам создает нулевой счетчик, и <code>+= 1</code> делает его единицей. Для новой длины <code>groups[len(s)]</code> сам создает пустой список, и <code>append()</code> дописывает название. Вызов <code>dict(...)</code> нужен только для короткой печати. Метод <code>get("x")</code> вернул <code>None</code> и ничего не создал, а обращение <code>groups["x"]</code> добавило ключ с пустым списком: в конце в словаре появился ключ <code>"x"</code>.</p>
+          </div>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: фабрика со скобками</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: list()</span><pre><code><span class="ln">groups <span class="tok-op">=</span> defaultdict(<span class="tok-builtin">list</span>())</span>
+<span class="ln"><span class="tok-kw">for</span> s <span class="tok-kw">in</span> seqs:</span>
+<span class="ln">    groups[<span class="tok-builtin">len</span>(s)].append(s)</span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">groups <span class="tok-op">=</span> defaultdict(<span class="tok-builtin">list</span>)</span>
+<span class="ln"><span class="tok-kw">for</span> s <span class="tok-kw">in</span> seqs:</span>
+<span class="ln">    groups[<span class="tok-builtin">len</span>(s)].append(s)</span></code></pre></div>
+          <p>Фабрикой передают сам тип без скобок. Вызов <code>list()</code> создает один конкретный список, который не может быть фабрикой: интерпретатор поднимет <code>TypeError</code>.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Василиса группирует образцы. Замените фабрику <code>int</code> на <code>list</code> и перепишите цикл под группировку по длине, затем запустите.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">defaults.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> defaultdict</span>
+<span class="ln">counts <span class="tok-op">=</span> defaultdict(<span class="tok-builtin">int</span>)</span>
+<span class="ln"><span class="tok-kw">for</span> b <span class="tok-kw">in</span> <span class="tok-str">"GATTACA"</span>:</span>
+<span class="ln">    counts[b] <span class="tok-op">+=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">dict</span>(counts))  <span class="tok-out"># → {'G': 1, 'A': 3, 'T': 2, 'C': 1}</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>{'G': 1, 'A': 3, 'T': 2, 'C': 1}</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-3" data-exercise="ex-3">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-3-tab-basic" aria-controls="ex-3-basic" data-level="basic" data-task="t6_06_3_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-3-tab-medium" aria-controls="ex-3-medium" data-level="medium" data-task="t6_06_3_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-3-tab-advanced" aria-controls="ex-3-advanced" data-level="advanced" data-task="t6_06_3_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-3-basic" role="tabpanel" aria-labelledby="ex-3-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.6.3. Счетчик с defaultdict</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>defaultdict</code> из модуля <code>collections</code> и создайте словарь вызовом <code>defaultdict(int)</code>. Считайте строку из букв и для каждой буквы увеличивайте ее счетчик на 1, перебирая буквы циклом <code>for</code>. Считайте букву и выведите число ее вхождений.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки: последовательность из 1–50 букв и одна буква.</p>
+              <h4>Выходные данные</h4>
+              <p>Число вхождений буквы.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA
+A</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>GATTACA
+N</pre></td><td><pre>0</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_3_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.6.3. Группы с defaultdict</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>defaultdict</code> из модуля <code>collections</code> и создайте группы вызовом <code>defaultdict(list)</code>. Считайте строку из названий образцов через пробел и сгруппируйте идентификаторы по числу символов, перебирая названия циклом <code>for</code>. Считайте число <code>k</code> и выведите названия длиной <code>k</code> символов в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и целое число <code>k</code> от 1 до 100.</p>
+              <h4>Выходные данные</h4>
+              <p>Названия через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>ATG GC TAA AT
+3</pre></td><td><pre>ATG TAA</pre></td></tr>
+                <tr><td><pre>ATG GC TAA AT
+2</pre></td><td><pre>AT GC</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_3_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.6.3. Самая большая группа</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>defaultdict</code> из модуля <code>collections</code> и создайте группы вызовом <code>defaultdict(list)</code>. Считайте строку из названий образцов через пробел и сгруппируйте идентификаторы по числу символов, перебирая названия циклом <code>for</code>. Выведите размер самой большой группы, пройдя по группам методом <code>values()</code> и запоминая наибольшую длину списка.</p></div>
+              <details class="task-hint"><summary>Подсказка</summary><p>Пройдите циклом по <code>groups.values()</code> и запоминайте наибольшее значение <code>len(список)</code>.</p></details>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 названий через пробел; в названии только буквы и цифры, без пробелов.</p>
+              <h4>Выходные данные</h4>
+              <p>Число названий в самой большой группе.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>ATG GC TAA AT</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>A B</pre></td><td><pre>2</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_3_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача, в зачет не входит. За решение дается дополнительный опыт в игровом режиме.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой">
+            <button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t6_06_star_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t6_06_star_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t6_06_star_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+              <h3>Задача со звездочкой 6.6. Самая редкая буква</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте счетчик входной строки. Выведите самую редкую букву: первую букву последней пары списка метода <code>most_common()</code>. При равной минимальной частоте выводится буква, которая впервые появляется во входе позже других.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Самая редкая буква.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA</pre></td><td><pre>C</pre></td></tr>
+                <tr><td><pre>AACC</pre></td><td><pre>C</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_star_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+              <h3>Задача со звездочкой 6.6. Пересечение счетчиков</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте два счетчика из двух входных строк. Выведите пересечение, найденное оператором <code>&amp;</code> (для каждой буквы берется меньший из двух счетчиков), одной строкой из букв, перечисленных методом <code>elements()</code> и склеенных методом <code>"".join()</code>; группы одинаковых букв выводятся в порядке их первого появления в первой строке.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Общие буквы по минимуму счетчиков одной строкой.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>AACG
+ACCT</pre></td><td><pre>AC</pre></td></tr>
+                <tr><td><pre>AA
+AA</pre></td><td><pre>AA</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_star_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+              <h3>Задача со звездочкой 6.6. Длины с двумя образцами</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Подключите <code>defaultdict</code> из модуля <code>collections</code>. Считайте строку из названий образцов через пробел и строку из их длин через пробел. Постройте словарь «название: длина» функцией <code>zip()</code> и функцией <code>dict()</code>, затем соберите группы названий по длине вызовом <code>defaultdict(list)</code>. Выведите отсортированные функцией <code>sorted()</code> длины, у которых ровно два названия, через пробел; если таких нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов; названия не повторяются) и столько же целых длин от 1 до 10000.</p>
+              <h4>Выходные данные</h4>
+              <p>Длины через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>s1 s2 s3
+8 12 8</pre></td><td><pre>8</pre></td></tr>
+                <tr><td><pre>a b c
+3 5 7</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_06_star_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_06_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_6</code> создайте папку <code>t6_06</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_06_1_basic.py</code>, <code>t6_06_2_basic.py</code> и <code>t6_06_3_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_06_1_medium.py</code>, <code>t6_06_2_medium.py</code> и <code>t6_06_3_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_06_1_advanced.py</code>, <code>t6_06_2_advanced.py</code> и <code>t6_06_3_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_06_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_06_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_06_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t6_06</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_6/
+    └── t6_06/
+        ├── t6_06_1_basic.py
+        ├── t6_06_2_basic.py
+        └── t6_06_3_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_6/
+    └── t6_06/
+        ├── t6_06_1_medium.py
+        ├── t6_06_2_medium.py
+        └── t6_06_3_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_6/
+    └── t6_06/
+        ├── t6_06_1_advanced.py
+        ├── t6_06_2_advanced.py
+        └── t6_06_3_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t6_05.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">05 Множества</span></a>
+        <a class="pcard pcard-next" href="t6_07.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">07 Частоты и k-меры</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

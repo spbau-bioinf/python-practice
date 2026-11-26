@@ -194,81 +194,221 @@ True</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.1.1. Кислая среда</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор кислый, если его pH меньше 7; при pH, равном 7, раствор нейтральный. Дано значение pH. Определите, кислый ли раствор. Воспользуйтесь оператором <code>&lt;</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: вещественное число от 0 до 14, значение pH.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если раствор кислый, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5.5</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>7</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.1.1. Кислая среда</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Раствор кислый, если его pH меньше 7; при pH, равном 7, раствор нейтральный. Дано значение pH. Определите, кислый ли раствор. Воспользуйтесь оператором <code>&lt;</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: вещественное число от 0 до 14, значение pH.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если раствор кислый, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">5.5</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">pH 5.5 меньше 7, поэтому раствор кислый и ответ True. При pH ровно 7 раствор нейтрален, и ответ был бы False.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5.5</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>7</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Кислотность раствора задает pH: чем меньше значение, тем кислее среда. Сравнение в Python возвращает True или False, и print выводит это значение.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>pH</strong> — мера кислотности раствора: меньше 7 — кислый, 7 — нейтральный, больше 7 — щелочной.</li>
+                  <li><strong>Кислая среда</strong> — раствор, у которого pH меньше 7.</li>
+                  <li><strong>Нейтральный раствор</strong> — раствор с pH, равным 7.</li>
+                  <li><strong>Оператор <</strong> — сравнение «меньше»; возвращает True или False.</li>
+                  <li><strong>Логическое значение</strong> — True или False — результат сравнения.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте значение pH: <code>ph = float(input())</code>.</li>
+                  <li>Кислая среда — это pH меньше 7: <code>ph &lt; 7</code>.</li>
+                  <li>Выведите результат сравнения: <code>print(ph &lt; 7)</code>.</li>
+                  <li>Сверьтесь с примером: 5.5 дает True, а 7 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.1.1. Хватит ли буфера</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В пробирке <code>v</code>&nbsp;мл буфера. На каждую из <code>n</code> проб нужно <code>d</code>&nbsp;мл. Определите, хватит ли буфера на все пробы.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке вещественное число <code>v</code> (0 &lt; <code>v</code> ≤ 1000), во второй целое число <code>n</code> (1 ≤ <code>n</code> ≤ 100), в третьей вещественное число <code>d</code> (0 &lt; <code>d</code> ≤ 100). Объемы <code>v</code> и <code>d</code> кратны 0,25, например <code>9.5</code> или <code>2.25</code>: с такими числами произведение вычисляется без погрешности.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если буфера хватит на все пробы, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>9.5
+              <h3>Упражнение 3.1.1. Хватит ли буфера</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В пробирке буфер объемом <code>buffer_volume</code>&nbsp;мл. На каждую из <code>sample_count</code> проб нужно <code>sample_volume</code>&nbsp;мл. Определите, хватит ли буфера на все пробы.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке вещественное число <code>buffer_volume</code> (0 &lt; <code>buffer_volume</code> ≤ 1000), во второй целое число <code>sample_count</code> (1 ≤ <code>sample_count</code> ≤ 100), в третьей вещественное число <code>sample_volume</code> (0 &lt; <code>sample_volume</code> ≤ 100). Объемы <code>buffer_volume</code> и <code>sample_volume</code> кратны 0,25, например <code>9.5</code> или <code>2.25</code>: с такими числами произведение вычисляется без погрешности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если буфера хватит на все пробы, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">9.5</span><br>4<br>2.5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">False</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">На четыре пробы нужно 4 × 2.5 = 10 мл, а в пробирке 9.5 мл: условие 9.5 ≥ 10 ложно, поэтому False.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>9.5
 4
 2.5</pre></td><td><pre>False</pre></td></tr>
-                <tr><td><pre>10
+                      <tr><td><pre>10
 4
 2.5</pre></td><td><pre>True</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Буфер — раствор, который поддерживает постоянную кислотность. Перед опытом проверяют, покрывает ли запас объем всех проб: сравнивают остаток с общим расходом sample_count · sample_volume.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Буфер</strong> — раствор, который поддерживает постоянную кислотность.</li>
+                  <li><strong>Проба</strong> — порция материала, с которой ставят опыт.</li>
+                  <li><strong>Объем</strong> — количество жидкости, здесь в миллилитрах.</li>
+                  <li><strong>Оператор >=</strong> — сравнение «больше или равно»; возвращает True или False.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три значения: <code>buffer_volume = float(input())</code>, <code>sample_count = int(input())</code>, <code>sample_volume = float(input())</code>.</li>
+                  <li>На все пробы нужно <code>sample_count * sample_volume</code> миллилитров.</li>
+                  <li>Буфера хватит, если запас не меньше расхода: <code>buffer_volume</code> &gt;= <code>sample_count * sample_volume</code>.</li>
+                  <li>Выведите результат сравнения через <code>print</code>: <code>buffer_volume</code> &gt;= <code>sample_count * sample_volume</code>; сверьтесь с примером: 9.5, 4, 2.5 дают False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.1.1. Сколько измерений выше порога</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрацию белка в пробе измерили три раза. Определите, сколько измерений превышает порог. Ветвления на этой странице еще не нужны.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сравнение дает <code>True</code> или <code>False</code>, а в арифметике они ведут себя как 1 и 0.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке порог, в следующих трех строках измерения. Все значения вещественные, от 0 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число от 0 до 3: сколько измерений строго больше порога.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2.5
+              <h3>Упражнение 3.1.1. Сколько измерений выше порога</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Концентрацию белка в пробе измерили три раза. Определите, сколько измерений превышает порог. Ветвления на этой странице еще не нужны.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке порог, в следующих трех строках измерения. Все значения вещественные, от 0 до 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число от 0 до 3: сколько измерений строго больше порога.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2.5<br><span class="we-hl">3.1</span><br>2.4<br><span class="we-hl">2.9</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Порог 2.5 строго превышают первое и третье измерения, второе (2.4) меньше порога. Сумма сравнений 1 + 0 + 1 дает 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2.5
 3.1
 2.4
 2.9</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>1.0
+                      <tr><td><pre>1.0
 1.0
 0.5
 1.2</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В Python True равно 1, а False равно 0, поэтому сумму сравнений можно напечатать как число. Каждое сравнение дает 1 или 0, а сложение считает, сколько измерений выше порога.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Порог</strong> — граничное значение, с которым сравнивают измерения.</li>
+                  <li><strong>Строго больше</strong> — сравнение > не считает равное значение превышением.</li>
+                  <li><strong>True и False как числа</strong> — в арифметике True равно 1, а False равно 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте порог и три измерения: <code>limit</code>, <code>first</code>, <code>second</code>, <code>third</code> через <code>float(input())</code>.</li>
+                  <li>Каждое измерение сравнивается с порогом отдельно: <code>first &gt; limit</code> и так далее.</li>
+                  <li>Сложите три сравнения: <code>(first &gt; limit)</code> + <code>(second &gt; limit)</code> + <code>(third &gt; limit)</code> — каждое дает 1 или 0.</li>
+                  <li>Выведите сумму; сверьтесь с примером: порог 2.5 и измерения 3.1, 2.4, 2.9 дают 2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -342,77 +482,216 @@ TypeError: '&gt;' not supported between instances of 'str' and 'int'</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.1.2. Номер с ведущими нулями</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>На этикетке номер пробы записан с ведущими нулями, а в журнале без них. Даны две записи номера. Определите, обозначают ли они одно и то же число. Сравните числа, а не строки: воспользуйтесь функцией <code>int()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой целое неотрицательное число из 1–6 цифр, возможно с ведущими нулями.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если числа равны, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>0042
+              <h3>Упражнение 3.1.2. Номер с ведущими нулями</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>На этикетке номер пробы записан с ведущими нулями, а в журнале без них. Даны две записи номера. Определите, обозначают ли они одно и то же число. Сравните числа, а не строки: воспользуйтесь функцией <code>int()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой целое неотрицательное число из 1–6 цифр, возможно с ведущими нулями.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если числа равны, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">00<span class="we-hl">42</span><br><span class="we-hl">42</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>int("0042")</code> равно 42, как и <code>int("42")</code>: ведущие нули значение числа не меняют, поэтому обе записи обозначают одно и то же число.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0042
 42</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>15
+                      <tr><td><pre>15
 51</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пока номер хранится строкой, 0042 и 42 — разные строки. <code>int()</code> читает строку как число, ведущие нули исчезают, и числа можно сравнить.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ведущие нули</strong> — нули перед числом, которые не меняют его значения: 0042 равно 42.</li>
+                  <li><strong>Функция int()</strong> — читает строку как целое число.</li>
+                  <li><strong>Сравнение чисел и строк</strong> — строки сравниваются посимвольно, числа — по величине.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе записи: <code>first = input()</code>, <code>second = input()</code>.</li>
+                  <li>Переведите обе в числа: <code>int(first)</code> и <code>int(second)</code>.</li>
+                  <li>Сравните числа: <code>int(first) == int(second)</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: 0042 и 42 дают True, а 15 и 51 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.1.2. Порядок генов</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Названия генов в отчете расставляют по алфавиту без учета регистра. Даны два названия. Определите, должно ли первое стоять раньше второго.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой название гена из 1–20 латинских букв и цифр.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если без учета регистра первое название стоит раньше второго, иначе <code>False</code>. Если без учета регистра названия совпадают, выведите <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>brca1
+              <h3>Упражнение 3.1.2. Порядок генов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Названия генов в отчете расставляют по алфавиту без учета регистра. Даны два названия. Определите, должно ли первое стоять раньше второго.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой название гена из 1–20 латинских букв и цифр.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если без учета регистра первое название стоит раньше второго, иначе <code>False</code>. Если без учета регистра названия совпадают, выведите <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">brca1</span><br>TP53</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Без учета регистра получаются строки brca1 и tp53. Буква b в алфавите раньше t, поэтому первое название стоит раньше второго — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>brca1
 TP53</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>Myc
+                      <tr><td><pre>Myc
 abl1</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Строки сравниваются по кодам символов, где заглавные буквы стоят раньше строчных, поэтому без приведения регистра порядок был бы неверным. <code>lower()</code> приводит обе строки к одному виду.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Алфавитный порядок</strong> — расположение слов по возрастанию кодов символов.</li>
+                  <li><strong>Метод lower()</strong> — переводит все буквы строки в строчные.</li>
+                  <li><strong>Сравнение строк</strong> — проверка, какая строка идет раньше по кодам символов.</li>
+                  <li><strong>Оператор <</strong> — сравнение «меньше»; для строк — «идет раньше».</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба названия: <code>first = input()</code>, <code>second = input()</code>.</li>
+                  <li>Приведите оба к нижнему регистру: <code>first.lower()</code> и <code>second.lower()</code>.</li>
+                  <li>Сравните: <code>first.lower() &lt; second.lower()</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: brca1 и TP53 дают True, а Myc и abl1 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.1.2. Одна ли это проба</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пробу в журнале обозначают буквой и номером: <code>S</code> для образца, <code>C</code> для контроля, например <code>S12</code>. Василиса пишет букву прописной, Прохор строчной, и оба иногда добавляют к номеру ведущие нули, поэтому <code>s012</code> и <code>S12</code> обозначают одну пробу. Даны два обозначения. Определите, одна ли это проба.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Приведите оба обозначения к одному виду: букву к одному регистру, номер к записи без нулей. Номер без нулей получится, если превратить его в число и обратно в строку.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой обозначение: буква <code>S</code> или <code>C</code> (прописная или строчная), за ней целое положительное число из 1–6 цифр, возможно с ведущими нулями.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если обозначения относятся к одной пробе, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>s012
+              <h3>Упражнение 3.1.2. Одна ли это проба</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пробу в журнале обозначают буквой и номером: <code>S</code> для образца, <code>C</code> для контроля, например <code>S12</code>. Василиса пишет букву прописной, Прохор строчной, и оба иногда добавляют к номеру ведущие нули, поэтому <code>s012</code> и <code>S12</code> обозначают одну пробу. Даны два обозначения. Определите, одна ли это проба.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой обозначение: буква <code>S</code> или <code>C</code> (прописная или строчная), за ней целое положительное число из 1–6 цифр, возможно с ведущими нулями.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если обозначения относятся к одной пробе, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">s</span>012<br><span class="we-hl">S</span>12</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква s после приведения к одному регистру становится S, а номер 012 как число равен 12: оба обозначения дают S12, поэтому это одна проба.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>s012
 S12</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>S12
+                      <tr><td><pre>S12
 C12</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>У одной пробы может быть несколько записей: регистр буквы и ведущие нули на смысл не влияют. Ключ пробы собирают из буквы в верхнем регистре и числа, прочитанного <code>int()</code>, и сравнивают ключи.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ключ пробы</strong> — приведенная запись обозначения: буква в верхнем регистре и число без ведущих нулей.</li>
+                  <li><strong>Ведущие нули</strong> — нули перед числом, которые не меняют его значения.</li>
+                  <li><strong>Срез first[1:]</strong> — все символы строки, кроме первого.</li>
+                  <li><strong>Функции str() и int()</strong> — переводят число в строку и строку в число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба обозначения: <code>first = input()</code>, <code>second = input()</code>.</li>
+                  <li>Буква пробы — это <code>first[0]</code>; приведите ее к верхнему регистру: <code>first[0].upper()</code>.</li>
+                  <li>Номер — это <code>first[1:]</code>; прочитайте его числом и верните строкой: <code>str(int(first[1:]))</code>.</li>
+                  <li>Склейте ключ <code>first[0].upper() + str(int(first[1:]))</code>, так же для второй пробы, и сравните ключи; сверьтесь с примером: s012 и S12 дают True, а S12 и C12 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -423,78 +702,219 @@ C12</pre></td><td><pre>False</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.1. Сдвиг рамки</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Ген читают подряд тройками нуклеотидов, кодонами. Если в гене удалили или вставили несколько нуклеотидов и их число делится на 3, тройки после этого места читаются так же, как раньше. Если не делится, все тройки после этого места сдвигаются: это называют сдвигом рамки считывания. Даны последовательность гена до мутации и после нее. Определите, сдвинута ли рамка. Если длины равны, нуклеотиды только заменены, и рамка не сдвинута.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки: последовательность до мутации и после нее, из прописных букв A, C, G, T, длиной от 1 до 100 каждая.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если рамка сдвинута, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGGCC
+              <h3>Задача со звездочкой 3.1. Сдвиг рамки</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Ген читают подряд тройками нуклеотидов, кодонами. Если в гене удалили или вставили несколько нуклеотидов и их число делится на 3, тройки после этого места читаются так же, как раньше. Если не делится, все тройки после этого места сдвигаются. Даны последовательность гена до мутации и после нее. Определите, сдвинута ли рамка. Если длины равны, нуклеотиды только заменены, и рамка не сдвинута.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки: последовательность до мутации и после нее, из прописных букв A, C, G, T, длиной от 1 до 100 каждая.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если рамка сдвинута, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATGGCC<br>ATG<span class="we-hl">A</span>GCC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Вторая последовательность длиннее на один нуклеотид, а 1 не делится на 3: после вставки все тройки читаются иначе, рамка сдвинута — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGGCC
 ATGAGCC</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ATGGCCTTAGGA
+                      <tr><td><pre>ATGGCCTTAGGA
 ATGTTAGGA</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Вставка или удаление числа нуклеотидов, не кратного трем, меняет разбиение на кодоны после места мутации; такую мутацию называют сдвигом рамки считывания. Признак сдвига — разность длин, не кратная 3.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Рамка считывания</strong> — разбиение последовательности на кодоны с первого нуклеотида.</li>
+                  <li><strong>Сдвиг рамки</strong> — смещение разбиения на кодоны после вставки или делеции, не кратной трем.</li>
+                  <li><strong>Делеция и вставка</strong> — потеря участка или вставка лишних нуклеотидов.</li>
+                  <li><strong>Остаток % 3</strong> — остаток от деления на 3; равен 0, если число делится на 3.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе последовательности: <code>before = input()</code>, <code>after = input()</code>.</li>
+                  <li>Разность длин: <code>len(after) - len(before)</code>.</li>
+                  <li>Рамка сдвинута, если разность не делится на 3: <code>(len(after) - len(before)) % 3 != 0</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: ATGAGCC длиннее ATGGCC на одну букву, и это дает True, а ATGTTAGGA короче на три — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.1. Число замен в кодоне</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка нуклеотидов подряд. Чтобы узнать, сколько точечных замен (замен одной буквы на другую) отделяет один кодон от другого, кодоны сравнивают по позициям: первую букву с первой, вторую со второй, третью с третьей. Регистр букв замен не означает: <code>gca</code> и <code>GCA</code> один и тот же кодон. Даны два кодона. Определите, в скольких позициях буквы различаются. Ветвления на этой странице еще не нужны.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Каждое сравнение двух букв дает <code>True</code> или <code>False</code>, а сумма логических значений равна числу истинных (раздел 1).</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой кодон: три буквы A, C, G, T, прописные или строчные.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число от 0 до 3: число позиций, в которых буквы различаются.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GCA
+              <h3>Задача со звездочкой 3.1. Число замен в кодоне</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Чтобы узнать, сколько точечных замен (замен одной буквы на другую) отделяет один кодон от другого, кодоны сравнивают по позициям: первую букву с первой, вторую со второй, третью с третьей. Регистр букв замен не означает: <code>gca</code> и <code>GCA</code> один и тот же кодон. Даны два кодона. Определите, в скольких позициях буквы различаются. Ветвления на этой странице еще не нужны.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой кодон: три буквы A, C, G, T, прописные или строчные.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число от 0 до 3: число позиций, в которых буквы различаются.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<span class="we-hl">C</span>A<br>g<span class="we-hl">T</span>a</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После приведения к одному регистру GCA и GTA различаются только во второй позиции: C не равна T, остальные буквы совпадают. Ответ 1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GCA
 gTa</pre></td><td><pre>1</pre></td></tr>
-                <tr><td><pre>aag
+                      <tr><td><pre>aag
 AAG</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждая позиция кодона сравнивается отдельно, а True и False в сумме дают число различий. Приведение к верхнему регистру убирает разницу между строчными и прописными буквами.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Точечная замена</strong> — замена одного нуклеотида другим.</li>
+                  <li><strong>Позиция в кодоне</strong> — одно из трех мест кодона: первое, второе или третье.</li>
+                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>True и False как числа</strong> — в арифметике True равно 1, а False равно 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба кодона и сразу приведите их к верхнему регистру: <code>first_codon = input().upper()</code>, <code>second_codon = input().upper()</code>.</li>
+                  <li>Сравните три пары букв по отдельности: <code>first_codon[0] != second_codon[0]</code> и так далее.</li>
+                  <li>Сложите три сравнения: <code>(first_codon[0] != second_codon[0])</code> + <code>(first_codon[1] != second_codon[1])</code> + <code>(first_codon[2] != second_codon[2])</code>.</li>
+                  <li>Выведите сумму; сверьтесь с примером: GCA и gTa различаются только во второй позиции и дают 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.1. Порядок в журнале</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пробы в журнале обозначают буквой и номером: <code>C</code> для контроля, <code>S</code> для образца, например <code>S12</code>. Букву пишут прописной или строчной, к номеру иногда добавляют ведущие нули: <code>s012</code> и <code>S12</code> обозначают одну пробу. В журнале сначала идут все контроли, затем все образцы, а пробы с одной буквой стоят по возрастанию номера: <code>C3</code>, <code>C12</code>, <code>S1</code>, <code>S9</code>, <code>S10</code>. Даны два обозначения. Определите, стоит ли первая проба в журнале раньше второй. Ветвления на этой странице еще не нужны.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Строки из цифр одинаковой длины сравниваются так же, как числа: <code>"000009" &lt; "000010"</code>. Допишите к номеру нули слева до шести цифр: так умеет f-строка с символом-заполнителем (<a href="../practice_2/t2_07.html">страница 07 второй практики</a>). Букву приведите к одному регистру и поставьте перед номером.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой обозначение: буква <code>C</code> или <code>S</code> (прописная или строчная), за ней целое положительное число из 1–6 цифр, возможно с ведущими нулями.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если первая проба стоит в журнале раньше второй, иначе <code>False</code>. Если обозначения относятся к одной пробе, выведите <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>s9
+              <h3>Задача со звездочкой 3.1. Порядок в журнале</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пробы в журнале обозначают буквой и номером: <code>C</code> для контроля, <code>S</code> для образца, например <code>S12</code>. Букву пишут прописной или строчной, к номеру иногда добавляют ведущие нули: <code>s012</code> и <code>S12</code> обозначают одну пробу. В журнале сначала идут все контроли, затем все образцы, а пробы с одной буквой стоят по возрастанию номера: <code>C3</code>, <code>C12</code>, <code>S1</code>, <code>S9</code>, <code>S10</code>. Даны два обозначения. Определите, стоит ли первая проба в журнале раньше второй. Ветвления на этой странице еще не нужны.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой обозначение: буква <code>C</code> или <code>S</code> (прописная или строчная), за ней целое положительное число из 1–6 цифр, возможно с ведущими нулями.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если первая проба стоит в журнале раньше второй, иначе <code>False</code>. Если обозначения относятся к одной пробе, выведите <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">s9</span><br>S10</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После приведения к одному виду получаются ключи S000009 и S000010. Буквы совпадают, номер 9 меньше 10, поэтому s9 стоит в журнале раньше S10.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>s9
 S10</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>S007
+                      <tr><td><pre>S007
 c12</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_01_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Чтобы сравнить пробы по правилам журнала, из обозначения собирают ключ: буква в верхнем регистре и номер, дополненный нулями до шести цифр. В таком ключе обычное сравнение строк дает нужный порядок: C раньше S, а номера идут по возрастанию.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ключ сортировки</strong> — строка, по которой сравнивают пробы: буква и номер, выровненный по ширине.</li>
+                  <li><strong>Ведущие нули</strong> — нули перед числом, которые дополняют его до нужного числа цифр.</li>
+                  <li><strong>Формат :0>6</strong> — дополняет число нулями слева до шести цифр: 7 превращается в 000007.</li>
+                  <li><strong>Сравнение строк</strong> — проверка, какая строка идет раньше по кодам символов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба обозначения: <code>first = input()</code>, <code>second = input()</code>.</li>
+                  <li>Буква — это <code>first[0]</code> в верхнем регистре: <code>first[0].upper()</code>.</li>
+                  <li>Номер дополните нулями слева до шести цифр: <code>f"{int(first[1:]):0&gt;6}"</code>.</li>
+                  <li>Выведите результат сравнения ключей: <code>print(key1 &lt; key2)</code>; сверьтесь с примером: s9 и S10 дают True, а S007 и c12 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_01_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

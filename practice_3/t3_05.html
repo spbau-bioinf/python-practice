@@ -134,75 +134,215 @@ SyntaxError: expected ':'</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.5.1. Температура тела</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Температуру тела ниже 36 градусов считают пониженной, от 36 до 37 включительно нормальной, выше 37 повышенной. Дана температура. Выведите ее группу. Воспользуйтесь цепочкой <code>if</code>, <code>elif</code>, <code>else</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: вещественное число от 30 до 43.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно слово: <code>пониженная</code>, <code>нормальная</code> или <code>повышенная</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>38.2</pre></td><td><pre>повышенная</pre></td></tr>
-                <tr><td><pre>37</pre></td><td><pre>нормальная</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.5.1. Температура тела</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Температуру тела ниже 36 градусов считают пониженной, от 36 до 37 включительно нормальной, выше 37 повышенной. Дана температура. Выведите ее группу. Воспользуйтесь цепочкой <code>if</code>, <code>elif</code>, <code>else</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: вещественное число от 30 до 43.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно слово: <code>пониженная</code>, <code>нормальная</code> или <code>повышенная</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">38.2</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">повышенная</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">38.2 больше 37, поэтому первые два условия (ниже 36 и от 36 до 37) ложны и срабатывает ветка else — «повышенная». При температуре ровно 37 ответ был бы «нормальная».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>38.2</pre></td><td><pre>повышенная</pre></td></tr>
+                      <tr><td><pre>37</pre></td><td><pre>нормальная</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Температуру тела делят на три группы: пониженная ниже 36, нормальная от 36 до 37 включительно, повышенная выше 37. Цепочка if/elif/else проверяет границы по порядку и выполняет первый подходящий блок.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Пониженная температура</strong> — температура тела ниже 36 градусов.</li>
+                  <li><strong>Нормальная температура</strong> — от 36 до 37 градусов включительно.</li>
+                  <li><strong>Повышенная температура</strong> — температура тела выше 37 градусов.</li>
+                  <li><strong>if/elif/else</strong> — цепочка ветвлений: выполняются условия по порядку, работает первый истинный блок.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте температуру: <code>temperature = float(input())</code>.</li>
+                  <li>Первое условие — <code>temperature &lt; 36</code>, тогда группа пониженная.</li>
+                  <li>Второе условие — <code>elif temperature &lt;= 37</code>; до него доходят только значения 36 и больше, поэтому норма задается одним сравнением.</li>
+                  <li>Добавьте <code>else</code> для повышенной температуры и выведите группу; сверьтесь с примером: 38.2 дает повышенная, а 37 — нормальная.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.5.1. Результат ПЦР</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>ПЦР (<a href="t3_02.html">страница 02</a>) многократно копирует участок ДНК. В ПЦР в реальном времени прибор после каждого цикла копирования измеряет сигнал, который растет вместе с количеством ДНК. Результат оценивают по пороговому циклу Ct, номеру цикла копирования, на котором сигнал прибора превысил порог. Чем больше нужной ДНК в образце, тем раньше это происходит, поэтому малое Ct означает положительный результат: при Ct меньше 30 образец положительный, от 30 до 35 включительно сомнительный, при большем Ct отрицательный. Если сигнала не было вовсе, прибор записывает Ct, равный 0, и такой образец тоже отрицательный. Дано значение Ct. Выведите результат.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: вещественное число, 0 или от 10 до 45.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно слово: <code>положительный</code>, <code>сомнительный</code> или <code>отрицательный</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>24.7</pre></td><td><pre>положительный</pre></td></tr>
-                <tr><td><pre>0</pre></td><td><pre>отрицательный</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.5.1. Результат ПЦР</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В ПЦР в реальном времени прибор после каждого цикла копирования измеряет сигнал, который растет вместе с количеством ДНК. Результат оценивают по пороговому циклу Ct: при Ct меньше 30 образец положительный, от 30 до 35 включительно сомнительный, при большем Ct отрицательный. Если сигнала не было вовсе, прибор записывает Ct, равный 0, и такой образец тоже отрицательный. Дано значение Ct. Выведите результат.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: вещественное число, 0 или от 10 до 45.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно слово: <code>положительный</code>, <code>сомнительный</code> или <code>отрицательный</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">24.7</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">положительный</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ct 24.7 меньше 30, значит нужной ДНК в образце много и результат положительный — срабатывает первая ветка. Ct ровно 30 дал бы «сомнительный».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>24.7</pre></td><td><pre>положительный</pre></td></tr>
+                      <tr><td><pre>0</pre></td><td><pre>отрицательный</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Чем больше нужной ДНК в образце, тем раньше сигнал превышает порог, поэтому малое Ct означает положительный результат. Значение 0 — особый случай: сигнала не было, и образец отрицательный, хотя 0 меньше 30, поэтому проверку <code>Ct == 0</code> ставят первой.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>ПЦР</strong> — полимеразная цепная реакция: многократное копирование участка ДНК.</li>
+                  <li><strong>ПЦР в реальном времени</strong> — ПЦР, в которой прибор измеряет сигнал после каждого цикла.</li>
+                  <li><strong>Пороговый цикл Ct</strong> — номер цикла, на котором сигнал прибора превысил порог.</li>
+                  <li><strong>Сигнал прибора</strong> — измерение, которое растет вместе с количеством ДНК.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте значение Ct: <code>ct = float(input())</code>.</li>
+                  <li>Особый случай проверяют первым: <code>if ct == 0 or ct &gt; 35</code> — результат отрицательный.</li>
+                  <li>Второе условие — <code>elif ct &lt; 30</code>: положительный; третье — <code>else</code>: сомнительный.</li>
+                  <li>Выведите результат; сверьтесь с примером: 24.7 дает положительный, а 0 — отрицательный.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.5.1. Медиана трех повторов</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Измерение повторили три раза. Один повтор может оказаться выбросом, поэтому результатом считают медиану: значение, которое стоит посередине, если упорядочить три числа. Даны три измерения. Выведите их медиану.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Медиана не меньше одного из двух других чисел и не больше другого. Проверьте это по очереди для первого и второго числа; если ни одно не подошло, медиана третье.</p></details>
-          <h4>Входные данные</h4>
-          <p>Три строки, в каждой вещественное число от 0 до 1000. Числа могут совпадать.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: медиана в том виде, в каком ее печатает Python.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>4.2
+              <h3>Упражнение 3.5.1. Медиана трех повторов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Измерение повторили три раза. Один повтор может оказаться выбросом, поэтому результатом считают медиану: значение, которое стоит посередине, если упорядочить три числа. Даны три измерения. Выведите их медиану.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки, в каждой вещественное число от 0 до 1000. Числа могут совпадать.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: медиана в том виде, в каком ее печатает Python.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">4.2<br><span class="we-hl">9.8</span><br>4.5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4.5</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Упорядочим измерения: 4.2, 4.5, 9.8. Посередине стоит 4.5 — это медиана, выброс 9.8 на нее не влияет.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>4.2
 9.8
 4.5</pre></td><td><pre>4.5</pre></td></tr>
-                <tr><td><pre>7
+                      <tr><td><pre>7
 7
 2</pre></td><td><pre>7.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Медиана трех чисел — то, что окажется посередине после упорядочивания; один выброс на нее не влияет. Можно обойтись без сортировки: каждое число сравнивают с двумя другими и проверяют, лежит ли оно между ними.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Повтор</strong> — одно из нескольких измерений одного и того же.</li>
+                  <li><strong>Выброс</strong> — измерение, резко отличающееся от остальных.</li>
+                  <li><strong>Медиана</strong> — значение, которое стоит посередине упорядоченного ряда.</li>
+                  <li><strong>Упорядочивание</strong> — расположение чисел по возрастанию.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три измерения: <code>first = float(input())</code>, <code>second = float(input())</code>, <code>third = float(input())</code>.</li>
+                  <li>second стоит посередине, если <code>first &lt;= second</code> и <code>second &lt;= third</code>, или <code>third &lt;= second</code> и <code>second &lt;= first</code>.</li>
+                  <li>Так же проверьте first; если ни second, ни first не подошли, медиана — third.</li>
+                  <li>Выведите медиану; сверьтесь с примером: 4.2, 9.8 и 4.5 дают 4.5, а 7, 7 и 2 — 7.0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -289,77 +429,217 @@ SyntaxError: expected ':'</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.5.2. Качество нуклеотида</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Качество каждого нуклеотида в прочтении (участке ДНК, который секвенатор прочитал за один раз) оценивают числом Phred. При качестве от 30 оно высокое, от 20 до 29 приемлемое, ниже 20 низкое. Дано качество. Выведите его оценку. Расставьте условия так, чтобы узкое стояло раньше широкого.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: целое число от 0 до 60.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно слово: <code>высокое</code>, <code>приемлемое</code> или <code>низкое</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>34</pre></td><td><pre>высокое</pre></td></tr>
-                <tr><td><pre>20</pre></td><td><pre>приемлемое</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.5.2. Качество нуклеотида</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Качество каждого нуклеотида в прочтении оценивают числом Phred. При качестве от 30 оно высокое, от 20 до 29 приемлемое, ниже 20 низкое. Дано качество. Выведите его оценку. Расставьте условия так, чтобы узкое стояло раньше широкого.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: целое число от 0 до 60.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно слово: <code>высокое</code>, <code>приемлемое</code> или <code>низкое</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">34</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">высокое</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">34 не меньше 30, поэтому первое условие истинно и выводится «высокое». Условие от 20 до 29 проверялось бы только при меньшем качестве.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>34</pre></td><td><pre>высокое</pre></td></tr>
+                      <tr><td><pre>20</pre></td><td><pre>приемлемое</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Число Phred — оценка надежности прочтения буквы: чем оно выше, тем меньше вероятность ошибки. В цепочке if/elif первым ставят самое узкое условие quality >= 30; до второго доходят только значения меньше 30, поэтому там достаточно проверки quality >= 20.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Phred</strong> — число, которое оценивает надежность прочтения нуклеотида.</li>
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>Узкое и широкое условие</strong> — узкое отсекает меньший набор значений, поэтому его ставят раньше.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте качество: <code>quality = int(input())</code>.</li>
+                  <li>Самое узкое условие — <code>if quality &gt;= 30</code>: качество высокое.</li>
+                  <li>Второе — <code>elif quality &gt;= 20</code>: приемлемое; до него доходят только значения меньше 30.</li>
+                  <li>Добавьте <code>else</code> для низкого качества и выведите оценку; сверьтесь с примером: 34 дает высокое, а 20 — приемлемое.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.5.2. Нарушения при приемке пробы</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>При приемке пробы проверяют три правила: объем не меньше 10&nbsp;мкл, концентрация не меньше 5&nbsp;нг/мкл, отношение поглощения A260/A280 от 1,8 до 2,0 включительно (это отношение прибор измеряет само; по нему судят о чистоте ДНК). Даны объем, концентрация и отношение. Выведите, сколько правил нарушено.</p></div>
-          <h4>Входные данные</h4>
-          <p>Три строки, в каждой вещественное число от 0 до 1000: объем, концентрация, отношение A260/A280.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число от 0 до 3: число нарушенных правил.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>12
+              <h3>Упражнение 3.5.2. Нарушения при приемке пробы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>При приемке пробы проверяют три правила: объем не меньше 10 мкл, концентрация не меньше 5 нг/мкл, отношение поглощения A260/A280 от 1,8 до 2,0 включительно. Даны объем, концентрация и отношение. Выведите, сколько правил нарушено.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки, в каждой вещественное число от 0 до 1000: объем, концентрация, отношение A260/A280.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число от 0 до 3: число нарушенных правил.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">12<br>8.4<br>1.9</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">12 ≥ 10, 8.4 ≥ 5, а 1.9 попадает в интервал от 1.8 до 2.0: все три правила выполнены, нарушено 0 правил.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>12
 8.4
 1.9</pre></td><td><pre>0</pre></td></tr>
-                <tr><td><pre>6
+                      <tr><td><pre>6
 2.5
 2.3</pre></td><td><pre>3</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Отношение A260/A280 показывает чистоту ДНК: белки и соли сдвигают его из коридора 1,8–2,0. Правила независимы, поэтому каждое проверяют отдельным if, а счетчик нарушений увеличивают на единицу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Объем</strong> — количество жидкости в пробе, здесь в мкл.</li>
+                  <li><strong>Концентрация</strong> — количество ДНК в единице объема, здесь в нг/мкл.</li>
+                  <li><strong>Отношение A260/A280</strong> — отношение поглощения пробы на двух длинах волн; по нему судят о чистоте ДНК.</li>
+                  <li><strong>Счетчик</strong> — переменная, к которой прибавляют единицу за каждое нарушение.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте объем, концентрацию и отношение: <code>volume</code>, <code>concentration</code>, <code>ratio</code> через <code>float(input())</code>.</li>
+                  <li>Заведите счетчик: <code>errors = 0</code>.</li>
+                  <li>Три независимых условия: <code>volume &lt; 10</code>, <code>concentration &lt; 5</code>, <code>ratio &lt; 1.8 or ratio &gt; 2.0</code>; в каждом теле счетчик увеличивают на 1.</li>
+                  <li>Выведите счетчик; сверьтесь с примером: 12, 8.4 и 1.9 нарушают ноль правил, а 6, 2.5 и 2.3 — все три.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.5.2. Категория давления</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Артериальное давление записывают двумя числами: систолическим и диастолическим. Оптимальное: систолическое меньше 120 и диастолическое меньше 80. Нормальное: систолическое меньше 130 и диастолическое меньше 85. Высокое нормальное: систолическое меньше 140 и диастолическое меньше 90. В остальных случаях гипертензия. Даны два значения. Выведите категорию.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Категорию определяет худшее из двух чисел: давление 118 на 88 не оптимальное и не нормальное. Подумайте, с какой категории начать проверку, чтобы условия не пересекались.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки: систолическое давление, затем диастолическое, целые числа от 40 до 250.</p>
-          <h4>Выходные данные</h4>
-          <p>Категория: <code>оптимальное</code>, <code>нормальное</code>, <code>высокое нормальное</code> или <code>гипертензия</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>125
+              <h3>Упражнение 3.5.2. Категория давления</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Артериальное давление записывают двумя числами: систолическим и диастолическим. Оптимальное: систолическое меньше 120 и диастолическое меньше 80. Нормальное: систолическое меньше 130 и диастолическое меньше 85. Высокое нормальное: систолическое меньше 140 и диастолическое меньше 90. В остальных случаях гипертензия. Даны два значения. Выведите категорию.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки: систолическое давление, затем диастолическое, целые числа от 40 до 250.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Категория: <code>оптимальное</code>, <code>нормальное</code>, <code>высокое нормальное</code> или <code>гипертензия</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">125</span><br>78</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">нормальное</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">125 не меньше 120, поэтому «оптимальное» не подходит, но 125 меньше 130, а 78 меньше 85 — это «нормальное». Категорию определяет худшее из двух чисел.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>125
 78</pre></td><td><pre>нормальное</pre></td></tr>
-                <tr><td><pre>118
+                      <tr><td><pre>118
 88</pre></td><td><pre>высокое нормальное</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Категории давления вложены: оптимальное — частный случай нормального, а нормальное — высокого нормального. Поэтому цепочку if/elif строят от узкой категории к широкой, и категорию задает первое подходящее условие.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Систолическое давление</strong> — верхнее число в записи давления.</li>
+                  <li><strong>Диастолическое давление</strong> — нижнее число в записи давления.</li>
+                  <li><strong>Вложенные условия</strong> — каждая следующая категория включает предыдущую.</li>
+                  <li><strong>if/elif/else</strong> — цепочка ветвлений: работает первый истинный блок.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте давления: <code>sys_p = int(input())</code>, <code>dia_p = int(input())</code>.</li>
+                  <li>Оптимальное — <code>sys_p &lt; 120 and dia_p &lt; 80</code>.</li>
+                  <li>Дальше условия шире: <code>sys_p &lt; 130 and dia_p &lt; 85</code> и <code>sys_p &lt; 140 and dia_p &lt; 90</code>.</li>
+                  <li>Добавьте <code>else</code> для гипертензии и выведите категорию; сверьтесь с примером: 125 и 78 дают нормальное, а 118 и 88 — высокое нормальное.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -370,79 +650,222 @@ SyntaxError: expected ':'</pre></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.5. Транзиция или трансверсия</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Точечная замена меняет одну букву нуклеотида на другую. Пурины: A и G, пиримидины: C и T. Замену пурина пурином или пиримидина пиримидином называют транзицией, а замену пурина пиримидином или пиримидина пурином трансверсией. Даны исходная и новая буква. Выведите тип замены. Если буквы одинаковы, замены нет.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой одна прописная буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка: <code>нет замены</code>, <code>транзиция</code> или <code>трансверсия</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>C
+              <h3>Задача со звездочкой 3.5. Транзиция или трансверсия</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Точечная замена меняет одну букву нуклеотида на другую. Пурины: A и G, пиримидины: C и T. Замену пурина пурином или пиримидина пиримидином называют транзицией, а замену пурина пиримидином или пиримидина пурином трансверсией. Даны исходная и новая буква. Выведите тип замены. Если буквы одинаковы, замены нет.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой одна прописная буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: <code>нет замены</code>, <code>транзиция</code> или <code>трансверсия</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">C</span><br><span class="we-hl">T</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">транзиция</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">C и T оба пиримидины, а буквы разные: пиримидин заменен пиримидином, это транзиция. Замена G на G дала бы «нет замены».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>C
 T</pre></td><td><pre>транзиция</pre></td></tr>
-                <tr><td><pre>G
+                      <tr><td><pre>G
 G</pre></td><td><pre>нет замены</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пурины A и G имеют двухкольцевую структуру, пиримидины C и T — однокольцевую. Признак пурина — сравнение буквы с A и G, а тип замены определяет совпадение этих признаков у старой и новой буквы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Точечная замена</strong> — замена одного нуклеотида другим.</li>
+                  <li><strong>Транзиция</strong> — замена пурина пурином или пиримидина пиримидином.</li>
+                  <li><strong>Трансверсия</strong> — замена пурина пиримидином или пиримидина пурином.</li>
+                  <li><strong>Пурин</strong> — A и G.</li>
+                  <li><strong>Пиримидин</strong> — C и T.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе буквы: <code>old = input()</code>, <code>new = input()</code>.</li>
+                  <li>Признак пурина: <code>old_purine = old == "A" or old == "G"</code>; так же для новой буквы.</li>
+                  <li>Если буквы одинаковы, замены нет; иначе при <code>old_purine == new_purine</code> — транзиция.</li>
+                  <li>Оставшийся случай — трансверсия; выведите тип; сверьтесь с примером: C и T дают транзиция, а G и G — нет замены.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.5. Консенсус трех прочтений</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор прочитал за один раз. Одну позицию генома покрывают три прочтения, и каждое дает в ней свою букву. Консенсусом позиции называют букву, которую дали не меньше двух прочтений из трех. Если все три буквы разные, консенсуса нет, и в позицию ставят N. Даны три буквы. Выведите консенсус.</p></div>
-          <h4>Входные данные</h4>
-          <p>Три строки, в каждой одна прописная буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна буква: консенсус или N.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>G
+              <h3>Задача со звездочкой 3.5. Консенсус трех прочтений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Одну позицию генома покрывают три прочтения, и каждое дает в ней свою букву. Консенсусом позиции называют букву, которую дали не меньше двух прочтений из трех. Если все три буквы разные, консенсуса нет, и в позицию ставят N. Даны три буквы. Выведите консенсус.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки, в каждой одна прописная буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна буква: консенсус или N.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">G</span><br>A<br><span class="we-hl">G</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква G встретилась в двух прочтениях из трех, а для консенсуса достаточно двух. Три разные буквы дали бы N.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>G
 A
 G</pre></td><td><pre>G</pre></td></tr>
-                <tr><td><pre>C
+                      <tr><td><pre>C
 T
 A</pre></td><td><pre>N</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Чтобы буква стала консенсусом, она должна встретиться хотя бы дважды. Достаточно проверить совпадения: если first_base совпадает с second_base или с third_base, консенсус — first_base; иначе проверяют second_base и third_base; третий случай — все буквы разные.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>Покрытие</strong> — число прочтений, которые накрывают одну позицию.</li>
+                  <li><strong>Консенсус</strong> — буква, которую дали не меньше двух прочтений из трех.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три буквы: <code>first_base = input()</code>, <code>second_base = input()</code>, <code>third_base = input()</code>.</li>
+                  <li>Если <code>first_base == second_base</code> или <code>first_base == third_base</code>, консенсус — <code>first_base</code>.</li>
+                  <li>Иначе проверьте <code>second_base == third_base</code>: тогда консенсус — <code>second_base</code>.</li>
+                  <li>В оставшемся случае выведите <code>N</code>; сверьтесь с примером: G, A и G дают G, а C, T и A — N.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.5. Вид мутации</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Сравнивают последовательность гена до мутации и после нее. Будем считать, что мутация одна и она одного из трех видов: замена (буквы меняются, длина та же), вставка (в ген добавлены нуклеотиды) или делеция (часть нуклеотидов удалена). Ген читают подряд тройками нуклеотидов, кодонами. Если число вставленных или удаленных нуклеотидов не делится на 3, все тройки после места мутации сдвигаются: это сдвиг рамки считывания. Если последовательности совпадают, мутации нет. Даны последовательности до и после мутации. Выведите вид мутации, а для вставки и делеции еще и то, сдвинута ли рамка.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Вид мутации и рамку удобно определить двумя отдельными инструкциями: сначала цепочкой выбрать вид, затем дописать к нему слова о рамке.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки: последовательность до мутации и после нее, из прописных букв A, C, G, T, длиной от 1 до 100 каждая.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка: <code>без изменений</code>, <code>замена</code>, <code>вставка в рамке</code>, <code>вставка со сдвигом рамки</code>, <code>делеция в рамке</code> или <code>делеция со сдвигом рамки</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGGCCAAA
+              <h3>Задача со звездочкой 3.5. Вид мутации</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Сравнивают последовательность гена до мутации и после нее. Будем считать, что мутация одна и она одного из трех видов: замена (буквы меняются, длина та же), вставка (в ген добавлены нуклеотиды) или делеция (часть нуклеотидов удалена). Ген читают подряд тройками нуклеотидов, кодонами. Если число вставленных или удаленных нуклеотидов не делится на 3, все тройки после места мутации сдвигаются. Если последовательности совпадают, мутации нет. Даны последовательности до и после мутации. Выведите вид мутации, а для вставки и делеции еще и то, сдвинута ли рамка.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки: последовательность до мутации и после нее, из прописных букв A, C, G, T, длиной от 1 до 100 каждая.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: <code>без изменений</code>, <code>замена</code>, <code>вставка в рамке</code>, <code>вставка со сдвигом рамки</code>, <code>делеция в рамке</code> или <code>делеция со сдвигом рамки</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATGGCCAAA<br>ATGGC<span class="we-hl">TTT</span>AAA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">вставка в рамке</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Последовательность после мутации длиннее на 3 нуклеотида: это вставка. Три делится на 3, поэтому рамка не сдвигается — «вставка в рамке».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGGCCAAA
 ATGGCCTTTAAA</pre></td><td><pre>вставка в рамке</pre></td></tr>
-                <tr><td><pre>ATGGCCAAA
+                      <tr><td><pre>ATGGCCAAA
 ATGCCAAA</pre></td><td><pre>делеция со сдвигом рамки</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_05_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Вид мутации определяет разность длин: нуль — замена, плюс — вставка, минус — делеция. Кратность разности трем показывает, сохранилась ли рамка считывания: тройки после места мутации не смещаются.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Замена</strong> — буквы меняются, а длина последовательности та же.</li>
+                  <li><strong>Вставка</strong> — в ген добавлены нуклеотиды.</li>
+                  <li><strong>Делеция</strong> — часть нуклеотидов удалена.</li>
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Рамка считывания</strong> — разбиение последовательности на кодоны с первого нуклеотида.</li>
+                  <li><strong>Сдвиг рамки</strong> — смещение разбиения на кодоны после вставки или делеции, не кратной трем.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе последовательности: <code>before = input()</code>, <code>after = input()</code>.</li>
+                  <li>Разность длин: <code>diff = len(after) - len(before)</code>.</li>
+                  <li>Вид: <code>if before == after</code> — без изменений, <code>elif diff == 0</code> — замена, <code>elif diff &gt; 0</code> — вставка, иначе делеция.</li>
+                  <li>Допишите к виду хвост: при <code>diff % 3 != 0</code> — « со сдвигом рамки», иначе при <code>diff != 0</code> — « в рамке»; выведите строку и сверьтесь с примером: ATGGCCTTTAAA длиннее на три буквы — вставка в рамке, а ATGCCAAA короче на одну — делеция со сдвигом рамки.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_05_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

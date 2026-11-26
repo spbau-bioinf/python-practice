@@ -182,79 +182,218 @@ False</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.7.1. Масса в миллиграммах</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана масса пробы в граммах. Если поле пустое, массу не измеряли. Переведите массу в миллиграммы. Масса 0 означает пустую пробирку, и это тоже измерение. Если поле пустое, сохраните в переменной массы <code>None</code>, а затем проверьте ее через <code>is None</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: число от 0 до 100, кратное 0,25 (например, <code>3.5</code> или <code>0.25</code>), или пустая строка.</p>
-          <h4>Выходные данные</h4>
-          <p>Масса в миллиграммах в том виде, в каком ее печатает Python, или слова <code>не измерено</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>0.25</pre></td><td><pre>250.0</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>не измерено</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_07_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.7.1. Масса в миллиграммах</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана масса пробы в граммах. Если поле пустое, массу не измеряли. Переведите массу в миллиграммы. Масса 0 означает пустую пробирку, и это тоже измерение. Если поле пустое, сохраните в переменной массы <code>None</code>, а затем проверьте ее через <code>is None</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: число от 0 до 100, кратное 0,25 (например, <code>3.5</code> или <code>0.25</code>), или пустая строка.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Масса в миллиграммах в том виде, в каком ее печатает Python, или слова <code>не измерено</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">0.25</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">250.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">0.25 г это 0.25 · 1000 = 250.0 мг. Масса 0 дала бы 0.0 как настоящее измерение, а пустое поле — «не измерено».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.25</pre></td><td><pre>250.0</pre></td></tr>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>не измерено</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>None — особое значение «данных нет»; оно не равно ни одному числу, поэтому проверяют его через <code>is None</code>. Масса 0 — настоящее измерение: пустое поле и ноль различаются.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>is None</strong> — проверка, что в переменной именно None.</li>
+                  <li><strong>Пустое поле</strong> — строка без символов: значение не вводили.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте поле: <code>text = input()</code>.</li>
+                  <li>Заведите переменную массы: <code>mass = None</code>; если поле непустое, замените ее числом: <code>if text: mass = float(text)</code>.</li>
+                  <li>Проверьте результат: <code>if mass is None</code> — масса не измерена.</li>
+                  <li>Иначе выведите массу в миллиграммах: <code>print(mass * 1000)</code>; сверьтесь с примером: 0.25 дает 250.0, а пустое поле — не измерено.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_07_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.7.1. Меньшее из двух измерений</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрацию измеряли двумя приборами, но любой из них мог не дать результата: тогда его поле пустое. Выведите меньшее из полученных значений. Если результат дал только один прибор, выведите его значение. Если ни один, выведите <code>нет данных</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число в том виде, в каком его печатает Python, или слова <code>нет данных</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>4.2
+              <h3>Упражнение 3.7.1. Меньшее из двух измерений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Концентрацию измеряли двумя приборами, но любой из них мог не дать результата: тогда его поле пустое. Выведите меньшее из полученных значений. Если результат дал только один прибор, выведите его значение. Если ни один, выведите <code>нет данных</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число в том виде, в каком его печатает Python, или слова <code>нет данных</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">4.2<br><span class="we-hl">3.9</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3.9</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Оба прибора дали результат, меньшее из 4.2 и 3.9 равно 3.9. Если бы пустым было первое поле, ответом стало бы значение второго прибора.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>4.2
 3.9</pre></td><td><pre>3.9</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 5.1</pre></td><td><pre>5.1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_07_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Два поля читают отдельно и превращают в числа только заполненные, остальные остаются None. Затем перебирают случаи: оба пусты, пусто одно, оба есть — и только в последнем сравнивают значения.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>is None</strong> — проверка, что в переменной именно None.</li>
+                  <li><strong>Пустое поле</strong> — строка без символов: значение не вводили.</li>
+                  <li><strong>Цепочка elif</strong> — проверяет условия по порядку, пока одно не окажется истинным.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба поля: <code>text_a = input()</code>, <code>text_b = input()</code>.</li>
+                  <li>Заведите <code>concentration_a = None</code> и <code>concentration_b = None</code>; заполненные поля замените числами: если <code>text_a</code> непустое, присвойте <code>concentration_a = float(text_a)</code>.</li>
+                  <li>Пустые случаи разберите первыми: оба None — нет данных, один None — результат берется из другого.</li>
+                  <li>Если оба числа есть, выберите меньшее и выведите; сверьтесь с примером: 4.2 и 3.9 дают 3.9, а пустое поле и 5.1 — 5.1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_07_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.7.1. Первый цикл выше порога</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Флуоресценцию измерили в циклах 0, 1 и 2, но некоторые измерения могли не записаться: их поля пустые. Найдите номер первого цикла, в котором измерение есть и оно строго больше порога. Если такого цикла нет, выведите <code>нет сигнала</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Незаписанное измерение удобно хранить как <code>None</code>, но сравнивать <code>None</code> с числом нельзя: сначала проверьте, что значение есть (страница 03). Найденный номер цикла тоже можно хранить в переменной, начав с <code>None</code>. Подумайте, чем опасна проверка <code>if not cycle:</code>.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке порог, в следующих трех строках измерения циклов 0, 1 и 2. Порог и измерения вещественные, от 0 до 100; поле измерения может быть пустым.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер цикла: 0, 1 или 2, или слова <code>нет сигнала</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>10
+              <h3>Упражнение 3.7.1. Первый цикл выше порога</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Флуоресценцию измерили в циклах 0, 1 и 2, но некоторые измерения могли не записаться: их поля пустые. Найдите номер первого цикла, в котором измерение есть и оно строго больше порога. Если такого цикла нет, выведите <code>нет сигнала</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке порог, в следующих трех строках измерения циклов 0, 1 и 2. Порог и измерения вещественные, от 0 до 100; поле измерения может быть пустым.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер цикла: 0, 1 или 2, или слова <code>нет сигнала</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">10<br>3.5<br><span class="we-hl">12.1</span><br>15</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Цикл 0 дал 3.5 — не выше порога; цикл 1 дал 12.1 > 10 — это первый подходящий, поэтому ответ 1. Цикл 2 со значением 15 уже не проверяется.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>10
 3.5
 12.1
 15</pre></td><td><pre>1</pre></td></tr>
-                <tr><td><pre>10
+                      <tr><td><pre>10
 11
 2
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_07_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Измерения трех циклов хранят отдельно, пустые поля остаются None. Номер первого подходящего цикла ищут цепочкой elif: проверка <code>value0 is not None and value0 &gt; limit</code> отсекает и пустое поле, и значение ниже порога.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>is not None</strong> — проверка, что значение записано.</li>
+                  <li><strong>Строго больше</strong> — сравнение &gt; не считает равное значение выше порога.</li>
+                  <li><strong>Цикл</strong> — один шаг копирования ДНК в ПЦР, после которого прибор измеряет сигнал.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте порог и три поля: <code>limit = float(input())</code>, затем <code>text0</code>, <code>text1</code>, <code>text2</code> через <code>input()</code>.</li>
+                  <li>Заведите <code>value0 = None</code>, <code>value1 = None</code>, <code>value2 = None</code> и замените заполненные поля числами.</li>
+                  <li>Ищите первый подходящий цикл цепочкой: <code>if value0 is not None and value0 &gt; limit</code> — 0, <code>elif value1 ...</code> — 1, <code>elif value2 ...</code> — 2.</li>
+                  <li>Если номер остался None, выведите <code>нет сигнала</code>, иначе номер; сверьтесь с примером: при пороге 10 измерения 3.5, 12.1 и 15 дают 1, а 11, 2 и пустое поле — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_07_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -265,86 +404,225 @@ False</pre></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.7. Последнее взвешивание</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пробу взвесили три раза подряд, но некоторые взвешивания не записали: их поля пустые. Результатом считают последнее записанное взвешивание. Масса 0 тоже результат: пробирка оказалась пустой. Даны три поля. Выведите последнюю записанную массу или слова <code>нет данных</code>. Храните результат в переменной, которая сначала равна <code>None</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Три строки, в каждой число от 0 до 100 или пустая строка.</p>
-          <h4>Выходные данные</h4>
-          <p>Масса в том виде, в каком ее печатает Python после <code>float()</code>, или слова <code>нет данных</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2.5
+              <h3>Задача со звездочкой 3.7. Последнее взвешивание</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пробу взвесили три раза подряд, но некоторые взвешивания не записали: их поля пустые. Результатом считают последнее записанное взвешивание. Масса 0 тоже результат: пробирка оказалась пустой. Даны три поля. Выведите последнюю записанную массу или слова <code>нет данных</code>. Храните результат в переменной, которая сначала равна <code>None</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки, в каждой число от 0 до 100 или пустая строка.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Масса в том виде, в каком ее печатает Python после <code>float()</code>, или слова <code>нет данных</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2.5<br>2.25<br>(пустая строка)</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2.25</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Записаны два взвешивания, последнее из них 2.25. Пустая третья строка ничего не меняет: ответ 2.25.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2.5
 2.25
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>2.25</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>нет данных</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_07_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Результат хранят в переменной, которая начинается с None. Каждое заполненное поле перезаписывает ее, поэтому в конце в ней остается последнее записанное взвешивание, а None означает, что записей не было.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>is None</strong> — проверка, что записей не было.</li>
+                  <li><strong>Перезапись переменной</strong> — новое значение заменяет старое.</li>
+                  <li><strong>Последнее значение</strong> — то, что осталось в переменной после всех перезаписей.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три поля: <code>value1 = input()</code>, <code>value2 = input()</code>, <code>value3 = input()</code>.</li>
+                  <li>Заведите <code>last = None</code>.</li>
+                  <li>Каждое заполненное поле перезаписывает результат: <code>if value1: last = float(value1)</code> и так далее для value2 и value3.</li>
+                  <li>Если <code>last is None</code>, выведите <code>нет данных</code>, иначе саму массу; сверьтесь с примером: 2.5, 2.25 и пустое поле дают 2.25, а три пустых поля — нет данных.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_07_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.7. Наименьшее из трех измерений</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрацию измеряли тремя приборами, и любой из них мог не дать результата: тогда его поле пустое. Выведите наименьшее из полученных значений. Если ни один прибор не дал результата, выведите <code>нет данных</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Держите наименьшее из просмотренных значений в переменной, которая сначала равна <code>None</code>. Новое значение сравнивайте с ней, только если оба значения есть (<a href="t3_03.html">страница 03</a>).</p></details>
-          <h4>Входные данные</h4>
-          <p>Три строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число в том виде, в каком его печатает Python после <code>float()</code>, или слова <code>нет данных</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>4.8
+              <h3>Задача со звездочкой 3.7. Наименьшее из трех измерений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Концентрацию измеряли тремя приборами, и любой из них мог не дать результата: тогда его поле пустое. Выведите наименьшее из полученных значений. Если ни один прибор не дал результата, выведите <code>нет данных</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число в том виде, в каком его печатает Python после <code>float()</code>, или слова <code>нет данных</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">4.8<br>(пустая строка)<br>3.9</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3.9</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Второй прибор не дал результата, поэтому сравниваются 4.8 и 3.9. Наименьшее — 3.9.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>4.8
 <span class="io-empty">(пустая строка)</span>
 3.9</pre></td><td><pre>3.9</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>нет данных</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_07_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Переменную минимума начинают с None: первое заполненное поле ее задает, а каждое следующее сравнивают с текущим значением и заменяют, только если оно меньше. None в конце означает, что ни одного измерения не было.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>is None</strong> — проверка, что значение еще не задано.</li>
+                  <li><strong>Минимум</strong> — наименьшее из всех записанных значений.</li>
+                  <li><strong>Условие замены</strong> — новое значение меньше текущего минимума.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три поля: <code>value1 = input()</code>, <code>value2 = input()</code>, <code>value3 = input()</code>.</li>
+                  <li>Заведите <code>low = None</code>; первое заполненное поле задает минимум: <code>if value1: low = float(value1)</code>.</li>
+                  <li>Заменяйте минимум, только когда поле заполнено и меньше текущего: проверьте <code>value2</code>, а затем <code>low is None</code> или <code>float(value2) &lt; low</code>; при истине присвойте <code>low = float(value2)</code>.</li>
+                  <li>Выведите минимум или <code>нет данных</code>; сверьтесь с примером: 4.8, пустое поле и 3.9 дают 3.9, а три пустых поля — нет данных.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_07_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.7. Скачок сигнала</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Флуоресценцию пробы измерили в циклах 0, 1 и 2, но некоторые измерения могли не записаться: их поля пустые. Скачок&nbsp;— рост сигнала больше чем на <code>d</code> по сравнению с предыдущим записанным измерением. Если измерение цикла 1 не записано, сигнал цикла 2 сравнивают с циклом 0; если раньше цикла нет ни одного записанного измерения, скачка в нем нет. Найдите номер первого цикла со скачком. Если скачка нет, выведите <code>нет скачка</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Храните последнее записанное значение в переменной, которая сначала равна <code>None</code>, и обновляйте ее после проверки каждого цикла. Найденный цикл тоже удобно хранить так.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке <code>d</code>, в следующих трех строках измерения циклов 0, 1 и 2. Все числа вещественные, от 0 до 100; поле измерения может быть пустым.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер цикла, 1 или 2, или слова <code>нет скачка</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>0.5
+              <h3>Задача со звездочкой 3.7. Скачок сигнала</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Флуоресценцию пробы измерили в циклах 0, 1 и 2, но некоторые измерения могли не записаться: их поля пустые. Скачок&nbsp;— рост сигнала больше чем на <code>difference</code> по сравнению с предыдущим записанным измерением. Если измерение цикла 1 не записано, сигнал цикла 2 сравнивают с циклом 0; если раньше цикла нет ни одного записанного измерения, скачка в нем нет. Найдите номер первого цикла со скачком. Если скачка нет, выведите <code>нет скачка</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке <code>difference</code>, в следующих трех строках измерения циклов 0, 1 и 2. Все числа вещественные, от 0 до 100; поле измерения может быть пустым.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер цикла, 1 или 2, или слова <code>нет скачка</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.5<br>1.2<br><span class="we-hl">1.9</span><br>2.0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Цикл 0 первый записанный, сравнивать его не с чем. Цикл 1: 1.9 − 1.2 = 0.7, это больше d = 0.5 — скачок, ответ 1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.5
 1.2
 1.9
 2.0</pre></td><td><pre>1</pre></td></tr>
-                <tr><td><pre>0.5
+                      <tr><td><pre>0.5
 0.8
 <span class="io-empty">(пустая строка)</span>
 1.6</pre></td><td><pre>2</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_07_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Предыдущее записанное измерение хранят в переменной prev, которая начинается с None. Скачок — рост больше чем на difference относительно prev. После проверки цикла 1 prev обновляют, поэтому цикл 2 сравнивается с ближайшим записанным измерением.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>None</strong> — особое значение, которое означает «данных нет».</li>
+                  <li><strong>Скачок</strong> — рост сигнала больше чем на difference по сравнению с предыдущим записанным измерением.</li>
+                  <li><strong>Предыдущее записанное измерение</strong> — последнее заполненное поле перед текущим циклом.</li>
+                  <li><strong>Флуоресценция</strong> — свечение пробы, по которому прибор следит за ходом ПЦР.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте порог difference и три поля: <code>difference = float(input())</code>, затем <code>value0</code>, <code>value1</code>, <code>value2</code> через <code>input()</code>.</li>
+                  <li>Заведите <code>previous = None</code> и <code>jump = None</code>; заполненный цикл 0 задает prev: <code>if value0: previous = float(value0)</code>.</li>
+                  <li>Скачок в цикле 1: если <code>value1</code> заполнено, <code>previous</code> не <code>None</code> и разность <code>float(value1) - previous</code> больше <code>difference</code>, присвойте <code>jump = 1</code>; затем перезапишите prev, если value1 заполнено.</li>
+                  <li>Скачок в цикле 2 ищите только при <code>jump is None</code>; выведите номер или <code>нет скачка</code>; сверьтесь с примером: 1.2, 1.9 и 2.0 при difference = 0.5 дают скачок в цикле 1, а 0.8, пустое поле и 1.6 — в цикле 2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_07_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

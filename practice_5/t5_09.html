@@ -177,75 +177,218 @@ T [1, 5, 0, 0, 0, 1, 1, 6]
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.9.1. Строка профиля</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите строку профиля для заданной буквы: сколько раз эта буква стоит в каждом столбце выравнивания, по порядку столбцов. Столбцы дает <code>zip(*seqs)</code>, считает метод <code>count()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке выравнивание: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T. Во второй строке буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p>Числа через пробел одной строкой, по одному на столбец.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCA ACGCT ATGGA
+              <h3>Упражнение 5.9.1. Строка профиля</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите строку профиля для заданной буквы: сколько раз эта буква стоит в каждом столбце выравнивания, по порядку столбцов.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке выравнивание: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T. Во второй строке буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Числа через пробел одной строкой, по одному на столбец.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AT<span class="we-hl">G</span>CA AC<span class="we-hl">G</span>CT AT<span class="we-hl">GG</span>A<br>G</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">0 0 3 1 0</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква G стоит в третьем столбце у всех трех последовательностей, а в четвертом — только у ATGGA; остальные столбцы дают нули.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCA ACGCT ATGGA
 G</pre></td><td><pre>0 0 3 1 0</pre></td></tr>
-                <tr><td><pre>AAAA CCCC
+                      <tr><td><pre>AAAA CCCC
 T</pre></td><td><pre>0 0 0 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_09_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>zip(*seqs) разворачивает выравнивание по столбцам: каждый элемент — буквы одного столбца. Метод col.count(letter) считает заданную букву в столбце, а включение [str(...) for col in zip(*seqs)] переводит числа в строки по порядку столбцов.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Выравнивание</strong> — несколько последовательностей одной длины, записанных друг под другом.</li>
+                  <li><strong>Столбец</strong> — буквы одной позиции всех последовательностей.</li>
+                  <li><strong>Строка профиля</strong> — числа одной буквы по всем столбцам.</li>
+                  <li><strong>Функция zip()</strong> — с распаковкой *seqs собирает буквы одного столбца.</li>
+                  <li><strong>Метод count()</strong> — считает, сколько раз буква встречается в строке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте выравнивание и букву: <code>seqs = input().split()</code>, <code>letter = input()</code>.</li>
+                  <li>Перебирайте столбцы: <code>zip(*seqs)</code> — распаковка звездочкой передает все строки сразу.</li>
+                  <li>Считайте букву в каждом столбце: <code>col.count(letter)</code>; число сразу переводите в строку функцией str().</li>
+                  <li>Напечатайте <code>" ".join(row)</code>; сверьтесь с примером: ATGCA ACGCT ATGGA и буква G дают 0 0 3 1 0, а AAAA CCCC и T — 0 0 0 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_09_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.9.1. Расстояния до консенсуса</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте консенсус выравнивания: в каждом столбце самая частая буква; при ничьей берется та, что раньше в порядке A, C, G, T. Затем для каждой последовательности посчитайте расстояние Хэмминга до консенсуса: число позиций, где их буквы различаются (<a href="../practice_4/t4_07.html">страница 07 практики 4</a>). Выведите консенсус и расстояния.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: выравнивание, от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке консенсус, во второй расстояния через пробел в порядке последовательностей.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGT AAGT CCGA</pre></td><td><pre>ACGT
+              <h3>Упражнение 5.9.1. Расстояния до консенсуса</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Постройте консенсус выравнивания: в каждом столбце самая частая буква; при ничьей берется та, что раньше в порядке A, C, G, T. Затем для каждой последовательности посчитайте расстояние Хэмминга до консенсуса: число позиций, где их буквы различаются. Выведите консенсус и расстояния.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: выравнивание, от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке консенсус, во второй расстояния через пробел в порядке последовательностей.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT AAGT CCGA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACGT<br>0 1 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Консенсус — ACGT: в столбцах чаще всего стоят A, C, G и T. Расстояния: 0 у ACGT, 1 у AAGT (вторая буква) и 2 у CCGA (первая и последняя буквы).</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGT AAGT CCGA</pre></td><td><pre>ACGT
 0 1 2</pre></td></tr>
-                <tr><td><pre>GATTACA</pre></td><td><pre>GATTACA
+                      <tr><td><pre>GATTACA</pre></td><td><pre>GATTACA
 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_09_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Консенсус строят по столбцам: max("ACGT", key=col.count) выбирает букву с наибольшим числом вхождений, а при ничьей — первую в строке "ACGT", потому что max оставляет первый из равных. Расстояние до консенсуса считают включением по zip: пара букв различается — единица, сумма таких единиц и есть расстояние.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Консенсус</strong> — буква на каждой позиции: самая частая, при ничьей первая по порядку A, C, G, T.</li>
+                  <li><strong>Ключ key</strong> — key=col.count сравнивает буквы по числу вхождений.</li>
+                  <li><strong>Функция max()</strong> — при равных ключах возвращает первый элемент.</li>
+                  <li><strong>Расстояние Хэмминга</strong> — число позиций, где буквы различаются.</li>
+                  <li><strong>Функция zip()</strong> — идет по двум строкам одновременно, выдавая пары букв.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте выравнивание: <code>seqs = input().split()</code>.</li>
+                  <li>Для каждого столбца берите самую частую букву: <code>max("ACGT", key=col.count)</code> — при ничьей max оставит первую.</li>
+                  <li>Соберите консенсус из букв в порядке столбцов и напечатайте его первой строкой.</li>
+                  <li>Для каждой последовательности посчитайте расстояние включением по <code>zip(sequence, cons)</code> с условием <code>base != consensus_base</code>; напечатайте числа через пробел; сверьтесь с примером: ACGT AAGT CCGA дают консенсус ACGT и расстояния 0 1 2, а одна GATTACA — GATTACA и 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_09_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.9.1. Консенсус с неоднозначностью</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В выравнивании бывают пропуски: знак <code>-</code> стоит там, где у последовательности нет буквы. Пропуск не буква и в подсчете не участвует. Постройте консенсус по правилам: в каждом столбце считаются только буквы A, C, G, T; если букв в столбце нет вовсе, в консенсус ставится <code>-</code>; если наибольшее число набирают две буквы или больше, ставится <code>N</code>; иначе ставится самая частая буква. Буква N, как на странице 02, значит «буква не определена»: здесь потому, что в столбце нет одной самой частой буквы.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Для каждого столбца постройте список из четырех чисел. Сколько раз в этом списке встречается его наибольшее значение, скажет метод списка <code>count()</code>.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: выравнивание, от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, знаки A, C, G, T и <code>-</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Консенсус одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AC-T AG-T CG-A</pre></td><td><pre>AG-T</pre></td></tr>
-                <tr><td><pre>AC GT</pre></td><td><pre>NN</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_09_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 5.9.1. Консенсус с неоднозначностью</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В выравнивании бывают пропуски: знак <code>-</code> стоит там, где у последовательности нет буквы. Пропуск не буква и в подсчете не участвует. Постройте консенсус по правилам: в каждом столбце считаются только буквы A, C, G, T; если букв в столбце нет вовсе, в консенсус ставится <code>-</code>; если наибольшее число набирают две буквы или больше, ставится <code>N</code>; иначе ставится самая частая буква. Буква N значит «буква не определена»: в таком столбце нет одной самой частой буквы.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: выравнивание, от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, знаки A, C, G, T и <code>-</code>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Консенсус одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AC<span class="we-hl">-</span>T AG<span class="we-hl">-</span>T CG<span class="we-hl">-</span>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AG<span class="we-hl">-</span>T</code>
+                    </div>
+                  </div>
+                  <p class="we-note">В третьем столбце одни пропуски, поэтому в консенсус идет -; в остальных столбцах чаще всего стоят A, G и T.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AC-T AG-T CG-A</pre></td><td><pre>AG-T</pre></td></tr>
+                      <tr><td><pre>AC GT</pre></td><td><pre>NN</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Для каждого столбца считают [col.count(base) for base in "ACGT"]: пропуски - в счет не попадают. Если максимум равен 0, в консенсус идет -, если максимум набрали несколько букв (counts.count(best) > 1) — N, иначе буква по индексу через counts.index(best) в строке "ACGT".</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Пропуск</strong> — знак -: у последовательности в этой позиции нет буквы.</li>
+                  <li><strong>Неоднозначность</strong> — две буквы или больше набрали поровну — в консенсус ставится N.</li>
+                  <li><strong>Буква N</strong> — буква не определена.</li>
+                  <li><strong>Метод index()</strong> — возвращает номер первого вхождения в строке.</li>
+                  <li><strong>Метод count()</strong> — считает вхождения буквы в строке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте выравнивание: <code>seqs = input().split()</code>.</li>
+                  <li>Для каждого столбца посчитайте буквы: соберите в <code>counts</code> числа <code>col.count(base)</code> для каждой буквы из <code>"ACGT"</code> — пропуски не участвуют.</li>
+                  <li>Найдите максимум <code>best = max(counts)</code>: при 0 ставьте -, при <code>counts.count(best) &gt; 1</code> — N.</li>
+                  <li>Иначе возьмите букву <code>"ACGT"[counts.index(best)]</code>; соберите консенсус и напечатайте; сверьтесь с примером: AC-T AG-T CG-A дают AG-T, а AC GT — NN.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_09_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -256,65 +399,186 @@ T</pre></td><td><pre>0 0 0 0</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.9. Самый неуверенный столбец</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Чем меньше раз встречается самая частая буква столбца, тем меньше консенсус уверен в этой позиции. Найдите столбец, в котором самая частая буква встречается меньше всего раз, и выведите его номер (с 1) и это число. Если таких столбцов несколько, выберите первый.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: выравнивание, от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер столбца и число через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GTACA GCTCA GTTGA</pre></td><td><pre>2 2</pre></td></tr>
-                <tr><td><pre>AAA AAA</pre></td><td><pre>1 2</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_09_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.9. Самый неуверенный столбец</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Чем меньше раз встречается самая частая буква столбца, тем меньше консенсус уверен в этой позиции. Найдите столбец, в котором самая частая буква встречается меньше всего раз, и выведите его номер (с 1) и это число. Если таких столбцов несколько, выберите первый.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: выравнивание, от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер столбца и число через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<span class="we-hl">T</span>ACA G<span class="we-hl">C</span>TCA G<span class="we-hl">T</span>TGA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">2 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Самая частая буква встречается по 3 раза в первом и пятом столбцах и по 2 раза — во втором, третьем и четвертом; первый столбец с двумя — второй, поэтому ответ 2 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GTACA GCTCA GTTGA</pre></td><td><pre>2 2</pre></td></tr>
+                      <tr><td><pre>AAA AAA</pre></td><td><pre>1 2</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Для каждого столбца берут top — число самой частой буквы через max([col.count(base) for base in "ACGT"]). Лучший столбец заменяют строгим <, поэтому при равных значениях остается первый по порядку; номер печатают как i, потому что enumerate считает с 1.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Уверенность консенсуса</strong> — чем меньше раз встречается самая частая буква, тем ниже уверенность в позиции.</li>
+                  <li><strong>Функция enumerate()</strong> — с start=1 дает номера столбцов.</li>
+                  <li><strong>Функция max()</strong> — находит число самой частой буквы.</li>
+                  <li><strong>Строгое сравнение</strong> — &lt; не пропускает равное число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте выравнивание: <code>seqs = input().split()</code>.</li>
+                  <li>Перебирайте столбцы с номерами: <code>enumerate</code> по <code>zip(*seqs)</code> с <code>start=1</code> дает номер <code>position</code> и столбец <code>col</code>.</li>
+                  <li>Для каждого столбца найдите число самой частой буквы: <code>max</code> по значениям <code>col.count(base)</code> для букв из <code>"ACGT"</code>, запишите в <code>top</code>.</li>
+                  <li>При строгом <code>top &lt; best_count</code> запоминайте номер и число (лучшее начните с len(seqs) + 1); напечатайте их; сверьтесь с примером: GTACA GCTCA GTTGA дают 2 2, а AAA AAA — 1 2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_09_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.9. Консенсусы двух групп</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Последовательности разделены на две группы, например образцы из двух лабораторий. Постройте консенсус каждой группы (при ничьей берется буква раньше в порядке A, C, G, T) и выведите позиции (с 1), в которых консенсусы различаются. Если различий нет, выведите слово <code>нет</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке первая группа, во второй вторая: от 1 до 20 последовательностей через пробел в каждой строке. Все последовательности обеих групп одной длины, от 1 до 30, буквы A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Позиции через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGT ACGA AGGT
+              <h3>Задача со звездочкой 5.9. Консенсусы двух групп</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательности разделены на две группы, например образцы из двух лабораторий. Постройте консенсус каждой группы (при ничьей берется буква раньше в порядке A, C, G, T) и выведите позиции (с 1), в которых консенсусы различаются. Если различий нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке первая группа, во второй вторая: от 1 до 20 последовательностей через пробел в каждой строке. Все последовательности обеих групп одной длины, от 1 до 30, буквы A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Позиции через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT ACGA AGGT<br>TCGT TCAT ACAT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1 3</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Консенсусы групп — ACGT и TCAT; различаются они в первой позиции (A и T) и третьей (G и A), поэтому ответ 1 3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGT ACGA AGGT
 TCGT TCAT ACAT</pre></td><td><pre>1 3</pre></td></tr>
-                <tr><td><pre>AC AC
+                      <tr><td><pre>AC AC
 AC AG AC</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_09_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Консенсус каждой группы собирают включением: max("ACGT", key=col.count) для каждого столбца, при ничьей побеждает первая буква. Затем zip двух консенсусов идет по позициям, enumerate с start=1 дает номера, и несовпавшие номера копят строками; пустой список означает слово нет.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Консенсус группы</strong> — буква на каждой позиции: самая частая среди последовательностей группы.</li>
+                  <li><strong>Ключ key</strong> — key=col.count сравнивает буквы по числу вхождений.</li>
+                  <li><strong>Принцип первого при ничьей</strong> — max оставляет первую из равных букв в порядке A, C, G, T.</li>
+                  <li><strong>Функция enumerate()</strong> — дает номера позиций, считая с 1.</li>
+                  <li><strong>Функция zip()</strong> — идет по двум консенсусам одновременно.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе группы: <code>group_a = input().split()</code>, <code>group_b = input().split()</code>.</li>
+                  <li>Консенсус каждой группы: для каждого столбца <code>col</code> из <code>zip(*group)</code> берем <code>max("ACGT", key=col.count)</code>.</li>
+                  <li>Сравнивайте по позициям: <code>enumerate</code> по парам <code>zip(cons_a, cons_b)</code> с <code>start=1</code> дает номер <code>position</code> и пару <code>base_a</code> и <code>base_b</code>; при <code>base_a != base_b</code> номер идет в ответ.</li>
+                  <li>Напечатайте номера через пробел или слово нет; сверьтесь с примером: ACGT ACGA AGGT и TCGT TCAT ACAT дают 1 3, а AC AC и AC AG AC — нет.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_09_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.9. Профиль и консенсус по FASTA</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Задача <a href="https://rosalind.info/problems/cons/">Rosalind CONS</a> целиком. В FASTA длинная последовательность может занимать несколько строк подряд: все строки до следующего заголовка относятся к одной записи и склеиваются. Последовательности всех записей одной длины. Выведите консенсус (при ничьей буква раньше в порядке A, C, G, T) и профиль: четыре строки вида <code>A: 5 1 0 0</code>, для букв A, C, G, T.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число <code>k</code> строк текста FASTA, от 2 до 60. Дальше <code>k</code> строк: заголовки (знак <code>&gt;</code> и идентификатор) и строки последовательностей из букв A, C, G, T. Записей от 1 до 10, длина последовательности до 50.</p>
-          <h4>Выходные данные</h4>
-          <p>Пять строк: консенсус и строки профиля для A, C, G, T.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5
+              <h3>Задача со звездочкой 5.9. Профиль и консенсус по FASTA</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Задача <a href="https://rosalind.info/problems/cons/">Rosalind CONS</a> целиком. В FASTA длинная последовательность может занимать несколько строк подряд: все строки до следующего заголовка относятся к одной записи и склеиваются. Последовательности всех записей одной длины. Выведите консенсус (при ничьей буква раньше в порядке A, C, G, T) и профиль: четыре строки вида <code>A: 5 1 0 0</code>, для букв A, C, G, T.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке <code>line_count</code> — число строк текста FASTA, от 2 до 60. Дальше <code>line_count</code> строк: заголовки (знак <code>&gt;</code> и идентификатор) и строки последовательностей из букв A, C, G, T. Записей от 1 до 10, длина последовательности до 50.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Пять строк: консенсус и строки профиля для A, C, G, T.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5<br>&gt;s1<br>ACG<br><span class="we-hl">T</span><br>&gt;s2<br>AAGT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AAGT<br>A: 2 1 0 0<br>C: 0 1 0 0<br>G: 0 0 2 0<br>T: 0 0 0 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка T после заголовка s1 продолжает последовательность ACG — получается ACGT; во втором столбце C и A встречаются по разу, ничья решается в пользу A, поэтому консенсус AAGT.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5
 &gt;s1
 ACG
 T
@@ -324,19 +588,41 @@ A: 2 1 0 0
 C: 0 1 0 0
 G: 0 0 2 0
 T: 0 0 0 2</pre></td></tr>
-                <tr><td><pre>2
+                      <tr><td><pre>2
 &gt;only
 GATTACA</pre></td><td><pre>GATTACA
 A: 0 1 0 0 1 0 1
 C: 0 0 0 0 0 1 0
 G: 1 0 0 0 0 0 0
 T: 0 0 1 1 0 0 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_09_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Строки FASTA склеивают в записи: заголовок со знаком &gt; начинает новую запись, остальные строки дописывают к последней (seqs[-1] += line). Столбцы дает zip(*seqs), консенсус — max("ACGT", key=column.count), а профиль печатают четырьмя строками: для каждой буквы метод count по столбцам.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Запись FASTA из нескольких строк</strong> — все строки до следующего заголовка — одна последовательность.</li>
+                  <li><strong>Строка профиля</strong> — числа одной буквы по всем столбцам.</li>
+                  <li><strong>Консенсус</strong> — буква на каждой позиции, при ничьей первая по порядку A, C, G, T.</li>
+                  <li><strong>Метод startswith()</strong> — проверяет, с чего начинается строка.</li>
+                  <li><strong>Функция zip()</strong> — с распаковкой *seqs собирает буквы одного столбца.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число строк: <code>line_count = int(input())</code>; заведите <code>seqs = []</code>.</li>
+                  <li>Разбирайте строки: если <code>line.startswith("&gt;")</code>, начинайте новую запись <code>seqs.append("")</code>, иначе дописывайте к последней <code>seqs[-1] += line</code>.</li>
+                  <li>Соберите столбцы <code>cols = list(zip(*seqs))</code> и консенсус: для каждого столбца <code>column</code> из <code>cols</code> берем <code>max("ACGT", key=column.count)</code> и соединяем результаты через <code>"".join</code>.</li>
+                  <li>Профиль печатайте четырьмя строками: для каждой буквы base из "ACGT" строку base + ":" и числа <code>[column.count(base) for column in cols]</code>; сверьтесь с примером: записи ACGT и AAGT дают консенсус AAGT и строку профиля A: 2 1 0 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_09_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

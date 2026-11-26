@@ -124,77 +124,219 @@ b'\xd0\x9f\xd1\x80'
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.8.1. Символ и номер</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны символ и номер. Выведите номер символа функцией <code>ord()</code> и символ с данным номером функцией <code>chr()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке один символ, не пробел. Во второй целое число: номер латинской или русской буквы, цифры или знака препинания.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой номер символа, во второй символ с данным номером.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>G
+              <h3>Упражнение 2.8.1. Символ и номер</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны символ и номер. Выведите номер символа функцией <code>ord()</code> и символ с данным номером функцией <code>chr()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке один символ, не пробел. Во второй целое число: номер латинской или русской буквы, цифры или знака препинания.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой номер символа, во второй символ с данным номером.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">G</span><br>1046</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">71<br><span class="we-hl">Ж</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">ord("G") дает 71, а chr(1046) — букву Ж; во второй строке примера наоборот: ord("я") = 1103, chr(71) = G.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>G
 1046</pre></td><td><pre>71
 Ж</pre></td></tr>
-                <tr><td><pre>я
+                      <tr><td><pre>я
 71</pre></td><td><pre>1103
 G</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_08_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждый символ в компьютере хранится под своим номером в таблице кодировки. Функции <code>ord()</code> и <code>chr()</code> переводят символ в номер и обратно.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Код символа</strong> — номер, под которым символ хранится в таблице кодировки.</li>
+                  <li><strong>Функция ord()</strong> — возвращает код символа: ord("G") равно 71.</li>
+                  <li><strong>Функция chr()</strong> — возвращает символ по его коду: chr(71) равно "G".</li>
+                  <li><strong>Таблица кодировки</strong> — список символов с номерами; в Unicode номера латинских и русских букв разные.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте символ и номер: <code>symbol = input()</code>, <code>number = int(input())</code>.</li>
+                  <li>Код символа дает функция <code>ord()</code>: <code>ord(symbol)</code>.</li>
+                  <li>Символ по номеру дает функция <code>chr()</code>: <code>chr(number)</code>.</li>
+                  <li>Напечатайте обе строки: <code>print(ord(symbol))</code>, затем <code>print(chr(number))</code>; сверьтесь с примером: G дает 71, а номер 1046 — букву Ж.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_08_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.8.1. Качество прочтения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор (прибор для чтения ДНК) прочитал за один раз. В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом. В распространенной схеме Sanger оценка качества по шкале Phred равна номеру символа минус 33: символу <code>J</code> с номером 74 соответствует оценка 41. Дана строка качества прочтения. Выведите оценки качества первого и последнего нуклеотида.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка качества длиной от 1 до 100 из символов с номерами от 33 до 126.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: оценка качества первого нуклеотида и оценка качества последнего.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CCFFFFHHHHHJJJ</pre></td><td><pre>34
+              <h3>Упражнение 2.8.1. Качество прочтения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом. В распространенной схеме Sanger оценка качества по шкале Phred равна номеру символа минус 33: символу <code>J</code> с номером 74 соответствует оценка 41. Дана строка качества прочтения. Выведите оценки качества первого и последнего нуклеотида.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка качества длиной от 1 до 100 из символов с номерами от 33 до 126.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: оценка качества первого нуклеотида и оценка качества последнего.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">C</span>CFFFFHHHHHJJ<span class="we-hl">J</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">34</span><br><span class="we-hl">41</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Номер первой буквы C — 67, оценка 67 − 33 = 34; номер последней J — 74, оценка 74 − 33 = 41.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CCFFFFHHHHHJJJ</pre></td><td><pre>34
 41</pre></td></tr>
-                <tr><td><pre>#</pre></td><td><pre>2
+                      <tr><td><pre>#</pre></td><td><pre>2
 2</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_08_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Качество показывает уверенность в каждом нуклеотиде; в FASTQ его записывают символом, а оценку Phred вычисляют из номера символа. Первый нуклеотид стоит по индексу 0, последний — по индексу -1.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>FASTQ</strong> — формат записи прочтений, где качество каждого нуклеотида записано символом.</li>
+                  <li><strong>Шкала Phred</strong> — оценка качества: чем больше, тем увереннее прочитан нуклеотид.</li>
+                  <li><strong>Смещение 33</strong> — в схеме Sanger оценка равна номеру символа минус 33.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку качества: <code>quality = input()</code>.</li>
+                  <li>Первый символ — <code>quality[0]</code>, последний — <code>quality[-1]</code>.</li>
+                  <li>Оценка — номер символа минус 33: <code>ord(quality[0]) - 33</code> и <code>ord(quality[-1]) - 33</code>.</li>
+                  <li>Напечатайте обе оценки; сверьтесь с примером: строка CCFFFFHHHHHJJJ дает 34 и 41.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_08_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.8.1. Русские буквы в тексте</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В комментарии к записи смешаны латиница и кириллица. Посчитайте, сколько в нем русских букв. Циклы и ветвления для этого не нужны.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сравните длину строки в символах и ее длину в байтах UTF-8. Сколько лишних байтов добавляет каждая русская буква?</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 1 до 200: латинские и русские буквы, цифры, пробелы и знаки препинания с клавиатуры (<code>. , : ; ! ? - ( )</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число: количество русских букв в строке.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>Ген BRCA1 кодирует белок</pre></td><td><pre>16</pre></td></tr>
-                <tr><td><pre>GATTACA</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_08_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.8.1. Русские буквы в тексте</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В комментарии к записи смешаны латиница и кириллица. Посчитайте, сколько в нем русских букв. Циклы и ветвления для этого не нужны.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 1 до 200: латинские и русские буквы, цифры, пробелы и знаки препинания с клавиатуры (<code>. , : ; ! ? - ( )</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число: количество русских букв в строке.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">Ген</span> BRCA1 <span class="we-hl">кодирует</span> <span class="we-hl">белок</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">16</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длина строки в символах 24, а в байтах UTF-8 40; каждая русская буква добавляет по лишнему байту, поэтому русских букв 40 − 24 = 16.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>Ген BRCA1 кодирует белок</pre></td><td><pre>16</pre></td></tr>
+                      <tr><td><pre>GATTACA</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В кодировке UTF-8 латинская буква занимает один байт, а русская — два. Поэтому число русских букв — это разница между длиной строки в байтах и длиной в символах.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодировка</strong> — способ записи символов байтами.</li>
+                  <li><strong>UTF-8</strong> — кодировка, в которой латинская буква занимает один байт, а русская — два.</li>
+                  <li><strong>Байт</strong> — единица хранения данных, одно число от 0 до 255.</li>
+                  <li><strong>len()</strong> — возвращает число символов в строке.</li>
+                  <li><strong>Метод encode()</strong> — переводит строку в байты в заданной кодировке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>text = input()</code>.</li>
+                  <li>Длина строки в байтах: <code>len(text.encode("utf-8"))</code>.</li>
+                  <li>Каждая русская буква дает лишний байт, поэтому их число — разность длин: <code>len(text.encode("utf-8")) - len(text)</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: в Ген BRCA1 кодирует белок 16 русских букв, а в GATTACA — ни одной.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_08_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -205,73 +347,215 @@ G</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 2.8. Символ качества в другой схеме</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтением называют участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом: оценка качества по шкале Phred равна номеру символа минус смещение. В распространенной схеме Sanger смещение равно 33, а в старых файлах секвенаторов Illumina (версии 1.3–1.7) равно 64 (источник: <a href="https://doi.org/10.1093/nar/gkp1137">Cock и др., 2010</a>). Дан символ качества в старой схеме Illumina. Выведите оценку качества и символ той же оценки в схеме Sanger.</p></div>
-          <h4>Входные данные</h4>
-          <p>Один символ с номером от 64 до 104.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: оценка качества (целое число от 0 до 40) и символ этой оценки в схеме Sanger.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>h</pre></td><td><pre>40
+              <h3>Задача со звездочкой 2.8. Символ качества в другой схеме</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В формате FASTQ качество каждого прочитанного нуклеотида записано одним символом: оценка качества по шкале Phred равна номеру символа минус смещение. В распространенной схеме Sanger смещение равно 33, а в старых файлах секвенаторов Illumina (версии 1.3–1.7) равно 64 (источник: <a href="https://doi.org/10.1093/nar/gkp1137">Cock и др., 2010</a>). Дан символ качества в старой схеме Illumina. Выведите оценку качества и символ той же оценки в схеме Sanger.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Один символ с номером от 64 до 104.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: оценка качества (целое число от 0 до 40) и символ этой оценки в схеме Sanger.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">h</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">40</span><br><span class="we-hl">I</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Номер h — 104, оценка 104 − 64 = 40; в схеме Sanger та же оценка соответствует символу chr(40 + 33) = I.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>h</pre></td><td><pre>40
 I</pre></td></tr>
-                <tr><td><pre>@</pre></td><td><pre>0
+                      <tr><td><pre>@</pre></td><td><pre>0
 !</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_08_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Одна и та же оценка Phred в разных схемах записана разными символами: схемы различаются смещением, которое прибавляют к оценке. Пересчет — это переход от номера символа к оценке и обратно с другим смещением.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>Шкала Phred</strong> — оценка качества: чем больше, тем увереннее прочитан нуклеотид.</li>
+                  <li><strong>Смещение</strong> — число, которое прибавляют к оценке качества, чтобы получить код символа.</li>
+                  <li><strong>Illumina 1.3–1.7</strong> — старые версии секвенаторов Illumina со смещением 64.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте символ: <code>symbol = input()</code>.</li>
+                  <li>Оценка в старой схеме Illumina — номер минус 64: <code>quality = ord(symbol) - 64</code>.</li>
+                  <li>В схеме Sanger к оценке прибавляют 33: символ — <code>chr(quality + 33)</code>.</li>
+                  <li>Напечатайте оценку и символ; сверьтесь с примером: h дает оценку 40 и символ I.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_08_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 2.8. Испорченная кодировка</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Комментарий к пробе сохранили в UTF-8, а прочитали как cp1251, и русские буквы превратились в набор странных символов, как в примере раздела 2. Данные при этом целы. Восстановите исходный текст.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Испорченная строка получилась так: байты UTF-8 расшифровали кодировкой cp1251. Пройдите этот путь в обратную сторону.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: текст в UTF-8, ошибочно прочитанный как cp1251. Исходный текст состоит из латинских и русских букв, цифр, пробелов и знаков препинания.</p>
-          <h4>Выходные данные</h4>
-          <p>Исходный текст.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>РєСЂРѕРІСЊ S12</pre></td><td><pre>кровь S12</pre></td></tr>
-                <tr><td><pre>PCR ok</pre></td><td><pre>PCR ok</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_08_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 2.8. Испорченная кодировка</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Комментарий к пробе сохранили в UTF-8, а прочитали как cp1251, и русские буквы превратились в набор странных символов, как в примере раздела 2. Данные при этом целы. Восстановите исходный текст.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: текст в UTF-8, ошибочно прочитанный как cp1251. Исходный текст состоит из латинских и русских букв, цифр, пробелов и знаков препинания.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Исходный текст.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">РєСЂРѕРІСЊ</span> S12</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">кровь</span> S12</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Испорченную часть кодируют обратно в cp1251 и читают как UTF-8: набор букв РєСЂРѕРІСЊ превращается в слово кровь, а латинская часть не меняется.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>РєСЂРѕРІСЊ S12</pre></td><td><pre>кровь S12</pre></td></tr>
+                      <tr><td><pre>PCR ok</pre></td><td><pre>PCR ok</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Если файл в UTF-8 открыть как cp1251, каждая пара байтов русской буквы читается как два символа. Обратный путь — закодировать текст в cp1251 и декодировать его как UTF-8 — возвращает исходные буквы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодировка</strong> — способ записи символов байтами.</li>
+                  <li><strong>UTF-8</strong> — кодировка, в которой русская буква занимает два байта.</li>
+                  <li><strong>cp1251</strong> — кодировка с русскими буквами, в которой буква занимает один байт.</li>
+                  <li><strong>Метод encode()</strong> — переводит строку в байты в заданной кодировке.</li>
+                  <li><strong>Метод decode()</strong> — собирает строку из байтов по заданной кодировке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте испорченную строку: <code>text = input()</code>.</li>
+                  <li>Каждый неверно прочитанный символ когда-то был одним байтом UTF-8: верните байты методом <code>text.encode("cp1251")</code>.</li>
+                  <li>Соберите байты заново как UTF-8: <code>.decode("utf-8")</code>.</li>
+                  <li>Выведите текст: перекодируйте его методом <code>encode("cp1251")</code>, затем примените <code>decode("utf-8")</code>; сверьтесь с примером: РєСЂРѕРІСЊ S12 превращается в кровь S12.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_08_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 2.8. Верные концы прочтения</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтением называют участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. В формате FASTQ качество каждого нуклеотида записано символом; в схеме Sanger оценка качества <code>Q</code> по шкале Phred равна номеру символа минус 33. Оценка связана с вероятностью ошибки <code>p</code> формулой <span class="formula">p = 10<sup>−Q/10</sup></span>: оценке 20 соответствует ошибка с вероятностью 0,01 (источник: <a href="https://doi.org/10.1101/gr.8.3.186">Ewing, Green, 1998</a>). Дана строка качества прочтения. Найдите вероятность того, что первый и последний нуклеотиды прочитаны верно. Ошибки в разных позициях считайте независимыми: искомая вероятность равна произведению <span class="formula">(1 − p<sub>1</sub>) · (1 − p<sub>2</sub>)</span>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка качества длиной от 2 до 100 из символов с номерами от 33 до 126.</p>
-          <h4>Выходные данные</h4>
-          <p>Вероятность с четырьмя знаками после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5FFJJ+</pre></td><td><pre>0.8910</pre></td></tr>
-                <tr><td><pre>II</pre></td><td><pre>0.9998</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_08_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 2.8. Верные концы прочтения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В формате FASTQ качество каждого нуклеотида записано символом; в схеме Sanger оценка качества <code>quality_score</code> по шкале Phred равна номеру символа минус 33. Оценка связана с вероятностью ошибки <code>error_probability</code> формулой <span class="formula">error_probability = 10<sup>−quality_score/10</sup></span>: оценке 20 соответствует ошибка с вероятностью 0,01 (источник: <a href="https://doi.org/10.1101/gr.8.3.186">Ewing, Green, 1998</a>). Дана строка качества прочтения. Найдите вероятность того, что первый и последний нуклеотиды прочитаны верно. Ошибки в разных позициях считайте независимыми: искомая вероятность равна произведению <span class="formula">(1 − p_first) · (1 − p_last)</span>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка качества длиной от 2 до 100 из символов с номерами от 33 до 126.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Вероятность с четырьмя знаками после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">5</span>FFJJ<span class="we-hl">+</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0.8910</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первый символ 5 дает оценку 20 и вероятность ошибки 0.01, последний + — оценку 10 и 0.1; оба конца верны с вероятностью 0.99 · 0.9 = 0.891.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5FFJJ+</pre></td><td><pre>0.8910</pre></td></tr>
+                      <tr><td><pre>II</pre></td><td><pre>0.9998</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Оценка Phred 20 означает одну ошибку на сто нуклеотидов, и вероятность верного прочтения одного нуклеотида равна 1 − error_probability. Вероятность двух независимых верных прочтений перемножается.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Шкала Phred</strong> — оценка качества quality_score: чем больше, тем увереннее прочитан нуклеотид.</li>
+                  <li><strong>Вероятность ошибки</strong> — вероятность error_probability того, что нуклеотид прочитан неверно; error_probability = 10^(−quality_score/10).</li>
+                  <li><strong>Независимые события</strong> — события, вероятность которых не зависит друг от друга; их вероятности перемножаются.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку качества: <code>quality = input()</code>.</li>
+                  <li>Оценки концов: <code>q_first = ord(quality[0]) - 33</code>, <code>q_last = ord(quality[-1]) - 33</code>.</li>
+                  <li>Вероятности ошибки: <code>p_first = 10 ** (-q_first / 10)</code>, так же для последнего.</li>
+                  <li>Искомая вероятность — <code>f"{(1 - p_first) * (1 - p_last):.4f}"</code>; сверьтесь с примером: 5FFJJ+ дает 0.8910.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_08_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

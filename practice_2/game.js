@@ -449,7 +449,7 @@
     this.caption.className = "game-caption";
     this.wrap.appendChild(this.canvas); this.wrap.appendChild(this.hud); this.wrap.appendChild(this.caption);
     var bar = block.querySelector(".checker-bar");
-    if (bar && bar.nextSibling) block.insertBefore(this.wrap, bar.nextSibling); else block.appendChild(this.wrap);
+    if (bar && bar.nextSibling && bar.nextSibling.parentNode === block) block.insertBefore(this.wrap, bar.nextSibling); else block.appendChild(this.wrap);
     if (THEME === "knight" && this.mon === "dragon" && block.closest(".task-exercise")) {
       this.loopBox = document.createElement("div"); this.loopBox.className = "game-loop";
       this.wrap.parentNode.insertBefore(this.loopBox, this.wrap.nextSibling); loopPanel(this);

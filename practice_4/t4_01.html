@@ -189,71 +189,212 @@ T</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.1.1. Транскрипция</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Транскрипция&nbsp;— построение молекулы РНК по участку ДНК. В РНК вместо тимина T стоит урацил U, остальные буквы те же. По последовательности ДНК выведите соответствующую последовательность РНК. В практике 2 (упражнение <a href="../practice_2/t2_05.html#ex-1">2.5.1 «Транскрипция»</a>) это делали методом <code>replace()</code>, здесь каждую букву обрабатывает цикл. Обойдите строку циклом <code>for</code> и печатайте буквы по одной: <code>print(..., end="")</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность РНК одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>GAUUACA</pre></td></tr>
-                <tr><td><pre>CCGG</pre></td><td><pre>CCGG</pre></td></tr>
-              </tbody>
-            </table>
+              <h3>Упражнение 4.1.1. Транскрипция</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прочитайте последовательность ДНК и выведите последовательность РНК: каждая буква заменяется по правилу <code>T → U</code>, остальные буквы переносятся без изменений.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв <code>A</code>, <code>C</code>, <code>G</code>, <code>T</code> длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность РНК одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+            <div class="we-side">
+              <span class="we-label">Ввод</span>
+              <code class="we-seq">GA<span class="we-hl">TT</span>ACA</code>
+            </div>
+            <span class="we-arrow" aria-hidden="true">→</span>
+            <div class="we-side">
+              <span class="we-label">Вывод</span>
+              <code class="we-seq">GA<span class="we-hl">UU</span>ACA</code>
+            </div>
           </div>
-          <div class="checker" data-file="t4_01_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+          <p class="we-note">Буквы <code>T</code> на позициях 3 и 4 заменяются на <code>U</code>; остальные буквы остаются на своих местах.</p>
+                </div>
+                <div class="table-wrap">
+              <table class="data tests"><caption>Примеры</caption>
+                <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                <tbody>
+                  <tr><td><pre>GATTACA</pre></td><td><pre>GAUUACA</pre></td></tr>
+                  <tr><td><pre>CCGG</pre></td><td><pre>CCGG</pre></td></tr>
+                </tbody>
+              </table>
+            </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>ДНК хранит наследственную информацию, а РНК переносит ее к месту сборки белка. При транскрипции фермент читает одну цепь ДНК и строит по ней цепь РНК; правила соответствия букв почти совпадают, только вместо тимина T в РНК стоит урацил U.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>ДНК</strong> — молекула, в которой наследственная информация записана последовательностью нуклеотидов A, C, G, T.</li>
+                  <li><strong>РНК</strong> — молекула, построенная по участку ДНК; в ней вместо T стоит U.</li>
+                  <li><strong>Транскрипция</strong> — построение РНК по участку ДНК.</li>
+                  <li><strong>Цикл for по строке</strong> — перебирает символы строки по одному.</li>
+                  <li><strong>Параметр end у print()</strong> — задает, чем заканчивается вывод; end="" печатает без перехода на новую строку.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Пройдите по строке циклом: <code>for base in seq:</code> — на каждом шаге переменная хранит одну букву.</li>
+                  <li>Замените букву: заведите <code>letter = base</code> и при <code>base == "T"</code> положите в letter букву U.</li>
+                  <li>Печатайте буквы подряд: <code>print(letter, end="")</code>, а после цикла добавьте <code>print()</code>; сверьтесь с примером: GATTACA дает GAUUACA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_01_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.1.1. Маскировка неоднозначных букв</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кроме A, C, G, T в последовательности встречаются коды неоднозначных нуклеотидов IUPAC: R, Y, K, M, S, W и другие. Такой буквой отмечают позицию, где возможен один из нескольких нуклеотидов: например, R значит A или G. Замените каждую букву, которая не входит в ACGT, на N и выведите результат.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из заглавных латинских букв длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность после замены одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACRTYG</pre></td><td><pre>ACNTNG</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>ACGT</pre></td></tr>
-              </tbody>
-            </table>
+              <h3>Упражнение 4.1.1. Маскировка неоднозначных букв</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прочитайте последовательность и замените каждую букву, которая не входит в <code>ACGT</code>, на <code>N</code>. Буквы <code>A</code>, <code>C</code>, <code>G</code> и <code>T</code> остаются без изменений.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из заглавных латинских букв длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность после замены одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+            <div class="we-side">
+              <span class="we-label">Ввод</span>
+              <code class="we-seq">AC<span class="we-hl">R</span>T<span class="we-hl">Y</span>G</code>
+            </div>
+            <span class="we-arrow" aria-hidden="true">→</span>
+            <div class="we-side">
+              <span class="we-label">Вывод</span>
+              <code class="we-seq">AC<span class="we-hl">N</span>T<span class="we-hl">N</span>G</code>
+            </div>
           </div>
-          <div class="checker" data-file="t4_01_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+          <p class="we-note">Буквы <code>R</code> и <code>Y</code> не входят в <code>ACGT</code>, поэтому заменяются на <code>N</code>. Остальные буквы остаются без изменений.</p>
+                </div>
+                <div class="table-wrap">
+              <table class="data tests"><caption>Примеры</caption>
+                <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                <tbody>
+                  <tr><td><pre>ACRTYG</pre></td><td><pre>ACNTNG</pre></td></tr>
+                  <tr><td><pre>ACGT</pre></td><td><pre>ACGT</pre></td></tr>
+                </tbody>
+              </table>
+            </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Последовательность может содержать неоднозначные коды IUPAC (R, Y и другие): это позиции, где точный нуклеотид неизвестен. Для простых поисков такие буквы скрывают, заменяя на N — код «любой нуклеотид».</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Коды IUPAC</strong> — буквы, которые означают несколько нуклеотидов сразу.</li>
+                  <li><strong>N</strong> — код IUPAC, который означает любой нуклеотид.</li>
+                  <li><strong>Маскировка</strong> — замена неоднозначных букв на N.</li>
+                  <li><strong>Оператор not in</strong> — истинен, когда символ не встречается в строке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Пройдите по строке циклом: <code>for base in seq:</code>.</li>
+                  <li>Букву вне алфавита замените: <code>if base not in "ACGT": letter = "N"</code>, иначе оставьте base.</li>
+                  <li>Печатайте буквы подряд через <code>end=""</code>, после цикла добавьте <code>print()</code>; сверьтесь с примером: ACRTYG дает ACNTNG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_01_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.1.1. Сжатие повторов</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Гомополимер&nbsp;— участок, где одна буква повторяется несколько раз подряд, например <code>GGG</code>. Секвенаторы, приборы для чтения ДНК, часто ошибаются в длине таких участков, поэтому последовательность иногда записывают сжато: каждую серию подряд идущих одинаковых букв заменяют буквой и длиной серии. Например, <code>GGGCCA</code> записывается как <code>G3C2A1</code>: серия из трех G, двух C и одной A. Выведите сжатую запись последовательности.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Храните букву текущей серии и ее длину. Серия заканчивается, когда пришла другая буква; последняя серия заканчивается вместе со строкой.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Сжатая запись одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GGGCCA</pre></td><td><pre>G3C2A1</pre></td></tr>
-                <tr><td><pre>AACAA</pre></td><td><pre>A2C1A2</pre></td></tr>
-              </tbody>
-            </table>
+              <h3>Упражнение 4.1.1. Сжатие повторов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Сожмите запись последовательности: каждую серию подряд идущих одинаковых букв замените этой буквой и числом повторов. Выведите сжатую запись одной строкой.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв <code>A</code>, <code>C</code>, <code>G</code>, <code>T</code> длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Сжатая запись одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+            <div class="we-side">
+              <span class="we-label">Ввод</span>
+              <code class="we-seq"><span class="we-seg we-seg-1">GGG</span><span class="we-seg we-seg-2">CC</span><span class="we-seg we-seg-3">A</span></code>
+            </div>
+            <span class="we-arrow" aria-hidden="true">→</span>
+            <div class="we-side">
+              <span class="we-label">Вывод</span>
+              <code class="we-seq"><span class="we-seg we-seg-1">G3</span><span class="we-seg we-seg-2">C2</span><span class="we-seg we-seg-3">A1</span></code>
+            </div>
           </div>
-          <div class="checker" data-file="t4_01_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+          <p class="we-note">Три <code>G</code> подряд дают <code>G3</code>, две <code>C</code> — <code>C2</code>, одна <code>A</code> — <code>A1</code>. Границы серий показаны цветом.</p>
+                </div>
+                <div class="table-wrap">
+              <table class="data tests"><caption>Примеры</caption>
+                <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                <tbody>
+                  <tr><td><pre>GGGCCA</pre></td><td><pre>G3C2A1</pre></td></tr>
+                  <tr><td><pre>AACAA</pre></td><td><pre>A2C1A2</pre></td></tr>
+                </tbody>
+              </table>
+            </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Серии одинаковых букв в последовательностях называют повторами, и их сжимают в букву с числом. Счетчик увеличивают, пока буква та же, а на смене буквы записывают пару буква-число и начинают счет заново.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Серия</strong> — подряд идущие одинаковые буквы.</li>
+                  <li><strong>Счетчик</strong> — переменная, которая считает длину текущей серии.</li>
+                  <li><strong>Накопление строки</strong> — результат собирают прибавлением кусков через +.</li>
+                  <li><strong>Функция str()</strong> — переводит число в строку, чтобы приклеить его к букве.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Заведите текущую букву <code>prev = seq[0]</code>, счетчик <code>count = 0</code> и пустой результат <code>code = ""</code>.</li>
+                  <li>В цикле <code>for base in seq:</code> при совпадении с prev увеличивайте счетчик, иначе допишите <code>prev + str(count)</code> и начните новую серию.</li>
+                  <li>После цикла допишите последнюю серию, выведите code и сверьтесь с примером: GGGCCA дает G3C2A1, а AACAA — A2C1A2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_01_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -264,70 +405,212 @@ T</pre></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.1. Мягкая маскировка</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В геномных базах повторяющиеся участки иногда отмечают строчными буквами: <code>ACgtaGT</code>. Такую разметку называют мягкой маскировкой. Перед поиском мотивов (коротких последовательностей, которые ищут в длинной; <a href="t4_04.html">страница 04</a>) эти участки скрывают: каждую строчную букву заменяют на N, прописные оставляют. Выведите последовательность после замены.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T, прописных и строчных, длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность после замены одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACgtaGT</pre></td><td><pre>ACNNNGT</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>ACGT</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_01_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.1. Мягкая маскировка</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В геномных базах повторяющиеся участки иногда отмечают строчными буквами: <code>ACgtaGT</code>. Такую разметку называют мягкой маскировкой. Перед поиском мотивов (коротких последовательностей, которые ищут в длинной; <a href="t4_04.html">страница 04</a>) эти участки скрывают: каждую строчную букву заменяют на N, прописные оставляют. Выведите последовательность после замены.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T, прописных и строчных, длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность после замены одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AC<span class="we-hl">gta</span>GT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AC<span class="we-hl">NNN</span>GT</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строчные буквы g, t, a на позициях 3–5 заменяются на N; прописные A, C, G, T остаются как были.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACgtaGT</pre></td><td><pre>ACNNNGT</pre></td></tr>
+                      <tr><td><pre>ACGT</pre></td><td><pre>ACGT</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Строчные буквы в геномных записях отмечают повторяющиеся участки: такую разметку называют мягкой маскировкой. Метод <code>islower()</code> распознает строчную букву, а замена на N стирает разметку, сохраняя длину записи.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Мягкая маскировка</strong> — отметка повторяющихся участков строчными буквами.</li>
+                  <li><strong>Метод islower()</strong> — истинен, когда буква строчная.</li>
+                  <li><strong>Мотив</strong> — короткая последовательность, которую ищут в длинной.</li>
+                  <li><strong>N</strong> — код IUPAC, который означает любой нуклеотид.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Заведите пустой результат <code>masked = ""</code> и цикл <code>for base in seq:</code>.</li>
+                  <li>Строчную букву замените: <code>if base.islower(): masked = masked + "N"</code>, иначе прибавьте саму букву.</li>
+                  <li>Выведите masked и сверьтесь с примером: ACgtaGT дает ACNNNGT, а ACGT не меняется.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_01_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.1. Комплементарная цепь с кодами IUPAC</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Коды IUPAC (<a href="../practice_3/t3_09.html">страница 09 практики 3</a>) обозначают позиции, где возможен один из нескольких нуклеотидов. R значит A или G, Y значит C или T, K значит G или T, M значит A или C, S значит C или G, W значит A или T, N значит любой. У кода тоже есть комплементарный: комплементарны все варианты. R комплементарен Y, K комплементарен M, а S, W и N комплементарны сами себе. Постройте обратную комплементарную цепь: прочитайте последовательность от конца к началу и замените каждую букву комплементарной.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T, R, Y, K, M, S, W, N длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Обратная комплементарная цепь одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACRN</pre></td><td><pre>NYGT</pre></td></tr>
-                <tr><td><pre>GAATTC</pre></td><td><pre>GAATTC</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_01_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.1. Комплементарная цепь с кодами IUPAC</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Коды IUPAC (<a href="../practice_3/t3_09.html">страница 09 практики 3</a>) обозначают позиции, где возможен один из нескольких нуклеотидов. R значит A или G, Y значит C или T, K значит G или T, M значит A или C, S значит C или G, W значит A или T, N значит любой. У кода тоже есть комплементарный: комплементарны все варианты. R комплементарен Y, K комплементарен M, а S, W и N комплементарны сами себе. Постройте обратную комплементарную цепь: прочитайте последовательность от конца к началу и замените каждую букву комплементарной.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T, R, Y, K, M, S, W, N длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Обратная комплементарная цепь одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AC<span class="we-hl">RN</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">N<span class="we-hl">YG</span>T</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка читается от конца к началу: N, R, C, A. N комплементарен себе, R комплементарен Y, C — G, A — T; получается NYGT.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACRN</pre></td><td><pre>NYGT</pre></td></tr>
+                      <tr><td><pre>GAATTC</pre></td><td><pre>GAATTC</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Обратную комплементарную цепь строят в два приема: читают последовательность от конца к началу срезом <code>[::-1]</code> и заменяют каждую букву комплементарной. У кодов IUPAC комплемент берут от всех вариантов сразу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Комплементарность</strong> — соответствие нуклеотидов двух цепей: A — T, C — G.</li>
+                  <li><strong>Обратная комплементарная цепь</strong> — последовательность, прочитанная от конца к началу и замененная комплементарными буквами.</li>
+                  <li><strong>Срез [::-1]</strong> — переворачивает строку.</li>
+                  <li><strong>Коды IUPAC</strong> — буквы, которые означают несколько нуклеотидов сразу.</li>
+                  <li><strong>Цепочка elif</strong> — проверяет условия по порядку, пока одно не окажется истинным.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Читайте ее от конца к началу: <code>for base in seq[::-1]:</code>.</li>
+                  <li>Заменяйте букву цепочкой elif: A→T, T→A, C→G, G→C, R→Y, Y→R, K→M, M→K; S, W и N остаются собой.</li>
+                  <li>Накопите результат в строке rc и выведите; сверьтесь с примером: ACRN дает NYGT, а GAATTC — снова GAATTC.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_01_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.1. Распаковка повторов</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Обратная задача к упражнению 4.1.1 продвинутого уровня: по сжатой записи <code>G3C2A1</code> восстановите последовательность <code>GGGCCA</code>. В записи за каждой буквой идет длина серии, длина может состоять из нескольких цифр: <code>A12</code> означает двенадцать букв A.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: сжатая запись. Буквы A, C, G, T, длина каждой серии от 1 до 99, длина последовательности не больше 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Восстановленная последовательность одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>G3C2A1</pre></td><td><pre>GGGCCA</pre></td></tr>
-                <tr><td><pre>A12T1</pre></td><td><pre>AAAAAAAAAAAAT</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_01_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.1. Распаковка повторов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Обратная задача к упражнению 4.1.1 продвинутого уровня: по сжатой записи <code>G3C2A1</code> восстановите последовательность <code>GGGCCA</code>. В записи за каждой буквой идет длина серии, длина может состоять из нескольких цифр: <code>A12</code> означает двенадцать букв A.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: сжатая запись. Буквы A, C, G, T, длина каждой серии от 1 до 99, длина последовательности не больше 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Восстановленная последовательность одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<span class="we-seg we-seg-1">3</span>C<span class="we-seg we-seg-2">2</span>A<span class="we-seg we-seg-3">1</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">GGG</span><span class="we-seg we-seg-2">CC</span><span class="we-seg we-seg-3">A</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">G3 — три буквы G, C2 — две C, A1 — одна A; серии выписываются подряд: GGG + CC + A.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>G3C2A1</pre></td><td><pre>GGGCCA</pre></td></tr>
+                      <tr><td><pre>A12T1</pre></td><td><pre>AAAAAAAAAAAAT</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Сжатую запись разбирают по символам: цифры накапливают в строку, а при встрече буквы записывают предыдущую серию повтором <code>буква * число</code>. Последнюю серию добавляют после цикла, потому что за ней уже нет буквы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сжатая запись</strong> — последовательность, записанная буквами с длинами серий.</li>
+                  <li><strong>Метод isdigit()</strong> — истинен, когда символ — цифра.</li>
+                  <li><strong>Повтор строки</strong> — запись letter * repeat_count повторяет строку repeat_count раз.</li>
+                  <li><strong>Функция int()</strong> — читает строку из цифр как число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте запись: <code>code = input()</code>.</li>
+                  <li>Заведите <code>seq = ""</code>, <code>letter = ""</code> и <code>digits = ""</code>; в цикле <code>for ch in code:</code> цифры прибавляйте к digits.</li>
+                  <li>При встрече буквы допишите предыдущую серию: <code>seq = seq + letter * int(digits)</code>, затем запомните новую букву и обнулите digits.</li>
+                  <li>После цикла допишите последнюю серию, выведите seq и сверьтесь с примером: G3C2A1 дает GGGCCA, а A12T1 — двенадцать букв A и одну T.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_01_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

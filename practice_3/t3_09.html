@@ -208,73 +208,215 @@ False</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.9.1. Группа нуклеотида</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана одна буква последовательности, прописная или строчная. Определите ее группу: пурин (A или G), пиримидин (C или T), неоднозначный код (R, Y, S, W, K, M, B, D, H, V, N) или недопустимая буква. Воспользуйтесь цепочкой <code>elif</code> и строками-алфавитами.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: ровно один символ, латинская буква или знак.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно слово: <code>пурин</code>, <code>пиримидин</code>, <code>неоднозначная</code> или <code>недопустимая</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>g</pre></td><td><pre>пурин</pre></td></tr>
-                <tr><td><pre>X</pre></td><td><pre>недопустимая</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_09_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.9.1. Группа нуклеотида</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана одна буква последовательности, прописная или строчная. Определите ее группу: пурин (A или G), пиримидин (C или T), неоднозначный код (R, Y, S, W, K, M, B, D, H, V, N) или недопустимая буква. Воспользуйтесь цепочкой <code>elif</code> и строками-алфавитами.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: ровно один символ, латинская буква или знак.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно слово: <code>пурин</code>, <code>пиримидин</code>, <code>неоднозначная</code> или <code>недопустимая</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">g</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">пурин</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строчная g после приведения к верхнему регистру — это G, а G входит в пурины A и G. Незнакомый знак X дал бы «недопустимая».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>g</pre></td><td><pre>пурин</pre></td></tr>
+                      <tr><td><pre>X</pre></td><td><pre>недопустимая</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Коды IUPAC расширяют алфавит ДНК: R означает A или G, Y — C или T, N — любой нуклеотид. Проверка «буква входит в строку-алфавит» через <code>in</code> сразу относит символ к группе.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Пурин</strong> — A и G.</li>
+                  <li><strong>Пиримидин</strong> — C и T.</li>
+                  <li><strong>Неоднозначный код</strong> — буква IUPAC, которая означает несколько нуклеотидов сразу.</li>
+                  <li><strong>Оператор in</strong> — проверяет, встречается ли символ в строке.</li>
+                  <li><strong>Метод upper()</strong> — переводит букву в верхний регистр.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте букву и приведите ее к верхнему регистру: <code>base = input().upper()</code>.</li>
+                  <li>Пурины — <code>base in "AG"</code>, пиримидины — <code>base in "CT"</code>.</li>
+                  <li>Неоднозначные коды — <code>base in "RYSWKMBDHVN"</code>.</li>
+                  <li>Все остальное — <code>else</code>; выведите слово; сверьтесь с примером: g дает пурин, а X — недопустимая.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_09_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.9.1. Строка-определение и последовательность</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана запись FASTA: строка-определение и последовательность. Проверьте правила по порядку и сообщите о первом нарушенном: строка-определение начинается с <code>&gt;</code>; в идентификаторе после <code>&gt;</code> нет пробелов; длина идентификатора от 1 до 25 символов; последовательность не пустая. Если все правила выполнены, выведите идентификатор и длину последовательности. В этом упражнении строка-определение состоит только из идентификатора, без описания.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке строка-определение длиной от 0 до 40 символов, во второй последовательность длиной от 0 до 100 символов.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка: <code>нет &gt;</code>, <code>пробел в ID</code>, <code>длина ID</code>, <code>пустая последовательность</code> или идентификатор и длина последовательности через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;NM_000546
+              <h3>Упражнение 3.9.1. Строка-определение и последовательность</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана запись FASTA: строка-определение и последовательность. Проверьте правила по порядку и сообщите о первом нарушенном: строка-определение начинается с <code>&gt;</code>; в идентификаторе после <code>&gt;</code> нет пробелов; длина идентификатора от 1 до 25 символов; последовательность не пустая. Если все правила выполнены, выведите идентификатор и длину последовательности. В этом упражнении строка-определение состоит только из идентификатора, без описания.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке строка-определение длиной от 0 до 40 символов, во второй последовательность длиной от 0 до 100 символов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: <code>нет &gt;</code>, <code>пробел в ID</code>, <code>длина ID</code>, <code>пустая последовательность</code> или идентификатор и длина последовательности через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">&gt;NM_000546</span><br>ATGGAGGAGCCG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">NM_000546 <span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка начинается с >, в идентификаторе NM_000546 нет пробелов и его длина 9 — правила выполнены; в последовательности 12 букв.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;NM_000546
 ATGGAGGAGCCG</pre></td><td><pre>NM_000546 12</pre></td></tr>
-                <tr><td><pre>&gt;seq 1
+                      <tr><td><pre>&gt;seq 1
 ACGT</pre></td><td><pre>пробел в ID</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_09_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Запись FASTA начинается со знака &gt;, за которым идет идентификатор; последовательность записывают следующей строкой. Правила проверяют по порядку, а идентификатор — это <code>header[1:]</code>, и его длина считается без знака.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>FASTA</strong> — формат записи последовательностей: строка-определение и строки последовательности.</li>
+                  <li><strong>Строка-определение</strong> — первая строка записи, которая начинается со знака &gt;.</li>
+                  <li><strong>Идентификатор</strong> — имя записи после знака &gt;.</li>
+                  <li><strong>Метод startswith()</strong> — проверяет, начинается ли строка с заданного куска.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>header = input()</code>, <code>seq = input()</code>.</li>
+                  <li>Идентификатор — <code>sid = header[1:]</code>; первая проверка — <code>header.startswith("&gt;")</code>.</li>
+                  <li>Дальше по порядку: <code>" " in sid</code>, затем <code>1 &lt;= len(sid) &lt;= 25</code>, затем <code>seq</code> непустая.</li>
+                  <li>Если все правила выполнены, выведите <code>sid</code> и длину через пробел; сверьтесь с примером: NM_000546 и ATGGAGGAGCCG дают <code>NM_000546 12</code>, а seq 1 — пробел в ID.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_09_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.9.1. Качество последовательности</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Перед сборкой генома последовательности проверяют по правилам, в таком порядке. Пустая последовательность: <code>пустая</code>. Есть символы, кроме A, C, G, T, N в любом регистре: <code>недопустимые символы</code>. Буквы N составляют больше половины длины (без учета регистра): <code>низкое качество</code>. При нечетной длине половина дробная: из 5 букв низкое качество дают 3 буквы N и больше, а 2 еще нет. Все буквы строчные, то есть последовательность целиком замаскирована: <code>замаскирована</code>. Иначе <code>OK</code>. Дана последовательность. Выведите результат первого сработавшего правила.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Посторонние буквы найдет сумма <code>count()</code> по допустимым буквам. Регистр для правил 2 и 3 не важен, а для правила 4 важен: сохраните исходную строку и ее копию прописными буквами. Метод <code>islower()</code> (страница 05 второй практики) смотрит только на буквы.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 0 до 100 символов.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка: <code>пустая</code>, <code>недопустимые символы</code>, <code>низкое качество</code>, <code>замаскирована</code> или <code>OK</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTNNACGT</pre></td><td><pre>OK</pre></td></tr>
-                <tr><td><pre>acgtacgt</pre></td><td><pre>замаскирована</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_09_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.9.1. Качество последовательности</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Перед сборкой генома последовательности проверяют по правилам, в таком порядке. Пустая последовательность: <code>пустая</code>. Есть символы, кроме A, C, G, T, N в любом регистре: <code>недопустимые символы</code>. Буквы N составляют больше половины длины (без учета регистра): <code>низкое качество</code>. При нечетной длине половина дробная: из 5 букв низкое качество дают 3 буквы N и больше, а 2 еще нет. Все буквы строчные, то есть последовательность целиком замаскирована: <code>замаскирована</code>. Иначе <code>OK</code>. Дана последовательность. Выведите результат первого сработавшего правила.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 0 до 100 символов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: <code>пустая</code>, <code>недопустимые символы</code>, <code>низкое качество</code>, <code>замаскирована</code> или <code>OK</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT<span class="we-hl">NN</span>ACGT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">OK</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Из 10 букв только 2 это N, это меньше половины; посторонних символов нет, и последовательность не целиком строчная — все правила пройдены, OK.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTNNACGT</pre></td><td><pre>OK</pre></td></tr>
+                      <tr><td><pre>acgtacgt</pre></td><td><pre>замаскирована</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Правила качества применяют по порядку. Недопустимые символы находят сравнением длины с суммой подсчетов известных букв: если суммы не совпали, в строке есть посторонний символ. Долю N проверяют на последовательности в верхнем регистре, а маскировку — на исходной.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сборка генома</strong> — склейка прочтений в длинные последовательности.</li>
+                  <li><strong>Маскировка</strong> — запись последовательности строчными буквами.</li>
+                  <li><strong>N</strong> — код IUPAC, который означает любой нуклеотид.</li>
+                  <li><strong>Метод upper()</strong> — переводит строку в верхний регистр.</li>
+                  <li><strong>Метод islower()</strong> — истинен, когда все буквы строки строчные.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; для подсчетов возьмите <code>text = seq.upper()</code>.</li>
+                  <li>Сумма известных букв: <code>known = text.count("A")</code> + <code>text.count("C")</code> + <code>text.count("G")</code> + <code>text.count("T")</code> + <code>text.count("N")</code>.</li>
+                  <li>Правила по порядку: пустая строка, <code>known != len(text)</code>, <code>text.count("N") &gt; len(text) / 2</code>, <code>seq.islower()</code>.</li>
+                  <li>Выведите результат первого сработавшего правила или <code>OK</code>; сверьтесь с примером: ACGTNNACGT дает OK, а acgtacgt — замаскирована.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_09_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -285,74 +427,213 @@ ACGT</pre></td><td><pre>пробел в ID</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.9. Тип строки FASTA</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Файл FASTA состоит из записей. Запись начинается строкой-определением со знака <code>&gt;</code>, за ней идут строки последовательности, а между записями бывают пустые строки. Дана одна строка файла. Определите ее тип: <code>пустая</code>, если строка пустая; <code>определение</code>, если она начинается с <code>&gt;</code>; <code>последовательность</code>, если она состоит только из букв A, C, G, T, N в любом регистре; иначе <code>ошибка</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 0 до 60 символов.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно слово: <code>пустая</code>, <code>определение</code>, <code>последовательность</code> или <code>ошибка</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;S7 control</pre></td><td><pre>определение</pre></td></tr>
-                <tr><td><pre>acgtnACGT</pre></td><td><pre>последовательность</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_09_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.9. Тип строки FASTA</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Файл FASTA состоит из записей. Запись начинается строкой-определением со знака <code>&gt;</code>, за ней идут строки последовательности, а между записями бывают пустые строки. Дана одна строка файла. Определите ее тип: <code>пустая</code>, если строка пустая; <code>определение</code>, если она начинается с <code>&gt;</code>; <code>последовательность</code>, если она состоит только из букв A, C, G, T, N в любом регистре; иначе <code>ошибка</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 0 до 60 символов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно слово: <code>пустая</code>, <code>определение</code>, <code>последовательность</code> или <code>ошибка</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">&gt;S7 control</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">определение</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка начинается с >, поэтому это определение, и остальные проверки не нужны. Строка из букв ACGTN, включая строчные, была бы последовательностью.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;S7 control</pre></td><td><pre>определение</pre></td></tr>
+                      <tr><td><pre>acgtnACGT</pre></td><td><pre>последовательность</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Тип строки определяют по порядку: пустая строка ложна, определение узнают по <code>startswith("&gt;")</code>, а последовательность — по сумме подсчетов допустимых букв, которая должна совпасть с длиной строки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>FASTA</strong> — формат записи последовательностей: строка-определение и строки последовательности.</li>
+                  <li><strong>Строка-определение</strong> — первая строка записи, которая начинается со знака &gt;.</li>
+                  <li><strong>Метод startswith()</strong> — проверяет, начинается ли строка с заданного куска.</li>
+                  <li><strong>Метод upper()</strong> — переводит строку в верхний регистр.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>line = input()</code>; для подсчетов возьмите <code>text = line.upper()</code>.</li>
+                  <li>Сумма допустимых букв: <code>known = text.count("A")</code> + <code>text.count("C")</code> + <code>text.count("G")</code> + <code>text.count("T")</code> + <code>text.count("N")</code>.</li>
+                  <li>Проверки по порядку: <code>not line</code>, <code>line.startswith("&gt;")</code>, <code>known == len(text)</code>.</li>
+                  <li>В оставшемся случае выведите <code>ошибка</code>; сверьтесь с примером: &gt;S7 control дает определение, а acgtnACGT — последовательность.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_09_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.9. Код для двух нуклеотидов</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Если в позиции возможны два нуклеотида, ее обозначают одной буквой кода IUPAC (таблица в разделе 1). R означает A или G, Y означает C или T, S означает G или C, W означает A или T, K означает G или T, M означает A или C. Даны две буквы нуклеотидов в любом порядке. Выведите код IUPAC для этой позиции. Если буквы одинаковы, кодом служит сама буква.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>С учетом порядка пар букв двенадцать, без учета шесть. Приведите пару к одному порядку, например по алфавиту, условным выражением (<a href="t3_08.html">страница 08</a>).</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой одна прописная буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна буква кода.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>T
+              <h3>Задача со звездочкой 3.9. Код для двух нуклеотидов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Если в позиции возможны два нуклеотида, ее обозначают одной буквой кода IUPAC (таблица в разделе 1). R означает A или G, Y означает C или T, S означает G или C, W означает A или T, K означает G или T, M означает A или C. Даны две буквы нуклеотидов в любом порядке. Выведите код IUPAC для этой позиции. Если буквы одинаковы, кодом служит сама буква.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой одна прописная буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна буква кода.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">T</span><br><span class="we-hl">C</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">Y</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Пара C и T обозначается буквой Y, а порядок букв во входных строках не важен. Одинаковые буквы дали бы сами себя: G и G → G.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>T
 C</pre></td><td><pre>Y</pre></td></tr>
-                <tr><td><pre>G
+                      <tr><td><pre>G
 G</pre></td><td><pre>G</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_09_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Код пары не зависит от порядка букв, поэтому пару приводят к одному порядку: две буквы сравнивают и склеивают по алфавиту. Одинаковые буквы дают саму букву, шесть разных пар — шесть кодов IUPAC.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>IUPAC</strong> — система кодов, которой обозначают неоднозначные позиции.</li>
+                  <li><strong>Код пары</strong> — буква, которая означает любую из двух данных букв.</li>
+                  <li><strong>Сравнение строк</strong> — проверка, какая строка идет раньше по кодам символов.</li>
+                  <li><strong>Условное выражение</strong> — запись «одно, если условие, иначе другое».</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две буквы: <code>first_base = input()</code>, <code>second_base = input()</code>.</li>
+                  <li>Приведите пару к алфавитному порядку: если <code>first_base &lt; second_base</code>, то <code>pair = first_base + second_base</code>, иначе <code>pair = second_base + first_base</code>.</li>
+                  <li>Одинаковые буквы — сама буква; иначе сравните pair с шестью парами: AG, CT, CG, AT, GT и AC.</li>
+                  <li>Выведите код: R, Y, S, W, K, M или саму букву; сверьтесь с примером: T и C дают Y, а G и G — G.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_09_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.9. Сколько последовательностей в записи</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Запись с кодами IUPAC (таблица в разделе 1) описывает сразу несколько последовательностей из A, C, G, T: каждая неоднозначная буква заменяется любым из своих оснований. Буквы R, Y, S, W, K, M дают по два варианта, B, D, H, V по три, N четыре. Варианты разных позиций сочетаются друг с другом: <code>ARC</code> описывает <code>AAC</code> и <code>AGC</code>, а <code>RY</code> четыре последовательности, 2 · 2. Дана запись. Проверьте ее по правилам в таком порядке и выведите сообщение о первом нарушенном: <code>пустая</code>, если запись пустая; <code>недопустимые символы</code>, если в ней есть что-то, кроме букв кода IUPAC в любом регистре. Если запись верна, выведите, сколько последовательностей она описывает.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Каждую группу букв посчитайте методом <code>count()</code>. Если в позиции a вариантов, а в другой b, вместе они дают a · b вариантов.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 0 до 30 символов.</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число или сообщение <code>пустая</code> или <code>недопустимые символы</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GCNRT</pre></td><td><pre>8</pre></td></tr>
-                <tr><td><pre>acgt</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_09_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.9. Сколько последовательностей в записи</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Запись с кодами IUPAC (таблица в разделе 1) описывает сразу несколько последовательностей из A, C, G, T: каждая неоднозначная буква заменяется любым из своих оснований. Буквы R, Y, S, W, K, M дают по два варианта, B, D, H, V по три, N четыре. Варианты разных позиций сочетаются друг с другом: <code>ARC</code> описывает <code>AAC</code> и <code>AGC</code>, а <code>RY</code> четыре последовательности, 2 · 2. Дана запись. Проверьте ее по правилам в таком порядке и выведите сообщение о первом нарушенном: <code>пустая</code>, если запись пустая; <code>недопустимые символы</code>, если в ней есть что-то, кроме букв кода IUPAC в любом регистре. Если запись верна, выведите, сколько последовательностей она описывает.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 0 до 30 символов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число или сообщение <code>пустая</code> или <code>недопустимые символы</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GC<span class="we-hl">NRT</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">8</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">N дает 4 варианта, R 2, остальные G, C и T по одному: 4 · 2 = 8 последовательностей.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GCNRT</pre></td><td><pre>8</pre></td></tr>
+                      <tr><td><pre>acgt</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждая неоднозначная буква умножает число вариантов: двухвариантная на 2, трехвариантная на 3, N на 4. Итог — произведение множителей, то есть степень двойки, тройки и четверки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>IUPAC</strong> — система кодов, которой обозначают неоднозначные позиции.</li>
+                  <li><strong>Варианты буквы</strong> — число оснований, которые означает код: два, три или четыре.</li>
+                  <li><strong>Степень</strong> — запись вида <code>2 ** two</code>: число two показывает, сколько множителей, равных 2, перемножают.</li>
+                  <li><strong>Произведение</strong> — результат перемножения множителей.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте запись и приведите ее к верхнему регистру: <code>text = input().upper()</code>.</li>
+                  <li>Сосчитайте группы: двухвариантные <code>R, Y, S, W, K, M</code>, трехвариантные <code>B, D, H, V</code>, четырехвариантный <code>N</code>, точные <code>A, C, G, T</code>.</li>
+                  <li>Если сумма подсчетов не совпала с <code>len(text)</code>, в записи есть недопустимый символ.</li>
+                  <li>Иначе выведите <code>2 ** two * 3 ** three * 4 ** four</code>; сверьтесь с примером: GCNRT дает 8, а acgt — 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_09_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

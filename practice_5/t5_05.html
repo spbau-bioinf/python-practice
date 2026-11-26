@@ -109,81 +109,224 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.5.1. Позиции буквы</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите все позиции, на которых в последовательности стоит заданная буква. Позиции считаются с 1, как в задачах Rosalind. В практике 4 (<a href="../practice_4/t4_02.html">задача со звездочкой 4.2</a>) позиции перебирали через <code>range()</code>, здесь перебирайте буквы вместе с номерами функцией <code>enumerate()</code> с параметром <code>start=1</code>. Если буквы нет, выведите слово <code>нет</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность: строка из букв A, C, G, T длиной от 1 до 100. Во второй одна буква: A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p>Позиции через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATATATGCATAT
+              <h3>Упражнение 5.5.1. Позиции буквы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите все позиции, на которых в последовательности стоит заданная буква. Позиции считаются с 1, как в задачах Rosalind. Если буквы нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность: строка из букв A, C, G, T длиной от 1 до 100. Во второй одна буква: A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Позиции через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<span class="we-hl">A</span>T<span class="we-hl">A</span>T<span class="we-hl">A</span>TGC<span class="we-hl">A</span>T<span class="we-hl">A</span>T<br>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">2 4 6 10 12</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква A стоит на позициях 2, 4, 6, 10 и 12; enumerate(..., start=1) нумерует буквы с 1, как в задачах Rosalind.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATATATGCATAT
 A</pre></td><td><pre>2 4 6 10 12</pre></td></tr>
-                <tr><td><pre>CCGG
+                      <tr><td><pre>CCGG
 T</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Функция enumerate(seq, start=1) выдает пары «номер, буква», причем нумерация начинается с 1, как в задачах Rosalind. Подходящие номера копят строками в списке, а join склеивает их через пробел; пустой список означает, что буквы нет, и тогда печатают слово нет.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Параметр start</strong> — start=1 задает первый номер.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Список строк</strong> — номера хранят строками, чтобы join мог их склеить.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>seq = input()</code>, <code>letter = input()</code>; заведите <code>positions = []</code>.</li>
+                  <li>Перебирайте буквы с номерами: <code>enumerate(seq, start=1)</code> дает пары <code>index, base</code>.</li>
+                  <li>Совпавшие номера дописывайте строками: при <code>base == letter</code> вызовите <code>positions.append(str(index))</code>.</li>
+                  <li>Если positions непуст, напечатайте <code>" ".join(positions)</code>, иначе слово <code>нет</code>; сверьтесь с примером: GATATATGCATAT и A дают 2 4 6 10 12, а CCGG и T — нет.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.5.1. Номера с мотивом</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Мотив&nbsp;— короткая последовательность, которую ищут в длинной (<a href="../practice_4/t4_08.html">страница 08 практики 4</a>). Последовательности набора пронумерованы с 1. Выведите номера последовательностей, в которых встречается мотив. Если таких нет, выведите слово <code>нет</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор: от 1 до 20 последовательностей через пробел, каждая из букв A, C, G, T длиной от 1 до 30. Во второй мотив из тех же букв длиной от 1 до 10.</p>
-          <h4>Выходные данные</h4>
-          <p>Номера через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCAT GGATCC TTAGCA CATG
+              <h3>Упражнение 5.5.1. Номера с мотивом</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательности набора пронумерованы с 1. Выведите номера последовательностей, в которых встречается мотив. Если таких нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор: от 1 до 20 последовательностей через пробел, каждая из букв A, C, G, T длиной от 1 до 30. Во второй мотив из тех же букв длиной от 1 до 10.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номера через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG<span class="we-hl">CAT</span> GGATCC TTAGCA <span class="we-hl">CAT</span>G<br>CAT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1 4</code>
+                    </div>
+                  </div>
+                  <p class="we-note">CAT есть в ATGCAT (позиции 5–7) и в CATG, поэтому подходят последовательности 1 и 4; в GGATCC и TTAGCA мотива нет.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCAT GGATCC TTAGCA CATG
 CAT</pre></td><td><pre>1 4</pre></td></tr>
-                <tr><td><pre>AAAA CCCC
+                      <tr><td><pre>AAAA CCCC
 GG</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>enumerate(seqs, start=1) перебирает последовательности набора вместе с номерами. Оператор in проверяет мотив внутри строки целиком, поэтому искать позицию не нужно. Номера копят строками, чтобы join собрал их через пробел.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Мотив</strong> — короткая последовательность, которую ищут в длинной.</li>
+                  <li><strong>Оператор in</strong> — проверяет, встречается ли подстрока в строке.</li>
+                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и мотив: <code>seqs = input().split()</code>, <code>motif = input()</code>; заведите <code>numbers = []</code>.</li>
+                  <li>Перебирайте последовательности с номерами: <code>enumerate(seqs, start=1)</code> дает пары <code>index, sequence</code>.</li>
+                  <li>Подходящие номера дописывайте: при <code>motif in sequence</code> вызовите <code>numbers.append(str(index))</code>.</li>
+                  <li>Напечатайте <code>" ".join(numbers)</code> или слово <code>нет</code>; сверьтесь с примером: ATGCAT GGATCC TTAGCA CATG и мотив CAT дают 1 4, а AAAA CCCC и GG — нет.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.5.1. Обрезка хвоста</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор, который читает ДНК, ставит каждой прочитанной букве оценку качества: целое число, чем оно больше, тем увереннее прибор в букве. К концу прочтения (прочитанного участка) качество обычно падает. Хвост с плохими оценками отрезают: удаляют буквы с конца, пока не встретится буква с оценкой не меньше <code>q</code>. Плохие буквы до этой буквы остаются. Выведите обрезанное прочтение и число удаленных букв. Если хороших букв нет вовсе, прочтение удаляется целиком: вместо него выведите слово <code>пусто</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Найдите позицию последней буквы с хорошей оценкой: ее номер можно запоминать при обходе. Все, что после нее, отрезается срезом.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке прочтение: строка из букв A, C, G, T длиной от 1 до 100. Во второй оценки качества всех букв по порядку через пробел, целые числа от 0 до 41: так оценивают буквы приборы Illumina (<a href="https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf">шкала Phred</a>), оценка 20 значит, что прибор ошибается примерно в одной букве из ста. В третьей порог <code>q</code> от 1 до 41.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке обрезанное прочтение или слово <code>пусто</code>, во второй число удаленных букв.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTTACG
+              <h3>Упражнение 5.5.1. Обрезка хвоста</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Хвост с плохими оценками отрезают: удаляют буквы с конца, пока не встретится буква с оценкой не меньше <code>quality</code>. Плохие буквы до этой буквы остаются. Выведите обрезанное прочтение и число удаленных букв. Если хороших букв нет вовсе, прочтение удаляется целиком: вместо него выведите слово <code>пусто</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке прочтение: строка из букв A, C, G, T длиной от 1 до 100. Во второй оценки качества всех букв по порядку через пробел, целые числа от 0 до 41: так оценивают буквы приборы Illumina (<a href="https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf">шкала Phred</a>), оценка 20 значит, что прибор ошибается примерно в одной букве из ста. В третьей порог <code>quality</code> от 1 до 41.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке обрезанное прочтение или слово <code>пусто</code>, во второй число удаленных букв.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGTTACG<br>40 38 35 30 12 <span class="we-hl">25</span> <span class="we-hl">10 8</span><br>20</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACGTTA<br><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Последняя оценка не меньше 20 — это 25 на шестой букве; хвост из двух букв с оценками 10 и 8 отрезается, остается ACGTTA.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTTACG
 40 38 35 30 12 25 10 8
 20</pre></td><td><pre>ACGTTA
 2</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 5 5 5 5
 10</pre></td><td><pre>пусто
 4</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Нужен номер последней хорошей буквы: цикл enumerate(scores) запоминает в last каждое место с оценкой не меньше quality, и в итоге там остается последнее такое место. Буквы после него — хвост, их число равно длине прочтения минус last + 1. Если хороших букв не было, last равен -1, срез seq[:0] пуст, и выводится пусто.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Оценка качества</strong> — целое число: чем оно больше, тем увереннее прибор в букве.</li>
+                  <li><strong>Порог quality</strong> — оценка не меньше quality считается хорошей.</li>
+                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Срез seq[:last + 1]</strong> — буквы до последней хорошей включительно.</li>
+                  <li><strong>Прочтение</strong> — участок ДНК, который прибор прочитал за один раз.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте прочтение, оценки и порог: <code>seq = input()</code>, <code>scores = input().split()</code>, <code>quality = int(input())</code>.</li>
+                  <li>Заведите <code>last = -1</code> и перебирайте оценки с номерами: <code>for index, score in enumerate(scores):</code>.</li>
+                  <li>При <code>int(score) &gt;= quality</code> запоминайте номер: <code>last = index</code> — после цикла там последняя хорошая буква.</li>
+                  <li>Обрежьте прочтение срезом <code>seq[:last + 1]</code> (пустой срез замените словом пусто) и напечатайте число удаленных букв; сверьтесь с примером: ACGTTACG с оценками 40 38 35 30 12 25 10 8 при quality = 20 дает ACGTTA и 2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -286,77 +429,218 @@ GG</pre></td><td><pre>нет</pre></td></tr>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.5.2. Совпадающие позиции</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пример раздела считает позиции, где буквы двух строк различаются. Посчитайте наоборот позиции, где буквы совпадают. Берите пары букв функцией <code>zip()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: число совпадающих позиций.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GAGCCTACTA
+              <h3>Упражнение 5.5.2. Совпадающие позиции</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пример раздела считает позиции, где буквы двух строк различаются. Посчитайте наоборот: сколько позиций, где буквы совпадают.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: число совпадающих позиций.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<span class="we-hl">A</span>G<span class="we-hl">C</span>C<span class="we-hl">TA</span>C<span class="we-hl">T</span>A<br>C<span class="we-hl">A</span>T<span class="we-hl">C</span>G<span class="we-hl">TA</span>A<span class="we-hl">T</span>G</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">5</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Совпадают 2-я, 4-я, 6-я, 7-я и 9-я позиции: A/A, C/C, T/T, A/A и T/T; таких столбцов 5.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GAGCCTACTA
 CATCGTAATG</pre></td><td><pre>5</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 TGCA</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>zip(first, second) идет по двум строкам одновременно и на каждом шаге выдает пару букв из одного столбца. Цикл увеличивает счетчик, когда буквы пары равны; длины строк одинаковы, поэтому zip не теряет ни одного столбца.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция zip()</strong> — перебирает несколько строк одновременно, выдавая пары букв.</li>
+                  <li><strong>Столбец</strong> — буквы двух строк на одной позиции.</li>
+                  <li><strong>Счетчик</strong> — переменная, которая растет на единицу за каждую подходящую пару.</li>
+                  <li><strong>Оператор ==</strong> — сравнивает две буквы.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>first = input()</code>, <code>second = input()</code>; заведите <code>same = 0</code>.</li>
+                  <li>Перебирайте пары букв: <code>zip(first, second)</code> дает пары <code>first_base, second_base</code>.</li>
+                  <li>При <code>first_base == second_base</code> увеличьте счетчик.</li>
+                  <li>Выведите same; сверьтесь с примером: GAGCCTACTA и CATCGTAATG дают 5, а ACGT и TGCA — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.5.2. Позиции различий</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите позиции, на которых буквы двух последовательностей одинаковой длины различаются. Позиции считаются с 1. Пары букв берите функцией <code>zip()</code>, номера добавляет <code>enumerate()</code>. Если различий нет, выведите слово <code>нет</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Позиции через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GAGCCTACTA
+              <h3>Упражнение 5.5.2. Позиции различий</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите позиции, на которых буквы двух последовательностей одинаковой длины различаются. Позиции считаются с 1. Если различий нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки одинаковой длины от 1 до 100 из букв A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Позиции через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">G</span>A<span class="we-hl">G</span>C<span class="we-hl">C</span>TAC<span class="we-hl">C</span>T<span class="we-hl">A</span><br>CATCGTAATG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1 3 5 8 10</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буквы различаются на позициях 1, 3, 5, 8 и 10: G/C, G/T, C/G, C/A и A/G; на остальных позициях буквы совпадают.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GAGCCTACTA
 CATCGTAATG</pre></td><td><pre>1 3 5 8 10</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 ACGT</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пары букв дает zip(first, second), а номера к ним добавляет enumerate с start=1: в скобках цикла пара распаковывается как (first_base, second_base). Различающиеся номера копят строками, чтобы join собрал их через пробел.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция zip()</strong> — перебирает две строки одновременно, выдавая пары букв.</li>
+                  <li><strong>Функция enumerate()</strong> — добавляет к каждой паре номер.</li>
+                  <li><strong>Распаковка в цикле</strong> — for index, (first_base, second_base) in enumerate(...) разбирает номер и пару.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>first = input()</code>, <code>second = input()</code>; заведите <code>positions = []</code>.</li>
+                  <li>Перебирайте столбцы с номерами: <code>enumerate</code> по парам <code>zip(first, second)</code> с <code>start=1</code> дает номер и пару <code>first_base, second_base</code>.</li>
+                  <li>Различия копите: при <code>first_base != second_base</code> вызовите <code>positions.append(str(index))</code>.</li>
+                  <li>Напечатайте <code>" ".join(positions)</code> или слово <code>нет</code>; сверьтесь с примером: GAGCCTACTA и CATCGTAATG дают 1 3 5 8 10, а одинаковые ACGT — нет.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.5.2. Сравнение по правому краю</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Два прочтения, возможно разной длины, записали друг под другом так, что их последние буквы стоят в одном столбце: выровняли по правому краю. Сравниваются только столбцы, где есть буквы обоих прочтений. Посчитайте, во скольких таких столбцах буквы различаются. Используйте функцию <code>zip()</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p><code>zip()</code> начинает с первых букв. Подумайте, как сделать последние буквы первыми.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки из букв A, C, G, T, длина каждой от 1 до 100; длины могут быть разными.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: число столбцов с разными буквами.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TTACGTA
+              <h3>Упражнение 5.5.2. Сравнение по правому краю</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Два прочтения, возможно разной длины, записали друг под другом так, что их последние буквы стоят в одном столбце: выровняли по правому краю. Сравниваются только столбцы, где есть буквы обоих прочтений. Посчитайте, во скольких таких столбцах буквы различаются.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки из букв A, C, G, T, длина каждой от 1 до 100; длины могут быть разными.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: число столбцов с разными буквами.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">TTACGTA<br><span class="we-hl">ACGAA</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1</code>
+                    </div>
+                  </div>
+                  <p class="we-note">При выравнивании по правому краю сравниваются пять столбцов: A/A, T/A, G/G, C/C и A/A; буквы различаются только во втором столбце справа, поэтому ответ 1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TTACGTA
 ACGAA</pre></td><td><pre>1</pre></td></tr>
-                <tr><td><pre>ACGT
+                      <tr><td><pre>ACGT
 ACGT</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Чтобы выровнять строки по правому краю, обе разворачивают срезом [::-1]: тогда первые буквы zip стоят в последнем столбце. zip останавливается на конце короткой строки, поэтому сравниваются ровно те столбцы, где есть обе буквы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Выравнивание по правому краю</strong> — последние буквы прочтений стоят в одном столбце.</li>
+                  <li><strong>Обратный срез [::-1]</strong> — разворачивает строку.</li>
+                  <li><strong>Функция zip()</strong> — останавливается на конце короткой строки.</li>
+                  <li><strong>Счетчик</strong> — переменная, которая растет за каждый различающийся столбец.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе строки: <code>first = input()</code>, <code>second = input()</code>; заведите <code>distance = 0</code>.</li>
+                  <li>Разверните обе строки: <code>first[::-1]</code> и <code>second[::-1]</code> — теперь zip сравнивает столбцы с конца.</li>
+                  <li>В цикле по <code>zip(first[::-1], second[::-1])</code> увеличивайте distance при <code>first_base != second_base</code>.</li>
+                  <li>Выведите distance; сверьтесь с примером: TTACGTA и ACGAA дают 1, а две одинаковые ACGT — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -367,74 +651,218 @@ ACGT</pre></td><td><pre>0</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.5. Столбец набора</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Последовательности набора одной длины записаны друг под другом. Выведите столбец с номером <code>p</code> (позиции считаются с 1): буквы этой позиции всех последовательностей, сверху вниз, одной строкой без пробелов.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T. Во второй номер <code>p</code> от 1 до длины последовательностей.</p>
-          <h4>Выходные данные</h4>
-          <p>Буквы столбца одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATCC GGGC ATGG
+              <h3>Задача со звездочкой 5.5. Столбец набора</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательности набора одной длины записаны друг под другом. Выведите столбец с номером <code>position</code> (позиции считаются с 1): буквы этой позиции всех последовательностей, сверху вниз, одной строкой без пробелов.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T. Во второй номер <code>position</code> от 1 до длины последовательностей.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Буквы столбца одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<span class="we-hl">T</span>CC G<span class="we-hl">G</span>GC A<span class="we-hl">T</span>GG<br>2</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">TGT</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Вторые буквы последовательностей: у ATCC — T, у GGGC — G, у ATGG — T; столбец сверху вниз дает TGT.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATCC GGGC ATGG
 2</pre></td><td><pre>TGT</pre></td></tr>
-                <tr><td><pre>ACGT TTTT
+                      <tr><td><pre>ACGT TTTT
 4</pre></td><td><pre>TT</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>zip(*seqs) с распаковкой звездочкой передает функции все последовательности сразу: каждый шаг zip собирает буквы одной позиции — столбец. Столбцы собираются в список списков, и столбец с номером position стоит по индексу position - 1. "".join склеивает буквы без пробелов.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Распаковка звездочкой в вызове</strong> — *seqs передает все элементы списка отдельными аргументами.</li>
+                  <li><strong>Функция zip()</strong> — собирает буквы одной позиции всех строк в столбец.</li>
+                  <li><strong>Столбец</strong> — буквы одной позиции всех последовательностей.</li>
+                  <li><strong>Индекс position - 1</strong> — номер столбца с 1 переводится в индекс списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает буквы без пробелов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и номер: <code>seqs = input().split()</code>, <code>position = int(input())</code>.</li>
+                  <li>Соберите столбцы: <code>list(zip(*seqs))</code> — каждый элемент списка это столбец из букв.</li>
+                  <li>Возьмите столбец с номером position: он лежит по индексу <code>position - 1</code>.</li>
+                  <li>Склейте буквы без пробелов: <code>"".join(column)</code>; сверьтесь с примером: ATCC GGGC ATGG при position = 2 дают TGT, а ACGT TTTT при position = 4 — TT.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.5. Столбцы вместо строк</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Последовательности набора одной длины записаны друг под другом. Выведите все столбцы по порядку: каждый столбец одной строкой букв сверху вниз, столбцы через пробел.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T.</p>
-          <h4>Выходные данные</h4>
-          <p>Столбцы через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATCC GGGC ATGG</pre></td><td><pre>AGA TGT CGG CCG</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>A C G T</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.5. Столбцы вместо строк</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательности набора одной длины записаны друг под другом. Выведите все столбцы по порядку: каждый столбец одной строкой букв сверху вниз, столбцы через пробел.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Столбцы через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATCC GGGC ATGG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">AGA</span> <span class="we-seg we-seg-2">TGT</span> CGG CCG</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первый столбец — A, G, A, второй — T, G, T, третий — C, G, G, четвертый — C, C, G; они и выводятся через пробел.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATCC GGGC ATGG</pre></td><td><pre>AGA TGT CGG CCG</pre></td></tr>
+                      <tr><td><pre>ACGT</pre></td><td><pre>A C G T</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>zip(*seqs) выдает столбцы по порядку, и цикл склеивает буквы каждого столбца в строку через "".join. Полученные строки копят в списке, а внешний join собирает их через пробел.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Распаковка звездочкой в вызове</strong> — *seqs передает все элементы списка отдельными аргументами.</li>
+                  <li><strong>Функция zip()</strong> — собирает буквы одной позиции всех строк в столбец.</li>
+                  <li><strong>Столбец</strong> — буквы одной позиции всех последовательностей.</li>
+                  <li><strong>Метод append()</strong> — дописывает строку-столбец в конец списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает строки через пробел.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>; заведите <code>columns = []</code>.</li>
+                  <li>Перебирайте столбцы: <code>for col in zip(*seqs):</code>.</li>
+                  <li>Склеивайте буквы столбца: <code>columns.append("".join(col))</code>.</li>
+                  <li>Напечатайте <code>" ".join(columns)</code>; сверьтесь с примером: ATCC GGGC ATGG дают AGA TGT CGG CCG, а одна строка ACGT — столбцы A C G T.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.5. Больше всего соседей</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Назовем две последовательности набора соседями, если расстояние Хэмминга между ними (число позиций, где буквы различаются, <a href="../practice_4/t4_07.html">страница 07 практики 4</a>) не больше <code>d</code>. Последовательность не считается соседом самой себе, а одинаковые последовательности с разными номерами соседи. Найдите последовательность, у которой больше всего соседей, и выведите ее номер (с 1) и число соседей. Если таких несколько, выберите первую.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T. Во второй целое число <code>d</code> от 0 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер последовательности и число соседей через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGT ACGA TCGA TTTT
+              <h3>Задача со звездочкой 5.5. Больше всего соседей</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Назовем две последовательности набора соседями, если расстояние Хэмминга между ними не больше <code>distance</code>. Последовательность не считается соседом самой себе, а одинаковые последовательности с разными номерами соседи. Найдите последовательность, у которой больше всего соседей, и выведите ее номер (с 1) и число соседей. Если таких несколько, выберите первую.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор: от 1 до 20 последовательностей одной длины через пробел, длина от 1 до 30, буквы A, C, G, T. Во второй целое число <code>distance</code> от 0 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер последовательности и число соседей через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT <span class="we-hl">ACGA</span> TCGA TTTT<br>1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2 2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У ACGA два соседа: ACGT отличается одной буквой в конце, TCGA — одной в начале; у остальных последовательностей не больше одного соседа, поэтому ответ 2 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGT ACGA TCGA TTTT
 1</pre></td><td><pre>2 2</pre></td></tr>
-                <tr><td><pre>AAAA CCCC
+                      <tr><td><pre>AAAA CCCC
 0</pre></td><td><pre>1 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_05_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждую последовательность сравнивают со всеми остальными: внутренний цикл пропускает ее саму (index != other_index), а расстояние Хэмминга считает третий цикл по zip. Лучший счет заменяют строгим &gt;, поэтому при равенстве остается первая последовательность; номер выводят как index + 1.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Соседи</strong> — две последовательности, у которых расстояние Хэмминга не больше distance.</li>
+                  <li><strong>Расстояние Хэмминга</strong> — число позиций, где буквы различаются.</li>
+                  <li><strong>Функция zip()</strong> — перебирает пары букв двух последовательностей.</li>
+                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Строгое сравнение</strong> — &gt; не пропускает равный счет.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор и порог: <code>seqs = input().split()</code>, <code>distance = int(input())</code>; заведите <code>best = 0</code> и <code>best_count = -1</code>.</li>
+                  <li>Перебирайте последовательности с номерами: <code>for index, sequence in enumerate(seqs):</code>.</li>
+                  <li>Для каждой считайте соседей: во внутреннем цикле <code>enumerate(seqs)</code> получайте <code>other_index</code> и <code>other_sequence</code>, пропускайте <code>index == other_index</code>, расстояние считайте циклом по <code>zip(sequence, other_sequence)</code>, а подходящие (<code>difference &lt;= distance</code>) увеличивают <code>count</code>.</li>
+                  <li>При <code>count &gt; best_count</code> запоминайте index и count; выведите <code>best + 1</code> и best_count; сверьтесь с примером: ACGT ACGA TCGA TTTT при distance = 1 дают 2 2, а AAAA CCCC при distance = 0 — 1 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_05_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

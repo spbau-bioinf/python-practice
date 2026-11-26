@@ -39,6 +39,10 @@
       в этом браузере и восстанавливается при следующем открытии.
    6. СОБЫТИЯ. Блок .checker отправляет checker:start и checker:result
       (detail: file, passed, total, solved); их слушает game.js.
+   8. ВЫВОД И ТЕСТЫ (версия 107). С атрибутом data-split блок проверки показывает
+      два окна: «Вывод» (что напечатала программа, включая ошибки) и «Тесты»
+      (итог проверки и разбор тестов). Строки ввода при этом стоят в окне «Ввод»
+      и из вывода примера убираются.
 
    Код выполняется настоящим CPython (Pyodide) в отдельном потоке.
    Без JavaScript или интернета страница остается рабочей и статичной. */
@@ -454,7 +458,7 @@
     while ((m = re.exec(code))) {
       out += escHTML(code.slice(last, m.index));
       var tok = m[0], cls = "tok-op";
-      if (tok.charAt(0) === "#") cls = "tok-com";
+      if (tok.charAt(0) === "#") cls = tok.indexOf("# →") === 0 ? "tok-out" : "tok-com";
       else if (/^(?:[fFrRbBuU]{0,2})(?:"""|'''|"|')/.test(tok)) cls = "tok-str";
       else if (/^\d/.test(tok)) cls = "tok-num";
       else if (tok === "True" || tok === "False" || tok === "None") cls = "tok-const";
@@ -468,10 +472,14 @@
   }
 
   /* ---------------- копирование кода ---------------- */
-  var COPY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="11" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
-  var CHECK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  var PENCIL_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l4.2-1 10.6-10.6a2.1 2.1 0 0 0-3-3L5.2 16 4 20zM14 6.5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  var PLAY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>';
+  /* сетка 24×24, контур 1.5, скруглённые концы; размер задаётся CSS (20 px) */
+  var ACT_ATTRS = 'viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
+  var COPY_SVG = '<svg ' + ACT_ATTRS + '><rect x="8" y="8" width="11.6" height="11.6" rx="2.4"/><path d="M15.6 8V5.4A2.4 2.4 0 0 0 13.2 3H5.4A2.4 2.4 0 0 0 3 5.4v7.8a2.4 2.4 0 0 0 2.4 2.4H8"/></svg>';
+  var CHECK_SVG = '<svg ' + ACT_ATTRS + '><path d="M20 6 9 17l-5-5"/></svg>';
+  var PENCIL_SVG = '<svg ' + ACT_ATTRS + '><path d="M14.5 4.2 20.1 9.8 8.6 21.3H3.1v-5.5Z"/><path d="M12.2 6.5 17.8 12.1"/></svg>';
+  var PLAY_SVG = '<svg ' + ACT_ATTRS + '><path d="M9.1 5.8 18.4 12 9.1 18.2Z"/></svg>';
+  var RESET_SVG = '<svg ' + ACT_ATTRS + '><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>';
+  var SAVE_SVG = '<svg ' + ACT_ATTRS + '><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>';
   function fallbackCopy(text) {
     var t = document.createElement("textarea");
     t.value = text;
@@ -492,7 +500,7 @@
     return Promise.resolve(fallbackCopy(text));
   }
   function copyButton(getText, cls) {
-    var b = el("button", "tb-copy-code " + (cls || ""));
+    var b = el("button", "icon-btn tb-copy-code ic-copy " + (cls || ""));
     b.type = "button";
     b.innerHTML = COPY_SVG;
     b.setAttribute("aria-label", "Скопировать код");
@@ -510,13 +518,93 @@
           b.innerHTML = COPY_SVG;
           b.setAttribute("aria-label", "Скопировать код");
           b.setAttribute("title", "Скопировать код");
-        }, 1400);
+        }, 1600);
+      });
+    });
+    return b;
+  }
+  function setupCopyNames() {
+    Array.prototype.forEach.call(document.querySelectorAll(".checker-note-short code"), function (code) {
+      if (code.dataset.copyNameReady) return;
+      code.dataset.copyNameReady = "1";
+      code.classList.add("copy-name");
+      code.setAttribute("role", "button");
+      code.setAttribute("tabindex", "0");
+      code.setAttribute("aria-label", "Скопировать имя переменной " + code.textContent.trim());
+      code.title = "Нажмите, чтобы скопировать";
+      function activate(e) {
+        if (e.type === "keydown" && e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        copyText(code.textContent.trim()).then(function (ok) {
+          if (!ok) return;
+          code.classList.remove("is-copied");
+          void code.offsetWidth;
+          code.classList.add("is-copied");
+          window.clearTimeout(code._copyTimer);
+          code._copyTimer = window.setTimeout(function () { code.classList.remove("is-copied"); }, 1100);
+        });
+      }
+      code.addEventListener("click", activate);
+      code.addEventListener("keydown", activate);
+    });
+  }
+  var toastEl = null, toastTimer = 0, toastSticky = false;
+  function hideToast() {
+    window.clearTimeout(toastTimer);
+    toastSticky = false;
+    if (!toastEl) return;
+    if (toastEl.contains(document.activeElement)) document.activeElement.blur();
+    toastEl.classList.remove("is-on");
+    toastEl.classList.remove("has-action");
+  }
+  function showToast(text, action) {
+    var hasAction = !!(action && action.label && typeof action.onClick === "function");
+    /* сообщение о сбросе с кнопкой «Вернуть» не вытесняем обычными подсказками */
+    if (!hasAction && toastSticky) return;
+    if (!toastEl) {
+      toastEl = el("div", "copy-toast");
+      toastEl.setAttribute("role", "status");
+      toastEl.setAttribute("aria-live", "polite");
+      document.body.appendChild(toastEl);
+    }
+    toastEl.innerHTML = "";
+    toastEl.appendChild(el("span", "copy-toast-text", text));
+    toastEl.classList.toggle("has-action", hasAction);
+    if (hasAction) {
+      var b = el("button", "copy-toast-action", action.label);
+      b.type = "button";
+      b.addEventListener("click", function () {
+        var act = action;
+        hideToast();
+        if (act && typeof act.onClick === "function") act.onClick();
+      });
+      toastEl.appendChild(b);
+    }
+    toastEl.classList.add("is-on");
+    window.clearTimeout(toastTimer);
+    toastSticky = hasAction;
+    toastTimer = window.setTimeout(hideToast, hasAction ? 10000 : 2400);
+  }
+  function isPyName(name) { return /^[A-Za-z0-9_.-]+\.py$/.test(name || ""); }
+  function fileCopyButton(name) {
+    var b = el("button", "file-copy");
+    b.type = "button";
+    b.textContent = name;
+    b.title = "Скопировать имя файла: " + name;
+    b.setAttribute("aria-label", "Скопировать имя файла: " + name);
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      copyText(name).then(function (ok) {
+        if (!ok) { showToast("Не удалось скопировать имя файла"); return; }
+        b.classList.add("is-copied");
+        window.setTimeout(function () { b.classList.remove("is-copied"); }, 1600);
+        showToast("Имя файла скопировано: " + name);
       });
     });
     return b;
   }
   function iconButton(svg, label, cls) {
-    var b = el("button", "ex-btn ex-btn-icon " + (cls || ""));
+    var b = el("button", "icon-btn " + (cls || ""));
     b.type = "button";
     b.innerHTML = svg;
     b.title = label;
@@ -533,14 +621,19 @@
       var dots = el("span", "code-dots");
       ["r", "y", "g"].forEach(function (c) { dots.appendChild(el("i", "code-dot-" + c)); });
       head.appendChild(dots);
-      head.appendChild(el("span", "code-file", opts.file || "solution.py"));
-      if (opts.copy) head.appendChild(copyButton(function () { return area.value; }, "tb-copy-head"));
+      var fileName = opts.file || "solution.py";
+      var fileEl = el("span", "code-file");
+      if (isPyName(fileName)) fileEl.appendChild(fileCopyButton(fileName));
+      else fileEl.textContent = fileName;
+      head.appendChild(fileEl);
+      var actions = el("span", "code-actions");
+      if (opts.copy) actions.appendChild(copyButton(function () { return area.value; }, "tb-copy-head"));
       if (opts.save && opts.file) {
-        var saveBtn = el("button", "tb-save-code");
+        var saveBtn = el("button", "icon-btn tb-save-code ic-save");
         saveBtn.type = "button";
         saveBtn.title = "Сохранить как " + opts.file;
         saveBtn.setAttribute("aria-label", "Сохранить как " + opts.file);
-        saveBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>';
+        saveBtn.innerHTML = SAVE_SVG;
         saveBtn.addEventListener("click", function () {
           var blob = new Blob([area.value], {type: "text/x-python"});
           var a = document.createElement("a");
@@ -551,8 +644,9 @@
           a.remove();
           window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
         });
-        head.appendChild(saveBtn);
+        actions.appendChild(saveBtn);
       }
+      if (actions.firstChild) head.appendChild(actions);
       wrap.appendChild(head);
     }
     var body = el("div", "code-editor-body");
@@ -574,11 +668,30 @@
       for (var i = 1; i <= n; i++) t += i + "\n";
       gutter.textContent = t;
       highlight.innerHTML = pyHighlight(area.value);
+      /* версия 100: поле растет под все строки, поэтому родная прокрутка вниз
+         и ползунок растягивания в углу не нужны; запас под горизонтальную полосу.
+         У скрытой вкладки высота нулевая: размер задаст sync при ее показе. */
+      if (area.scrollHeight) {
+        area.style.height = "auto";
+        var h = area.scrollHeight;
+        area.style.height = h + "px";
+        var bar = area.scrollHeight - area.clientHeight;
+        if (bar > 0) area.style.height = (h + bar) + "px";
+      }
       gutter.scrollTop = area.scrollTop;
       highlight.scrollTop = area.scrollTop;
       highlight.scrollLeft = area.scrollLeft;
     }
     area.addEventListener("input", sync);
+    var syncQueued = false;
+    window.addEventListener("resize", function () {
+      if (syncQueued) return;
+      syncQueued = true;
+      window.requestAnimationFrame(function () {
+        syncQueued = false;
+        if (area.isConnected) sync();
+      });
+    });
     area.addEventListener("scroll", function () {
       gutter.scrollTop = area.scrollTop;
       highlight.scrollTop = area.scrollTop;
@@ -610,6 +723,52 @@
       var t = arguments[i];
       if (t && t.style) { t.style.height = ""; t.style.width = ""; }
     }
+  }
+
+  /* ---------- поле «Ввод»: высота по числу строк (версия 111) ---------- */
+  /* Ползунка растягивания в поле нет. Высота следует за строками ввода: растет
+     до STDIN_MAX_LINES строк, дальше появляется вертикальная прокрутка. */
+  var STDIN_MAX_LINES = 8;
+  function lineHeightOf(el, cs) {
+    var lh = parseFloat(cs.lineHeight);
+    if (lh) return lh;
+    /* line-height: normal — меряем высоту строки пробным блоком с теми же шрифтами */
+    var probe = document.createElement("div");
+    probe.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;margin:0;padding:0;border:0;" +
+      "white-space:pre;font-family:" + cs.fontFamily + ";font-size:" + cs.fontSize + ";line-height:" + cs.lineHeight;
+    probe.textContent = "x";
+    document.body.appendChild(probe);
+    var h = probe.getBoundingClientRect().height;
+    document.body.removeChild(probe);
+    return h || parseFloat(cs.fontSize) * 1.2;
+  }
+  function fitStdin(area) {
+    if (!area || !area.isConnected) return;
+    var cs = window.getComputedStyle(area);
+    var lh = lineHeightOf(area, cs);
+    var pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    var bord = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+    var keep = area.scrollTop;                       /* пересчет не должен уводить прокрутку вверх */
+    area.style.height = "0px";
+    var need = area.scrollHeight + bord;
+    if (!need) { area.style.height = ""; return; }   /* скрытый блок: размер задаст показ */
+    var max = Math.round(lh * STDIN_MAX_LINES + pad + bord);
+    if (need > max) { area.style.height = max + "px"; area.classList.add("is-overflow"); }
+    else { area.style.height = need + "px"; area.classList.remove("is-overflow"); }
+    area.scrollTop = keep;
+  }
+  function autoFitStdin(area) {
+    if (!area) return;
+    area.addEventListener("input", function () { fitStdin(area); });
+    /* блок мог быть скрыт при создании: пересчет при появлении и смене ширины */
+    if (window.ResizeObserver) {
+      var lastW = -1;
+      new window.ResizeObserver(function () {
+        var w = area.clientWidth;
+        if (w && w !== lastW) { lastW = w; fitStdin(area); }
+      }).observe(area);
+    }
+    setTimeout(function () { fitStdin(area); }, 0);
   }
 
   /* ---------------- прогресс (хранится только в этом браузере) ---------------- */
@@ -857,12 +1016,22 @@
     var tabs = Array.prototype.slice.call(box.querySelectorAll('[role="tab"]'));
     if (!tabs.length) return;
     box.classList.add("js-tabs");
+    /* редакторы скрытой вкладки не могли измерить высоту; при показе панели пересчитываем */
+    function syncEditors(root) {
+      Array.prototype.forEach.call(root.querySelectorAll(".code-editor"), function (ed) {
+        if (ed.sync) ed.sync();
+      });
+    }
     function select(tab, focus) {
       tabs.forEach(function (t) {
         var on = t === tab, panel = document.getElementById(t.getAttribute("aria-controls"));
         t.setAttribute("aria-selected", String(on));
         t.tabIndex = on ? 0 : -1;
-        if (panel) { panel.classList.toggle("is-active", on); panel.hidden = !on; }
+        if (panel) {
+          panel.classList.toggle("is-active", on);
+          panel.hidden = !on;
+          if (on) syncEditors(panel);
+        }
       });
       try { window.sessionStorage.setItem("practice-html-tab:" + groupKey, tab.getAttribute("data-level")); } catch (e) { /* нет */ }
       if (focus) tab.focus();
@@ -902,6 +1071,7 @@
   /* ---------------- «предскажите вывод» ---------------- */
   function predictCode(out) {
     var prev = out.previousElementSibling;
+    while (prev && prev.classList.contains("input-block")) prev = prev.previousElementSibling;
     return prev && prev.classList.contains("code-block") ? prev : null;
   }
   function setupPredict(out) {
@@ -914,7 +1084,10 @@
     cover.appendChild(el("p", "predict-text", "Сначала предскажите, что выведет программа, затем откройте вывод и сравните."));
     var btn = el("button", "predict-btn", "Показать вывод");
     btn.type = "button";
-    btn.addEventListener("click", function () { reveal(out); });
+    btn.addEventListener("click", function () {
+      reveal(out);
+      out.dispatchEvent(new CustomEvent("practice:reveal"));
+    });
     cover.appendChild(btn);
     out.insertBefore(cover, pre);
   }
@@ -928,13 +1101,14 @@
   }
 
   /* ---------------- проверка решения ---------------- */
-  function render(result, spec, box) {
+  function render(result, spec, box, outBox) {
     box.innerHTML = "";
-    box.className = "checker-result";
+    box.className = outBox ? "checker-result checker-test-result" : "checker-result";
+    if (outBox) renderProgramOutput(outBox, result);
     if (result.syntax) {
       box.classList.add("is-fail");
       box.appendChild(el("p", "checker-verdict", "✗ Решение не принято: в программе синтаксическая ошибка."));
-      ioBlock(box, "Сообщение интерпретатора", result.syntax);
+      if (!outBox) ioBlock(box, "Сообщение интерпретатора", result.syntax);
       box.appendChild(el("p", "checker-hint",
         "Python не смог прочитать программу и не запускал ее. Посмотрите на указанную строку и на строку перед ней: " +
         "частые причины: незакрытая скобка или кавычка, пропущенный знак действия."));
@@ -1019,7 +1193,7 @@
       if (passed === total && reqFailed) {
         /* результат верный, но не использован прием, ради которого дана задача:
            это не провал, а замечание (желтое состояние) */
-        box.className = "checker-result is-warn";
+        box.className = outBox ? "checker-result checker-test-result is-warn" : "checker-result is-warn";
         box.firstChild.textContent = "Результат правильный. Но в этой задаче нужно использовать прием, " +
           "который отрабатывается на этой странице: см. замечание ниже.";
         hbox.firstChild.textContent = "Что поправить";
@@ -1103,8 +1277,8 @@
     ],
     "t4_02_star_medium.py": [
       "seq",
-      "window",
-      "length",
+      "size",
+      "loop",
       "index"
     ],
     "t4_02_star_advanced.py": [
@@ -1113,7 +1287,7 @@
       "index"
     ],
     "t4_03_1_basic.py": [
-      "count",
+      "target",
       "cells",
       "hours"
     ],
@@ -1144,7 +1318,8 @@
       "total"
     ],
     "t4_03_star_medium.py": [
-      "count",
+      "target_month",
+      "offspring",
       "month",
       "older",
       "young",
@@ -1171,7 +1346,7 @@
       "start",
       "index",
       "count",
-      "codon"
+      "codon_start"
     ],
     "t4_04_2_basic.py": [
       "seq",
@@ -1221,6 +1396,8 @@
     "t4_05_1_advanced.py": [
       "first",
       "second",
+      "first_base",
+      "second_base",
       "transitions",
       "transversions",
       "index"
@@ -1251,11 +1428,13 @@
       "count_c",
       "count_g",
       "cpg",
+      "length",
       "index"
     ],
     "t4_05_star_advanced.py": [
       "seq",
-      "window",
+      "window_size",
+      "length",
       "difference",
       "count",
       "index"
@@ -1293,6 +1472,7 @@
     ],
     "t4_06_star_advanced.py": [
       "values",
+      "token",
       "best",
       "current",
       "value"
@@ -1312,6 +1492,7 @@
     "t4_07_1_advanced.py": [
       "seq",
       "skew",
+      "prefix_length",
       "min_skew",
       "position",
       "index"
@@ -1341,36 +1522,40 @@
       "text",
       "motif",
       "count",
-      "start"
+      "start",
+      "offset"
     ],
     "t4_08_1_medium.py": [
       "text",
       "motif",
       "count",
       "start",
-      "differences"
+      "differences",
+      "offset"
     ],
     "t4_08_1_advanced.py": [
       "seq",
-      "k",
+      "kmer_length",
       "best",
       "best_count",
       "index",
+      "inner_index",
       "kmer",
       "count"
     ],
     "t4_08_star_basic.py": [
       "seq",
-      "first",
-      "second",
+      "first_base",
+      "second_base",
       "count",
       "index"
     ],
     "t4_08_star_medium.py": [
       "seq",
-      "length",
+      "site_length",
       "count",
       "index",
+      "offset",
       "first",
       "second",
       "pair"
@@ -1380,7 +1565,8 @@
       "second",
       "best",
       "index",
-      "length"
+      "second_index",
+      "match_length"
     ],
     "t5_01_1_basic.py": [
       "sequences"
@@ -1392,25 +1578,29 @@
     "t5_01_1_advanced.py": [
       "sequences",
       "seen",
-      "repeats"
+      "repeats",
+      "sequence"
     ],
     "t5_01_star_basic.py": [
       "sequences",
       "total",
       "average",
-      "result"
+      "result",
+      "sequence"
     ],
     "t5_01_star_medium.py": [
       "first",
       "second",
-      "common"
+      "common",
+      "sequence"
     ],
     "t5_01_star_advanced.py": [
       "sequences",
       "unique",
       "counts",
       "best",
-      "index"
+      "index",
+      "sequence"
     ],
     "t5_02_1_basic.py": [
       "sequences",
@@ -1483,7 +1673,7 @@
     ],
     "t5_03_star_medium.py": [
       "sequences",
-      "k",
+      "block_size",
       "result",
       "index"
     ],
@@ -1533,8 +1723,9 @@
     "t5_04_star_advanced.py": [
       "month",
       "lifespan",
+      "birth_month",
       "ages",
-      "index",
+      "age",
       "month_index",
       "newborn"
     ],
@@ -1565,19 +1756,24 @@
       "first",
       "second",
       "same",
-      "index"
+      "first_base",
+      "second_base"
     ],
     "t5_05_2_medium.py": [
       "first",
       "second",
       "positions",
-      "index"
+      "index",
+      "first_base",
+      "second_base"
     ],
     "t5_05_2_advanced.py": [
       "first",
       "second",
       "distance",
-      "index"
+      "index",
+      "first_base",
+      "second_base"
     ],
     "t5_05_star_basic.py": [
       "sequences",
@@ -1596,6 +1792,9 @@
       "best_count",
       "count",
       "index",
+      "other_index",
+      "sequence",
+      "other_sequence",
       "difference"
     ],
     "t5_06_1_basic.py": [
@@ -1660,15 +1859,16 @@
       "gcs",
       "sequence",
       "rich",
-      "count_g"
+      "count_g",
+      "gc"
     ],
     "t5_07_1_advanced.py": [
       "first",
       "second",
-      "k",
+      "window",
       "hits",
       "index",
-      "inner"
+      "inner_index"
     ],
     "t5_07_star_basic.py": [
       "sequences",
@@ -1679,12 +1879,12 @@
       "count",
       "pairs",
       "index",
-      "inner"
+      "inner_index"
     ],
     "t5_07_star_advanced.py": [
       "sequences",
       "consensus",
-      "index",
+      "position",
       "column"
     ],
     "t5_08_1_basic.py": [
@@ -1713,7 +1913,9 @@
       "best",
       "best_distance",
       "value",
-      "distance"
+      "distance",
+      "vector",
+      "column_sum"
     ],
     "t5_08_star_basic.py": [
       "count",
@@ -1736,12 +1938,14 @@
       "names",
       "matrix",
       "index",
+      "inner_index",
       "seq",
       "base",
       "best",
-      "inner",
       "first",
-      "distance"
+      "distance",
+      "value",
+      "other_value"
     ],
     "t5_09_1_basic.py": [
       "sequences",
@@ -1755,7 +1959,9 @@
       "column",
       "distances",
       "index",
-      "sequence"
+      "sequence",
+      "base",
+      "consensus_base"
     ],
     "t5_09_1_advanced.py": [
       "sequences",
@@ -1769,21 +1975,24 @@
       "sequences",
       "best_position",
       "best_count",
-      "index",
+      "position",
       "column",
+      "base",
       "top"
     ],
     "t5_09_star_medium.py": [
       "group_a",
       "group_b",
       "consensus_a",
-      "column",
       "consensus_b",
-      "difference",
-      "index"
+      "position",
+      "column",
+      "base_a",
+      "base_b",
+      "difference"
     ],
     "t5_09_star_advanced.py": [
-      "count",
+      "line_count",
       "sequences",
       "index",
       "line",
@@ -1791,7 +2000,7 @@
       "base"
     ],
     "t1_04_1_basic.py": [
-      "cells"
+      "count"
     ],
     "t1_04_1_medium.py": [
       "volume",
@@ -1806,20 +2015,18 @@
       "infected"
     ],
     "t1_04_star_medium.py": [
-      "stage1",
-      "stage2",
-      "stage3",
-      "born"
+      "count_stage1",
+      "count_stage2",
+      "count_stage3"
     ],
     "t1_04_star_advanced.py": [
-      "stage1",
-      "stage2",
-      "stage3",
-      "total"
+      "count_stage1",
+      "count_stage2",
+      "count_stage3"
     ],
     "t1_05_1_basic.py": [
-      "first",
-      "second"
+      "length1",
+      "length2"
     ],
     "t1_05_1_medium.py": [
       "motif",
@@ -1833,7 +2040,7 @@
       "volume"
     ],
     "t1_05_2_medium.py": [
-      "text"
+      "mass_text"
     ],
     "t1_05_2_advanced.py": [
       "flag1",
@@ -1844,12 +2051,12 @@
       "times"
     ],
     "t1_05_star_medium.py": [
-      "plate",
-      "well"
+      "first_run_reads",
+      "second_run_reads"
     ],
     "t1_05_star_advanced.py": [
-      "last",
-      "width"
+      "last_number",
+      "read_number"
     ],
     "t1_06_1_basic.py": [
       "length"
@@ -1862,9 +2069,9 @@
       "shift"
     ],
     "t1_06_2_basic.py": [
-      "read1",
-      "read2",
-      "read3"
+      "read_length1",
+      "read_length2",
+      "read_length3"
     ],
     "t1_06_2_medium.py": [
       "sample",
@@ -1882,8 +2089,7 @@
     ],
     "t1_06_star_medium.py": [
       "samples",
-      "wells",
-      "plates"
+      "wells"
     ],
     "t1_06_star_advanced.py": [
       "length",
@@ -1914,7 +2120,7 @@
       "part2"
     ],
     "t1_07_2_advanced.py": [
-      "initial",
+      "initial_concentration",
       "dilution",
       "steps",
       "target"
@@ -1922,7 +2128,7 @@
     "t1_07_star_basic.py": [
       "nominal",
       "measured",
-      "tolerance"
+      "tol"
     ],
     "t1_07_star_medium.py": [
       "measured",
@@ -1943,24 +2149,21 @@
     "t1_08_1_medium.py": [
       "length",
       "count_g",
-      "count_c",
-      "gc"
+      "count_c"
     ],
     "t1_08_1_advanced.py": [
       "length",
       "count_g",
       "count_c",
-      "count_at"
+      "at_content"
     ],
     "t1_08_star_basic.py": [
       "reads",
-      "passed",
-      "percent"
+      "passed"
     ],
     "t1_08_star_medium.py": [
       "length",
-      "gc",
-      "percent"
+      "gc"
     ],
     "t1_08_star_advanced.py": [
       "length",
@@ -1976,7 +2179,7 @@
     "t1_09_1_advanced.py": [
       "hours",
       "minutes",
-      "days",
+      "duration",
       "total"
     ],
     "t1_09_2_basic.py": [
@@ -2010,8 +2213,8 @@
       "start_minutes",
       "end_hours",
       "end_minutes",
-      "days",
-      "total_minutes"
+      "total_minutes",
+      "minutes"
     ],
     "t1_10_1_basic.py": [
       "count_a",
@@ -2048,9 +2251,9 @@
       "gc1",
       "length2",
       "gc2",
-      "k",
-      "gc_k",
-      "total",
+      "overlap_length",
+      "gc_overlap",
+      "assembly_length",
       "gc"
     ],
     "t2_01_1_basic.py": [
@@ -2073,7 +2276,8 @@
     ],
     "t2_01_star_advanced.py": [
       "seq",
-      "length",
+      "start",
+      "segment_length",
       "end"
     ],
     "t2_02_1_basic.py": [
@@ -2082,11 +2286,11 @@
     ],
     "t2_02_1_medium.py": [
       "seq",
-      "index"
+      "codon_number"
     ],
     "t2_02_1_advanced.py": [
       "seq",
-      "trim"
+      "trim_length"
     ],
     "t2_02_2_basic.py": [
       "seq"
@@ -2102,15 +2306,17 @@
     ],
     "t2_02_star_basic.py": [
       "seq",
-      "cut"
+      "cut_position"
     ],
     "t2_02_star_medium.py": [
       "seq",
       "start",
+      "end",
       "step"
     ],
     "t2_02_star_advanced.py": [
       "seq",
+      "frame_number",
       "frame",
       "length"
     ],
@@ -2121,7 +2327,7 @@
     "t2_03_1_medium.py": [
       "seq",
       "motif",
-      "offset"
+      "repeat_count"
     ],
     "t2_03_1_advanced.py": [
       "seq",
@@ -2147,14 +2353,14 @@
     ],
     "t2_03_star_medium.py": [
       "seq",
-      "k",
+      "codon_number",
       "codon"
     ],
     "t2_03_star_advanced.py": [
       "seq",
       "motif",
       "position",
-      "length",
+      "motif_length",
       "padded"
     ],
     "t2_04_1_basic.py": [
@@ -2246,7 +2452,7 @@
       "gc"
     ],
     "t2_07_1_advanced.py": [
-      "position",
+      "gc_percent",
       "bar"
     ],
     "t2_07_star_basic.py": [
@@ -2259,6 +2465,7 @@
       "end"
     ],
     "t2_07_star_advanced.py": [
+      "well_number",
       "row",
       "column"
     ],
@@ -2327,9 +2534,9 @@
       "ph"
     ],
     "t3_01_1_medium.py": [
-      "volume",
-      "count",
-      "dilution"
+      "buffer_volume",
+      "sample_count",
+      "sample_volume"
     ],
     "t3_01_1_advanced.py": [
       "limit",
@@ -2356,8 +2563,8 @@
       "after"
     ],
     "t3_01_star_medium.py": [
-      "first",
-      "second"
+      "first_codon",
+      "second_codon"
     ],
     "t3_01_star_advanced.py": [
       "first",
@@ -2406,7 +2613,7 @@
       "end1",
       "start2",
       "end2",
-      "limit",
+      "min_overlap",
       "lengths_ok",
       "cross_ok"
     ],
@@ -2449,16 +2656,17 @@
       "end",
       "strand",
       "position",
-      "pos"
+      "number"
     ],
     "t3_04_star_basic.py": [
       "concentration",
-      "volume"
+      "volume",
+      "diluted_volume"
     ],
     "t3_04_star_medium.py": [
       "length",
-      "start",
-      "end",
+      "position1",
+      "position2",
       "distance"
     ],
     "t3_04_star_advanced.py": [
@@ -2505,10 +2713,10 @@
       "kind"
     ],
     "t3_05_star_medium.py": [
-      "first",
-      "second",
-      "third",
-      "base"
+      "first_base",
+      "second_base",
+      "third_base",
+      "consensus"
     ],
     "t3_05_star_advanced.py": [
       "before",
@@ -2551,8 +2759,8 @@
     "t3_07_1_medium.py": [
       "text_a",
       "text_b",
-      "mass_a",
-      "mass_b",
+      "concentration_a",
+      "concentration_b",
       "result"
     ],
     "t3_07_1_advanced.py": [
@@ -2637,8 +2845,8 @@
       "kind"
     ],
     "t3_09_star_medium.py": [
-      "first",
-      "second",
+      "first_base",
+      "second_base",
       "pair",
       "code"
     ],
@@ -2650,6 +2858,7 @@
       "four",
       "result"
     ]
+
   };
 
 
@@ -2736,6 +2945,15 @@
     });
     var editor = makeEditor(area, "checker-editor", {file: file, header: true, save: true, copy: true});
     block.appendChild(editor);
+    /* версия 96: запуск и сброс — в шапке окна кода, после «сохранить» */
+    var editorActions = editor.querySelector(".code-actions");
+    editorActions.appendChild(el("span", "code-sep"));
+    var tryBtn = iconButton(PLAY_SVG, "Запустить без тестов", "ic-play");
+    tryBtn.title = "Выполнить программу на данных из поля «Ввод», без проверки тестами";
+    editorActions.appendChild(tryBtn);
+    var clear = iconButton(RESET_SVG, "Сбросить", "ic-reset");
+    clear.title = template ? "Вернуть шаблон и убрать результат проверки" : "Очистить поле и убрать результат проверки";
+    editorActions.appendChild(clear);
 
     /* «Запустить» без тестов (версия 62): программа выполняется на данных из поля «Ввод»,
        прогресс и игровой режим не меняются */
@@ -2749,14 +2967,12 @@
       stdin.setAttribute("spellcheck", "false");
       stdin.setAttribute("aria-label", "Ввод для запуска: строки ввода, как в левой колонке «Примеров»");
       block.appendChild(stdin);
+      autoFitStdin(stdin);
     }
 
     var bar = el("div", "checker-bar");
     var run = el("button", "checker-run", "Проверить");
     run.type = "button";
-    var tryBtn = el("button", "checker-try", "▶ Запустить");
-    tryBtn.type = "button";
-    tryBtn.title = "Выполнить программу на данных из поля «Ввод», без проверки тестами";
     var pick = el("label", "checker-file", "Выбрать файл .py");
     var input = document.createElement("input");
     input.type = "file";
@@ -2765,15 +2981,49 @@
     /* «Сбросить» возвращает блок в исходное состояние (версия 24): шаблон кода, размер поля,
        пустой результат, выбор файла, состояние задачи «Не начато». Решенная задача остается
        решенной: прогресс сбрасывается только в меню ⚙. */
-    var clear = el("button", "checker-clear", "↺ Сбросить");
-    clear.type = "button";
-    clear.title = template ? "Вернуть шаблон и убрать результат проверки" : "Очистить поле и убрать результат проверки";
-    bar.appendChild(run); bar.appendChild(tryBtn); bar.appendChild(pick); bar.appendChild(clear);
+    bar.appendChild(run); bar.appendChild(pick);
     block.appendChild(bar);
 
-    var box = el("div", "checker-result");
-    box.setAttribute("aria-live", "polite");
-    block.appendChild(box);
+    /* версия 107: data-split: код, ввод, вывод программы и разбор тестов — окна как у
+       примеров страницы: поле кода, окно «Ввод» с кнопками, «Вывод» и «Тесты».
+       Без атрибута блок проверки остается прежним (страницы, где ещё не перешли на новую схему). */
+    var outBox = null;
+    var box = null;
+    if (block.hasAttribute("data-split")) {
+      var pair = el("div", "run-pair checker-run-pair");
+      block.insertBefore(pair, editor);
+      pair.appendChild(editor);
+
+      if (stdin) {
+        var inBlock = el("div", "input-block checker-input-block");
+        inBlock.appendChild(el("span", "input-label", "Ввод"));
+        var oldStdinLabel = block.querySelector(".checker-stdin-label");
+        if (oldStdinLabel && oldStdinLabel.parentNode) oldStdinLabel.parentNode.removeChild(oldStdinLabel);
+        inBlock.appendChild(stdin);
+        inBlock.appendChild(bar);
+        pair.appendChild(inBlock);
+      } else {
+        pair.appendChild(bar);
+      }
+
+      var outBlock = el("div", "output-block checker-output-block");
+      outBlock.appendChild(el("span", "output-label", "Вывод"));
+      outBox = el("div", "checker-result checker-run-result");
+      outBox.setAttribute("aria-live", "polite");
+      outBlock.appendChild(outBox);
+      pair.appendChild(outBlock);
+
+      var testsBlock = el("div", "output-block checker-tests-block");
+      testsBlock.appendChild(el("span", "output-label", "Тесты"));
+      box = el("div", "checker-result checker-test-result");
+      box.setAttribute("aria-live", "polite");
+      testsBlock.appendChild(box);
+      pair.appendChild(testsBlock);
+    } else {
+      box = el("div", "checker-result");
+      box.setAttribute("aria-live", "polite");
+      block.appendChild(box);
+    }
 
     input.addEventListener("change", function () {
       var f = input.files && input.files[0];
@@ -2785,35 +3035,145 @@
       };
       reader.readAsText(f, "utf-8");
     });
+    /* Версия 110: сброс выполняется сразу, без окна подтверждения: набранный код
+       автоматически скачивается в папку загрузок файлом <имя>.py, а на 10 секунд
+       появляется кнопка «Вернуть»: набранный код не теряется молча. */
+    var actionId = 0, undoReset = null;
+    area.addEventListener("input", function () {
+      if (undoReset) { undoReset = null; hideToast(); }
+    });
+    function downloadCode(name, text) {
+      var blob = new Blob([text], {type: "text/x-python"});
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    }
     clear.addEventListener("click", function () {
-      /* версия 76: свой код стирается только после подтверждения */
-      if (area.value !== template && !window.confirm("Стереть ваш код и вернуть шаблон?")) return;
+      var before = area.value;
+      var beforeScroll = area.scrollTop;
+      var beforeStdin = stdin ? stdin.value : "";
+      var resultHTML = box.innerHTML;
+      var resultClass = box.className;
+      var outHTML = outBox ? outBox.innerHTML : "";
+      var outClass = outBox ? outBox.className : "";
+      var resultWasWait = resultClass.indexOf("is-wait") >= 0 || outClass.indexOf("is-wait") >= 0;
+      var solvedFlag = !!box.solved, warnFlag = !!box.warn;
+      var outHas = !!outBox && outHTML !== "" && outClass.indexOf("is-wait") < 0;
+      var testsHas = resultHTML !== "" && resultClass.indexOf("is-wait") < 0;
+      var hadResult = outHas || testsHas;
+      var hadStdin = !!stdin && beforeStdin !== stdin0;
+      var savedCode = null, hadSaved = false;
+      try {
+        savedCode = window.localStorage.getItem(CODE_KEY);
+        hadSaved = savedCode !== null;
+      } catch (e) { /* хранилище недоступно */ }
+      var p = loadProgress();
+      var prevState = (p.states || {})[file];
+      var wasSolved = !!(p.tasks || {})[file];
+      var removedState = !wasSolved && !!prevState;
+      var changes = [];
+      if (before !== template) changes.push("код");
+      if (hadStdin) changes.push("ввод");
+      if (hadResult) changes.push("результат");
+      if (removedState) changes.push("отметка о работе");
+
+      /* версия 110: копия кода скачивается сразу, до сброса: файл <имя>.py
+         попадает в папку загрузок без окна подтверждения */
+      var downloaded = before !== template;
+      if (downloaded) downloadCode(file, before);
+
+      /* незавершенная проверка больше не должна вернуть свой результат после сброса */
+      actionId += 1;
       area.value = template; resetSize(area); editor.sync(); area.scrollTop = 0;
-      if (stdin) stdin.value = stdin0;
-      box.innerHTML = ""; box.className = "checker-result";
+      if (stdin) { stdin.value = stdin0; fitStdin(stdin); }
+      box.innerHTML = ""; box.className = outBox ? "checker-result checker-test-result" : "checker-result";
+      if (outBox) { outBox.innerHTML = ""; outBox.className = "checker-result checker-run-result"; }
+      box.solved = false; box.warn = false;
+      tryBtn.disabled = false;
+      run.disabled = false;
       input.value = "";                               /* тот же файл можно выбрать снова */
       try { window.localStorage.removeItem(CODE_KEY); } catch (e) { /* хранилище недоступно */ }
-      var p = loadProgress();
-      if (!(p.tasks || {})[file] && (p.states || {})[file]) {
+      if (removedState) {
         delete p.states[file];
         saveProgress(p);
         refreshStates();
         document.documentElement.dispatchEvent(new CustomEvent("practice:progress"));
       }
       block.dispatchEvent(new CustomEvent("checker:reset", { bubbles: true, detail: { file: file } }));
+
+      if (!changes.length) {
+        showToast("Поле уже в исходном состоянии");
+        return;
+      }
+      undoReset = function () {
+        undoReset = null;
+        area.value = before;
+        resetSize(area);
+        editor.sync();
+        area.scrollTop = beforeScroll;
+        if (stdin) { stdin.value = beforeStdin; fitStdin(stdin); }
+        /* незавершённую проверку вернуть нельзя: её ответ уже отменён сбросом */
+        if (!resultWasWait) {
+          box.innerHTML = resultHTML;
+          box.className = resultClass;
+          if (outBox) {
+            outBox.innerHTML = outHTML;
+            outBox.className = outClass;
+          }
+          box.solved = solvedFlag; box.warn = warnFlag;
+        }
+        try {
+          if (before !== template) window.localStorage.setItem(CODE_KEY, before);
+          else if (hadSaved) window.localStorage.setItem(CODE_KEY, savedCode);
+          else window.localStorage.removeItem(CODE_KEY);
+        } catch (e) { /* хранилище недоступно */ }
+        if (removedState && !(loadProgress().tasks || {})[file]) {
+          var p2 = loadProgress();
+          p2.states = p2.states || {};
+          p2.states[file] = prevState;
+          saveProgress(p2);
+          refreshStates();
+          document.documentElement.dispatchEvent(new CustomEvent("practice:progress"));
+        }
+        showToast("Сброс отменён");
+      };
+      showToast("Сброшено: " + changes.join(", ") + (downloaded ? ". Файл " + file + " скачан в загрузки" : ""), {
+        label: "Вернуть",
+        onClick: function () { if (undoReset) undoReset(); }
+      });
     });
     tryBtn.addEventListener("click", function () {
       var code = area.value;
+      var feedback = outBox || box;
       if (!code.trim()) {
-        box.className = "checker-result is-fail";
-        box.textContent = "Вставьте код программы в поле выше.";
+        feedback.className = outBox ? "checker-result checker-run-result is-fail" : "checker-result is-fail";
+        feedback.textContent = "Вставьте код программы в поле выше.";
+        if (outBox) { box.innerHTML = ""; box.className = "checker-result checker-test-result"; }
         return;
       }
+      if (undoReset) { undoReset = null; hideToast(); }
+      var id = ++actionId;
       var data = stdin ? stdin.value.replace(/\r\n?/g, "\n") + "\n" : "";
       tryBtn.disabled = true;
-      box.className = "checker-result is-wait";
-      box.textContent = workerReady ? "Запускаю…" : LOADING;
-      runCode(code, [{ input: data, set: null }], true).then(function (res) {
+      if (outBox) {
+        outBox.className = "checker-result checker-run-result is-wait";
+        outBox.textContent = workerReady ? "Запускаю…" : LOADING;
+        box.innerHTML = ""; box.className = "checker-result checker-test-result";
+      } else {
+        box.className = "checker-result is-wait";
+        box.textContent = workerReady ? "Запускаю…" : LOADING;
+      }
+      runCode(code, [{ input: data, set: null }], false).then(function (res) {
+        if (id !== actionId) return;
+        if (outBox) {
+          renderProgramOutput(outBox, res);
+          box.innerHTML = ""; box.className = "checker-result checker-test-result";
+          return;
+        }
         box.innerHTML = "";
         box.className = "checker-result is-run";
         box.appendChild(el("p", "checker-verdict", "Вывод программы (без проверки тестами)"));
@@ -2821,26 +3181,42 @@
         renderRunOutput(pre, res);
         box.appendChild(pre);
       })
-        .catch(function (e) { box.className = "checker-result is-fail"; box.textContent = "✗ " + failText(e); })
-        .then(function () { tryBtn.disabled = false; });
+        .catch(function (e) {
+          if (id !== actionId) return;
+          var fb = outBox || box;
+          fb.className = outBox ? "checker-result checker-run-result is-fail" : "checker-result is-fail"; fb.textContent = "✗ " + failText(e);
+          if (outBox) { box.innerHTML = ""; box.className = "checker-result checker-test-result"; }
+        })
+        .then(function () { if (id === actionId) tryBtn.disabled = false; });
     });
     run.addEventListener("click", function () {
       var code = area.value;
+      var feedback = outBox || box;
       if (!code.trim()) {
-        box.className = "checker-result is-fail";
-        box.textContent = "Вставьте код программы в поле выше.";
+        feedback.className = outBox ? "checker-result checker-run-result is-fail" : "checker-result is-fail";
+        feedback.textContent = "Вставьте код программы в поле выше.";
+        if (outBox) { box.innerHTML = ""; box.className = "checker-result checker-test-result"; }
         return;
       }
+      if (undoReset) { undoReset = null; hideToast(); }
+      var id = ++actionId;
       var tests = spec.tests.concat(spec.extra || []).map(function (t) { return { input: t.input || "", set: t.set || null }; });
       run.disabled = true;
-      box.className = "checker-result is-wait";
-      box.textContent = workerReady ? "Проверяю…" : LOADING;
+      if (outBox) {
+        outBox.className = "checker-result checker-run-result is-wait";
+        outBox.textContent = workerReady ? "Проверяю…" : LOADING;
+        box.innerHTML = ""; box.className = "checker-result checker-test-result";
+      } else {
+        box.className = "checker-result is-wait";
+        box.textContent = workerReady ? "Проверяю…" : LOADING;
+      }
       block.dispatchEvent(new CustomEvent("checker:start", { bubbles: true, detail: { file: file } }));
       checkCode(file, spec, code, tests).then(function (res) {
+        if (id !== actionId) return;
         var spec = res.spec;
         box.solved = false;
         box.warn = false;
-        render(res, spec, box);
+        render(res, spec, box, outBox);
         if (box.solved) markTask(file, true);
         else setState(file, box.warn ? "progress" : "error");
         var total = spec.tests.length + (spec.extra || []).length;
@@ -2853,11 +3229,14 @@
                     level: spec.level || "exercise", variant: spec.variant || null } }));
       })
         .catch(function (e) {
-          box.className = "checker-result is-fail"; box.textContent = "✗ " + failText(e);
+          if (id !== actionId) return;
+          var fb = outBox || box;
+          fb.className = outBox ? "checker-result checker-run-result is-fail" : "checker-result is-fail"; fb.textContent = "✗ " + failText(e);
+          if (outBox) { box.innerHTML = ""; box.className = "checker-result checker-test-result"; }
           block.dispatchEvent(new CustomEvent("checker:result", { bubbles: true,
             detail: { file: file, passed: 0, total: 1, solved: false, error: true } }));
         })
-        .then(function () { run.disabled = false; });
+        .then(function () { if (id === actionId) run.disabled = false; });
     });
   }
 
@@ -2895,32 +3274,117 @@
   function exampleOutput(codeBlock) {
     var anchor = codeBlock;
     var sib = anchor.nextElementSibling;
-    while (sib && sib.classList.contains("output-block")) {
-      if (!sib.classList.contains("file-output")) return sib;
+    while (sib && (sib.classList.contains("output-block") || sib.classList.contains("input-block"))) {
+      if (sib.classList.contains("output-block") && !sib.classList.contains("file-output")) return sib;
       sib = sib.nextElementSibling;
     }
     return null;
+  }
+
+  /* Окно ввода между кодом и выводом: показывает строки, которые прочитает input().
+     Есть и в примерах, и в блоках «Практика»: ввод всегда в своем окне, в «Выводе» — только вывод. */
+  function setupInputBlock(codeBlock) {
+    if (!codeBlock.closest("article.example, .try-block")) return;
+    var out = exampleOutput(codeBlock);
+    if (!out || out.previousElementSibling !== codeBlock) return;
+    var pre = out.querySelector("pre");
+    if (!pre) return;
+    var kbds = pre.querySelectorAll("kbd.user-input");
+    if (!kbds.length) return;
+    var block = el("div", "input-block");
+    block.appendChild(el("span", "input-label", "Ввод"));
+    var lines = el("pre");
+    Array.prototype.forEach.call(kbds, function (k) {
+      var line = el("span", "input-line");
+      var text = k.textContent;
+      if (text === "") { line.classList.add("is-empty"); line.textContent = "⏎"; line.title = "Пустая строка"; }
+      else {
+        /* версия 108: пробелы по краям строки не показываются: строка начинается с первой буквы */
+        line.textContent = text.trim();
+      }
+      lines.appendChild(line);
+    });
+    block.appendChild(lines);
+    out.parentNode.insertBefore(block, out);
+    /* версия 107: строки ввода уже показаны в отдельном окне «Ввод», в выводе им не место.
+       setupExample возьмет их из data-stdin, чтобы «Запустить» работал как раньше. */
+    out.setAttribute("data-stdin", JSON.stringify(Array.prototype.map.call(kbds, function (k) {
+      return k.textContent;
+    })));
+    /* версия 112: перевод строки после нажатия Enter — часть вывода, а не эхо. Если перед
+       вводом стоит приглашение, строка остается отдельной; строка, состоявшая только из
+       ввода, убирается целиком. */
+    Array.prototype.forEach.call(kbds, function (k) {
+      var before = "";
+      try {
+        var range = document.createRange();
+        range.setStart(pre, 0);
+        range.setEndBefore(k);
+        before = range.toString();
+      } catch (e) { before = ""; }
+      var atLineStart = !before.slice(before.lastIndexOf("\n") + 1).trim();
+      if (atLineStart) {
+        var next = k.nextSibling;
+        if (next && next.nodeType === 3 && next.nodeValue.charAt(0) === "\n") {
+          next.nodeValue = next.nodeValue.slice(1);
+        }
+      }
+      k.parentNode.removeChild(k);
+    });
+  }
+  function setupInputBlocks() {
+    Array.prototype.forEach.call(document.querySelectorAll("article.example .run-pair, .try-block .run-pair"), function (pair) {
+      var code = pair.querySelector(":scope > .code-block");
+      if (code) setupInputBlock(code);
+    });
+  }
+  function setupFileCopies() {
+    Array.prototype.forEach.call(document.querySelectorAll(".code-block .code-label"), function (label) {
+      if (label.querySelector(".file-copy")) return;
+      var name = label.textContent.trim();
+      if (!isPyName(name)) return;
+      label.textContent = "";
+      label.appendChild(fileCopyButton(name));
+    });
+  }
+
+  /* версия 112: ввод показывается в отдельном окне «Ввод», в «Выводе» его нет.
+     Перевод строки после Enter остается: приглашение и результат программы не склеиваются.
+     Строка, состоявшая только из ввода, убирается целиком. */
+  function stripEcho(text) {
+    var lines = text.split("\n"), kept = [];
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (line.indexOf(ECHO_START) < 0) { kept.push(line); continue; }
+      var rest = line.replace(/\u0001[\s\S]*?\u0002/g, "");
+      if (/^\s*\u0001/.test(line) && !rest.trim()) continue;
+      kept.push(rest);
+    }
+    return kept.join("\n");
   }
 
   function renderRunOutput(pre, res) {
     pre.innerHTML = "";
     if (res.syntax) { pre.appendChild(el("span", "ex-error", res.syntax)); return; }
     var r = res.results[0];
-    var text = r.out;
-    var parts = text.split(ECHO_START);
-    pre.appendChild(document.createTextNode(parts[0]));
-    for (var i = 1; i < parts.length; i++) {
-      var p = parts[i].split(ECHO_END);
-      var k = el("kbd", "user-input", p[0]);
-      pre.appendChild(k);
-      pre.appendChild(document.createTextNode(p.slice(1).join(ECHO_END)));
-    }
+    var text = stripEcho(r.out);
+    pre.appendChild(document.createTextNode(text));
     if (r.err) {
       if (text && !/\n$/.test(text)) pre.appendChild(document.createTextNode("\n"));
       pre.appendChild(el("span", "ex-error", r.err === "EOF"
         ? "EOFError: программа ждет ввода, а поле «Ввод» закончилось" : r.err));
     }
     if (!text && !r.err) pre.appendChild(el("span", "ex-empty", "(программа ничего не вывела)"));
+  }
+
+  /* Окно вывода после проверки: только то, что напечатала программа, и ошибка,
+     если она возникла. Итог и разбор тестов показываются отдельным окном. */
+  function renderProgramOutput(outBox, res) {
+    outBox.innerHTML = "";
+    outBox.className = "checker-result checker-run-result is-run";
+    var pre = el("pre", "checker-run-out");
+    renderRunOutput(pre, res);
+    outBox.appendChild(pre);
   }
 
   function setupExample(codeBlock) {
@@ -2932,88 +3396,163 @@
     if (!codePre || !outPre) return;
     var original = { code: codePre.innerHTML, out: outPre.innerHTML, text: codePre.textContent };
     var kbds = outPre.querySelectorAll("kbd.user-input");
-    var stdin0 = Array.prototype.map.call(kbds, function (k) { return k.textContent; }).join("\n");
+    var stdinLines = null;
+    try {
+      var savedStdin = out.getAttribute("data-stdin");
+      if (savedStdin) stdinLines = JSON.parse(savedStdin);
+    } catch (e) { stdinLines = null; }
+    if (!stdinLines) {
+      stdinLines = Array.prototype.map.call(kbds, function (k) { return k.textContent; });
+    }
+    var stdin0 = stdinLines.join("\n");
 
+    /* Четыре действия: копировать → редактировать → запустить → сбросить.
+       «Сбросить» больше не подменяет карандаш: кнопка стоит на месте и включается,
+       когда появляется что сбрасывать (правка, запуск, открытый вывод). */
+    var isTry = !!codeBlock.closest(".try-block");
+    var isPredict = out.classList.contains("predict");
     var tools = el("span", "ex-tools");
     var copyBtn = copyButton(function () { return editor ? editor.value : original.text; });
-    var edit = iconButton(PENCIL_SVG, "Изменить");
-    var play = iconButton(PLAY_SVG, "Изменить и запустить", "ex-btn-run");
+    var pencilBtn = iconButton(PENCIL_SVG, "Изменить", "ic-pencil");
+    var playBtn = iconButton(PLAY_SVG, "Запустить", "ic-play");
+    var resetBtn = iconButton(RESET_SVG, "Сбросить", "ic-reset");
+    pencilBtn.hidden = isTry;
     tools.appendChild(copyBtn);
-    tools.appendChild(edit);
-    tools.appendChild(play);
+    tools.appendChild(pencilBtn);
+    tools.appendChild(playBtn);
+    tools.appendChild(resetBtn);
     codeBlock.appendChild(tools);
 
-    var editor = null, editorWrap = null, stdin = null, runBtn = null, resetBtn = null;
+    var editor = null, editorWrap = null, stdin = null, stdinLabel = null;
+    var dirty = false, runId = 0;
+
+    function setResetEnabled() {
+      var label = dirty ? "Сбросить" : "Сбросить (изменений нет)";
+      resetBtn.disabled = !dirty;
+      resetBtn.title = label;
+      resetBtn.setAttribute("aria-label", label);
+    }
+    function markDirty() {
+      if (dirty) return;
+      dirty = true;
+      setResetEnabled();
+    }
+    function setPencilEditing(on) {
+      if (isTry) return;
+      pencilBtn.disabled = on;
+      var label = on ? "Режим редактирования включен" : "Изменить";
+      pencilBtn.title = label;
+      pencilBtn.setAttribute("aria-label", label);
+    }
 
     function enterEdit(auto) {
+      if (editor) return;
       editor = el("textarea", "ex-editor");
       editor.value = original.text;
       editor.setAttribute("spellcheck", "false");
       editor.setAttribute("aria-label", "Код примера");
-      editor.rows = Math.max(3, original.text.split("\n").length + 1);
+      editor.rows = Math.max(3, original.text.split("\n").length);
+      editor.addEventListener("input", markDirty);
       codePre.hidden = true;
       var codeLabel = codeBlock.querySelector(".code-label");
       editorWrap = makeEditor(editor, "ex-editor-wrap", {file: codeLabel ? codeLabel.textContent.trim() : ""});
       codeBlock.insertBefore(editorWrap, codePre.nextSibling);
-      reveal(out);
-      if (kbds.length) {
-        stdin = el("textarea", "ex-stdin");
+      var inBlock = out.previousElementSibling;
+      var inPre = inBlock && inBlock.classList.contains("input-block") ? inBlock.querySelector("pre") : null;
+      if (inPre) inPre.hidden = true;
+      /* версия 104: вход в правку не открывает скрытый вывод «Показать вывод»:
+         иначе блок скачет по высоте при каждом переключении, а предсказание
+         теряет смысл. Вывод открывает запуск или кнопка «Показать вывод». */
+      if (stdinLines.length) {
+        stdin = el("textarea", "ex-stdin is-inline");
         stdin.value = stdin0;
-        stdin.rows = Math.max(1, kbds.length);
+        stdin.rows = Math.max(1, stdinLines.length);
         stdin.setAttribute("aria-label", "Ввод: строки, которые прочитает input()");
-        var lab = el("span", "ex-stdin-label", "Ввод (строки, которые прочитает input()):");
-        out.insertBefore(lab, outPre);
-        out.insertBefore(stdin, outPre);
+        stdin.addEventListener("input", markDirty);
+        if (inBlock && inBlock.classList.contains("input-block")) {
+          /* поле ввода остается в окне «Ввод»: «Вывод» показывает только результат программы */
+          inBlock.appendChild(stdin);
+        } else {
+          stdinLabel = el("span", "ex-stdin-label", "Ввод (строки, которые прочитает input()):");
+          out.insertBefore(stdinLabel, outPre);
+          out.insertBefore(stdin, outPre);
+        }
+        autoFitStdin(stdin);
       }
-      tools.innerHTML = "";
-      runBtn = el("button", "ex-btn ex-btn-run", "▶ Запустить");
-      resetBtn = el("button", "ex-btn", "↺ Сбросить");
-      runBtn.type = resetBtn.type = "button";
-      tools.appendChild(copyBtn); tools.appendChild(runBtn); tools.appendChild(resetBtn);
-      runBtn.addEventListener("click", run);
-      resetBtn.addEventListener("click", reset);
+      setPencilEditing(true);
       codeBlock.classList.add("is-editing");
-      if (auto !== true) editor.focus();
+      if (auto !== true) {
+        markDirty();
+        editor.focus();
+        /* Chrome при фокусе ставит курсор в конец: на телефоне длинные строки
+           сразу уезжают вправо. Показываем начало кода; курсор остаётся в конце. */
+        editor.scrollLeft = 0;
+        if (editorWrap.sync) editorWrap.sync();
+      }
     }
     function run() {
-      runBtn.disabled = true;
+      var id = ++runId;
+      var source = editor ? editor.value : original.text;
+      var data = stdin ? stdin.value.replace(/\r\n?/g, "\n") + "\n" : (stdinLines.length ? stdin0 + "\n" : "");
+      reveal(out);
+      markDirty();
+      playBtn.disabled = true;
       outPre.textContent = workerReady ? "Запускаю…" : LOADING;
-      var data = stdin ? stdin.value.replace(/\r\n?/g, "\n") + "\n" : "";
-      runCode(editor.value, [{ input: data, set: null }], true)
-        .then(function (res) { renderRunOutput(outPre, res); })
-        .catch(function (e) { outPre.textContent = failText(e); })
-        .then(function () { runBtn.disabled = false; });
+      runCode(source, [{ input: data, set: null }], false)
+        .then(function (res) { if (id === runId) renderRunOutput(outPre, res); })
+        .catch(function (e) { if (id === runId) outPre.textContent = failText(e); })
+        .then(function () { if (id === runId) playBtn.disabled = false; });
     }
     function reset() {
+      runId += 1;                       /* поздний вывод запуска не перезапишет сброс */
+      if (!dirty) return;
+      var wasResetFocused = document.activeElement === resetBtn;
+      playBtn.disabled = false;
+      /* «Практика»: пример остаётся в редакторе, «Сбросить» возвращает исходный код */
+      if (isTry && editor) {
+        editor.value = original.text;
+        resetSize(editor);
+        editor.scrollTop = 0;
+        if (stdin) { stdin.value = stdin0; fitStdin(stdin); }
+        if (editorWrap && editorWrap.sync) editorWrap.sync();
+        outPre.innerHTML = original.out;
+        outPre.scrollTop = 0;
+        reveal(out);
+        dirty = false;
+        setResetEnabled();
+        if (wasResetFocused) playBtn.focus({ preventScroll: true });
+        return;
+      }
       if (editorWrap) editorWrap.parentNode.removeChild(editorWrap);
-      if (stdin) { stdin.previousSibling.parentNode.removeChild(stdin.previousSibling); stdin.parentNode.removeChild(stdin); }
-      editor = editorWrap = stdin = null;
+      if (stdinLabel && stdinLabel.parentNode) stdinLabel.parentNode.removeChild(stdinLabel);
+      if (stdin && stdin.parentNode) stdin.parentNode.removeChild(stdin);
+      editor = editorWrap = stdin = stdinLabel = null;
       codePre.innerHTML = original.code;
       codePre.hidden = false;
       outPre.innerHTML = original.out;
-      tools.innerHTML = "";
-      tools.appendChild(copyBtn);
-      tools.appendChild(edit);
-      tools.appendChild(play);
+      outPre.scrollTop = 0;
+      var inBlock = out.previousElementSibling;
+      if (inBlock && inBlock.classList.contains("input-block")) {
+        inBlock.hidden = false;
+        var inPre = inBlock.querySelector("pre");
+        if (inPre) inPre.hidden = false;
+      }
+      var cover = out.querySelector(".predict-cover");
+      if (cover) cover.parentNode.removeChild(cover);
+      if (isPredict) setupPredict(out); else reveal(out);
+      setPencilEditing(false);
       codeBlock.classList.remove("is-editing");
+      dirty = false;
+      setResetEnabled();
+      if (wasResetFocused) pencilBtn.focus({ preventScroll: true });
     }
-    edit.addEventListener("click", function () { enterEdit(false); });
-    play.addEventListener("click", function () { enterEdit(true); run(); });
-    /* «Практика»: пример сразу открыт для правки; «Сбросить» возвращает исходный код */
-    if (codeBlock.closest(".try-block")) {
-      enterEdit(true);
-      resetBtn.removeEventListener("click", reset);
-      resetBtn.addEventListener("click", function () {
-        editor.value = original.text;
-        resetSize(editor, stdin);
-        if (stdin) stdin.value = stdin0;
-        if (editorWrap && editorWrap.sync) editorWrap.sync();
-        outPre.innerHTML = original.out;
-        reveal(out);
-      });
-      tools.removeChild(resetBtn);
-      tools.appendChild(resetBtn);
-    }
+    pencilBtn.addEventListener("click", function () { if (!editor) enterEdit(false); });
+    playBtn.addEventListener("click", run);
+    resetBtn.addEventListener("click", reset);
+    out.addEventListener("practice:reveal", markDirty);
+    setResetEnabled();
+    /* «Практика»: пример сразу открыт для правки */
+    if (isTry) enterEdit(true);
   }
 
 
@@ -3273,9 +3812,56 @@
     });
   }
 
+  /* версия 105: код в «Практике» копируется нажатием; подсветку и курсор дает style.css.
+     Токены размечает pyHighlight — тот же разбор, что в окнах кода, поэтому цвета совпадают */
+  function highlightInlineCode(c) {
+    if (c.children.length) return;
+    var text = c.textContent;
+    if (!text) return;
+    c.innerHTML = pyHighlight(text);
+  }
+
+  /* Плашки ввода в тексте страницы оформлены как код: подсветка тем же разбором, что в окнах кода */
+  function highlightUserInputKeys() {
+    Array.prototype.forEach.call(document.querySelectorAll("kbd.user-input"), function (k) {
+      if (k.children.length) return;
+      var text = k.textContent;
+      if (!text) return;
+      k.innerHTML = pyHighlight(text);
+    });
+  }
+
+  function setupInlineCopy() {
+    Array.prototype.forEach.call(document.querySelectorAll(".try-block :not(pre):not(a) > code"), function (c) {
+      var text = c.textContent.trim();
+      if (!text) return;
+      highlightInlineCode(c);
+      c.setAttribute("role", "button");
+      c.setAttribute("tabindex", "0");
+      c.setAttribute("title", "Нажмите, чтобы скопировать код");
+      c.setAttribute("aria-label", "Скопировать код: " + text);
+      var act = function () {
+        copyText(text).then(function (ok) {
+          if (!ok) { showToast("Не удалось скопировать код"); return; }
+          c.classList.add("is-copied");
+          window.setTimeout(function () { c.classList.remove("is-copied"); }, 1600);
+          showToast("Скопировано: " + text);
+        });
+      };
+      c.addEventListener("click", act);
+      c.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(); }
+      });
+    });
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll(".level-tabs"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll(".output-block.predict"), setupPredict);
+    setupInputBlocks();
+    highlightUserInputKeys();
+    setupFileCopies();
+    setupInlineCopy();
     initProgress();
     setupAnchors();
     Array.prototype.forEach.call(document.querySelectorAll(".mistake"), setupMistakeDiff);
@@ -3290,6 +3876,7 @@
       if (fb) fb.parentNode.removeChild(fb);
       setupChecker(blocks[i]);
     }
+    setupCopyNames();
     var codes = document.querySelectorAll(".code-block");
     for (var j = 0; j < codes.length; j++) setupExample(codes[j]);
     addCopyButtons();

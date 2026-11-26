@@ -174,80 +174,215 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.4.1. Первая буква N</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Найдите позицию первой буквы N в последовательности; позиции нумеруются с 1. Остановите цикл командой <code>break</code>, как только буква найдена.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из заглавных латинских букв длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Позиция первой буквы N или 0, если буквы N в строке нет.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGNTN</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>GATTACA</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.4.1. Первая буква N</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Найдите позицию первой буквы N в последовательности; позиции нумеруются с 1. Остановите цикл командой <code>break</code>, как только буква найдена.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из заглавных латинских букв длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Позиция первой буквы N или 0, если буквы N в строке нет.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACG<span class="we-hl">N</span>TN</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первая N стоит на позиции 4; цикл перебирает буквы по порядку и останавливается на ней командой break.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGNTN</pre></td><td><pre>4</pre></td></tr>
+                      <tr><td><pre>GATTACA</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Позиция на единицу больше индекса: seq[index] стоит в позиции index + 1. Цикл по индексам останавливают командой break при первой же букве N, а если N нет, переменная позиции остается нулем.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                  <li><strong>N</strong> — код IUPAC, который означает любой нуклеотид.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>pos = 0</code>.</li>
+                  <li>Перебирайте индексы: <code>for index in range(len(seq)):</code>.</li>
+                  <li>При первой N запишите позицию <code>pos = index + 1</code> и выйдите из цикла через <code>break</code>.</li>
+                  <li>Выведите pos; сверьтесь с примером: ACGNTN дает 4, а GATTACA — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.4.1. Проверка алфавита</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Проверьте, что последовательность состоит только из букв A, C, G, T. Если это так, выведите <code>OK</code>. Иначе выведите первую недопустимую букву и ее позицию (нумерация с 1) через пробел. Пустая строка не считается последовательностью: для нее выведите <code>EMPTY</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из заглавных латинских букв длиной от 0 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p><code>OK</code>, <code>EMPTY</code> или буква и позиция через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTRAC</pre></td><td><pre>R 5</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>EMPTY</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.4.1. Проверка алфавита</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Проверьте, что последовательность состоит только из букв A, C, G, T. Если это так, выведите <code>OK</code>. Иначе выведите первую недопустимую букву и ее позицию (нумерация с 1) через пробел. Пустая строка не считается последовательностью: для нее выведите <code>EMPTY</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из заглавных латинских букв длиной от 0 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>OK</code>, <code>EMPTY</code> или буква и позиция через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGT<span class="we-hl">R</span>AC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">R 5</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква R не входит в алфавит A, C, G, T и стоит на позиции 5; проверка останавливается на первой недопустимой букве.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTRAC</pre></td><td><pre>R 5</pre></td></tr>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>EMPTY</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пустая строка ложна, поэтому проверка not seq отсекает ее до цикла. Дальше цикл перебирает индексы и при первой букве вне ACGT записывает ответ и выходит через break; если выход не случился, ответ остается OK.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Алфавит</strong> — набор допустимых букв; здесь A, C, G и T.</li>
+                  <li><strong>Пустая строка</strong> — строка без символов; она ложна в условии.</li>
+                  <li><strong>Оператор not in</strong> — истинен, когда символ не встречается в строке.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Пустой случай разберите первым: <code>if not seq: answer = "EMPTY"</code>, иначе <code>answer = "OK"</code>.</li>
+                  <li>В цикле по индексам ищите недопустимую букву: <code>if seq[index] not in "ACGT":</code> — запишите <code>f"{seq[index]} {index + 1}"</code> и выйдите через break.</li>
+                  <li>Выведите answer; сверьтесь с примером: ACGTRAC дает R 5, а пустая строка — EMPTY.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.4.1. Открытая рамка считывания</h3>
-          <details class="deep"><summary>Биологический контекст</summary>
-            <p>Ген&nbsp;— участок ДНК, который клетка читает, чтобы построить белок. Чтение идет тройками букв, кодонами. Первый кодон гена называется старт-кодоном (ATG), последний называется стоп-кодоном (TAA, TAG или TGA). Участок от старт-кодона до стоп-кодона, прочитанный тройками, в этой задаче называется открытой рамкой считывания.</p>
-          </details>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p>
-            <p><strong>Дано.</strong> Строка из букв A, C, G, T. Кодоном называют тройку подряд идущих букв. Старт-кодон ATG, стоп-кодоны TAA, TAG, TGA.</p>
-            <p><strong>Найти.</strong> Найдите первое вхождение ATG и остановите поиск командой <code>break</code>. От найденного ATG читайте кодоны по три буквы до первого стоп-кодона. Посчитайте кодоны от ATG до стопа, включая ATG; стоп-кодон не считается.</p>
-            <p><strong>Ответ.</strong> Число кодонов или NO.</p>
-            <p><strong>Границы.</strong> Если ATG нет, после ATG не хватает букв на полный кодон или стоп-кодон не встретился, выведите NO. Стоп-кодон ищите только в рамке, заданной первым ATG, а не в любом месте строки.</p>
-          </div>
-          <p><strong>Разбор примера.</strong> В строке <code>CCATGGCCTAAGT</code> первое <code>ATG</code> начинается с позиции 3. Дальше тройками идут <code>ATG</code>, <code>GCC</code>, <code>TAA</code>. <code>TAA</code>&nbsp;— стоп-кодон; перед ним стоят <code>ATG</code> и <code>GCC</code>, то есть 2 кодона. Ответ 2.</p>
-          <details class="task-hint"><summary>Подсказка</summary><p>Два цикла подряд: первый ищет ATG и останавливается командой <code>break</code>, второй идет от найденной позиции шагом 3. Стоп-кодон проверяйте только в этой рамке. Начальное значение ответа NO подойдет для обоих случаев, когда ответа нет.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число или NO.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CCATGGCCTAAGT</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>ATGCCC</pre></td><td><pre>NO</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.4.1. Открытая рамка считывания</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p><strong>Дано.</strong> Строка из букв A, C, G, T. Кодоном называют тройку подряд идущих букв. Старт-кодон ATG, стоп-кодоны TAA, TAG, TGA.</p>
+                <p><strong>Найти.</strong> Найдите первое вхождение ATG и остановите поиск командой <code>break</code>. От найденного ATG читайте кодоны по три буквы до первого стоп-кодона. Посчитайте кодоны от ATG до стопа, включая ATG; стоп-кодон не считается.</p>
+                <p><strong>Ответ.</strong> Число кодонов или NO.</p>
+                <p><strong>Границы.</strong> Если ATG нет, после ATG не хватает букв на полный кодон или стоп-кодон не встретился, выведите NO. Стоп-кодон ищите только в рамке, заданной первым ATG, а не в любом месте строки.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число или NO.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CC<span class="we-seg we-seg-1">ATG</span><span class="we-seg we-seg-2">GCC</span><span class="we-seg we-seg-3">TAA</span>GT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Рамка начинается с ATG (позиция 3) и читается тройками: ATG, GCC, затем TAA — стоп. Стоп-кодон не считается, поэтому кодонов два.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CCATGGCCTAAGT</pre></td><td><pre>2</pre></td></tr>
+                      <tr><td><pre>ATGCCC</pre></td><td><pre>NO</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Рамку задает сам ATG: сначала цикл ищет его срезом seq[index:index + 3], затем второй цикл идет от найденного места шагом 3. Стоп-кодоны TAA, TAG и TGA обрывают счет, причем стоп в ответ не входит. Если ATG нет, букв не хватает на кодон или стопа нет, ответ NO.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Открытая рамка считывания</strong> — участок от ATG до стоп-кодона, прочитанный тройками.</li>
+                  <li><strong>ATG</strong> — стартовый кодон, с которого начинается рамка.</li>
+                  <li><strong>Стоп-кодон</strong> — TAA, TAG или TGA; завершает рамку и в счет не входит.</li>
+                  <li><strong>Срез</strong> — кусок строки, вырезанный по индексам.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите <code>result = "NO"</code> и <code>start = -1</code>.</li>
+                  <li>Ищите первое ATG срезом: <code>for index in range(len(seq) - 2):</code> — при <code>seq[index:index + 3] == "ATG"</code> запомните start и выйдите через break.</li>
+                  <li>Если <code>start &gt;= 0</code>, читайте кодоны шагом 3: <code>codon_start</code> пробегает <code>range(start, len(seq) - 2, 3)</code>; при стоп-кодоне запишите в result текущий счет и выйдите.</li>
+                  <li>Иначе счет увеличивайте на единицу за кодон; выведите result; сверьтесь с примером: CCATGGCCTAAGT дает 2, а ATGCCC — NO.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -317,82 +452,224 @@
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.4.2. Без пропусков</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Чтобы сравнить две последовательности, их выравнивают: записывают одну под другой так, чтобы похожие участки стояли друг под другом, и для этого вставляют пропуски. Пропуски обозначены дефисом <code>-</code>; выравнивание подробно разбирается в теме 15 «Выравнивание последовательностей». Выведите последовательность без пропусков. Пропускайте дефисы командой <code>continue</code>, остальные буквы печатайте по одной.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T и дефисов длиной от 1 до 100; хотя бы одна буква в ней есть.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность без дефисов одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AC-GT--A</pre></td><td><pre>ACGTA</pre></td></tr>
-                <tr><td><pre>TTAG</pre></td><td><pre>TTAG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.4.2. Без пропусков</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Чтобы сравнить две последовательности, их выравнивают: записывают одну под другой так, чтобы похожие участки стояли друг под другом, и для этого вставляют пропуски. Пропуски обозначены дефисом <code>-</code>; выравнивание подробно разбирается в теме 15 «Выравнивание последовательностей». Выведите последовательность без пропусков. Пропускайте дефисы командой <code>continue</code>, остальные буквы печатайте по одной.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T и дефисов длиной от 1 до 100; хотя бы одна буква в ней есть.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность без дефисов одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AC<span class="we-hl">-</span>GT<span class="we-hl">--</span>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACGTA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Три дефиса пропускаются командой continue, остальные буквы печатаются по одной.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AC-GT--A</pre></td><td><pre>ACGTA</pre></td></tr>
+                      <tr><td><pre>TTAG</pre></td><td><pre>TTAG</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Команда continue пропускает остаток тела цикла и переходит к следующей букве, поэтому дефисы в вывод не попадают. Буквы печатают подряд через end="", а после цикла добавляют перевод строки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Выравнивание</strong> — запись двух последовательностей одну под другой с пропусками.</li>
+                  <li><strong>Пропуск</strong> — дефис, который вставляет выравнивание.</li>
+                  <li><strong>Команда continue</strong> — пропускает остаток тела цикла и переходит к следующему шагу.</li>
+                  <li><strong>Параметр end у print()</strong> — задает, чем заканчивается вывод; end="" печатает без перевода строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Пройдите по буквам циклом: <code>for base in seq:</code>.</li>
+                  <li>Дефис пропускайте: <code>if base == "-": continue</code>.</li>
+                  <li>Остальные буквы печатайте через <code>print(base, end="")</code>, после цикла добавьте <code>print()</code>; сверьтесь с примером: AC-GT--A дает ACGTA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.4.2. FASTA в одну строку</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В FASTA последовательность записана на нескольких строках, а строки, которые начинаются с <code>&gt;</code>, являются заголовками. Программа читает строки до строки <code>done</code>. Выведите все буквы последовательностей одной строкой, пропуская заголовки командой <code>continue</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Несколько строк: заголовки, которые начинаются с <code>&gt;</code>, и строки из букв A, C, G, T; последней идет строка <code>done</code>. Хотя бы одна строка с буквами есть.</p>
-          <h4>Выходные данные</h4>
-          <p>Буквы всех строк последовательностей подряд, одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;seq1
+              <h3>Упражнение 4.4.2. FASTA в одну строку</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В FASTA последовательность записана на нескольких строках, а строки, которые начинаются с <code>&gt;</code>, являются заголовками. Программа читает строки до строки <code>done</code>. Выведите все буквы последовательностей одной строкой, пропуская заголовки командой <code>continue</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Несколько строк: заголовки, которые начинаются с <code>&gt;</code>, и строки из букв A, C, G, T; последней идет строка <code>done</code>. Хотя бы одна строка с буквами есть.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Буквы всех строк последовательностей подряд, одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">&gt;seq1</span><br>ACGT<br>GGTA<br>done</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACGTGGTA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка-заголовок &gt;seq1 пропускается, буквы ACGT и GGTA склеиваются подряд; done завершает чтение.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;seq1
 ACGT
 GGTA
 done</pre></td><td><pre>ACGTGGTA</pre></td></tr>
-                <tr><td><pre>TTAG
+                      <tr><td><pre>TTAG
 done</pre></td><td><pre>TTAG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Заголовки FASTA начинаются со знака &gt;, и их узнают методом startswith(). Строку done проверяют первой и выходят через break; заголовки пропускают командой continue, а буквы печатают без перевода строки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>FASTA</strong> — формат записи последовательностей: заголовок и строки с буквами.</li>
+                  <li><strong>Заголовок</strong> — строка, которая начинается со знака &gt;.</li>
+                  <li><strong>Метод startswith()</strong> — проверяет, начинается ли строка с заданного куска.</li>
+                  <li><strong>Команда continue</strong> — пропускает остаток тела цикла.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Читайте в бесконечном цикле: <code>while True:</code> — первой строкой тела <code>line = input()</code>.</li>
+                  <li>При стоп-слове выходите: <code>if line == "done": break</code>.</li>
+                  <li>Заголовок пропускайте: <code>if line.startswith("&gt;"): continue</code>.</li>
+                  <li>Буквы печатайте через <code>print(line, end="")</code>, после цикла добавьте <code>print()</code>; сверьтесь с примером: &gt;seq1, ACGT, GGTA и done дают ACGTGGTA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.4.2. Первое прочтение с мотивом</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор (прибор для чтения ДНК) прочитал за один раз и выдал строкой букв. Буквой N секвенатор отмечает позицию, которую не смог прочитать. Мотивом называют короткую последовательность, которую ищут внутри прочтений. В первой строке мотив, дальше прочтения, по одному в строке, до строки <code>done</code>. Прочтения нумеруются с 1 подряд, в том числе те, в которых есть буква N. Прочтения с буквой N ненадежны: их нужно пропустить командой <code>continue</code>. Выведите номер первого прочтения без N, в котором встречается мотив, или 0, если такого нет. Программа читает все строки до <code>done</code>, даже если подходящее прочтение уже найдено: не завершайте программу досрочно.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке мотив из букв A, C, G, T, дальше от 0 до 20 прочтений из букв A, C, G, T, N, затем строка <code>done</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер прочтения или 0.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GAT
+              <h3>Упражнение 4.4.2. Первое прочтение с мотивом</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прочтение&nbsp;— участок ДНК, который секвенатор (прибор для чтения ДНК) прочитал за один раз и выдал строкой букв. Буквой N секвенатор отмечает позицию, которую не смог прочитать. Мотивом называют короткую последовательность, которую ищут внутри прочтений. В первой строке мотив, дальше прочтения, по одному в строке, до строки <code>done</code>. Прочтения нумеруются с 1 подряд, в том числе те, в которых есть буква N. Прочтения с буквой N ненадежны: их нужно пропустить командой <code>continue</code>. Выведите номер первого прочтения без N, в котором встречается мотив, или 0, если такого нет. Программа читает все строки до <code>done</code>, даже если подходящее прочтение уже найдено: не завершайте программу досрочно.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке мотив из букв A, C, G, T, дальше от 0 до 20 прочтений из букв A, C, G, T, N, затем строка <code>done</code>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер прочтения или 0.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GAT<br>ACGT<br><span class="we-hl">TTGNATG</span><br>CC<span class="we-hl">GAT</span>A<br>GATT<br>done</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Прочтение 2 содержит N и пропускается; первое надежное прочтение с мотивом GAT — третье (CCGATA), на нем поиск и останавливается.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GAT
 ACGT
 TTGNATG
 CCGATA
 GATT
 done</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>AAA
+                      <tr><td><pre>AAA
 CCC
 GGG
 done</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Номер прочтения увеличивают до всех проверок, поэтому пропущенные строки тоже считаются. Прочтения с N отбрасывает continue, а мотив ищут оператором in; первое совпадение запоминают, но цикл продолжается до строки done.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Мотив</strong> — короткая последовательность, которую ищут внутри прочтений.</li>
+                  <li><strong>N</strong> — отметка позиции, которую секвенатор не смог прочитать.</li>
+                  <li><strong>Оператор in</strong> — проверяет, встречается ли подстрока в строке.</li>
+                  <li><strong>Команда continue</strong> — пропускает остаток тела цикла.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте мотив: <code>motif = input()</code>; заведите <code>num = 0</code> и <code>answer = 0</code>.</li>
+                  <li>Читайте в бесконечном цикле: <code>while True:</code> — при <code>read == "done"</code> выходите через break.</li>
+                  <li>Сразу увеличьте номер, затем ненадежные прочтения пропускайте: <code>if "N" in read: continue</code>.</li>
+                  <li>Первое подходящее запоминайте: если <code>answer == 0</code> и <code>motif in read</code>, присвойте <code>answer = num</code>; сверьтесь с примером: при мотиве GAT прочтения ACGT, TTGNATG, CCGATA и GATT дают 3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -403,81 +680,223 @@ done</pre></td><td><pre>0</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.4. Первая плохая позиция</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Секвенатор, прибор для чтения ДНК, оценивает надежность каждой прочитанной буквы. В этой задаче оценки записаны строкой цифр от 0 до 9, по одной на букву: чем больше, тем надежнее. Найдите первую позицию, где оценка ниже порога t, и выведите ее номер (позиции нумеруются с 1). Если таких позиций нет, выведите NO.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке оценки: строка цифр длиной от 1 до 100. Во второй порог t от 0 до 9.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер позиции или NO.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>9987654
+              <h3>Задача со звездочкой 4.4. Первая плохая позиция</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Секвенатор, прибор для чтения ДНК, оценивает надежность каждой прочитанной буквы. В этой задаче оценки записаны строкой цифр от 0 до 9, по одной на букву: чем больше, тем надежнее. Найдите первую позицию, где оценка ниже порога threshold, и выведите ее номер (позиции нумеруются с 1). Если таких позиций нет, выведите NO.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке оценки: строка цифр длиной от 1 до 100. Во второй порог threshold от 0 до 9.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер позиции или NO.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">99876<span class="we-hl">5</span>4<br>6</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">6</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Оценки 9, 9, 8, 7 и 6 не ниже порога 6, а цифра 5 на позиции 6 уже ниже — это первая плохая позиция.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>9987654
 6</pre></td><td><pre>6</pre></td></tr>
-                <tr><td><pre>9999
+                      <tr><td><pre>9999
 5</pre></td><td><pre>NO</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Оценки записаны строкой цифр, поэтому каждую цифру переводят в число функцией int(). Ответ начинается со строки NO: первая оценка ниже порога заменяет ее номером позиции и прерывает цикл через break.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Оценка качества</strong> — надежность прочитанной буквы; цифра от 0 до 9.</li>
+                  <li><strong>Порог</strong> — граница threshold: оценки ниже нее считаются плохими.</li>
+                  <li><strong>Функция int()</strong> — читает строку из цифр как число.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оценки и порог: <code>qual = input()</code>, <code>threshold = int(input())</code>.</li>
+                  <li>Заведите <code>answer = "NO"</code>.</li>
+                  <li>Перебирайте индексы: <code>for index in range(len(qual)):</code> — при <code>int(qual[index]) &lt; threshold</code> запишите <code>answer = index + 1</code> и выйдите через break.</li>
+                  <li>Выведите answer; сверьтесь с примером: 9987654 при пороге 6 дает 6, а 9999 при пороге 5 — NO.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.4. Проверка FASTA с комментариями</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Формат FASTA (<a href="../practice_3/t3_09.html">страница 09 практики 3</a>): строка заголовка начинается с <code>&gt;</code>, следующие строки содержат буквы последовательности. В старых файлах встречаются строки-комментарии, которые начинаются с <code>;</code>, и пустые строки; их пропускают. Первая не пропущенная строка должна быть заголовком. Строка последовательности может содержать только буквы A, C, G, T, N. Строки нумеруются с 1 все подряд, вместе с пропущенными. Выведите номер первой ошибочной строки или OK, если ошибок нет.</p></div>
-          <h4>Входные данные</h4>
-          <p>Строки файла, затем строка <code>done</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер первой ошибочной строки или OK.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;s1
+              <h3>Задача со звездочкой 4.4. Проверка FASTA с комментариями</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Формат FASTA (<a href="../practice_3/t3_09.html">страница 09 практики 3</a>): строка заголовка начинается с <code>&gt;</code>, следующие строки содержат буквы последовательности. В старых файлах встречаются строки-комментарии, которые начинаются с <code>;</code>, и пустые строки; их пропускают. Первая не пропущенная строка должна быть заголовком. Строка последовательности может содержать только буквы A, C, G, T, N. Строки нумеруются с 1 все подряд, вместе с пропущенными. Выведите номер первой ошибочной строки или OK, если ошибок нет.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Строки файла, затем строка <code>done</code>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер первой ошибочной строки или OK.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">&gt;s1<br>ACGT<br><span class="we-hl">;comment</span><br><span class="we-hl">ACXT</span><br>done</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка 3 начинается с ; и пропускается, но номер у нее есть; строка 4 ACXT содержит X, которой нет в алфавите, поэтому ответ 4.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;s1
 ACGT
 ;comment
 ACXT
 done</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>&gt;s1
+                      <tr><td><pre>&gt;s1
 <span class="io-empty">(пустая строка)</span>
 ACGT
 done</pre></td><td><pre>OK</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Строки перебирают по очереди, и номер растет у всех строк, включая пропущенные. Как только найдена ошибка, дальнейшие строки не проверяются, ведь нужна первая. Заголовок обязан встретиться до строки с буквами, а буквы строки последовательности входят только в ACGTN.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>FASTA</strong> — формат записи последовательностей: заголовок и строки с буквами.</li>
+                  <li><strong>Строка-комментарий</strong> — строка, которая начинается с точки с запятой.</li>
+                  <li><strong>Заголовок</strong> — строка, которая начинается со знака &gt;.</li>
+                  <li><strong>Флаг header</strong> — переменная-признак: заголовок уже встретился.</li>
+                  <li><strong>Команда continue</strong> — пропускает остаток тела цикла.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Заведите <code>num = 0</code>, <code>bad = 0</code> и <code>header = False</code>.</li>
+                  <li>В цикле <code>while True:</code> при <code>line == "done"</code> выходите; иначе сразу увеличьте num, а если <code>bad &gt; 0</code>, все дальнейшие строки пропускайте.</li>
+                  <li>Пустые строки и комментарии пропускайте через continue; строка с &gt; ставит <code>header = True</code>; строка с буквами без header — ошибка: <code>bad = num</code>.</li>
+                  <li>В остальных строках ищите букву вне ACGTN; после цикла замените нулевой bad на OK и выведите; сверьтесь с примером: файл &gt;s1, ACGT, ;comment, ACXT дает 4.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.4. Чистый участок</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Буквой N секвенатор отмечает позицию, которую не смог прочитать. Для анализа нужен участок из L подряд идущих букв без N. Найдите самый левый такой участок и выведите позицию его первой буквы (позиции нумеруются с 1). Если такого участка нет, выведите NO.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из букв A, C, G, T, N длиной от 1 до 100, во второй число L от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Позиция начала участка или NO.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACNNACGTN
+              <h3>Задача со звездочкой 4.4. Чистый участок</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Буквой N секвенатор отмечает позицию, которую не смог прочитать. Для анализа нужен участок из size подряд идущих букв без N. Найдите самый левый такой участок и выведите позицию его первой буквы (позиции нумеруются с 1). Если такого участка нет, выведите NO.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из букв A, C, G, T, N длиной от 1 до 100, во второй число size от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Позиция начала участка или NO.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACNN<span class="we-hl">ACG</span>TN<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">5</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Участки из трех букв без N: ACG на позициях 5–7 и CGT на 6–8; самый левый начинается с позиции 5.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACNNACGTN
 3</pre></td><td><pre>5</pre></td></tr>
-                <tr><td><pre>NNNN
+                      <tr><td><pre>NNNN
 1</pre></td><td><pre>NO</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_04_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Длину текущего участка без N хранят в run: буква N обнуляет его, а каждая обычная буква увеличивает на единицу. Когда run достигает size, участок заканчивается на позиции index, и его начало — index - size + 2 в нумерации с единицы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>N</strong> — отметка позиции, которую секвенатор не смог прочитать.</li>
+                  <li><strong>Участок</strong> — несколько подряд идущих букв без N.</li>
+                  <li><strong>Счетчик run</strong> — длина текущего участка без N.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и длину участка: <code>seq = input()</code>, <code>size = int(input())</code>.</li>
+                  <li>Заведите <code>answer = "NO"</code> и <code>run = 0</code>.</li>
+                  <li>В цикле по индексам: при <code>seq[index] == "N"</code> обнулите run и пропустите; иначе увеличьте run на единицу.</li>
+                  <li>Когда <code>run == size</code>, запишите начало <code>answer = index - size + 2</code> и выйдите через break; сверьтесь с примером: ACNNACGTN при size = 3 дает 5, а NNNN при size = 1 — NO.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_04_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

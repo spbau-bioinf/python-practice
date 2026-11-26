@@ -125,70 +125,211 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.6.1. По длине</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите последовательности набора по возрастанию длины. Последовательности одинаковой длины идут в том порядке, в каком они были в наборе. Отсортируйте функцией <code>sorted()</code> с ключом <code>key=len</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательности через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA AT TTA C</pre></td><td><pre>C AT TTA GATTACA</pre></td></tr>
-                <tr><td><pre>CC AA GG</pre></td><td><pre>CC AA GG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 5.6.1. По длине</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите последовательности набора по возрастанию длины. Последовательности одинаковой длины идут в том порядке, в каком они были в наборе.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательности через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GATTACA</span> AT TTA <span class="we-hl">C</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">C AT TTA GATTACA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длины последовательностей: 7, 2, 3 и 1; по возрастанию они идут как C (1), AT (2), TTA (3), GATTACA (7).</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA AT TTA C</pre></td><td><pre>C AT TTA GATTACA</pre></td></tr>
+                      <tr><td><pre>CC AA GG</pre></td><td><pre>CC AA GG</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>sorted(seqs, key=len) сортирует по длине, а не по алфавиту: ключ key задает, что именно сравнивать. Сортировка устойчивая: последовательности одинаковой длины сохраняют исходный порядок.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция sorted()</strong> — возвращает новый отсортированный список.</li>
+                  <li><strong>Ключ key</strong> — функция, по которой сравнивают элементы; key=len сравнивает длины.</li>
+                  <li><strong>Устойчивая сортировка</strong> — равные элементы сохраняют исходный порядок.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>.</li>
+                  <li>Отсортируйте по длине: <code>sorted(seqs, key=len)</code> — ключ key=len сравнивает длины.</li>
+                  <li>Равные длины сохранят исходный порядок: сортировка устойчивая.</li>
+                  <li>Напечатайте <code>" ".join(...)</code>; сверьтесь с примером: GATTACA AT TTA C дают C AT TTA GATTACA, а CC AA GG остаются CC AA GG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.6.1. По убыванию длины</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите последовательности набора по убыванию длины: сначала самые длинные. Последовательности одинаковой длины идут в том порядке, в каком они были в наборе.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательности через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AT GATTACA C TTA</pre></td><td><pre>GATTACA TTA AT C</pre></td></tr>
-                <tr><td><pre>GG TT AA</pre></td><td><pre>GG TT AA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 5.6.1. По убыванию длины</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите последовательности набора по убыванию длины: сначала самые длинные. Последовательности одинаковой длины идут в том порядке, в каком они были в наборе.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательности через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AT <span class="we-hl">GATTACA</span> C TTA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">GATTACA TTA AT C</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длины: 2, 7, 1 и 3; по убыванию это GATTACA (7), TTA (3), AT (2), C (1).</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AT GATTACA C TTA</pre></td><td><pre>GATTACA TTA AT C</pre></td></tr>
+                      <tr><td><pre>GG TT AA</pre></td><td><pre>GG TT AA</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Параметр reverse=True переворачивает порядок сортировки, а устойчивость сохраняется: последовательности одинаковой длины идут в исходном порядке, а не задом наперед.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция sorted()</strong> — возвращает новый отсортированный список.</li>
+                  <li><strong>Ключ key=len</strong> — сравнивает длины последовательностей.</li>
+                  <li><strong>Параметр reverse</strong> — reverse=True сортирует по убыванию.</li>
+                  <li><strong>Устойчивая сортировка</strong> — равные элементы сохраняют исходный порядок.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>.</li>
+                  <li>Сортировка по убыванию длины: <code>sorted(seqs, key=len, reverse=True)</code>.</li>
+                  <li>Равные по длине элементы reverse не переставляет между собой — они остаются в исходном порядке.</li>
+                  <li>Напечатайте <code>" ".join(...)</code>; сверьтесь с примером: AT GATTACA C TTA дают GATTACA TTA AT C, а GG TT AA остаются как есть.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.6.1. Медиана длин</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Медиана набора чисел&nbsp;— число, которое стоит в середине, если числа упорядочить. При нечетном количестве это среднее по порядку число: у длин 7, 2, 3 медиана 3. При четном количестве в середине два числа, и медиана равна их среднему арифметическому: у длин 4, 2, 7, 3 медиана <span class="formula">(3 + 4) / 2 = 3.5</span>. Выведите медиану длин последовательностей набора. При нечетном количестве выведите целое число, при четном результат деления <code>/</code> в том виде, в каком его печатает Python, например <code>3.5</code> или <code>2.0</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: медиана длин.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA AT TTA</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ACGT AC GGGGGGG TTT</pre></td><td><pre>3.5</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 5.6.1. Медиана длин</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите медиану длин последовательностей набора. При нечетном количестве выведите целое число, при четном — результат деления <code>/</code> в том виде, в каком его печатает Python, например <code>3.5</code> или <code>2.0</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: медиана длин.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA AT TTA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длины 7, 2 и 3; в упорядоченном виде 2, 3, 7 — медиана равна среднему по порядку числу 3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA AT TTA</pre></td><td><pre>3</pre></td></tr>
+                      <tr><td><pre>ACGT AC GGGGGGG TTT</pre></td><td><pre>3.5</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Сначала собирают длины функцией len(), затем сортируют их методом sort(). Если count нечетно, средний элемент стоит по индексу count // 2, при четном медиана — среднее двух элементов с индексами count // 2 - 1 и count // 2. Деление / всегда дает float, поэтому четный случай печатается как 3.5 или 2.0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Медиана</strong> — число в середине упорядоченного набора; при четном количестве — среднее двух средних.</li>
+                  <li><strong>Метод sort()</strong> — сортирует список на месте.</li>
+                  <li><strong>Целочисленное деление //</strong> — count // 2 дает номер среднего элемента.</li>
+                  <li><strong>Функция len()</strong> — возвращает длину строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Соберите длины в список: в цикле <code>for sequence in input().split():</code> вызывайте <code>lengths.append(len(sequence))</code>.</li>
+                  <li>Отсортируйте список: <code>lengths.sort()</code>; число длин сохраните: <code>count = len(lengths)</code>.</li>
+                  <li>При нечетном count берите <code>lengths[count // 2]</code>, при четном — среднее <code>lengths[count // 2 - 1]</code> и <code>lengths[count // 2]</code>.</li>
+                  <li>Напечатайте результат; сверьтесь с примером: GATTACA AT TTA дают медиану 3, а ACGT AC GGGGGGG TTT — 3.5.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -287,83 +428,225 @@ GC</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.6.2. Самая длинная и самая короткая</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите самую длинную и самую короткую последовательности набора. Если самых длинных или самых коротких несколько, выведите первую из них в порядке набора. Воспользуйтесь функциями <code>max()</code> и <code>min()</code> с ключом <code>key=len</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке самая длинная последовательность, во второй самая короткая.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATCCAGCT AT GATTACA GC</pre></td><td><pre>ATCCAGCT
+              <h3>Упражнение 5.6.2. Самая длинная и самая короткая</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите самую длинную и самую короткую последовательности набора. Если самых длинных или самых коротких несколько, выведите первую из них в порядке набора.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке самая длинная последовательность, во второй самая короткая.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">ATCCAGCT</span> <span class="we-hl">AT</span> GATTACA GC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATCCAGCT<br>AT</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Самая длинная — ATCCAGCT (8 букв); самые короткие — AT и GC по 2 буквы, и первая из них AT, поэтому в ответе именно AT.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATCCAGCT AT GATTACA GC</pre></td><td><pre>ATCCAGCT
 AT</pre></td></tr>
-                <tr><td><pre>GG CC</pre></td><td><pre>GG
+                      <tr><td><pre>GG CC</pre></td><td><pre>GG
 GG</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>max(seqs, key=len) и min(seqs, key=len) находят элементы с наибольшей и наименьшей длиной. При равных длинах обе функции возвращают первый подходящий элемент, поэтому побеждает первый в порядке набора.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция max()</strong> — возвращает наибольший элемент.</li>
+                  <li><strong>Функция min()</strong> — возвращает наименьший элемент.</li>
+                  <li><strong>Ключ key=len</strong> — сравнивает элементы по длине.</li>
+                  <li><strong>Первый из равных</strong> — при равной длине возвращается первый по порядку элемент.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>.</li>
+                  <li>Самая длинная: <code>max(seqs, key=len)</code>.</li>
+                  <li>Самая короткая: <code>min(seqs, key=len)</code>.</li>
+                  <li>Напечатайте обе строками; сверьтесь с примером: ATCCAGCT AT GATTACA GC дают ATCCAGCT и AT, а GG CC — GG дважды.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.6.2. Порядок по GC-составу</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Даны записи «имя, GC-состав в процентах». Выведите имена по возрастанию GC-состава; записи с одинаковым GC-составом идут по имени: имена сравниваются как строки, как это делает <code>sorted()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> строк: имя и GC-состав через пробел. Имена разные, из латинских букв, цифр и знака <code>_</code>; GC-состав от 0 до 100 с одной цифрой после точки.</p>
-          <h4>Выходные данные</h4>
-          <p>Имена через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3
+              <h3>Упражнение 5.6.2. Порядок по GC-составу</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны записи «имя, GC-состав в процентах». Выведите имена по возрастанию GC-состава; записи с одинаковым GC-составом идут по имени: имена сравниваются как строки, как это делает <code>sorted()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20. Дальше <code>count</code> строк: имя и GC-состав через пробел. Имена разные, из латинских букв, цифр и знака <code>_</code>; GC-состав от 0 до 100 с одной цифрой после точки.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Имена через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3<br>Rosalind_7 50.0<br>Rosalind_2 62.5<br>Rosalind_1 50.0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">Rosalind_1 Rosalind_7</span> <span class="we-seg we-seg-2">Rosalind_2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Сначала идут записи с GC-составом 50,0, при равенстве упорядоченные по имени: Rosalind_1 раньше Rosalind_7; затем Rosalind_2 с 62,5.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3
 Rosalind_7 50.0
 Rosalind_2 62.5
 Rosalind_1 50.0</pre></td><td><pre>Rosalind_1 Rosalind_7 Rosalind_2</pre></td></tr>
-                <tr><td><pre>2
+                      <tr><td><pre>2
 b 10.0
 a 90.0</pre></td><td><pre>b a</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждую запись превращают в кортеж (float(gc), name) и складывают кортежи в список: сортировка сравнивает кортежи по первому элементу, а при равенстве — по второму. Поэтому одинаковый состав упорядочивается по имени, и отдельный ключ не нужен.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кортеж</strong> — несколько значений в скобках: (gc, name).</li>
+                  <li><strong>Сравнение кортежей</strong> — сначала первый элемент, при равенстве — второй.</li>
+                  <li><strong>GC-состав</strong> — доля букв G и C в процентах от длины последовательности.</li>
+                  <li><strong>Метод sort()</strong> — сортирует список на месте.</li>
+                  <li><strong>Функция float()</strong> — переводит строку в вещественное число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число записей: <code>count = int(input())</code>; заведите <code>recs = []</code>.</li>
+                  <li>Каждую запись превращайте в кортеж: <code>name, gc = input().split()</code>, затем <code>recs.append((float(gc), name))</code>.</li>
+                  <li>Отсортируйте список: <code>recs.sort()</code> — кортежи сравниваются сначала по составу, потом по имени.</li>
+                  <li>Соберите имена и напечатайте через <code>" ".join</code>; сверьтесь с примером: Rosalind_7 50.0, Rosalind_2 62.5 и Rosalind_1 50.0 дают Rosalind_1 Rosalind_7 Rosalind_2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.6.2. Лидеры по GC-составу</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Даны записи «имя, последовательность». Выведите имена по убыванию GC-состава последовательностей; записи с одинаковым GC-составом идут по имени, по возрастанию: имена сравниваются как строки, как это делает <code>sorted()</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p><code>reverse=True</code> разворачивает сравнение по всем полям кортежа. Чтобы по убыванию шел только GC-состав, а имя по возрастанию, сортируйте по возрастанию, а GC-состав возьмите со знаком минус.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> строк: имя и последовательность через пробел. Имена разные, из латинских букв, цифр и знака <code>_</code>; последовательность из букв A, C, G, T длиной от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Имена через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3
+              <h3>Упражнение 5.6.2. Лидеры по GC-составу</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны записи «имя, последовательность». Выведите имена по убыванию GC-состава последовательностей; записи с одинаковым GC-составом идут по имени, по возрастанию: имена сравниваются как строки, как это делает <code>sorted()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20. Дальше <code>count</code> строк: имя и последовательность через пробел. Имена разные, из латинских букв, цифр и знака <code>_</code>; последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Имена через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">s1 AT<span class="we-hl">GC</span><br>s2 <span class="we-hl">GGC</span>A<br>s3 <span class="we-hl">GGGC</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">s3 s2 s1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Доли букв G и C: у s1 — 2 из 4, у s2 — 3 из 4, у s3 — 4 из 4; по убыванию получается s3 s2 s1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3
 s1 ATGC
 s2 GGCA
 s3 GGGC</pre></td><td><pre>s3 s2 s1</pre></td></tr>
-                <tr><td><pre>2
+                      <tr><td><pre>2
 b AT
 a GC</pre></td><td><pre>a b</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Чтобы отсортировать по убыванию без reverse, в кортеж кладут минус состава: -gc. Минус переворачивает порядок чисел, а имя остается вторым элементом и при равном составе решает по возрастанию. Деление состава выполняют один раз при чтении записи.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кортеж</strong> — несколько значений в скобках: (-gc, name).</li>
+                  <li><strong>Сравнение кортежей</strong> — сначала первый элемент, при равенстве — второй.</li>
+                  <li><strong>Минус перед числом</strong> — переворачивает порядок чисел: большее значение получает меньший ключ.</li>
+                  <li><strong>Метод count()</strong> — считает, сколько раз подстрока встречается в строке.</li>
+                  <li><strong>Метод sort()</strong> — сортирует список на месте.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число записей: <code>count = int(input())</code>; заведите <code>recs = []</code>.</li>
+                  <li>Считайте состав при чтении: сложите <code>seq.count("G")</code> и <code>seq.count("C")</code>, поделите на <code>len(seq)</code> и запишите в <code>gc</code>.</li>
+                  <li>Кладите в список кортеж с минусом: <code>recs.append((-gc, name))</code>; затем <code>recs.sort()</code>.</li>
+                  <li>Соберите имена и напечатайте; сверьтесь с примером: s1 ATGC, s2 GGCA и s3 GGGC дают s3 s2 s1, а b AT и a GC — a b.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -374,70 +657,213 @@ a GC</pre></td><td><pre>a b</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.6. Без крайних</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Упорядочьте набор по возрастанию длины (последовательности одинаковой длины остаются в исходном порядке) и уберите первую и последнюю последовательности упорядоченного набора. Выведите то, что осталось, в этом порядке.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 3 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Оставшиеся последовательности через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA AT TTA C</pre></td><td><pre>AT TTA</pre></td></tr>
-                <tr><td><pre>AA C GG</pre></td><td><pre>AA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.6. Без крайних</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Упорядочьте набор по возрастанию длины (последовательности одинаковой длины остаются в исходном порядке) и уберите первую и последнюю последовательности упорядоченного набора. Выведите то, что осталось, в этом порядке.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 3 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Оставшиеся последовательности через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GATTACA</span> AT TTA <span class="we-hl">C</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AT TTA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">После сортировки по длине набор — C, AT, TTA, GATTACA; крайние C и GATTACA убираются, остаются AT и TTA.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA AT TTA C</pre></td><td><pre>AT TTA</pre></td></tr>
+                      <tr><td><pre>AA C GG</pre></td><td><pre>AA</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>sorted(..., key=len) упорядочивает набор, а срез [1:-1] отрезает первый и последний элементы сразу: первая граница 1, последняя -1 в срез не входит. На наборе из трех элементов остается ровно один.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция sorted()</strong> — возвращает новый отсортированный список.</li>
+                  <li><strong>Ключ key=len</strong> — сравнивает длины последовательностей.</li>
+                  <li><strong>Срез [1:-1]</strong> — все элементы, кроме первого и последнего.</li>
+                  <li><strong>Устойчивая сортировка</strong> — равные элементы сохраняют исходный порядок.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте и отсортируйте набор по длине: <code>seqs = sorted(input().split(), key=len)</code>.</li>
+                  <li>Отрежьте первую и последнюю последовательности: срез <code>seqs[1:-1]</code>.</li>
+                  <li>Напечатайте остаток через <code>" ".join</code>.</li>
+                  <li>Сверьтесь с примером: GATTACA AT TTA C дают AT TTA, а AA C GG — AA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.6. По числу букв G</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите последовательности набора по возрастанию числа букв G. Последовательности с одинаковым числом G идут в том порядке, в каком они были в наборе. Функции для ключа <code>key</code> такой сортировки среди изученных нет: сортируйте кортежи.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательности через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GGA TTT AGG C GAG</pre></td><td><pre>TTT C GGA AGG GAG</pre></td></tr>
-                <tr><td><pre>AT CA TA</pre></td><td><pre>AT CA TA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.6. По числу букв G</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите последовательности набора по возрастанию числа букв G. Последовательности с одинаковым числом G идут в том порядке, в каком они были в наборе.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательности через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GGA</span> TTT <span class="we-hl">AGG</span> C <span class="we-hl">GAG</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">TTT C GGA AGG GAG</code>
+                    </div>
+                  </div>
+                  <p class="we-note">В TTT и C нет ни одной буквы G, у GGA, AGG и GAG по две; сначала идут TTT и C в исходном порядке, затем остальные тоже в исходном порядке.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GGA TTT AGG C GAG</pre></td><td><pre>TTT C GGA AGG GAG</pre></td></tr>
+                      <tr><td><pre>AT CA TA</pre></td><td><pre>AT CA TA</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Готовой функции для ключа сортировки нет, поэтому сортируют кортежи: (число G, номер в наборе, последовательность). Первый элемент задает порядок по числу G, второй сохраняет исходный порядок при равенстве, третий нужен только для вывода. Метод count("G") считает буквы в строке.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кортеж</strong> — несколько значений в скобках: (число G, номер, последовательность).</li>
+                  <li><strong>Сравнение кортежей</strong> — сначала первый элемент, при равенстве следующий.</li>
+                  <li><strong>Метод count()</strong> — считает, сколько раз подстрока встречается в строке.</li>
+                  <li><strong>Номер в наборе</strong> — второй элемент кортежа сохраняет исходный порядок при равном числе G.</li>
+                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>; заведите <code>recs = []</code>.</li>
+                  <li>Для каждой последовательности с номером соберите кортеж: в цикле по <code>enumerate(seqs)</code> получайте <code>index</code> и <code>sequence</code>, затем вызывайте <code>recs.append</code> с тремя элементами — <code>sequence.count("G")</code>, <code>index</code> и <code>sequence</code>.</li>
+                  <li>Отсортируйте: <code>recs.sort()</code> — сначала по числу G, при равенстве по номеру index.</li>
+                  <li>Соберите последовательности и напечатайте через <code>" ".join</code>; сверьтесь с примером: GGA TTT AGG C GAG дают TTT C GGA AGG GAG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.6. Места по GC-составу</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Распределите последовательности по местам: место 1 у наибольшего GC-состава. Последовательности с равным GC-составом делят место, а следующее место пропускается: при долях 0,5; 1; 0,5; 0 места 2, 1, 2, 4. Выведите места последовательностей в порядке набора.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Места через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGC GGCC ATAT GCAT</pre></td><td><pre>2 1 4 2</pre></td></tr>
-                <tr><td><pre>AAAA</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_06_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.6. Места по GC-составу</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Распределите последовательности по местам: место 1 у наибольшего GC-состава. Последовательности с равным GC-составом делят место, а следующее место пропускается: при долях 0,5; 1; 0,5; 0 места 2, 1, 2, 4. Выведите места последовательностей в порядке набора.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Места через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AT<span class="we-hl">GC</span> <span class="we-hl">GGCC</span> ATAT <span class="we-hl">GC</span>AT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">2 1 4 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Доли G и C: у ATGC 0,5, у GGCC 1, у ATAT 0, у GCAT 0,5. Места: GGCC — 1, две последовательности с 0,5 делят место 2, ATAT получает 4.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGC GGCC ATAT GCAT</pre></td><td><pre>2 1 4 2</pre></td></tr>
+                      <tr><td><pre>AAAA</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Составы считают для каждой последовательности, а места берут по отсортированной копии: index в order находит место первого вхождения состава, поэтому равные доли получают одинаковое место, а следующее за группой место пропускается. Прибавить единицу нужно потому, что индекс считается с нуля.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Место с пропусками</strong> — равные доли делят место, следующее место пропускается.</li>
+                  <li><strong>Метод index()</strong> — возвращает номер первого вхождения элемента в список.</li>
+                  <li><strong>sorted(reverse=True)</strong> — сортирует копию по убыванию.</li>
+                  <li><strong>GC-состав</strong> — доля букв G и C среди всех букв последовательности.</li>
+                  <li><strong>Функция len()</strong> — возвращает длину строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>; заведите <code>gcs = []</code>.</li>
+                  <li>Для каждой последовательности посчитайте долю: сложите <code>sequence.count("G")</code> и <code>sequence.count("C")</code>, поделите на <code>len(sequence)</code>.</li>
+                  <li>Отсортируйте копию по убыванию: <code>order = sorted(gcs, reverse=True)</code>.</li>
+                  <li>Место каждой доли — <code>order.index(gc) + 1</code>; напечатайте места через пробел; сверьтесь с примером: ATGC GGCC ATAT GCAT дают 2 1 4 2, а одна AAAA — 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_06_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

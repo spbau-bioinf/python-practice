@@ -156,75 +156,219 @@ gene_00284728	32	53.1</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.9.1. GC-состав</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Посчитайте GC-состав последовательности в процентах. Повторы в ней записаны строчными буквами: приведите последовательность к заглавным буквам до подсчета.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>GC-состав в процентах с одним знаком после точки, без знака %.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>28.6</pre></td></tr>
-                <tr><td><pre>GGCCggcc</pre></td><td><pre>100.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_09_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.9.1. GC-состав</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Посчитайте GC-состав последовательности в процентах. Повторы в ней записаны строчными буквами: приведите последовательность к заглавным буквам до подсчета.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>GC-состав в процентах с одним знаком после точки, без знака %.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">G</span>ATTA<span class="we-hl">C</span>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">28.6</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Букв G и C в GATTACA две из семи: 2 / 7 · 100 = 28.6.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA</pre></td><td><pre>28.6</pre></td></tr>
+                      <tr><td><pre>GGCCggcc</pre></td><td><pre>100.0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>GC-состав — доля букв G и C среди всех нуклеотидов; его считают по последовательности, приведенной к одному регистру. Долю переводят в проценты умножением на 100.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GC-состав</strong> — доля букв G и C среди всех нуклеотидов последовательности.</li>
+                  <li><strong>Повтор</strong> — участок, который много раз встречается в геноме; в записи помечен строчными буквами.</li>
+                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Метод count()</strong> — считает, сколько раз символ встречается в строке.</li>
+                  <li><strong>len()</strong> — возвращает число символов в строке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и сразу приведите ее к заглавным: <code>seq = input().upper()</code>.</li>
+                  <li>Числа букв G и C: <code>seq.count("G")</code> и <code>seq.count("C")</code>.</li>
+                  <li>Доля в процентах: сумму <code>seq.count("G") + seq.count("C")</code> поделите на <code>len(seq)</code> и умножьте на <code>100</code>.</li>
+                  <li>Выведите с одним знаком после точки: <code>print(f"{gc:.1f}")</code>; сверьтесь с примером: GATTACA дает 28.6.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_09_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.9.1. Строка отчета</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана запись FASTA: строка описания и последовательность, в которой повторы записаны строчными буквами. Выведите строку отчета: идентификатор записи, длину последовательности и ее GC-состав.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, длина, GC-состав в процентах с одним знаком после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;chr2_frag soft-masked repeats
+              <h3>Упражнение 2.9.1. Строка отчета</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана запись FASTA: строка описания и последовательность, в которой повторы записаны строчными буквами. Выведите строку отчета: идентификатор записи, длину последовательности и ее GC-состав.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, длина, GC-состав в процентах с одним знаком после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">&gt;chr2_frag soft-masked repeats<br>ATGAAA<span class="we-hl">ccgggt</span>TTTGGC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">chr2_frag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="we-hl">18</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="we-hl">50.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">GC-состав считают после приведения к заглавным: в последовательности из 18 нуклеотидов 9 — G или C, это 50.0 %.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;chr2_frag soft-masked repeats
 ATGAAAccgggtTTTGGC</pre></td><td><pre>chr2_frag	18	50.0</pre></td></tr>
-                <tr><td><pre>&gt;seq1
+                      <tr><td><pre>&gt;seq1
 atgc</pre></td><td><pre>seq1	4	50.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_09_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Запись FASTA начинается строкой описания с символом <code>&gt;</code>, за ней идет последовательность. В отчете идентификатор отделяют от комментария пробелом, а колонки — табуляцией.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>FASTA</strong> — формат записи последовательностей: строка описания с символом > и последовательность.</li>
+                  <li><strong>Строка описания</strong> — первая строка записи: символ >, идентификатор и, возможно, комментарий.</li>
+                  <li><strong>Идентификатор</strong> — короткое имя записи без пробелов.</li>
+                  <li><strong>Табуляция</strong> — символ разделения колонок, записывается как \t.</li>
+                  <li><strong>Метод removeprefix()</strong> — убирает заданное начало строки, если оно есть.</li>
+                  <li><strong>Метод split()</strong> — делит строку по разделителю; с <code>maxsplit=1</code> делит только по первому пробелу.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку описания и последовательность: <code>header = input()</code>, <code>seq = input().upper()</code>.</li>
+                  <li>Уберите символ <code>&gt;</code>: <code>header.removeprefix("&gt;")</code>.</li>
+                  <li>Отделите идентификатор от комментария по первому пробелу: <code>.split(maxsplit=1)[0]</code>.</li>
+                  <li>Посчитайте GC-состав и выведите три колонки через <code>\t</code>: <code>f"{seq_id}\t{len(seq)}\t{gc:.1f}"</code>; сверьтесь с примером: chr2_frag, 18, 50.0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_09_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.9.1. Отчет с GC3</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC3&nbsp;— GC-состав третьих позиций кодонов, по нему сравнивают, как организмы используют синонимичные кодоны, то есть разные кодоны одной и той же аминокислоты. Дана запись FASTA с кодирующей последовательностью, которую читают кодонами с первого нуклеотида. Выведите строку отчета: идентификатор, длину, GC-состав и GC3.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Третьи позиции всех полных кодонов можно одним срезом собрать в отдельную строку (<a href="t2_02.html">страница 02</a>). GC3 считают от длины этой строки, а не всей последовательности.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре, длина от 3 до 100; длина может не делиться на 3.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка из четырех колонок через табуляцию: идентификатор без <code>&gt;</code>, длина, GC-состав и GC3 в процентах с одним знаком после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;TP53_cds first 9 codons
+              <h3>Упражнение 2.9.1. Отчет с GC3</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>GC3 — GC-состав третьих позиций кодонов, по нему сравнивают, как организмы используют синонимичные кодоны. Дана запись FASTA с кодирующей последовательностью, которую читают кодонами с первого нуклеотида. Выведите строку отчета: идентификатор, длину, GC-состав и GC3.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре, длина от 3 до 100; длина может не делиться на 3.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка из четырех колонок через табуляцию: идентификатор без <code>&gt;</code>, длина, GC-состав и GC3 в процентах с одним знаком после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">&gt;TP53_cds first 9 codons<br><span class="we-seg we-seg-1">ATG</span><span class="we-seg we-seg-2">GAG</span><span class="we-seg we-seg-1">GAG</span>CCGCAGTCAGATCCTAGC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">TP53_cds&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="we-hl">59.3</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="we-hl">66.7</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В последовательности из 27 нуклеотидов 16 — G или C, это 59.3 %; третьи позиции девяти кодонов дают строку GGGGGATTC, в ней шесть G или C — 66.7 %.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;TP53_cds first 9 codons
 ATGGAGGAGCCGCAGTCAGATCCTAGC</pre></td><td><pre>TP53_cds	27	59.3	66.7</pre></td></tr>
-                <tr><td><pre>&gt;frag_7 partial
+                      <tr><td><pre>&gt;frag_7 partial
 atgcatgcatgca</pre></td><td><pre>frag_7	13	46.2	50.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_09_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Третьи позиции кодонов идут через две: индексы 2, 5, 8 и так далее. Срез <code>seq[2::3]</code> выбирает их все сразу; если длина не делится на 3, последний неполный кодон третьей позиции не дает.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GC3</strong> — GC-состав третьих позиций кодонов.</li>
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Синонимичные кодоны</strong> — разные кодоны, которые кодируют одну и ту же аминокислоту.</li>
+                  <li><strong>Срез с шагом</strong> — seq[2::3] берет символы с индекса 2 через каждые три.</li>
+                  <li><strong>Табуляция</strong> — символ разделения колонок, записывается как \t.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в предыдущем упражнении.</li>
+                  <li>Обычный GC-состав считается по всей длине, как раньше.</li>
+                  <li>Третьи позиции кодонов выбирает срез <code>third = seq[2::3]</code>.</li>
+                  <li>GC3 — это сумма <code>third.count("G") + third.count("C")</code>, деленная на <code>len(third)</code> и умноженная на <code>100</code>; выведите четыре колонки через <code>\t</code>; сверьтесь с примером: TP53_cds, 27, 59.3, 66.7.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_09_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -235,75 +379,217 @@ atgcatgcatgca</pre></td><td><pre>frag_7	13	46.2	50.0</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 2.9. GC-перекос последовательности</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>GC-перекос (его также называют GC-асимметрией) показывает, каких нуклеотидов больше на цепи, G или C: он равен <span class="formula">(G − C) / (G + C)</span>, где G и C обозначают числа гуанинов и цитозинов. В практике 1, в упражнении <a href="../practice_1/t1_10.html#ex-1">1.10.1</a> среднего уровня, перекос считали по готовым числам, здесь их нужно получить из последовательности. Повторы в ней записаны строчными буквами.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100. В ней есть хотя бы одна буква G или C.</p>
-          <h4>Выходные данные</h4>
-          <p>GC-перекос с тремя знаками после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GGGCATTgc</pre></td><td><pre>0.333</pre></td></tr>
-                <tr><td><pre>ATCCa</pre></td><td><pre>-1.000</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_09_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 2.9. GC-перекос последовательности</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>GC-перекос (его также называют GC-асимметрией) показывает, каких нуклеотидов больше на цепи, G или C: он равен <span class="formula">(count_g − count_c) / (count_g + count_c)</span>, где count_g и count_c — числа гуанинов и цитозинов. Повторы в последовательности записаны строчными буквами.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из букв A, C, G, T в любом регистре, длина от 1 до 100. В ней есть хотя бы одна буква G или C.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>GC-перекос с тремя знаками после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GGGC</span>ATT<span class="we-hl">gc</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0.333</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В GGGCATTgc четыре G и два C: (4 − 2) / (4 + 2) = 0.333.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GGGCATTgc</pre></td><td><pre>0.333</pre></td></tr>
+                      <tr><td><pre>ATCCa</pre></td><td><pre>-1.000</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Перекос считают по последовательности: сначала считают G и C по отдельности, затем подставляют в формулу. В практике 1, в упражнении 1.10.1 среднего уровня, перекос считали по готовым числам, а здесь их нужно получить из последовательности.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GC-перекос</strong> — величина (count_g − count_c) / (count_g + count_c), показывающая перевес гуанина или цитозина.</li>
+                  <li><strong>Гуанин и цитозин</strong> — нуклеотиды G и C; их число считают методом count().</li>
+                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Формат .3f</strong> — запись числа с тремя знаками после точки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input().upper()</code>.</li>
+                  <li>Сосчитайте буквы по отдельности: <code>count_g = seq.count("G")</code>, <code>count_c = seq.count("C")</code>.</li>
+                  <li>Подставьте в формулу: разность <code>count_g - count_c</code>, деленную на сумму <code>count_g + count_c</code>.</li>
+                  <li>Выведите с тремя знаками после точки: разность <code>count_g - count_c</code>, деленную на сумму <code>count_g + count_c</code>, с форматом <code>:.3f</code>; сверьтесь с примером: GGGCATTgc дает 0.333.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_09_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 2.9. GC-состав с пропусками</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Если секвенатор, прибор для чтения ДНК, не смог определить нуклеотид, на его месте в последовательности ставят букву N. Такие позиции в GC-составе не учитывают: долю букв G и C считают только среди определенных нуклеотидов A, C, G, T. Дана запись FASTA. Выведите строку отчета: идентификатор записи, число позиций N и GC-состав среди определенных нуклеотидов.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T, N в любом регистре длиной от 1 до 100; хотя бы одна буква в ней не N.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, число позиций N, GC-состав в процентах с одним знаком после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;ctg12 draft assembly
+              <h3>Задача со звездочкой 2.9. GC-состав с пропусками</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Если секвенатор не смог определить нуклеотид, на его месте в последовательности ставят букву N. Такие позиции в GC-составе не учитывают: долю букв G и C считают только среди определенных нуклеотидов A, C, G, T. Дана запись FASTA. Выведите строку отчета: идентификатор записи, число позиций N и GC-состав среди определенных нуклеотидов.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T, N в любом регистре длиной от 1 до 100; хотя бы одна буква в ней не N.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, число позиций N, GC-состав в процентах с одним знаком после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">&gt;ctg12 draft assembly<br>ATG<span class="we-hl">NNN</span>GCcgTA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ctg12&nbsp;&nbsp;&nbsp;<span class="we-hl">3</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="we-hl">55.6</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Три позиции N не учитывают; среди оставшихся девяти нуклеотидов пять — G или C, это 55.6 %.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;ctg12 draft assembly
 ATGNNNGCcgTA</pre></td><td><pre>ctg12	3	55.6</pre></td></tr>
-                <tr><td><pre>&gt;s1
+                      <tr><td><pre>&gt;s1
 nnGC</pre></td><td><pre>s1	2	100.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_09_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пропуски N не относят ни к какому нуклеотиду, поэтому знаменатель доли — это длина без позиций N. Если их не исключить, GC-состав окажется заниженным.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>N (пропуск)</strong> — буква на месте нуклеотида, который секвенатор не смог определить.</li>
+                  <li><strong>FASTA</strong> — формат записи: строка описания с символом > и последовательность.</li>
+                  <li><strong>Идентификатор</strong> — короткое имя записи без пробелов.</li>
+                  <li><strong>Табуляция</strong> — символ разделения колонок, записывается как \t.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в упражнении 2.9.1.</li>
+                  <li>Число пропусков: <code>count_n = seq.count("N")</code>.</li>
+                  <li>Определенных нуклеотидов <code>len(seq) - count_n</code>, поэтому GC-состав — сумма <code>seq.count("G") + seq.count("C")</code>, деленная на это число и умноженная на <code>100</code>.</li>
+                  <li>Выведите три колонки через <code>\t</code>; сверьтесь с примером: ctg12, 3 пропуска, 55.6.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_09_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 2.9. Пары CG</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пара CG состоит из двух соседних нуклеотидов цепи, в которых за C сразу идет G; в литературе ее называют CpG. В геноме позвоночных таких пар меньше, чем можно ожидать по числу букв C и G, а участки, где их много, называют CpG-островками. Для поиска островков считают отношение наблюдаемого числа пар к ожидаемому: <span class="formula">O/E = (число пар CG · длина) / (число C · число G)</span> (источник: <a href="https://doi.org/10.1016/0022-2836(87)90689-9">Gardiner-Garden, Frommer, 1987</a>). Дана запись FASTA, повторы в последовательности записаны строчными буквами. Выведите идентификатор, GC-состав и отношение O/E.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Пара может стоять на границе повтора: <code>Cg</code> или <code>cG</code>.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре длиной от 2 до 100; в ней есть хотя бы одна буква C и хотя бы одна буква G.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, GC-состав в процентах с одним знаком после точки, отношение O/E с двумя знаками после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;isl_4 candidate
+              <h3>Задача со звездочкой 2.9. Пары CG</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пара CpG состоит из соседних нуклеотидов C и G: в цепи за C сразу идет G, и в записи она выглядит как <code>CG</code>. Для поиска CpG-островков считают отношение наблюдаемого числа пар к ожидаемому: <span class="formula">O/E = (число пар CG · длина) / (число C · число G)</span> (источник: <a href="https://doi.org/10.1016/0022-2836(87)90689-9">Gardiner-Garden, Frommer, 1987</a>). Дана запись FASTA, повторы в последовательности записаны строчными буквами. Выведите идентификатор, GC-состав и отношение O/E.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки. В первой строка описания: символ <code>&gt;</code>, идентификатор без пробелов и, возможно, пробел и комментарий. Во второй последовательность из букв A, C, G, T в любом регистре длиной от 2 до 100; в ней есть хотя бы одна буква C и хотя бы одна буква G.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка из трех колонок через табуляцию: идентификатор без <code>&gt;</code>, GC-состав в процентах с одним знаком после точки, отношение O/E с двумя знаками после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<span class="we-hl">CG</span>TT<span class="we-hl">CG</span><span class="we-hl">CG</span>AT<span class="we-hl">CG</span>GCCATG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">isl_4&nbsp;&nbsp;&nbsp;<span class="we-hl">63.2</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="we-hl">2.11</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В последовательности 12 G или C из 19 — это 63.2 %; пар CG четыре, а C и G по шесть: (4 · 19) / (6 · 6) = 2.11.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;isl_4 candidate
 ACGTTCGcgATCGGCCATG</pre></td><td><pre>isl_4	63.2	2.11</pre></td></tr>
-                <tr><td><pre>&gt;p2
+                      <tr><td><pre>&gt;p2
 CcGg</pre></td><td><pre>p2	100.0	1.00</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_09_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В геноме позвоночных пар CpG меньше, чем можно ожидать по числу букв C и G: цитозин в паре часто метилирован и со временем заменяется. Участки, где пар больше ожидаемого, называют CpG-островками; их ищут по отношению O/E.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>CpG</strong> — пара соседних нуклеотидов C и G; в записи выглядит как CG.</li>
+                  <li><strong>CpG-островок</strong> — участок, где пар CpG больше ожидаемого по числу букв C и G.</li>
+                  <li><strong>Ожидаемое число пар</strong> — доля, которую составили бы пары CG при случайном расположении букв: (число C · число G) / длина.</li>
+                  <li><strong>Метод count()</strong> — считает вхождения подстроки; seq.count("CG") считает пары.</li>
+                  <li><strong>Табуляция</strong> — символ разделения колонок, записывается как \t.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в упражнении 2.9.1.</li>
+                  <li>Сосчитайте <code>count_c = seq.count("C")</code>, <code>count_g = seq.count("G")</code> и число пар <code>seq.count("CG")</code>.</li>
+                  <li>GC-состав — сумма <code>count_c + count_g</code>, деленная на <code>len(seq)</code> и умноженная на <code>100</code>; отношение — <code>seq.count("CG") * len(seq)</code>, деленное на <code>count_c * count_g</code>.</li>
+                  <li>Выведите три колонки: <code>f"{seq_id}\t{gc:.1f}\t{ratio:.2f}"</code>; сверьтесь с примером: isl_4, 63.2, 2.11.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_09_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

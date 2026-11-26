@@ -200,75 +200,215 @@ ACGT
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.6.1. Длина или нет данных</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дана последовательность, строка может оказаться пустой. Если последовательность есть, выведите ее длину, иначе слова <code>нет данных</code>. Проверьте строку через ее истинность: <code>if seq:</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Длина последовательности или слова <code>нет данных</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTCGA</pre></td><td><pre>7</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>нет данных</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_06_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.6.1. Длина или нет данных</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана последовательность, строка может оказаться пустой. Если последовательность есть, выведите ее длину, иначе слова <code>нет данных</code>. Проверьте строку через ее истинность: <code>if seq:</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Длина последовательности или слова <code>нет данных</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GATTCGA</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">7</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка непустая, значит истинна, и ветка if выводит ее длину: в GATTCGA семь букв. Для пустой строки вывелось бы «нет данных».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTCGA</pre></td><td><pre>7</pre></td></tr>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>нет данных</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пустая строка в Python ложна, а любая непустая истинна. Поэтому проверка <code>if seq:</code> различает «нет данных» и «данные есть» без сравнения с пустой строкой.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Истинность строки</strong> — непустая строка истинна, пустая ложна.</li>
+                  <li><strong>Пустая строка</strong> — строка, в которой нет ни одного символа.</li>
+                  <li><strong>Функция len()</strong> — возвращает число символов в строке.</li>
+                  <li><strong>if/else</strong> — ветвление: if выполняет один блок, else — другой, когда условие ложно.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>.</li>
+                  <li>Проверьте саму строку: <code>if seq:</code> — истинно, когда в ней есть символы.</li>
+                  <li>В теле if выведите <code>len(seq)</code>, в else — <code>нет данных</code>.</li>
+                  <li>Сверьтесь с примером: GATTCGA дает 7, а пустая строка — нет данных.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_06_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.6.1. Идентификатор по умолчанию</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны идентификатор записи и последовательность. Поле идентификатора бывает не заполнено: строка пустая или состоит из одних пробелов. Тогда вместо идентификатора используют <code>без_имени</code>. Выведите идентификатор без пробелов по краям и длину последовательности.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке идентификатор длиной от 0 до 20 символов, возможно с пробелами по краям, во второй последовательность из прописных букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Идентификатор и длина через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>NM_000546
+              <h3>Упражнение 3.6.1. Идентификатор по умолчанию</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны идентификатор записи и последовательность. Поле идентификатора бывает не заполнено: строка пустая или состоит из одних пробелов. Тогда вместо идентификатора используют <code>без_имени</code>. Выведите идентификатор без пробелов по краям и длину последовательности.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке идентификатор длиной от 0 до 20 символов, возможно с пробелами по краям, во второй последовательность из прописных букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Идентификатор и длина через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">NM_000546<br>ATGGAGGAG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">NM_000546 <span class="we-hl">9</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Идентификатор непустой после удаления пробелов по краям, поэтому остается как есть; в последовательности ATGGAGGAG 9 букв — ответ «NM_000546 9».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>NM_000546
 ATGGAGGAG</pre></td><td><pre>NM_000546 9</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 ACGT</pre></td><td><pre>без_имени 4</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_06_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Метод <code>strip()</code> убирает пробелы по краям, после чего строка из одних пробелов становится пустой и ложной. Оператор or возвращает первый истинный операнд, поэтому <code>seq_id.strip() or "без_имени"</code> подставляет имя по умолчанию только тогда, когда поле пустое.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод strip()</strong> — убирает пробелы и другие пробельные символы по краям строки.</li>
+                  <li><strong>Оператор or</strong> — возвращает первый истинный операнд, а если таких нет — последний.</li>
+                  <li><strong>Ложное значение</strong> — здесь пустая строка, которая считается ложной.</li>
+                  <li><strong>Значение по умолчанию</strong> — подстановка, которая используется, когда поле не заполнено.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте идентификатор и последовательность: <code>seq_id = input()</code>, <code>seq = input()</code>.</li>
+                  <li>Уберите пробелы по краям: <code>seq_id.strip()</code>.</li>
+                  <li>Подставьте имя по умолчанию: <code>name = seq_id.strip() or "без_имени"</code>.</li>
+                  <li>Выведите имя и длину: <code>print(name, len(seq))</code>; сверьтесь с примером: NM_000546 и ATGGAGGAG дают <code>NM_000546 9</code>, а пустой идентификатор — <code>без_имени 4</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_06_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.6.1. Поправка на фон</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Из сигнала пробы вычитают фон, измеренный в пустой лунке. Если фон не измерили, его поле пустое, и тогда берут фон по умолчанию, 0.05. Фон, равный нулю, настоящее измерение. Даны сигнал и фон. Выведите сигнал за вычетом фона, округленный функцией <code>round()</code> до трех знаков.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Строка <code>"0"</code> истинна, а число <code>0.0</code> ложно. Подумайте, в какой момент подставлять значение по умолчанию: до превращения в число или после.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке сигнал, вещественное число от 0 до 4. Во второй фон: вещественное число от 0 до 1 или пустая строка.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: сигнал минус фон, округленный до трех знаков после точки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>0.82
+              <h3>Упражнение 3.6.1. Поправка на фон</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Из сигнала пробы вычитают фон, измеренный в пустой лунке. Если фон не измерили, его поле пустое, и тогда берут фон по умолчанию, 0.05. Фон, равный нулю, настоящее измерение. Даны сигнал и фон. Выведите сигнал за вычетом фона, округленный функцией <code>round()</code> до трех знаков.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке сигнал, вещественное число от 0 до 4. Во второй фон: вещественное число от 0 до 1 или пустая строка.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: сигнал минус фон, округленный до трех знаков после точки.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.82<br>0.1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">0.72</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Фон измерили и он равен 0.1: 0.82 − 0.1 = 0.72. Если бы поле фона было пустым, вычли бы значение по умолчанию 0.05 и получили 0.77.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.82
 0.1</pre></td><td><pre>0.72</pre></td></tr>
-                <tr><td><pre>0.82
+                      <tr><td><pre>0.82
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>0.77</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_06_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пустое поле фона — ложная строка, а строка "0" истинна, поэтому <code>input() or "0.05"</code> подставляет фон по умолчанию только при пустом вводе и сохраняет настоящее измерение 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Фон</strong> — сигнал пустой лунки, который вычитают из сигнала пробы.</li>
+                  <li><strong>Лунка</strong> — ячейка планшета, в которой ставят пробу или холостой опыт.</li>
+                  <li><strong>Ложное значение строки</strong> — пустая строка считается ложной, строка "0" — истинной.</li>
+                  <li><strong>Функция round()</strong> — округляет число до заданного числа знаков после точки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте сигнал: <code>signal = float(input())</code>.</li>
+                  <li>Фон с подстановкой: <code>background = float(input() or "0.05")</code> — пустой ввод заменяется на 0.05.</li>
+                  <li>Вычтите фон: <code>signal - background</code>.</li>
+                  <li>Округлите до трех знаков и выведите: <code>print(round(signal - background, 3))</code>; сверьтесь с примером: 0.82 при фоне 0.1 дает 0.72, а при пустом поле — 0.77.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_06_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -279,81 +419,220 @@ ACGT</pre></td><td><pre>без_имени 4</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.6. Имя записи</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>У записи последовательности два поля: название гена и идентификатор в базе. Любое из них может быть не заполнено, тогда его строка пустая. В отчет пишут название гена, если оно есть, иначе идентификатор, а если нет и его, слово <code>неизвестно</code>. Даны оба поля. Выведите, что попадет в отчет.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке название гена, во второй идентификатор; каждая строка длиной от 0 до 20 символов, без пробелов.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка: название гена, идентификатор или слово <code>неизвестно</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>BRCA2
+              <h3>Задача со звездочкой 3.6. Имя записи</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>У записи последовательности два поля: название гена и идентификатор в базе. Любое из них может быть не заполнено, тогда его строка пустая. В отчет пишут название гена, если оно есть, иначе идентификатор, а если нет и его, слово <code>неизвестно</code>. Даны оба поля. Выведите, что попадет в отчет.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке название гена, во второй идентификатор; каждая строка длиной от 0 до 20 символов, без пробелов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: название гена, идентификатор или слово <code>неизвестно</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">BRCA2</span><br>NM_000059</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">BRCA2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Название гена заполнено, поэтому в отчет идет оно, хотя идентификатор тоже есть. Слово «неизвестно» появилось бы, только если пусты оба поля.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>BRCA2
 NM_000059</pre></td><td><pre>BRCA2</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>неизвестно</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_06_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Оператор or возвращает первый истинный операнд, поэтому цепочка <code>gene or seq_id or "неизвестно"</code> перебирает поля по очереди и берет первое заполненное, а если пусты оба — слово по умолчанию.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Поле записи</strong> — отдельная строка в базе данных: название гена, идентификатор.</li>
+                  <li><strong>Ложное значение строки</strong> — пустая строка считается ложной.</li>
+                  <li><strong>Оператор or</strong> — возвращает первый истинный операнд, а если таких нет — последний.</li>
+                  <li><strong>Цепочка or</strong> — несколько or подряд перебирают значения слева направо.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба поля: <code>gene = input()</code>, <code>seq_id = input()</code>.</li>
+                  <li>Название гена берут, если оно есть: пустая строка ложна.</li>
+                  <li>Соедините поля цепочкой: <code>gene or seq_id or "неизвестно"</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: BRCA2 и NM_000059 дают BRCA2, а два пустых поля — неизвестно.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_06_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.6. Объем как в строке выше</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В журнале три строки, по одной на пробу, и в каждой поле объема. Чтобы не переписывать одно и то же, пустое поле означает «столько же, сколько у пробы строкой выше». У первой пробы поле заполнено всегда. Объем 0 настоящее значение: проба еще не налита. Даны три поля. Выведите общий объем трех проб.</p></div>
-          <h4>Входные данные</h4>
-          <p>Три строки. В первой число от 0 до 1000, во второй и третьей число от 0 до 1000 или пустая строка. Все объемы кратны 0,5, например <code>12.5</code>: сумма таких чисел вычисляется без погрешности.</p>
-          <h4>Выходные данные</h4>
-          <p>Общий объем в том виде, в каком его печатает Python.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>12.5
+              <h3>Задача со звездочкой 3.6. Объем как в строке выше</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В журнале три строки, по одной на пробу, и в каждой поле объема. Чтобы не переписывать одно и то же, пустое поле означает «столько же, сколько у пробы строкой выше». У первой пробы поле заполнено всегда. Объем 0 настоящее значение: проба еще не налита. Даны три поля. Выведите общий объем трех проб.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки. В первой число от 0 до 1000, во второй и третьей число от 0 до 1000 или пустая строка. Все объемы кратны 0,5, например <code>12.5</code>: сумма таких чисел вычисляется без погрешности.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Общий объем в том виде, в каком его печатает Python.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">12.5<br>(пустая строка)<br>20</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">45.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Пустое второе поле означает объем как у пробы строкой выше, то есть 12.5: 12.5 + 12.5 + 20 = 45.0. Третья строка заполнена, подставлять больше нечего.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>12.5
 <span class="io-empty">(пустая строка)</span>
 20</pre></td><td><pre>45.0</pre></td></tr>
-                <tr><td><pre>8
+                      <tr><td><pre>8
 0
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>8.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_06_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пустое поле означает «как выше», поэтому каждое следующее значение берут как <code>input() or предыдущее</code>. Значение 0 — непустая строка и потому истинно: проба с нулевым объемом так и остается нулем.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ложное значение строки</strong> — пустая строка считается ложной, строка "0" — истинной.</li>
+                  <li><strong>Оператор or</strong> — возвращает первый истинный операнд, здесь — заполненное поле.</li>
+                  <li><strong>Кратность 0,5</strong> — сумма таких чисел в Python вычисляется без погрешности.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте первое поле: <code>value1 = input()</code>.</li>
+                  <li>Второе и третье берут значение выше, когда пусты: <code>value2 = input() or value1</code>, <code>value3 = input() or value2</code>.</li>
+                  <li>Переведите все три в числа: <code>float(value1)</code> и так далее.</li>
+                  <li>Выведите сумму; сверьтесь с примером: 12.5, пустое поле и 20 дают 45.0, а 8, 0 и пустое поле — 8.0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_06_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.6. Среднее записанных измерений</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Концентрацию белка измерили три раза, но некоторые измерения не записали: их поля пустые. Результатом считают среднее арифметическое записанных измерений. Измерение 0 настоящее значение. Даны три поля. Выведите среднее или слова <code>нет данных</code>, если не записано ни одно измерение.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Число записанных измерений можно получить без ветвлений: <code>bool()</code> от строки дает <code>True</code> или <code>False</code>, а сумма логических значений равна числу истинных (<a href="t3_01.html">страница 01</a>).</p></details>
-          <h4>Входные данные</h4>
-          <p>Три строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
-          <h4>Выходные данные</h4>
-          <p>Среднее, округленное функцией <code>round()</code> до двух знаков после точки, или слова <code>нет данных</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2.4
+              <h3>Задача со звездочкой 3.6. Среднее записанных измерений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Концентрацию белка измерили три раза, но некоторые измерения не записали: их поля пустые. Результатом считают среднее арифметическое записанных измерений. Измерение 0 настоящее значение. Даны три поля. Выведите среднее или слова <code>нет данных</code>, если не записано ни одно измерение.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три строки, в каждой вещественное число от 0 до 1000 или пустая строка.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Среднее, округленное функцией <code>round()</code> до двух знаков после точки, или слова <code>нет данных</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2.4<br>(пустая строка)<br>3.1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2.75</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Записаны два измерения из трех: (2.4 + 3.1) / 2 = 2.75. Пустое поле в среднее не входит, а измерение 0 вошло бы.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2.4
 <span class="io-empty">(пустая строка)</span>
 3.1</pre></td><td><pre>2.75</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span>
 <span class="io-empty">(пустая строка)</span></pre></td><td><pre>нет данных</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_06_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пустую строку можно превратить в 0 или 1 функцией <code>bool()</code>, поэтому число записанных измерений — сумма трех bool. Для суммы пустые поля заменяют нулями через <code>value1 or "0"</code>, а среднее делят на число записанных измерений.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Функция bool()</strong> — превращает значение в True или False; пустая строка дает False.</li>
+                  <li><strong>Ложное значение строки</strong> — пустая строка считается ложной.</li>
+                  <li><strong>Оператор or</strong> — здесь подставляет "0" вместо пустого поля.</li>
+                  <li><strong>Среднее арифметическое</strong> — сумма значений, деленная на их число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три поля: <code>value1 = input()</code>, <code>value2 = input()</code>, <code>value3 = input()</code>.</li>
+                  <li>Число записанных измерений — сумма <code>bool(value1)</code>, <code>bool(value2)</code> и <code>bool(value3)</code>; запишите ее в <code>count</code>.</li>
+                  <li>Сумма с заменой пустых полей нулями: сложите <code>float(value1 or "0")</code>, <code>float(value2 or "0")</code> и <code>float(value3 or "0")</code> в <code>total</code>.</li>
+                  <li>Если <code>count</code> истинно, выведите <code>round(total / count, 2)</code>, иначе слова <code>нет данных</code>; сверьтесь с примером: 2.4, пустое поле и 3.1 дают 2.75, а три пустых поля — нет данных.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_06_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

@@ -200,82 +200,220 @@ False</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 1.7.1. Совпадают ли массы</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Две массы <code>m1</code> и <code>m2</code> получены вычислением. Проверьте функцией <code>math.isclose()</code> с допуском по умолчанию, совпадают ли они.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>m1</code> и <code>m2</code>.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code> или <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>m1 = 0.3
-m2 = 0.30000000000000004</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>m1 = 1.5
-m2 = 1.6</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.7.1. Совпадают ли массы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Две массы <code>mass1</code> и <code>mass2</code> получены вычислением. Проверьте функцией <code>math.isclose()</code> с допуском по умолчанию, совпадают ли они.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два вещественных числа, каждое в своей строке: <code>mass1</code> и <code>mass2</code> — массы, полученные вычислением.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code> или <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.3<br>0.30000000000000004</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>mass2</code> получилось вычислением и отличается от 0.3 на 4 · 10<sup>−17</sup>; допуск по умолчанию <code>rel_tol=1e-09</code> считает такие числа совпадающими.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.3
+0.30000000000000004</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>1.5
+1.6</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Приборы хранят массы как вещественные числа, и два пути вычисления могут дать почти одинаковый, но не точно равный результат: 0.3 против 0.30000000000000004. Поэтому массы сравнивают с допуском функцией <code>math.isclose()</code>, а не оператором <code>==</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Вещественное число</strong> — число с дробной частью; в компьютере оно хранится приближенно.</li>
+                  <li><strong>Допуск</strong> — разница, в пределах которой два значения считаются совпадающими.</li>
+                  <li><strong>math.isclose()</strong> — функция модуля math, которая сравнивает числа с допуском.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>mass1 = float(input())</code> и <code>mass2 = float(input())</code>.</li>
+                  <li>Подключите модуль: <code>import math</code>.</li>
+                  <li>Сравните с допуском по умолчанию: <code>math.isclose(mass1, mass2)</code>.</li>
+                  <li>Выведите результат: <code>print(math.isclose(mass1, mass2))</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 1.7.1. Допуск в процентах</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прибор исправен, если измеренное значение <code>measured</code> отличается от номинального <code>nominal</code> не больше чем на <code>percent</code> процентов (как <code>rel_tol</code>). Проверьте прибор одним вызовом <code>math.isclose()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются числа <code>measured</code>, <code>nominal</code> и <code>percent</code> (больше 0).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если прибор исправен, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>measured = 0.998
-nominal = 1.0
-percent = 0.5</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>measured = 0.99
-nominal = 1.0
-percent = 0.5</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.7.1. Допуск в процентах</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Прибор исправен, если измеренное значение <code>measured</code> отличается от номинального <code>nominal</code> не больше чем на <code>percent</code> процентов (как <code>rel_tol</code>). Проверьте прибор одним вызовом <code>math.isclose()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три числа, каждое в своей строке: <code>measured</code> — измеренное значение, <code>nominal</code> — номинальное, <code>percent</code> — допуск в процентах (больше 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если прибор исправен, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.998<br>1.0<br>0.5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Отклонение 0.002 — это 0.2 % от номинала, что не больше допуска 0.5 %, поэтому <code>math.isclose(measured, nominal, rel_tol=0.005)</code> дает True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.998
+1.0
+0.5</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>0.99
+1.0
+0.5</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Прибор считают исправным, если измеренное значение отличается от номинального не больше чем на несколько процентов. В <code>math.isclose()</code> такой допуск задают параметром <code>rel_tol</code> — долей от большего из двух чисел.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Номинальное значение</strong> — значение, которое прибор должен показать по паспорту.</li>
+                  <li><strong>Относительный допуск</strong> — допуск, выраженный долей от значения, а не в его единицах.</li>
+                  <li><strong>rel_tol</strong> — параметр math.isclose() для относительного допуска.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>measured = float(input())</code>, <code>nominal = float(input())</code>, <code>percent = float(input())</code>.</li>
+                  <li>Переведите проценты в долю: <code>percent / 100</code>.</li>
+                  <li>В вызове <code>math.isclose</code> передайте долю параметром <code>rel_tol</code>: <code>rel_tol=percent / 100</code>.</li>
+                  <li>Сверьтесь с примером: 0.998 отличается от 1.0 на 0.2 %, это меньше 0.5 %.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 1.7.1. Допуск с абсолютным порогом</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Как в среднем варианте, но около нуля процентный допуск бесполезен, поэтому прибор исправен и тогда, когда разница не больше абсолютного порога <code>floor</code>. Проверьте одним вызовом <code>math.isclose()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются числа <code>measured</code>, <code>nominal</code>, <code>percent</code> (больше 0) и <code>floor</code> (от 0).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если прибор исправен, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>measured = 0.02
-nominal = 0.0
-percent = 1
-floor = 0.05</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>measured = 104
-nominal = 100
-percent = 5
-floor = 0.0</pre></td><td><pre>True</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.7.1. Допуск с абсолютным порогом</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Как в среднем варианте, но около нуля процентный допуск бесполезен, поэтому прибор исправен и тогда, когда разница не больше абсолютного порога <code>floor</code>. Проверьте одним вызовом <code>math.isclose()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Четыре числа, каждое в своей строке: <code>measured</code> — измеренное значение, <code>nominal</code> — номинальное, <code>percent</code> — допуск в процентах (больше 0), <code>floor</code> — абсолютный порог (от 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если прибор исправен, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.02<br>0.0<br>1<br>0.05</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Рядом с нулем <code>rel_tol</code> ничего не разрешает, но абсолютный порог 0.05 работает: разница 0.02 не больше 0.05, поэтому вызов с <code>abs_tol=0.05</code> дает True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.02
+0.0
+1
+0.05</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>104
+100
+5
+0.0</pre></td><td><pre>True</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Около нуля процентный допуск бесполезен: процент от нуля равен нулю. Поэтому к относительному допуску добавляют абсолютный порог <code>abs_tol</code> — он работает при любых значениях.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Абсолютный допуск</strong> — допуск в единицах величины, который не зависит от ее размера.</li>
+                  <li><strong>abs_tol</strong> — параметр math.isclose() для абсолютного допуска.</li>
+                  <li><strong>Порог</strong> — наименьшая граница, с которой значение считается отличным.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте четыре числа: <code>measured</code>, <code>nominal</code>, <code>percent</code> и <code>floor</code> через <code>float(input())</code>.</li>
+                  <li>Относительный допуск: <code>rel_tol=percent / 100</code>.</li>
+                  <li>Абсолютный порог: <code>abs_tol=floor</code>.</li>
+                  <li>Совпадение наступает при выполнении любого из двух условий, поэтому достаточно одного вызова <code>math.isclose</code> с параметрами <code>rel_tol=percent / 100</code> и <code>abs_tol=floor</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -312,81 +450,217 @@ True</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 1.7.2. Почти ноль</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вычисленное значение <code>x</code> должно быть нулем. Проверьте, равно ли оно нулю с абсолютным допуском 10<sup>−9</sup>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задается вещественное число <code>x</code>.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code> или <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>x = 3e-12</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>x = 0.5</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.7.2. Почти ноль</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Вычисленное значение <code>value</code> должно быть нулем. Проверьте, равно ли оно нулю с абсолютным допуском 10<sup>−9</sup>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно вещественное число <code>value</code> — вычисленное значение.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code> или <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3e-12</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">3 · 10<sup>−12</sup> меньше абсолютного допуска 10<sup>−9</sup>, поэтому <code>math.isclose(value, 0.0, abs_tol=1e-9)</code> дает True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3e-12</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>0.5</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>После вычислений вместо нуля часто получается крошечное число, например 3e-12: это след ошибок округления. Такое значение считают нулем с абсолютным допуском 10<sup>−9</sup>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ошибка округления</strong> — малое отличие результата вычислений от точного значения.</li>
+                  <li><strong>10<sup>−9</sup></strong> — одна миллиардная; записывается в Python как 1e-9.</li>
+                  <li><strong>abs_tol</strong> — параметр math.isclose() для абсолютного допуска.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>value = float(input())</code>.</li>
+                  <li>Подключите модуль: <code>import math</code>.</li>
+                  <li>Абсолютный допуск задают параметром <code>abs_tol=1e-9</code>.</li>
+                  <li>Сравните с нулем: <code>math.isclose(value, 0.0, abs_tol=1e-9)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 1.7.2. Баланс объемов</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор объемом <code>total</code> мл разлили в две пробирки: <code>part1</code> и <code>part2</code> мл. Проверьте, что раствор разлит без остатка: разность равна нулю с абсолютным допуском 10<sup>−9</sup>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>total</code>, <code>part1</code>, <code>part2</code>.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если остатка нет, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>total = 1.0
-part1 = 0.7
-part2 = 0.3</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>total = 1.0
-part1 = 0.5
-part2 = 0.4</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.7.2. Баланс объемов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Раствор объемом <code>total</code> мл разлили в две пробирки: <code>part1</code> и <code>part2</code> мл. Проверьте, что раствор разлит без остатка: разность равна нулю с абсолютным допуском 10<sup>−9</sup>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три вещественных числа, каждое в своей строке: <code>total</code> — объем раствора в мл, <code>part1</code> и <code>part2</code> — объемы в двух пробирках в мл.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если остатка нет, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">1.0<br>0.7<br>0.3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">0.7 + 0.3 дает 0.9999999999999999, но остаток 10<sup>−16</sup> меньше допуска 10<sup>−9</sup>, поэтому раствор считается разлитым без остатка.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>1.0
+0.7
+0.3</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>1.0
+0.5
+0.4</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Раствор разлили по пробиркам без остатка, но сумма объемов может отличаться от общего на доли нанолитра из-за округления. Проверка с абсолютным допуском 10<sup>−9</sup> отличает такую погрешность от потерянного объема.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Баланс объемов</strong> — равенство суммы частей и общего объема.</li>
+                  <li><strong>Остаток</strong> — разность между общим объемом и суммой частей.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>total = float(input())</code>, <code>part1 = float(input())</code>, <code>part2 = float(input())</code>.</li>
+                  <li>Остаток — это <code>total − part1 − part2</code>.</li>
+                  <li>Сравните остаток <code>total - part1 - part2</code> с нулем: <code>math.isclose(..., abs_tol=1e-9)</code>.</li>
+                  <li>Сверьтесь с примером: 0.7 + 0.3 в компьютере дает не точно 1.0, но проверка возвращает True.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 1.7.2. Концентрация после разведения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Раствор с концентрацией <code>c0</code> моль/л развели <code>n</code> раз подряд, каждый раз в <code>k</code> раз: при каждом разведении концентрация уменьшается в <code>k</code> раз. В протоколе записана ожидаемая концентрация <code>target</code>. Проверьте, совпадает ли с ней концентрация после разведения. Значения считаются совпадающими, если они отличаются не больше чем на 0,0001 % от большего из них.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>После нескольких разведений концентрации бывают порядка 10<sup>−9</sup> моль/л. Подумайте, какой из двух допусков <code>math.isclose()</code> отвечает условию при таких значениях.</p></details>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>c0</code> (от 10<sup>−6</sup> до 10) и <code>target</code> (больше 0) и целые числа <code>k</code> (от 2 до 100) и <code>n</code> (от 1 до 10).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если концентрации совпадают, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>c0 = 0.5
-k = 10
-n = 3
-target = 0.0005</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>c0 = 0.01
-k = 2
-n = 5
-target = 0.0003</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.7.2. Концентрация после разведения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Раствор с концентрацией <code>initial_concentration</code> моль/л развели <code>steps</code> раз подряд, каждый раз в <code>dilution</code> раз: при каждом разведении концентрация уменьшается в <code>dilution</code> раз. В протоколе записана ожидаемая концентрация <code>target</code>. Проверьте, совпадает ли с ней концентрация после разведения. Значения считаются совпадающими, если они отличаются не больше чем на 0,0001 % от большего из них.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Четыре числа, каждое в своей строке: <code>initial_concentration</code> — начальная концентрация в моль/л (от 10<sup>−6</sup> до 10), <code>dilution</code> — во сколько раз разводят каждый раз (целое от 2 до 100), <code>steps</code> — сколько раз развели (целое от 1 до 10), <code>target</code> — ожидаемая концентрация по протоколу (больше 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если концентрации совпадают, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.5<br>10<br>3<br>0.0005</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После трех разведений в 10 раз концентрация 0.5 / 10<sup>3</sup> = 0.0005 совпадает с протоколом; допуск 0.0001 % — это <code>rel_tol=0.000001</code>.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.5
+10
+3
+0.0005</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>0.01
+2
+5
+0.0003</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Концентрацию после разведения вычисляют так: <code>initial_concentration</code> делят на <code>dilution ** steps</code>. Совпадение с протоколом проверяют с крошечным относительным допуском — 0,0001 %.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Разведение</strong> — уменьшение концентрации раствора добавлением растворителя.</li>
+                  <li><strong>Кратность разведения</strong> — во сколько раз уменьшается концентрация за одно разведение.</li>
+                  <li><strong>Концентрация</strong> — количество вещества в единице объема раствора.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте четыре значения: <code>initial_concentration = float(input())</code>, затем целые <code>dilution = int(input())</code> и <code>steps = int(input())</code>, затем <code>target = float(input())</code>.</li>
+                  <li>Концентрация после разведения: <code>initial_concentration</code>, деленная на <code>dilution ** steps</code>.</li>
+                  <li>Относительный допуск 0,0001 % — это доля <code>1e-6</code>.</li>
+                  <li>Сравните концентрацию с <code>target</code> вызовом <code>math.isclose(..., rel_tol=1e-6)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -397,84 +671,223 @@ target = 0.0003</pre></td><td><pre>False</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 1.7. Навеска в граммах и миллиграммах</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Навеска&nbsp;— порция вещества, отвешенная на весах. По протоколу нужна навеска <code>nominal</code>&nbsp;г, весы показали <code>measured</code>&nbsp;мг (1&nbsp;г = 1000&nbsp;мг). Навеска верна, если отличается от протокольной не больше чем на <code>tol</code>&nbsp;мг. Проверьте это функцией <code>math.isclose()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>nominal</code> (больше 0, в граммах), <code>measured</code> (больше 0, в миллиграммах) и <code>tol</code> (от 0, в миллиграммах).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если навеска верна, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>nominal = 0.25
-measured = 251.0
-tol = 2.0</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>nominal = 0.25
-measured = 254.0
-tol = 2.0</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.7. Навеска в граммах и миллиграммах</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>По протоколу нужна навеска <code>nominal</code> г, весы показали <code>measured</code> мг (1 г = 1000 мг). Навеска верна, если отличается от протокольной не больше чем на <code>tol</code> мг. Проверьте это функцией <code>math.isclose()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три вещественных числа, каждое в своей строке: <code>nominal</code> — навеска по протоколу в г (больше 0), <code>measured</code> — показание весов в мг (больше 0), <code>tol</code> — допуск в мг (от 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если навеска верна, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">0.25<br>251.0<br>2.0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Переводим граммы в миллиграммы: 0.25 г = 250 мг; разница 251.0 − 250 = 1 мг не больше допуска 2 мг, поэтому <code>math.isclose(measured, nominal * 1000, abs_tol=2.0)</code> дает True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>0.25
+251.0
+2.0</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>0.25
+254.0
+2.0</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Навеску отвешивают на весах, а протокол задает ее в других единицах: граммы против миллиграммов. Перед сравнением обе величины приводят к одним единицам, а допуск задают абсолютным.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Навеска</strong> — порция вещества, отвешенная на весах.</li>
+                  <li><strong>Миллиграмм</strong> — тысячная доля грамма, сокращенно мг.</li>
+                  <li><strong>Абсолютный допуск</strong> — допуск в единицах величины, здесь в миллиграммах.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>nominal = float(input())</code>, <code>measured = float(input())</code>, <code>tol = float(input())</code>.</li>
+                  <li>Переведите граммы в миллиграммы: <code>nominal * 1000</code>.</li>
+                  <li>Переведите протокол в граммы: <code>nominal * 1000</code>, затем сравните с показанием: <code>math.isclose(..., abs_tol=tol)</code>.</li>
+                  <li>Сверьтесь с примером: 251 мг отличается от 250 мг на 1 мг, это меньше допуска 2 мг.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 1.7. Процент от номинала</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Дозатор исправен, если отмеренный объем <code>measured</code> отличается от номинального <code>nominal</code> не больше чем на <code>percent</code> процентов от номинального объема. Проверьте дозатор. Обратите внимание, от какого из двух чисел считается допуск <code>rel_tol</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>measured</code> и <code>nominal</code> (больше 0, в мкл) и <code>percent</code> (больше 0).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если дозатор исправен, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>measured = 210.5
-nominal = 200.0
-percent = 5.0</pre></td><td><pre>False</pre></td></tr>
-                <tr><td><pre>measured = 95.5
-nominal = 100.0
-percent = 5.0</pre></td><td><pre>True</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.7. Процент от номинала</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дозатор исправен, если отмеренный объем <code>measured</code> отличается от номинального <code>nominal</code> не больше чем на <code>percent</code> процентов от номинального объема. Проверьте дозатор. Обратите внимание, от какого из двух чисел считается допуск <code>rel_tol</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три вещественных числа, каждое в своей строке: <code>measured</code> — отмеренный объем в мкл, <code>nominal</code> — номинальный объем в мкл (больше 0), <code>percent</code> — допуск в процентах от номинала (больше 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если дозатор исправен, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">210.5<br>200.0<br>5.0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">False</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">5 % от номинала 200 — это 10, а отклонение 10.5 больше. <code>rel_tol</code> берет процент от большего числа (210.5) и ошибся бы, поэтому допуск задают через <code>abs_tol=nominal * percent / 100</code>.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>210.5
+200.0
+5.0</pre></td><td><pre>False</pre></td></tr>
+                      <tr><td><pre>95.5
+100.0
+5.0</pre></td><td><pre>True</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>У дозатора допуск задают в процентах от номинального объема, поэтому относительный допуск считают от <code>nominal</code>, а не от <code>measured</code>. Доля <code>percent / 100</code> превращается в абсолютный допуск <code>nominal * percent / 100</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Дозатор</strong> — прибор, который отмеряет малые объемы жидкости.</li>
+                  <li><strong>Номинальный объем</strong> — объем, который дозатор должен отмерить по паспорту.</li>
+                  <li><strong>Относительный допуск</strong> — допуск, выраженный долей от значения.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>measured = float(input())</code>, <code>nominal = float(input())</code>, <code>percent = float(input())</code>.</li>
+                  <li>Допуск считается от номинала: <code>nominal * percent / 100</code>.</li>
+                  <li>Чтобы допуск был только абсолютным, относительный обнуляют: <code>rel_tol=0.0</code>, а абсолютный задают как <code>abs_tol=nominal * percent / 100</code>.</li>
+                  <li>Проверьте на примере: 210.5 отличается от 200 на 10.5, а допуск 10, поэтому False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 1.7. Погрешность термометра</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Термометр морозильника исправен, если его показание <code>measured</code>&nbsp;°C отличается от эталонной температуры <code>nominal</code>&nbsp;°C не больше чем на допуск. Допуск складывается из двух частей: <code>percent</code> процентов от модуля <code>nominal</code> и постоянной части <code>floor</code>&nbsp;°C. Например, при <code>nominal</code> = −20, <code>percent</code> = 1 и <code>floor</code> = 0,3 допуск равен 0,2 + 0,3 = 0,5&nbsp;°C. Модуль числа возвращает функция <code>abs()</code>. Проверьте термометр.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>measured</code> и <code>nominal</code> (от −100 до 100), <code>percent</code> и <code>floor</code> (от 0).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если термометр исправен, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>measured = -80.45
-nominal = -80.0
-percent = 0.5
-floor = 0.1</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>measured = -79.3
-nominal = -80.0
-percent = 0.5
-floor = 0.1</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_07_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.7. Погрешность термометра</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Термометр морозильника исправен, если его показание <code>measured</code>&nbsp;°C отличается от эталонной температуры <code>nominal</code>&nbsp;°C не больше чем на допуск. Допуск складывается из двух частей: <code>percent</code> процентов от модуля <code>nominal</code> и постоянной части <code>floor</code>&nbsp;°C. Например, при <code>nominal</code> = −20, <code>percent</code> = 1 и <code>floor</code> = 0,3 допуск равен 0,2 + 0,3 = 0,5&nbsp;°C. Модуль числа возвращает функция <code>abs()</code>. Проверьте термометр.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Четыре вещественных числа, каждое в своей строке: <code>measured</code> и <code>nominal</code> — показание термометра и эталонная температура в °C (от −100 до 100), <code>percent</code> и <code>floor</code> — части допуска (от 0).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если термометр исправен, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">-80.45<br>-80.0<br>0.5<br>0.1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Допуск 0.5 % от |−80| плюс 0.1 = 0.4 + 0.1 = 0.5 °C; отклонение |−80.45 − (−80.0)| = 0.45 не больше допуска, поэтому <code>abs()</code> и <code>abs_tol</code> дают True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>-80.45
+-80.0
+0.5
+0.1</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>-79.3
+-80.0
+0.5
+0.1</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>У термометра погрешность складывается из относительной части, процентов от модуля эталонной температуры, и постоянной части. Для температур ниже нуля модуль возвращает функция <code>abs()</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Погрешность</strong> — отличие показания прибора от эталонного значения.</li>
+                  <li><strong>Модуль числа</strong> — значение числа без знака; abs(−20) = 20.</li>
+                  <li><strong>Допуск</strong> — разница, в пределах которой показание считается верным.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте четыре числа: <code>measured</code>, <code>nominal</code>, <code>percent</code> и <code>floor</code> через <code>float(input())</code>.</li>
+                  <li>Модуль эталонной температуры: <code>abs(nominal)</code>.</li>
+                  <li>Допуск: <code>abs(nominal) * percent / 100 + floor</code>.</li>
+                  <li>Сравните с обнуленным относительным допуском: <code>rel_tol=0.0</code>, а абсолютный — <code>abs(nominal) * percent / 100</code> плюс <code>floor</code>.</li>
+                  <li>Сверьтесь с примером: при −80 и 0.5 % допуск 0.4 + 0.1 = 0.5, разница 0.45 — термометр исправен.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_07_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

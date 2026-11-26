@@ -129,71 +129,211 @@ i = 4</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.3.1. Удвоение культуры</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В модели роста культуры число клеток в пробирке удваивается каждый час; вначале клетка одна. Через сколько часов клеток станет не меньше <code>n</code>? Удваивайте число клеток в цикле <code>while</code>, пока оно меньше <code>n</code>, и считайте часы.</p></div>
-          <h4>Входные данные</h4>
-          <p>Целое число <code>n</code>, 1 ≤ <code>n</code> ≤ 10<sup>9</sup>.</p>
-          <h4>Выходные данные</h4>
-          <p>Число часов.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>100</pre></td><td><pre>7</pre></td></tr>
-                <tr><td><pre>1</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.3.1. Удвоение культуры</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В модели роста культуры число клеток в пробирке удваивается каждый час; вначале клетка одна. Через сколько часов клеток станет не меньше <code>target</code>? Удваивайте число клеток в цикле <code>while</code>, пока оно меньше <code>target</code>, и считайте часы.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Целое число <code>target</code>, 1 ≤ <code>target</code> ≤ 10<sup>9</sup>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Число часов.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">100</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">7</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Каждый час клеток вдвое больше: 1, 2, 4, 8, … После шести удвоений их 64, после седьмого — 128; 128 уже не меньше 100, поэтому ответ 7.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>100</pre></td><td><pre>7</pre></td></tr>
+                      <tr><td><pre>1</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Клетки делятся пополам: за час из одной клетки получается две. Пока число клеток меньше target, тело цикла while удваивает его и считает час; при target = 1 цикл не выполнится ни разу, и ответ 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Культура</strong> — клетки, растущие в пробирке или на среде.</li>
+                  <li><strong>Цикл while</strong> — повторяет тело, пока условие истинно.</li>
+                  <li><strong>Удвоение</strong> — каждый час число клеток становится вдвое больше.</li>
+                  <li><strong>Счетчик часов</strong> — переменная, которая растет на единицу за каждый час.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте target: <code>target = int(input())</code>.</li>
+                  <li>Заведите <code>cells = 1</code> и <code>hours = 0</code>.</li>
+                  <li>Цикл идет, пока клеток меньше цели: <code>while cells &lt; target:</code> — внутри удвойте <code>cells = cells * 2</code> и добавьте час.</li>
+                  <li>Выведите hours; сверьтесь с примером: при target = 100 получается 7, а при target = 1 — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.3.1. Делимость на 2</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Сколько раз целое число <code>n</code> можно разделить на 2 нацело, прежде чем получится нечетное число? Например, 48 делится 4 раза: 48, 24, 12, 6, 3.</p></div>
-          <h4>Входные данные</h4>
-          <p>Целое число <code>n</code>, 1 ≤ <code>n</code> ≤ 10<sup>9</sup>.</p>
-          <h4>Выходные данные</h4>
-          <p>Число делений.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>48</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>7</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.3.1. Делимость на 2</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Сколько раз целое число <code>number</code> можно разделить на 2 нацело, прежде чем получится нечетное число? Например, 48 делится 4 раза: 48, 24, 12, 6, 3.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Целое число <code>number</code>, 1 ≤ <code>number</code> ≤ 10<sup>9</sup>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Число делений.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">48</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">48 → 24 → 12 → 6 → 3: четыре деления на 2; число 3 нечетное, и цикл останавливается.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>48</pre></td><td><pre>4</pre></td></tr>
+                      <tr><td><pre>7</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пока число четное, его делят нацело на 2, потому что остаток от деления на 2 равен нулю. Четность служит условием продолжения цикла while: нечетное число его останавливает, и счетчик делений выводится.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Четное число</strong> — число, которое делится на 2 без остатка.</li>
+                  <li><strong>Оператор %</strong> — остаток от деления; number % 2 равен 0 у четного числа.</li>
+                  <li><strong>Оператор //</strong> — целочисленное деление: отбрасывает дробную часть.</li>
+                  <li><strong>Счетчик</strong> — переменная, которая растет на единицу за каждое деление.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте number: <code>number = int(input())</code>.</li>
+                  <li>Заведите счетчик <code>count = 0</code>.</li>
+                  <li>Делите, пока число четное: <code>while number % 2 == 0:</code> — внутри <code>number = number // 2</code> и <code>count = count + 1</code>.</li>
+                  <li>Выведите count; сверьтесь с примером: 48 дает 4, а 7 — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.3.1. Двоичная запись</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В двоичной системе число записывается по степеням двойки: 6 = 1 · 4 + 1 · 2 + 0 · 1, поэтому двоичная запись числа 6 это 110. Компьютер хранит числа именно так. Выведите двоичную запись числа n без ведущих нулей. Функции <code>bin()</code>, <code>format()</code> и запись <code>f"{n:b}"</code> не используйте.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Остаток от деления на 2 дает последнюю цифру двоичной записи, а целочисленное деление на 2 эту цифру отбрасывает. Цифры появляются справа налево.</p></details>
-          <h4>Входные данные</h4>
-          <p>Целое число n от 0 до 1 000 000 000.</p>
-          <h4>Выходные данные</h4>
-          <p>Двоичная запись числа одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>6</pre></td><td><pre>110</pre></td></tr>
-                <tr><td><pre>1</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.3.1. Двоичная запись</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В двоичной системе число записывается по степеням двойки: 6 = 1 · 4 + 1 · 2 + 0 · 1, поэтому двоичная запись числа 6 это 110. Компьютер хранит числа именно так. Выведите двоичную запись числа number без ведущих нулей. Функции <code>bin()</code>, <code>format()</code> и запись <code>f"{number:b}"</code> не используйте.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Целое число number от 0 до 1 000 000 000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Двоичная запись числа одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">6</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">110</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">6 = 4 + 2 + 0 · 1, поэтому запись 110. Остатки от деления на 2 дают цифры справа налево: 6 % 2 = 0, 3 % 2 = 1, 1 % 2 = 1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>6</pre></td><td><pre>110</pre></td></tr>
+                      <tr><td><pre>1</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Остаток number % 2 дает младший двоичный разряд, а number // 2 сдвигает число на разряд вправо. Цифры появляются от младших к старшим, поэтому каждую новую приписывают слева. Особый случай — ноль: его записывают как 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Двоичная система</strong> — запись числа по степеням двойки: только цифры 0 и 1.</li>
+                  <li><strong>Разряд</strong> — одна цифра двоичной записи.</li>
+                  <li><strong>Оператор %</strong> — остаток от деления; number % 2 дает младшую цифру.</li>
+                  <li><strong>Оператор //</strong> — целочисленное деление; number // 2 отбрасывает младшую цифру.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте number: <code>number = int(input())</code>.</li>
+                  <li>Ноль — особый случай: <code>if number == 0: bits = "0"</code>, иначе заведите пустую строку <code>bits = ""</code>.</li>
+                  <li>В цикле <code>while number &gt; 0:</code> припишите слева младшую цифру: <code>bits = str(number % 2) + bits</code>, затем отбросьте ее: <code>number = number // 2</code>.</li>
+                  <li>Выведите bits; сверьтесь с примером: 6 дает 110, а 1 — 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -294,87 +434,226 @@ i = 4</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.3.2. Строки до done</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Программа читает строки, пока не встретит строку <code>done</code>. Выведите, сколько строк было прочитано до нее. Читайте ввод в цикле <code>while True</code> и выходите из него командой <code>break</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Несколько строк из букв A, C, G, T, затем строка <code>done</code>. Строк до <code>done</code> может не быть совсем.</p>
-          <h4>Выходные данные</h4>
-          <p>Число строк до <code>done</code>; сама строка <code>done</code> не считается.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA
+              <h3>Упражнение 4.3.2. Строки до done</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Программа читает строки, пока не встретит строку <code>done</code>. Выведите, сколько строк было прочитано до нее. Читайте ввод в цикле <code>while True</code> и выходите из него командой <code>break</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Несколько строк из букв A, C, G, T, затем строка <code>done</code>. Строк до <code>done</code> может не быть совсем.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Число строк до <code>done</code>; сама строка <code>done</code> не считается.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA<br>ACGT<br>TTT<br>done</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Программа читает GATTACA, ACGT и TTT — три строки, — а на строке done выходит из цикла; сама done в счет не входит.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA
 ACGT
 TTT
 done</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>done</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                      <tr><td><pre>done</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Бесконечный цикл while True удобен, когда число строк заранее неизвестно: строку читают, проверяют и при стоп-слове выходят из цикла командой break. Строка done в счет не входит.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Цикл while True</strong> — бесконечный цикл, выход из которого задают вручную.</li>
+                  <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
+                  <li><strong>Строка-ограничитель</strong> — стоп-слово, после которого ввод заканчивается.</li>
+                  <li><strong>Счетчик</strong> — переменная, которая растет на единицу за каждую строку.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Заведите счетчик <code>count = 0</code>.</li>
+                  <li>Читайте в бесконечном цикле: <code>while True:</code> — первой строкой тела <code>line = input()</code>.</li>
+                  <li>При стоп-слове выходите: <code>if line == "done": break</code>, иначе увеличьте счетчик.</li>
+                  <li>Выведите count; сверьтесь с примером: GATTACA, ACGT, TTT и done дают 3, а одна строка done — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.3.2. Суммарная длина прочтений</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Секвенатор&nbsp;— прибор, который читает ДНК и выдает прочитанные участки строками букв; каждый такой участок называют прочтением. Программа получает длины прочтений по одной в строке; после последнего прочтения стоит 0. Выведите суммарную длину всех прочтений.</p></div>
-          <h4>Входные данные</h4>
-          <p>Целые положительные числа по одному в строке, затем 0. Чисел до 0 может не быть совсем.</p>
-          <h4>Выходные данные</h4>
-          <p>Сумма чисел до 0.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>150
+              <h3>Упражнение 4.3.2. Суммарная длина прочтений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Программа получает длины прочтений по одной в строке; после последнего прочтения стоит 0. Выведите суммарную длину всех прочтений.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Целые положительные числа по одному в строке, затем 0. Чисел до 0 может не быть совсем.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Сумма чисел до 0.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">150<br>100<br>250<br>0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">500</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">150 + 100 + 250 = 500; нуль завершает ввод и в сумму не входит.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>150
 100
 250
 0</pre></td><td><pre>500</pre></td></tr>
-                <tr><td><pre>0</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                      <tr><td><pre>0</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Секвенатор читает ДНК кусками: каждое прочтение приходит отдельной строкой. Длины идут до нуля-ограничителя: цикл while True читает число, при нуле выходит через break, а сумму накапливает.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Секвенатор</strong> — прибор, который читает ДНК и выдает прочитанные участки строками букв.</li>
+                  <li><strong>Прочтение</strong> — один прочитанный участок ДНК.</li>
+                  <li><strong>Ноль-ограничитель</strong> — нуль после последнего прочтения; сам в сумму не входит.</li>
+                  <li><strong>Накопление суммы</strong> — переменная, к которой прибавляют каждое новое число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Заведите сумму <code>total = 0</code>.</li>
+                  <li>Читайте в бесконечном цикле: <code>while True:</code> — первой строкой тела <code>length = int(input())</code>.</li>
+                  <li>При нуле выходите: <code>if length == 0: break</code>, иначе прибавьте длину к сумме.</li>
+                  <li>Выведите total; сверьтесь с примером: 150, 100, 250 и 0 дают 500, а один нуль — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.3.2. Число ячеек</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p>
-            <p>Секвенатор&nbsp;— прибор, который читает ДНК. Перед чтением фрагменты ДНК загружают в ячейки секвенатора. В модели этого упражнения в ячейку помещаются фрагменты общей длиной не больше <code>capacity</code> нуклеотидов. Фрагменты загружают строго по порядку, фрагмент нельзя разрезать. Если очередной фрагмент не помещается в текущую ячейку, ее закрывают и берут новую, пустую; к закрытой ячейке не возвращаются. Сколько ячеек понадобится, чтобы загрузить все фрагменты? Решите циклом <code>while</code>.</p>
-            <p><strong>Рекомендуемые имена.</strong> <code>capacity</code> для вместимости ячейки, <code>length</code> для длины фрагмента, <code>cells</code> для числа ячеек. Переменные записывают строчными буквами; заглавные буквы оставляют для констант.</p>
-          </div>
-          <h4>Входные данные</h4>
-          <p>В первой строке целое число <code>capacity</code> от 1 до 10 000. Дальше длины фрагментов, по одной в строке, каждая от 1 до <code>capacity</code>, затем строка <code>done</code>. Фрагментов может не быть.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: сколько ячеек понадобится.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>1000
+              <h3>Упражнение 4.3.2. Число ячеек</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Фрагменты ДНК упаковывают в ячейки вместимостью <code>capacity</code>. Фрагменты поступают по одному в порядке ввода, и каждый целиком кладут в текущую ячейку, если там хватает свободного места; иначе открывают новую ячейку, а остаток прежней пропадает. Сколько ячеек понадобится?</p>
+                <p><strong>Рекомендуемые имена.</strong> <code>capacity</code> для вместимости ячейки, <code>length</code> для длины фрагмента, <code>cells</code> для числа ячеек. Переменные записывают строчными буквами; заглавные буквы оставляют для констант.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке целое число <code>capacity</code> от 1 до 10 000. Дальше длины фрагментов, по одной в строке, каждая от 1 до <code>capacity</code>, затем строка <code>done</code>. Фрагментов может не быть.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: сколько ячеек понадобится.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">1000<br><span class="we-seg we-seg-1">300</span><br><span class="we-seg we-seg-1">400</span><br><span class="we-seg we-seg-1">200</span><br><span class="we-seg we-seg-2">500</span><br>done</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">300 + 400 + 200 = 900 помещаются в первую ячейку; 900 + 500 больше 1000, поэтому 500 открывает вторую. Всего 2 ячейки.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>1000
 300
 400
 200
 500
 done</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>10
+                      <tr><td><pre>10
 4
 6
 done</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Ячейка вмещает фрагменты, пока их суммарная длина не превысит capacity. Порядок фрагментов задан, поэтому упаковка идет по очереди, а остаток ячейки, в которую не влез следующий фрагмент, уже не используется.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Ячейка</strong> — емкость, в которую целиком кладут фрагменты.</li>
+                  <li><strong>Вместимость</strong> — наибольшая суммарная длина фрагментов в одной ячейке.</li>
+                  <li><strong>Свободное место</strong> — сколько длины еще поместится в текущую ячейку.</li>
+                  <li><strong>Строка-ограничитель</strong> — стоп-слово done, после которого ввод заканчивается.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте вместимость: <code>capacity = int(input())</code>; заведите <code>cells = 0</code> и <code>free = 0</code>.</li>
+                  <li>Читайте в бесконечном цикле: <code>while True:</code> — первой строкой тела <code>line = input()</code>, при <code>line == "done"</code> выходите через break.</li>
+                  <li>Длину фрагмента читайте числом: <code>length = int(line)</code>; если <code>length &gt; free</code>, откройте ячейку: <code>cells = cells + 1</code> и <code>free = capacity</code>.</li>
+                  <li>Уменьшите свободное место: <code>free = free - length</code>; выведите cells; сверьтесь с примером: при вместимости 1000 фрагменты 300, 400, 200 и 500 занимают 2 ячейки.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -385,72 +664,213 @@ done</pre></td><td><pre>1</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.3. Сумма цифр номера</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>У каждого образца в лаборатории есть номер, а для быстрой сверки к нему записывают сумму его цифр. Найдите сумму цифр номера циклом <code>while</code>, отделяя цифры арифметикой: последняя цифра числа n равна <code>n % 10</code>, а <code>n // 10</code> отбрасывает ее. Перевод в строку здесь не нужен.</p></div>
-          <h4>Входные данные</h4>
-          <p>Целое число n от 0 до 10<sup>18</sup>.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: сумма цифр.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2024</pre></td><td><pre>8</pre></td></tr>
-                <tr><td><pre>0</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.3. Сумма цифр номера</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>У каждого образца в лаборатории есть номер, а для быстрой сверки к нему записывают сумму его цифр. Найдите сумму цифр номера циклом <code>while</code>, отделяя цифры арифметикой: последняя цифра числа number равна <code>number % 10</code>, а <code>number // 10</code> отбрасывает ее. Перевод в строку здесь не нужен.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Целое число number от 0 до 10<sup>18</sup>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: сумма цифр.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">2024</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">8</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">2 + 0 + 2 + 4 = 8. Каждую цифру дает остаток n % 10, а n // 10 отбрасывает ее.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2024</pre></td><td><pre>8</pre></td></tr>
+                      <tr><td><pre>0</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Последняя цифра числа — остаток от деления на 10, а деление нацело на 10 отбрасывает ее. Цикл while идет, пока в числе остались цифры; ноль в цикл не заходит, и сумма остается нулевой.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Оператор %</strong> — остаток от деления; number % 10 дает последнюю цифру.</li>
+                  <li><strong>Оператор //</strong> — целочисленное деление; number // 10 отбрасывает последнюю цифру.</li>
+                  <li><strong>Сумма цифр</strong> — результат сложения всех цифр числа.</li>
+                  <li><strong>Номер образца</strong> — число, которым подписан образец в лаборатории.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте номер: <code>number = int(input())</code>.</li>
+                  <li>Заведите сумму <code>total = 0</code>.</li>
+                  <li>В цикле <code>while number &gt; 0:</code> прибавьте последнюю цифру <code>number % 10</code> и отбросьте ее: <code>number = number // 10</code>.</li>
+                  <li>Выведите total; сверьтесь с примером: 2024 дает 8, а 0 — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.3. Кролики Фибоначчи</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Задача из сборника <a href="https://rosalind.info/problems/fib/">Rosalind</a>. В первый месяц есть одна пара новорожденных кроликов. Пара становится взрослой через месяц, и с этого момента каждая взрослая пара каждый месяц дает k новых пар. Кролики не умирают. Число пар в месяц n равно F<sub>n</sub> = F<sub>n−1</sub> + k · F<sub>n−2</sub>, где F<sub>1</sub> = F<sub>2</sub> = 1: в следующий месяц остаются все пары и добавляется потомство всех пар, которые были два месяца назад. Найдите число пар в месяц n.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: числа n (от 1 до 40) и k (от 1 до 5) через пробел.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно число: сколько пар в месяц n.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>5 3</pre></td><td><pre>19</pre></td></tr>
-                <tr><td><pre>1 1</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.3. Кролики Фибоначчи</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Задача из сборника <a href="https://rosalind.info/problems/fib/">Rosalind</a>. В первый месяц есть одна пара новорожденных кроликов. Пара становится взрослой через месяц, и с этого момента каждая взрослая пара каждый месяц дает offspring новых пар. Кролики не умирают. Число пар в месяц target_month равно F(target_month) = F(target_month − 1) + offspring · F(target_month − 2), где F(1) = F(2) = 1: в следующий месяц остаются все пары и добавляется потомство всех пар, которые были два месяца назад. Найдите число пар в месяц target_month.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: числа target_month (от 1 до 40) и offspring (от 1 до 5) через пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно число: сколько пар в месяц target_month.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">5 3</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">19</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">F₁ = F₂ = 1; F₃ = 1 + 3 · 1 = 4; F₄ = 4 + 3 · 1 = 7; F₅ = 7 + 3 · 4 = 19.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5 3</pre></td><td><pre>19</pre></td></tr>
+                      <tr><td><pre>1 1</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Число пар растет по правилу F(target_month) = F(target_month-1) + offspring * F(target_month-2). В решении хранят два прошлых значения: older и young сдвигаются назад, а born считает новое. Цикл while идет по месяцам от 2 до target_month.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Фибоначчи</strong> — последовательность, где каждый член — сумма двух предыдущих.</li>
+                  <li><strong>Пара кроликов</strong> — единица счета в модели; пара становится взрослой через месяц.</li>
+                  <li><strong>Рекуррентная формула</strong> — правило, по которому член считается из предыдущих.</li>
+                  <li><strong>Сдвиг значений</strong> — старое young становится older, новое значение — young.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и разберите числа: <code>data = input().split()</code>, затем <code>target_month = int(data[0])</code> и <code>offspring = int(data[1])</code>.</li>
+                  <li>Заведите два прошлых значения: <code>older = 1</code>, <code>young = 1</code>, и месяц <code>month = 2</code>.</li>
+                  <li>В цикле <code>while month &lt; target_month:</code> считайте новое: <code>born = young + offspring * older</code>, затем сдвиньте: <code>older = young</code>, <code>young = born</code>, <code>month = month + 1</code>.</li>
+                  <li>Выведите young; сверьтесь с примером: target_month = 5 и offspring = 3 дают 19, а target_month = 1 — 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.3. Схлопывание пар</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Это игровая модель, не реальный процесс. Соседние комплементарные буквы образуют пару и выпадают из строки. Один проход удаляет все вхождения <code>AT</code>, затем все <code>TA</code>, затем <code>CG</code>, затем <code>GC</code>: методом <code>replace()</code> именно в этом порядке. После удаления пар могут сойтись новые соседи, поэтому проходы повторяют, пока строка меняется. Выведите, сколько проходов изменили строку, и что от нее осталось. Если не осталось ничего, выведите дефис.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число проходов, которые изменили строку, во второй остаток строки или <code>-</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AATTG</pre></td><td><pre>2
+              <h3>Задача со звездочкой 4.3. Схлопывание пар</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Это игровая модель, не реальный процесс. Соседние комплементарные буквы образуют пару и выпадают из строки. Один проход удаляет все вхождения <code>AT</code>, затем все <code>TA</code>, затем <code>CG</code>, затем <code>GC</code>: методом <code>replace()</code> именно в этом порядке. После удаления пар могут сойтись новые соседи, поэтому проходы повторяют, пока строка меняется. Выведите, сколько проходов изменили строку, и что от нее осталось. Если не осталось ничего, выведите дефис.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число проходов, которые изменили строку, во второй остаток строки или <code>-</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<span class="we-hl">AT</span>TG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">2<br><span class="we-hl">G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первый проход удаляет AT из AATTG — остается ATG; второй удаляет еще одну пару AT — остается G; третий проход строку не меняет и в счет не идет.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AATTG</pre></td><td><pre>2
 G</pre></td></tr>
-                <tr><td><pre>GCGC</pre></td><td><pre>1
+                      <tr><td><pre>GCGC</pre></td><td><pre>1
 -</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_03_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>replace() удаляет все вхождения подстроки сразу, поэтому один проход задают цепочкой четырех замен в указанном порядке. Если после прохода строка не изменилась, пары кончились; иначе проход повторяют, ведь после удаления соседями стали другие буквы.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Комплементарные буквы</strong> — пары A — T и C — G.</li>
+                  <li><strong>Метод replace()</strong> — удаляет все вхождения подстроки в строке.</li>
+                  <li><strong>Проход</strong> — цепочка четырех замен AT, TA, CG и GC по порядку.</li>
+                  <li><strong>Остаток строки</strong> — то, что осталось после удаления всех пар.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>seq = input()</code>; заведите счетчик <code>passes = 0</code>.</li>
+                  <li>Один проход — цепочка замен в заданном порядке: четыре вызова <code>replace</code> подряд, пары <code>"AT"</code>, <code>"TA"</code>, <code>"CG"</code>, <code>"GC"</code> заменяются на пустую строку.</li>
+                  <li>Если <code>new == seq</code>, выходите через break; иначе запомните new в seq и увеличьте счетчик проходов.</li>
+                  <li>Пустой остаток замените дефисом и напечатайте сначала passes, затем остаток; сверьтесь с примером: AATTG дает 2 и G, а GCGC — 1 и дефис.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_03_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

@@ -207,77 +207,216 @@ True</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.3.1. GC-зажим</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Праймер, короткая последовательность, с которой начинается копирование ДНК (<a href="t3_02.html">страница 02</a>), лучше связывается с матрицей, то есть с копируемой цепью ДНК, если его последний нуклеотид G или C. Дана последовательность праймера, строка может оказаться пустой. Определите, оканчивается ли праймер на G или C. Сначала проверьте, что строка не пустая: это защитное условие.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 40. При длине 0 строка пустая.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если последний нуклеотид G или C, иначе <code>False</code>. Для пустой строки <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATTGCCAGTTCAGGCAAC</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_03_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.3.1. GC-зажим</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Праймер лучше связывается с матрицей, если его последний нуклеотид G или C. Дана последовательность праймера, строка может оказаться пустой. Определите, оканчивается ли праймер на G или C. Сначала проверьте, что строка не пустая: это защитное условие.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 40. При длине 0 строка пустая.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если последний нуклеотид G или C, иначе <code>False</code>. Для пустой строки <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATTGCCAGTTCAGGCAA<span class="we-hl">C</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка непустая, а последняя буква C: условие выполнено, праймер оканчивается на G или C — True. Для пустой строки ответ был бы False.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATTGCCAGTTCAGGCAAC</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span></pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При копировании ДНК праймер связывается с матрицей, копируемой цепью. G и C на конце праймера дают более прочное связывание. Пустая строка — особый случай: обращение к <code>primer[-1]</code> у нее вызвало бы ошибку.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Праймер</strong> — короткая последовательность, с которой начинается копирование ДНК.</li>
+                  <li><strong>Матрица</strong> — копируемая цепь ДНК.</li>
+                  <li><strong>Защитное условие</strong> — проверка, которая отсекает опасный случай раньше, чем он вызовет ошибку.</li>
+                  <li><strong>Индекс -1</strong> — последний символ строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>primer = input()</code>.</li>
+                  <li>Защитное условие — строка не пустая: <code>primer != ""</code>.</li>
+                  <li>Последняя буква — <code>primer[-1]</code>; она подходит, если это G или C: <code>primer[-1] == "G" or primer[-1] == "C"</code>.</li>
+                  <li>Соедините защитное условие с проверкой конца оператором and и выведите результат; сверьтесь с примером: ATTGCCAGTTCAGGCAAC дает True, а пустая строка — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_03_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.3.1. Нуклеотид в позиции</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Чтобы проверить точечную замену, смотрят нуклеотид в заданной позиции. Позиции нумеруются с 1, как в базах данных, а не с 0, как индексы в Python. Даны последовательность, номер позиции и буква. Определите, стоит ли эта буква в этой позиции. Позиция может оказаться за концом последовательности.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из прописных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>p</code> (1 ≤ <code>p</code> ≤ 200), в третьей одна прописная буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если в позиции <code>p</code> стоит заданная буква, иначе <code>False</code>. Если позиции <code>p</code> в последовательности нет, <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGGCTTAC
+              <h3>Упражнение 3.3.1. Нуклеотид в позиции</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Чтобы проверить точечную замену, смотрят нуклеотид в заданной позиции. Позиции нумеруются с 1, как в базах данных, а не с 0, как индексы в Python. Даны последовательность, номер позиции и буква. Определите, стоит ли эта буква в этой позиции. Позиция может оказаться за концом последовательности.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из прописных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>position</code> (1 ≤ <code>position</code> ≤ 200), в третьей одна прописная буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если в позиции <code>position</code> стоит заданная буква, иначе <code>False</code>. Если позиции <code>position</code> в последовательности нет, <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG<span class="we-hl">G</span>CTTAC<br>4<br>G</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Позиция 4 нумеруется с 1, поэтому в Python это индекс 3. Там стоит G — та самая буква, ответ True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGGCTTAC
 4
 G</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ATGC
+                      <tr><td><pre>ATGC
 7
 C</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_03_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Позиции в биологии нумеруют с 1, а индексы строки в Python — с 0, поэтому позиции с номером position соответствует индекс position - 1. Если позиция за концом строки, обращаться к ней нельзя, и защитное условие проверяет границу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                  <li><strong>Точечная замена</strong> — замена одного нуклеотида другим.</li>
+                  <li><strong>Защитное условие</strong> — проверка, которая отсекает опасный случай раньше, чем он вызовет ошибку.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность, номер позиции и букву: <code>seq = input()</code>, <code>position = int(input())</code>, <code>base = input()</code>.</li>
+                  <li>Позиции с номером position соответствует индекс <code>position - 1</code>.</li>
+                  <li>Сначала граница: позиция не за концом, <code>position &lt;= len(seq)</code>.</li>
+                  <li>Затем буква: <code>seq[position - 1] == base</code>; соедините условия оператором and и выведите результат; сверьтесь с примером: буква G в позиции 4 строки ATGGCTTAC дает True, а позиция 7 в строке ATGC — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_03_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.3.1. GC-богатый участок</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Участок называют GC-богатым, если доля G и C в нем выше порога. Дана последовательность участка, строка может оказаться пустой, и порог в процентах. Определите, GC-богатый ли участок. О пустом участке судить нельзя, он GC-богатым не считается.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Доля считается делением на длину участка. Подумайте, что произойдет с этим делением на пустой строке.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из прописных букв A, C, G, T длиной от 0 до 100, во второй порог: вещественное число от 0 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если участок непустой и доля G и C в нем в процентах строго больше порога, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GCGCATGC
+              <h3>Упражнение 3.3.1. GC-богатый участок</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Участок называют GC-богатым, если доля G и C в нем выше порога. Дана последовательность участка, строка может оказаться пустой, и порог в процентах. Определите, GC-богатый ли участок. О пустом участке судить нельзя, он GC-богатым не считается.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из прописных букв A, C, G, T длиной от 0 до 100, во второй порог: вещественное число от 0 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если участок непустой и доля G и C в нем в процентах строго больше порога, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">GCGC</span>AT<span class="we-hl">GC</span><br>60</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Из 8 нуклеотидов 6 это G или C: доля 6 / 8 = 75 %, а 75 больше порога 60, поэтому участок GC-богатый.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GCGCATGC
 60</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre><span class="io-empty">(пустая строка)</span>
+                      <tr><td><pre><span class="io-empty">(пустая строка)</span>
 40</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_03_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Долю G и C в процентах считают как (G + C) / длина · 100. Пустой участок сначала отсекают защитным условием, иначе деление на длину 0 дало бы ошибку.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GC-состав</strong> — доля букв G и C среди всех нуклеотидов.</li>
+                  <li><strong>Порог</strong> — граничное значение доли, с которым сравнивают участок.</li>
+                  <li><strong>Защитное условие</strong> — проверка, которая отсекает опасный случай раньше, чем он вызовет ошибку.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и порог: <code>seq = input()</code>, <code>limit = float(input())</code>.</li>
+                  <li>Число букв G и C: <code>gc = seq.count("G") + seq.count("C")</code>.</li>
+                  <li>Защитное условие: <code>len(seq) &gt; 0</code>; после него доля <code>gc / len(seq) * 100 &gt; limit</code> безопасна.</li>
+                  <li>Выведите результат; сверьтесь с примером: GCGCATGC при пороге 60 дает True, а пустой участок — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_03_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -288,73 +427,214 @@ C</pre></td><td><pre>False</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.3. Одна буква алфавита</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Программа читает букву нуклеотида, но пользователь может нажать Enter, ничего не набрав, или набрать несколько букв. Дана строка. Определите, состоит ли она ровно из одной буквы A, C, G или T.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 0 до 3 символов из прописных латинских букв. При длине 0 строка пустая.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если строка состоит ровно из одной буквы A, C, G или T, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>T</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>GT</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_03_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.3. Одна буква алфавита</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Программа читает букву нуклеотида, но пользователь может нажать Enter, ничего не набрав, или набрать несколько букв. Дана строка. Определите, состоит ли она ровно из одной буквы A, C, G или T.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 0 до 3 символов из прописных латинских букв. При длине 0 строка пустая.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если строка состоит ровно из одной буквы A, C, G или T, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">T</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка T состоит ровно из одной буквы, и это T, значит условие выполнено — True. Строка GT или пустая строка дали бы False.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>T</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>GT</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пользователь может нажать Enter, ничего не набрав, или ввести несколько букв, и программа должна это пережить. Проверка <code>len(base) == 1</code> отсекает такие вводы до обращения к букве.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Алфавит</strong> — набор допустимых букв: здесь A, C, G, T.</li>
+                  <li><strong>Оператор in</strong> — проверяет, встречается ли символ в строке.</li>
+                  <li><strong>Защитное условие</strong> — проверка длины, которая отсекает пустую строку и строку из нескольких букв.</li>
+                  <li><strong>len()</strong> — возвращает число символов в строке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>base = input()</code>.</li>
+                  <li>Ровно одна буква — это <code>len(base) == 1</code>.</li>
+                  <li>Буква допустима, если она из алфавита: <code>base in "ACGT"</code>.</li>
+                  <li>Соедините условия оператором and и выведите результат; сверьтесь с примером: T дает True, а GT — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_03_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.3. Кандидат в ген</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка нуклеотидов подряд. Участок ДНК, который кодирует белок, обычно начинается старт-кодоном <code>ATG</code>, кончается одним из стоп-кодонов <code>TAA</code>, <code>TAG</code>, <code>TGA</code>, а его длина делится на 3. Дана последовательность. Определите, выполнены ли для нее все три правила. Других правил в этой задаче нет: стоп-кодоны внутри последовательности не ищутся.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 100. При длине 0 строка пустая.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если последовательность начинается с <code>ATG</code>, оканчивается стоп-кодоном и ее длина делится на 3, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCCATGA</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ATGCCTGA</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_03_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.3. Кандидат в ген</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Участок ДНК, который кодирует белок, обычно начинается старт-кодоном <code>ATG</code>, кончается одним из стоп-кодонов <code>TAA</code>, <code>TAG</code>, <code>TGA</code>, а его длина делится на 3. Дана последовательность. Определите, выполнены ли для нее все три правила. Других правил в этой задаче нет: стоп-кодоны внутри последовательности не ищутся.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 0 до 100. При длине 0 строка пустая.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если последовательность начинается с <code>ATG</code>, оканчивается стоп-кодоном и ее длина делится на 3, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">ATG</span>CCA<span class="we-hl">TGA</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Последовательность начинается с ATG, оканчивается стоп-кодоном TGA, а ее длина 9 делится на 3. Все три правила выполнены — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCCATGA</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>ATGCCTGA</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Старт-кодон задает начало гена, стоп-кодон — конец. Начало проверяет <code>startswith()</code>, конец — срез последних трех букв <code>seq[-3:]</code>, а кратность длины — остаток от деления на 3.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Старт-кодон</strong> — кодон ATG, с которого начинается чтение гена.</li>
+                  <li><strong>Стоп-кодон</strong> — кодон TAA, TAG или TGA, на котором чтение гена обрывается.</li>
+                  <li><strong>Метод startswith()</strong> — проверяет, начинается ли строка с заданного куска.</li>
+                  <li><strong>Срез seq[-3:]</strong> — последние три символа строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Последние три буквы: <code>last = seq[-3:]</code>; стоп-кодон — <code>last == "TAA"</code>, <code>last == "TAG"</code> или <code>last == "TGA"</code>.</li>
+                  <li>Начало — <code>seq.startswith("ATG")</code>, кратность длины — <code>len(seq) % 3 == 0</code>.</li>
+                  <li>Соедините три условия оператором and и выведите результат; сверьтесь с примером: ATGCCATGA дает True, а ATGCCTGA — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_03_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.3. Буква в паре CG</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пару соседних нуклеотидов, в которой за C сразу идет G, называют CpG-динуклеотидом. Даны последовательность и номер позиции <code>p</code>; позиции нумеруются с 1. Определите, входит ли буква в позиции <code>p</code> в CpG-динуклеотид, то есть это C, за которой идет G, или G, перед которой стоит C. Позиция может оказаться за концом последовательности.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Проверьте две стороны отдельно и подумайте, что дает обращение к соседу слева у первой буквы и к соседу справа у последней.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из прописных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>p</code> (1 ≤ <code>p</code> ≤ 200).</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если буква в позиции <code>p</code> входит в CpG-динуклеотид, иначе <code>False</code>. Если позиции <code>p</code> в последовательности нет, <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACCGT
+              <h3>Задача со звездочкой 3.3. Буква в паре CG</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пару соседних нуклеотидов, в которой за C сразу идет G, называют CpG-динуклеотидом. Даны последовательность и номер позиции <code>position</code>; позиции нумеруются с 1. Определите, входит ли буква в позиции <code>position</code> в CpG-динуклеотид, то есть это C, за которой идет G, или G, перед которой стоит C. Позиция может оказаться за концом последовательности.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из прописных букв A, C, G, T длиной от 1 до 100, во второй целое число <code>position</code> (1 ≤ <code>position</code> ≤ 200).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если буква в позиции <code>position</code> входит в CpG-динуклеотид, иначе <code>False</code>. Если позиции <code>position</code> в последовательности нет, <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AC<span class="we-hl">CG</span>T<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Позиция 3 это C, а сразу за ней стоит G: вместе они образуют CpG-динуклеотид, ответ True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACCGT
 3</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ACCGT
+                      <tr><td><pre>ACCGT
 2</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_03_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Буква входит в пару CpG, если она C, за которой идет G, или G, перед которой стоит C. Для каждой из двух ролей проверяют границу и обе буквы; пара находится, если верна хотя бы одна роль.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>CpG-динуклеотид</strong> — пара соседних нуклеотидов C и G.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                  <li><strong>Оператор or</strong> — истинен, когда истинно хотя бы одно из условий.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и позицию: <code>seq = input()</code>, <code>position = int(input())</code>; индекс буквы — <code>index = position - 1</code>.</li>
+                  <li>Роль C: есть правая соседка (<code>index + 1 &lt; len(seq)</code>), текущая буква C, следующая G.</li>
+                  <li>Роль G: есть левая соседка (<code>index &gt;= 1</code> и <code>index &lt; len(seq)</code>), текущая буква G, предыдущая C.</li>
+                  <li>Соедините обе роли оператором or и выведите результат; сверьтесь с примером: в ACCGT позиция 3 — это C перед G, True; позиция 2 — C без соседки G, False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_03_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

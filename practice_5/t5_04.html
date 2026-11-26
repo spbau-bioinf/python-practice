@@ -239,77 +239,219 @@ R3 [] 0</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.4.1. Число букв G и C</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Запись о последовательности содержит три поля через пробел: имя, длину и GC-состав в процентах. GC-состав&nbsp;— доля букв G и C среди всех букв последовательности, обычно ее записывают в процентах (<a href="../practice_4/t4_05.html">страница 05 практики 4</a>). Разложите строку по трем переменным одной распаковкой и выведите имя и число букв G и C: длину, умноженную на GC-состав и деленную на 100. Например, у последовательности длины 8 с GC-составом 37,5&nbsp;% букв G и C <span class="formula">8 · 37,5 / 100 = 3</span>. Результат вещественного вычисления бывает не ровно целым: у длины 375 и GC-состава 18,4&nbsp;% получается <code>68.99999999999999</code>. Переведите его в целое функцией <code>round()</code>, а не <code>int()</code>: <code>int()</code> отбрасывает дробную часть и дал бы 68.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: имя (латинские буквы, цифры и знак <code>_</code>), длина от 1 до 1000 и GC-состав от 0 до 100 с одной цифрой после точки. Гарантируется, что число букв G и C получается целым.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке имя, во второй число букв G и C целым числом.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>Rosalind_12 8 37.5</pre></td><td><pre>Rosalind_12
+              <h3>Упражнение 5.4.1. Число букв G и C</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Запись о последовательности содержит три поля через пробел: имя, длину и GC-состав в процентах. Выведите имя и число букв G и C: длину, умноженную на GC-состав и деленную на 100. Например, у последовательности длины 8 с GC-составом 37,5&nbsp;% букв G и C <span class="formula">8 · 37,5 / 100 = 3</span>. Результат вещественного вычисления бывает чуть меньше целого: у длины 375 и GC-состава 18,4&nbsp;% получается <code>68.99999999999999</code>. Переведите его в целое функцией <code>round()</code>, а не <code>int()</code>: <code>int()</code> отбрасывает дробную часть и дал бы 68.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: имя (латинские буквы, цифры и знак <code>_</code>), длина от 1 до 1000 и GC-состав от 0 до 100 с одной цифрой после точки. Гарантируется, что число букв G и C получается целым.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке имя, во второй число букв G и C целым числом.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">Rosalind_12 <span class="we-hl">8 37.5</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">Rosalind_12<br><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">8 · 37,5 / 100 = 3: длина и GC-состав дают ровно 3 буквы G и C, а имя выводится как есть.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>Rosalind_12 8 37.5</pre></td><td><pre>Rosalind_12
 3</pre></td></tr>
-                <tr><td><pre>seq_7 20 0.0</pre></td><td><pre>seq_7
+                      <tr><td><pre>seq_7 20 0.0</pre></td><td><pre>seq_7
 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_04_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Распаковка name, length, gc = input().split() присваивает три части строки трем переменным сразу. Части приходят строками, поэтому выражение переводит их: int(length) * float(gc) / 100. Деление всегда дает float, а round() возвращает ближайшее целое.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Распаковка</strong> — несколько переменных слева от знака = и столько же частей справа.</li>
+                  <li><strong>GC-состав</strong> — доля букв G и C в процентах от длины последовательности.</li>
+                  <li><strong>Функция float()</strong> — переводит строку в вещественное число.</li>
+                  <li><strong>Функция round()</strong> — округляет до ближайшего целого.</li>
+                  <li><strong>Функция int()</strong> — отбрасывает дробную часть.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и разложите ее одной распаковкой: <code>name, length, gc = input().split()</code>.</li>
+                  <li>Переведите поля в числа: <code>int(length)</code> и <code>float(gc)</code>.</li>
+                  <li>Соберите выражение: длина умножить на состав и разделить на 100.</li>
+                  <li>Напечатайте имя и <code>round(...)</code>; сверьтесь с примером: Rosalind_12 8 37.5 дают Rosalind_12 и 3, а seq_7 20 0.0 — 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_04_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.4.1. Заголовок FASTA</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В формате FASTA запись последовательности начинается со строки заголовка. Она начинается со знака <code>&gt;</code>, сразу за ним идет идентификатор (имя последовательности без пробелов), затем через пробел может идти описание из нескольких слов. Выведите идентификатор без знака <code>&gt;</code> и число слов в описании. Если описания нет, число слов 0. Разберите строку одной распаковкой с именем со звездочкой (<a href="#s2">раздел 2</a>): <code>first, *rest = input().split()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка заголовка FASTA длиной до 200 символов. Слова разделены одним пробелом.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке идентификатор, во второй число слов описания.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;Rosalind_0498 Homo sapiens chromosome 1</pre></td><td><pre>Rosalind_0498
+              <h3>Упражнение 5.4.1. Заголовок FASTA</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Строка заголовка FASTA начинается со знака <code>&gt;</code>, сразу за ним идет идентификатор, затем через пробел может идти описание из нескольких слов. Выведите идентификатор без знака <code>&gt;</code> и число слов в описании. Если описания нет, число слов 0.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка заголовка FASTA длиной до 200 символов. Слова разделены одним пробелом.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке идентификатор, во второй число слов описания.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">&gt;Rosalind_0498</span> Homo sapiens chromosome 1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">Rosalind_0498<br><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">first, *rest = input().split() отделяет первое слово — идентификатор; после удаления знака &gt; остается Rosalind_0498, а в описании четыре слова: Homo, sapiens, chromosome, 1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;Rosalind_0498 Homo sapiens chromosome 1</pre></td><td><pre>Rosalind_0498
 4</pre></td></tr>
-                <tr><td><pre>&gt;seq_2</pre></td><td><pre>seq_2
+                      <tr><td><pre>&gt;seq_2</pre></td><td><pre>seq_2
 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_04_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Распаковка со звездочкой first, *rest = input().split() кладет первое слово в first, а все остальные — списком в rest. Даже при пустом описании rest получает пустой список, поэтому len(rest) всегда дает число слов описания. Знак &gt; отрезают срезом first[1:].</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Идентификатор</strong> — имя последовательности без пробелов, сразу за знаком &gt;.</li>
+                  <li><strong>Распаковка со звездочкой</strong> — first, *rest = ... — последняя переменная забирает остаток списка.</li>
+                  <li><strong>Срез строки</strong> — first[1:] — строка без первого символа.</li>
+                  <li><strong>Пустой список</strong> — у пустого описания rest пуст, и len(rest) равно 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку и разложите ее распаковкой со звездочкой: <code>first, *rest = input().split()</code>.</li>
+                  <li>В first лежит идентификатор вместе со знаком &gt;; отрежьте знак срезом <code>first[1:]</code>.</li>
+                  <li>Число слов описания — это <code>len(rest)</code>.</li>
+                  <li>Напечатайте идентификатор и число; сверьтесь с примером: &gt;Rosalind_0498 Homo sapiens chromosome 1 дают Rosalind_0498 и 4, а &gt;seq_2 — seq_2 и 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_04_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.4.1. Перекрытие прочтений</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который прибор прочитал за один раз. Геномом называют всю ДНК организма; позиции в нем нумеруются подряд с 1. Положение прочтения на геноме задают номерами первой и последней позиции, обе включительно. Молекула ДНК состоит из двух цепей, которые читаются в противоположных направлениях. В этом упражнении, как в выводе программы BLAST, прочтение с другой цепи записано от большей позиции к меньшей: запись <code>30 21</code> означает позиции с 21 по 30. Даны два прочтения. Выведите, сколько позиций генома входят в оба прочтения; если прочтения не перекрываются, выведите 0.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сначала приведите каждую запись к виду «начало не больше конца», поменяв значения местами одной строкой. Общий участок начинается с большего из двух начал и кончается на меньшем из двух концов.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой запись прочтения: имя, затем две позиции через пробел, целые числа от 1 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: число общих позиций.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>r1 10 30
+              <h3>Упражнение 5.4.1. Перекрытие прочтений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны два прочтения; положение каждого задано номерами первой и последней позиции на геноме, обе включительно. Прочтение с другой цепи записано от большей позиции к меньшей: запись <code>30 21</code> означает позиции с 21 по 30. Выведите, сколько позиций генома входят в оба прочтения; если прочтения не перекрываются, выведите 0.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой запись прочтения: имя, затем две позиции через пробел, целые числа от 1 до 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: число общих позиций.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">r1 <span class="we-hl">10 30</span><br>r2 <span class="we-hl">25 40</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">6</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Общий участок начинается с большего начала — 25 — и кончается на меньшем конце 30: позиции 25–30, всего 30 − 25 + 1 = 6.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>r1 10 30
 r2 25 40</pre></td><td><pre>6</pre></td></tr>
-                <tr><td><pre>r1 30 21
+                      <tr><td><pre>r1 30 21
 r2 18 24</pre></td><td><pre>4</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_04_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Каждое прочтение — отрезок на геноме. Запись от большей позиции к меньшей сначала приводят к обычному виду, меняя концы местами. Общая часть двух отрезков начинается с большего из начал и кончается меньшим из концов; число позиций равно end - start + 1, а у непересекающихся отрезков конец раньше начала, и max(0, ...) превращает разность в 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который прибор прочитал за один раз.</li>
+                  <li><strong>Геном</strong> — вся ДНК организма; позиции в нем нумеруются подряд с 1.</li>
+                  <li><strong>Перекрытие</strong> — позиции генома, входящие в оба прочтения.</li>
+                  <li><strong>Обратная цепь</strong> — в выводе программы BLAST прочтение с другой цепи записано от большей позиции к меньшей.</li>
+                  <li><strong>Функция max()</strong> — возвращает большее из значений.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обе записи: <code>name1, start1, end1 = input().split()</code>, <code>name2, start2, end2 = input().split()</code>.</li>
+                  <li>Переведите позиции в числа; если start1 больше end1 (или start2 больше end2), поменяйте концы местами — запись с обратной цепи станет обычной.</li>
+                  <li>Общая часть: начало <code>max(start1, start2)</code>, конец <code>min(end1, end2)</code>.</li>
+                  <li>Выведите <code>max(0, end - start + 1)</code>; сверьтесь с примером: 10 30 и 25 40 дают 6, а 30 21 и 18 24 — 4.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_04_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -320,85 +462,226 @@ r2 18 24</pre></td><td><pre>4</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.4. Записи выше порога</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны порог и записи «имя, GC-состав». Выведите имена записей, у которых GC-состав не меньше порога, в том порядке, в каком идут записи. Если таких нет, выведите слово <code>нет</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке порог, число от 0 до 100. Во второй число записей <code>n</code> от 1 до 20. Дальше <code>n</code> строк: имя и GC-состав через пробел; GC-состав записан с одной цифрой после точки.</p>
-          <h4>Выходные данные</h4>
-          <p>Имена через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>50
+              <h3>Задача со звездочкой 5.4. Записи выше порога</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны порог и записи «имя, GC-состав». Выведите имена записей, у которых GC-состав не меньше порога, в том порядке, в каком идут записи. Если таких нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке порог, число от 0 до 100. Во второй число записей <code>count</code> от 1 до 20. Дальше <code>count</code> строк: имя и GC-состав через пробел; GC-состав записан с одной цифрой после точки.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Имена через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">50<br>3<br>Rosalind_1 <span class="we-hl">48.5</span><br>Rosalind_2 50.0<br>Rosalind_3 62.5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">Rosalind_2 Rosalind_3</code>
+                    </div>
+                  </div>
+                  <p class="we-note">48,5 меньше порога 50 и отбрасывается; 50,0 и 62,5 не меньше порога, поэтому в ответ идут Rosalind_2 и Rosalind_3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>50
 3
 Rosalind_1 48.5
 Rosalind_2 50.0
 Rosalind_3 62.5</pre></td><td><pre>Rosalind_2 Rosalind_3</pre></td></tr>
-                <tr><td><pre>70
+                      <tr><td><pre>70
 2
 A 10.0
 B 69.9</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_04_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Порог читают как float, состав каждой записи тоже float; сравнение float(gc) &gt;= threshold нестрогое, поэтому запись ровно на пороге проходит. Имена накапливают в списке, а слово нет печатают, когда список остался пустым.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Порог</strong> — граничное значение GC-состава.</li>
+                  <li><strong>Нестрогое сравнение</strong> — &gt;= пропускает и равные значения.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Функция float()</strong> — переводит строку в вещественное число.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте порог и число записей: <code>threshold = float(input())</code>, <code>count = int(input())</code>; заведите <code>names = []</code>.</li>
+                  <li>Переберите записи: <code>for index in range(count):</code> — первой строкой тела <code>name, gc = input().split()</code>.</li>
+                  <li>Отбирайте по нестрогому условию: если <code>float(gc) &gt;= threshold</code>, вызовите <code>names.append(name)</code>.</li>
+                  <li>Если names непуст, напечатайте <code>" ".join(names)</code>, иначе слово <code>нет</code>; сверьтесь с примером: порог 50 и записи 48.5, 50.0, 62.5 дают Rosalind_2 Rosalind_3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_04_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.4. Записи разной длины</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В каждой записи сначала имя пробы, затем от 0 до 5 результатов измерений (целые числа). Найдите запись с наибольшей суммой измерений; сумма записи без измерений равна 0. Если таких записей несколько, выберите первую. Выведите имя и сумму через пробел.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20, дальше <code>n</code> строк: имя и числа от 0 до 1000 через пробел.</p>
-          <h4>Выходные данные</h4>
-          <p>Имя и сумма через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3
+              <h3>Задача со звездочкой 5.4. Записи разной длины</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В каждой записи сначала имя пробы, затем от 0 до 5 результатов измерений (целые числа). Найдите запись с наибольшей суммой измерений; сумма записи без измерений равна 0. Если таких записей несколько, выберите первую. Выведите имя и сумму через пробел.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20, дальше <code>count</code> строк: имя и числа от 0 до 1000 через пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Имя и сумма через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3<br>A <span class="we-hl">1 2 3</span><br>B <span class="we-hl">10</span><br>C</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">B 10</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Суммы записей: у A 1 + 2 + 3 = 6, у B 10, у C измерений нет и сумма 0; наибольшая сумма у B, поэтому ответ B 10.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3
 A 1 2 3
 B 10
 C</pre></td><td><pre>B 10</pre></td></tr>
-                <tr><td><pre>2
+                      <tr><td><pre>2
 x 5 5
 y 7 3</pre></td><td><pre>x 10</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_04_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Распаковка со звездочкой name, *values = input().split() отделяет имя от всех чисел записи: values получает список строк, и цикл складывает их как int. У записи без измерений values пуст, и сумма остается 0. Лучшую сумму заменяют только при строгом &gt;, поэтому при равенстве остается первая запись.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Распаковка со звездочкой</strong> — name, *values = ... — values забирает все числа записи.</li>
+                  <li><strong>Пустой список</strong> — у записи без измерений values пуст, сумма равна 0.</li>
+                  <li><strong>Строгое сравнение</strong> — &gt; не пропускает равную сумму.</li>
+                  <li><strong>Функция int()</strong> — переводит строку в целое число.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число записей: <code>count = int(input())</code>; заведите <code>best_name = ""</code> и <code>best_sum = -1</code>.</li>
+                  <li>Разбирайте запись распаковкой со звездочкой: <code>name, *values = input().split()</code>.</li>
+                  <li>Сумму считайте циклом по values: <code>total = total + int(value)</code>; у пустого values она остается 0.</li>
+                  <li>При <code>total &gt; best_sum</code> запоминайте имя и сумму; напечатайте их через пробел; сверьтесь с примером: A 1 2 3, B 10 и C дают B 10, а x 5 5 и y 7 3 — x 10.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_04_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.4. Смертные кролики</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p>
-            <p>Задача <a href="https://rosalind.info/problems/fibd/">Rosalind FIBD</a>. В первый месяц одна пара новорожденных, через месяц пара становится взрослой и с этого времени каждый месяц дает одну пару потомства. Без смерти число пар росло бы как числа Фибоначчи: 1, 1, 2, 3, 5… Но теперь каждая пара живет ровно <code>lifespan</code> месяцев: в свой <code>lifespan</code>-й месяц она еще есть (и дает потомство, если взрослая), а в следующем месяце ее уже нет. Выведите число пар в месяце <code>month</code>.</p>
-            <p><strong>Пример.</strong> При <code>month = 6</code> и <code>lifespan = 3</code> ответ 4: в шестом месяце четыре пары. Первое число задает номер месяца, второе показывает, сколько месяцев живет одна пара. Не путайте номер месяца с числом пар.</p>
-          </div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: целые числа <code>month</code> от 1 до 60 (номер месяца) и <code>lifespan</code> от 2 до 20 (сколько месяцев живет одна пара) через пробел.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число: число пар в месяце <code>month</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>6 3</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>2 2</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_04_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.4. Смертные кролики</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Кролики живут <code>lifespan</code> месяцев: пара, родившаяся в месяце birth_month, есть в месяцах birth_month, birth_month + 1, …, birth_month + <code>lifespan</code> - 1, а в месяце birth_month + <code>lifespan</code> ее уже нет. В первом месяце есть одна новорожденная пара. В каждом следующем месяце рождается столько новых пар, сколько пар в прошлом месяце были в возрасте хотя бы одного месяца. Сколько пар будет в месяце <code>month</code>? Не путайте номер месяца с числом пар.</p>
+                <p><strong>Пример.</strong> При <code>month = 6</code> и <code>lifespan = 3</code> ответ 4: в шестом месяце четыре пары. Первое число задает номер месяца, второе показывает, сколько месяцев живет одна пара. Не путайте номер месяца с числом пар.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: целые числа <code>month</code> от 1 до 60 (номер месяца) и <code>lifespan</code> от 2 до 20 (сколько месяцев живет одна пара) через пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число: число пар в месяце <code>month</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">6 3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Потомство дают пары со второго месяца жизни, а пары возрастом 3 месяца (lifespan) исчезают. Число пар по месяцам: 1, 1, 2, 2, 3, 4 — в шестом месяце 4.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>6 3</pre></td><td><pre>4</pre></td></tr>
+                      <tr><td><pre>2 2</pre></td><td><pre>1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Список ages хранит число пар каждого возраста: ages[0] — новорожденные, последний элемент — самые старые. Новые пары приносят все, кому уже есть месяц: newborn = sum(ages[1:]). Затем все стареют на месяц: [newborn] + ages[:-1] ставит новорожденных в начало и убирает самый старый возраст — так пара исчезает после lifespan месяцев.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Возраст пары</strong> — сколько полных месяцев она прожила; у новорожденной возраст 0.</li>
+                  <li><strong>Список возрастов</strong> — ages[age] — число пар этого возраста.</li>
+                  <li><strong>Новорожденные</strong> — ages[0]; в первом месяце такая пара одна.</li>
+                  <li><strong>Сумма списка</strong> — sum() складывает все элементы.</li>
+                  <li><strong>Сдвиг возрастов</strong> — [newborn] + ages[:-1] старит всех на месяц и убирает самый старый возраст.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте числа: <code>month, lifespan = input().split()</code>; переведите оба в int.</li>
+                  <li>Заведите возрасты: <code>ages = [1]</code>, затем допишите нули, чтобы длина стала lifespan — в первом месяце одна новорожденная пара.</li>
+                  <li>Каждый следующий месяц (цикл повторяется month - 1 раз) считайте <code>newborn = sum(ages[1:])</code> и сдвигайте: <code>ages = [newborn] + ages[:-1]</code>.</li>
+                  <li>Выведите <code>sum(ages)</code>; сверьтесь с примером: 6 и 3 дают 4, а 2 и 2 — 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_04_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

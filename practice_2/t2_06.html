@@ -232,71 +232,210 @@ S12: blood, 2.5 мл, записала Vasilisa</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.6.1. Ткань из записи о пробе</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Запись о пробе состоит из полей, разделенных точкой с запятой: код пробы, ткань, затем другие поля. Выведите ткань. Воспользуйтесь методом <code>split(";")</code> и индексом.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: не меньше трех полей через точку с запятой, без пробелов вокруг разделителей. Поле с тканью не пустое.</p>
-          <h4>Выходные данные</h4>
-          <p>Второе поле записи.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>S07;plasma;1.5</pre></td><td><pre>plasma</pre></td></tr>
-                <tr><td><pre>P1;cerebrospinal fluid;3;frozen</pre></td><td><pre>cerebrospinal fluid</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_06_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.6.1. Ткань из записи о пробе</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Запись о пробе состоит из полей, разделенных точкой с запятой: код пробы, ткань, затем другие поля. Выведите ткань. Воспользуйтесь методом <code>split(";")</code> и индексом.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: не меньше трех полей через точку с запятой, без пробелов вокруг разделителей. Поле с тканью не пустое.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Второе поле записи.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">S07;<span class="we-hl">plasma</span>;1.5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">plasma</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После split(";") поля становятся элементами списка: элемент с индексом 1 — ткань plasma.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>S07;plasma;1.5</pre></td><td><pre>plasma</pre></td></tr>
+                      <tr><td><pre>P1;cerebrospinal fluid;3;frozen</pre></td><td><pre>cerebrospinal fluid</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Запись о пробе хранит поля через разделитель: код пробы, ткань и другие характеристики. Метод <code>split()</code> режет строку по разделителю и дает список полей, а индекс выбирает нужное поле.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Поле</strong> — одна часть записи между разделителями.</li>
+                  <li><strong>Разделитель</strong> — символ, который отделяет поля друг от друга, здесь точка с запятой.</li>
+                  <li><strong>Метод split()</strong> — делит строку по разделителю и возвращает список кусков.</li>
+                  <li><strong>Индекс</strong> — номер элемента списка; нумерация начинается с 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>record = input()</code>.</li>
+                  <li>Разделите запись по точке с запятой: <code>parts = record.split(";")</code>.</li>
+                  <li>Ткань — второе поле, у него индекс 1: <code>parts[1]</code>.</li>
+                  <li>Выведите ткань: <code>print(parts[1])</code>; сверьтесь с примером: у S07;plasma;1.5 ткань plasma.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_06_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.6.1. Лишние пробелы</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Название вида скопировали из таблицы, и в нем оказались лишние пробелы: по краям и по несколько между словами. Выведите название, в котором слова разделены ровно одним пробелом, а по краям пробелов нет.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от одного до пяти слов из латинских букв, между словами один или несколько пробелов, по краям могут быть пробелы.</p>
-          <h4>Выходные данные</h4>
-          <p>Те же слова в том же порядке через один пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>  Homo   sapiens  </pre></td><td><pre>Homo sapiens</pre></td></tr>
-                <tr><td><pre>Escherichia coli</pre></td><td><pre>Escherichia coli</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_06_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.6.1. Лишние пробелы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Название вида скопировали из таблицы, и в нем оказались лишние пробелы: по краям и по несколько между словами. Выведите название, в котором слова разделены ровно одним пробелом, а по краям пробелов нет.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от одного до пяти слов из латинских букв, между словами один или несколько пробелов, по краям могут быть пробелы.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Те же слова в том же порядке через один пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">  </span>Homo<span class="we-hl">   </span>sapiens<span class="we-hl">  </span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">Homo sapiens</code>
+                    </div>
+                  </div>
+                  <p class="we-note">split() без аргумента разбивает строку по любым пробелам и выбрасывает пустые куски, а join собирает слова через один пробел.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>  Homo   sapiens  </pre></td><td><pre>Homo sapiens</pre></td></tr>
+                      <tr><td><pre>Escherichia coli</pre></td><td><pre>Escherichia coli</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Текст, скопированный из таблицы, часто несет лишние пробелы. <code>split()</code> без аргумента делит строку по любым пробельным символам и выбрасывает пустые куски, а <code>join()</code> склеивает список обратно через один разделитель.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод split()</strong> — без аргумента делит строку по пробелам и отбрасывает пустые куски.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк через заданный разделитель.</li>
+                  <li><strong>Список</strong> — набор элементов по порядку; здесь — список слов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>name = input()</code>.</li>
+                  <li><code>name.split()</code> даст список слов без лишних пробелов.</li>
+                  <li>Склейте слова через один пробел: <code>" ".join(name.split())</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: строка с лишними пробелами вокруг Homo sapiens становится Homo sapiens.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_06_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.6.1. Сокращенное название вида</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В тексте статьи название вида после первого упоминания сокращают: от рода остается заглавная первая буква с точкой, вид пишут полностью строчными буквами, например <code>H. sapiens</code>. Название ввели небрежно: регистр любой, пробелы лишние. Выведите сокращенное название.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Элемент списка, который вернул <code>split()</code>,&nbsp;— обычная строка: у него есть и индексы, и методы строк.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: род и вид латинскими буквами в любом регистре, между словами один или несколько пробелов, по краям могут быть пробелы.</p>
-          <h4>Выходные данные</h4>
-          <p>Сокращенное название: заглавная первая буква рода, точка, пробел, вид строчными буквами.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>Homo sapiens</pre></td><td><pre>H. sapiens</pre></td></tr>
-                <tr><td><pre>  escherichia   COLI </pre></td><td><pre>E. coli</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_06_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.6.1. Сокращенное название вида</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В тексте статьи название вида после первого упоминания сокращают: от рода остается заглавная первая буква с точкой, вид пишут полностью строчными буквами, например <code>H. sapiens</code>. Название ввели небрежно: регистр любой, пробелы лишние. Выведите сокращенное название.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: род и вид латинскими буквами в любом регистре, между словами один или несколько пробелов, по краям могут быть пробелы.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Сокращенное название: заглавная первая буква рода, точка, пробел, вид строчными буквами.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">Homo sapiens</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">H</span>. sapiens</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Берем первую букву рода Homo — H — и приписываем точку: получается H. sapiens.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>Homo sapiens</pre></td><td><pre>H. sapiens</pre></td></tr>
+                      <tr><td><pre>  escherichia   COLI </pre></td><td><pre>E. coli</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В текстах название вида после первого упоминания сокращают: род заменяют одной буквой с точкой. Такое сокращение однозначно, потому что полное название рода в статье уже названо.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сокращение названия</strong> — запись вида с одной буквой рода: H. sapiens.</li>
+                  <li><strong>Род</strong> — первое слово названия вида.</li>
+                  <li><strong>Видовой эпитет</strong> — второе слово названия вида.</li>
+                  <li><strong>Метод split()</strong> — делит строку по пробелам и возвращает список слов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>name = input()</code>.</li>
+                  <li>Разделите название на слова: <code>parts = name.split()</code>; род — <code>parts[0]</code>, вид — <code>parts[1]</code>.</li>
+                  <li>Соберите сокращение: <code>parts[0][0].upper()</code>, затем строку <code>". "</code> и <code>parts[1].lower()</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: escherichia COLI превращается в E. coli.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_06_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -307,76 +446,216 @@ S12: blood, 2.5 мл, записала Vasilisa</pre></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 2.6. Разбор имени файла</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Файлы с данными опыта называют по шаблону <code>код_ткань_repN.fastq</code>: код пробы, название ткани и номер повторности <code>N</code>. Повторность&nbsp;— тот же опыт, поставленный еще раз, чтобы проверить, повторяется ли результат. Выведите ткань и номер повторности.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: имя файла по шаблону. Код пробы и ткань состоят из латинских букв и цифр, без знака подчеркивания и точки; номер <code>N</code> от 1 до 99.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой ткань, во второй номер повторности.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>P04_kidney_rep2.fastq</pre></td><td><pre>kidney
+              <h3>Задача со звездочкой 2.6. Разбор имени файла</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Файлы с данными опыта называют по шаблону <code>код_ткань_repN.fastq</code>: код пробы, название ткани и номер повторности N. Выведите ткань и номер повторности.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: имя файла по шаблону. Код пробы и ткань состоят из латинских букв и цифр, без знака подчеркивания и точки; номер <code>N</code> от 1 до 99.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой ткань, во второй номер повторности.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">P04_<span class="we-hl">kidney</span>_rep<span class="we-hl">2</span>.fastq</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">kidney</span><br><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Имя режут по подчеркиванию: поле с индексом 1 — ткань kidney, а из поля rep2.fastq убирают rep и .fastq и получают номер 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>P04_kidney_rep2.fastq</pre></td><td><pre>kidney
 2</pre></td></tr>
-                <tr><td><pre>C1_blood_rep10.fastq</pre></td><td><pre>blood
+                      <tr><td><pre>C1_blood_rep10.fastq</pre></td><td><pre>blood
 10</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_06_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Имена файлов с данными строят по шаблону, чтобы программа могла разобрать их автоматически. Части имени разделены подчеркиванием, а расширение отбито точкой.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Повторность</strong> — тот же опыт, поставленный еще раз, чтобы проверить, повторяется ли результат.</li>
+                  <li><strong>Шаблон имени</strong> — образец, по которому составлено имя файла.</li>
+                  <li><strong>Метод split()</strong> — делит строку по разделителю и возвращает список кусков; точку тоже можно указать разделителем.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте имя файла: <code>name = input()</code>.</li>
+                  <li>Разделите имя по подчеркиванию: <code>parts = name.split("_")</code>; ткань — <code>parts[1]</code>.</li>
+                  <li>В <code>parts[2]</code> лежит <code>repN.fastq</code>: отделите расширение вторым <code>split(".")</code> и возьмите первую часть.</li>
+                  <li>Уберите <code>rep</code> методом <code>replace()</code> и напечатайте ткань и номер; сверьтесь с примером: P04_kidney_rep2.fastq дает kidney и 2.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_06_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 2.6. Коды без пустых мест</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Коды проб скопировали из таблицы через запятую, и в строке оказались лишние пробелы и пустые места: две запятые подряд, запятая в начале или в конце. Выведите коды в том же порядке через запятую, без пробелов и без пустых мест.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p><code>split()</code> без аргумента не дает пустых кусков. Как сделать, чтобы запятые тоже стали для него разделителями?</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: коды проб из латинских букв и цифр, между ними запятые и пробелы в любом количестве. Хотя бы один код в строке есть.</p>
-          <h4>Выходные данные</h4>
-          <p>Коды через запятую без пробелов.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre> S1, S2 ,,S3 ,</pre></td><td><pre>S1,S2,S3</pre></td></tr>
-                <tr><td><pre>P7</pre></td><td><pre>P7</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_06_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 2.6. Коды без пустых мест</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Коды проб скопировали из таблицы через запятую, и в строке оказались лишние пробелы и пустые места: две запятые подряд, запятая в начале или в конце. Выведите коды в том же порядке через запятую, без пробелов и без пустых мест.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: коды проб из латинских букв и цифр, между ними запятые и пробелы в любом количестве. Хотя бы один код в строке есть.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Коды через запятую без пробелов.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl"> </span>S1,<span class="we-hl"> </span>S2<span class="we-hl"> </span>,<span class="we-hl">,</span>S3<span class="we-hl"> </span>,</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">S1,S2,S3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Если в split() разделителем считаются и запятая, и пробел, пустые места исчезают сами: от строки остаются три кода S1, S2 и S3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre> S1, S2 ,,S3 ,</pre></td><td><pre>S1,S2,S3</pre></td></tr>
+                      <tr><td><pre>P7</pre></td><td><pre>P7</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При копировании из таблицы между запятыми появляются пробелы и пустые места. Прием «заменить запятые на пробелы, затем <code>split()</code>» приводит все разделители к одному виду, а <code>join()</code> собирает коды обратно.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод replace()</strong> — заменяет все вхождения одной подстроки на другую.</li>
+                  <li><strong>Метод split()</strong> — без аргумента делит строку по пробелам и отбрасывает пустые куски.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк через заданный разделитель.</li>
+                  <li><strong>Пустое место</strong> — две запятые подряд или запятая на краю строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>line = input()</code>.</li>
+                  <li>Замените запятые на пробелы: <code>line.replace(",", " ")</code> — теперь все разделители одинаковые.</li>
+                  <li><code>split()</code> без аргумента оставит только коды и выбросит пустые места.</li>
+                  <li>Склейте коды через запятую: <code>",".join(...)</code>; сверьтесь с примером: S1, S2 ,,S3 , дает S1,S2,S3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_06_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 2.6. Организм из записи UniProt</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В базе белков <a href="https://www.uniprot.org/help/fasta-headers">UniProt</a> строка описания записи FASTA устроена так: символ <code>&gt;</code>, затем через вертикальную черту раздел базы, номер записи и имя записи, после пробела название белка, за ним поля вида <code>КЛЮЧ=значение</code>. Поле <code>OS=</code> содержит название организма, следующее за ним поле <code>OX=</code> содержит номер организма в таксономии. Например, строка описания бета-цепи гемоглобина человека состоит из <code>&gt;sp|P68871|HBB_HUMAN</code>, пробела, названия <code>Hemoglobin subunit beta</code>, пробела и полей <code>OS=Homo sapiens OX=9606 GN=HBB PE=1 SV=2</code>. В ней номер записи <code>P68871</code>, организм <code>Homo sapiens</code>. Выведите номер записи и название организма.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Метод <code>split()</code> режет строку и по разделителю из нескольких символов.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка описания в таком формате. Название белка и название организма могут состоять из нескольких слов. Поля <code>OS=</code> и <code>OX=</code> встречаются в строке по одному разу, за названием организма сразу идут пробел и <code>OX=</code>. Могут встречаться и другие поля вида <code>КЛЮЧ=значение</code> (<code>GN=</code>, <code>PE=</code>, <code>SV=</code>), на ответ они не влияют.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой номер записи, во второй название организма.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>&gt;sp|P69905|HBA_HUMAN Hemoglobin subunit alpha OS=Homo sapiens OX=9606 GN=HBA1 PE=1 SV=2</pre></td><td><pre>P69905
+              <h3>Задача со звездочкой 2.6. Организм из записи UniProt</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В базе белков <a href="https://www.uniprot.org/help/fasta-headers">UniProt</a> строка описания записи FASTA устроена так: символ <code>&gt;</code>, затем через вертикальную черту раздел базы, номер записи и имя записи, после пробела название белка, за ним поля вида <code>КЛЮЧ=значение</code>. Поле <code>OS=</code> содержит название организма, следующее за ним поле <code>OX=</code> содержит номер организма в таксономии. Например, строка описания бета-цепи гемоглобина человека состоит из <code>&gt;sp|P68871|HBB_HUMAN</code>, пробела, названия <code>Hemoglobin subunit beta</code>, пробела и полей <code>OS=Homo sapiens OX=9606 GN=HBB PE=1 SV=2</code>. В ней номер записи <code>P68871</code>, организм <code>Homo sapiens</code>. Выведите номер записи и название организма.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка описания в таком формате. Название белка и название организма могут состоять из нескольких слов. Поля <code>OS=</code> и <code>OX=</code> встречаются в строке по одному разу, за названием организма сразу идут пробел и <code>OX=</code>. Могут встречаться и другие поля вида <code>КЛЮЧ=значение</code> (<code>GN=</code>, <code>PE=</code>, <code>SV=</code>), на ответ они не влияют.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой номер записи, во второй название организма.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">&gt;sp|<span class="we-hl">P69905</span>|HBA_HUMAN Hemoglobin subunit alpha <span class="we-hl">OS=Homo sapiens</span> OX=9606 GN=HBA1 PE=1 SV=2</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">P69905</span><br><span class="we-hl">Homo sapiens</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Номер записи стоит между первой и второй вертикальной чертой, а название организма — между полями OS= и OX=: это P69905 и Homo sapiens.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>&gt;sp|P69905|HBA_HUMAN Hemoglobin subunit alpha OS=Homo sapiens OX=9606 GN=HBA1 PE=1 SV=2</pre></td><td><pre>P69905
 Homo sapiens</pre></td></tr>
-                <tr><td><pre>&gt;sp|P0A6F5|CH60_ECOLI Chaperonin GroEL OS=Escherichia coli (strain K12) OX=83333 GN=groEL PE=1 SV=2</pre></td><td><pre>P0A6F5
+                      <tr><td><pre>&gt;sp|P0A6F5|CH60_ECOLI Chaperonin GroEL OS=Escherichia coli (strain K12) OX=83333 GN=groEL PE=1 SV=2</pre></td><td><pre>P0A6F5
 Escherichia coli (strain K12)</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_06_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>UniProt — база белков, где у каждой записи есть уникальный номер и описание организма. Поля строки описания разделены пробелами и метками вида КЛЮЧ=, поэтому нужные значения достают разбором по разделителям, а не просмотром вручную.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>UniProt</strong> — база белков, где у каждой записи есть номер и описание.</li>
+                  <li><strong>FASTA</strong> — формат записи последовательностей; строка описания начинается с символа >.</li>
+                  <li><strong>Номер записи</strong> — уникальный код белка в базе, например P68871.</li>
+                  <li><strong>Поле OS=</strong> — поле строки описания с названием организма.</li>
+                  <li><strong>Поле OX=</strong> — поле с номером организма в таксономии.</li>
+                  <li><strong>Таксономия</strong> — система классификации организмов.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку описания: <code>header = input()</code>.</li>
+                  <li>Номер записи стоит между первой и второй вертикальной чертой: <code>header.split("|")[1]</code>.</li>
+                  <li>Название организма начинается после <code>OS=</code> и кончается перед <code> OX=</code>.</li>
+                  <li>Достаньте его двумя разрезами: <code>header.split(" OS=")[1].split(" OX=")[0]</code>; сверьтесь с примером: HBA_HUMAN дает P69905 и Homo sapiens.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_06_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

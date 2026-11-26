@@ -199,77 +199,218 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 4.2.1. Номера лунок</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшет&nbsp;— пластиковая пластина с углублениями, лунками, в которые ставят пробы (он встречался в упражнении <a href="../practice_3/t3_08.html#ex-1">3.8.1 «Лунка планшета»</a> практики 3). В планшете <code>n</code> лунок, их номера начинаются с 1. Выведите номера всех лунок в одну строку через пробел. Числа получите функцией <code>range()</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Целое число <code>n</code>, 1 ≤ <code>n</code> ≤ 96.</p>
-          <h4>Выходные данные</h4>
-          <p>Числа от 1 до <code>n</code> через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>7</pre></td><td><pre>1 2 3 4 5 6 7 </pre></td></tr>
-                <tr><td><pre>1</pre></td><td><pre>1 </pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_02_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 4.2.1. Номера лунок</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В планшете <code>count</code> лунок, их номера начинаются с 1. Выведите номера всех лунок в одну строку через пробел. Числа получите функцией <code>range()</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Целое число <code>count</code>, 1 ≤ <code>count</code> ≤ 96.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Числа от 1 до <code>count</code> через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">7</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1 2 3 4 5 6 <span class="we-hl">7</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ряд начинается с 1 и заканчивается на <code>n</code>: конец <code>n + 1</code> в <code>range()</code> не входит. Печать с <code>end=" "</code> ставит числа в одну строку через пробел.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>7</pre></td><td><pre>1 2 3 4 5 6 7 </pre></td></tr>
+                      <tr><td><pre>1</pre></td><td><pre>1 </pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Планшет — пластина с углублениями, лунками, в которые ставят пробы. При обходе номеров range(1, count + 1) дает ровно номера от 1 до count: правая граница в него не входит, поэтому ее увеличивают на единицу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Планшет</strong> — пластина с углублениями, лунками, в которые ставят пробы.</li>
+                  <li><strong>Лунка</strong> — одно углубление планшета.</li>
+                  <li><strong>Функция range()</strong> — выдает числа от начального до конечного, не включая конечное.</li>
+                  <li><strong>Параметр end у print()</strong> — задает, чем заканчивается вывод; end=" " печатает через пробел.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число лунок: <code>count = int(input())</code>.</li>
+                  <li>Номера начинаются с 1 и идут по count: <code>range(1, count + 1)</code>.</li>
+                  <li>В цикле печатайте число с пробелом: <code>print(index, end=" ")</code>.</li>
+                  <li>После цикла добавьте <code>print()</code> для перевода строки; сверьтесь с примером: при count = 7 получается <code>1 2 3 4 5 6 7</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_02_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 4.2.1. Кодоны</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Длина последовательности кратна трем. Выведите ее кодоны, тройки подряд идущих букв (определение в теории раздела), каждый с новой строки. Кодоны не перекрываются: первый занимает буквы с индексами 0–2, второй 3–5 и так далее.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T; длина от 3 до 99 и кратна 3.</p>
-          <h4>Выходные данные</h4>
-          <p>Кодоны по одному в строке.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGGCCTAA</pre></td><td><pre>ATG
+              <h3>Упражнение 4.2.1. Кодоны</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Длина последовательности кратна трем. Выведите ее кодоны, тройки подряд идущих букв (определение в теории раздела), каждый с новой строки. Кодоны не перекрываются: первый занимает буквы с индексами 0–2, второй 3–5 и так далее.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T; длина от 3 до 99 и кратна 3.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Кодоны по одному в строке.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">ATG</span><span class="we-seg we-seg-2">GCC</span><span class="we-seg we-seg-3">TAA</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-1">ATG</span><br><span class="we-seg we-seg-2">GCC</span><br><span class="we-seg we-seg-3">TAA</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Строка делится на тройки без перекрытия: первая занимает индексы 0–2, вторая 3–5, третья 6–8. Каждый кодон печатается с новой строки; цвет показывает, какая тройка откуда взялась.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGGCCTAA</pre></td><td><pre>ATG
 GCC
 TAA</pre></td></tr>
-                <tr><td><pre>TGA</pre></td><td><pre>TGA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_02_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                      <tr><td><pre>TGA</pre></td><td><pre>TGA</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Кодон — тройка нуклеотидов, поэтому шаг range равен 3: индексы 0, 3, 6 и так далее задают начала кодонов. Срез seq[index:index + 3] вырезает очередную тройку.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>range() с шагом</strong> — третий аргумент задает разность между соседними числами.</li>
+                  <li><strong>Срез seq[index:index + 3]</strong> — три символа, начиная с символа с номером index.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Начала кодонов идут через три индекса: <code>range(0, len(seq), 3)</code>.</li>
+                  <li>Очередную тройку вырезает срез <code>seq[index:index + 3]</code>.</li>
+                  <li>Печатайте каждый кодон с новой строки; сверьтесь с примером: ATGGCCTAA дает ATG, GCC и TAA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_02_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 4.2.1. Кодоны с конца</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Рамка считывания f (1, 2 или 3) означает, что первый кодон начинается с позиции f; позиции нумеруются с 1. Неполный кодон в конце строки в рамку не входит. Выведите все полные кодоны рамки f в обратном порядке: сначала последний, затем предпоследний и так далее, каждый с новой строки. Буквы внутри кодона идут в прямом порядке. Если в рамке нет ни одного полного кодона, выведите NO.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сначала найдите, где начинается последний полный кодон рамки: сколько полных кодонов помещается в строке, если начать с позиции f? Дальше <code>range()</code> с шагом −3.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из букв A, C, G, T длиной от 1 до 100, во второй число f: 1, 2 или 3.</p>
-          <h4>Выходные данные</h4>
-          <p>Кодоны по одному в строке или NO.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AATGGCCTAAG
+              <h3>Упражнение 4.2.1. Кодоны с конца</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Рамка считывания с номером frame (1, 2 или 3) означает, что первый кодон начинается с позиции frame; позиции нумеруются с 1. Неполный кодон в конце строки в рамку не входит. Выведите все полные кодоны рамки frame в обратном порядке: сначала последний, затем предпоследний и так далее, каждый с новой строки. Буквы внутри кодона идут в прямом порядке. Если в рамке нет ни одного полного кодона, выведите NO.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из букв A, C, G, T длиной от 1 до 100, во второй число frame: 1, 2 или 3.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Кодоны по одному в строке или NO.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<span class="we-seg we-seg-1">ATG</span><span class="we-seg we-seg-2">GCC</span><span class="we-seg we-seg-3">TAA</span>G<br>2</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-seg we-seg-3">TAA</span><br><span class="we-seg we-seg-2">GCC</span><br><span class="we-seg we-seg-1">ATG</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Рамка frame = 2 начинает чтение со второй позиции: буква A остается перед рамкой, дальше идут полные тройки ATG, GCC и TAA, а последняя G не образует полного кодона. Вывод идет с конца: TAA, GCC, ATG.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AATGGCCTAAG
 2</pre></td><td><pre>TAA
 GCC
 ATG</pre></td></tr>
-                <tr><td><pre>ATGCA
+                      <tr><td><pre>ATGCA
 3</pre></td><td><pre>GCA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_02_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Рамка считывания сдвигает начало разбиения: при рамке frame первый кодон начинается с позиции frame, то есть с индекса frame - 1. Число полных кодонов — (длина - frame + 1) // 3, а обратный обход задает отрицательный шаг range.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Рамка считывания</strong> — выбор первой позиции, с которой начинают читаться кодоны.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                  <li><strong>Отрицательный шаг range</strong> — шаг -3 перебирает индексы от большего к меньшему.</li>
+                  <li><strong>Оператор //</strong> — целочисленное деление: отбрасывает дробную часть.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность и номер рамки: <code>seq = input()</code>, <code>frame = int(input())</code>.</li>
+                  <li>Число полных кодонов: <code>length = (len(seq) - frame + 1) // 3</code>; если оно не больше нуля, выведите NO.</li>
+                  <li>Индекс последнего кодона: <code>last = frame - 1 + (length - 1) * 3</code>.</li>
+                  <li>Идите назад шагом -3: <code>range(last, frame - 2, -3)</code> и печатайте <code>seq[index:index + 3]</code>; сверьтесь с примером: AATGGCCTAAG при рамке 2 дает TAA, GCC и ATG.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_02_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -280,81 +421,221 @@ ATG</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 4.2. Позиции буквы G</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Выведите номера всех позиций, на которых стоит буква G, через пробел в порядке возрастания. Позиции нумеруются с 1. Если буквы G нет, выведите NO.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Номера позиций через пробел или NO.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AGGTCG</pre></td><td><pre>2 3 6</pre></td></tr>
-                <tr><td><pre>ATTA</pre></td><td><pre>NO</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_02_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 4.2. Позиции буквы G</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Выведите номера всех позиций, на которых стоит буква G, через пробел в порядке возрастания. Позиции нумеруются с 1. Если буквы G нет, выведите NO.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номера позиций через пробел или NO.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<span class="we-hl">G</span><span class="we-hl">G</span>TC<span class="we-hl">G</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">2 3 6</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буквы G стоят на позициях 2, 3 и 6; позиции нумеруются с 1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AGGTCG</pre></td><td><pre>2 3 6</pre></td></tr>
+                      <tr><td><pre>ATTA</pre></td><td><pre>NO</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Индекс символа в строке начинается с 0, а позиция — с 1, поэтому позиция равна index + 1. Номера собирают в строку, а после цикла проверяют, нашлась ли хоть одна буква G.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
+                  <li><strong>Цикл по range(len(seq))</strong> — перебирает индексы всех символов строки.</li>
+                  <li><strong>Метод strip()</strong> — убирает пробелы по краям строки.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Заведите пустую строку <code>pos = ""</code> и цикл по индексам: <code>for index in range(len(seq)):</code>.</li>
+                  <li>Буква G встречается, если <code>seq[index] == "G"</code>; добавьте номер: <code>pos = pos + str(index + 1) + " "</code>.</li>
+                  <li>Если pos осталась пустой, замените ее на NO, иначе уберите лишний пробел через <code>pos.strip()</code>; сверьтесь с примером: AGGTCG дает 2 3 6, а ATTA — NO.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_02_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 4.2. Участки кольцевой ДНК</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмида, небольшая кольцевая молекула ДНК, замкнута в кольцо: за последней буквой сразу идет первая. Поэтому участок, который начинается у конца записи, продолжается с ее начала. Для каждой позиции записи по порядку выведите участок длины k, который с нее начинается. Например, у кольца <code>ACGTT</code> при k = 3 последние участки <code>TTA</code> и <code>TAC</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке запись кольца из букв A, C, G, T длиной от 1 до 100, во второй число k от 1 до длины записи.</p>
-          <h4>Выходные данные</h4>
-          <p>Участки по одному в строке, столько же строк, сколько букв в записи.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTT
+              <h3>Задача со звездочкой 4.2. Участки кольцевой ДНК</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Плазмида, небольшая кольцевая молекула ДНК, замкнута в кольцо: за последней буквой сразу идет первая. Поэтому участок, который начинается у конца записи, продолжается с ее начала. Для каждой позиции записи по порядку выведите участок длины size, который с нее начинается. Например, у кольца <code>ACGTT</code> при size = 3 последние участки <code>TTA</code> и <code>TAC</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке запись кольца из букв A, C, G, T длиной от 1 до 100, во второй число size от 1 до длины записи.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Участки по одному в строке, столько же строк, сколько букв в записи.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGTT<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ACG<br>CGT<br>GTT<br><span class="we-hl">TTA</span><br><span class="we-hl">TAC</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Участки TTA и TAC переходят через конец записи и продолжаются с ее начала.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTT
 3</pre></td><td><pre>ACG
 CGT
 GTT
 TTA
 TAC</pre></td></tr>
-                <tr><td><pre>ATG
+                      <tr><td><pre>ATG
 3</pre></td><td><pre>ATG
 TGA
 GAT</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_02_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Кольцо удобно развернуть в удвоенную запись: seq + seq. Тогда участок, который переходит через конец, становится обычным срезом удвоенной строки, и цикл по длине кольца выдает все участки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
+                  <li><strong>Кольцевая запись</strong> — за последней буквой записи сразу идет первая.</li>
+                  <li><strong>Срез</strong> — кусок строки, вырезанный по индексам.</li>
+                  <li><strong>Удвоенная строка</strong> — запись seq + seq, в которой видны участки через конец.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте запись кольца и длину участка: <code>seq = input()</code>, <code>size = int(input())</code>.</li>
+                  <li>Удвойте запись: <code>loop = seq + seq</code>.</li>
+                  <li>Начала участков — все позиции записи: <code>for index in range(len(seq)):</code>.</li>
+                  <li>Печатайте участок срезом <code>loop[index:index + size]</code>; сверьтесь с примером: ACGTT при size = 3 дает ACG, CGT, GTT, TTA и TAC.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_02_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 4.2. Запись в формате GenBank</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В базе <a href="https://www.ncbi.nlm.nih.gov/genbank/">GenBank</a> последовательность печатают так: по 60 букв в строке, буквы разбиты на группы по 10 через пробел, а в начале строки стоит номер ее первой буквы (буквы нумеруются с 1). Например, последовательность из 25 букв выглядит как <code>1 ACGTACGTAC GTACGTACGT ACGTA</code>. Напечатайте последовательность в этом формате; номер от букв отделяется одним пробелом.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Позиция i начинает новую строку, если <code>i % 60 == 0</code>, и новую группу, если <code>i % 10 == 0</code>. Готовую строку печатайте, когда начинается следующая, и не забудьте последнюю.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка из букв длиной от 1 до 300.</p>
-          <h4>Выходные данные</h4>
-          <p>Строки записи; в последней строке может быть меньше 60 букв.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ACGTACGTACGTACGTACGTACGTA</pre></td><td><pre>1 ACGTACGTAC GTACGTACGT ACGTA</pre></td></tr>
-                <tr><td><pre>gatcctccatatacaacggtatctccacctcaggtttagatctcaacaacggaaccattgccgacatgagacagttaggtatcgtcgagagttacaagctaaaacgagcagtagtcagctctgcatctgaagc</pre></td><td><pre>1 gatcctccat atacaacggt atctccacct caggtttaga tctcaacaac ggaaccattg
+              <h3>Задача со звездочкой 4.2. Запись в формате GenBank</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В базе <a href="https://www.ncbi.nlm.nih.gov/genbank/">GenBank</a> последовательность печатают так: по 60 букв в строке, буквы разбиты на группы по 10 через пробел, а в начале строки стоит номер ее первой буквы (буквы нумеруются с 1). Например, последовательность из 25 букв выглядит как <code>1 ACGTACGTAC GTACGTACGT ACGTA</code>. Напечатайте последовательность в этом формате; номер от букв отделяется одним пробелом.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка из букв длиной от 1 до 300.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Строки записи; в последней строке может быть меньше 60 букв.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ACGTACGTACGTACGTACGTACGTA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1 <span class="we-seg we-seg-1">ACGTACGTAC</span> <span class="we-seg we-seg-2">GTACGTACGT</span> <span class="we-seg we-seg-3">ACGTA</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">25 букв укладываются в группы по 10, 10 и 5; номер в начале строки — позиция ее первой буквы.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ACGTACGTACGTACGTACGTACGTA</pre></td><td><pre>1 ACGTACGTAC GTACGTACGT ACGTA</pre></td></tr>
+                      <tr><td><pre>gatcctccatatacaacggtatctccacctcaggtttagatctcaacaacggaaccattgccgacatgagacagttaggtatcgtcgagagttacaagctaaaacgagcagtagtcagctctgcatctgaagc</pre></td><td><pre>1 gatcctccat atacaacggt atctccacct caggtttaga tctcaacaac ggaaccattg
 61 ccgacatgag acagttaggt atcgtcgaga gttacaagct aaaacgagca gtagtcagct
 121 ctgcatctga agc</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t4_02_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В формате GenBank строки по 60 букв, а буквы внутри строки разбиты на группы по 10. Номер строки — это номер ее первой буквы, то есть index + 1 в момент, когда index делится на 60 без остатка.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GenBank</strong> — база последовательностей, в которой принят такой формат записи.</li>
+                  <li><strong>Номер строки</strong> — номер первой буквы строки; нумерация начинается с 1.</li>
+                  <li><strong>Остаток %</strong> — остаток от деления; равен 0 в начале каждой строки и группы.</li>
+                  <li><strong>Пробел-разделитель</strong> — номер отделяется от букв одним пробелом.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>; заведите пустую строку <code>line = ""</code>.</li>
+                  <li>В цикле <code>for index in range(len(seq)):</code> начало строки — это <code>index % 60 == 0</code>: напечатайте прежнюю строку и начните новую с номера <code>str(index + 1) + " "</code>.</li>
+                  <li>Внутри строки каждая группа из 10 букв начинается при <code>index % 10 == 0</code> — добавьте пробел.</li>
+                  <li>Допришите букву <code>seq[index]</code>, после цикла напечатайте последнюю строку; сверьтесь с примером: 25 букв дают <code>1 ACGTACGTAC GTACGTACGT ACGTA</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t4_02_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

@@ -183,75 +183,213 @@ True</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.4.1. Видовое название</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Латинское название вида пишут так: род с заглавной буквы, вид со строчной, например <code>Mus musculus</code>. Название ввели в произвольном регистре. Выведите его в правильной записи.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: название вида из двух слов латинскими буквами через один пробел, буквы в любом регистре.</p>
-          <h4>Выходные данные</h4>
-          <p>Название, в котором заглавная только первая буква.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>hOmO SaPiEnS</pre></td><td><pre>Homo sapiens</pre></td></tr>
-                <tr><td><pre>Caenorhabditis Elegans</pre></td><td><pre>Caenorhabditis elegans</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 2.4.1. Видовое название</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Латинское название вида пишут так: род с заглавной буквы, вид со строчной. Название ввели в произвольном регистре. Выведите его в правильной записи.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: название вида из двух слов латинскими буквами через один пробел, буквы в любом регистре.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Название, в котором заглавная только первая буква.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">hOmO SaPiEnS</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">H</span>omo <span class="we-hl">s</span>apiens</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первая буква названия переводится в верхний регистр, остальные — в нижний: hOmO SaPiEnS превращается в Homo sapiens.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>hOmO SaPiEnS</pre></td><td><pre>Homo sapiens</pre></td></tr>
+                      <tr><td><pre>Caenorhabditis Elegans</pre></td><td><pre>Caenorhabditis elegans</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Двойное латинское название — биномиальная номенклатура: первое слово обозначает род, второе — вид. Такая запись едина для всех биологов мира, поэтому важно соблюдать в ней регистр.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Биномиальная номенклатура</strong> — двойное латинское название вида: род и видовой эпитет.</li>
+                  <li><strong>Род</strong> — группа близких видов; в названии пишется первым, с заглавной буквы.</li>
+                  <li><strong>Видовой эпитет</strong> — второе слово названия; пишется со строчной буквы.</li>
+                  <li><strong>Метод capitalize()</strong> — делает первую букву строки заглавной, а остальные строчными.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>name = input()</code>.</li>
+                  <li>Метод <code>capitalize()</code> приводит строку к нужной записи: первая буква заглавная, остальные строчные.</li>
+                  <li>Выведите результат: <code>print(name.capitalize())</code>.</li>
+                  <li>Сверьтесь с примером: hOmO SaPiEnS превращается в Homo sapiens.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.4.1. Символ гена человека и мыши</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Символы генов человека пишут заглавными буквами (<code>PAX6</code>), а у мыши заглавной оставляют только первую букву (<code>Pax6</code>). Символ гена ввели в произвольном регистре. Выведите его запись для человека и для мыши.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: символ гена из латинских букв и цифр, буквы в любом регистре. Символ начинается с буквы.</p>
-          <h4>Выходные данные</h4>
-          <p>Две строки: в первой символ гена человека, во второй символ гена мыши.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>pax6</pre></td><td><pre>PAX6
+              <h3>Упражнение 2.4.1. Символ гена человека и мыши</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Символы генов человека пишут заглавными буквами (<code>PAX6</code>), а у мыши заглавной оставляют только первую букву (<code>Pax6</code>). Символ гена ввели в произвольном регистре. Выведите его запись для человека и для мыши.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: символ гена из латинских букв и цифр, буквы в любом регистре. Символ начинается с буквы.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Две строки: в первой символ гена человека, во второй символ гена мыши.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">pax6</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">PAX6</span><br><span class="we-hl">Pax6</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Из pax6 для человека получается PAX6 — все буквы заглавные, для мыши — Pax6, где заглавная только первая буква.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>pax6</pre></td><td><pre>PAX6
 Pax6</pre></td></tr>
-                <tr><td><pre>CD8A</pre></td><td><pre>CD8A
+                      <tr><td><pre>CD8A</pre></td><td><pre>CD8A
 Cd8a</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Символы генов у разных организмов записывают по-разному: у человека все буквы заглавные, у мыши только первая. Один и тот же ген в статьях о человеке и о мыши выглядит по-разному, и переводят его именно сменой регистра.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Символ гена</strong> — короткое имя гена из латинских букв и цифр.</li>
+                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Метод capitalize()</strong> — делает первую букву заглавной, а остальные строчными.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте строку: <code>symbol = input()</code>.</li>
+                  <li>Для человека все буквы заглавные: <code>symbol.upper()</code>.</li>
+                  <li>Для мыши заглавная только первая: <code>symbol.capitalize()</code>.</li>
+                  <li>Напечатайте обе записи: <code>print(symbol.upper())</code>, затем <code>print(symbol.capitalize())</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.4.1. Порядок в каталоге</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В каталоге коллекции названия видов расставлены по алфавиту без учета регистра: <code>arabidopsis thaliana</code> стоит раньше <code>Zea mays</code>. Названия в каталог вносили разные люди, и регистр в них разный. Определите, стоит ли первое название в каталоге раньше второго.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сравните <code>"Zea mays" &lt; "arabidopsis thaliana"</code> в своем редакторе и вспомните, в каком порядке Python расставляет заглавные и строчные буквы.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки: два названия вида латинскими буквами, буквы в любом регистре, слова через один пробел.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если первое название стоит в каталоге строго раньше второго, иначе <code>False</code>. Названия, которые различаются только регистром, стоят на одном месте.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>Zea mays
+              <h3>Упражнение 2.4.1. Порядок в каталоге</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В каталоге коллекции названия видов расставлены по алфавиту без учета регистра: <code>arabidopsis thaliana</code> стоит раньше <code>Zea mays</code>. Названия в каталог вносили разные люди, и регистр в них разный. Определите, стоит ли первое название в каталоге раньше второго.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки: два названия вида латинскими буквами, буквы в любом регистре, слова через один пробел.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если первое название стоит в каталоге строго раньше второго, иначе <code>False</code>. Названия, которые различаются только регистром, стоят на одном месте.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">Zea mays</span><br><span class="we-hl">arabidopsis thaliana</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">False</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Без учета регистра arabidopsis thaliana стоит раньше Zea mays, поэтому первое название не раньше второго — False.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>Zea mays
 arabidopsis thaliana</pre></td><td><pre>False</pre></td></tr>
-                <tr><td><pre>Danio rerio
+                      <tr><td><pre>Danio rerio
 DANIO RERIO</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Сравнение строк в Python идет по кодам символов, а заглавные буквы стоят в таблице раньше строчных. Поэтому Zea mays оказалось бы раньше arabidopsis thaliana, хотя в каталоге порядок другой. Приведение к одному регистру убирает эту разницу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Сравнение строк</strong> — проверка, какая строка идет раньше по кодам символов.</li>
+                  <li><strong>Код символа</strong> — число, под которым символ хранится в таблице; у заглавных букв оно меньше, чем у строчных.</li>
+                  <li><strong>Метод lower()</strong> — переводит все буквы строки в строчные.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>first = input()</code> и <code>second = input()</code>.</li>
+                  <li>Приведите оба названия к нижнему регистру: <code>first.lower()</code> и <code>second.lower()</code>.</li>
+                  <li>Сравните строки строгим оператором <code>&lt;</code>.</li>
+                  <li>Выведите: <code>print(first.lower() &lt; second.lower())</code>; сверьтесь с примером: Zea mays и arabidopsis thaliana дают False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -323,77 +461,214 @@ G</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 2.4.2. Сколько раз встречается мотив</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны последовательность и мотив. Посчитайте методом <code>count()</code>, сколько раз мотив встречается в последовательности.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число: сколько раз мотив встречается в последовательности (вхождения не перекрываются).</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CCGATCGATCAAGATC
+              <h3>Упражнение 2.4.2. Сколько раз встречается мотив</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны последовательность и мотив. Посчитайте методом <code>count()</code>, сколько раз мотив встречается в последовательности.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число: сколько раз мотив встречается в последовательности (вхождения не перекрываются).</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CC<span class="we-hl">GATC</span><span class="we-hl">GATC</span>AA<span class="we-hl">GATC</span><br>GATC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив GATC стоит в CCGATCGATCAAGATC три раза без перекрытий; в ACGTACGT его нет, поэтому там ответ 0.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CCGATCGATCAAGATC
 GATC</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ACGTACGT
+                      <tr><td><pre>ACGTACGT
 TTT</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Число вхождений мотива — простая характеристика повторов и сайтов в последовательности. Метод <code>count()</code> считает вхождения без перекрытия: в GAGAGA мотив GAG найден один раз.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод count()</strong> — считает, сколько раз подстрока встречается в строке.</li>
+                  <li><strong>Вхождение</strong> — место в строке, где начинается мотив.</li>
+                  <li><strong>Перекрывающиеся вхождения</strong> — вхождения, которые делят часть символов, например GAG и AGA в GAGA.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Метод <code>count()</code> считает вхождения мотива: <code>seq.count(motif)</code>.</li>
+                  <li>Выведите результат: <code>print(seq.count(motif))</code>.</li>
+                  <li>Сверьтесь с примером: GATC встречается в CCGATCGATCAAGATC три раза.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 2.4.2. Позиция мотива</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Найдите позицию, с которой мотив первый раз встречается в последовательности. Позиции нумеруются с 1, как принято в биологии. Если мотива в последовательности нет, выведите 0.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число: позиция первого вхождения мотива или 0, если мотива нет.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TTGAATTCGG
+              <h3>Упражнение 2.4.2. Позиция мотива</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Найдите позицию, с которой мотив первый раз встречается в последовательности. Позиции нумеруются с 1, как принято в биологии. Если мотива в последовательности нет, выведите 0.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число: позиция первого вхождения мотива или 0, если мотива нет.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">TT<span class="we-hl">GAATTC</span>GG<br>GAATTC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив начинается с индекса 2, а позиции нумеруются с 1, поэтому ответ 3; когда мотива нет, find() дает −1, и выводится 0.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TTGAATTCGG
 GAATTC</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ACGTACGT
+                      <tr><td><pre>ACGTACGT
 GGG</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Метод <code>find()</code> возвращает индекс с нуля, а биологи нумеруют позиции с единицы: к результату прибавляют 1. Если мотива нет, <code>find()</code> возвращает −1, и после прибавления единицы получается 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод find()</strong> — возвращает индекс первого вхождения подстроки или −1, если ее нет.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
+                  <li><strong>Индекс</strong> — номер символа в строке; в Python нумерация начинается с 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Индекс первого вхождения: <code>seq.find(motif)</code>.</li>
+                  <li>Прибавьте единицу, чтобы получить позицию: <code>seq.find(motif) + 1</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: GAATTC в TTGAATTCGG стоит в позиции 3, а отсутствующий мотив дает 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 2.4.2. Участок между мотивами</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Мотив встречается в последовательности несколько раз. Выведите участок, который лежит между концом первого вхождения мотива и началом последнего. Сами мотивы на краях в участок не входят.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Начало первого вхождения дает <code>find()</code>, начало последнего <code>rfind()</code>. На сколько символов конец вхождения правее его начала?</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 3 до 100, во второй мотив из тех же букв. Мотив встречается в последовательности не меньше двух раз, первое и последнее вхождения не перекрываются, и между ними есть хотя бы один нуклеотид.</p>
-          <h4>Выходные данные</h4>
-          <p>Нуклеотиды между первым и последним вхождениями мотива.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AAGATCTTTGATCAA
+              <h3>Упражнение 2.4.2. Участок между мотивами</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Мотив встречается в последовательности несколько раз. Выведите участок, который лежит между концом первого вхождения мотива и началом последнего. Сами мотивы на краях в участок не входят.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из заглавных букв A, C, G, T длиной от 3 до 100, во второй мотив из тех же букв. Мотив встречается в последовательности не меньше двух раз, первое и последнее вхождения не перекрываются, и между ними есть хотя бы один нуклеотид.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Нуклеотиды между первым и последним вхождениями мотива.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AA<span class="we-hl">GATC</span>TTT<span class="we-hl">GATC</span>AA<br>GATC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">TTT</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первое вхождение занимает индексы 2–5, последнее — 9–12; между ними остаются индексы 6, 7 и 8 — TTT.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AAGATCTTTGATCAA
 GATC</pre></td><td><pre>TTT</pre></td></tr>
-                <tr><td><pre>GATCAGATCGATC
+                      <tr><td><pre>GATCAGATCGATC
 GATC</pre></td><td><pre>AGATC</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Участок между двумя сайтами — например, вставка между повторами — выделяют по первому и последнему вхождению. Начало первого находит <code>find()</code>, начало последнего — <code>rfind()</code>, а между ними лежит нужный срез.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Метод find()</strong> — возвращает индекс первого вхождения подстроки.</li>
+                  <li><strong>Метод rfind()</strong> — возвращает индекс последнего вхождения подстроки.</li>
+                  <li><strong>Срез</strong> — часть строки, заданная границами.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Первый мотив кончается на индексе <code>seq.find(motif) + len(motif)</code> — отсюда начинается участок.</li>
+                  <li>Последний мотив начинается на индексе <code>seq.rfind(motif)</code> — здесь участок кончается.</li>
+                  <li>Выведите срез от <code>seq.find(motif) + len(motif)</code> до <code>seq.rfind(motif)</code> — между первым и последним мотивом; сверьтесь с примером: в AAGATCTTTGATCAA между мотивами стоит TTT.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -404,78 +679,214 @@ GATC</pre></td><td><pre>AGATC</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 2.4. Мотив в повторах</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Повторами называют участки, которые много раз встречаются в геноме; в записях генома их помечают строчными буквами. Для поиска мотива регистр не важен: <code>gatc</code> и <code>GATC</code> обозначают один и тот же участок. Посчитайте, сколько раз мотив встречается в последовательности без учета регистра.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность из букв A, C, G, T, заглавных и строчных, во второй мотив из заглавных букв A, C, G, T. Длина обеих строк от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число: сколько раз мотив встречается в последовательности без учета регистра (вхождения не перекрываются).</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGgatcGATCaa
+              <h3>Задача со звездочкой 2.4. Мотив в повторах</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Для поиска мотива регистр не важен: <code>gatc</code> и <code>GATC</code> обозначают один и тот же участок. Посчитайте, сколько раз мотив встречается в последовательности без учета регистра.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность из букв A, C, G, T, заглавных и строчных, во второй мотив из заглавных букв A, C, G, T. Длина обеих строк от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число: сколько раз мотив встречается в последовательности без учета регистра (вхождения не перекрываются).</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG<span class="we-hl">gatc</span><span class="we-hl">GATC</span>aa<br>GATC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После приведения последовательности к одному регистру ATGgatcGATCaa превращается в ATGGATCGATCAA, и GATC встречается в ней два раза подряд.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGgatcGATCaa
 GATC</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>gatc
+                      <tr><td><pre>gatc
 GATC</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Повторы в записях генома помечают строчными буквами — это соглашение о записи, а не часть последовательности. Поэтому перед поиском мотива регистр приводят к одному виду.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Повтор</strong> — участок, который много раз встречается в геноме.</li>
+                  <li><strong>Регистр</strong> — запись буквы заглавной или строчной; на смысл последовательности не влияет.</li>
+                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Приведите последовательность к верхнему регистру: <code>seq.upper()</code>.</li>
+                  <li>Посчитайте мотив в приведенной строке: <code>seq.upper().count(motif)</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: ATGgatcGATCaa содержит GATC два раза.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 2.4. Номер кодона с мотивом</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих нуклеотидов. Последовательность делят на кодоны с первого нуклеотида и нумеруют их с 1. Найдите первое вхождение мотива и выведите номер кодона, в котором стоит первый нуклеотид этого вхождения. Если мотива в последовательности нет, выведите 0. Ветвления для этого не нужны.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Посчитайте по своей формуле ответ при <code>find()</code>, равном −1. Как <code>//</code> округляет отрицательные числа, разобрано на странице 06 первой практики.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число: номер кодона или 0, если мотива нет.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>CCATGGATCTAA
+              <h3>Задача со звездочкой 2.4. Номер кодона с мотивом</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Последовательность делят на кодоны с первого нуклеотида и нумеруют их с 1. Найдите первое вхождение мотива и выведите номер кодона, в котором стоит первый нуклеотид этого вхождения. Если мотива в последовательности нет, выведите 0. Ветвления для этого не нужны.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность, во второй мотив. Обе строки состоят из заглавных букв A, C, G, T, длина от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число: номер кодона или 0, если мотива нет.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">CC<span class="we-seg we-seg-1">ATG</span><span class="we-hl">GATC</span>TAA<br>GATC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Мотив начинается с индекса 5; целая часть 5 // 3 = 1 показывает, что до него один полный кодон, поэтому мотив попадает в кодон 2.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>CCATGGATCTAA
 GATC</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>ATGCCCTTT
+                      <tr><td><pre>ATGCCCTTT
 GGG</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Номер кодона показывает, в какой тройке началась находка: так проверяют, не сбилась ли рамка считывания. Ветвление не нужно, потому что <code>find()</code> возвращает −1, и формула сама дает 0.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Метод find()</strong> — возвращает индекс первого вхождения подстроки или −1, если ее нет.</li>
+                  <li><strong>Ветвление</strong> — инструкция if, которая выбирает один из вариантов; здесь она не нужна.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Индекс начала вхождения: <code>seq.find(motif)</code>.</li>
+                  <li>Три нуклеотида на кодон: номер — это <code>seq.find(motif) // 3 + 1</code>.</li>
+                  <li>Проверьте случай без мотива: find() равен −1, −1 // 3 равно −1, и номер получается 0; выведите <code>print(seq.find(motif) // 3 + 1)</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 2.4. Сайты на кольце</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмида&nbsp;— небольшая кольцевая молекула ДНК. В файл ее записывают строкой, разрезав кольцо в одном месте, поэтому после последней позиции записи на кольце снова идет позиция 1. Поэтому вхождение мотива может начинаться в конце записи и продолжаться в ее начале. Посчитайте, сколько раз мотив встречается в кольцевой последовательности; каждое место на кольце считается один раз.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Чтобы увидеть вхождения через место разреза, к записи приписывают ее начало. Сколько нуклеотидов начала нужно, чтобы вхождение в самом начале записи не посчиталось второй раз?</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке последовательность плазмиды, во второй мотив. Обе строки из заглавных букв A, C, G, T; длина последовательности от 1 до 100, мотив не длиннее последовательности. Вхождения мотива на кольце не перекрываются.</p>
-          <h4>Выходные данные</h4>
-          <p>Целое число: сколько раз мотив встречается на кольце.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TTCAGAATTCAGGAA
+              <h3>Задача со звездочкой 2.4. Сайты на кольце</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В файл кольцевую молекулу записывают строкой, разрезав кольцо в одном месте, поэтому после последней позиции записи снова идет позиция 1. Вхождение мотива может начинаться в конце записи и продолжаться в ее начале. Посчитайте, сколько раз мотив встречается в кольцевой последовательности; каждое место на кольце считается один раз.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке последовательность плазмиды, во второй мотив. Обе строки из заглавных букв A, C, G, T; длина последовательности от 1 до 100, мотив не длиннее последовательности. Вхождения мотива на кольце не перекрываются.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Целое число: сколько раз мотив встречается на кольце.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">TTCA<span class="we-hl">GAATTC</span>AGGAA<br>GAATTC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Один GAATTC стоит в середине записи; второй начинается на G в позиции 13 и продолжается в начале записи буквами TTC, поэтому на кольце мотив встречается два раза.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TTCAGAATTCAGGAA
 GAATTC</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>AGCT
+                      <tr><td><pre>AGCT
 CTAG</pre></td><td><pre>1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t2_04_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>На кольце место вхождения считают один раз, хотя через разрез записи мотив виден только в удвоенной строке. Чтобы не посчитать вхождение дважды, к записи приписывают только начало мотива без последнего нуклеотида.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
+                  <li><strong>Кольцевая ДНК</strong> — молекула без концов: после последнего нуклеотида записи идет первый.</li>
+                  <li><strong>Метод count()</strong> — считает вхождения подстроки без перекрытия.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
+                  <li>Мотив через разрез виден в двойной записи, но полная двойная запись посчитала бы обычные вхождения дважды.</li>
+                  <li>Припишите к записи только начало длиной <code>len(motif) - 1</code>: <code>ring = seq + seq[:len(motif) - 1]</code>.</li>
+                  <li>Выведите <code>print(ring.count(motif))</code>; сверьтесь с примером: на TTCAGAATTCAGGAA мотив GAATTC встречается два раза.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t2_04_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

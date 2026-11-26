@@ -194,77 +194,218 @@ False True</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.1.1. Размер набора</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Набор последовательностей записан одной строкой через пробел. Выведите число последовательностей в наборе и последнюю последовательность. Превратите строку в список методом <code>split()</code>, число элементов дает <code>len()</code>, последний элемент дает индекс <code>-1</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Последовательности могут повторяться.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число последовательностей, во второй последняя последовательность.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATG CCA TTTT</pre></td><td><pre>3
+              <h3>Упражнение 5.1.1. Размер набора</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Набор последовательностей записан одной строкой через пробел. Выведите число последовательностей в наборе и последнюю последовательность. Превратите строку в список методом <code>split()</code>, число элементов дает <code>len()</code>, последний элемент дает индекс <code>-1</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30. Последовательности могут повторяться.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число последовательностей, во второй последняя последовательность.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG CCA <span class="we-hl">TTTT</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span><br>TTTT</code>
+                    </div>
+                  </div>
+                  <p class="we-note">split() делит строку по пробелам на три элемента: ATG, CCA и TTTT; len() возвращает 3, а индекс -1 — последний элемент TTTT.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATG CCA TTTT</pre></td><td><pre>3
 TTTT</pre></td></tr>
-                <tr><td><pre>GATTACA</pre></td><td><pre>1
+                      <tr><td><pre>GATTACA</pre></td><td><pre>1
 GATTACA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_01_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Метод split() режет строку по пробелам и выдает список. Число элементов дает функция len(), индексы списка считаются с нуля, поэтому последний элемент доступен по индексу -1.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Метод split()</strong> — режет строку по пробелам и выдает список слов.</li>
+                  <li><strong>Функция len()</strong> — возвращает число элементов списка или длину строки.</li>
+                  <li><strong>Индекс -1</strong> — последний элемент списка.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Превратите строку в список: <code>seqs = input().split()</code>.</li>
+                  <li>Число последовательностей дает <code>len(seqs)</code> — напечатайте его первой строкой.</li>
+                  <li>Последний элемент берите по индексу -1: <code>seqs[-1]</code>.</li>
+                  <li>Напечатайте его второй строкой; сверьтесь с примером: ATG CCA TTTT дают 3 и TTTT, а GATTACA — 1 и GATTACA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_01_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.1.1. Пополнение набора</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В наборе последовательностей нет повторов. Пришла новая партия последовательностей. Допишите в конец набора каждую последовательность партии, которой в наборе еще нет, в том порядке, в каком они идут в партии. Если последовательность встречается в партии несколько раз, она добавляется один раз. Выведите число последовательностей в пополненном наборе и сам набор.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке набор, во второй партия: от 1 до 20 последовательностей через пробел в каждой строке. Последовательности состоят из букв A, C, G, T, длина каждой от 1 до 30. В наборе повторов нет, в партии могут быть.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число последовательностей в пополненном наборе, во второй сам набор через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATG CCA
+              <h3>Упражнение 5.1.1. Пополнение набора</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В наборе последовательностей нет повторов. Пришла новая партия последовательностей. Допишите в конец набора каждую последовательность партии, которой в наборе еще нет, в том порядке, в каком они идут в партии. Если последовательность встречается в партии несколько раз, она добавляется один раз. Выведите число последовательностей в пополненном наборе и сам набор.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке набор, во второй партия: от 1 до 20 последовательностей через пробел в каждой строке. Последовательности состоят из букв A, C, G, T, длина каждой от 1 до 30. В наборе повторов нет, в партии могут быть.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число последовательностей в пополненном наборе, во второй сам набор через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG CCA<br>CCA <span class="we-hl">GGT</span> ATG <span class="we-hl">TTA</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span><br>ATG CCA GGT TTA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">CCA и ATG уже есть в наборе, добавляются только GGT и TTA — в том порядке, в каком идут в партии; получается ATG CCA GGT TTA, всего 4.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATG CCA
 CCA GGT ATG TTA</pre></td><td><pre>4
 ATG CCA GGT TTA</pre></td></tr>
-                <tr><td><pre>AAA
+                      <tr><td><pre>AAA
 AAA</pre></td><td><pre>1
 AAA</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_01_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Новую партию перебирают циклом и проверяют оператором in по текущему списку. Если последовательности там нет, ее дописывают в конец методом append(); проверка идет по уже пополненному списку, поэтому повторы внутри партии отбрасываются сами.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Метод split()</strong> — режет строку по пробелам и выдает список слов.</li>
+                  <li><strong>Оператор in</strong> — проверяет, есть ли значение в списке.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>.</li>
+                  <li>Переберите партию: <code>for sequence in input().split():</code>.</li>
+                  <li>Дописывайте только новые: при <code>sequence not in seqs</code> вызывайте <code>seqs.append(sequence)</code> — повтор в партии к этому моменту уже лежит в seqs.</li>
+                  <li>Выведите <code>len(seqs)</code> и <code>" ".join(seqs)</code>; сверьтесь с примером: ATG CCA и партия CCA GGT ATG TTA дают 4 и ATG CCA GGT TTA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_01_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.1.1. Повторы в наборе</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Некоторые последовательности встречаются в наборе несколько раз. Выведите все последовательности, которые встречаются больше одного раза, каждую один раз. Последовательность выводится в том порядке, в каком она встретилась второй раз: в наборе <code>T G G T</code> сначала повторилась G, затем T, поэтому ответ <code>G T</code>. Если повторов нет, выведите слово <code>нет</code>.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Храните два списка: последовательности, которые уже встретились, и найденные повторы.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Повторяющиеся последовательности через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATG CC ATG GA CC ATG</pre></td><td><pre>ATG CC</pre></td></tr>
-                <tr><td><pre>AC GT</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_01_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 5.1.1. Повторы в наборе</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Некоторые последовательности встречаются в наборе несколько раз. Выведите все последовательности, которые встречаются больше одного раза, каждую один раз. Последовательность выводится в том порядке, в каком она встретилась второй раз: в наборе <code>T G G T</code> сначала повторилась G, затем T, поэтому ответ <code>G T</code>. Если повторов нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Повторяющиеся последовательности через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">ATG</span> <span class="we-hl">CC</span> ATG GA CC ATG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATG CC</code>
+                    </div>
+                  </div>
+                  <p class="we-note">ATG второй раз встречается на третьей позиции, CC — на пятой; в этом порядке повторы и выводятся, а третье вхождение ATG уже ничего не меняет.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATG CC ATG GA CC ATG</pre></td><td><pre>ATG CC</pre></td></tr>
+                      <tr><td><pre>AC GT</pre></td><td><pre>нет</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Список seen хранит все встреченные последовательности, а repeats — уже найденные повторы. Последовательность добавляют в repeats в момент второго вхождения, поэтому порядок ответа задает момент повторения, а проверка not in repeats не дает вывести ее дважды.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Оператор in</strong> — проверяет, есть ли значение в списке.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Заведите два пустых списка: <code>seen = []</code> и <code>repeats = []</code>.</li>
+                  <li>Перебирайте последовательности: <code>for sequence in input().split():</code>.</li>
+                  <li>Повтор — это <code>sequence in seen</code> и при этом <code>sequence not in repeats</code>; тогда допишите sequence в repeats, а seen пополняйте всегда.</li>
+                  <li>Если repeats непуст, напечатайте <code>" ".join(repeats)</code>, иначе слово <code>нет</code>; сверьтесь с примером: ATG CC ATG GA CC ATG дают ATG CC.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_01_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -356,72 +497,213 @@ A ATG</pre></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.1. Не короче средней</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Средняя длина набора равна сумме длин всех последовательностей, деленной на их число. Выведите последовательности, длина которых не меньше средней, в том порядке, в каком они идут в наборе.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Подходящие последовательности через пробел одной строкой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AT GCA TTTT</pre></td><td><pre>GCA TTTT</pre></td></tr>
-                <tr><td><pre>AC GT</pre></td><td><pre>AC GT</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_01_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.1. Не короче средней</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Средняя длина набора равна сумме длин всех последовательностей, деленной на их число. Выведите последовательности, длина которых не меньше средней, в том порядке, в каком они идут в наборе.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Подходящие последовательности через пробел одной строкой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">AT <span class="we-hl">GCA</span> <span class="we-hl">TTTT</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">GCA TTTT</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длины 2, 3 и 4, средняя (2 + 3 + 4) / 3 = 3; AT короче средней и отбрасывается, GCA и TTTT остаются.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AT GCA TTTT</pre></td><td><pre>GCA TTTT</pre></td></tr>
+                      <tr><td><pre>AC GT</pre></td><td><pre>AC GT</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Среднюю считают в два прохода: первый накапливает суммарную длину, второй отбирает последовательности. Условие len(sequence) &gt;= average нестрогое, поэтому последовательности ровно средней длины тоже в ответе.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Средняя длина</strong> — сумма длин всех последовательностей, деленная на их число.</li>
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Нестрогое сравнение</strong> — &gt;= пропускает и равные значения.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>.</li>
+                  <li>В первом проходе накопите суммарную длину: в цикле <code>for sequence in seqs:</code> прибавляйте <code>len(sequence)</code> к <code>total</code>; средняя — <code>total / len(seqs)</code>.</li>
+                  <li>Во втором проходе отбирайте подходящие в новый список: при <code>len(sequence) &gt;= average</code> вызывайте <code>result.append(sequence)</code>.</li>
+                  <li>Напечатайте <code>" ".join(result)</code>; сверьтесь с примером: AT, GCA и TTTT дают GCA TTTT, а AC и GT — обе.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_01_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.1. Общие последовательности</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Даны два набора последовательностей. Выведите последовательности, которые есть в обоих наборах, каждую один раз, в том порядке, в каком они впервые встречаются в первом наборе. Если общих последовательностей нет, выведите слово <code>нет</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке первый набор, во второй строке второй набор: от 1 до 20 последовательностей через пробел в каждой строке. Последовательности состоят из букв A, C, G, T, длина каждой от 1 до 30, внутри набора могут повторяться.</p>
-          <h4>Выходные данные</h4>
-          <p>Общие последовательности через пробел одной строкой или слово <code>нет</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATG CCA GGT TTA
+              <h3>Задача со звездочкой 5.1. Общие последовательности</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны два набора последовательностей. Выведите последовательности, которые есть в обоих наборах, каждую один раз, в том порядке, в каком они впервые встречаются в первом наборе. Если общих последовательностей нет, выведите слово <code>нет</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке первый набор, во второй строке второй набор: от 1 до 20 последовательностей через пробел в каждой строке. Последовательности состоят из букв A, C, G, T, длина каждой от 1 до 30, внутри набора могут повторяться.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Общие последовательности через пробел одной строкой или слово <code>нет</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">ATG</span> CCA GGT <span class="we-hl">TTA</span><br><span class="we-hl">TTA</span> <span class="we-hl">ATG</span> CAT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">ATG TTA</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Общие последовательности — ATG и TTA; в первом наборе ATG стоит раньше, поэтому ответ ATG TTA. CAT есть только во втором наборе.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATG CCA GGT TTA
 TTA ATG CAT</pre></td><td><pre>ATG TTA</pre></td></tr>
-                <tr><td><pre>AC GT
+                      <tr><td><pre>AC GT
 CA TG</pre></td><td><pre>нет</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_01_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Общие последовательности ищут проверкой in по второму списку. Порядок вывода задает первый набор, а условие not in common убирает повторы, поэтому каждая общая последовательность выводится один раз.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Оператор in</strong> — проверяет, есть ли значение в списке.</li>
+                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте оба набора: <code>first = input().split()</code>, <code>second = input().split()</code>; заведите <code>common = []</code>.</li>
+                  <li>Перебирайте первый набор: <code>for sequence in first:</code>.</li>
+                  <li>Последовательность общая, если <code>sequence in second</code>; чтобы не повторяться, добавьте условие <code>sequence not in common</code>.</li>
+                  <li>Напечатайте общие через <code>" ".join(common)</code> или слово <code>нет</code>; сверьтесь с примером: ATG CCA GGT TTA и TTA ATG CAT дают ATG TTA.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_01_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.1. Самая частая последовательность</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Найдите последовательность, которая встречается в наборе чаще всех, и выведите ее и число ее вхождений. Если таких несколько, выберите ту, которая встретилась в наборе раньше. Метода списка, который считает элементы, на этой странице нет: храните рядом два списка, разные последовательности и их счетчики.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Последовательность и число ее вхождений через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>AT GC AT CC GC AT</pre></td><td><pre>AT 3</pre></td></tr>
-                <tr><td><pre>A C G</pre></td><td><pre>A 1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_01_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 5.1. Самая частая последовательность</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Найдите последовательность, которая встречается в наборе чаще всех, и выведите ее и число ее вхождений. Если таких несколько, выберите ту, которая встретилась в наборе раньше. Метода списка, который считает элементы, на этой странице нет: храните рядом два списка, разные последовательности и их счетчики.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: от 1 до 20 последовательностей через пробел. Каждая последовательность состоит из букв A, C, G, T, ее длина от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Последовательность и число ее вхождений через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">AT</span> GC <span class="we-hl">AT</span> CC GC <span class="we-hl">AT</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">AT <span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">AT встречается трижды, GC — дважды, CC — один раз; чаще всех AT, поэтому ответ AT 3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>AT GC AT CC GC AT</pre></td><td><pre>AT 3</pre></td></tr>
+                      <tr><td><pre>A C G</pre></td><td><pre>A 1</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Два списка ведут параллельно: uniq хранит разные последовательности, counts — их счетчики по тем же индексам. Новая последовательность получает счетчик 1, известная — прибавление единицы; лучший номер ищут строгим сравнением, чтобы при равенстве остался первый.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
+                  <li><strong>Параллельные списки</strong> — элемент с одним индексом в двух списках описывает одно и то же.</li>
+                  <li><strong>Счетчик</strong> — число вхождений последовательности.</li>
+                  <li><strong>Индекс</strong> — номер элемента в списке; нумерация начинается с 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте набор: <code>seqs = input().split()</code>; заведите <code>uniq = []</code> и <code>counts = []</code>.</li>
+                  <li>Перебирайте последовательности: <code>for sequence in seqs:</code> — новая (<code>sequence not in uniq</code>) получает счетчик 1.</li>
+                  <li>Для известной найдите ее номер циклом <code>for index in range(len(uniq)):</code> и увеличьте <code>counts[index]</code> на единицу.</li>
+                  <li>Лучший номер ищите строгим <code>counts[index] &gt; counts[best]</code>; выведите <code>uniq[best]</code> и его счетчик; сверьтесь с примером: AT GC AT CC GC AT дают AT 3.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_01_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

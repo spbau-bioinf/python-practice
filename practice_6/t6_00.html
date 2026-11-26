@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Обзор практики. Практика 6. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 6</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a class="current" aria-current="page" href="t6_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t6_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Словарь и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
+        <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
+        <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
+        <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
+        <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
+        <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">00</span>
+      <h1>Практика 6. Словари и множества</h1>
+      <p class="page-subtitle">Язык программирования Python · около 4 часов: 1,5 часа в аудитории, остальное самостоятельно</p>
+    </header>
+    <div class="page-body">
+    <main class="content" data-game-theme="knight">
+
+      <section class="goals">
+        <h2>На этом занятии вы</h2>
+        <ul>
+          <li>будете хранить пары «ключ&nbsp;— значение» в словаре, читать и заменять значение по ключу;</li>
+          <li>научитесь отличать отсутствующий ключ по ошибке <code>KeyError</code>, проверке <code>in</code> и методу <code>get()</code>;</li>
+          <li>разберетесь, как словарь находит ключ по хешу, что происходит при коллизии и чем хеш отличается от шифрования;</li>
+          <li>будете перебирать ключи, значения и пары и строить словарь из двух последовательностей;</li>
+          <li>научитесь считать частоты и собирать группы в словаре, пользоваться <code>setdefault()</code>, классами <code>Counter</code> и <code>defaultdict</code>;</li>
+          <li>будете хранить уникальные элементы во множестве и выполнять объединение, пересечение и разность;</li>
+          <li>соберете счетчики нуклеотидов и k-меров, переведете последовательность в белок и сравните наборы образцов.</li>
+        </ul>
+        <p>В практике 5 данные хранились в списках: чтобы найти запись по имени, список перебирали. Словарь находит значение по ключу сразу, а множество хранит только уникальные элементы и умеет сравнивать наборы. Практика закрепляет тему 6 «Словари и множества»: устройство словаря и хеширование, перебор и методы, множества и их операции, классы <code>Counter</code> и <code>defaultdict</code>, счетчики нуклеотидов и k-меров, дедупликацию и сравнение наборов образцов. Задачи частично опираются на идеи задач Rosalind: страница 05 — <a href="https://rosalind.info/problems/seto/">SETO</a>, 07 — <a href="https://rosalind.info/problems/dna/">DNA</a> и <a href="https://rosalind.info/problems/ba1b/">BA1B</a>, 08 — <a href="https://rosalind.info/problems/prot/">PROT</a>. Входные данные и формат вывода адаптированы к курсу.</p>
+        <p>Знать биологию и химию для этого курса не нужно. Каждое предметное понятие, без которого задачу не решить, объяснено на странице с задачей или на странице, куда с нее ведет ссылка. Если слово осталось непонятным&nbsp;— сообщите преподавателю.</p>
+      </section>
+      <h2>Как устроено занятие</h2>
+      <p>Каждый раздел страницы идет по шагам: <span class="step step-learn">Теория</span> объясняет понятие, <span class="step step-see">Пример</span> показывает готовый код с разбором, в шаге <span class="step step-try">Практика</span> вы меняете код и запускаете его, <span class="step step-task">Задача</span> содержит упражнение с проверкой. Раздел с меткой <span class="overview-badge">Необходимый минимум</span> касается темы следующих лекций: в нем только то, что нужно сейчас, и ссылка на тему, где она разбирается полностью; в этой практике таких разделов нет. У каждого упражнения три варианта: базовый, средний и продвинутый. Первым открывается вариант вашего уровня. В конце каждой страницы стоит <span class="step step-star">Задача со звездочкой</span>: необязательная задача тоже в трех вариантах, каждый сложнее упражнения своего уровня. В зачет она не входит, за решение в игровом режиме дается дополнительный опыт. Теоретических страниц без упражнений в этой практике нет: упражнения есть на всех страницах 01–09.</p>
+      <p>Теорию на каждой странице можно читать кратко или подробно: переключатель «Объем теории» стоит в шапке страницы справа от заголовка. Подробный вариант добавляет примеры, разборы по шагам и типичные ошибки. Упражнения в обоих вариантах одинаковые, для их решения достаточно краткого. В подробном варианте дополнительный материал помечен подписью «Дополнительно». Пунктирную рамку вокруг него включает настройка «Доп. материал» (по умолчанию она выключена).</p>
+      <p>Слова «тема 2», «тема 5», «тема 7» на страницах означают темы курса по рабочей программе: тему N разбирает лекция N, а практика N закрепляет ее упражнениями.</p>
+      <h2>Предметные понятия практики</h2>
+      <p>Здесь собраны понятия из условий упражнений, по одному короткому определению. Полное объяснение с примером дано на странице, где понятие нужно для задачи. Понятия из практики 5 (GC-состав, профиль — счетчики по столбцам выравнивания, консенсус) объяснены на ее страницах; ссылка на объяснение GC-состава стоит в таблице ниже. В этой практике буквы считают суммарно по всей строке: такой состав строки профилем не называют.</p>
+      <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Понятие</th><th>Что это</th><th>Страницы</th></tr></thead>
+            <tbody>
+              <tr><td>Нуклеотид</td><td>звено цепи ДНК или РНК; в записи ДНК используют A, C, G, T, в записи РНК вместо T используют U</td><td><a href="t6_01.html">01</a>, <a href="t6_04.html">04</a>, <a href="t6_05.html">05</a>, <a href="t6_07.html">07</a></td></tr>
+              <tr><td>Кодон</td><td>тройка подряд идущих нуклеотидов, читаемая в выбранной рамке считывания</td><td><a href="t6_07.html">07</a>, <a href="t6_08.html">08</a></td></tr>
+              <tr><td>Рамка считывания</td><td>выбранное начало чтения тройками: с первой, второй или третьей буквы</td><td><a href="t6_08.html">08</a></td></tr>
+              <tr><td>Генетический код</td><td>таблица, по которой каждый из 64 кодонов переводится в аминокислоту или в сигнал остановки</td><td><a href="t6_08.html">08</a></td></tr>
+              <tr><td>Аминокислота</td><td>звено белка; последовательность кодонов задает последовательность аминокислот</td><td><a href="t6_08.html">08</a></td></tr>
+              <tr><td>Стоп-кодон</td><td>стоп-кодон стандартного кода: UAA, UAG или UGA в записи РНК (в записи ДНК им соответствуют TAA, TAG, TGA); на нем трансляция в выбранной рамке останавливается</td><td><a href="t6_08.html">08</a></td></tr>
+              <tr><td>Трансляция</td><td>построение последовательности аминокислот по последовательности кодонов</td><td><a href="t6_08.html">08</a></td></tr>
+              <tr><td>k-мер</td><td>участок строки из <code>k</code> подряд идущих букв</td><td><a href="t6_07.html">07</a>, <a href="t6_09.html">09</a></td></tr>
+              <tr><td>Образец (sample)</td><td>биологический материал, последовательность которого читают</td><td><a href="t6_05.html">05</a>, <a href="t6_09.html">09</a></td></tr>
+              <tr><td>Дедупликация</td><td>удаление повторяющихся элементов</td><td><a href="t6_09.html">09</a></td></tr>
+              <tr><td>Мера Жаккара (индекс Жаккара)</td><td>доля общих элементов среди всех элементов двух наборов: <span class="formula">|A ∩ B| / |A ∪ B|</span></td><td><a href="t6_09.html">09</a></td></tr>
+              <tr><td>GC-состав</td><td>доля букв G и C среди всех букв последовательности, обычно в процентах</td><td><a href="../practice_5/t5_04.html">5.04</a>, <a href="t6_07.html">07</a></td></tr>
+            </tbody>
+          </table>
+      </div>
+      <h2>Как засчитывается практика</h2>
+      <p>Вы заранее выбираете уровень — кнопка «Выбрать уровень» стоит в верхней панели — и в каждом упражнении решаете вариант этого уровня. Вкладки упражнения открывают варианты для просмотра; засчитывается вариант вашего уровня. Какие файлы сохранить в репозиторий, написано в конце каждой страницы с упражнениями, в блоке «Сдача работы».</p>
+      <p>Уровень можно сменить только один раз за семестр. Уровень меняется через преподавателя: кнопки выбора уровня на сайте только переключают, какие варианты упражнений вы видите. Уже засчитанные практики при смене уровня остаются засчитанными. Итоговый зачет по курсу проходит по критериям уровня, выбранного на момент зачета.</p>
+      <p>Практика засчитывается после сдачи преподавателю:</p>
+      <ol>
+        <li>Перед сдачей практики положите решения всех упражнений вашего уровня в свой личный репозиторий.</li>
+        <li>Вы сдаете практику преподавателю целиком. Он проверяет, все ли упражнения выполнены и верны ли решения, и задает вопросы по теме практики.</li>
+        <li>Если сдача прошла успешно, практика засчитана, и в <a href="https://docs.google.com/spreadsheets/d/1DneGdOkNdwsL6xDocySuoYavpd_6FKl5w8uryAztxq0/edit?gid=231019579#gid=231019579">Google-таблице курса</a> появляется отметка.</li>
+      </ol>
+      <p>Если сдача не прошла, исправьте ошибки в упражнениях или повторите теорию, в зависимости от того, какие были ошибки, и сдайте практику повторно до конца семестра.</p>
+      <aside class="important"><p><strong>ИИ-помощники.</strong> В этом семестре не просите ИИ-помощников решить упражнение. Подсказки кода с ИИ в редакторе тоже пишут решение за вас, поэтому отключите их. Спрашивать ИИ о теории и о сообщениях об ошибках можно. Цель практики в том, чтобы вы научились писать код сами. Если решение верное, но вы не можете объяснить его и ответить на вопросы по теме, практика не засчитывается.</p>
+        <p><strong>Три практики подряд не с первой попытки.</strong> Если на среднем или продвинутом уровне три практики подряд не сданы с первой попытки, уровень понижается на один: с продвинутого на средний, со среднего на базовый. Повысить его в этом семестре будет уже нельзя. Уже засчитанные практики остаются засчитанными.</p></aside>
+      <div class="ladder">
+        <div><span class="lvl-tag lvl-basic">Базовый</span><b>Базовые варианты</b><p>Воспроизвести и немного изменить разобранное. На сдаче: объяснить свой код. Итог: тест по курсу.</p></div>
+        <div><span class="lvl-tag lvl-medium">Средний</span><b>Средние варианты</b><p>Самостоятельное применение. На сдаче: изменить решение под новое условие. Итог: защита 2–3 работ.</p></div>
+        <div><span class="lvl-tag lvl-advanced">Продвинутый</span><b>Продвинутые варианты</b><p>Перенос знаний, в каждом варианте неочевидный шаг. На сдаче: решить похожую задачу. Итог: зачет автоматически.</p></div>
+      </div>
+      <p>Сдайте работу до конца второго практического занятия, которое пройдет после разбора темы 6. Ориентир первого занятия — страницы 01–03 (по оценке около 80 минут); остальные страницы — самостоятельная работа.</p>
+      <h2>Страницы практики</h2>
+      <ol class="topic-nav">
+          <li><span class="topic-num">01</span><span class="topic-name">Словарь и ключи</span><a class="topic-link" href="t6_01.html">Открыть</a></li>
+          <li><span class="topic-num">02</span><span class="topic-name">Хеширование и ключи</span><a class="topic-link" href="t6_02.html">Открыть</a></li>
+          <li><span class="topic-num">03</span><span class="topic-name">Перебор словаря</span><a class="topic-link" href="t6_03.html">Открыть</a></li>
+          <li><span class="topic-num">04</span><span class="topic-name">Счетчик и группировка</span><a class="topic-link" href="t6_04.html">Открыть</a></li>
+          <li><span class="topic-num">05</span><span class="topic-name">Множества</span><a class="topic-link" href="t6_05.html">Открыть</a></li>
+          <li><span class="topic-num">06</span><span class="topic-name"><code>Counter</code> и <code>defaultdict</code></span><a class="topic-link" href="t6_06.html">Открыть</a></li>
+          <li><span class="topic-num">07</span><span class="topic-name">Частоты и k-меры</span><a class="topic-link" href="t6_07.html">Открыть</a></li>
+          <li><span class="topic-num">08</span><span class="topic-name">Кодоны и трансляция</span><a class="topic-link" href="t6_08.html">Открыть</a></li>
+          <li><span class="topic-num">09</span><span class="topic-name">Сравнение образцов</span><a class="topic-link" href="t6_09.html">Открыть</a></li>
+      </ol>
+      <aside class="nb"><p>Примеры можно изменять и запускать прямо на странице, под каждым упражнением есть проверка решения. Для этого нужен интернет; первый запуск занимает 10–30 секунд. Код можно проверять и в своем редакторе.</p></aside>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-next" href="t6_01.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">01 Словарь и ключи</span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

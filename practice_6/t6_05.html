@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Множества. Практика 6. Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../site-config.js"></script>
+  <script src="theme.js"></script>
+  <script src="data/practice.js"></script>
+  <script src="data/t6_05.js"></script>
+  <script src="checker.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+<div class="site">
+  <aside class="sidebar">
+    <p class="sidebar-title">Python · Практика 6</p>
+    <nav aria-label="Страницы практики">
+      <ul class="menu">
+        <li><a href="t6_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
+        <li class="menu-sub"><a href="t6_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Словарь и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a></li>
+        <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
+        <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Множество и его создание</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Операции над множествами</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Подмножество и проверка алфавита</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.1</span> <span class="anc-ex-title" data-variant="basic">Разные буквы</span><span class="anc-ex-title" data-variant="medium">Буквы по алфавиту</span><span class="anc-ex-title" data-variant="advanced">Есть ли повторы</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.2</span> <span class="anc-ex-title" data-variant="basic">Пересечение</span><span class="anc-ex-title" data-variant="medium">Объединение и разность</span><span class="anc-ex-title" data-variant="advanced">Дополнение до n</span></span></a></li><li><a class="anc-ex" href="#ex-3" data-ex-link="ex-3"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.3</span> <span class="anc-ex-title" data-variant="basic">Проверка алфавита</span><span class="anc-ex-title" data-variant="medium">Лишние буквы</span><span class="anc-ex-title" data-variant="advanced">Все ли нуклеотиды</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.5</span> <span class="anc-ex-title" data-variant="basic">Общие буквы</span><span class="anc-ex-title" data-variant="medium">Нет ли общих элементов</span><span class="anc-ex-title" data-variant="advanced">Дополнение набора</span></span></a></li></ul></li>
+        <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
+        <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
+        <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+      </ul>
+      <p class="menu-head">Мой уровень</p>
+      <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="page-header">
+      <span class="page-number" aria-hidden="true">05</span>
+      <p class="page-path"><span>Практика 6</span><span class="page-path-sep" aria-hidden="true">›</span><span>Словари и множества</span></p>
+      <h1>Множества</h1>
+      <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
+    </header>
+    <div class="page-body">
+    <main class="content">
+
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Строить множество функцией <code>set()</code>, выполнять объединение, пересечение и разность, проверять алфавит последовательности подмножеством.</p>
+
+      <section class="subsection" id="s1">
+        <h2>1. Множество и его создание</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Иногда значения словаря не нужны вовсе: важно лишь, какие ключи есть. Чтобы узнать, какие буквы встречаются в последовательности <code>"GATTACA"</code>, можно построить словарь-счетчик и взять его ключи, но множество делает то же короче.</p>
+        <p class="definition"><span class="term">Множество</span> (тип <code>set</code>) — неупорядоченная коллекция различных хешируемых объектов.</p>
+        <p>Функция <code>set()</code> принимает итерируемый объект и строит множество из его элементов; элементы должны быть хешируемыми, поэтому <code>set([[1]])</code> вызывает <code>TypeError</code>.</p>
+        <p class="th-full">Внутри множество устроено как словарь без значений, на той же хеш-таблице (<a href="t6_02.html">страница 02</a>). Следствия: элементы обязаны быть хешируемыми, проверка вхождения очень быстрая, памяти уходит заметно больше, чем у списка, а порядок элементов ненадежен. Метод <code>add()</code> добавляет элемент, если его нет. Метод <code>discard()</code> удаляет элемент, а отсутствующий элемент молча пропускает; метод <code>remove()</code> в той же ситуации вызвал бы <code>KeyError</code>. Непустое множество можно записать литералом в фигурных скобках: <code>{"A", "T"}</code>. Пустое множество так записать нельзя: пустые скобки <code>{}</code> создают пустой словарь, поэтому пустое множество создают вызовом <code>set()</code>.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 1. Создание множества</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">bases.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATTACA"</span></span>
+<span class="ln">bases <span class="tok-op">=</span> <span class="tok-builtin">set</span>(seq)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq), <span class="tok-builtin">len</span>(bases))  <span class="tok-out"># → 7 4</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(bases))         <span class="tok-out"># → ['A', 'C', 'G', 'T']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"U"</span> <span class="tok-kw">in</span> bases)          <span class="tok-out"># → False</span></span>
+<span class="ln">bases.add(<span class="tok-str">"N"</span>)</span>
+<span class="ln">bases.discard(<span class="tok-str">"U"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(bases))            <span class="tok-out"># → 5</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>7 4
+['A', 'C', 'G', 'T']
+False
+5</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Из семи букв осталось четыре различные. Множество печатается через <code>sorted()</code>, который возвращает список в алфавитном порядке. <code>add("N")</code> добавляет новый элемент, <code>discard("U")</code> молча пропускает отсутствующий.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "bases.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATTACA\"<\/span>", "bases <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(seq)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(seq), <span class=\"tok-builtin\">len<\/span>(bases))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(bases))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"U\"<\/span> <span class=\"tok-kw\">in<\/span> bases)          ", "bases.add(<span class=\"tok-str\">\"N\"<\/span>)", "bases.discard(<span class=\"tok-str\">\"U\"<\/span>)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(bases))            "], "columns": [], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATTACA\"<\/span>", "vars": [["seq", "\"GATTACA\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GATTACA\"."}, {"line": 2, "html": "bases <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATTACA\"<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'G', 'T'}", true]], "out": "", "row": null, "note": "Строка 2: bases = {'A', 'C', 'G', 'T'}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">7<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'G', 'T'}", false]], "out": "7 4\n", "row": null, "note": "Строка 3: печатается 7 4."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(bases))         ", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'G', 'T'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\n", "row": null, "note": "Строка 4: печатается ['A', 'C', 'G', 'T']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"U\"<\/span> <span class=\"tok-kw\">in<\/span> bases)          ", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'G', 'T'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 5: печатается False."}, {"line": 6, "html": "bases.add(<span class=\"tok-str\">\"N\"<\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'N', 'C', 'T', 'A', 'G'}", true]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 6: bases = {'N', 'C', 'T', 'A', 'G'}."}, {"line": 7, "html": "bases.discard(<span class=\"tok-str\">\"U\"<\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'N', 'C', 'T', 'A', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 7."}, {"line": 8, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'N', 'C', 'T', 'A', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n5\n", "row": null, "note": "Строка 8: печатается 5."}, {"line": 0, "html": "", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'N', 'C', 'T', 'A', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n5\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: пустое множество через {}</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: получился словарь</span><pre><code><span class="ln">bases <span class="tok-op">=</span> {}</span>
+<span class="ln">bases.add(<span class="tok-str">"A"</span>)</span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">bases <span class="tok-op">=</span> <span class="tok-builtin">set</span>()</span>
+<span class="ln">bases.add(<span class="tok-str">"A"</span>)</span></code></pre></div>
+          <p>Пустые скобки <code>{}</code> создают пустой словарь, и вызов <code>add()</code> поднимает <code>AttributeError</code>. Пустое множество создают только вызовом <code>set()</code>.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Василиса проверяет буквы последовательности. Замените <code>"GATTACA"</code> на <code>"GATTACAG"</code> и запустите: число разных букв не должно измениться.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">bases.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATTACA"</span></span>
+<span class="ln">bases <span class="tok-op">=</span> <span class="tok-builtin">set</span>(seq)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq), <span class="tok-builtin">len</span>(bases))  <span class="tok-out"># → 7 4</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>7 4</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t6_05_1_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t6_05_1_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t6_05_1_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.5.1. Разные буквы</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из букв и постройте множество функцией <code>set()</code>. Выведите число различных букв в строке.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Число различных букв.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA</pre></td><td><pre>4</pre></td></tr>
+                <tr><td><pre>AAA</pre></td><td><pre>1</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_1_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.5.1. Буквы по алфавиту</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из букв через пробел. Постройте множество функцией <code>set()</code> и выведите его элементы в алфавитном порядке через пробел, отсортировав функцией <code>sorted()</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 букв через пробел; буквы могут повторяться.</p>
+              <h4>Выходные данные</h4>
+              <p>Различные буквы в алфавитном порядке через пробел.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>G A T</pre></td><td><pre>A G T</pre></td></tr>
+                <tr><td><pre>A A A</pre></td><td><pre>A</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_1_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.5.1. Есть ли повторы</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из букв и постройте множество функцией <code>set()</code>. Выведите слово «да», если в строке есть повторяющиеся буквы, иначе «нет».</p></div>
+              <details class="task-hint"><summary>Подсказка</summary><p>Сравните длину строки с длиной множества.</p></details>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Слово «да» или «нет».</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>ACGT</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_1_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Операции над множествами</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Множества поддерживают четыре операции из математики, и записываются они знаками. Объединение <code>A | B</code> содержит элементы, которые есть хотя бы в одном множестве; пересечение <code>A &amp; B</code> содержит общие элементы; разность <code>A - B</code> содержит элементы A, которых нет в B; симметрическая разность <code>A ^ B</code> содержит элементы, которые есть ровно в одном из двух. Каждая операция строит новое множество, исходные не меняются.</p>
+        <p>Если поменять множества местами, результат разности может измениться: при равных множествах обе разности пусты, а в остальных случаях <code>A - B</code> и <code>B - A</code> различаются. Дополнение до известного набора получают той же разностью, например <code>set(range(1, 11)) - A</code>.</p>
+        <p class="th-full">У каждой операции есть и метод: <code>union()</code>, <code>intersection()</code>, <code>difference()</code>, <code>symmetric_difference()</code>. Методы принимают аргументом любую коллекцию, по которой можно пройти циклом <code>for</code>, например список или строку, а операторы требуют, чтобы оба операнда были множествами.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 2. Операции над множествами</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">sets.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>}</span>
+<span class="ln">b <span class="tok-op">=</span> {<span class="tok-num">2</span>, <span class="tok-num">8</span>, <span class="tok-num">5</span>, <span class="tok-num">10</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> b)  <span class="tok-out"># → {1, 2, 3, 4, 5, 8, 10}</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">&amp;</span> b)  <span class="tok-out"># → {2, 5}</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">-</span> b)  <span class="tok-out"># → {1, 3, 4}</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(b <span class="tok-op">-</span> a)  <span class="tok-out"># → {8, 10}</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">^</span> b)  <span class="tok-out"># → {1, 3, 4, 8, 10}</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>{1, 2, 3, 4, 5, 8, 10}
+{2, 5}
+{1, 3, 4}
+{8, 10}
+{1, 3, 4, 8, 10}</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Если поменять множества местами, результат разности может измениться: при равных множествах обе разности пусты, а в остальных случаях <code>a - b</code> и <code>b - a</code> различаются.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "sets.py", "code": ["a <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">4<\/span>, <span class=\"tok-num\">5<\/span>}", "b <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">5<\/span>, <span class=\"tok-num\">10<\/span>}", "<span class=\"tok-builtin\">print<\/span>(a | b)  ", "<span class=\"tok-builtin\">print<\/span>(a &amp; b)  ", "<span class=\"tok-builtin\">print<\/span>(a <span class=\"tok-op\">-<\/span> b)  ", "<span class=\"tok-builtin\">print<\/span>(b <span class=\"tok-op\">-<\/span> a)  ", "<span class=\"tok-builtin\">print<\/span>(a ^ b)  "], "columns": [], "steps": [{"line": 1, "html": "a <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">4<\/span>, <span class=\"tok-num\">5<\/span>}", "vars": [["a", "{1, 2, 3, 4, 5}", true]], "out": "", "row": null, "note": "Строка 1: a = {1, 2, 3, 4, 5}."}, {"line": 2, "html": "b <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">5<\/span>, <span class=\"tok-num\">10<\/span>}", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", true]], "out": "", "row": null, "note": "Строка 2: b = {8, 2, 10, 5}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(a | b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n", "row": null, "note": "Строка 3: печатается {1, 2, 3, 4, 5, 8, 10}."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(a &amp; b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n", "row": null, "note": "Строка 4: печатается {2, 5}."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(a <span class=\"tok-op\">-<\/span> b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n", "row": null, "note": "Строка 5: печатается {1, 3, 4}."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(b <span class=\"tok-op\">-<\/span> a)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n{8, 10}\n", "row": null, "note": "Строка 6: печатается {8, 10}."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(a ^ b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n{8, 10}\n{1, 3, 4, 8, 10}\n", "row": null, "note": "Строка 7: печатается {1, 3, 4, 8, 10}."}, {"line": 0, "html": "", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n{8, 10}\n{1, 3, 4, 8, 10}\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: оператор со списком</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: список как операнд</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> [<span class="tok-num">3</span>, <span class="tok-num">4</span>])</span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(a.union([<span class="tok-num">3</span>, <span class="tok-num">4</span>]))  <span class="tok-out"># → {1, 2, 3, 4}</span></span></code></pre></div>
+          <p>Оператор <code>|</code> требует, чтобы оба операнда были множествами, и со списком поднимает <code>TypeError</code>. Метод <code>union()</code> принимает любую коллекцию, по которой можно пройти циклом.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Прохор сравнивает наборы. Добавьте строку, которая печатает пересечение <code>a &amp; b</code>, и запустите.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">sets.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>}</span>
+<span class="ln">b <span class="tok-op">=</span> {<span class="tok-num">2</span>, <span class="tok-num">8</span>, <span class="tok-num">5</span>, <span class="tok-num">10</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> b)  <span class="tok-out"># → {1, 2, 3, 4, 5, 8, 10}</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>{1, 2, 3, 4, 5, 8, 10}</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t6_05_2_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t6_05_2_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t6_05_2_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.5.2. Пересечение</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте два множества функцией <code>set()</code>. Найдите пересечение оператором <code>&amp;</code>, отсортируйте результат по возрастанию и выведите элементы через пробел; если пересечение пустое, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p>
+              <h4>Выходные данные</h4>
+              <p>Общие числа в порядке возрастания через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>1 2 3 4 5
+2 8 5 10</pre></td><td><pre>2 5</pre></td></tr>
+                <tr><td><pre>1 2
+3 4</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_2_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.5.2. Объединение и разность</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте два множества функцией <code>set()</code>. Выведите объединение, найденное оператором <code>|</code>, и разность первого со вторым, найденную оператором <code>-</code>, каждое в своей строке; в каждой строке выведите элементы в порядке возрастания через пробел.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p>
+              <h4>Выходные данные</h4>
+              <p>Две строки: объединение и разность в порядке возрастания через пробел.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>1 2 3
+2 3 4</pre></td><td><pre>1 2 3 4
+1</pre></td></tr>
+                <tr><td><pre>7
+8</pre></td><td><pre>7 8
+7</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_2_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.5.2. Дополнение до n</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из целых чисел первого набора через пробел, строку из целых чисел второго и число <code>n</code>. Постройте два множества функцией <code>set()</code> и выведите дополнение их объединения до набора 1..n: разность <code>set(range(1, n + 1))</code> с объединением, найденным оператором <code>|</code> и вычтенным оператором <code>-</code>. Выведите числа по возрастанию через пробел; если дополнение пустое, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Три строки: 1–20 целых чисел через пробел, 1–20 целых чисел через пробел и число <code>n</code> от 1 до 1000.</p>
+              <h4>Выходные данные</h4>
+              <p>Числа от 1 до n, которых нет в объединении, через пробел, или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>1 2 3
+2 8 5 10
+10</pre></td><td><pre>4 6 7 9</pre></td></tr>
+                <tr><td><pre>1 2 3
+3 4
+4</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_2_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. Подмножество и проверка алфавита</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Оператор <code>&lt;=</code> для множеств проверяет, является ли первое множество подмножеством второго, то есть входят ли все его элементы во второе. Вопрос «состоит ли строка только из заданных букв» сводится к одной строке: <code>set(строка) &lt;= set(алфавит)</code>.</p>
+        <p>Разность с алфавитом сразу показывает лишние буквы: <code>set(seq) - set("ACGT")</code>. Буква N обозначает неизвестный нуклеотид, поэтому последовательность с буквой N не проходит проверку алфавита.</p>
+        <p class="th-full">Тот же результат дает включение множества <code>{b for b in seq if b not in dna}</code>: оно записывается в фигурных скобках, как словарное, но без двоеточия — одно выражение на элемент. Обычное множество изменяемо, поэтому не может быть ключом словаря; неизменяемое множество <code>frozenset</code> хешируемо и годится в ключи. Например, коды неоднозначности нуклеотидов IUPAC обозначают наборы: W означает A или T, S означает C или G, и словарь с ключами <code>frozenset("AT")</code> и <code>frozenset("CG")</code> находит код по паре букв.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 3. Проверка алфавита</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">dna.py</span><pre><code><span class="ln">dna <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"ACGT"</span>)</span>
+<span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATNACA"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)    <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">-</span> dna)     <span class="tok-out"># → {'N'}</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(<span class="tok-str">"GAT"</span>) <span class="tok-op">&lt;=</span> dna)  <span class="tok-out"># → True</span></span>
+<span class="ln">bad <span class="tok-op">=</span> {b <span class="tok-kw">for</span> b <span class="tok-kw">in</span> seq <span class="tok-kw">if</span> b <span class="tok-kw">not</span> <span class="tok-kw">in</span> dna}</span>
+<span class="ln"><span class="tok-builtin">print</span>(bad)                <span class="tok-out"># → {'N'}</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>False
+{'N'}
+True
+{'N'}</pre></div>
+          </div>
+          <div class="analysis">
+            <p>Последовательность содержит букву N, поэтому проверка подмножества дает <code>False</code>, а разность с алфавитом показывает лишнюю букву. Последние две строки делают то же включением множества.</p>
+          </div>
+          <script type="application/json" class="steps-data">{"file": "dna.py", "code": ["dna <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"ACGT\"<\/span>)", "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATNACA\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(seq) <span class=\"tok-op\">&lt;=<\/span> dna)    ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(seq) <span class=\"tok-op\">-<\/span> dna)     ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GAT\"<\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)  ", "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> seq <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "<span class=\"tok-builtin\">print<\/span>(bad)                "], "columns": [], "steps": [{"line": 1, "html": "dna <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"ACGT\"<\/span>)", "vars": [["dna", "{'A', 'C', 'G', 'T'}", true]], "out": "", "row": null, "note": "Строка 1: dna = {'A', 'C', 'G', 'T'}."}, {"line": 2, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATNACA\"<\/span>", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", true]], "out": "", "row": null, "note": "Строка 2: seq = \"GATNACA\"."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span>) <span class=\"tok-op\">-<\/span> dna)", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n{'N'}\n", "row": null, "note": "Строка 4: печатается {'N'}."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GAT\"<\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)  ", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"G\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"G\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"A\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"T\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"T\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"N\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"N\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"A\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"C\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"C\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"A\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["bad", "{'N'}", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: bad = {'N'}."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(bad)                ", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["bad", "{'N'}", false]], "out": "False\n{'N'}\nTrue\n{'N'}\n", "row": null, "note": "Строка 7: печатается {'N'}."}, {"line": 0, "html": "", "vars": [["dna", "{'A', 'C', 'G', 'T'}", false], ["seq", "\"GATNACA\"", false], ["bad", "{'N'}", false]], "out": "False\n{'N'}\nTrue\n{'N'}\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: сравнение вместо подмножества</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: равенство</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">==</span> dna)</code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)</code></pre></div>
+          <p>Равенство требует, чтобы в строке были все четыре буквы алфавита. Подмножество <code>&lt;=</code> допускает строку, в которой алфавитных букв меньше: главное, чтобы лишних не было.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Василиса проверяет другую последовательность. Замените <code>"GATNACA"</code> на <code>"GATTACA"</code> и запустите: проверка должна дать <code>True</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">dna.py</span><pre><code><span class="ln">dna <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"ACGT"</span>)</span>
+<span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATNACA"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)  <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
+          </div>
+        </div>
+
+        <div class="step step-task">Задача</div>
+        <div class="level-tabs ex-variants" id="ex-3" data-exercise="ex-3">
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-3-tab-basic" aria-controls="ex-3-basic" data-level="basic" data-task="t6_05_3_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-3-tab-medium" aria-controls="ex-3-medium" data-level="medium" data-task="t6_05_3_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-3-tab-advanced" aria-controls="ex-3-advanced" data-level="advanced" data-task="t6_05_3_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-3-basic" role="tabpanel" aria-labelledby="ex-3-tab-basic">
+            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
+              <h3>Упражнение 6.5.3. Проверка алфавита</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из букв. Выведите слово «да», если все буквы из алфавита <code>ACGT</code>, иначе «нет». Постройте множества функцией <code>set()</code> и проверьте подмножество оператором <code>&lt;=</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Слово «да» или «нет».</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATT</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>GATNACA</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_3_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
+            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
+              <h3>Упражнение 6.5.3. Лишние буквы</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из букв. Выведите буквы, которых нет в алфавите <code>ACGT</code>, в алфавитном порядке через пробел, найдя разность множеств, построенных функцией <code>set()</code>, оператором <code>-</code>; если лишних нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Лишние буквы через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATNACA</pre></td><td><pre>N</pre></td></tr>
+                <tr><td><pre>GATT</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_3_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
+              <h3>Упражнение 6.5.3. Все ли нуклеотиды</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий нуклеотидов через пробел. Выведите слово «да», если каждый из четырех нуклеотидов <code>A</code>, <code>T</code>, <code>G</code>, <code>C</code> встречается хотя бы один раз, иначе «нет». Постройте множества функцией <code>set()</code> и проверьте подмножество оператором <code>&lt;=</code>.</p></div>
+              <h4>Входные данные</h4>
+              <p>Одна строка из 1–20 названий нуклеотидов через пробел; названия могут повторяться.</p>
+              <h4>Выходные данные</h4>
+              <p>Слово «да» или «нет».</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>A T G C</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>A T G</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_3_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="step step-star">Задача со звездочкой</div>
+        <p class="star-intro">Необязательная задача, в зачет не входит. За решение дается дополнительный опыт в игровом режиме.</p>
+        <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой">
+            <button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t6_05_star_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t6_05_star_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t6_05_star_advanced.py">Продвинутый</button>
+          </div>
+          <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
+            <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
+            <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
+              <h3>Задача со звездочкой 6.5. Общие буквы</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте две строки из букв. Постройте множества функцией <code>set()</code> и выведите общие буквы, найденные пересечением <code>&amp;</code>, в алфавитном порядке через пробел; если общих нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки из 1–50 букв.</p>
+              <h4>Выходные данные</h4>
+              <p>Общие буквы через пробел или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>GATTACA
+ACGTAC</pre></td><td><pre>A C G T</pre></td></tr>
+                <tr><td><pre>AAA
+T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_star_basic.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+              <h3>Задача со звездочкой 6.5. Нет ли общих элементов</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте два множества функцией <code>set()</code> и выведите слово «да», если общих элементов нет (пересечение <code>&amp;</code> пустое), иначе «нет».</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p>
+              <h4>Выходные данные</h4>
+              <p>Слово «да» или «нет».</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>1 2
+3 4</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>1 2
+2 3</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_star_medium.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+              <h3>Задача со звездочкой 6.5. Дополнение набора</h3>
+              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из чисел через пробел и число <code>n</code>. Постройте множество функцией <code>set()</code> и выведите отсортированные числа от 1 до <code>n</code>, которых нет в прочитанном наборе, через пробел, найдя их разностью <code>set(range(1, n + 1))</code> с набором оператором <code>-</code>; если таких нет, выведите пустую строку.</p></div>
+              <h4>Входные данные</h4>
+              <p>Две строки: 1–20 целых чисел через пробел и число <code>n</code> от 1 до 1000.</p>
+              <h4>Выходные данные</h4>
+              <p>Числа от 1 до n, которых нет в наборе, через пробел, или пустая строка.</p>
+              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
+                <tr><td><pre>2 4
+6</pre></td><td><pre>1 3 5 6</pre></td></tr>
+                <tr><td><pre>1 2 3
+3</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+              </tbody></table></div>
+              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_05_star_advanced.py</span></dd></dl>
+              <div class="checker" data-file="t6_05_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="then">
+        <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
+        <ol class="submit-steps">
+          <li>В папке <code>projects_6</code> создайте папку <code>t6_05</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_05_1_basic.py</code>, <code>t6_05_2_basic.py</code> и <code>t6_05_3_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_05_1_medium.py</code>, <code>t6_05_2_medium.py</code> и <code>t6_05_3_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_05_1_advanced.py</code>, <code>t6_05_2_advanced.py</code> и <code>t6_05_3_advanced.py</code>.</span></li>
+          <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_05_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_05_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_05_star_advanced.py</code>.</span></li>
+          <li>Загрузите папку <code>t6_05</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
+        </ol>
+        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+<pre class="tree" data-level="basic">prokhorova_vp/
+└── projects_6/
+    └── t6_05/
+        ├── t6_05_1_basic.py
+        ├── t6_05_2_basic.py
+        └── t6_05_3_basic.py</pre>
+<pre class="tree" data-level="medium">prokhorova_vp/
+└── projects_6/
+    └── t6_05/
+        ├── t6_05_1_medium.py
+        ├── t6_05_2_medium.py
+        └── t6_05_3_medium.py</pre>
+<pre class="tree" data-level="advanced">prokhorova_vp/
+└── projects_6/
+    └── t6_05/
+        ├── t6_05_1_advanced.py
+        ├── t6_05_2_advanced.py
+        └── t6_05_3_advanced.py</pre>
+      </section>
+      <nav class="pager pager-cards" aria-label="Переход между страницами">
+        <a class="pcard pcard-prev" href="t6_04.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">04 Счетчик и группировка</span></a>
+        <a class="pcard pcard-next" href="t6_06.html"><span class="pcard-dir">Дальше →</span><span class="pcard-title">06 <code>Counter</code> и <code>defaultdict</code></span></a>
+      </nav>
+    </main>
+    </div>
+    <footer class="site-footer">
+      <p>Материалы учебного курса «Язык программирования Python».</p>
+      <p>Академический университет им.&nbsp;Ж.&nbsp;И.&nbsp;Алферова</p>
+      <p>Санкт-Петербург, 2026</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

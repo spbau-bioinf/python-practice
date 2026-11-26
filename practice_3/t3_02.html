@@ -132,79 +132,217 @@ False</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.2.1. Длина праймера</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>ПЦР (полимеразная цепная реакция) многократно копирует участок ДНК; копирование начинается с праймера, короткой последовательности нуклеотидов. Праймер для ПЦР обычно имеет длину от 18 до 25 нуклеотидов включительно. Дана последовательность праймера. Определите, подходит ли его длина. Соедините два сравнения оператором <code>and</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 40.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если длина от 18 до 25 включительно, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTCAGCGATTCAGCGATTC</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ACGTTGCAACGTTGCAA</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.2.1. Длина праймера</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Праймер для ПЦР обычно имеет длину от 18 до 25 нуклеотидов включительно. Дана последовательность праймера. Определите, подходит ли его длина. Соедините два сравнения оператором <code>and</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 40.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если длина от 18 до 25 включительно, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTCAGCGATTCAGCGATTC</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В последовательности 21 нуклеотид: 18 ≤ 21 ≤ 25, оба сравнения истинны, поэтому праймер подходит — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTCAGCGATTCAGCGATTC</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>ACGTTGCAACGTTGCAA</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>ПЦР (полимеразная цепная реакция) многократно копирует участок ДНК; копирование начинается с праймера, короткой последовательности нуклеотидов. Слишком короткий праймер связывается неточно, слишком длинный работает медленнее и стоит дороже, поэтому длину держат в узких границах.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>ПЦР</strong> — полимеразная цепная реакция: многократное копирование участка ДНК.</li>
+                  <li><strong>Праймер</strong> — короткая последовательность нуклеотидов, с которой начинается копирование.</li>
+                  <li><strong>Оператор and</strong> — истинен, только когда истинны оба сравнения.</li>
+                  <li><strong>Границы включительно</strong> — длина 18 и длина 25 тоже подходят.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>primer = input()</code>.</li>
+                  <li>Длину дает <code>len(primer)</code>.</li>
+                  <li>Соберите два сравнения: <code>len(primer) &gt;= 18</code> и <code>len(primer) &lt;= 25</code>.</li>
+                  <li>Соедините их оператором and и выведите через <code>print</code>: <code>len(primer) &gt;= 18</code> and <code>len(primer) &lt;= 25</code>; сверьтесь с примером: последовательность из 20 букв дает True, из 17 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.2.1. Вне нормы</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Норма показателя задана интервалом от <code>low</code> до <code>high</code> включительно. Дан результат анализа. Определите, выходит ли он за пределы нормы.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке <code>low</code>, во второй <code>high</code>, в третьей результат. Все числа вещественные, от 0 до 1000; <code>low</code> &lt; <code>high</code>.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если результат вне нормы, иначе <code>False</code>. Значение, равное границе, считается нормой.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3.5
+              <h3>Упражнение 3.2.1. Вне нормы</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Норма показателя задана интервалом от <code>low</code> до <code>high</code> включительно. Дан результат анализа. Определите, выходит ли он за пределы нормы.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке <code>low</code>, во второй <code>high</code>, в третьей результат. Все числа вещественные, от 0 до 1000; <code>low</code> &lt; <code>high</code>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если результат вне нормы, иначе <code>False</code>. Значение, равное границе, считается нормой.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3.5<br>5.5<br><span class="we-hl">6.1</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">6.1 больше верхней границы 5.5, значит результат вне нормы — True. Значение 5.5, равное границе, нормой считается.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3.5
 5.5
 6.1</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>3.5
+                      <tr><td><pre>3.5
 5.5
 5.5</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Норма — интервал включительно: границы входят в норму. Значение вне нормы, если оно ниже нижней границы ИЛИ выше верхней, поэтому два сравнения соединяют оператором or.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Норма</strong> — допустимый интервал значений показателя.</li>
+                  <li><strong>Интервал включительно</strong> — значения на границах тоже считаются нормой.</li>
+                  <li><strong>Оператор or</strong> — истинен, когда истинно хотя бы одно из сравнений.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>low = float(input())</code>, <code>high = float(input())</code>, <code>value = float(input())</code>.</li>
+                  <li>Ниже нормы — <code>value &lt; low</code>, выше нормы — <code>value &gt; high</code>.</li>
+                  <li>Соедините сравнения оператором or: значение вне нормы, если верно хотя бы одно.</li>
+                  <li>Выведите результат: <code>print(value &lt; low or value &gt; high)</code>; сверьтесь с примером: 6.1 при норме 3.5–5.5 дает True, а 5.5 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.2.1. Расхождение двух измерений</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Пробу измерили дважды и сравнили каждое измерение с порогом. Если оба измерения выше порога или оба не выше, результат согласован. Если выше порога ровно одно из них, пробу отправляют на повторный анализ. Определите, нужен ли повторный анализ.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Каждое сравнение с порогом дает логическое значение. Ровно одно из них истинно, когда эти значения различаются.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке порог, во второй и третьей измерения. Все значения вещественные, от 0 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если ровно одно измерение строго больше порога, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2.0
+              <h3>Упражнение 3.2.1. Расхождение двух измерений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пробу измерили дважды и сравнили каждое измерение с порогом. Если оба измерения выше порога или оба не выше, результат согласован. Если выше порога ровно одно из них, пробу отправляют на повторный анализ. Определите, нужен ли повторный анализ.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке порог, во второй и третьей измерения. Все значения вещественные, от 0 до 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если ровно одно измерение строго больше порога, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2.0<br><span class="we-hl">2.4</span><br>1.8</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Порог 2.0 строго превышает только первое измерение (2.4), второе (1.8) не выше. Ровно одно измерение выше порога, поэтому нужен повторный анализ — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2.0
 2.4
 1.8</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>2.0
+                      <tr><td><pre>2.0
 2.4
 2.9</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Ровно одно истинное сравнение — это разные значения двух сравнений: оператор != дает True, когда одно True, а другое False. Так расхождение двух измерений проверяют без ветвлений.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Согласованность</strong> — оба измерения по одну сторону порога.</li>
+                  <li><strong>Повторный анализ</strong> — второе измерение, которое ставят, когда результаты расходятся.</li>
+                  <li><strong>Оператор !=</strong> — истинен, когда значения различаются.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте порог и два измерения: <code>limit</code>, <code>first</code>, <code>second</code> через <code>float(input())</code>.</li>
+                  <li>Сравнения с порогом: <code>first &gt; limit</code> и <code>second &gt; limit</code>.</li>
+                  <li>Ровно одно из них истинно, когда значения сравнений различаются: <code>(first &gt; limit) != (second &gt; limit)</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: при пороге 2.0 измерения 2.4 и 1.8 дают True, а 2.4 и 2.9 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -319,75 +457,213 @@ True</pre></div>
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.2.2. Пурин</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Аденин (A) и гуанин (G) относятся к пуринам. Дана буква нуклеотида. Определите, обозначает ли она пурин. Соедините два сравнения оператором <code>or</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: одна прописная буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если буква обозначает пурин, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>G</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>C</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.2.2. Пурин</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Аденин (A) и гуанин (G) относятся к пуринам. Дана буква нуклеотида. Определите, обозначает ли она пурин. Соедините два сравнения оператором <code>or</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: одна прописная буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если буква обозначает пурин, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">G</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">G — гуанин, а гуанин относится к пуринам, поэтому сравнение с A или G дает True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>G</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>C</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Нуклеотиды делятся на пурины (A и G) и пиримидины (C и T). Проверка «буква A или G» — два сравнения, соединенных оператором or.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Пурин</strong> — азотистое основание с двухкольцевой структурой: аденин A и гуанин G.</li>
+                  <li><strong>Пиримидин</strong> — азотистое основание с однокольцевой структурой: цитозин C и тимин T.</li>
+                  <li><strong>Оператор or</strong> — истинен, когда истинно хотя бы одно из сравнений.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте букву: <code>base = input()</code>.</li>
+                  <li>Пурины — это A и G: два сравнения <code>base == "A"</code> и <code>base == "G"</code>.</li>
+                  <li>Соедините их оператором or.</li>
+                  <li>Выведите результат: <code>print(base == "A" or base == "G")</code>; сверьтесь с примером: G дает True, а C — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.2.2. Три водородные связи</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В двойной спирали ДНК пара G и C связана тремя водородными связями, а пара A и T двумя. Даны две буквы, стоящие друг напротив друга в двух цепях. Определите, образуют ли они пару G и C в любом порядке.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой одна прописная буква A, C, G или T. Буквы не обязательно комплементарны.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если одна буква G, а другая C, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>C
+              <h3>Упражнение 3.2.2. Три водородные связи</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В двойной спирали ДНК пара G и C связана тремя водородными связями, а пара A и T двумя. Даны две буквы, стоящие друг напротив друга в двух цепях. Определите, образуют ли они пару G и C в любом порядке.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой одна прописная буква A, C, G или T. Буквы не обязательно комплементарны.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если одна буква G, а другая C, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">C</span><br><span class="we-hl">G</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Одна буква G, другая C — это пара G и C в любом порядке, она связана тремя водородными связями. Ответ True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>C
 G</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>G
+                      <tr><td><pre>G
 G</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пара G–C держится на трех водородных связях, пара A–T — на двух. Порядок букв не важен, поэтому проверяют оба варианта: сначала G и C, затем C и G.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Водородная связь</strong> — связь, которая удерживает две цепи ДНК вместе.</li>
+                  <li><strong>Комплементарность</strong> — соответствие нуклеотидов двух цепей: A — T, G — C.</li>
+                  <li><strong>Операторы and и or</strong> — and требует истинности обоих сравнений, or — хотя бы одного.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте две буквы: <code>first = input()</code>, <code>second = input()</code>.</li>
+                  <li>Один порядок дает <code>first == "G" and second == "C"</code>.</li>
+                  <li>Другой порядок дает <code>first == "C" and second == "G"</code>.</li>
+                  <li>Соедините варианты оператором or и выведите через <code>print</code>: <code>(first == "G" and second == "C")</code> или <code>(first == "C" and second == "G")</code>; сверьтесь с примером: C и G дают True, а G и G — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.2.2. Транзиция</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Точечная замена нуклеотида называется транзицией, если пурин заменен пурином или пиримидин пиримидином. Пурины: A и G, пиримидины: C и T. Даны исходная и новая буква. Определите, транзиция ли это. Если буквы одинаковы, замены нет.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Определите для каждой буквы, пурин ли она. Транзиция получается, когда эти два ответа одинаковы, а сами буквы разные.</p></details>
-          <h4>Входные данные</h4>
-          <p>Две строки, в каждой одна прописная буква A, C, G или T.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если замена — транзиция, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>A
+              <h3>Упражнение 3.2.2. Транзиция</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Точечная замена нуклеотида называется транзицией, если пурин заменен пурином или пиримидин пиримидином. Пурины: A и G, пиримидины: C и T. Даны исходная и новая буква. Определите, транзиция ли это. Если буквы одинаковы, замены нет.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки, в каждой одна прописная буква A, C, G или T.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если замена — транзиция, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">A</span><br><span class="we-hl">G</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">A и G оба пурины, а буквы разные: пурин заменен пурином, это транзиция — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>A
 G</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>A
+                      <tr><td><pre>A
 T</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При транзиции пурин меняется на пурин, а пиримидин на пиримидин. Признак: обе буквы относятся к одной группе, а сами буквы разные.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Транзиция</strong> — замена пурина пурином или пиримидина пиримидином.</li>
+                  <li><strong>Пурин</strong> — A и G.</li>
+                  <li><strong>Пиримидин</strong> — C и T.</li>
+                  <li><strong>Операторы and, or, !=</strong> — and — оба условия, or — хотя бы одно, != — значения различаются.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте исходную и новую букву: <code>old = input()</code>, <code>new = input()</code>.</li>
+                  <li>Признак пурина: <code>old == "A" or old == "G"</code>; так же для новой буквы.</li>
+                  <li>Транзиция — обе буквы одной группы: <code>old_purine == new_purine</code>.</li>
+                  <li>Замены нет, если буквы одинаковы, поэтому добавьте <code>and old != new</code> и выведите результат; сверьтесь с примером: A и G дают True, а A и T — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -398,86 +674,225 @@ T</pre></td><td><pre>False</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.2. Праймер для ПЦР</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>ПЦР (полимеразная цепная реакция) многократно копирует участок ДНК; копирование начинается с праймера, короткой последовательности нуклеотидов. В лаборатории праймер считают подходящим, если его длина от 18 до 25 нуклеотидов включительно и последняя буква G или C. Дана последовательность праймера. Определите, подходит ли он.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 40.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если праймер подходит, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>TGACCTGAAGTCTGAGCAG</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>ACGTTAGCATGC</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.2. Праймер для ПЦР</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В лаборатории праймер считают подходящим, если его длина от 18 до 25 нуклеотидов включительно и последняя буква G или C. Дана последовательность праймера. Определите, подходит ли он.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 40.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если праймер подходит, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">TGACCTGAAGTCTGAGCA<span class="we-hl">G</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длина праймера 19 нуклеотидов, это между 18 и 25, а последняя буква G. Оба условия выполнены, праймер подходит — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>TGACCTGAAGTCTGAGCAG</pre></td><td><pre>True</pre></td></tr>
+                      <tr><td><pre>ACGTTAGCATGC</pre></td><td><pre>False</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>ПЦР (полимеразная цепная реакция) многократно копирует участок ДНК; копирование начинается с праймера, короткой последовательности нуклеотидов. Последняя буква G или C прочнее связывает конец праймера с матрицей, поэтому ее проверяют отдельно.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>ПЦР</strong> — полимеразная цепная реакция: многократное копирование участка ДНК.</li>
+                  <li><strong>Праймер</strong> — короткая последовательность нуклеотидов, с которой начинается копирование.</li>
+                  <li><strong>Индекс -1</strong> — последний символ строки.</li>
+                  <li><strong>Операторы and и or</strong> — and требует обоих условий, or — хотя бы одного.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>primer = input()</code>.</li>
+                  <li>Подходящая длина — <code>len(primer) &gt;= 18 and len(primer) &lt;= 25</code>.</li>
+                  <li>Последняя буква — <code>primer[-1]</code>; она подходит, если <code>primer[-1] == "G" or primer[-1] == "C"</code>.</li>
+                  <li>Соедините обе проверки оператором and и выведите результат; сверьтесь с примером: TGACCTGAAGTCTGAGCAG заканчивается на G и дает True, а ACGTTAGCATGC нет — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.2. Перекрытие генов</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Ген занимает на хромосоме участок с позиции <code>start</code> по позицию <code>end</code> включительно. Два гена перекрываются, если у их участков есть хотя бы одна общая позиция. Даны участки двух генов. Определите, перекрываются ли они.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Проще описать, когда участки не перекрываются: один из них целиком лежит левее другого. Перекрытие означает, что ни один не лежит целиком левее.</p></details>
-          <h4>Входные данные</h4>
-          <p>Четыре строки: <code>start</code> и <code>end</code> первого гена, затем <code>start</code> и <code>end</code> второго. Все числа целые, от 1 до 10<sup>9</sup>; в каждом участке <code>start</code> ≤ <code>end</code>.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если гены перекрываются, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>100
+              <h3>Задача со звездочкой 3.2. Перекрытие генов</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Ген занимает на хромосоме участок с позиции <code>start</code> по позицию <code>end</code> включительно. Два гена перекрываются, если у их участков есть хотя бы одна общая позиция. Даны участки двух генов. Определите, перекрываются ли они.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Четыре строки: <code>start</code> и <code>end</code> первого гена, затем <code>start</code> и <code>end</code> второго. Все числа целые, от 1 до 10<sup>9</sup>; в каждом участке <code>start</code> ≤ <code>end</code>.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если гены перекрываются, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">100</span><br>250<br>200<br><span class="we-hl">400</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первый ген занимает позиции 100–250, второй 200–400: позиции с 200 по 250 общие, поэтому гены перекрываются — True.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>100
 250
 200
 400</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>100
+                      <tr><td><pre>100
 250
 251
 400</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Участки с включительными границами перекрываются, если каждый начинается не позже, чем кончается другой. Это одно условие, и оно не зависит от того, какой из участков левее.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Участок</strong> — отрезок хромосомы от позиции start до end включительно.</li>
+                  <li><strong>Позиция включительно</strong> — обе границы участка входят в него.</li>
+                  <li><strong>Перекрытие</strong> — хотя бы одна общая позиция у двух участков.</li>
+                  <li><strong>Оператор <=</strong> — сравнение «меньше или равно».</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте четыре числа: <code>start1</code>, <code>end1</code>, <code>start2</code>, <code>end2</code> через <code>int(input())</code>.</li>
+                  <li>Первый участок начинается не позже конца второго: <code>start1 &lt;= end2</code>.</li>
+                  <li>Второй начинается не позже конца первого: <code>start2 &lt;= end1</code>.</li>
+                  <li>Выведите оба условия через and; сверьтесь с примером: 100–250 и 200–400 дают True, а 100–250 и 251–400 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.2. Склейка прочтений</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор прочитал за один раз. После сравнения с геномом каждое прочтение занимает участок с позиции <code>s</code> по позицию <code>e</code> включительно. При сборке генома два прочтения склеивают в одно, если их общий участок не короче <code>k</code> позиций. Даны участки двух прочтений и число <code>k</code>. Определите, можно ли склеить прочтения.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Общий участок начинается в большей из двух начальных позиций и кончается в меньшей из конечных. Неравенство с меньшим из двух чисел можно заменить двумя неравенствами, соединенными <code>and</code>.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой и второй строках <code>s</code> и <code>e</code> первого прочтения, в третьей и четвертой <code>s</code> и <code>e</code> второго, в пятой <code>k</code>. Все числа целые: позиции от 1 до 10<sup>9</sup>, в каждом прочтении <code>s</code> ≤ <code>e</code>; 1 ≤ <code>k</code> ≤ 1000.</p>
-          <h4>Выходные данные</h4>
-          <p><code>True</code>, если общий участок не короче <code>k</code> позиций, иначе <code>False</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>1000
+              <h3>Задача со звездочкой 3.2. Склейка прочтений</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>После сравнения с геномом каждое прочтение занимает участок с позиции <code>start</code> по позицию <code>end</code> включительно. При сборке генома два прочтения склеивают в одно, если их общий участок не короче <code>min_overlap</code> позиций. Даны участки двух прочтений и число <code>min_overlap</code>. Определите, можно ли склеить прочтения.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой и второй строках <code>start</code> и <code>end</code> первого прочтения, в третьей и четвертой <code>start</code> и <code>end</code> второго, в пятой <code>min_overlap</code>. Все числа целые: позиции от 1 до 10<sup>9</sup>, в каждом прочтении <code>start</code> ≤ <code>end</code>; 1 ≤ <code>min_overlap</code> ≤ 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>True</code>, если общий участок не короче <code>min_overlap</code> позиций, иначе <code>False</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">1000<br>1150<br><span class="we-hl">1100</span><br>1250<br>40</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">True</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Общий участок начинается в 1100 и кончается в 1150 — это 51 позиция, а 51 ≥ 40, поэтому прочтения можно склеить.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>1000
 1150
 1100
 1250
 40</pre></td><td><pre>True</pre></td></tr>
-                <tr><td><pre>1000
+                      <tr><td><pre>1000
 1150
 1120
 1250
 40</pre></td><td><pre>False</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_02_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Прочтение — участок ДНК, который секвенатор прочитал за один раз. При сборке неизвестно, какой участок окажется левее, поэтому перекрытие проверяют в обоих порядках; кроме того, само прочтение должно быть не короче min_overlap.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения ДНК.</li>
+                  <li><strong>Сборка генома</strong> — склейка прочтений в длинные последовательности.</li>
+                  <li><strong>Длина участка</strong> — число позиций от start до end включительно: end - start + 1.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте пять чисел: <code>start1</code>, <code>end1</code>, <code>start2</code>, <code>end2</code>, <code>min_overlap</code> через <code>int(input())</code>.</li>
+                  <li>Длины участков: <code>end1 - start1 + 1</code> и <code>end2 - start2 + 1</code>; каждое прочтение должно быть не короче min_overlap.</li>
+                  <li>Перекрытие в двух порядках: <code>end1 - start2 + 1</code> (второй участок сдвинут вправо) и <code>end2 - start1 + 1</code>; оба не меньше min_overlap.</li>
+                  <li>Соедините проверки оператором and и выведите результат; сверьтесь с примером: 1000–1150 и 1100–1250 при min_overlap = 40 дают True, а при сдвиге второго участка до 1120 — False.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_02_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

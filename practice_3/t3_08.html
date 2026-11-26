@@ -251,73 +251,215 @@ SyntaxError: expected 'else' after 'if' expression</pre></div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 3.8.1. Температура плавления праймера</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Праймер&nbsp;— короткая последовательность, с которой при ПЦР (многократном копировании участка ДНК) начинается копирование. Температура плавления праймера&nbsp;— температура, при которой половина его молекул отделяется от цепи ДНК. Рекомендации производителей расходятся; правило приемки в нашем курсе: праймер подходит для ПЦР, если его температура плавления от 52 до 65 градусов включительно. Дана температура плавления. Выведите <code>подходит</code> или <code>не подходит</code>. Запишите условие цепочкой сравнений, а выбор слова условным выражением.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: вещественное число от 20 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Слово <code>подходит</code> или слова <code>не подходит</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>70</pre></td><td><pre>не подходит</pre></td></tr>
-                <tr><td><pre>65</pre></td><td><pre>подходит</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_08_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.8.1. Температура плавления праймера</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Праймер подходит для ПЦР, если его температура плавления от 52 до 65 градусов включительно. Дана температура плавления. Выведите <code>подходит</code> или <code>не подходит</code>. Запишите условие цепочкой сравнений, а выбор слова условным выражением.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: вещественное число от 20 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Слово <code>подходит</code> или слова <code>не подходит</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">70</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">не подходит</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">70 больше верхней границы 65, поэтому цепочка сравнений 52 ≤ tm ≤ 65 ложна и выводится «не подходит». При 65 ответ был бы «подходит».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>70</pre></td><td><pre>не подходит</pre></td></tr>
+                      <tr><td><pre>65</pre></td><td><pre>подходит</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Температура плавления — температура, при которой половина молекул праймера отделяется от цепи ДНК. Производители дают разные рекомендации; в курсе принято правило 52–65 градусов включительно. Цепочка 52 &lt;= tm &lt;= 65 проверяет обе границы одним условием.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Праймер</strong> — короткая последовательность нуклеотидов, с которой начинается копирование ДНК.</li>
+                  <li><strong>ПЦР</strong> — полимеразная цепная реакция: многократное копирование участка ДНК.</li>
+                  <li><strong>Температура плавления</strong> — температура, при которой половина молекул праймера отделяется от цепи ДНК.</li>
+                  <li><strong>Цепочка сравнений</strong> — запись вида 52 &lt;= tm &lt;= 65 проверяет оба сравнения сразу.</li>
+                  <li><strong>Условное выражение</strong> — запись «одно, если условие, иначе другое» внутри print.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте температуру плавления: <code>tm = float(input())</code>.</li>
+                  <li>Соберите цепочку сравнений: <code>52 &lt;= tm &lt;= 65</code>.</li>
+                  <li>Выберите слово условным выражением: <code>"подходит"</code>, если <code>52 &lt;= tm &lt;= 65</code>, иначе <code>"не подходит"</code>.</li>
+                  <li>Выведите результат; сверьтесь с примером: 70 дает не подходит, а 65 — подходит, потому что граница входит в норму.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_08_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 3.8.1. Первое нарушенное правило</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>При приемке пробы проверяют два правила по порядку: объем от 10 до 200&nbsp;мкл включительно, концентрация не меньше 5&nbsp;нг/мкл. Даны объем и концентрация. Выведите сообщение о первом нарушенном правиле: <code>объем вне диапазона</code> или <code>мало вещества</code>. Если оба правила выполнены, выведите <code>OK</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Две строки: объем и концентрация, вещественные числа от 0 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка: <code>объем вне диапазона</code>, <code>мало вещества</code> или <code>OK</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>50
+              <h3>Упражнение 3.8.1. Первое нарушенное правило</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>При приемке пробы проверяют два правила по порядку: объем от 10 до 200&nbsp;мкл включительно, концентрация не меньше 5&nbsp;нг/мкл. Даны объем и концентрация. Выведите сообщение о первом нарушенном правиле: <code>объем вне диапазона</code> или <code>мало вещества</code>. Если оба правила выполнены, выведите <code>OK</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Две строки: объем и концентрация, вещественные числа от 0 до 1000.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одна строка: <code>объем вне диапазона</code>, <code>мало вещества</code> или <code>OK</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">50<br>12.5</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">OK</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">50 попадает в диапазон от 10 до 200, а 12.5 не меньше 5: нарушено ничего, ответ OK. При объеме 5 первым сработало бы «объем вне диапазона».</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>50
 12.5</pre></td><td><pre>OK</pre></td></tr>
-                <tr><td><pre>5
+                      <tr><td><pre>5
 2</pre></td><td><pre>объем вне диапазона</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_08_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Правила проверяют по порядку, и первое нарушенное дает сообщение. Объем проверяют отрицанием диапазона: <code>not 10 &lt;= volume &lt;= 200</code> истинно, когда значение вышло хотя бы за одну границу.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Диапазон включительно</strong> — значения на границах тоже подходят.</li>
+                  <li><strong>Оператор not</strong> — меняет истинность условия на противоположную.</li>
+                  <li><strong>Цепочка сравнений</strong> — запись вида 10 &lt;= volume &lt;= 200 проверяет обе границы сразу.</li>
+                  <li><strong>Цепочка elif</strong> — проверяет условия по порядку, пока одно не окажется истинным.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте объем и концентрацию: <code>volume = float(input())</code>, <code>concentration = float(input())</code>.</li>
+                  <li>Первое правило нарушено, когда <code>not 10 &lt;= volume &lt;= 200</code> — сообщение «объем вне диапазона».</li>
+                  <li>Второе проверяйте через <code>elif concentration &lt; 5</code> — сообщение «мало вещества».</li>
+                  <li>В оставшемся случае выведите <code>OK</code>; сверьтесь с примером: 50 и 12.5 дают OK, а 5 и 2 — объем вне диапазона.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_08_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Упражнение с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 3.8.1. Лунка планшета</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшет&nbsp;— пластина с углублениями, лунками, в которые ставят пробы. Лунку 96-луночного планшета обозначают строкой из буквы ряда от A до H и двузначного номера столбца от 01 до 12, например <code>B07</code>. Лунки нумеруют по рядам: A01 имеет номер 1, A12 номер 12, B01 номер 13, H12 номер 96. Дано обозначение лунки. Проверьте его и выведите номер лунки или сообщение о первой найденной ошибке.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Строки тоже сравниваются цепочкой: <code>"A" &lt;= row &lt;= "H"</code>. Номер ряда дает функция <code>ord()</code>. Прежде чем превращать столбец в число, проверьте методом <code>isdigit()</code>, что в нем одни цифры: <code>"07".isdigit()</code> дает <code>True</code>, <code>"7a".isdigit()</code> дает <code>False</code>.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 0 до 10 символов.</p>
-          <h4>Выходные данные</h4>
-          <p>Номер лунки от 1 до 96. Если обозначение неверно, сообщение о первой ошибке в таком порядке проверки: <code>неверная длина</code>, если длина не равна 3; <code>неверный ряд</code>, если первый символ не прописная буква от A до H; <code>неверный столбец</code>, если два последних символа не число от 01 до 12.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>B07</pre></td><td><pre>19</pre></td></tr>
-                <tr><td><pre>I05</pre></td><td><pre>неверный ряд</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_08_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 3.8.1. Лунка планшета</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Планшет&nbsp;— пластина с углублениями, лунками, в которые ставят пробы. Лунку 96-луночного планшета обозначают строкой из буквы ряда от A до H и двузначного номера столбца от 01 до 12, например <code>B07</code>. Лунки нумеруют по рядам: A01 имеет номер 1, A12 номер 12, B01 номер 13, H12 номер 96. Дано обозначение лунки. Проверьте его и выведите номер лунки или сообщение о первой найденной ошибке.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 0 до 10 символов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Номер лунки от 1 до 96. Если обозначение неверно, сообщение о первой ошибке в таком порядке проверки: <code>неверная длина</code>, если длина не равна 3; <code>неверный ряд</code>, если первый символ не прописная буква от A до H; <code>неверный столбец</code>, если два последних символа не число от 01 до 12.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">B</span><span class="we-hl">07</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">19</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ряд B второй, перед ним 12 лунок ряда A; столбец 07 седьмой: 12 + 7 = 19.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>B07</pre></td><td><pre>19</pre></td></tr>
+                      <tr><td><pre>I05</pre></td><td><pre>неверный ряд</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Номер лунки считают по рядам: номер = (ряд − A) · 12 + столбец. Проверки идут по порядку, и первая ошибка отменяет остальные; столбец проверяют через <code>isdigit()</code> и диапазон 1–12.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Планшет</strong> — пластина с углублениями, лунками, в которые ставят пробы.</li>
+                  <li><strong>Лунка</strong> — одно углубление планшета.</li>
+                  <li><strong>Ряд и столбец</strong> — ряд обозначают буквой от A до H, столбец — номером от 01 до 12.</li>
+                  <li><strong>Метод isdigit()</strong> — проверяет, что строка состоит только из цифр.</li>
+                  <li><strong>Функция ord()</strong> — возвращает код символа; разность кодов дает номер буквы в алфавите.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обозначение: <code>well = input()</code>.</li>
+                  <li>Проверки по порядку: длина <code>len(well) != 3</code>, затем ряд <code>not "A" &lt;= well[0] &lt;= "H"</code>, затем столбец — <code>well[1:].isdigit()</code> и номер от <code>1</code> до <code>12</code>.</li>
+                  <li>Если ошибок нет, номер считают по рядам: <code>ord(well[0]) - ord("A")</code> умножить на <code>12</code> и прибавить <code>int(well[1:])</code>.</li>
+                  <li>Выведите номер или сообщение о первой ошибке; сверьтесь с примером: B07 дает 19, а I05 — неверный ряд.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_08_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -328,72 +470,213 @@ SyntaxError: expected 'else' after 'if' expression</pre></div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 3.8. Проверка праймера</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>ПЦР (полимеразная цепная реакция) многократно копирует участок ДНК; копирование начинается с праймера, короткой последовательности нуклеотидов. В лаборатории праймер проверяют по трем правилам в таком порядке: длина от 18 до 25 нуклеотидов включительно; GC-состав, то есть доля букв G и C в процентах от длины, от 40 до 60 включительно; последняя буква G или C. Дана последовательность праймера. Выведите сообщение о первом нарушенном правиле: <code>длина</code>, <code>GC-состав</code> или <code>конец</code>. Если все правила выполнены, выведите <code>подходит</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 40.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно слово: <code>длина</code>, <code>GC-состав</code>, <code>конец</code> или <code>подходит</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>ATGCAGTCCAGTACGGATCC</pre></td><td><pre>подходит</pre></td></tr>
-                <tr><td><pre>ATTAGCATTAATCAT</pre></td><td><pre>длина</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_08_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.8. Проверка праймера</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В лаборатории праймер проверяют по трем правилам в таком порядке: длина от 18 до 25 нуклеотидов включительно; GC-состав, то есть доля букв G и C в процентах от длины, от 40 до 60 включительно; последняя буква G или C. Дана последовательность праймера. Выведите сообщение о первом нарушенном правиле: <code>длина</code>, <code>GC-состав</code> или <code>конец</code>. Если все правила выполнены, выведите <code>подходит</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из прописных букв A, C, G, T длиной от 1 до 40.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно слово: <code>длина</code>, <code>GC-состав</code>, <code>конец</code> или <code>подходит</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATGCAGTCCAGTACGGATC<span class="we-hl">C</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">подходит</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длина 20 попадает в 18–25, GC-состав 11 из 20 = 55 % попадает в 40–60, последняя буква C. Все три правила выполнены.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>ATGCAGTCCAGTACGGATCC</pre></td><td><pre>подходит</pre></td></tr>
+                      <tr><td><pre>ATTAGCATTAATCAT</pre></td><td><pre>длина</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>GC-состав считают как (G + C) / длина · 100. Правила проверяют по порядку, поэтому сообщение дает первое нарушенное; последнюю букву проверяют через индекс -1.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>ПЦР</strong> — полимеразная цепная реакция: многократное копирование участка ДНК.</li>
+                  <li><strong>Праймер</strong> — короткая последовательность нуклеотидов, с которой начинается копирование.</li>
+                  <li><strong>GC-состав</strong> — доля букв G и C в процентах от длины последовательности.</li>
+                  <li><strong>Индекс -1</strong> — последний символ строки.</li>
+                  <li><strong>Порядок проверок</strong> — первое нарушенное правило задает сообщение.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>primer = input()</code>.</li>
+                  <li>Сосчитайте GC-состав: сложите <code>primer.count("G")</code> и <code>primer.count("C")</code>, поделите на <code>len(primer)</code>, умножьте на <code>100</code> и запишите в <code>gc</code>.</li>
+                  <li>Проверки по порядку: <code>not 18 &lt;= len(primer) &lt;= 25</code>, затем <code>not 40 &lt;= gc &lt;= 60</code>, затем конец: <code>primer[-1] != "G" and primer[-1] != "C"</code>.</li>
+                  <li>Выведите сообщение о первом нарушенном правиле или <code>подходит</code>; сверьтесь с примером: ATGCAGTCCAGTACGGATCC подходит, а ATTAGCATTAATCAT — длина.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_08_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 3.8. Обозначение лунки</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшетом называют пластину с углублениями, лунками, в которые ставят пробы. В 96-луночном планшете 8 рядов от A до H и 12 столбцов. Лунку обозначают буквой ряда и двузначным номером столбца от 01 до 12, например <code>B07</code>. Лунки нумеруют по рядам: <code>A01</code> имеет номер 1, <code>A12</code> номер 12, <code>B01</code> номер 13, <code>H12</code> номер 96. Дан номер лунки. Выведите ее обозначение или слова <code>неверный номер</code>, если лунки с таким номером в планшете нет.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Ряд и столбец находятся делением с остатком, если считать лунки с нуля: n − 1. Букву ряда по номеру дает функция <code>chr()</code> (<a href="../practice_2/t2_08.html">страница 08 второй практики</a>): <code>chr(ord("A") + 1)</code> дает <code>"B"</code>. Ноль перед однозначным столбцом можно приписать условным выражением.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка: целое число от −10 до 200.</p>
-          <h4>Выходные данные</h4>
-          <p>Обозначение лунки (буква и двузначный номер столбца) или слова <code>неверный номер</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>31</pre></td><td><pre>C07</pre></td></tr>
-                <tr><td><pre>0</pre></td><td><pre>неверный номер</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_08_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.8. Обозначение лунки</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Планшетом называют пластину с углублениями, лунками, в которые ставят пробы. В 96-луночном планшете 8 рядов от A до H и 12 столбцов. Лунку обозначают буквой ряда и двузначным номером столбца от 01 до 12, например <code>B07</code>. Лунки нумеруют по рядам: <code>A01</code> имеет номер 1, <code>A12</code> номер 12, <code>B01</code> номер 13, <code>H12</code> номер 96. Дан номер лунки. Выведите ее обозначение или слова <code>неверный номер</code>, если лунки с таким номером в планшете нет.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: целое число от −10 до 200.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Обозначение лунки (буква и двузначный номер столбца) или слова <code>неверный номер</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">31</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">C07</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Считая с нуля, номер 31 становится 30: 30 // 12 = 2 — это третий ряд C, а 30 % 12 = 6 — седьмой столбец 07.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>31</pre></td><td><pre>C07</pre></td></tr>
+                      <tr><td><pre>0</pre></td><td><pre>неверный номер</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Обозначение собирают обратно из номера: ряд — целая часть от деления number − 1 на 12, столбец — остаток от деления плюс 1. Двузначный номер столбца дополняют нулем слева через условное выражение.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Планшет</strong> — пластина с углублениями, лунками, в которые ставят пробы.</li>
+                  <li><strong>Лунка</strong> — одно углубление планшета.</li>
+                  <li><strong>Ряд и столбец</strong> — ряд обозначают буквой от A до H, столбец — номером от 01 до 12.</li>
+                  <li><strong>Функция chr()</strong> — возвращает символ по его коду.</li>
+                  <li><strong>Оператор //</strong> — целочисленное деление: отбрасывает дробную часть.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте номер: <code>number = int(input())</code>.</li>
+                  <li>Номер допустим, если <code>1 &lt;= number &lt;= 96</code>.</li>
+                  <li>Сохраните ряд и столбец: <code>row = chr(ord("A") + (number - 1) // 12)</code>, <code>column = (number - 1) % 12 + 1</code>.</li>
+                  <li>Соберите обозначение, дописав ноль перед однозначным столбцом: <code>row</code>, затем <code>"0"</code>, если <code>column &lt; 10</code>, и <code>str(column)</code>; сверьтесь с примером: 31 дает C07, а 0 — неверный номер.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_08_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 3.8. Поворот планшета</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшетом называют пластину с углублениями, лунками, в которые ставят пробы. В 96-луночном планшете 8 рядов от A до H и 12 столбцов. Лунку обозначают буквой ряда и двузначным номером столбца от 01 до 12, например <code>B07</code>. Если планшет поставить в прибор повернутым на 180 градусов, лунка <code>A01</code> окажется на месте <code>H12</code>, а <code>A02</code> на месте <code>H11</code>: ряд A меняется местами с H, B с G и так далее, а столбец 1 со столбцом 12, 2 с 11 и так далее. Дано обозначение лунки. Проверьте его и выведите обозначение лунки, на месте которой она окажется, или сообщение о первой найденной ошибке.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Сумма номеров ряда до поворота и после постоянна, если считать номера функцией <code>ord()</code>; со столбцами так же.</p></details>
-          <h4>Входные данные</h4>
-          <p>Одна строка длиной от 0 до 10 символов.</p>
-          <h4>Выходные данные</h4>
-          <p>Обозначение лунки после поворота (буква и двузначный номер столбца). Если обозначение неверно, сообщение о первой ошибке в таком порядке проверки: <code>неверная длина</code>, если длина не равна 3; <code>неверный ряд</code>, если первый символ не прописная буква от A до H; <code>неверный столбец</code>, если два последних символа не число от 01 до 12.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>B03</pre></td><td><pre>G10</pre></td></tr>
-                <tr><td><pre>C1</pre></td><td><pre>неверная длина</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t3_08_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 3.8. Поворот планшета</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Планшетом называют пластину с углублениями, лунками, в которые ставят пробы. В 96-луночном планшете 8 рядов от A до H и 12 столбцов. Лунку обозначают буквой ряда и двузначным номером столбца от 01 до 12, например <code>B07</code>. Если планшет поставить в прибор повернутым на 180 градусов, лунка <code>A01</code> окажется на месте <code>H12</code>, а <code>A02</code> на месте <code>H11</code>: ряд A меняется местами с H, B с G и так далее, а столбец 1 со столбцом 12, 2 с 11 и так далее. Дано обозначение лунки. Проверьте его и выведите обозначение лунки, на месте которой она окажется, или сообщение о первой найденной ошибке.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка длиной от 0 до 10 символов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Обозначение лунки после поворота (буква и двузначный номер столбца). Если обозначение неверно, сообщение о первой ошибке в таком порядке проверки: <code>неверная длина</code>, если длина не равна 3; <code>неверный ряд</code>, если первый символ не прописная буква от A до H; <code>неверный столбец</code>, если два последних символа не число от 01 до 12.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq"><span class="we-hl">B03</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">G10</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ряд B зеркален ряду G, а столбец 03 — столбцу 10 (в сумме 13). После поворота лунка B03 оказывается на месте G10.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>B03</pre></td><td><pre>G10</pre></td></tr>
+                      <tr><td><pre>C1</pre></td><td><pre>неверная длина</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При повороте на 180 градусов ряд A переходит в H, B в G, и так далее: номер буквы заменяется на 8 минус его номер. Столбец 1 переходит в 12, 2 в 11: новый номер — 13 минус старый.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Планшет</strong> — пластина с углублениями, лунками, в которые ставят пробы.</li>
+                  <li><strong>Лунка</strong> — одно углубление планшета.</li>
+                  <li><strong>Поворот на 180 градусов</strong> — ряд A меняется местами с H, B с G; столбец 1 с 12, 2 с 11.</li>
+                  <li><strong>Функции chr() и ord()</strong> — переводят код в символ и обратно.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте обозначение: <code>well = input()</code>.</li>
+                  <li>Проверки по порядку, как в упражнении 3.8.1: длина, ряд, столбец; при ошибке выведите сообщение и остановитесь.</li>
+                  <li>Новый ряд: <code>chr(ord("A") + ord("H") - ord(well[0]))</code>; новый столбец: <code>13 - int(well[1:])</code>.</li>
+                  <li>Соберите обозначение с нулем перед однозначным столбцом и выведите; сверьтесь с примером: B03 дает G10, а C1 — неверная длина.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t3_08_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

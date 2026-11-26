@@ -235,76 +235,214 @@
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 1.6.1. Полные кодоны</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих нуклеотидов, то есть букв последовательности ДНК; последовательность читают кодонами от начала. Дана длина последовательности нуклеотидов. Найдите, сколько в ней полных кодонов и сколько нуклеотидов останется после последнего полного кодона.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задается целое неотрицательное число <code>length</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число полных кодонов, во второй остаток.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>length = 20</pre></td><td><pre>6
+              <h3>Упражнение 1.6.1. Полные кодоны</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана длина последовательности нуклеотидов <code>length</code>. Найдите, сколько в ней полных кодонов и сколько нуклеотидов останется после последнего полного кодона.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно целое неотрицательное число <code>length</code> — длина последовательности нуклеотидов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число полных кодонов, во второй остаток.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">20</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">6</span><br><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">20 // 3 = 6 полных кодонов, а 20 % 3 = 2 нуклеотида остаются после последнего полного кодона.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>20</pre></td><td><pre>6
 2</pre></td></tr>
-                <tr><td><pre>length = 21</pre></td><td><pre>7
+                      <tr><td><pre>21</pre></td><td><pre>7
 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Последовательность ДНК читают кодонами от начала: тройка за тройкой. Если длина не делится на три, конец последовательности остается непрочитанным, и там помещается неполный кодон.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов, то есть букв последовательности ДНК.</li>
+                  <li><strong>Нуклеотид</strong> — одна буква последовательности: <code>A</code>, <code>C</code>, <code>G</code> или <code>T</code>.</li>
+                  <li><strong>Полный кодон</strong> — кодон, в котором прочитаны все три нуклеотида.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>length = int(input())</code>.</li>
+                  <li>Число полных кодонов — целая часть от деления длины на 3: ее дает целочисленное деление <code>//</code>.</li>
+                  <li>Остаток в конце — остаток от деления на 3: его дает оператор <code>%</code>.</li>
+                  <li>Сверьтесь с примером: <code>20 // 3</code> дает 6 полных кодонов, а <code>20 % 3</code> — 2 нуклеотида в неполном кодоне.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 1.6.1. До полного кодона</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих нуклеотидов, то есть букв последовательности ДНК; последовательность читают кодонами от начала. Дана длина последовательности нуклеотидов. Найдите, сколько нуклеотидов нужно добавить в конец, чтобы длина стала кратной трем.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задается целое неотрицательное число <code>length</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число от 0 до 2.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>length = 20</pre></td><td><pre>1</pre></td></tr>
-                <tr><td><pre>length = 21</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.6.1. До полного кодона</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Дана длина последовательности нуклеотидов <code>length</code>. Найдите, сколько нуклеотидов нужно добавить в конец, чтобы длина стала кратной трем, то есть делилась на 3 без остатка.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одно целое неотрицательное число <code>length</code> — длина последовательности нуклеотидов.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число от 0 до 2.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">20</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">20 % 3 = 2, до ближайшего числа, кратного трем (21), не хватает одного нуклеотида.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>20</pre></td><td><pre>1</pre></td></tr>
+                      <tr><td><pre>21</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Дочитать последовательность кодонами можно, только если ее длина кратна трем. Иначе в конце остается неполный кодон, и последовательность нельзя прочитать целиком.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Кратное</strong> — число, которое делится на другое число без остатка.</li>
+                  <li><strong>Остаток от деления</strong> — число, которое остается после вычитания наибольшего кратного: у 20 при делении на 3 остаток 2.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число: <code>length = int(input())</code>.</li>
+                  <li>Остаток <code>length % 3</code> показывает, сколько нуклеотидов уже есть в неполном кодоне в конце.</li>
+                  <li>Если остаток нулевой, добавлять ничего не нужно; иначе не хватает <code>3 - length % 3</code> нуклеотидов.</li>
+                  <li>Сверьтесь с примером: при <code>length = 20</code> остаток 2, значит, нужно добавить 1 нуклеотид.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 1.6.1. Рамка считывания со сдвигом</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодон&nbsp;— тройка подряд идущих нуклеотидов. Последовательность можно читать тройками с первой, второй или третьей буквы; выбранное начало чтения называют рамкой считывания. Здесь его задает сдвиг <code>shift</code> (0, 1 или 2): при сдвиге 0 чтение начинается с первой буквы, при сдвиге 1 со второй. Найдите, сколько полных кодонов прочитается и сколько нуклеотидов останется непрочитанными в конце.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>length</code> и <code>shift</code> (от 0 до 2, не больше <code>length</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число полных кодонов, во второй остаток в конце.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>length = 20
-shift = 1</pre></td><td><pre>6
+              <h3>Упражнение 1.6.1. Рамка считывания со сдвигом</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны длина последовательности <code>length</code> и сдвиг <code>shift</code> (0, 1 или 2). Последовательность читают тройками, начиная с буквы номер <code>shift + 1</code>. Найдите, сколько полных кодонов прочитается и сколько нуклеотидов останется непрочитанными в конце.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>length</code> — длина последовательности, <code>shift</code> — сдвиг (0, 1 или 2, не больше <code>length</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число полных кодонов, во второй остаток в конце.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">20<br>1</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">6</span><br><span class="we-hl">1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Первый нуклеотид пропускается, и на чтение остается 19 букв: 19 // 3 = 6 полных кодонов и 1 буква в остатке.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>20
+1</pre></td><td><pre>6
 1</pre></td></tr>
-                <tr><td><pre>length = 7
-shift = 2</pre></td><td><pre>1
+                      <tr><td><pre>7
+2</pre></td><td><pre>1
 2</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Молекулу можно читать тройками с первой, второй или третьей буквы: это три возможные рамки считывания. Выбранная рамка задается сдвигом: при сдвиге 1 первая буква пропускается, при сдвиге 2 пропускаются первые две.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Рамка считывания</strong> — выбор первой буквы, с которой начинается чтение тройками.</li>
+                  <li><strong>Сдвиг</strong> — число первых букв, которые пропускаются перед чтением; принимает значения 0, 1 или 2.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>length = int(input())</code> и <code>shift = int(input())</code>.</li>
+                  <li>Сдвиг уменьшает число букв, доступных для чтения: из длины вычитается <code>shift</code>.</li>
+                  <li>Дальше задача сводится к делению с остатком, как в базовом варианте.</li>
+                  <li>Сверьтесь с примером: при <code>length = 20</code> и <code>shift = 1</code> читается 19 букв, это 6 полных кодонов и 1 непрочитанная буква.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -457,82 +595,220 @@ shift = 2</pre></td><td><pre>1
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-            <h3>Упражнение 1.6.2. Средняя длина прочтения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Прочтение&nbsp;— участок ДНК, который секвенатор, прибор для чтения ДНК, прочитал за один раз. Даны длины трех прочтений <code>r1</code>, <code>r2</code>, <code>r3</code>. Найдите среднюю длину.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые неотрицательные числа <code>r1</code>, <code>r2</code>, <code>r3</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно вещественное число в том виде, в каком его печатает Python.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>r1 = 148
-r2 = 150
-r3 = 155</pre></td><td><pre>151.0</pre></td></tr>
-                <tr><td><pre>r1 = 100
-r2 = 100
-r3 = 101</pre></td><td><pre>100.33333333333333</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_2_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.6.2. Средняя длина прочтения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны длины трех прочтений <code>read_length1</code>, <code>read_length2</code> и <code>read_length3</code>. Найдите среднюю длину прочтения.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три целых неотрицательных числа, каждое в своей строке: <code>read_length1</code>, <code>read_length2</code> и <code>read_length3</code> — длины прочтений.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно вещественное число в том виде, в каком его печатает Python.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">148<br>150<br>155</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">151.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Сумма 148 + 150 + 155 = 453, деление 453 / 3 = 151.0: оператор / всегда дает вещественное число, даже когда делится нацело.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>148
+150
+155</pre></td><td><pre>151.0</pre></td></tr>
+                      <tr><td><pre>100
+100
+101</pre></td><td><pre>100.33333333333333</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Секвенатор читает ДНК не целиком, а кусками: каждое прочтение покрывает свой участок молекулы. Чтобы оценить качество прогона, длины прочтений усредняют.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Прочтение</strong> — участок ДНК, который секвенатор прочитал за один раз.</li>
+                  <li><strong>Секвенатор</strong> — прибор для чтения последовательности ДНК.</li>
+                  <li><strong>Среднее арифметическое</strong> — сумма чисел, деленная на их количество.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>read_length1 = int(input())</code>, <code>read_length2 = int(input())</code>, <code>read_length3 = int(input())</code>.</li>
+                  <li>Среднее из трех чисел — сумма, деленная на 3; сумму возьмите в скобки, иначе на 3 разделится только последнее слагаемое.</li>
+                  <li>Для средней нужно обычное деление <code>/</code>, а не целочисленное <code>//</code>: иначе дробная часть потеряется.</li>
+                  <li>Сверьтесь с примером: <code>(148 + 150 + 155) / 3 = 151.0</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_2_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-            <h3>Упражнение 1.6.2. Кратность разведения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Буфер&nbsp;— раствор, которым разбавляют пробу. Пробу объемом <code>sample</code> мкл смешали с буфером объемом <code>buffer</code> мкл. Найдите кратность разведения: общий объем, деленный на объем пробы.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые положительные числа <code>sample</code> и <code>buffer</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Одно вещественное число в том виде, в каком его печатает Python.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>sample = 20
-buffer = 180</pre></td><td><pre>10.0</pre></td></tr>
-                <tr><td><pre>sample = 25
-buffer = 100</pre></td><td><pre>5.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_2_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 1.6.2. Кратность разведения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Пробу объемом <code>sample</code> мкл смешали с буфером объемом <code>buffer</code> мкл. Найдите кратность разведения: во сколько раз общий объем больше объема пробы.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых положительных числа, каждое в своей строке: <code>sample</code> — объем пробы в мкл, <code>buffer</code> — объем буфера в мкл.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно вещественное число в том виде, в каком его печатает Python.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">20<br>180</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">10.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Общий объем 20 + 180 = 200 мкл; кратность 200 / 20 = 10.0.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>20
+180</pre></td><td><pre>10.0</pre></td></tr>
+                      <tr><td><pre>25
+100</pre></td><td><pre>5.0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Разведением называют добавление буфера к пробе, чтобы уменьшить концентрацию вещества. Кратность разведения показывает, сколько объемов пробы помещается в получившемся растворе.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Буфер</strong> — раствор, которым разбавляют пробу.</li>
+                  <li><strong>Кратность разведения</strong> — отношение общего объема раствора к объему пробы.</li>
+                  <li><strong>мкл</strong> — микролитр, тысячная доля миллилитра.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>sample = int(input())</code> и <code>buffer = int(input())</code>.</li>
+                  <li>Общий объем раствора — проба плюс буфер: <code>sample + buffer</code>.</li>
+                  <li>Кратность — общий объем, деленный на объем пробы; сумму возьмите в скобки: <code>(sample + buffer) / sample</code>.</li>
+                  <li>Сверьтесь с примером: <code>(20 + 180) / 20 = 10.0</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_2_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-            <h3>Упражнение 1.6.2. Объем пробы для разведения</h3>
-            <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Нужно получить <code>v2</code> мкл раствора с концентрацией <code>c2</code> из исходного раствора с концентрацией <code>c1</code>. По формуле <span class='formula'>C1 · V1 = C2 · V2</span> найдите объем исходного раствора V1 и объем буфера: буфер добавляют до общего объема V2.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются вещественные числа <code>c1</code>, <code>c2</code> (не больше <code>c1</code>) и <code>v2</code>, все больше 0.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке объем исходного раствора, во второй объем буфера.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>c1 = 100.0
-c2 = 10.0
-v2 = 50.0</pre></td><td><pre>5.0
+              <h3>Упражнение 1.6.2. Объем пробы для разведения</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Даны концентрация исходного раствора <code>concentration1</code>, нужная концентрация <code>concentration2</code> и конечный объем <code>volume2</code>. Найдите объем исходного раствора <code>volume1</code> и объем буфера, который нужно добавить.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три вещественных числа, каждое в своей строке, все больше 0: <code>concentration1</code> — концентрация исходного раствора, <code>concentration2</code> — нужная концентрация (не больше <code>concentration1</code>), <code>volume2</code> — конечный объем.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке объем исходного раствора, во второй объем буфера.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">100.0<br>10.0<br>50.0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">5.0</span><br><span class="we-hl">45.0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note"><code>volume1 = concentration2 * volume2 / concentration1</code> = 10.0 · 50.0 / 100.0 = 5.0 мкл; буфера нужно 50.0 − 5.0 = 45.0 мкл.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>100.0
+10.0
+50.0</pre></td><td><pre>5.0
 45.0</pre></td></tr>
-                <tr><td><pre>c1 = 20.0
-c2 = 5.0
-v2 = 8.0</pre></td><td><pre>2.0
+                      <tr><td><pre>20.0
+5.0
+8.0</pre></td><td><pre>2.0
 6.0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_2_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При разведении количество растворенного вещества не меняется: сколько его было в исходной пробе, столько остается и в готовом растворе. Поэтому <code>concentration1 * volume1</code> = <code>concentration2 * volume2</code>.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Концентрация</strong> — количество вещества в единице объема раствора.</li>
+                  <li><strong>Буфер</strong> — раствор, которым разбавляют пробу.</li>
+                  <li><strong>Разведение</strong> — добавление буфера к пробе до нужной концентрации.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>concentration1 = float(input())</code>, <code>concentration2 = float(input())</code>, <code>volume2 = float(input())</code>.</li>
+                  <li>Из формулы <code>concentration1 * volume1</code> = <code>concentration2 * volume2</code> выразите объем пробы: <code>volume1</code> — это <code>concentration2 * volume2</code>, деленное на <code>concentration1</code>.</li>
+                  <li>Буфер дополняет пробу до конечного объема: <code>volume2 - volume1</code>.</li>
+                  <li>Сверьтесь с примером: <code>volume1 = 10.0 * 50.0 / 100.0 = 5.0</code>, буфера нужно <code>50.0 - 5.0 = 45.0</code>.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_2_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -543,82 +819,221 @@ v2 = 8.0</pre></td><td><pre>2.0
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 1.6. Кодоны участка</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Кодоном называют тройку подряд идущих нуклеотидов. Позиции в последовательности нумеруют с 1. Участок гена занимает позиции с <code>start</code> по <code>end</code> включительно и читается кодонами от позиции <code>start</code>. Найдите, сколько в участке полных кодонов.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>start</code> и <code>end</code> (1 ≤ <code>start</code> ≤ <code>end</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>Одно целое число.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>start = 10
-end = 39</pre></td><td><pre>10</pre></td></tr>
-                <tr><td><pre>start = 5
-end = 6</pre></td><td><pre>0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Задача со звездочкой 1.6. Кодоны участка</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Участок гена занимает позиции с <code>start</code> по <code>end</code> включительно и читается кодонами от позиции <code>start</code>. Найдите, сколько в участке полных кодонов.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке: <code>start</code> — первая позиция участка, <code>end</code> — последняя (1 ≤ <code>start</code> ≤ <code>end</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Одно целое число.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">10<br>39</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">10</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Участок занимает 39 − 10 + 1 = 30 нуклеотидов; 30 // 3 = 10 полных кодонов.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>10
+39</pre></td><td><pre>10</pre></td></tr>
+                      <tr><td><pre>5
+6</pre></td><td><pre>0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Участок гена — отрезок последовательности с позиции <code>start</code> по позицию <code>end</code>; обе границы входят в участок. Позиции нумеруют с первой буквы последовательности, а чтение начинается с первой буквы участка.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида в последовательности, счет начинается с 1.</li>
+                  <li><strong>Включительно</strong> — обе границы участка входят в него.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>start = int(input())</code> и <code>end = int(input())</code>.</li>
+                  <li>Длина участка — <code>end - start + 1</code>: обе границы входят в участок, поэтому прибавляется 1.</li>
+                  <li>Число полных кодонов — длина участка, деленная нацело на 3.</li>
+                  <li>Сверьтесь с примером: <code>39 - 10 + 1 = 30</code> нуклеотидов, это 10 полных кодонов.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 1.6. Планшеты для партии</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Планшетом называют пластину с углублениями, лунками; в каждую лунку ставят одну пробу. В планшете <code>wells</code> лунок, в партии <code>samples</code> проб. Пробы раскладывают по планшетам подряд, новый планшет начинают, только когда предыдущий заполнен. Найдите, сколько планшетов понадобится и сколько лунок останется пустыми в последнем планшете.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>samples</code> и <code>wells</code>, оба больше 0.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число планшетов, во второй число пустых лунок.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>samples = 200
-wells = 96</pre></td><td><pre>3
+              <h3>Задача со звездочкой 1.6. Планшеты для партии</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>В планшете <code>wells</code> лунок, в партии <code>samples</code> проб. Пробы раскладывают по лункам подряд, новый планшет начинают, только когда предыдущий заполнен. Найдите, сколько планшетов понадобится и сколько лунок останется пустыми в последнем планшете.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Два целых числа, каждое в своей строке, оба больше 0: <code>samples</code> — число проб, <code>wells</code> — число лунок в планшете.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке число планшетов, во второй число пустых лунок.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">200<br>96</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span><br><span class="we-hl">88</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">192 пробы заполняют два планшета, остаются 200 − 192 = 8 проб в третьем; пустых лунок 96 − 8 = 88.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>200
+96</pre></td><td><pre>3
 88</pre></td></tr>
-                <tr><td><pre>samples = 192
-wells = 96</pre></td><td><pre>2
+                      <tr><td><pre>192
+96</pre></td><td><pre>2
 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Лабораторные пробы раскладывают по планшетам — пластинам с лунками. Число лунок в планшете фиксировано, поэтому последний планшет часто заполнен не полностью.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Планшет</strong> — пластина с углублениями для проб.</li>
+                  <li><strong>Лунка</strong> — одно углубление планшета, в нее ставят одну пробу.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте два числа: <code>samples = int(input())</code> и <code>wells = int(input())</code>.</li>
+                  <li>Полные планшеты считает целочисленное деление: <code>samples // wells</code>.</li>
+                  <li>Остаток <code>samples % wells</code> — число проб в последнем, неполном планшете; если он не нулевой, нужен еще один планшет.</li>
+                  <li>Пустые лунки — <code>wells</code> минус пробы последнего планшета, но при нулевом остатке пустых лунок нет.</li>
+                  <li>Сверьтесь с примером: <code>200 // 96 = 2</code> полных планшета, остаток 8, значит, нужен третий планшет и в нем 96 − 8 = 88 пустых лунок.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 1.6. Шаг назад по кольцу</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Плазмидой называют кольцевую молекулу ДНК. Позиции на плазмиде длиной <code>length</code> нумеруют от 1 до <code>length</code>, за позицией <code>length</code> снова идет позиция 1. От позиции <code>position</code> отступают на <code>shift</code> нуклеотидов назад, к меньшим номерам. Найдите новую позицию и сколько раз при этом путь перешел с позиции 1 на позицию <code>length</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В начале программы задаются целые числа <code>length</code> (больше 0), <code>position</code> (от 1 до <code>length</code>) и <code>shift</code> (от 0 до 10<sup>9</sup>, может быть больше <code>length</code>).</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке новая позиция, во второй число переходов с позиции 1 на позицию <code>length</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Исходные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>length = 5000
-position = 30
-shift = 100</pre></td><td><pre>4930
+              <h3>Задача со звездочкой 1.6. Шаг назад по кольцу</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Позиции на кольцевой молекуле длиной <code>length</code> нумеруют от 1 до <code>length</code>, за позицией <code>length</code> снова идет позиция 1. От позиции <code>position</code> отступают на <code>shift</code> нуклеотидов назад, к меньшим номерам. Найдите новую позицию и число переходов с позиции 1 на позицию <code>length</code>.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Три целых числа, каждое в своей строке: <code>length</code> — длина кольцевой молекулы (больше 0), <code>position</code> — начальная позиция (от 1 до <code>length</code>), <code>shift</code> — сдвиг назад (от 0 до 10<sup>9</sup>, может быть больше <code>length</code>).</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке новая позиция, во второй число переходов с позиции 1 на позицию <code>length</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">5000<br>30<br>100</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4930</span><br><span class="we-hl">1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">30 − 100 = −70; кольцо замкнуто, поэтому путь один раз переходит с позиции 1 на позицию 5000, и новая позиция −70 + 5000 = 4930.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>5000
+30
+100</pre></td><td><pre>4930
 1</pre></td></tr>
-                <tr><td><pre>length = 10
-position = 3
-shift = 2</pre></td><td><pre>1
+                      <tr><td><pre>10
+3
+2</pre></td><td><pre>1
 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t1_06_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: задайте в начале программы исходные данные из левой колонки таблицы «Примеры», запустите ее и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Плазмиды — кольцевые молекулы ДНК: у них нет начала и конца, поэтому после последней позиции снова идет первая. Отступая назад от позиции 1, путь переходит на последнюю позицию: это переход через начало кольца.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Плазмида</strong> — кольцевая молекула ДНК.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида, счет начинается с 1.</li>
+                  <li><strong>Переход через начало</strong> — шаг с позиции 1 на позицию <code>length</code>.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте три числа: <code>length = int(input())</code>, <code>position = int(input())</code>, <code>shift = int(input())</code>.</li>
+                  <li>Шаги по кольцу удобно считать по модулю длины: вычтите <code>shift</code> из номера позиции и возьмите остаток от деления на <code>length</code>.</li>
+                  <li>Остаток от деления в Python лежит от 0 до <code>length - 1</code>, а позиции нумеруются с 1: прибавьте 1 к остатку.</li>
+                  <li>Переход с позиции 1 на позицию <code>length</code> происходит, когда путь проходит мимо начала кольца: после <code>position - 1</code> шагов путь стоит на позиции 1, и каждый следующий оборот длиной <code>length</code> дает еще один переход.</li>
+                  <li>Сверьтесь с примером: <code>30 - 1 - 100 = -71</code>, остаток от деления на 5000 равен 4929, новая позиция 4930; до позиции 1 путь дошел за 29 шагов, а оставшиеся 71 шаг пересекает начало один раз.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t1_06_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

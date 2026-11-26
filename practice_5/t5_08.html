@@ -177,71 +177,192 @@ recs <span class="tok-op">=</span> <span class="tok-builtin">list</span>(<span c
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 5.8.1. Вектор признаков</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Опишите последовательность вектором из четырех признаков: числа букв A, C, G и T, именно в таком порядке. Соберите вектор списковым включением и выведите его числа через пробел.</p></div>
-          <h4>Входные данные</h4>
-          <p>Одна строка: последовательность из букв A, C, G, T длиной от 1 до 100.</p>
-          <h4>Выходные данные</h4>
-          <p>Четыре целых числа через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>3 1 1 2</pre></td></tr>
-                <tr><td><pre>CCCC</pre></td><td><pre>0 4 0 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_08_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <h3>Упражнение 5.8.1. Вектор признаков</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Опишите последовательность вектором из четырех признаков: числа букв A, C, G и T, именно в таком порядке. Выведите числа вектора через пробел.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>Одна строка: последовательность из букв A, C, G, T длиной от 1 до 100.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Четыре целых числа через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<span class="we-hl">A</span>TT<span class="we-hl">A</span>C<span class="we-hl">A</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">3 1 1 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква A встречается 3 раза, C — 1 раз, G — 1 раз, T — 2 раза; вектор выводится в порядке A, C, G, T.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>GATTACA</pre></td><td><pre>3 1 1 2</pre></td></tr>
+                      <tr><td><pre>CCCC</pre></td><td><pre>0 4 0 0</pre></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Включение [str(seq.count(base)) for base in "ACGT"] перебирает буквы строки "ACGT" и для каждой считает вхождения методом count — получается вектор признаков в нужном порядке. str() внутри включения сразу делает числа строками, и join склеивает их через пробел.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Вектор признаков</strong> — четыре числа букв A, C, G, T по порядку.</li>
+                  <li><strong>Списковое включение</strong> — список, собранный выражением из строки.</li>
+                  <li><strong>Метод count()</strong> — считает, сколько раз буква встречается в строке.</li>
+                  <li><strong>Функция str()</strong> — переводит число в строку.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте последовательность: <code>seq = input()</code>.</li>
+                  <li>Перебирайте буквы строки "ACGT" включением: <code>[seq.count(base) for base in "ACGT"]</code> — порядок вектора задает сама строка.</li>
+                  <li>Переведите числа в строки прямо во включении: <code>str(seq.count(base))</code> для каждой <code>base</code> из <code>"ACGT"</code>.</li>
+                  <li>Напечатайте <code>" ".join(vector)</code>; сверьтесь с примером: GATTACA дает 3 1 1 2, а CCCC — 0 4 0 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_08_1_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 5.8.1. Матрица из FASTA</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Разберите записи FASTA и для каждой выведите строку матрицы признаков: идентификатор без знака <code>&gt;</code> и вектор из чисел букв A, C, G, T. Векторы собирайте списковым включением.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p><code>n</code> строк по порядку записей: идентификатор и четыре числа через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2
+              <h3>Упражнение 5.8.1. Матрица из FASTA</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Разберите записи FASTA и для каждой выведите строку матрицы признаков: идентификатор без знака <code>&gt;</code> и вектор из чисел букв A, C, G, T. Строки выводите в порядке записей.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20. Дальше <code>count</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>count</code> строк по порядку записей: идентификатор и четыре числа через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2<br>&gt;seq_1<br><span class="we-hl">GATTACA</span><br>&gt;seq_2<br><span class="we-hl">CCGG</span></code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">seq_1 3 1 1 2<br>seq_2 0 2 2 0</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Каждая запись дает строку матрицы: у GATTACA вектор 3 1 1 2, у CCGG — 0 2 2 0; идентификатор выводится без знака &gt;.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2
 &gt;seq_1
 GATTACA
 &gt;seq_2
 CCGG</pre></td><td><pre>seq_1 3 1 1 2
 seq_2 0 2 2 0</pre></td></tr>
-                <tr><td><pre>1
+                      <tr><td><pre>1
 &gt;x
 A</pre></td><td><pre>x 1 0 0 0</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_08_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Записи читают парами: заголовок срезают [1:], последовательность берут целиком. Для каждой строки включение [str(seq.count(base)) for base in "ACGT"] строит вектор, а print(name, " ".join(...)) печатает идентификатор и числа через пробел.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Запись FASTA</strong> — строка заголовка со знаком &gt; и следом строка последовательности.</li>
+                  <li><strong>Матрица признаков</strong> — строка на запись: идентификатор и четыре числа букв.</li>
+                  <li><strong>Списковое включение</strong> — список, собранный выражением из строки.</li>
+                  <li><strong>Срез [1:]</strong> — убирает первый символ заголовка — знак &gt;.</li>
+                  <li><strong>Метод count()</strong> — считает, сколько раз буква встречается в строке.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число записей: <code>count = int(input())</code>.</li>
+                  <li>Перебирайте записи: <code>for index in range(count):</code> — сначала заголовок <code>name = input()[1:]</code>, затем <code>seq = input()</code>.</li>
+                  <li>Для каждой записи соберите вектор: <code>str(seq.count(base))</code> для каждой <code>base</code> из <code>"ACGT"</code>.</li>
+                  <li>Напечатайте name и <code>" ".join(vector)</code>; сверьтесь с примером: записи seq_1 и seq_2 дают две строки seq_1 3 1 1 2 и seq_2 0 2 2 0.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_08_1_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 5.8.1. Ближе всех к среднему</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T) и найдите средний вектор: среднее арифметическое каждого столбца. Расстоянием между двумя векторами будем считать сумму модулей разностей их чисел (модуль числа дает функция <code>abs()</code>): у <code>[1, 2, 0, 1]</code> и <code>[2, 2, 1, 1]</code> расстояние <span class="formula">1 + 0 + 1 + 0 = 2</span>. Выведите средний вектор, округлив каждое число функцией <code>round()</code> до двух цифр после точки, и идентификатор записи, ближайшей к среднему вектору; если таких несколько, первой по порядку. Сравнивайте расстояния до неокругленного среднего.</p></div>
-          <details class="task-hint"><summary>Подсказка</summary><p>Столбцы матрицы дает <code>zip(*X)</code>. Чтобы не сравнивать дробные расстояния, умножьте все на <code>n</code>: разность <span class="formula">n · x − S</span>, где <span class="formula">S</span> сумма столбца, вместо <span class="formula">x − S / n</span> меняет расстояния в <code>n</code> раз, но не меняет их порядок.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке четыре числа среднего вектора через пробел в том виде, в каком их печатает Python после <code>round(x, 2)</code> (например, <code>1.33</code> или <code>1.0</code>); во второй идентификатор.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3
+              <h3>Упражнение 5.8.1. Ближе всех к среднему</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T) и найдите средний вектор: среднее арифметическое каждого столбца. Расстоянием между двумя векторами будем считать сумму модулей разностей их чисел (модуль числа дает функция <code>abs()</code>): у <code>[1, 2, 0, 1]</code> и <code>[2, 2, 1, 1]</code> расстояние <span class="formula">1 + 0 + 1 + 0 = 2</span>. Выведите средний вектор, округлив каждое число функцией <code>round()</code> до двух цифр после точки, и идентификатор записи, ближайшей к среднему вектору; если таких несколько, первой по порядку. Сравнивайте расстояния до неокругленного среднего.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20. Дальше <code>count</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>В первой строке четыре числа среднего вектора через пробел в том виде, в каком их печатает Python после <code>round(value, 2)</code> (например, <code>1.33</code> или <code>1.0</code>); во второй идентификатор.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3<br>&gt;s1<br>ACGT<br>&gt;s2<br>AAGG<br>&gt;s3<br>CCCT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">1.0 1.33 1.0 0.67<br><span class="we-hl">s1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Средний вектор — 1.0 1.33 1.0 0.67; s1 отличается от него на 0,67, а s2 и s3 — на 4, поэтому ближе всех s1.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3
 &gt;s1
 ACGT
 &gt;s2
@@ -249,16 +370,38 @@ AAGG
 &gt;s3
 CCCT</pre></td><td><pre>1.0 1.33 1.0 0.67
 s1</pre></td></tr>
-                <tr><td><pre>1
+                      <tr><td><pre>1
 &gt;only
 GATTACA</pre></td><td><pre>3.0 1.0 1.0 2.0
 only</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_08_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Матрицу matrix собирают как список векторов. Средний вектор получают по столбцам: zip(*matrix) разворачивает матрицу, и sum(col) складывает столбец; деление на count выполняют только при печати, а расстояния сравнивают до неокругленного среднего. Расстояние |value - среднее| для каждого признака считают через abs(), а сумму умножают на count, чтобы обойтись без дробей: sum(abs(count * value - column_sum)).</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Матрица признаков</strong> — строка на запись: идентификатор и четыре числа букв.</li>
+                  <li><strong>Средний вектор</strong> — среднее арифметическое каждого столбца матрицы.</li>
+                  <li><strong>Расстояние между векторами</strong> — сумма модулей разностей их чисел.</li>
+                  <li><strong>Функция abs()</strong> — возвращает модуль числа.</li>
+                  <li><strong>Функция zip()</strong> — разворачивает матрицу по столбцам.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте записи: <code>count = int(input())</code>; для каждой сохраните <code>name = input()[1:]</code> и вектор <code>[seq.count(base) for base in "ACGT"]</code> в список matrix.</li>
+                  <li>Соберите суммы столбцов: <code>sum(col)</code> для каждого <code>col</code> из <code>zip(*matrix)</code>; <code>zip(*matrix)</code> разворачивает матрицу.</li>
+                  <li>Для каждой строки посчитайте расстояние до среднего без деления на <code>count</code>: сумма модулей разностей <code>abs(count * value - column_sum)</code> по парам <code>value</code> и <code>column_sum</code> из <code>zip(vector, sums)</code>.</li>
+                  <li>Выберите первую строку с наименьшим distance (строгое &lt;); напечатайте суммы, округленные <code>round(column_sum / count, 2)</code>, и идентификатор; сверьтесь с примером: ACGT, AAGG и CCCT дают 1.0 1.33 1.0 0.67 и s1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_08_1_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -269,93 +412,237 @@ only</pre></td></tr>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 5.8. Суммы признаков</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T) и выведите сумму каждого столбца: сколько всего букв A, C, G, T во всех последовательностях.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Четыре целых числа через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2
+              <h3>Задача со звездочкой 5.8. Суммы признаков</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T) и выведите сумму каждого столбца: сколько всего букв A, C, G, T во всех последовательностях.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20. Дальше <code>count</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Четыре целых числа через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2<br>&gt;s1<br>GATTACA<br>&gt;s2<br>CCGG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">3 3 3 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Во всех последовательностях вместе 3 буквы A, 3 буквы C, 3 буквы G и 2 буквы T — это суммы столбцов матрицы признаков.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2
 &gt;s1
 GATTACA
 &gt;s2
 CCGG</pre></td><td><pre>3 3 3 2</pre></td></tr>
-                <tr><td><pre>1
+                      <tr><td><pre>1
 &gt;x
 ACGT</pre></td><td><pre>1 1 1 1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_08_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>zip(*matrix) разворачивает матрицу по столбцам: каждый элемент — признак во всех записях. sum(col) складывает столбец, а включение [str(sum(col)) for col in zip(*matrix)] переводит суммы в строки для join. Заголовки записей в этом задании не нужны, но их все равно читают, чтобы добраться до последовательностей.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Матрица признаков</strong> — строка на запись: четыре числа букв A, C, G, T.</li>
+                  <li><strong>Функция zip()</strong> — разворачивает матрицу по столбцам.</li>
+                  <li><strong>Распаковка звездочкой в вызове</strong> — *matrix передает все строки матрицы отдельными аргументами.</li>
+                  <li><strong>Функция sum()</strong> — складывает все элементы списка.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число записей: <code>count = int(input())</code>.</li>
+                  <li>Для каждой записи прочитайте заголовок (он не нужен) и последовательность: <code>input()</code>, затем <code>seq = input()</code>.</li>
+                  <li>Соберите матрицу matrix из векторов <code>[seq.count(base) for base in "ACGT"]</code>, затем сложите столбцы: <code>[sum(col) for col in zip(*matrix)]</code>.</li>
+                  <li>Напечатайте суммы через пробел; сверьтесь с примером: GATTACA и CCGG дают 3 3 3 2, а одна ACGT — 1 1 1 1.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_08_star_basic.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 5.8. Доли букв</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Для каждой записи FASTA выведите идентификатор и доли букв A, C, G, T: число буквы, деленное на длину последовательности, округленное функцией <code>round()</code> до двух цифр после точки.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 1 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p><code>n</code> строк: идентификатор и четыре доли через пробел в том виде, в каком их печатает Python после <code>round(x, 2)</code>.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>2
+              <h3>Задача со звездочкой 5.8. Доли букв</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Для каждой записи FASTA выведите идентификатор и доли букв A, C, G, T: число буквы, деленное на длину последовательности, округленное функцией <code>round()</code> до двух цифр после точки.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 1 до 20. Дальше <code>count</code> записей FASTA, каждая в двух строках: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p><code>count</code> строк: идентификатор и четыре доли через пробел в том виде, в каком их печатает Python после <code>round(value, 2)</code>.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">2<br>&gt;s1<br>GATTACA<br>&gt;s2<br>CCGG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq">s1 0.43 0.14 0.14 0.29<br>s2 0.0 0.5 0.5 0.0</code>
+                    </div>
+                  </div>
+                  <p class="we-note">У s1 доли 3/7 ≈ 0,43, 1/7 ≈ 0,14, 1/7 ≈ 0,14 и 2/7 ≈ 0,29; у s2 — 0,0, 0,5, 0,5 и 0,0.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>2
 &gt;s1
 GATTACA
 &gt;s2
 CCGG</pre></td><td><pre>s1 0.43 0.14 0.14 0.29
 s2 0.0 0.5 0.5 0.0</pre></td></tr>
-                <tr><td><pre>1
+                      <tr><td><pre>1
 &gt;x
 ACGT</pre></td><td><pre>x 0.25 0.25 0.25 0.25</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_08_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Для каждой записи включение строит доли: seq.count(base) / len(seq) для base из "ACGT", вызов round(..., 2) округляет, а str() переводит в строку. Деление / дает float, поэтому доли печатаются как 0.43 или 0.0, даже когда они целые.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Доля буквы</strong> — число буквы, деленное на длину последовательности.</li>
+                  <li><strong>Списковое включение</strong> — список, собранный выражением из строки.</li>
+                  <li><strong>Функция round()</strong> — округляет число; второй аргумент задает число знаков.</li>
+                  <li><strong>Функция len()</strong> — возвращает длину строки.</li>
+                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте число записей: <code>count = int(input())</code>.</li>
+                  <li>Для каждой записи читайте <code>name = input()[1:]</code> и <code>seq = input()</code>.</li>
+                  <li>Соберите доли включением: <code>seq.count(base)</code> разделите на <code>len(seq)</code>, округлите до двух знаков (<code>round(..., 2)</code>) и переведите в строку функцией <code>str</code>.</li>
+                  <li>Напечатайте name и <code>" ".join(shares)</code>; сверьтесь с примером: GATTACA дает 0.43 0.14 0.14 0.29, а ACGT — 0.25 0.25 0.25 0.25.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_08_star_medium.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 5.8. Ближайшая пара</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T). Расстояние между векторами&nbsp;— сумма модулей разностей их чисел, как в упражнении 5.8.1 продвинутого уровня. Найдите две разные записи с наименьшим расстоянием. Если таких пар несколько, выберите первую: с наименьшим номером первой записи, а при равном с наименьшим номером второй.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке число записей <code>n</code> от 2 до 20. Дальше <code>n</code> записей FASTA, каждая в двух строках, как в упражнении 5.8.1 среднего уровня: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
-          <h4>Выходные данные</h4>
-          <p>Идентификаторы пары в порядке записей и расстояние через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>3
+              <h3>Задача со звездочкой 5.8. Ближайшая пара</h3>
+              <div class="todo-box">
+                <p class="todo-title">Условие задачи</p>
+                <p>Постройте матрицу признаков записей FASTA (числа букв A, C, G, T). Расстояние между векторами&nbsp;— сумма модулей разностей их чисел. Найдите две разные записи с наименьшим расстоянием. Если таких пар несколько, выберите первую: с наименьшим номером первой записи, а при равном с наименьшим номером второй.</p>
+              </div>
+              <div class="task-io">
+                <div class="io-col">
+                  <h4>Входные данные</h4>
+                  <p>В первой строке число записей <code>count</code> от 2 до 20. Дальше <code>count</code> записей FASTA, каждая в двух строках, как в упражнении 5.8.1 среднего уровня: строка заголовка, знак <code>&gt;</code> и идентификатор без пробелов, затем последовательность из букв A, C, G, T длиной от 1 до 30.</p>
+                </div>
+                <div class="io-col">
+                  <h4>Выходные данные</h4>
+                  <p>Идентификаторы пары в порядке записей и расстояние через пробел.</p>
+                </div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">3<br>&gt;s1<br>ACGT<br>&gt;s2<br>AAGG<br>&gt;s3<br>ACGG</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">s1 s3</span> 2</code>
+                    </div>
+                  </div>
+                  <p class="we-note">Расстояния: s1 и s2 — 4, s1 и s3 — 2, s2 и s3 — 2; минимальное равно 2, и первая по порядку пара с таким расстоянием — s1 s3.</p>
+                </div>
+                <div class="table-wrap">
+                  <table class="data tests"><caption>Примеры</caption>
+                    <thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+                    <tbody>
+                      <tr><td><pre>3
 &gt;s1
 ACGT
 &gt;s2
 AAGG
 &gt;s3
 ACGG</pre></td><td><pre>s1 s3 2</pre></td></tr>
-                <tr><td><pre>2
+                      <tr><td><pre>2
 &gt;a
 AAAA
 &gt;b
 CCCC</pre></td><td><pre>a b 8</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="checker" data-file="t5_08_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Пары перебирают двумя вложенными циклами, inner_index начинает с index + 1 — каждая пара встречается один раз. Расстояние считают суммой abs(value - other_value) по zip двух векторов; лучшую пару заменяют строгим &lt;, поэтому при равных расстояниях остается первая по порядку.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Расстояние между векторами</strong> — сумма модулей разностей их чисел.</li>
+                  <li><strong>Матрица признаков</strong> — строка на запись: четыре числа букв A, C, G, T.</li>
+                  <li><strong>Функция abs()</strong> — возвращает модуль числа.</li>
+                  <li><strong>Функция zip()</strong> — перебирает пары чисел двух векторов.</li>
+                  <li><strong>Строгое сравнение</strong> — &lt; не пропускает равное расстояние.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps">
+                  <li>Прочитайте записи: <code>count = int(input())</code>; сохраните <code>name = input()[1:]</code> и вектор <code>[seq.count(base) for base in "ACGT"]</code> в список matrix.</li>
+                  <li>Перебирайте пары без повторов: <code>index</code> пробегает <code>range(count)</code>, а <code>inner_index</code> — <code>range(index + 1, count)</code>.</li>
+                  <li>Считайте расстояние: сумма <code>abs(value - other_value)</code> по парам из <code>matrix[index]</code> и <code>matrix[inner_index]</code>.</li>
+                  <li>Заменяйте лучшую пару только при строгом <code>distance &lt; best</code> (лучшее начните с None); напечатайте идентификаторы и distance; сверьтесь с примером: ACGT, AAGG и ACGG дают s1 s3 2, а AAAA и CCCC — a b 8.</li>
+                </ol>
+              </details>
+              <div class="checker" data-split data-file="t5_08_star_advanced.py">
+                <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
+              </div>
             </article>
           </div>
         </div>

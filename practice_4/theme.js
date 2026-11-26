@@ -33,7 +33,12 @@
    Подключается в <head> БЕЗ defer: data-theme и data-profile
    появляются до отрисовки, без вспышки. Настройки хранятся в localStorage;
    ссылки между страницами передают их параметрами адреса (для файлов,
-   открытых с диска, у которых раздельное хранилище). */
+   открытых с диска, у которых раздельное хранилище).
+
+   Версия 102. В списке практик у каждой строки подпись «Практика N» и справа
+   счетчик «решено / всего»; манифесты соседних практик подгружаются один раз
+   при первом открытии списка. В игровом профиле прогресс — тонкая линия 5 px
+   по нижней кромке шапки (CSS), счетчик скрыт. */
 
 (function () {
   "use strict";
@@ -186,10 +191,12 @@
   function theoryDefault() { return root.getAttribute("data-theory-default") === "full" ? "full" : "brief"; }
   function theoryOf(s) { return s.theory === "full" || s.theory === "brief" ? s.theory : theoryDefault(); }
   /* версия 69: граница строки PEP 8 (79 символов) и перенос длинных строк кода. Граница по умолчанию
-     выключена, со страниц темы 10 (PEP 8) и дальше включена; перенос по умолчанию выключен */
+     выключена, со страниц темы 10 (PEP 8) и дальше включена; версия 99: на узком экране перенос включен */
   function pageTopic() { var m = /t(\d+)_\d+\.html/.exec(window.location.pathname) || /t(\d+)_\d+/.exec(root.getAttribute("data-page") || ""); return m ? +m[1] : 0; }
   function pep8Default() { return pageTopic() >= 10 ? "on" : "off"; }
   function pep8Of(s) { return s.pep8 === "on" || s.pep8 === "off" ? s.pep8 : pep8Default(); }
+  function wrapDefault() { return window.matchMedia && window.matchMedia("(max-width: 900px)").matches ? "on" : "off"; }
+  function wrapOf(s) { return s.wrap === "on" || s.wrap === "off" ? s.wrap : wrapDefault(); }
   /* версия 65: цветовой профиль для текущей темы; в игровом режиме не действует */
   function modeOf(s) {
     if (s.theme === "light" || s.theme === "dark") return s.theme;
@@ -209,11 +216,12 @@
     root.setAttribute("data-sound", s.sound ? "on" : "off");
     if (s.track) root.setAttribute("data-track", s.track); else root.removeAttribute("data-track");
     root.setAttribute("data-theory", theoryOf(s));
+    root.setAttribute("data-extra", s.extra === "on" ? "on" : "off");
     root.setAttribute("data-os", osOf(s));
     if (s.view === "tasks") root.setAttribute("data-view", "tasks"); else root.removeAttribute("data-view");
     root.classList.toggle("hide-stars", s.stars === false);
     root.classList.toggle("show-ruler", pep8Of(s) === "on");
-    root.classList.toggle("wrap-code", s.wrap === "on");
+    root.classList.toggle("wrap-code", wrapOf(s) === "on");
     root.setAttribute("data-mistake", s.mv === "side" ? "side" : "diff");
     var pk = paletteOf(s);
     if (pk) root.setAttribute("data-palette", pk); else root.removeAttribute("data-palette");
@@ -230,7 +238,7 @@
   function fromQuery() {
     var q = window.location.search, out = null;
     if (!q) return null;
-    q.replace(/[?&](theme|profile|sound|track|theory|os|view|pl|pd|pep8|wrap|mv)=([^&]*)/g, function (_, k, v) {
+    q.replace(/[?&](theme|profile|sound|track|theory|extra|os|view|pl|pd|pep8|wrap|mv)=([^&]*)/g, function (_, k, v) {
       out = out || {};
       out[k] = k === "sound" ? v === "on" : decodeURIComponent(v);
     });
@@ -275,26 +283,27 @@
   var progFill = null, progStarFill = null, progText = null, progSub = null;
   var TRACK_RU = { basic: "базовый", medium: "средний", advanced: "продвинутый" };
   function starsOn() { return settings.stars !== false; }
+  /* решенные задания практики: для верхней полосы и для счетчиков в списке практик (версия 102) */
+  function practiceCount(m, solved) {
+    /* Засчитываются упражнения своего уровня (версия 22). Выбран уровень: считаются
+       варианты этого уровня; не выбран: упражнение решено, если решен любой вариант. */
+    if (settings.track && m.graded && m.graded[settings.track]) {
+      var g = m.graded[settings.track];
+      return { done: g.filter(function (t) { return solved[t.file]; }).length, total: g.length };
+    }
+    var groups = {};
+    (m.exercises || []).forEach(function (t) {
+      var key = t.page + "#" + (t.group || t.file);
+      (groups[key] = groups[key] || []).push(t);
+    });
+    var keys = Object.keys(groups);
+    return { done: keys.filter(function (k) { return groups[k].some(function (t) { return solved[t.file]; }); }).length,
+      total: keys.length };
+  }
   function practiceProgress() {
     var m = window.PRACTICE_MANIFEST, p = read(PROGRESS_KEY), solved = (p.tasks || {});
     if (!m) return null;
-    /* Засчитываются упражнения своего уровня (версия 22). Выбран уровень: считаются
-       варианты этого уровня; не выбран: упражнение решено, если решен любой вариант. */
-    var done, total;
-    if (settings.track && m.graded && m.graded[settings.track]) {
-      var g = m.graded[settings.track];
-      done = g.filter(function (t) { return solved[t.file]; }).length;
-      total = g.length;
-    } else {
-      var groups = {};
-      (m.exercises || []).forEach(function (t) {
-        var key = t.page + "#" + (t.group || t.file);
-        (groups[key] = groups[key] || []).push(t);
-      });
-      var keys = Object.keys(groups);
-      done = keys.filter(function (k) { return groups[k].some(function (t) { return solved[t.file]; }); }).length;
-      total = keys.length;
-    }
+    var count = practiceCount(m, solved), done = count.done, total = count.total;
     /* звездочки считаются по задачам страницы, а не по вариантам: 8 задач на практику */
     var starGroups = {};
     (m.stars || []).forEach(function (s) {
@@ -386,9 +395,10 @@
     "Прогресс": "Сохранить отметки и код в файл, загрузить их из файла или начать заново.",
     "Ошибки": "Как показывать карточки «Типичная ошибка». «Правка»: одно окно, неверная строка со знаком −, исправленная со знаком +. «До и после»: неверный и исправленный код рядом.",
     "Граница PEP\u00a08": "Тонкая вертикальная линия в окнах кода на 79-м символе. По PEP 8 строка кода не длиннее 79 символов.",
-    "Длинные строки": "Строку длиннее окна кода можно прокручивать вбок или переносить на следующую строку экрана. Перенос только на экране: сам код не меняется."
+    "Длинные строки": "Строку длиннее окна кода можно прокручивать вбок или переносить на следующую строку экрана. Перенос только на экране: сам код не меняется.",
+    "Доп. материал": "Дополнительные блоки в режиме «Подробно»: «Без рамки» — как остальной текст страницы, «Рамка» — пунктирная рамка с подписью «Дополнительно»."
   };
-  var EXTRA_ROWS = ["Ошибки", "Граница PEP\u00a08", "Длинные строки"];
+  var EXTRA_ROWS = ["Ошибки", "Граница PEP\u00a08", "Длинные строки", "Доп. материал"];
   var menuTab = "main";
   function menuTabs(pop) {
     var bar = el("div", "tb-tabs"); bar.setAttribute("role", "tablist"); bar.setAttribute("aria-label", "Разделы настроек");
@@ -447,6 +457,7 @@
   function refreshGroups() {
     groups.forEach(function (g) {
       var cur = g.key === "theory" ? theoryOf(settings) : g.key === "os" ? osOf(settings) : g.key === "pep8" ? pep8Of(settings) :
+        g.key === "wrap" ? wrapOf(settings) :
         (settings[g.key] === undefined ? g.def : settings[g.key]);
       Array.prototype.forEach.call(g.seg.children, function (b) {
         if (b._value === undefined) return;
@@ -564,7 +575,8 @@
     var acts = el("div", "rs-acts"), saved = false;
     var sb = el("button", "tb-btn rs-save"); sb.type = "button";
     sb.innerHTML = SVG.dl + "<span>Сохранить прогресс в файл</span>";
-    sb.onclick = function () { exportProgress(); saved = true; sb.querySelector("span").textContent = "Файл сохранен"; };
+    /* версия 108: подпись «Файл сохранен» короче — ширина кнопки закреплена, чтобы кнопки не прыгали */
+    sb.onclick = function () { sb.style.minWidth = sb.offsetWidth + "px"; exportProgress(); saved = true; sb.querySelector("span").textContent = "Файл сохранен"; };
     acts.appendChild(sb);
     acts.appendChild(el("span", "rs-flex"));
     var yes = el("button", "tb-btn rs-yes", "Сбросить все"); yes.type = "button";
@@ -583,13 +595,21 @@
         window.location.replace(window.location.pathname);
       }, 700);
     };
-    acts.appendChild(yes);
+    var pair = el("span", "rs-pair");   /* версия 108: «Сбросить все» и «Отмена» переносятся только вместе */
+    pair.appendChild(yes);
     var no = el("button", "tb-btn", "Отмена"); no.type = "button"; no.onclick = function () { d.close(); };
-    acts.appendChild(no);
+    pair.appendChild(no);
+    acts.appendChild(pair);
     d.appendChild(acts);
     d.addEventListener("close", function () { d.parentNode && d.parentNode.removeChild(d); });
+    /* версия 108: клик по затемнению закрывает окно, фокус при открытии — на «Отмену» */
+    d.addEventListener("click", function (e) {
+      var r = d.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close();
+    });
     document.body.appendChild(d);
     d.showModal();
+    no.focus();
   }
 
   /* ---------- объем теории (версия 27) ---------- */
@@ -920,7 +940,8 @@
     starBtn.addEventListener("click", function () { settings.stars = !starsOn(); changed(); });
     pop.appendChild(segment("Ошибки", "mv", [["diff", "Правка"], ["side", "До и после"]], "diff"));
     pop.appendChild(segment("Граница PEP\u00a08", "pep8", [["off", "Выкл"], ["on", "79 символов"]], pep8Default()));
-    pop.appendChild(segment("Длинные строки", "wrap", [["off", "Прокрутка"], ["on", "Перенос"]], "off"));
+    pop.appendChild(segment("Длинные строки", "wrap", [["off", "Прокрутка"], ["on", "Перенос"]], wrapDefault()));
+    pop.appendChild(segment("Доп. материал", "extra", [["off", "Без рамки"], ["on", "Рамка"]], "off"));
     var pr = el("div", "tb-row");
     pr.appendChild(el("span", "tb-label", "Прогресс"));
     var links = el("div", "tb-prog-ic");
@@ -1026,6 +1047,56 @@
 
   var PRACTICE_NAMES = {1: "Введение в Python", 2: "Строки и текстовые данные", 3: "Логика и ветвления",
     4: "Циклы", 5: "Списки и кортежи"};
+  /* Версия 102: у каждой строки списка практик справа счетчик «решено / всего».
+     Манифесты соседних практик читаются один раз при первом открытии списка —
+     тем же способом, что и на главной странице (index.html). */
+  var practiceManifests = {}, practiceManifestsLoading = false, practiceManifestsAsked = false;
+  function currentPracticeNo() {
+    var mm = /practice_(\d+)/.exec(window.location.pathname);
+    return mm ? mm[1] : null;
+  }
+  function loadPracticeManifests(done) {
+    if (practiceManifestsLoading) return;
+    var todo = [], k;
+    for (k = 1; k <= 5; k++) if (!practiceManifests[k]) todo.push(k);
+    if (!todo.length) { if (done) done(); return; }
+    var keep = window.PRACTICE_MANIFEST;
+    var cur = currentPracticeNo();
+    if (cur && keep) practiceManifests[cur] = keep;
+    practiceManifestsLoading = true;
+    (function next() {
+      var no = todo.shift();
+      if (!no) { practiceManifestsLoading = false; if (done) done(); return; }
+      var s = document.createElement("script");
+      s.src = "../practice_" + no + "/data/practice.js";
+      s.async = true;
+      s.onload = s.onerror = function () {
+        /* при ошибке загрузки window.PRACTICE_MANIFEST остался прежним — его не берем */
+        if (window.PRACTICE_MANIFEST && window.PRACTICE_MANIFEST !== keep) practiceManifests[no] = window.PRACTICE_MANIFEST;
+        window.PRACTICE_MANIFEST = keep;
+        next();
+      };
+      document.head.appendChild(s);
+    })();
+  }
+  function refreshPracticeCounts() {
+    var solved = read(PROGRESS_KEY).tasks || {};
+    Array.prototype.forEach.call(document.querySelectorAll(".tb-practice-item"), function (it) {
+      var box = it.querySelector(".tb-practice-count");
+      if (!box) return;
+      var m = practiceManifests[it.getAttribute("data-practice")];
+      if (!m) { box.textContent = ""; return; }
+      var c = practiceCount(m, solved);
+      box.textContent = c.done ? c.done + " / " + c.total : "—";
+    });
+  }
+  function ensurePracticeCounts() {
+    if (practiceManifestsAsked) { refreshPracticeCounts(); return; }
+    practiceManifestsAsked = true;
+    var cur = currentPracticeNo();
+    if (cur && window.PRACTICE_MANIFEST) practiceManifests[cur] = window.PRACTICE_MANIFEST;
+    loadPracticeManifests(refreshPracticeCounts);
+  }
   function practiceBrand() {
     var title = document.querySelector(".sidebar-title");
     var text = title ? title.textContent.replace(/\s+/g, " ").trim() : "Python";
@@ -1033,11 +1104,13 @@
     var n = (/practice_(\d+)/.exec(path) || [])[1] || (/Практика\s+(\d+)/.exec(text) || [])[1];
     var wrap = el("div", "tb-brand tb-brand-nav");
     if (!n) { wrap.textContent = text; return wrap; }
+    if (window.PRACTICE_MANIFEST) practiceManifests[String(n)] = window.PRACTICE_MANIFEST;
     var items = "";
     for (var k = 1; k <= 5; k++) {
-      items += '<a class="tb-practice-item' + (String(k) === String(n) ? " is-current" : "") + '" href="../practice_' + k + '/t' + k + '_00.html"' +
-        (String(k) === String(n) ? ' aria-current="page"' : '') + '><span class="tb-practice-num">' + k + '</span><span><b>' +
-        PRACTICE_NAMES[k] + '</b><small>Практика ' + k + (String(k) === String(n) ? " · текущая" : "") + '</small></span></a>';
+      items += '<a class="tb-practice-item' + (String(k) === String(n) ? " is-current" : "") + '" data-practice="' + k + '" href="../practice_' + k + '/t' + k + '_00.html"' +
+        (String(k) === String(n) ? ' aria-current="page"' : '') + '><span class="tb-practice-text"><span class="tb-practice-name">' +
+        PRACTICE_NAMES[k] + '</span><small class="tb-practice-sub">Практика ' + k + (String(k) === String(n) ? " · текущая" : "") +
+        '</small></span><span class="tb-practice-count" aria-hidden="true"></span></a>';
     }
     wrap.innerHTML = '<span class="tb-brand-name">Python ·</span>' +
       '<button class="tb-practice-trigger" type="button" aria-haspopup="true" aria-expanded="false">Практика ' + n +
@@ -1049,6 +1122,7 @@
       e.stopPropagation();
       pop.hidden = !pop.hidden;
       trigger.setAttribute("aria-expanded", String(!pop.hidden));
+      if (!pop.hidden) ensurePracticeCounts();
     });
     document.addEventListener("click", function (e) { if (!pop.hidden && !wrap.contains(e.target)) close(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
@@ -1160,7 +1234,7 @@
     if (i >= 0) { hash = h.slice(i); h = h.slice(0, i); }
     a.setAttribute("href", h + "?theme=" + currentTheme() + "&profile=" + (settings.profile === "game" ? "game" : "classic") +
       "&sound=" + (settings.sound ? "on" : "off") + (settings.track ? "&track=" + settings.track : "") +
-      (settings.theory ? "&theory=" + settings.theory : "") + (settings.os ? "&os=" + settings.os : "") +
+      (settings.theory ? "&theory=" + settings.theory : "") + (settings.extra ? "&extra=" + settings.extra : "") + (settings.os ? "&os=" + settings.os : "") +
       (settings.view ? "&view=" + settings.view : "") + (settings.pl ? "&pl=" + settings.pl : "") + (settings.pd ? "&pd=" + settings.pd : "") +
       (settings.pep8 ? "&pep8=" + settings.pep8 : "") + (settings.wrap ? "&wrap=" + settings.wrap : "") + (settings.mv ? "&mv=" + settings.mv : "") + hash);
     window.setTimeout(function () { a.setAttribute("href", h + hash); }, 0);
@@ -1175,9 +1249,10 @@
     refresh();
   }
   window.addEventListener("pageshow", function (e) { if (e.persisted) resync(); });
-  window.addEventListener("storage", function (e) { if (e.key === KEY) resync(); else if (e.key === PROGRESS_KEY) refreshProgress(); });
+  window.addEventListener("storage", function (e) { if (e.key === KEY) resync(); else if (e.key === PROGRESS_KEY) { refreshProgress(); refreshPracticeCounts(); } });
   document.addEventListener("visibilitychange", function () { if (!document.hidden) resync(); });
-  root.addEventListener("practice:progress", function () { refreshProgress(); refreshExNav(); });
+  root.addEventListener("practice:progress", function () { refreshProgress(); refreshExNav(); refreshPracticeCounts(); });
+  root.addEventListener("practice:settings", function () { refreshPracticeCounts(); });
 
   /* переключатель систем в окне терминала: div.os-switch с вариантами [data-os] */
   function osSwitches() {
@@ -1246,9 +1321,83 @@
     var mc = getComputedStyle(main), bc = getComputedStyle(bar);
     var left = mr.left + parseFloat(mc.paddingLeft || 0);
     var width = mr.width - parseFloat(mc.paddingLeft || 0) - parseFloat(mc.paddingRight || 0);
+    /* версия 108: при увеличении полоса ужимается справа, а не заходит под кнопки панели */
+    if (getComputedStyle(p).position === "absolute") {
+      var limitLeft = left;
+      var brand = bar.querySelector(".tb-brand-nav");
+      if (brand) limitLeft = Math.max(limitLeft, brand.getBoundingClientRect().right + 16);
+      var limitRight = br.right - 14;
+      var spacer = bar.querySelector(".tb-spacer");
+      for (var s = spacer ? spacer.nextElementSibling : null; s; s = s.nextElementSibling) {
+        var sr = s.getBoundingClientRect();
+        if (sr.width > 0) { limitRight = sr.left - 14; break; }
+      }
+      if (left + width > limitRight) width = limitRight - left;
+      if (left < limitLeft) { width -= limitLeft - left; left = limitLeft; }
+      width = Math.max(180, width);
+    }
     p.style.setProperty("--progress-w", Math.round(width) + "px");
     p.style.setProperty("--progress-left", Math.round(left + width / 2 - br.left) + "px");
     p.style.setProperty("--progress-offset", Math.round(left - br.left - parseFloat(bc.paddingLeft || 0)) + "px");
+  }
+
+  /* версия 99: хвостовые пробелы в статичных блоках кода не создают лишнюю горизонтальную
+     прокрутку — срезаем их в конце каждой строки */
+  function trimLineEnds() {
+    function lastText(node) {
+      var last = null, i, c;
+      for (i = 0; i < node.childNodes.length; i++) {
+        c = node.childNodes[i];
+        if (c.nodeType === 3) last = c;
+        else if (c.nodeType === 1) { c = lastText(c); if (c) last = c; }
+      }
+      return last;
+    }
+    function trimBreaks(el) {
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false), n;
+      while ((n = walker.nextNode())) n.nodeValue = n.nodeValue.replace(/[ \t]+\n/g, "\n");
+      var t = lastText(el);
+      if (t) t.nodeValue = t.nodeValue.replace(/[ \t]+$/, "");
+    }
+    Array.prototype.forEach.call(document.querySelectorAll(".code-block pre > code"), function (code) {
+      if (code.querySelector(".ln")) {
+        Array.prototype.forEach.call(code.querySelectorAll(".ln"), function (ln) {
+          var t = lastText(ln);
+          if (t) t.nodeValue = t.nodeValue.replace(/[ \t]+$/, "");
+        });
+      } else {
+        trimBreaks(code);
+      }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".output-block pre"), trimBreaks);
+  }
+
+  /* версия 99: на узком экране в режиме переноса комментарий (обычный или «# → …») показывается
+     над строкой, к которой написан. Код строки складывается в .ln-main, комментарий остаётся
+     рядом; местами их меняет CSS-сетка, поэтому текст для копирования не меняется */
+  function splitLineComments() {
+    Array.prototype.forEach.call(document.querySelectorAll(".code-block pre > code"), function (code) {
+      Array.prototype.forEach.call(code.querySelectorAll(".ln"), function (ln) {
+        if (ln.classList.contains("ln-split")) return;
+        var nodes = [], com = null, i, n;
+        for (i = 0; i < ln.childNodes.length; i++) {
+          n = ln.childNodes[i];
+          if (n.nodeType === 1 && n.classList && (n.classList.contains("tok-com") || n.classList.contains("tok-out"))) { com = n; break; }
+          nodes.push(n);
+        }
+        if (!com) return;
+        var hasCode = false;
+        for (i = 0; i < nodes.length; i++) {
+          if (nodes[i].textContent.replace(/\u00a0/g, " ").trim() !== "") { hasCode = true; break; }
+        }
+        if (!hasCode) return;
+        var main = document.createElement("span");
+        main.className = "ln-main";
+        for (i = 0; i < nodes.length; i++) main.appendChild(nodes[i]);
+        ln.insertBefore(main, com);
+        ln.classList.add("ln-split");
+      });
+    });
   }
 
   function init() {
@@ -1262,6 +1411,8 @@
     theorySwitch();
     tasksMode();
     osSwitches();
+    trimLineEnds();
+    splitLineComments();
     refresh();
     document.addEventListener("click", carrySettings, true);
     window.addEventListener("resize", syncProgressWidth);
@@ -1273,5 +1424,10 @@
   if (window.matchMedia) {
     var mq = window.matchMedia("(prefers-color-scheme: dark)");
     if (mq.addEventListener) mq.addEventListener("change", function () { apply(settings); refresh(); fire(root, "practice:settings", settings); });
+    var mqWrap = window.matchMedia("(max-width: 900px)");
+    if (mqWrap.addEventListener) mqWrap.addEventListener("change", function () {
+      if (settings.wrap !== undefined) return;
+      apply(settings); refresh(); fire(root, "practice:settings", settings);
+    });
   }
 })();

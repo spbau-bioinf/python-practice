@@ -240,6 +240,33 @@
     for (var b = 0; b < 4; b++) { c.fillStyle = PAL.K; c.fillRect(x - 1 + b * 8, ground - 57, 7, 7); c.fillStyle = "#8A90A3"; c.fillRect(x + b * 8, ground - 56, 5, 6); }
     c.fillStyle = PAL.K; c.fillRect(x + 8, ground - 16, 12, 16); c.fillStyle = "#2A1E14"; c.fillRect(x + 9, ground - 15, 10, 15);
   }
+  function loopKey() { return "practice-html-game:loop:" + PAGE; }
+  function loopRows() { return progressCodec.get(loopKey(), []) || []; }
+  function addLoopRow(ok) {
+    var rows = loopRows(); rows.push({ ok: !!ok, hp: dragonState().left });
+    progressCodec.set(loopKey(), rows.slice(-50));
+  }
+  function loopPanel(sc) {
+    var box = sc.loopBox, d = dragonState(), rows = loopRows(), last = rows[rows.length - 1];
+    var lines = ["hp = " + d.total + "   # упражнения вашего уровня", "while hp > 0:",
+      "    решение = проверка()", "    if not решение:", "        continue", "    hp = hp - 1", "print(\"Принцесса свободна\")"];
+    var on = d.left === 0 ? [1, 6] : !last ? [0] : last.ok ? [2, 5] : [2, 3, 4];
+    box.innerHTML = "";
+    var pre = document.createElement("pre"); pre.className = "game-loop-code";
+    lines.forEach(function (l, i) { var s = document.createElement("span"); s.textContent = l; if (on.indexOf(i) >= 0) s.className = "is-on"; pre.appendChild(s); });
+    var tb = document.createElement("table"); tb.className = "game-loop-trace";
+    tb.innerHTML = "<thead><tr><th>Итерация</th><th>решение</th><th>hp</th></tr></thead>";
+    var body = document.createElement("tbody");
+    rows.slice(-6).forEach(function (r, i) {
+      var tr = document.createElement("tr");
+      [String(rows.length - Math.min(rows.length, 6) + i + 1), r.ok ? "True" : "False", r.hp + (r.ok ? "" : " (continue)")].forEach(function (v) { var td = document.createElement("td"); td.textContent = v; tr.appendChild(td); });
+      body.appendChild(tr);
+    });
+    if (d.left === 0) { var tr0 = document.createElement("tr"); tr0.innerHTML = "<td colspan=\"3\">hp > 0 ложно: цикл окончен</td>"; body.appendChild(tr0); }
+    tb.appendChild(body);
+    box.appendChild(pre); box.appendChild(tb);
+  }
+
   /* ---------------- звук (синтез, по умолчанию выключен) ---------------- */
   var audio = null;
   function beep(notes, type) {
@@ -422,7 +449,11 @@
     this.caption.className = "game-caption";
     this.wrap.appendChild(this.canvas); this.wrap.appendChild(this.hud); this.wrap.appendChild(this.caption);
     var bar = block.querySelector(".checker-bar");
-    if (bar && bar.nextSibling) block.insertBefore(this.wrap, bar.nextSibling); else block.appendChild(this.wrap);
+    if (bar && bar.nextSibling && bar.nextSibling.parentNode === block) block.insertBefore(this.wrap, bar.nextSibling); else block.appendChild(this.wrap);
+    if (THEME === "knight" && this.mon === "dragon" && block.closest(".task-exercise")) {
+      this.loopBox = document.createElement("div"); this.loopBox.className = "game-loop";
+      this.wrap.parentNode.insertBefore(this.loopBox, this.wrap.nextSibling); loopPanel(this);
+    }
     this.ctx = this.canvas.getContext("2d");
     this.t = 0; this.visible = false; this.entered = false;
     this.obstX = 168; /* кратно 8: яма совпадает с плитками земли */
@@ -458,6 +489,7 @@
   };
 
   Scene.prototype.result = function (d) {
+    if (this.loopBox && (d.level || "exercise") === "exercise") { addLoopRow(d.solved); scenes.forEach(function (s) { if (s.loopBox) loopPanel(s); }); }
     if (d.solved) {
       this.mode = "win"; this.vx = 1.7; this.pose = "run1";
       this.caption.textContent = this.isFinal ? "Вперед, к порталу!" : "Верно! Вперед";
