@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<html lang="ru" data-home="../index.html" data-theory-default="full" data-theory="full">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
-        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Наборы и Жаккар</span></span></a></li>
       </ul>
       <p class="menu-head">Мой уровень</p>
       <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
@@ -134,57 +134,132 @@
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.1.1. Значение поля</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>protein</code> хранится запись о белке:</p><div class="code-block"><span class="code-label">protein.py</span><pre><code><span class="ln">protein <span class="tok-op">=</span> {<span class="tok-str">"id"</span>: <span class="tok-str">"P53"</span>, <span class="tok-str">"length"</span>: <span class="tok-num">393</span>, <span class="tok-str">"chromosome"</span>: <span class="tok-num">17</span>,</span>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>protein</code> хранится запись о белке:</p><div class="code-block"><span class="code-label">protein.py</span><pre><code><span class="ln">protein <span class="tok-op">=</span> {<span class="tok-str">"id"</span>: <span class="tok-str">"P53"</span>, <span class="tok-str">"length"</span>: <span class="tok-num">393</span>, <span class="tok-str">"chromosome"</span>: <span class="tok-num">17</span>,</span>
 <span class="ln">           <span class="tok-str">"organism"</span>: <span class="tok-str">"Homo sapiens"</span>, <span class="tok-str">"gene_type"</span>: <span class="tok-str">"protein coding"</span>,</span>
 <span class="ln">           <span class="tok-str">"reviewed"</span>: <span class="tok-str">"yes"</span>, <span class="tok-str">"name"</span>: <span class="tok-str">"tumor protein p53"</span>}</span></code></pre></div><p>Считайте название поля и выведите его значение.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка: название поля из словаря <code>protein</code>.</p>
-              <h4>Выходные данные</h4>
-              <p>Значение этого поля.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>id</pre></td><td><pre>P53</pre></td></tr>
-                <tr><td><pre>length</pre></td><td><pre>393</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_1_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: название поля из словаря <code>protein</code>.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Значение этого поля.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">id</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">P53</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У ключа <code>id</code> в словаре записано <code>P53</code>.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>id</pre></td><td><pre>P53</pre></td></tr>
+<tr><td><pre>length</pre></td><td><pre>393</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Запись в словаре разбита на поля. Имя поля служит ключом, а данные поля хранятся как значение.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Возьмите имя поля из строки ввода и обратитесь к словарю по этому ключу.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.1.1. Сумма значений двух ключей</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов и выведите сумму их значений.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки, в каждой одно название нуклеотида: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>. Названия могут совпадать.</p>
-              <h4>Выходные данные</h4>
-              <p>Сумма значений двух ключей.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов и выведите сумму их значений.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой одно название нуклеотида: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>. Названия могут совпадать.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Сумма значений двух ключей.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>C</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">23</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У <code>A</code> значение 12, у <code>C</code> — 11. Их сумма равна 23.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 C</pre></td><td><pre>23</pre></td></tr>
-                <tr><td><pre>T
+<tr><td><pre>T
 T</pre></td><td><pre>16</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_1_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Запись в словаре разбита на поля. Имя поля служит ключом, а данные поля хранятся как значение.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Прочитайте оба ключа и сложите два значения словаря.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.1. Число занятий</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>minutes</code> длительность занятий в минутах:</p><div class="code-block"><span class="code-label">minutes.py</span><pre><code><span class="ln">minutes <span class="tok-op">=</span> {<span class="tok-str">"math"</span>: <span class="tok-num">45</span>, <span class="tok-str">"bio"</span>: <span class="tok-num">90</span>, <span class="tok-str">"cs"</span>: <span class="tok-num">75</span>, <span class="tok-str">"lab"</span>: <span class="tok-num">135</span>,</span>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>minutes</code> длительность занятий в минутах:</p><div class="code-block"><span class="code-label">minutes.py</span><pre><code><span class="ln">minutes <span class="tok-op">=</span> {<span class="tok-str">"math"</span>: <span class="tok-num">45</span>, <span class="tok-str">"bio"</span>: <span class="tok-num">90</span>, <span class="tok-str">"cs"</span>: <span class="tok-num">75</span>, <span class="tok-str">"lab"</span>: <span class="tok-num">135</span>,</span>
 <span class="ln">           <span class="tok-str">"exam"</span>: <span class="tok-num">180</span>, <span class="tok-str">"seminar"</span>: <span class="tok-num">60</span>, <span class="tok-str">"lecture"</span>: <span class="tok-num">90</span>}</span></code></pre></div><p>Считайте название занятия и выведите, сколько полных занятий по 45 минут умещается в это время, делением нацело.</p></div>
               <details class="task-hint"><summary>Подсказка</summary><p>Разделите значение словаря нацело на 45.</p></details>
-              <h4>Входные данные</h4>
-              <p>Одна строка: название занятия из словаря <code>minutes</code>.</p>
-              <h4>Выходные данные</h4>
-              <p>Целое число занятий.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>bio</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>cs</pre></td><td><pre>1</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_1_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: название занятия из словаря <code>minutes</code>.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Целое число занятий.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">bio</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Для <code>bio</code> отведено 90 минут. В это время помещаются два занятия по 45 минут.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>bio</pre></td><td><pre>2</pre></td></tr>
+<tr><td><pre>cs</pre></td><td><pre>1</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Запись в словаре разбита на поля. Имя поля служит ключом, а данные поля хранятся как значение.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Разделите значение словаря нацело на 45.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -265,62 +340,137 @@ T</pre></td><td><pre>16</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.1.2. Новая пара</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts = {"A": 12, "T": 8}</code>. Считайте название нуклеотида и число. Добавьте пару в словарь: если такой ключ уже есть, его значение заменится. Выведите число пар в словаре, а второй строкой значение прочитанного ключа после добавления.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки: название нуклеотида (любая строка) и целое число от 0 до 1000.</p>
-              <h4>Выходные данные</h4>
-              <p>Две строки: число пар в словаре после добавления и значение прочитанного ключа.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>G
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts = {"A": 12, "T": 8}</code>. Считайте название нуклеотида и число. Добавьте пару в словарь: если такой ключ уже есть, его значение заменится. Выведите число пар в словаре, а второй строкой значение прочитанного ключа после добавления.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: название нуклеотида (любая строка) и целое число от 0 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: число пар в словаре после добавления и значение прочитанного ключа.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">G<br>15</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3<br>15</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключа <code>G</code> еще нет. После добавления в словаре три пары, а у <code>G</code> значение 15.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>G
 15</pre></td><td><pre>3
 15</pre></td></tr>
-                <tr><td><pre>A
+<tr><td><pre>A
 100</pre></td><td><pre>2
 100</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_2_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Присваивание по ключу обновляет существующую пару или добавляет новую.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>После присваивания посчитайте пары через <code>len()</code> и перечитайте значение ключа.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.1.2. Замена и сумма</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и число. Замените значение этого ключа и выведите сумму значений всех четырех нуклеотидов.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки: название нуклеотида (<code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>) и целое число от 0 до 1000.</p>
-              <h4>Выходные данные</h4>
-              <p>Сумма значений всех четырех ключей после замены.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и число. Замените значение этого ключа и выведите сумму значений всех четырех нуклеотидов.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: название нуклеотида (<code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>) и целое число от 0 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Сумма значений всех четырех ключей после замены.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">34</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После замены у <code>A</code> значение 0. Сумма четырех значений равна <code>0 + 8 + 15 + 11</code>, то есть 34.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 0</pre></td><td><pre>34</pre></td></tr>
-                <tr><td><pre>G
+<tr><td><pre>G
 20</pre></td><td><pre>51</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_2_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Присваивание по ключу обновляет существующую пару или добавляет новую.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Сложите значения словаря уже после присваивания.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.2. Прежнее значение</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Выведите прежнее значение этого ключа и новое значение после замены, каждое на своей строке.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Выведите прежнее значение этого ключа и новое значение после замены, каждое на своей строке.</p></div>
               <details class="task-hint"><summary>Подсказка</summary><p>Сохраните <code>counts[ключ]</code> в переменную, прежде чем присвоить ключу новое значение.</p></details>
-              <h4>Входные данные</h4>
-              <p>Две строки: название нуклеотида (<code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>) и целое число от 0 до 1000.</p>
-              <h4>Выходные данные</h4>
-              <p>Две строки: прежнее значение ключа и новое значение после замены.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: название нуклеотида (<code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>) и целое число от 0 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: прежнее значение ключа и новое значение после замены.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>0</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12<br>0</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">До замены у <code>A</code> было 12, после замены — 0. Эти числа выводятся на отдельных строках.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 0</pre></td><td><pre>12
 0</pre></td></tr>
-                <tr><td><pre>G
+<tr><td><pre>G
 20</pre></td><td><pre>15
 20</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_2_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Присваивание по ключу обновляет существующую пару или добавляет новую.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Сохраните <code>counts[ключ]</code> в переменную, прежде чем присвоить ключу новое значение.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -395,54 +545,129 @@ None
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.1.3. Отсутствующий ключ</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и выведите его значение методом <code>get()</code>; если такого ключа нет, выведите 0.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка — название нуклеотида.</p>
-              <h4>Выходные данные</h4>
-              <p>Значение ключа или 0.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A</pre></td><td><pre>12</pre></td></tr>
-                <tr><td><pre>N</pre></td><td><pre>0</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_3_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и выведите его значение методом <code>get()</code>; если такого ключа нет, выведите 0.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка — название нуклеотида.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Значение ключа или 0.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключ <code>A</code> присутствует, поэтому выводится его значение 12.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A</pre></td><td><pre>12</pre></td></tr>
+<tr><td><pre>N</pre></td><td><pre>0</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При обработке данных ключ может отсутствовать. Метод <code>get()</code> позволяет задать значение для этого случая.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Укажите ноль вторым аргументом <code>get()</code>.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.1.3. Сумма с пропусками</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов и выведите сумму их значений, взятых методом <code>get()</code>; отсутствующий ключ считается нулем.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки, в каждой название нуклеотида.</p>
-              <h4>Выходные данные</h4>
-              <p>Сумма значений; отсутствующие ключи дают ноль.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов и выведите сумму их значений, взятых методом <code>get()</code>; отсутствующий ключ считается нулем.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой название нуклеотида.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Сумма значений; отсутствующие ключи дают ноль.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>N</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Для <code>A</code> берется 12, для отсутствующего <code>N</code> — 0. Сумма равна 12.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 N</pre></td><td><pre>12</pre></td></tr>
-                <tr><td><pre>N
+<tr><td><pre>N
 N</pre></td><td><pre>0</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_3_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При обработке данных ключ может отсутствовать. Метод <code>get()</code> позволяет задать значение для этого случая.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Задайте значение по умолчанию отдельно при чтении каждого ключа.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.3. Проценты</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов, всего их 46:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и выведите целое число процентов, которое составляет его значение от 46, делением нацело; значение возьмите методом <code>get()</code>: отсутствующий ключ дает ноль процентов.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов, всего их 46:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и выведите целое число процентов, которое составляет его значение от 46, делением нацело; значение возьмите методом <code>get()</code>: отсутствующий ключ дает ноль процентов.</p></div>
               <details class="task-hint"><summary>Подсказка</summary><p>Формула: значение · 100 // 46.</p></details>
-              <h4>Входные данные</h4>
-              <p>Одна строка — название нуклеотида.</p>
-              <h4>Выходные данные</h4>
-              <p>Целое число от 0 до 100.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A</pre></td><td><pre>26</pre></td></tr>
-                <tr><td><pre>C</pre></td><td><pre>23</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_3_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка — название нуклеотида.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Целое число от 0 до 100.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">26</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">На <code>A</code> приходится 12 из 46. Целая часть <code>12 * 100 / 46</code> равна 26.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A</pre></td><td><pre>26</pre></td></tr>
+<tr><td><pre>C</pre></td><td><pre>23</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>При обработке данных ключ может отсутствовать. Метод <code>get()</code> позволяет задать значение для этого случая.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Формула: значение · 100 // 46.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -459,57 +684,132 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
               <h3>Задача со звездочкой 6.1. Сумма с пропусками</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>d = {"A": 5, "T": 7, "G": 3}</code>. Считайте названия двух нуклеотидов и выведите сумму их значений, взятых методом <code>get()</code>; отсутствующий ключ считается нулем.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки, в каждой название нуклеотида.</p>
-              <h4>Выходные данные</h4>
-              <p>Сумма значений; отсутствующие ключи дают ноль.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>d = {"A": 5, "T": 7, "G": 3}</code>. Считайте названия двух нуклеотидов и выведите сумму их значений, взятых методом <code>get()</code>; отсутствующий ключ считается нулем.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой название нуклеотида.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Сумма значений; отсутствующие ключи дают ноль.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>T</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">12</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У <code>A</code> записано 5, у <code>T</code> — 7. Сумма равна 12.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 T</pre></td><td><pre>12</pre></td></tr>
-                <tr><td><pre>N
+<tr><td><pre>N
 T</pre></td><td><pre>7</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_star_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Словарь позволяет проверить наличие ключа и независимо от этого прочитать или сравнить хранящиеся значения.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Примените <code>get()</code> с нулем для каждого из двух ключей.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
               <h3>Задача со звездочкой 6.1. Оба ли ключа есть</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов. Проверьте оператором <code>in</code>, есть ли оба ключа в словаре: если оба есть, выведите сумму их значений, иначе выведите слово «нет».</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки, в каждой название нуклеотида.</p>
-              <h4>Выходные данные</h4>
-              <p>Сумма значений или слово «нет».</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов. Проверьте оператором <code>in</code>, есть ли оба ключа в словаре: если оба есть, выведите сумму их значений, иначе выведите слово «нет».</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой название нуклеотида.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Сумма значений или слово «нет».</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>T</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">20</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Оба ключа присутствуют. У <code>A</code> записано 12, у <code>T</code> — 8, сумма равна 20.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 T</pre></td><td><pre>20</pre></td></tr>
-                <tr><td><pre>A
+<tr><td><pre>A
 N</pre></td><td><pre>нет</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_star_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Словарь позволяет проверить наличие ключа и независимо от этого прочитать или сравнить хранящиеся значения.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Проверьте оба ключа оператором <code>in</code> перед обращением к значениям.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
               <h3>Задача со звездочкой 6.1. Больший ключ</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов из этого словаря. Выведите название того, чье значение больше; если значения равны, выведите слово «равно».</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки, в каждой одно из названий: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>.</p>
-              <h4>Выходные данные</h4>
-              <p>Название ключа с большим значением или слово «равно».</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>A
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте названия двух нуклеотидов из этого словаря. Выведите название того, чье значение больше; если значения равны, выведите слово «равно».</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой одно из названий: <code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Название ключа с большим значением или слово «равно».</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">A<br>G</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У <code>G</code> значение 15, у <code>A</code> — 12, поэтому выводится <code>G</code>.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>A
 G</pre></td><td><pre>G</pre></td></tr>
-                <tr><td><pre>G
+<tr><td><pre>G
 A</pre></td><td><pre>G</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_01_star_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_01_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Словарь позволяет проверить наличие ключа и независимо от этого прочитать или сравнить хранящиеся значения.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Сравните значения, затем выведите соответствующее имя. Для равенства предусмотрите отдельную ветку.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_01_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -523,7 +823,7 @@ A</pre></td><td><pre>G</pre></td></tr>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_01_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_01_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_01_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_01</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
-        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
         <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/

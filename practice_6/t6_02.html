@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<html lang="ru" data-home="../index.html" data-theory-default="full" data-theory="full">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
-        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Наборы и Жаккар</span></span></a></li>
       </ul>
       <p class="menu-head">Мой уровень</p>
       <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
@@ -285,27 +285,52 @@ True False</pre></div>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
           <h3>Упражнение 6.2.1. Ячейки таблицы</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Для каждого ключа вычислите номер ячейки в таблице размера <code>m</code>: <code>hash(key) % m</code>. Все ключи целые числа. Выведите номер для каждого ключа в порядке ввода, по одному в строке.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 1024. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000.</p>
-          <h4>Выходные данные</h4>
-          <p>Для каждого ключа номер его ячейки, по одному числу в строке.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>16
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Для каждого ключа вычислите номер ячейки в таблице размера <code>m</code>: <code>hash(key) % m</code>. Все ключи целые числа. Выведите номер для каждого ключа в порядке ввода, по одному в строке.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 1024. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Для каждого ключа номер его ячейки, по одному числу в строке.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">16<br>5 21 37 52</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">5<br>5<br>5<br>4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Остатки от деления хешей этих ключей на 16 идут в порядке <code>5, 5, 5, 4</code>.</p>
+                </div>
+                <div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td><pre>16
 5 21 37 52</pre></td><td><pre>5
 5
 5
 4</pre></td></tr>
-                <tr><td><pre>8
+<tr><td><pre>8
 3</pre></td><td><pre>3</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_02_1_basic.py</span></dd></dl>
-          <div class="checker" data-file="t6_02_1_basic.py">
+</tbody>
+</table>
+</div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Начальная ячейка хеш-таблицы получается из хеша ключа. Разные ключи могут попасть в одну ячейку, это называется коллизией.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Вычисляйте начальную ячейку заново для каждого ключа.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_1_basic.py">
             <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
@@ -314,26 +339,51 @@ True False</pre></div>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
           <h3>Упражнение 6.2.1. Разные начальные ячейки</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Постройте словарь, который каждому ключу сопоставляет начальную ячейку <code>hash(key) % m</code>. Пробы не выполняются: считается только начальная ячейка. Выведите число разных ключей, а затем разные начальные ячейки по возрастанию.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 1024. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000; ключи могут повторяться.</p>
-          <h4>Выходные данные</h4>
-          <p>В первой строке число разных ключей. Во второй строке номера разных начальных ячеек по возрастанию через пробел.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>8
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте словарь, который каждому ключу сопоставляет начальную ячейку <code>hash(key) % m</code>. Пробы не выполняются: считается только начальная ячейка. Выведите число разных ключей, а затем разные начальные ячейки по возрастанию.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 1024. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000; ключи могут повторяться.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>В первой строке число разных ключей. Во второй строке номера разных начальных ячеек по возрастанию через пробел.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">8<br>3 11 19 27 4 12</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">6<br>3 4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Все шесть ключей различны. Первые четыре начинают с ячейки 3, остальные два — с ячейки 4.</p>
+                </div>
+                <div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td><pre>8
 3 11 19 27 4 12</pre></td><td><pre>6
 3 4</pre></td></tr>
-                <tr><td><pre>16
+<tr><td><pre>16
 1 17 33</pre></td><td><pre>3
 1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_02_1_medium.py</span></dd></dl>
-          <div class="checker" data-file="t6_02_1_medium.py">
+</tbody>
+</table>
+</div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Начальная ячейка хеш-таблицы получается из хеша ключа. Разные ключи могут попасть в одну ячейку, это называется коллизией.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Сначала соберите соответствие «ключ — начальная ячейка». Затем удалите повторы среди номеров ячеек.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_1_medium.py">
             <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
@@ -342,32 +392,57 @@ True False</pre></div>
             <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
           <h3>Упражнение 6.2.1. Коллизии при вставке</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вставьте ключи в таблицу размера <code>m</code> в порядке ввода. Начальная ячейка равна <code>hash(key) % m</code>. Если ячейка занята другим ключом, проверяйте следующие по кругу, пока не найдется свободная, и вставляйте ключ туда. Каждая проверка занятой ячейки при вставке нового ключа увеличивает счетчик на единицу. Если ключ уже вставляли, выведите его прежнюю ячейку и не увеличивайте счетчик. Выведите для каждого ключа в порядке ввода его итоговую ячейку, затем число занятых ячеек, проверенных при вставке.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу размера <code>m</code> в порядке ввода. Начальная ячейка равна <code>hash(key) % m</code>. Если ячейка занята другим ключом, проверяйте следующие по кругу, пока не найдется свободная, и вставляйте ключ туда. Каждая проверка занятой ячейки при вставке нового ключа увеличивает счетчик на единицу. Если ключ уже вставляли, выведите его прежнюю ячейку и не увеличивайте счетчик. Выведите для каждого ключа в порядке ввода его итоговую ячейку, затем число занятых ячеек, проверенных при вставке.</p></div>
           <details class="task-hint"><summary>Подсказка</summary><p>Храните занятость ячеек в списке <code>table</code> из <code>m</code> элементов. Чтобы не вставлять повторный ключ, запоминайте готовый ответ в словаре <code>slot_of</code>. Номер следующей ячейки: <code>(slot + 1) % m</code>; после последней ячейки счет возвращается к нулю.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 256. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000. Разных ключей не больше <code>m</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Для каждого ключа номер его ячейки, по одному числу в строке. В последней строке число занятых ячеек, проверенных при вставке.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>8
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 256. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000. Разных ключей не больше <code>m</code>.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Для каждого ключа номер его ячейки, по одному числу в строке. В последней строке число занятых ячеек, проверенных при вставке.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">8<br>4 12 20 7 15</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4<br>5<br>6<br>7<br>0<br>4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключи занимают ячейки <code>4, 5, 6, 7, 0</code>. Ключи 12, 20 и 15 проверяют соответственно одну, две и одну занятую ячейку. Суммарно их четыре.</p>
+                </div>
+                <div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td><pre>8
 4 12 20 7 15</pre></td><td><pre>4
 5
 6
 7
 0
 4</pre></td></tr>
-                <tr><td><pre>4
+<tr><td><pre>4
 3 7</pre></td><td><pre>3
 0
 1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_02_1_advanced.py</span></dd></dl>
-          <div class="checker" data-file="t6_02_1_advanced.py">
+</tbody>
+</table>
+</div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Начальная ячейка хеш-таблицы получается из хеша ключа. Разные ключи могут попасть в одну ячейку, это называется коллизией.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Храните занятость ячеек в списке <code>table</code> из <code>m</code> элементов. Чтобы не вставлять повторный ключ, запоминайте готовый ответ в словаре <code>slot_of</code>. Номер следующей ячейки: <code>(slot + 1) % m</code>; после последней ячейки счет возвращается к нулю.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_1_advanced.py">
             <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
@@ -381,24 +456,49 @@ True False</pre></div>
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
           <h3>Задача со звездочкой 6.2. Таблица после вставки</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Вставьте ключи в таблицу размера <code>m</code> по правилу проб из упражнения 6.2.1 продвинутого уровня. Выведите содержимое таблицы: значения в порядке ячеек, пустая ячейка обозначается знаком <code>_</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей через пробел, от −1000 до 1000; различных ключей не больше <code>m</code>.</p>
-          <h4>Выходные данные</h4>
-          <p>Одна строка из <code>m</code> значений через пробел: ключ или <code>_</code> для пустой ячейки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>8
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу размера <code>m</code> по правилу проб из упражнения 6.2.1 продвинутого уровня. Выведите содержимое таблицы: значения в порядке ячеек, пустая ячейка обозначается знаком <code>_</code>.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей через пробел, от −1000 до 1000; различных ключей не больше <code>m</code>.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Одна строка из <code>m</code> значений через пробел: ключ или <code>_</code> для пустой ячейки.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">8<br>3 11 19</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">_ _ _ 3 11 19 _ _</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключи 3, 11 и 19 начинают с ячейки 3. При вставке они занимают ячейки 3, 4 и 5.</p>
+                </div>
+                <div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td><pre>8
 3 11 19</pre></td><td><pre>_ _ _ 3 11 19 _ _</pre></td></tr>
-                <tr><td><pre>4
+<tr><td><pre>4
 1 5 9 13</pre></td><td><pre>13 1 5 9</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_02_star_basic.py</span></dd></dl>
-          <div class="checker" data-file="t6_02_star_basic.py">
+</tbody>
+</table>
+</div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Линейное пробирование идет по соседним ячейкам. За последней ячейкой следует ячейка с номером ноль.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Печатайте таблицу по порядку ее ячеек, включая пустые.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_star_basic.py">
             <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
@@ -407,30 +507,55 @@ True False</pre></div>
             <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
           <h3>Задача со звездочкой 6.2. Поиск с пробами</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>После вставки ключей ответьте на запросы: сколько ячеек проверит поиск, чтобы найти ключ, если начинать с <code>hash(key) % m</code> и идти по кругу до совпадения или первой пустой ячейки. Первая проверенная ячейка считается. Если ключа в таблице нет, выведите <code>-1</code>.</p></div>
-          <h4>Входные данные</h4>
-          <p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей от −1000 до 1000 через пробел. В третьей строке от 1 до 20 ключей-запросов от −1000 до 1000 через пробел. В таблице остается хотя бы одна пустая ячейка.</p>
-          <h4>Выходные данные</h4>
-          <p>Для каждого запроса число проверенных ячеек или <code>-1</code>, по одному в строке.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>8
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>После вставки ключей ответьте на запросы: сколько ячеек проверит поиск, чтобы найти ключ, если начинать с <code>hash(key) % m</code> и идти по кругу до совпадения или первой пустой ячейки. Первая проверенная ячейка считается. Если ключа в таблице нет, выведите <code>-1</code>.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей от −1000 до 1000 через пробел. В третьей строке от 1 до 20 ключей-запросов от −1000 до 1000 через пробел. В таблице остается хотя бы одна пустая ячейка.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Для каждого запроса число проверенных ячеек или <code>-1</code>, по одному в строке.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">8<br>4 12 20<br>20 12 5 13</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3<br>2<br>-1<br>-1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключ 20 находится в третьей проверенной ячейке, 12 — во второй. Ключей 5 и 13 в таблице нет.</p>
+                </div>
+                <div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td><pre>8
 4 12 20
 20 12 5 13</pre></td><td><pre>3
 2
 -1
 -1</pre></td></tr>
-                <tr><td><pre>4
+<tr><td><pre>4
 3
 3 7</pre></td><td><pre>1
 -1</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_02_star_medium.py</span></dd></dl>
-          <div class="checker" data-file="t6_02_star_medium.py">
+</tbody>
+</table>
+</div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Линейное пробирование идет по соседним ячейкам. За последней ячейкой следует ячейка с номером ноль.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Для каждого запроса начните с исходной ячейки и ведите новый счетчик проб.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_star_medium.py">
             <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
@@ -439,25 +564,50 @@ True False</pre></div>
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
           <h3>Задача со звездочкой 6.2. Самый длинный блок</h3>
-          <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Найдите самый длинный блок подряд идущих занятых ячеек. Таблица закольцована: блок может заканчиваться в последней ячейке и продолжаться в первой. Выведите длину блока и номер его первой ячейки; если блоков одинаковой длины несколько, выберите блок с наименьшим номером первой ячейки.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Найдите самый длинный блок подряд идущих занятых ячеек. Таблица закольцована: блок может заканчиваться в последней ячейке и продолжаться в первой. Выведите длину блока и номер его первой ячейки; если блоков одинаковой длины несколько, выберите блок с наименьшим номером первой ячейки.</p></div>
           <details class="task-hint"><summary>Подсказка</summary><p>Начинайте блок с занятой ячейки, перед которой стоит пустая. Идите вперед по кругу, пока ячейки заняты, а номер ячейки считайте по остатку от деления на <code>m</code>.</p></details>
-          <h4>Входные данные</h4>
-          <p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей от −1000 до 1000 через пробел. В таблице остается хотя бы одна пустая ячейка.</p>
-          <h4>Выходные данные</h4>
-          <p>Два числа через пробел: длина самого длинного блока и номер его первой ячейки.</p>
-          <div class="table-wrap">
-            <table class="data tests"><caption>Примеры</caption>
-              <thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead>
-              <tbody>
-                <tr><td><pre>8
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>m</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей от −1000 до 1000 через пробел. В таблице остается хотя бы одна пустая ячейка.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Два числа через пробел: длина самого длинного блока и номер его первой ячейки.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">8<br>4 12 20</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3 4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключи 4, 12 и 20 занимают ячейки 4, 5 и 6. Получается блок длины 3 с началом в ячейке 4.</p>
+                </div>
+                <div class="table-wrap">
+<table class="data tests"><caption>Примеры</caption>
+<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td><pre>8
 4 12 20</pre></td><td><pre>3 4</pre></td></tr>
-                <tr><td><pre>8
+<tr><td><pre>8
 7 15</pre></td><td><pre>2 7</pre></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_02_star_advanced.py</span></dd></dl>
-          <div class="checker" data-file="t6_02_star_advanced.py">
+</tbody>
+</table>
+</div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Линейное пробирование идет по соседним ячейкам. За последней ячейкой следует ячейка с номером ноль.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Начинайте блок с занятой ячейки, перед которой стоит пустая. Идите вперед по кругу, пока ячейки заняты, а номер ячейки считайте по остатку от деления на <code>m</code>.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_star_advanced.py">
             <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
           </div>
             </article>
@@ -472,7 +622,7 @@ True False</pre></div>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_02_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_02_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_02_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_02</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
-        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
         <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/

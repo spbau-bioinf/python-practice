@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
+<html lang="ru" data-home="../index.html" data-theory-default="full" data-theory="full">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
-        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Сравнение образцов</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Наборы и Жаккар</span></span></a></li>
       </ul>
       <p class="menu-head">Мой уровень</p>
       <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
@@ -107,54 +107,129 @@
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.4.1. Число вхождений</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Считайте букву и выведите число ее вхождений; если буквы в строке нет, выведите 0.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки: последовательность из 1–50 букв и одна буква.</p>
-              <h4>Выходные данные</h4>
-              <p>Число вхождений буквы.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Считайте букву и выведите число ее вхождений; если буквы в строке нет, выведите 0.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: последовательность из 1–50 букв и одна буква.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Число вхождений буквы.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA<br>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Буква <code>A</code> встречается в <code>GATTACA</code> три раза.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>GATTACA
 A</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>GATTACA
+<tr><td><pre>GATTACA
 N</pre></td><td><pre>0</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_1_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В словаре-счетчике ключом служит буква, значением — число ее появлений.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Для каждой буквы прибавьте единицу к прежнему значению, начиная с нуля.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.4.1. Разные буквы</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Выведите число разных букв в строке.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка из 1–50 букв.</p>
-              <h4>Выходные данные</h4>
-              <p>Число разных букв.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>AAA</pre></td><td><pre>1</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_1_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Выведите число разных букв в строке.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Число разных букв.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У строки четыре разные буквы: <code>G</code>, <code>A</code>, <code>T</code> и <code>C</code>.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>GATTACA</pre></td><td><pre>4</pre></td></tr>
+<tr><td><pre>AAA</pre></td><td><pre>1</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В словаре-счетчике ключом служит буква, значением — число ее появлений.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Посчитайте ключи готового словаря-счетчика.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.4.1. Самая частая буква</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик циклом <code>for</code> с методом <code>get()</code>. Выведите букву с наибольшим числом вхождений; если таких букв несколько, выведите первую по алфавиту, пройдя по ключам функцией <code>sorted()</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик циклом <code>for</code> с методом <code>get()</code>. Выведите букву с наибольшим числом вхождений; если таких букв несколько, выведите первую по алфавиту, пройдя по ключам функцией <code>sorted()</code>.</p></div>
               <details class="task-hint"><summary>Подсказка</summary><p>Пройдите по отсортированным ключам и запоминайте букву с лучшим счетчиком; заменяйте ее только на строго больший.</p></details>
-              <h4>Входные данные</h4>
-              <p>Одна строка из 1–50 букв.</p>
-              <h4>Выходные данные</h4>
-              <p>Буква с наибольшим числом вхождений.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
-                <tr><td><pre>GGCC</pre></td><td><pre>C</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_1_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Буква с наибольшим числом вхождений.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">A</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У <code>A</code> три вхождения. У каждой другой буквы их меньше.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
+<tr><td><pre>GGCC</pre></td><td><pre>C</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>В словаре-счетчике ключом служит буква, значением — число ее появлений.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Пройдите по отсортированным ключам и запоминайте букву с лучшим счетчиком; заменяйте ее только на строго больший.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -219,56 +294,131 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.4.2. Число групп</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте идентификаторы по числу символов в словарь списков, перебирая названия циклом <code>for</code>, и выведите число групп.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка из 1–20 названий через пробел; в названии только буквы и цифры, без пробелов.</p>
-              <h4>Выходные данные</h4>
-              <p>Число групп по длине.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>ATG GC TAA AT</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>A B</pre></td><td><pre>1</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_2_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте идентификаторы по числу символов в словарь списков, перебирая названия циклом <code>for</code>, и выведите число групп.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 названий через пробел; в названии только буквы и цифры, без пробелов.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Число групп по длине.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG GC TAA AT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У <code>ATG</code> и <code>TAA</code> по три символа, у <code>GC</code> и <code>AT</code> по два. Получаются две группы.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>ATG GC TAA AT</pre></td><td><pre>2</pre></td></tr>
+<tr><td><pre>A B</pre></td><td><pre>1</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Группу удобно хранить списком в словаре. Ключом служит признак, по которому собирают группы.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Используйте длину как ключ, а название добавляйте в список этого ключа.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.4.2. Группа по запросу</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте идентификаторы по числу символов в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Считайте число <code>k</code> и выведите названия длиной <code>k</code> символов в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и целое число <code>k</code> от 1 до 100.</p>
-              <h4>Выходные данные</h4>
-              <p>Названия через пробел или пустая строка.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>ATG GC TAA AT
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте идентификаторы по числу символов в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Считайте число <code>k</code> и выведите названия длиной <code>k</code> символов в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и целое число <code>k</code> от 1 до 100.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Названия через пробел или пустая строка.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG GC TAA AT<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">ATG TAA</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В группе длины 3 лежат <code>ATG</code> и <code>TAA</code>. В таком же порядке они идут по алфавиту.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>ATG GC TAA AT
 3</pre></td><td><pre>ATG TAA</pre></td></tr>
-                <tr><td><pre>ATG GC TAA AT
+<tr><td><pre>ATG GC TAA AT
 2</pre></td><td><pre>AT GC</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_2_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Группу удобно хранить списком в словаре. Ключом служит признак, по которому собирают группы.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Получите список по запрошенной длине и отсортируйте его.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.4.2. Самая частая длина</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел и строку из заданных длин последовательностей через пробел: во второй строке столько же длин, сколько названий, в том же порядке. Составьте пары через <code>zip()</code> и передайте их в <code>dict()</code>, затем сгруппируйте названия по длине в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Выведите названия, чья заданная длина встречается наибольшее число раз, в порядке ввода через пробел. Если групп максимального размера несколько, выведите названия из всех таких групп в исходном порядке; если все длины встречаются по одному разу, выведите все названия.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел и строку из заданных длин последовательностей через пробел: во второй строке столько же длин, сколько названий, в том же порядке. Составьте пары через <code>zip()</code> и передайте их в <code>dict()</code>, затем сгруппируйте названия по длине в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Выведите названия, чья заданная длина встречается наибольшее число раз, в порядке ввода через пробел. Если групп максимального размера несколько, выведите названия из всех таких групп в исходном порядке; если все длины встречаются по одному разу, выведите все названия.</p></div>
               <details class="task-hint"><summary>Подсказка</summary><p>Сначала найдите размер самой большой группы, затем отберите названия всех групп этого размера в исходном порядке.</p></details>
-              <h4>Входные данные</h4>
-              <p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов; названия не повторяются) и столько же заданных длин последовательностей от 1 до 10000, в том же порядке.</p>
-              <h4>Выходные данные</h4>
-              <p>Названия через пробел.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>s1 s2 s3
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов; названия не повторяются) и столько же заданных длин последовательностей от 1 до 10000, в том же порядке.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Названия через пробел.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">s1 s2 s3<br>8 12 8</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">s1 s3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Длина 8 встречается у <code>s1</code> и <code>s3</code>, длина 12 — только у <code>s2</code>. Выводятся названия из первой группы в исходном порядке.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>s1 s2 s3
 8 12 8</pre></td><td><pre>s1 s3</pre></td></tr>
-                <tr><td><pre>a b c
+<tr><td><pre>a b c
 3 5 7</pre></td><td><pre>a b c</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_2_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Группу удобно хранить списком в словаре. Ключом служит признак, по которому собирают группы.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Сначала найдите размер самой большой группы, затем отберите названия всех групп этого размера в исходном порядке.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -337,59 +487,134 @@ human
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.4.3. Добавление методом <code>update()</code></h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>ann = {"id": "BRCA1"}</code> хранится запись о гене. Считайте название поля и его значение. Добавьте пару методом <code>update()</code>: если поле уже есть, его значение заменится. Выведите число пар в словаре, а второй строкой значение прочитанного поля после добавления.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки: название поля (любая строка) и его значение (строка без пробелов).</p>
-              <h4>Выходные данные</h4>
-              <p>Две строки: число пар в словаре после добавления и значение прочитанного поля.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>chromosome
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>ann = {"id": "BRCA1"}</code> хранится запись о гене. Считайте название поля и его значение. Добавьте пару методом <code>update()</code>: если поле уже есть, его значение заменится. Выведите число пар в словаре, а второй строкой значение прочитанного поля после добавления.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: название поля (любая строка) и его значение (строка без пробелов).</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: число пар в словаре после добавления и значение прочитанного поля.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">chromosome<br>17</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2<br>17</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">После добавления <code>chromosome</code> в записи два поля: <code>id</code> и <code>chromosome</code>. Значение добавленного поля — 17.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>chromosome
 17</pre></td><td><pre>2
 17</pre></td></tr>
-                <tr><td><pre>id
+<tr><td><pre>id
 P53</pre></td><td><pre>1
 P53</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_3_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Методы словаря помогают обновлять данные записи и задавать значения для отсутствующих полей.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Вызовите <code>update()</code> с прочитанной парой, затем перечитайте поле.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.4.3. Поле по умолчанию</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>В словаре <code>ann = {"id": "BRCA1"}</code> хранится запись о гене. Считайте название поля и выведите его значение методом <code>setdefault()</code>; если поля нет, метод должен вставить пару со значением <code>"unknown"</code>. Второй строкой выведите число пар в словаре.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка — название поля (любая строка).</p>
-              <h4>Выходные данные</h4>
-              <p>Две строки: значение поля и число пар в словаре.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>id</pre></td><td><pre>BRCA1
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>ann = {"id": "BRCA1"}</code> хранится запись о гене. Считайте название поля и выведите его значение методом <code>setdefault()</code>; если поля нет, метод должен вставить пару со значением <code>"unknown"</code>. Второй строкой выведите число пар в словаре.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка — название поля (любая строка).</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: значение поля и число пар в словаре.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">id</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">BRCA1<br>1</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Поле <code>id</code> уже содержит <code>BRCA1</code>. Новая пара не появляется, поэтому число полей равно 1.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>id</pre></td><td><pre>BRCA1
 1</pre></td></tr>
-                <tr><td><pre>organism</pre></td><td><pre>unknown
+<tr><td><pre>organism</pre></td><td><pre>unknown
 2</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_3_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Методы словаря помогают обновлять данные записи и задавать значения для отсутствующих полей.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Передайте запрошенный ключ и значение по умолчанию в <code>setdefault()</code>.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.4.3. Список полей</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Есть словарь полей: <code>{"id": "BRCA1", "chromosome": 17}</code>. Считайте строку из названий полей через пробел. Для каждого названия, которого нет в словаре, добавьте поле со значением <code>"unknown"</code> методом <code>setdefault()</code>; значения уже существующих полей должны сохраниться. Выведите отсортированные функцией <code>sorted()</code> названия всех полей через пробел, а второй строкой значения этих полей в том же порядке через пробел.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка из 1–20 названий полей через пробел; в названии только буквы и цифры, без пробелов.</p>
-              <h4>Выходные данные</h4>
-              <p>Две строки: названия всех полей через пробел по алфавиту и их значения через пробел в том же порядке.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>organism gene</pre></td><td><pre>chromosome gene id organism
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Есть словарь полей: <code>{"id": "BRCA1", "chromosome": 17}</code>. Считайте строку из названий полей через пробел. Для каждого названия, которого нет в словаре, добавьте поле со значением <code>"unknown"</code> методом <code>setdefault()</code>; значения уже существующих полей должны сохраниться. Выведите отсортированные функцией <code>sorted()</code> названия всех полей через пробел, а второй строкой значения этих полей в том же порядке через пробел.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 названий полей через пробел; в названии только буквы и цифры, без пробелов.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: названия всех полей через пробел по алфавиту и их значения через пробел в том же порядке.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">organism gene</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <samp class="we-seq"><span class="we-hl">chromosome gene id organism<br>17 unknown BRCA1 unknown</span></samp>
+                    </div>
+                  </div>
+                  <p class="we-note">Поля <code>organism</code> и <code>gene</code> получают <code>unknown</code>. При сортировке полей значения следуют за своими ключами.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>organism gene</pre></td><td><pre>chromosome gene id organism
 17 unknown BRCA1 unknown</pre></td></tr>
-                <tr><td><pre>id id</pre></td><td><pre>chromosome id
+<tr><td><pre>id id</pre></td><td><pre>chromosome id
 17 BRCA1</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_3_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Методы словаря помогают обновлять данные записи и задавать значения для отсутствующих полей.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Добавьте отсутствующие поля, отсортируйте ключи и используйте тот же список для вывода значений.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -406,53 +631,128 @@ P53</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
               <h3>Задача со звездочкой 6.4. Буквы G и C</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Выведите суммарное число вхождений букв G и C; отсутствующие буквы дают ноль.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка из 1–50 букв.</p>
-              <h4>Выходные данные</h4>
-              <p>Сумма вхождений G и C.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>2</pre></td></tr>
-                <tr><td><pre>GGG</pre></td><td><pre>3</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_star_basic.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Выведите суммарное число вхождений букв G и C; отсутствующие буквы дают ноль.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Сумма вхождений G и C.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В <code>GATTACA</code> одна буква <code>G</code> и одна <code>C</code>. Сумма равна 2.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>GATTACA</pre></td><td><pre>2</pre></td></tr>
+<tr><td><pre>GGG</pre></td><td><pre>3</pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Счетчик и словарь групп дают разные сведения. Счетчик хранит количества, а группы сохраняют сами элементы.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>В готовом счетчике возьмите два значения с нулем для отсутствующей буквы.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
               <h3>Задача со звездочкой 6.4. Группа по первой букве</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте названия по первой букве в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Считайте букву и выведите названия ее группы в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
-              <h4>Входные данные</h4>
-              <p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и одна буква.</p>
-              <h4>Выходные данные</h4>
-              <p>Названия через пробел или пустая строка.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>ATG GC TAA AT
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте названия по первой букве в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Считайте букву и выведите названия ее группы в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и одна буква.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Названия через пробел или пустая строка.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">ATG GC TAA AT<br>A</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">AT ATG</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">С буквы <code>A</code> начинаются <code>ATG</code> и <code>AT</code>. По алфавиту первым идет <code>AT</code>.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>ATG GC TAA AT
 A</pre></td><td><pre>AT ATG</pre></td></tr>
-                <tr><td><pre>ATG GC TAA AT
+<tr><td><pre>ATG GC TAA AT
 G</pre></td><td><pre>GC</pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_star_medium.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Счетчик и словарь групп дают разные сведения. Счетчик хранит количества, а группы сохраняют сами элементы.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Ключом группы сделайте первый символ названия.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
               <h3>Задача со звездочкой 6.4. Одиночные буквы</h3>
-              <div class="todo-box"><p class="todo-title">Что нужно сделать</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Выведите все буквы, которые встречаются ровно один раз, в алфавитном порядке через пробел; если таких нет, выведите пустую строку.</p></div>
-              <h4>Входные данные</h4>
-              <p>Одна строка из 1–50 букв.</p>
-              <h4>Выходные данные</h4>
-              <p>Буквы через пробел или пустая строка.</p>
-              <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Входные данные</th><th>Выходные данные</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>C G</pre></td></tr>
-                <tr><td><pre>GG</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
-              </tbody></table></div>
-              <dl class="task-meta"><dt>Файл</dt><dd><span class="file-name">t6_04_star_advanced.py</span></dd></dl>
-              <div class="checker" data-file="t6_04_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте словарь-счетчик: перебирайте буквы циклом <code>for</code> и считайте вхождения методом <code>get()</code>. Выведите все буквы, которые встречаются ровно один раз, в алфавитном порядке через пробел; если таких нет, выведите пустую строку.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Буквы через пробел или пустая строка.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATTACA</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">C G</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">У <code>C</code> и <code>G</code> по одному вхождению. Остальные буквы встречаются чаще.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+<tr><td><pre>GATTACA</pre></td><td><pre>C G</pre></td></tr>
+<tr><td><pre>GG</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+</tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Счетчик и словарь групп дают разные сведения. Счетчик хранит количества, а группы сохраняют сами элементы.</p>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Отберите ключи со значением 1 и отсортируйте их.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_04_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -465,7 +765,7 @@ G</pre></td><td><pre>GC</pre></td></tr>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_04_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_04_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_04_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_04</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
-        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
         <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/

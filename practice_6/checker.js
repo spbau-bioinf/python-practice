@@ -893,7 +893,9 @@
       tests.forEach(function (t, i) {
         chain = chain.then(function () {
           if (stopped) return;
-          return callWorker({ code: code, tests: [t], echo: !!echo, rules: rules }, TIME_LIMIT_MS + 1500)
+          return ensureLoaded().then(function () {
+            return callWorker({ code: code, tests: [t], echo: !!echo, rules: rules }, TIME_LIMIT_MS + 1500);
+          })
             .then(function (msg) {
               var reply = JSON.parse(msg.json);
               if (reply.syntax) {
@@ -1271,6 +1273,52 @@
       var t = arguments[i];
       if (t && t.style) { t.style.height = ""; t.style.width = ""; }
     }
+  }
+
+  /* ---------- поле «Ввод»: высота по числу строк (версия 111) ---------- */
+  /* Ползунка растягивания в поле нет. Высота следует за строками ввода: растет
+     до STDIN_MAX_LINES строк, дальше появляется вертикальная прокрутка. */
+  var STDIN_MAX_LINES = 8;
+  function lineHeightOf(el, cs) {
+    var lh = parseFloat(cs.lineHeight);
+    if (lh) return lh;
+    /* line-height: normal — меряем высоту строки пробным блоком с теми же шрифтами */
+    var probe = document.createElement("div");
+    probe.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;margin:0;padding:0;border:0;" +
+      "white-space:pre;font-family:" + cs.fontFamily + ";font-size:" + cs.fontSize + ";line-height:" + cs.lineHeight;
+    probe.textContent = "x";
+    document.body.appendChild(probe);
+    var h = probe.getBoundingClientRect().height;
+    document.body.removeChild(probe);
+    return h || parseFloat(cs.fontSize) * 1.2;
+  }
+  function fitStdin(area) {
+    if (!area || !area.isConnected) return;
+    var cs = window.getComputedStyle(area);
+    var lh = lineHeightOf(area, cs);
+    var pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    var bord = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+    var keep = area.scrollTop;                       /* пересчет не должен уводить прокрутку вверх */
+    area.style.height = "0px";
+    var need = area.scrollHeight + bord;
+    if (!need) { area.style.height = ""; return; }   /* скрытый блок: размер задаст показ */
+    var max = Math.round(lh * STDIN_MAX_LINES + pad + bord);
+    if (need > max) { area.style.height = max + "px"; area.classList.add("is-overflow"); }
+    else { area.style.height = need + "px"; area.classList.remove("is-overflow"); }
+    area.scrollTop = keep;
+  }
+  function autoFitStdin(area) {
+    if (!area) return;
+    area.addEventListener("input", function () { fitStdin(area); });
+    /* блок мог быть скрыт при создании: пересчет при появлении и смене ширины */
+    if (window.ResizeObserver) {
+      var lastW = -1;
+      new window.ResizeObserver(function () {
+        var w = area.clientWidth;
+        if (w && w !== lastW) { lastW = w; fitStdin(area); }
+      }).observe(area);
+    }
+    setTimeout(function () { fitStdin(area); }, 0);
   }
 
   /* ---------------- прогресс (хранится только в этом браузере) ---------------- */
@@ -1793,8 +1841,8 @@
     ],
     "t4_02_star_medium.py": [
       "seq",
-      "window",
-      "length",
+      "size",
+      "loop",
       "index"
     ],
     "t4_02_star_advanced.py": [
@@ -1803,7 +1851,7 @@
       "index"
     ],
     "t4_03_1_basic.py": [
-      "count",
+      "target",
       "cells",
       "hours"
     ],
@@ -1834,7 +1882,8 @@
       "total"
     ],
     "t4_03_star_medium.py": [
-      "count",
+      "target_month",
+      "offspring",
       "month",
       "older",
       "young",
@@ -1861,7 +1910,7 @@
       "start",
       "index",
       "count",
-      "codon"
+      "codon_start"
     ],
     "t4_04_2_basic.py": [
       "seq",
@@ -1911,6 +1960,8 @@
     "t4_05_1_advanced.py": [
       "first",
       "second",
+      "first_base",
+      "second_base",
       "transitions",
       "transversions",
       "index"
@@ -1941,11 +1992,13 @@
       "count_c",
       "count_g",
       "cpg",
+      "length",
       "index"
     ],
     "t4_05_star_advanced.py": [
       "seq",
-      "window",
+      "window_size",
+      "length",
       "difference",
       "count",
       "index"
@@ -1983,6 +2036,7 @@
     ],
     "t4_06_star_advanced.py": [
       "values",
+      "token",
       "best",
       "current",
       "value"
@@ -2002,6 +2056,7 @@
     "t4_07_1_advanced.py": [
       "seq",
       "skew",
+      "prefix_length",
       "min_skew",
       "position",
       "index"
@@ -2031,36 +2086,40 @@
       "text",
       "motif",
       "count",
-      "start"
+      "start",
+      "offset"
     ],
     "t4_08_1_medium.py": [
       "text",
       "motif",
       "count",
       "start",
-      "differences"
+      "differences",
+      "offset"
     ],
     "t4_08_1_advanced.py": [
       "seq",
-      "k",
+      "kmer_length",
       "best",
       "best_count",
       "index",
+      "inner_index",
       "kmer",
       "count"
     ],
     "t4_08_star_basic.py": [
       "seq",
-      "first",
-      "second",
+      "first_base",
+      "second_base",
       "count",
       "index"
     ],
     "t4_08_star_medium.py": [
       "seq",
-      "length",
+      "site_length",
       "count",
       "index",
+      "offset",
       "first",
       "second",
       "pair"
@@ -2070,7 +2129,8 @@
       "second",
       "best",
       "index",
-      "length"
+      "second_index",
+      "match_length"
     ],
     "t5_01_1_basic.py": [
       "sequences"
@@ -2082,25 +2142,29 @@
     "t5_01_1_advanced.py": [
       "sequences",
       "seen",
-      "repeats"
+      "repeats",
+      "sequence"
     ],
     "t5_01_star_basic.py": [
       "sequences",
       "total",
       "average",
-      "result"
+      "result",
+      "sequence"
     ],
     "t5_01_star_medium.py": [
       "first",
       "second",
-      "common"
+      "common",
+      "sequence"
     ],
     "t5_01_star_advanced.py": [
       "sequences",
       "unique",
       "counts",
       "best",
-      "index"
+      "index",
+      "sequence"
     ],
     "t5_02_1_basic.py": [
       "sequences",
@@ -2173,7 +2237,7 @@
     ],
     "t5_03_star_medium.py": [
       "sequences",
-      "k",
+      "block_size",
       "result",
       "index"
     ],
@@ -2223,8 +2287,9 @@
     "t5_04_star_advanced.py": [
       "month",
       "lifespan",
+      "birth_month",
       "ages",
-      "index",
+      "age",
       "month_index",
       "newborn"
     ],
@@ -2255,19 +2320,24 @@
       "first",
       "second",
       "same",
-      "index"
+      "first_base",
+      "second_base"
     ],
     "t5_05_2_medium.py": [
       "first",
       "second",
       "positions",
-      "index"
+      "index",
+      "first_base",
+      "second_base"
     ],
     "t5_05_2_advanced.py": [
       "first",
       "second",
       "distance",
-      "index"
+      "index",
+      "first_base",
+      "second_base"
     ],
     "t5_05_star_basic.py": [
       "sequences",
@@ -2286,6 +2356,9 @@
       "best_count",
       "count",
       "index",
+      "other_index",
+      "sequence",
+      "other_sequence",
       "difference"
     ],
     "t5_06_1_basic.py": [
@@ -2350,15 +2423,16 @@
       "gcs",
       "sequence",
       "rich",
-      "count_g"
+      "count_g",
+      "gc"
     ],
     "t5_07_1_advanced.py": [
       "first",
       "second",
-      "k",
+      "window",
       "hits",
       "index",
-      "inner"
+      "inner_index"
     ],
     "t5_07_star_basic.py": [
       "sequences",
@@ -2369,12 +2443,12 @@
       "count",
       "pairs",
       "index",
-      "inner"
+      "inner_index"
     ],
     "t5_07_star_advanced.py": [
       "sequences",
       "consensus",
-      "index",
+      "position",
       "column"
     ],
     "t5_08_1_basic.py": [
@@ -2403,7 +2477,9 @@
       "best",
       "best_distance",
       "value",
-      "distance"
+      "distance",
+      "vector",
+      "column_sum"
     ],
     "t5_08_star_basic.py": [
       "count",
@@ -2426,12 +2502,14 @@
       "names",
       "matrix",
       "index",
+      "inner_index",
       "seq",
       "base",
       "best",
-      "inner",
       "first",
-      "distance"
+      "distance",
+      "value",
+      "other_value"
     ],
     "t5_09_1_basic.py": [
       "sequences",
@@ -2445,7 +2523,9 @@
       "column",
       "distances",
       "index",
-      "sequence"
+      "sequence",
+      "base",
+      "consensus_base"
     ],
     "t5_09_1_advanced.py": [
       "sequences",
@@ -2459,21 +2539,24 @@
       "sequences",
       "best_position",
       "best_count",
-      "index",
+      "position",
       "column",
+      "base",
       "top"
     ],
     "t5_09_star_medium.py": [
       "group_a",
       "group_b",
       "consensus_a",
-      "column",
       "consensus_b",
-      "difference",
-      "index"
+      "position",
+      "column",
+      "base_a",
+      "base_b",
+      "difference"
     ],
     "t5_09_star_advanced.py": [
-      "count",
+      "line_count",
       "sequences",
       "index",
       "line",
@@ -2481,7 +2564,7 @@
       "base"
     ],
     "t1_04_1_basic.py": [
-      "cells"
+      "count"
     ],
     "t1_04_1_medium.py": [
       "volume",
@@ -2496,20 +2579,18 @@
       "infected"
     ],
     "t1_04_star_medium.py": [
-      "stage1",
-      "stage2",
-      "stage3",
-      "born"
+      "count_stage1",
+      "count_stage2",
+      "count_stage3"
     ],
     "t1_04_star_advanced.py": [
-      "stage1",
-      "stage2",
-      "stage3",
-      "total"
+      "count_stage1",
+      "count_stage2",
+      "count_stage3"
     ],
     "t1_05_1_basic.py": [
-      "first",
-      "second"
+      "length1",
+      "length2"
     ],
     "t1_05_1_medium.py": [
       "motif",
@@ -2523,7 +2604,7 @@
       "volume"
     ],
     "t1_05_2_medium.py": [
-      "text"
+      "mass_text"
     ],
     "t1_05_2_advanced.py": [
       "flag1",
@@ -2534,12 +2615,12 @@
       "times"
     ],
     "t1_05_star_medium.py": [
-      "plate",
-      "well"
+      "first_run_reads",
+      "second_run_reads"
     ],
     "t1_05_star_advanced.py": [
-      "last",
-      "width"
+      "last_number",
+      "read_number"
     ],
     "t1_06_1_basic.py": [
       "length"
@@ -2552,9 +2633,9 @@
       "shift"
     ],
     "t1_06_2_basic.py": [
-      "read1",
-      "read2",
-      "read3"
+      "read_length1",
+      "read_length2",
+      "read_length3"
     ],
     "t1_06_2_medium.py": [
       "sample",
@@ -2572,8 +2653,7 @@
     ],
     "t1_06_star_medium.py": [
       "samples",
-      "wells",
-      "plates"
+      "wells"
     ],
     "t1_06_star_advanced.py": [
       "length",
@@ -2604,7 +2684,7 @@
       "part2"
     ],
     "t1_07_2_advanced.py": [
-      "initial",
+      "initial_concentration",
       "dilution",
       "steps",
       "target"
@@ -2612,7 +2692,7 @@
     "t1_07_star_basic.py": [
       "nominal",
       "measured",
-      "tolerance"
+      "tol"
     ],
     "t1_07_star_medium.py": [
       "measured",
@@ -2633,24 +2713,21 @@
     "t1_08_1_medium.py": [
       "length",
       "count_g",
-      "count_c",
-      "gc"
+      "count_c"
     ],
     "t1_08_1_advanced.py": [
       "length",
       "count_g",
       "count_c",
-      "count_at"
+      "at_content"
     ],
     "t1_08_star_basic.py": [
       "reads",
-      "passed",
-      "percent"
+      "passed"
     ],
     "t1_08_star_medium.py": [
       "length",
-      "gc",
-      "percent"
+      "gc"
     ],
     "t1_08_star_advanced.py": [
       "length",
@@ -2666,7 +2743,7 @@
     "t1_09_1_advanced.py": [
       "hours",
       "minutes",
-      "days",
+      "duration",
       "total"
     ],
     "t1_09_2_basic.py": [
@@ -2700,8 +2777,8 @@
       "start_minutes",
       "end_hours",
       "end_minutes",
-      "days",
-      "total_minutes"
+      "total_minutes",
+      "minutes"
     ],
     "t1_10_1_basic.py": [
       "count_a",
@@ -2738,9 +2815,9 @@
       "gc1",
       "length2",
       "gc2",
-      "k",
-      "gc_k",
-      "total",
+      "overlap_length",
+      "gc_overlap",
+      "assembly_length",
       "gc"
     ],
     "t2_01_1_basic.py": [
@@ -2763,7 +2840,8 @@
     ],
     "t2_01_star_advanced.py": [
       "seq",
-      "length",
+      "start",
+      "segment_length",
       "end"
     ],
     "t2_02_1_basic.py": [
@@ -2772,11 +2850,11 @@
     ],
     "t2_02_1_medium.py": [
       "seq",
-      "index"
+      "codon_number"
     ],
     "t2_02_1_advanced.py": [
       "seq",
-      "trim"
+      "trim_length"
     ],
     "t2_02_2_basic.py": [
       "seq"
@@ -2792,15 +2870,17 @@
     ],
     "t2_02_star_basic.py": [
       "seq",
-      "cut"
+      "cut_position"
     ],
     "t2_02_star_medium.py": [
       "seq",
       "start",
+      "end",
       "step"
     ],
     "t2_02_star_advanced.py": [
       "seq",
+      "frame_number",
       "frame",
       "length"
     ],
@@ -2811,7 +2891,7 @@
     "t2_03_1_medium.py": [
       "seq",
       "motif",
-      "offset"
+      "repeat_count"
     ],
     "t2_03_1_advanced.py": [
       "seq",
@@ -2837,14 +2917,14 @@
     ],
     "t2_03_star_medium.py": [
       "seq",
-      "k",
+      "codon_number",
       "codon"
     ],
     "t2_03_star_advanced.py": [
       "seq",
       "motif",
       "position",
-      "length",
+      "motif_length",
       "padded"
     ],
     "t2_04_1_basic.py": [
@@ -2936,7 +3016,7 @@
       "gc"
     ],
     "t2_07_1_advanced.py": [
-      "position",
+      "gc_percent",
       "bar"
     ],
     "t2_07_star_basic.py": [
@@ -2949,6 +3029,7 @@
       "end"
     ],
     "t2_07_star_advanced.py": [
+      "well_number",
       "row",
       "column"
     ],
@@ -3017,9 +3098,9 @@
       "ph"
     ],
     "t3_01_1_medium.py": [
-      "volume",
-      "count",
-      "dilution"
+      "buffer_volume",
+      "sample_count",
+      "sample_volume"
     ],
     "t3_01_1_advanced.py": [
       "limit",
@@ -3046,8 +3127,8 @@
       "after"
     ],
     "t3_01_star_medium.py": [
-      "first",
-      "second"
+      "first_codon",
+      "second_codon"
     ],
     "t3_01_star_advanced.py": [
       "first",
@@ -3096,7 +3177,7 @@
       "end1",
       "start2",
       "end2",
-      "limit",
+      "min_overlap",
       "lengths_ok",
       "cross_ok"
     ],
@@ -3139,16 +3220,17 @@
       "end",
       "strand",
       "position",
-      "pos"
+      "number"
     ],
     "t3_04_star_basic.py": [
       "concentration",
-      "volume"
+      "volume",
+      "diluted_volume"
     ],
     "t3_04_star_medium.py": [
       "length",
-      "start",
-      "end",
+      "position1",
+      "position2",
       "distance"
     ],
     "t3_04_star_advanced.py": [
@@ -3195,10 +3277,10 @@
       "kind"
     ],
     "t3_05_star_medium.py": [
-      "first",
-      "second",
-      "third",
-      "base"
+      "first_base",
+      "second_base",
+      "third_base",
+      "consensus"
     ],
     "t3_05_star_advanced.py": [
       "before",
@@ -3241,8 +3323,8 @@
     "t3_07_1_medium.py": [
       "text_a",
       "text_b",
-      "mass_a",
-      "mass_b",
+      "concentration_a",
+      "concentration_b",
       "result"
     ],
     "t3_07_1_advanced.py": [
@@ -3327,8 +3409,8 @@
       "kind"
     ],
     "t3_09_star_medium.py": [
-      "first",
-      "second",
+      "first_base",
+      "second_base",
       "pair",
       "code"
     ],
@@ -3340,6 +3422,7 @@
       "four",
       "result"
     ]
+
   };
 
 
@@ -3448,6 +3531,7 @@
       stdin.setAttribute("spellcheck", "false");
       stdin.setAttribute("aria-label", "Ввод для запуска: строки ввода, как в левой колонке «Примеров»");
       block.appendChild(stdin);
+      autoFitStdin(stdin);
     }
 
     var bar = el("div", "checker-bar");
@@ -3515,14 +3599,13 @@
       };
       reader.readAsText(f, "utf-8");
     });
-    /* Версия 98: сброс выполняется сразу, без window.confirm (браузер может его подавить),
-       а на 10 секунд появляется кнопка «Вернуть»: набранный код не теряется молча. */
+    /* Версия 110: сброс выполняется сразу, без окна подтверждения: набранный код
+       автоматически скачивается в папку загрузок файлом <имя>.py, а на 10 секунд
+       появляется кнопка «Вернуть»: набранный код не теряется молча. */
     var actionId = 0, undoReset = null;
     area.addEventListener("input", function () {
       if (undoReset) { undoReset = null; hideToast(); }
     });
-    /* версия 108: перед сбросом — окно подтверждения, как у «Начать заново», и .py-файл
-       с текущим кодом: случайный сброс больше не стирает работу студента */
     function downloadCode(name, text) {
       var blob = new Blob([text], {type: "text/x-python"});
       var a = document.createElement("a");
@@ -3533,38 +3616,7 @@
       a.remove();
       window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
     }
-    function confirmClear(onYes) {
-      var d = el("dialog", "rs-dlg");
-      d.setAttribute("aria-labelledby", "ck-reset-title");
-      var x = el("button", "tb-icon rs-x");
-      x.type = "button";
-      x.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      x.setAttribute("aria-label", "Закрыть");
-      x.onclick = function () { d.close(); };
-      d.appendChild(x);
-      var h = el("h3", "", "Сбросить код?"); h.id = "ck-reset-title"; d.appendChild(h);
-      d.appendChild(el("p", "", "Всё, что набрано в поле, будет стёрто: поле вернётся к шаблону, результат проверки и выбранный файл очистятся."));
-      var warn = el("p", "rs-warn");
-      warn.appendChild(document.createTextNode("Перед сбросом код сохранится в файл "));
-      warn.appendChild(el("b", "", file));
-      warn.appendChild(document.createTextNode(" и скачается на компьютер. Этот файл можно загрузить обратно кнопкой «Выбрать файл .py»."));
-      d.appendChild(warn);
-      var acts = el("div", "rs-acts");
-      acts.appendChild(el("span", "rs-flex"));
-      var yes = el("button", "tb-btn rs-yes", "Сбросить"); yes.type = "button";
-      yes.onclick = function () { yes.disabled = true; downloadCode(file, area.value); d.close(); onYes(); };
-      acts.appendChild(yes);
-      var no = el("button", "tb-btn", "Отмена"); no.type = "button";
-      no.onclick = function () { d.close(); };
-      acts.appendChild(no);
-      d.appendChild(acts);
-      d.addEventListener("close", function () { d.parentNode && d.parentNode.removeChild(d); });
-      document.body.appendChild(d);
-      d.showModal();
-      no.focus();
-    }
     clear.addEventListener("click", function () {
-      confirmClear(function () {
       var before = area.value;
       var beforeScroll = area.scrollTop;
       var beforeStdin = stdin ? stdin.value : "";
@@ -3593,10 +3645,15 @@
       if (hadResult) changes.push("результат");
       if (removedState) changes.push("отметка о работе");
 
+      /* версия 110: копия кода скачивается сразу, до сброса: файл <имя>.py
+         попадает в папку загрузок без окна подтверждения */
+      var downloaded = before !== template;
+      if (downloaded) downloadCode(file, before);
+
       /* незавершенная проверка больше не должна вернуть свой результат после сброса */
       actionId += 1;
       area.value = template; resetSize(area); editor.sync(); area.scrollTop = 0;
-      if (stdin) stdin.value = stdin0;
+      if (stdin) { stdin.value = stdin0; fitStdin(stdin); }
       box.innerHTML = ""; box.className = outBox ? "checker-result checker-test-result" : "checker-result";
       if (outBox) { outBox.innerHTML = ""; outBox.className = "checker-result checker-run-result"; }
       box.solved = false; box.warn = false;
@@ -3622,7 +3679,7 @@
         resetSize(area);
         editor.sync();
         area.scrollTop = beforeScroll;
-        if (stdin) stdin.value = beforeStdin;
+        if (stdin) { stdin.value = beforeStdin; fitStdin(stdin); }
         /* незавершённую проверку вернуть нельзя: её ответ уже отменён сбросом */
         if (!resultWasWait) {
           box.innerHTML = resultHTML;
@@ -3648,10 +3705,9 @@
         }
         showToast("Сброс отменён");
       };
-      showToast("Сброшено: " + changes.join(", "), {
+      showToast("Сброшено: " + changes.join(", ") + (downloaded ? ". Файл " + file + " скачан в загрузки" : ""), {
         label: "Вернуть",
         onClick: function () { if (undoReset) undoReset(); }
-      });
       });
     });
     tryBtn.addEventListener("click", function () {
@@ -3695,7 +3751,7 @@
           fb.className = outBox ? "checker-result checker-run-result is-fail" : "checker-result is-fail"; fb.textContent = "✗ " + failText(e);
           if (outBox) { box.innerHTML = ""; box.className = "checker-result checker-test-result"; }
         })
-        .then(function () { tryBtn.disabled = false; });
+        .then(function () { if (id === actionId) tryBtn.disabled = false; });
     });
     run.addEventListener("click", function () {
       var code = area.value;
@@ -3744,14 +3800,14 @@
           block.dispatchEvent(new CustomEvent("checker:result", { bubbles: true,
             detail: { file: file, passed: 0, total: 1, solved: false, error: true } }));
         })
-        .then(function () { run.disabled = false; });
+        .then(function () { if (id === actionId) run.disabled = false; });
     });
   }
 
   /* ---------------- проверка для страницы преподавателя (версия 49) ----------------
      window.practiceCheckCode(file, code, box): тот же запуск и тот же разбор, что у кнопки
      «Проверить», но без отметок в прогрессе браузера. Возвращает {passed, total, solved}. */
-  window.practiceCheckCode = function (file, code, box) {
+  function checkPracticeCode(file, code, box) {
     var spec = (window.PRACTICE_DATA || {})[file];
     if (!spec) return Promise.reject(new Error("нет данных проверки для " + file));
     var tests = spec.tests.concat(spec.extra || []).map(function (t) { return { input: t.input || "", set: t.set || null }; });
@@ -3776,7 +3832,17 @@
       box.className = "checker-result is-fail"; box.textContent = "✗ " + failText(e);
       return { passed: 0, total: 0, solved: false, error: failText(e), fails: [] };
     });
-  };
+  }
+
+  /* Страница преподавателя подключает общий checker.js перед этим файлом. */
+  if (document.currentScript && document.currentScript.hasAttribute("data-teacher-checker")) {
+    var checkOtherPractice = window.practiceCheckCode;
+    window.practiceCheckCode = function (file, code, box) {
+      return (/^t6_/.test(file) ? checkPracticeCode : checkOtherPractice)(file, code, box);
+    };
+    return;
+  }
+  window.practiceCheckCode = checkPracticeCode;
 
   /* ---------------- живые примеры ---------------- */
   function exampleOutput(codeBlock) {
@@ -3790,9 +3856,9 @@
   }
 
   /* Окно ввода между кодом и выводом: показывает строки, которые прочитает input().
-     В блоках «Практика» его нет: там при правке уже появляется поле «Ввод». */
+     Есть и в примерах, и в блоках «Практика»: ввод всегда в своем окне, в «Выводе» — только вывод. */
   function setupInputBlock(codeBlock) {
-    if (!codeBlock.closest("article.example") || codeBlock.closest(".try-block")) return;
+    if (!codeBlock.closest("article.example, .try-block")) return;
     var out = exampleOutput(codeBlock);
     if (!out || out.previousElementSibling !== codeBlock) return;
     var pre = out.querySelector("pre");
@@ -3819,16 +3885,29 @@
     out.setAttribute("data-stdin", JSON.stringify(Array.prototype.map.call(kbds, function (k) {
       return k.textContent;
     })));
+    /* версия 112: перевод строки после нажатия Enter — часть вывода, а не эхо. Если перед
+       вводом стоит приглашение, строка остается отдельной; строка, состоявшая только из
+       ввода, убирается целиком. */
     Array.prototype.forEach.call(kbds, function (k) {
-      var next = k.nextSibling;
-      if (next && next.nodeType === 3 && next.nodeValue.charAt(0) === "\n") {
-        next.nodeValue = next.nodeValue.slice(1);
+      var before = "";
+      try {
+        var range = document.createRange();
+        range.setStart(pre, 0);
+        range.setEndBefore(k);
+        before = range.toString();
+      } catch (e) { before = ""; }
+      var atLineStart = !before.slice(before.lastIndexOf("\n") + 1).trim();
+      if (atLineStart) {
+        var next = k.nextSibling;
+        if (next && next.nodeType === 3 && next.nodeValue.charAt(0) === "\n") {
+          next.nodeValue = next.nodeValue.slice(1);
+        }
       }
       k.parentNode.removeChild(k);
     });
   }
   function setupInputBlocks() {
-    Array.prototype.forEach.call(document.querySelectorAll("article.example .run-pair"), function (pair) {
+    Array.prototype.forEach.call(document.querySelectorAll("article.example .run-pair, .try-block .run-pair"), function (pair) {
       var code = pair.querySelector(":scope > .code-block");
       if (code) setupInputBlock(code);
     });
@@ -3843,19 +3922,27 @@
     });
   }
 
+  /* версия 112: ввод показывается в отдельном окне «Ввод», в «Выводе» его нет.
+     Перевод строки после Enter остается: приглашение и результат программы не склеиваются.
+     Строка, состоявшая только из ввода, убирается целиком. */
+  function stripEcho(text) {
+    var lines = text.split("\n"), kept = [];
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (line.indexOf(ECHO_START) < 0) { kept.push(line); continue; }
+      var rest = line.replace(/\u0001[\s\S]*?\u0002/g, "");
+      if (/^\s*\u0001/.test(line) && !rest.trim()) continue;
+      kept.push(rest);
+    }
+    return kept.join("\n");
+  }
+
   function renderRunOutput(pre, res) {
     pre.innerHTML = "";
     if (res.syntax) { pre.appendChild(el("span", "ex-error", res.syntax)); return; }
     var r = res.results[0];
-    var text = r.out;
-    var parts = text.split(ECHO_START);
-    pre.appendChild(document.createTextNode(parts[0]));
-    for (var i = 1; i < parts.length; i++) {
-      var p = parts[i].split(ECHO_END);
-      var k = el("kbd", "user-input", p[0]);
-      pre.appendChild(k);
-      pre.appendChild(document.createTextNode(p.slice(1).join(ECHO_END)));
-    }
+    var text = stripEcho(r.out);
+    pre.appendChild(document.createTextNode(text));
     if (r.err) {
       if (text && !/\n$/.test(text)) pre.appendChild(document.createTextNode("\n"));
       pre.appendChild(el("span", "ex-error", r.err === "EOF"
@@ -3945,19 +4032,26 @@
       editorWrap = makeEditor(editor, "ex-editor-wrap", {file: codeLabel ? codeLabel.textContent.trim() : ""});
       codeBlock.insertBefore(editorWrap, codePre.nextSibling);
       var inBlock = out.previousElementSibling;
-      if (inBlock && inBlock.classList.contains("input-block")) inBlock.hidden = true;
+      var inPre = inBlock && inBlock.classList.contains("input-block") ? inBlock.querySelector("pre") : null;
+      if (inPre) inPre.hidden = true;
       /* версия 104: вход в правку не открывает скрытый вывод «Показать вывод»:
          иначе блок скачет по высоте при каждом переключении, а предсказание
          теряет смысл. Вывод открывает запуск или кнопка «Показать вывод». */
       if (stdinLines.length) {
-        stdin = el("textarea", "ex-stdin");
+        stdin = el("textarea", "ex-stdin is-inline");
         stdin.value = stdin0;
         stdin.rows = Math.max(1, stdinLines.length);
         stdin.setAttribute("aria-label", "Ввод: строки, которые прочитает input()");
         stdin.addEventListener("input", markDirty);
-        stdinLabel = el("span", "ex-stdin-label", "Ввод (строки, которые прочитает input()):");
-        out.insertBefore(stdinLabel, outPre);
-        out.insertBefore(stdin, outPre);
+        if (inBlock && inBlock.classList.contains("input-block")) {
+          /* поле ввода остается в окне «Ввод»: «Вывод» показывает только результат программы */
+          inBlock.appendChild(stdin);
+        } else {
+          stdinLabel = el("span", "ex-stdin-label", "Ввод (строки, которые прочитает input()):");
+          out.insertBefore(stdinLabel, outPre);
+          out.insertBefore(stdin, outPre);
+        }
+        autoFitStdin(stdin);
       }
       setPencilEditing(true);
       codeBlock.classList.add("is-editing");
@@ -3991,9 +4085,9 @@
       /* «Практика»: пример остаётся в редакторе, «Сбросить» возвращает исходный код */
       if (isTry && editor) {
         editor.value = original.text;
-        resetSize(editor, stdin);
+        resetSize(editor);
         editor.scrollTop = 0;
-        if (stdin) stdin.value = stdin0;
+        if (stdin) { stdin.value = stdin0; fitStdin(stdin); }
         if (editorWrap && editorWrap.sync) editorWrap.sync();
         outPre.innerHTML = original.out;
         outPre.scrollTop = 0;
@@ -4012,7 +4106,11 @@
       outPre.innerHTML = original.out;
       outPre.scrollTop = 0;
       var inBlock = out.previousElementSibling;
-      if (inBlock && inBlock.classList.contains("input-block")) inBlock.hidden = false;
+      if (inBlock && inBlock.classList.contains("input-block")) {
+        inBlock.hidden = false;
+        var inPre = inBlock.querySelector("pre");
+        if (inPre) inPre.hidden = false;
+      }
       var cover = out.querySelector(".predict-cover");
       if (cover) cover.parentNode.removeChild(cover);
       if (isPredict) setupPredict(out); else reveal(out);
@@ -4297,6 +4395,16 @@
     c.innerHTML = pyHighlight(text);
   }
 
+  /* Плашки ввода в тексте страницы оформлены как код: подсветка тем же разбором, что в окнах кода */
+  function highlightUserInputKeys() {
+    Array.prototype.forEach.call(document.querySelectorAll("kbd.user-input"), function (k) {
+      if (k.children.length) return;
+      var text = k.textContent;
+      if (!text) return;
+      k.innerHTML = pyHighlight(text);
+    });
+  }
+
   function setupInlineCopy() {
     Array.prototype.forEach.call(document.querySelectorAll(".try-block :not(pre):not(a) > code"), function (c) {
       var text = c.textContent.trim();
@@ -4325,6 +4433,7 @@
     Array.prototype.forEach.call(document.querySelectorAll(".level-tabs"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll(".output-block.predict"), setupPredict);
     setupInputBlocks();
+    highlightUserInputKeys();
     setupFileCopies();
     setupInlineCopy();
     initProgress();
