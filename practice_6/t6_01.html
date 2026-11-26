@@ -223,8 +223,7 @@ T</pre></td><td><pre>16</pre></td></tr>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.1. Число занятий</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>minutes</code> длительность занятий в минутах:</p><div class="code-block"><span class="code-label">minutes.py</span><pre><code><span class="ln">minutes <span class="tok-op">=</span> {<span class="tok-str">"math"</span>: <span class="tok-num">45</span>, <span class="tok-str">"bio"</span>: <span class="tok-num">90</span>, <span class="tok-str">"cs"</span>: <span class="tok-num">75</span>, <span class="tok-str">"lab"</span>: <span class="tok-num">135</span>,</span>
-<span class="ln">           <span class="tok-str">"exam"</span>: <span class="tok-num">180</span>, <span class="tok-str">"seminar"</span>: <span class="tok-num">60</span>, <span class="tok-str">"lecture"</span>: <span class="tok-num">90</span>}</span></code></pre></div><p>Считайте название занятия и выведите, сколько полных занятий по 45 минут умещается в это время, делением нацело.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Разделите значение словаря нацело на 45.</p></details>
+<span class="ln">           <span class="tok-str">"exam"</span>: <span class="tok-num">180</span>, <span class="tok-str">"seminar"</span>: <span class="tok-num">60</span>, <span class="tok-str">"lecture"</span>: <span class="tok-num">90</span>}</span></code></pre></div><p>Считайте название занятия и выведите, сколько полных занятий по 45 минут умещается в это время. Используйте деление нацело.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка: название занятия из словаря <code>minutes</code>.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Целое число занятий.</p></div>
@@ -431,7 +430,6 @@ T</pre></td><td><pre>16</pre></td></tr>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.2. Прежнее значение</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Выведите прежнее значение этого ключа и новое значение после замены, каждое на своей строке.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Сохраните <code>counts[ключ]</code> в переменную, прежде чем присвоить ключу новое значение.</p></details>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: название нуклеотида (<code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>) и целое число от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Две строки: прежнее значение ключа и новое значение после замены.</p></div>
@@ -632,7 +630,6 @@ N</pre></td><td><pre>0</pre></td></tr>
             <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.3. Проценты</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов, всего их 46:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и выведите целое число процентов, которое составляет его значение от 46, делением нацело; значение возьмите методом <code>get()</code>: отсутствующий ключ дает ноль процентов.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Формула: значение · 100 // 46.</p></details>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка — название нуклеотида.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Целое число от 0 до 100.</p></div>

@@ -474,7 +474,7 @@ A B C</pre></td><td><pre>нет</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.9.3. Мера Жаккара</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте множества функцией <code>set()</code> и выведите меру Жаккара: <code>len(a &amp; b) / len(a | b)</code>, в том виде, в каком ее печатает Python.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте множества функцией <code>set()</code> и выведите меру Жаккара в обычном формате Python. Мера равна отношению числа общих элементов к числу элементов объединения. Примените операторы <code>&amp;</code> и <code>|</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Число от 0.0 до 1.0.</p></div>
@@ -509,7 +509,7 @@ A B C</pre></td><td><pre>нет</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Посчитайте размеры пересечения и объединения по отдельности.</li></ol>
+                <ol class="hint-steps"><li>Посчитайте размеры пересечения и объединения по отдельности.</li><li>Для множеств <code>a</code> и <code>b</code> формула в Python выглядит так: <code>len(a &amp; b) / len(a | b)</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_09_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -518,7 +518,7 @@ A B C</pre></td><td><pre>нет</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.9.3. Мера Жаккара для множеств k-меров</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте две строки из букв и число <code>k</code>. Создайте два пустых множества вызовом <code>set()</code>. Пройдите по окнам каждой строки циклом <code>for</code> с шагом 1 и добавьте каждый срез длиной <code>k</code> методом <code>add()</code>. Выведите меру Жаккара: поделите длину пересечения <code>len(a &amp; b)</code> на длину объединения <code>len(a | b)</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте две строки из букв и число <code>k</code>. Создайте два пустых множества вызовом <code>set()</code>. Пройдите по окнам каждой строки циклом <code>for</code> с шагом 1 и добавьте каждый срез длиной <code>k</code> методом <code>add()</code>. Выведите меру Жаккара двух множеств окон: отношение числа общих окон к числу элементов объединения. Пересечение найдите оператором <code>&amp;</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Три строки: строка из 1–100 букв, строка из 1–100 букв и число <code>k</code> от 1 до длины меньшей строки.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Число от 0.0 до 1.0: результат деления в обычном формате Python, без дополнительного округления.</p></div>
@@ -555,7 +555,7 @@ AAA
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Соберите множество окон каждой строки, затем сравнивайте эти множества.</li></ol>
+                <ol class="hint-steps"><li>Соберите множество окон каждой строки, затем сравнивайте эти множества.</li><li>Для множеств окон <code>a</code> и <code>b</code> посчитайте <code>len(a &amp; b) / len(a | b)</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_09_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -647,7 +647,7 @@ A B</pre></td><td><pre>да</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Счетчик сохраняет число повторов названия. При сравнении наборов по мере Жаккара повторы удаляют до расчета.</p>
+                <p>Счетчик учитывает число вхождений каждого названия. Для меры Жаккара важен состав множеств.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -660,10 +660,10 @@ A B</pre></td><td><pre>да</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
               <h3>Задача со звездочкой 6.9. Жаккар с округлением</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте две строки из целых чисел через пробел и постройте два множества функцией <code>set()</code>. Вычислите меру Жаккара <code>len(a &amp; b) / len(a | b)</code> и выведите результат <code>round(мера, 2)</code> в обычном формате Python, без дополнения нулями.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте две строки из целых чисел через пробел и постройте два множества функцией <code>set()</code>. Вычислите меру Жаккара: разделите число общих элементов на число элементов объединения. Округлите функцией <code>round()</code> до двух знаков после точки и выведите результат в обычном формате Python, без дополнения нулями.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Число от 0.0 до 1.0: результат <code>round(мера, 2)</code> в обычном формате Python.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Число от 0.0 до 1.0, округленное до двух знаков после точки и выведенное в обычном формате Python.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -691,11 +691,11 @@ A B</pre></td><td><pre>да</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Счетчик сохраняет число повторов названия. При сравнении наборов по мере Жаккара повторы удаляют до расчета.</p>
+                <p>Счетчик учитывает число вхождений каждого названия. Для меры Жаккара важен состав множеств.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Вызовите <code>round()</code> после деления.</li></ol>
+                <ol class="hint-steps"><li>Вызовите <code>round()</code> после деления.</li><li>Для множеств <code>a</code> и <code>b</code> сначала вычислите <code>len(a &amp; b) / len(a | b)</code>.</li><li>Передайте число знаков вторым аргументом <code>round()</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_09_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -704,7 +704,7 @@ A B</pre></td><td><pre>да</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
               <h3>Задача со звездочкой 6.9. Жаккар в процентах</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте множества функцией <code>set()</code> и выведите меру Жаккара в целых процентах, делением нацело: <code>len(a &amp; b) * 100 // len(a | b)</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте множества функцией <code>set()</code> и выведите меру Жаккара в целых процентах. Для числа общих элементов найдите пересечение оператором <code>&amp;</code>, для получения целого процента примените деление нацело.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Целое число от 0 до 100.</p></div>
@@ -735,11 +735,11 @@ A B</pre></td><td><pre>да</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Счетчик сохраняет число повторов названия. При сравнении наборов по мере Жаккара повторы удаляют до расчета.</p>
+                <p>Счетчик учитывает число вхождений каждого названия. Для меры Жаккара важен состав множеств.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Умножьте размер пересечения на 100 перед делением нацело.</li></ol>
+                <ol class="hint-steps"><li>Умножьте размер пересечения на 100 перед делением нацело.</li><li>Для множеств <code>a</code> и <code>b</code> формула в Python выглядит так: <code>len(a &amp; b) * 100 // len(a | b)</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_09_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>

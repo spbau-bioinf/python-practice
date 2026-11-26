@@ -146,7 +146,7 @@
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.7.1. GC-состав</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов в переменную <code>seq</code> и постройте счетчик <code>c</code> из этой строки. Выведите GC-состав: вычислите долю выражением <code>(c["G"] + c["C"]) / len(seq) * 100</code> и округлите функцией <code>round()</code> до одного знака после точки.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и создайте счетчик вызовом <code>Counter()</code>. Выведите GC-состав, то есть процент букв <code>G</code> и <code>C</code> от длины строки. Округлите результат функцией <code>round()</code> до одного знака после точки.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв A, C, G, T.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Число от 0.0 до 100.0 с одним знаком после точки.</p></div>
@@ -179,7 +179,7 @@
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сложите два счетчика и разделите сумму на длину всей строки перед переводом в проценты.</li></ol>
+                <ol class="hint-steps"><li>Сложите два счетчика и разделите сумму на длину всей строки перед переводом в проценты.</li><li>Если строка называется <code>seq</code>, а счетчик — <code>c</code>, процент вычисляется как <code>(c["G"] + c["C"]) / len(seq) * 100</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -313,7 +313,7 @@
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Частота буквы хранится в значении счетчика. Порядок ключей помогает разрешить равенство частот.</p>
+                <p>Частота буквы хранится в значении счетчика. Ключи счетчика идут в порядке первого появления букв.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -326,7 +326,7 @@
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.7.2. Сортировка по частоте</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте счетчик <code>c</code> из этой строки. Выведите каждую различную букву один раз, по убыванию частоты: отсортируйте буквы функцией <code>sorted()</code> с аргументами <code>key=c.get</code> и <code>reverse=True</code>; при равной частоте сохраняется порядок первого появления.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и создайте счетчик вызовом <code>Counter()</code>. Выведите каждую различную букву один раз по убыванию частоты, при равной частоте — в порядке первого появления. Для сортировки используйте <code>sorted()</code> с аргументом <code>reverse=True</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Буквы через пробел по убыванию частоты.</p></div>
@@ -355,11 +355,11 @@
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Частота буквы хранится в значении счетчика. Порядок ключей помогает разрешить равенство частот.</p>
+                <p>Частота буквы хранится в значении счетчика. Ключи счетчика идут в порядке первого появления букв.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сортируйте ключи по значениям счетчика по убыванию. Равные ключи сортировки сохраняют исходный порядок.</li></ol>
+                <ol class="hint-steps"><li>Сортируйте ключи по значениям счетчика по убыванию. Равные ключи сортировки сохраняют исходный порядок.</li><li>Если счетчик называется <code>c</code>, передайте <code>key=c.get</code> в <code>sorted()</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -369,7 +369,6 @@
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.7.2. Все самые частые</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте счетчик вызовом <code>Counter()</code>. Найдите максимальное число вхождений функцией <code>max()</code> по значениям счетчика и выведите все буквы с этим числом вхождений через пробел, в порядке появления.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Сначала найдите максимум значений, затем отберите все ключи с этим значением.</p></details>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Буквы с максимальной частотой через пробел.</p></div>
@@ -398,7 +397,7 @@
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Частота буквы хранится в значении счетчика. Порядок ключей помогает разрешить равенство частот.</p>
+                <p>Частота буквы хранится в значении счетчика. Ключи счетчика идут в порядке первого появления букв.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -566,7 +565,6 @@
             <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.7.3. Самые частые k-меры</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>k</code>. Выведите все самые частые k-меры через пробел в порядке появления: окна сдвигаются на одну букву и перекрываются. Счетчик окон постройте вызовом <code>Counter()</code> в цикле <code>for</code>, максимум найдите функцией <code>max()</code>, затем отберите все k-меры с этим числом вхождений.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Сначала найдите максимум значений счетчика, затем отберите все ключи с этим значением.</p></details>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>k</code> от 1 до длины строки.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Самые частые k-меры через пробел.</p></div>
@@ -620,7 +618,7 @@
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
               <h3>Задача со звездочкой 6.7. Счетчики и GC-состав</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов в переменную <code>seq</code> и постройте счетчик <code>c</code> из этой строки. Выведите числа вхождений букв A, C, G и T через пробел, в этом порядке, а второй строкой GC-состав: долю выражением <code>(c["G"] + c["C"]) / len(seq) * 100</code>, округленную функцией <code>round()</code> до одного знака после точки.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и создайте счетчик вызовом <code>Counter()</code>. Выведите числа вхождений букв A, C, G и T через пробел, в этом порядке. Второй строкой выведите GC-состав, то есть процент букв <code>G</code> и <code>C</code> от длины строки, округленный функцией <code>round()</code> до одного знака после точки.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв A, C, G, T.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Две строки: четыре числа через пробел и GC-состав.</p></div>
@@ -655,7 +653,7 @@
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Используйте один счетчик для обеих строк вывода.</li></ol>
+                <ol class="hint-steps"><li>Используйте один счетчик для обеих строк вывода.</li><li>Если строка называется <code>seq</code>, а счетчик — <code>c</code>, процент вычисляется как <code>(c["G"] + c["C"]) / len(seq) * 100</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -664,7 +662,7 @@
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
               <h3>Задача со звездочкой 6.7. Самый частый k-мер</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>k</code>. Выведите самый частый k-мер, найденный функцией <code>max()</code> с аргументом <code>key=счетчик.get</code>; при равных счетчиках выведите первый встреченный. Окна сдвигаются на одну букву и перекрываются, счетчик постройте вызовом <code>Counter()</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>k</code>. Выведите самый частый k-мер, найденный функцией <code>max()</code> по частоте; при равных счетчиках выведите первый встреченный. Окна сдвигаются на одну букву и перекрываются, счетчик постройте вызовом <code>Counter()</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>k</code> от 1 до длины строки.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Самый частый k-мер.</p></div>

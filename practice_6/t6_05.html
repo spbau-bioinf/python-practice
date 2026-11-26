@@ -137,7 +137,7 @@ False
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Множество хранит каждый элемент один раз. Для вывода в заданном порядке его элементы сортируют.</p>
+                <p>В множестве каждый элемент представлен один раз. У множества нет алфавитного или числового порядка.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -179,7 +179,7 @@ False
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Множество хранит каждый элемент один раз. Для вывода в заданном порядке его элементы сортируют.</p>
+                <p>В множестве каждый элемент представлен один раз. У множества нет алфавитного или числового порядка.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -193,7 +193,6 @@ False
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.5.1. Есть ли повторы</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте множество функцией <code>set()</code>. Выведите слово «да», если в строке есть повторяющиеся буквы, иначе «нет».</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Сравните длину строки с длиной множества.</p></details>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
@@ -222,7 +221,7 @@ False
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Множество хранит каждый элемент один раз. Для вывода в заданном порядке его элементы сортируют.</p>
+                <p>В множестве каждый элемент представлен один раз. У множества нет алфавитного или числового порядка.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -385,7 +384,7 @@ False
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.5.2. Дополнение до n</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из целых чисел первого набора через пробел, строку из целых чисел второго и число <code>n</code>. Постройте два множества функцией <code>set()</code> и выведите дополнение их объединения до набора 1..n: разность <code>set(range(1, n + 1))</code> с объединением, найденным оператором <code>|</code> и вычтенным оператором <code>-</code>. Выведите числа по возрастанию через пробел; если дополнение пустое, выведите пустую строку.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из целых чисел первого набора через пробел, строку из целых чисел второго и число <code>n</code>. Постройте два множества функцией <code>set()</code> и выведите числа от 1 до <code>n</code>, которых нет ни в одном из двух наборов. Объединение найдите оператором <code>|</code>, разность — оператором <code>-</code>. Выведите числа по возрастанию через пробел; если дополнение пустое, выведите пустую строку.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Три строки: 1–20 целых чисел через пробел, 1–20 целых чисел через пробел и число <code>n</code> от 1 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Числа от 1 до n, которых нет в объединении, через пробел, или пустая строка.</p></div>
@@ -422,7 +421,7 @@ False
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Создайте множество всех чисел от 1 до границы включительно, затем исключите объединение.</li></ol>
+                <ol class="hint-steps"><li>Создайте множество всех чисел от 1 до границы включительно, затем исключите объединение.</li><li>Множество чисел от 1 до <code>n</code> включительно можно записать как <code>set(range(1, n + 1))</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -712,7 +711,7 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
               <h3>Задача со звездочкой 6.5. Дополнение набора</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел через пробел и число <code>n</code>. Постройте множество функцией <code>set()</code> и выведите отсортированные числа от 1 до <code>n</code>, которых нет в прочитанном наборе, через пробел, найдя их разностью <code>set(range(1, n + 1))</code> с набором оператором <code>-</code>; если таких нет, выведите пустую строку.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел через пробел и число <code>n</code>. Постройте множество функцией <code>set()</code> и выведите отсортированные числа от 1 до <code>n</code>, которых нет в прочитанном наборе, через пробел. Для поиска этих чисел примените оператор разности <code>-</code>. Если таких чисел нет, выведите пустую строку.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 целых чисел через пробел и число <code>n</code> от 1 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Числа от 1 до n, которых нет в наборе, через пробел, или пустая строка.</p></div>
@@ -747,7 +746,7 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте полный диапазон до заданной границы включительно и вычтите входной набор.</li></ol>
+                <ol class="hint-steps"><li>Постройте полный диапазон до заданной границы включительно и вычтите входной набор.</li><li>Множество чисел от 1 до <code>n</code> включительно можно записать как <code>set(range(1, n + 1))</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>

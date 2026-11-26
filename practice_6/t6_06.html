@@ -194,7 +194,6 @@ NN</pre></td><td><pre>0</pre></td></tr>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.6.1. Самые частые буквы</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте строку из букв и постройте счетчик вызовом <code>Counter()</code>. Выведите все буквы с наибольшим счетчиком в алфавитном порядке через пробел, отсортировав ключи функцией <code>sorted()</code>.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Наибольший счетчик дает метод <code>most_common(1)</code>, а буквы с ним отберите по отсортированным ключам.</p></details>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Буквы с наибольшим счетчиком через пробел.</p></div>
@@ -336,7 +335,7 @@ GG</pre></td><td><pre>5</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.6.2. Разность счетчиков</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте два счетчика из двух входных строк. Выведите разность первого со вторым, найденную оператором <code>-</code>, одной строкой из букв, перечисленных методом <code>elements()</code> и склеенных методом <code>"".join()</code>; группы одинаковых букв выводятся в порядке их первого появления в первой строке. Если разность пустая, выведите пустую строку.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте два счетчика из двух входных строк. Выведите разность первого со вторым, найденную оператором <code>-</code>, одной строкой из букв, перечисленных методом <code>elements()</code>; группы одинаковых букв выводятся в порядке их первого появления в первой строке. Если разность пустая, выведите пустую строку.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки из 1–50 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Оставшиеся буквы одной строкой или пустая строка.</p></div>
@@ -371,7 +370,7 @@ ACG</pre></td><td><pre><span class="io-empty">(пустая строка)</span>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Вычтите второй счетчик из первого и восстановите строку из оставшихся элементов.</li></ol>
+                <ol class="hint-steps"><li>Вычтите второй счетчик из первого и восстановите строку из оставшихся элементов.</li><li>Соедините буквы в строку без разделителей через <code>"".join()</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -380,8 +379,7 @@ ACG</pre></td><td><pre><span class="io-empty">(пустая строка)</span>
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.6.2. Хватает ли букв</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте две строки из букв и постройте два счетчика. Выведите слово «да», если первая строка содержит все буквы второй (счетчиков букв второй хватает в первой), иначе «нет». Проверьте это разностью, найденной оператором <code>-</code>: если разность второго счетчика с первым пустая, букв хватает.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Если в разности <code>второй - первый</code> ничего не осталось, все буквы второй строки есть в первой.</p></details>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code>. Считайте две строки из букв и постройте два счетчика. Выведите слово «да», если первая строка содержит все буквы второй (счетчиков букв второй хватает в первой), иначе «нет». Для проверки используйте разность счетчиков, найденную оператором <code>-</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки из 1–50 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
@@ -582,8 +580,7 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.6.3. Самая большая группа</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>defaultdict</code> из модуля <code>collections</code> и создайте группы вызовом <code>defaultdict(list)</code>. Считайте строку из названий образцов через пробел и сгруппируйте идентификаторы по числу символов, перебирая названия циклом <code>for</code>. Выведите размер самой большой группы, пройдя по группам методом <code>values()</code> и запоминая наибольшую длину списка.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Пройдите циклом по <code>groups.values()</code> и запоминайте наибольшее значение <code>len(список)</code>.</p></details>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>defaultdict</code> из модуля <code>collections</code> и создайте группы вызовом <code>defaultdict(list)</code>. Считайте строку из названий образцов через пробел и сгруппируйте идентификаторы по числу символов, перебирая названия циклом <code>for</code>. Выведите размер самой большой группы. Переберите группы методом <code>values()</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 названий через пробел; в названии только буквы и цифры, без пробелов.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Число названий в самой большой группе.</p></div>
@@ -635,7 +632,7 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
               <h3>Задача со звездочкой 6.6. Самая редкая буква</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте счетчик входной строки. Выведите самую редкую букву: первую букву последней пары списка метода <code>most_common()</code>. При равной минимальной частоте выводится буква, которая впервые появляется во входе позже других.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте счетчик входной строки. Выведите самую редкую букву. Используйте метод <code>most_common()</code>. При равной минимальной частоте выводится буква, которая впервые появляется во входе позже других.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Самая редкая буква.</p></div>
@@ -677,7 +674,7 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
               <h3>Задача со звездочкой 6.6. Пересечение счетчиков</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте два счетчика из двух входных строк. Выведите пересечение, найденное оператором <code>&amp;</code> (для каждой буквы берется меньший из двух счетчиков), одной строкой из букв, перечисленных методом <code>elements()</code> и склеенных методом <code>"".join()</code>; группы одинаковых букв выводятся в порядке их первого появления в первой строке.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Подключите <code>Counter</code> из модуля <code>collections</code> и создайте два счетчика из двух входных строк. Выведите пересечение, найденное оператором <code>&amp;</code> (для каждой буквы берется меньший из двух счетчиков), одной строкой из букв, перечисленных методом <code>elements()</code>; группы одинаковых букв выводятся в порядке их первого появления в первой строке.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки из 1–50 букв.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Общие буквы по минимуму счетчиков одной строкой.</p></div>
@@ -712,7 +709,7 @@ AA</pre></td><td><pre>AA</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Возьмите пересечение счетчиков и перечислите его элементы через <code>elements()</code>.</li></ol>
+                <ol class="hint-steps"><li>Возьмите пересечение счетчиков и перечислите его элементы через <code>elements()</code>.</li><li>Буквы из <code>elements()</code> можно соединить в строку через <code>"".join()</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>

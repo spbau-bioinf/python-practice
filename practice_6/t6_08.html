@@ -120,7 +120,7 @@ M *</pre></div>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.8.1. Аминокислота кодона</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте словарь генетического кода, как в примере 1: перечислите кодоны тремя вложенными циклами <code>for</code> в порядке U, C, A, G по трем позициям. Соедините список кодонов со строкой <code>aas</code> с помощью <code>zip(codons, aas)</code> и передайте полученные пары в <code>dict()</code>:</p><div class="code-block"><span class="code-label">table.py</span><pre><code><span class="ln">aas <span class="tok-op">=</span> (<span class="tok-str">"FFLLSSSSYY**CC*W"</span></span>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте словарь генетического кода, как в примере 1: перечислите кодоны тремя вложенными циклами <code>for</code> в порядке U, C, A, G по трем позициям. Составьте словарь из кодонов и символов строки <code>aas</code> с помощью <code>zip()</code> и <code>dict()</code>. Используйте строку:</p><div class="code-block"><span class="code-label">table.py</span><pre><code><span class="ln">aas <span class="tok-op">=</span> (<span class="tok-str">"FFLLSSSSYY**CC*W"</span></span>
 <span class="ln">       <span class="tok-str">"LLLLPPPPHHQQRRRR"</span></span>
 <span class="ln">       <span class="tok-str">"IIIMTTTTNNKKSSRR"</span></span>
 <span class="ln">       <span class="tok-str">"VVVVAAAADDEEGGGG"</span>)</span></code></pre></div><p>Считайте кодон и выведите его аминокислоту.</p></div>
@@ -156,7 +156,7 @@ M *</pre></div>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Следите, чтобы список кодонов и строка обозначений шли в одном порядке.</li></ol>
+                <ol class="hint-steps"><li>Следите, чтобы список кодонов и строка обозначений шли в одном порядке.</li><li>Если список называется <code>codons</code>, пары получаются вызовом <code>zip(codons, aas)</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_08_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -365,7 +365,7 @@ M *</pre></div>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.8.2. Трансляция до стопа</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте таблицу генетического кода, как в примере 1 (используйте строку <code>aas</code> из примера 1). Считайте строку мРНК длины, кратной 3, в которой последний кодон — стоп-кодон. Выведите строку аминокислот до стоп-кодона, перебирая кодоны циклом <code>for</code> с шагом 3 и прерывая цикл на стопе инструкцией <code>break</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте таблицу генетического кода, как в примере 1 (используйте строку <code>aas</code> из примера 1). Считайте строку мРНК длины, кратной 3, в которой последний кодон — стоп-кодон. Выведите строку аминокислот до стоп-кодона, перебирая кодоны циклом <code>for</code> и прерывая цикл на стопе инструкцией <code>break</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 3–300 букв U, C, A, G, длина кратна 3; последний кодон — стоп-кодон UAA, UAG или UGA; других стоп-кодонов в строке нет.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Строка аминокислот до стоп-кодона; если на входе только стоп-кодон, выведите пустую строку.</p></div>
@@ -398,7 +398,7 @@ M *</pre></div>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Проверяйте знак стопа до добавления символа в результат.</li></ol>
+                <ol class="hint-steps"><li>Проверяйте знак стопа до добавления символа в результат.</li><li>Начальные позиции кодонов идут с шагом 3.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_08_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -407,8 +407,7 @@ M *</pre></div>
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.8.2. Трансляция с буквой N</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте таблицу генетического кода, как в примере 1 (используйте строку <code>aas</code> из примера 1). Считайте строку мРНК длины, кратной 3, в которой могут быть буквы N. Выведите трансляцию: кодоны с буквой N обозначайте знаком <code>"?"</code>, беря аминокислоту методом <code>get()</code> с этим значением по умолчанию, перебирая кодоны циклом <code>for</code> с шагом 3. На первом стоп-кодоне чтение заканчивается, как при обычной трансляции: прервите цикл инструкцией <code>break</code>.</p></div>
-              <details class="task-hint"><summary>Подсказка</summary><p>Возьмите аминокислоту методом <code>get()</code>: <code>code.get(кодон, "?")</code>.</p></details>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте таблицу генетического кода, как в примере 1 (используйте строку <code>aas</code> из примера 1). Считайте строку мРНК длины, кратной 3, в которой могут быть буквы N. Выведите трансляцию: кодоны с буквой N обозначайте знаком <code>"?"</code>, беря аминокислоту методом <code>get()</code> с этим значением по умолчанию, перебирая кодоны циклом <code>for</code>. На первом стоп-кодоне чтение заканчивается, как при обычной трансляции: прервите цикл инструкцией <code>break</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 3–300 букв U, C, A, G, N, длина кратна 3.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Строка аминокислот и знаков вопроса; если перед стопом нет кодонов, выведите пустую строку.</p></div>
@@ -441,7 +440,7 @@ M *</pre></div>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Возьмите аминокислоту методом <code>get()</code>: <code>code.get(кодон, "?")</code>.</li></ol>
+                <ol class="hint-steps"><li>Возьмите аминокислоту методом <code>get()</code>: <code>code.get(кодон, "?")</code>.</li><li>Начальные позиции кодонов идут с шагом 3.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_08_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
