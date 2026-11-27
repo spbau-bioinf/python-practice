@@ -10,6 +10,8 @@
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t6_07.js"></script>
+  <script src="data/t6_07_anim.js"></script>
+  <script src="anim.js" defer></script>
   <script src="checker.js" defer></script>
   <script src="game.js" defer></script>
 </head>
@@ -26,7 +28,7 @@
         <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
         <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Нуклеотидный состав и GC-состав</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Самый частый элемент</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> k-меры</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.7.1</span> <span class="anc-ex-title" data-variant="basic">Счетчики A, C, G, T</span><span class="anc-ex-title" data-variant="medium">GC-состав</span><span class="anc-ex-title" data-variant="advanced">GC-состав не ниже 50 %</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.7.2</span> <span class="anc-ex-title" data-variant="basic">Самая частая буква</span><span class="anc-ex-title" data-variant="medium">Сортировка по частоте</span><span class="anc-ex-title" data-variant="advanced">Все самые частые</span></span></a></li><li><a class="anc-ex" href="#ex-3" data-ex-link="ex-3"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.7.3</span> <span class="anc-ex-title" data-variant="basic">Разные k-меры</span><span class="anc-ex-title" data-variant="medium">Максимум вхождений</span><span class="anc-ex-title" data-variant="advanced">Самые частые k-меры</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.7</span> <span class="anc-ex-title" data-variant="basic">Счетчики и GC-состав</span><span class="anc-ex-title" data-variant="medium">Самый частый k-мер</span><span class="anc-ex-title" data-variant="advanced">k-меры с двумя вхождениями</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Нуклеотидный состав и GC-состав</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Самый частый элемент</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> k-меры</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.7.1</span> <span class="anc-ex-title" data-variant="basic">Счетчики A, C, G, T</span><span class="anc-ex-title" data-variant="medium">GC-состав</span><span class="anc-ex-title" data-variant="advanced">Прочтения с высоким GC</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.7.2</span> <span class="anc-ex-title" data-variant="basic">Разные k-меры</span><span class="anc-ex-title" data-variant="medium">Максимум вхождений</span><span class="anc-ex-title" data-variant="advanced">Самые частые k-меры</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.7</span> <span class="anc-ex-title" data-variant="basic">Вхождения с перекрытием</span><span class="anc-ex-title" data-variant="medium">Повторяющиеся k-меры</span><span class="anc-ex-title" data-variant="advanced">Сортировка по частоте</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
         <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Мера Жаккара</span></span></a></li>
       </ul>
@@ -44,52 +46,50 @@
     <div class="page-body">
     <main class="content">
 
-      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Строить нуклеотидный состав и GC-состав счетчиком, находить самый частый элемент и считать k-меры с перекрывающимися окнами.</p>
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Считать нуклеотидный и GC-состав, находить самый частый элемент счетчика и считать k-меры с учетом перекрытий.</p>
 
       <section class="subsection" id="s1">
         <h2>1. Нуклеотидный состав и GC-состав</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>Задача DNA сборника Rosalind требует посчитать, сколько раз в последовательности ДНК встречаются символы A, C, G и T, и вывести четыре числа в этом порядке. <code>Counter</code> проходит по строке один раз и считает все буквы сразу.</p>
-        <p>Цикл по строке <code>"ACGT"</code> задает порядок вывода; если какой-то буквы в последовательности нет, <code>Counter</code> даст для нее 0. Порядок первого появления букв здесь не подходит: задача требует алфавитный.</p>
-        <p class="definition"><span class="term">GC-состав</span> — доля нуклеотидов G и C в процентах среди всех нуклеотидов последовательности. Считается из двух счетчиков: <code>(c["G"] + c["C"]) / len(seq) * 100</code>.</p>
-        <p>Счетчики и GC-состав нужны, чтобы сравнить распределение GC-состава прочтений с ожидаемым для данного материала. Прочтение — последовательность, полученная при секвенировании. Ручной расчет из примера: в <code>GATTACA</code> две буквы G или C из семи, то есть примерно 28.6 процента.</p>
+        <p>С чего начинают разбор прочитанной последовательности? С подсчета букв. В задаче DNA сборника Rosalind нужно посчитать, сколько раз встречаются A, C, G и T, и вывести четыре числа именно в этом порядке.</p>
+        <p><code>Counter</code> считает все буквы за один проход. Порядок вывода задают сами обращения <code>counts["A"]</code>, <code>counts["C"]</code> и так далее, а для буквы, которой в последовательности нет, счетчик дает 0.</p>
+        <p class="definition"><span class="term">GC-состав</span> (GC content) показывает, какую долю всех нуклеотидов последовательности составляют G и C, в процентах.</p>
+        <p>Его считают по счетчику: сумму <code>counts["G"]</code> и <code>counts["C"]</code> делят на длину последовательности и умножают на 100. В <code>GATTACA</code> букв G и C две из семи, то есть примерно 28.6 процента.</p>
+        <p class="th-full">GC-состав различается у разных организмов и у разных участков генома. По нему, например, проверяют, не попала ли в образец чужая ДНК.</p>
 
         <div class="step step-see">Пример</div>
         <article class="example">
-          Счетчики и GC-состав
+          <h3>Пример 1. Состав и GC-состав</h3>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">dna.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+            <div class="code-block"><span class="code-label">gc.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
 <span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"AGCTTTTCATTCTGAC"</span></span>
-<span class="ln">c <span class="tok-op">=</span> Counter(seq)</span>
-<span class="ln"><span class="tok-builtin">print</span>(c[<span class="tok-str">"A"</span>], c[<span class="tok-str">"C"</span>], c[<span class="tok-str">"G"</span>], c[<span class="tok-str">"T"</span>])  <span class="tok-out"># → 3 4 2 7</span></span>
-<span class="ln">gc <span class="tok-op">=</span> c[<span class="tok-str">"G"</span>] <span class="tok-op">+</span> c[<span class="tok-str">"C"</span>]</span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">round</span>(gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span>, <span class="tok-num">1</span>))   <span class="tok-out"># → 37.5</span></span></code></pre></div>
+<span class="ln">counts <span class="tok-op">=</span> Counter(seq)</span>
+<span class="ln"><span class="tok-builtin">print</span>(counts[<span class="tok-str">"A"</span>], counts[<span class="tok-str">"C"</span>], counts[<span class="tok-str">"G"</span>], counts[<span class="tok-str">"T"</span>])  <span class="tok-out"># → 3 4 2 7</span></span>
+<span class="ln">gc <span class="tok-op">=</span> counts[<span class="tok-str">"G"</span>] <span class="tok-op">+</span> counts[<span class="tok-str">"C"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">round</span>(gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span>, <span class="tok-num">1</span>))  <span class="tok-out"># → 37.5</span></span></code></pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>3 4 2 7
 37.5</pre></div>
           </div>
-          <div class="analysis">
-            <p>Один вызов <code>print()</code> с четырьмя аргументами печатает счетчики в алфавитном порядке букв. GC-состав — доля букв G и C: их шесть из шестнадцати, то есть 37.5 процента.</p>
-          </div>
+          <div class="analysis"><p>Четыре числа идут в порядке A, C, G, T, а не в порядке появления букв. Букв G и C шесть из шестнадцати: 37.5 процента.</p></div>
         </article>
         <div class="mistake th-full">
-          <p class="mistake-caption">Типичная ошибка: GC-состав без длины</p>
-          <div class="code-block code-wrong"><span class="code-label">Неверно: деление на 4</span><pre><code><span class="ln">gc <span class="tok-op">=</span> c[<span class="tok-str">"G"</span>] <span class="tok-op">+</span> c[<span class="tok-str">"C"</span>]</span>
-<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">/</span> <span class="tok-num">4</span> <span class="tok-op">*</span> <span class="tok-num">100</span>)</span></code></pre></div>
-          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">gc <span class="tok-op">=</span> c[<span class="tok-str">"G"</span>] <span class="tok-op">+</span> c[<span class="tok-str">"C"</span>]</span>
-<span class="ln"><span class="tok-builtin">print</span>(gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span>)</span></code></pre></div>
-          <p>Деление на 4 дало бы долю среди четырех видов букв, а не среди всех букв последовательности. Делить нужно на длину последовательности.</p>
+          <p class="mistake-caption">Типичная ошибка: доля вместо процентов</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: без * 100</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">round</span>(gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq), <span class="tok-num">1</span>))</code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">round</span>(gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span>, <span class="tok-num">1</span>))</code></pre></div>
+          <p>Без умножения на 100 получается доля от 0 до 1, а округление до одного знака еще и съедает точность.</p>
         </div>
 
         <div class="step step-try">Практика</div>
         <div class="try-block">
-          <p>Василиса считает нуклеотидный состав другой последовательности. Замените <code>"AGCTTTTCATTCTGAC"</code> на <code>"ACGTACGT"</code> и запустите: все четыре числа должны стать 2.</p>
+          <p>Замените последовательность на <code>"GGCCATGC"</code> и запустите: GC-состав должен стать 75.0.</p>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">dna.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+            <div class="code-block"><span class="code-label">gc.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
 <span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"AGCTTTTCATTCTGAC"</span></span>
-<span class="ln">c <span class="tok-op">=</span> Counter(seq)</span>
-<span class="ln"><span class="tok-builtin">print</span>(c[<span class="tok-str">"A"</span>], c[<span class="tok-str">"C"</span>], c[<span class="tok-str">"G"</span>], c[<span class="tok-str">"T"</span>])  <span class="tok-out"># → 3 4 2 7</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>3 4 2 7</pre></div>
+<span class="ln">counts <span class="tok-op">=</span> Counter(seq)</span>
+<span class="ln">gc <span class="tok-op">=</span> counts[<span class="tok-str">"G"</span>] <span class="tok-op">+</span> counts[<span class="tok-str">"C"</span>]</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">round</span>(gc <span class="tok-op">/</span> <span class="tok-builtin">len</span>(seq) <span class="tok-op">*</span> <span class="tok-num">100</span>, <span class="tok-num">1</span>))  <span class="tok-out"># → 37.5</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>37.5</pre></div>
           </div>
         </div>
 
@@ -104,10 +104,10 @@
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.7.1. Счетчики A, C, G, T</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте счетчик вызовом <code>Counter()</code>. Выведите числа вхождений букв A, C, G и T через пробел, в этом порядке, перебирая их циклом <code>for</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите через пробел, сколько раз в последовательности встречаются буквы A, C, G и T, именно в этом порядке. Если какой-то буквы нет, для нее выводится 0.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв A, C, G, T.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Четыре числа через пробел.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Четыре целых числа через пробел.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -124,20 +124,27 @@
                       <code class="we-seq"><span class="we-hl">3 1 1 2</span></code>
                     </div>
                   </div>
-                  <p class="we-note">В порядке <code>A</code>, <code>C</code>, <code>G</code>, <code>T</code> числа вхождений равны 3, 1, 1 и 2.</p>
+                  <p class="we-note">В <code>GATTACA</code> три буквы A, одна C, одна G и две T.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>3 1 1 2 </pre></td></tr>
-                <tr><td><pre>AAA</pre></td><td><pre>3 0 0 0 </pre></td></tr>
+                <tr><td><pre>GATTACA</pre></td><td><pre>3 1 1 2</pre></td></tr>
+                <tr><td><pre>AAAA</pre></td><td><pre>4 0 0 0</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Счетчики нуклеотидов дают состав последовательности. GC-состав показывает долю букв <code>G</code> и <code>C</code> в процентах.</p>
+                <p>Это задача DNA сборника Rosalind: с подсчета букв начинается разбор любой прочитанной последовательности.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Rosalind</strong> — сборник задач по биоинформатике (rosalind.info).</li>
+                  <li><strong>Нуклеотид</strong> — звено цепи ДНК; в записи последовательности это одна из букв A, C, G, T.</li>
+                  <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
+                  <li><strong>Отсутствующий ключ <code>Counter</code></strong> — дает 0, а не ошибку KeyError.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Перебирайте именно <code>ACGT</code>, чтобы порядок вывода не зависел от входа.</li></ol>
+                <ol class="hint-steps"><li>Постройте <code>Counter</code> букв.</li><li>Порядок вывода задают сами обращения, а не порядок букв в последовательности: <code>counts["A"]</code>, <code>counts["C"]</code> и так далее.</li><li>Для отсутствующей буквы <code>Counter</code> дает 0. Напечатайте четыре числа через пробел.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> программа печатает <code>3 1 1 2</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -146,10 +153,10 @@
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.7.1. GC-состав</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и создайте счетчик вызовом <code>Counter()</code>. Выведите GC-состав, то есть процент букв <code>G</code> и <code>C</code> от длины строки. Долю вычислите так: сумму <code>counter["G"] + counter["C"]</code> разделите на <code>len(seq)</code> и только потом умножьте на 100 (<code>seq</code> — строка, <code>counter</code> — ее счетчик); результат округлите результат функцией <code>round()</code> до одного знака после точки.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите GC-состав последовательности в процентах, округленный функцией <code>round()</code> до одного знака после точки.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв A, C, G, T.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Число от 0.0 до 100.0 с одним знаком после точки.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Число с одним знаком после точки.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -166,20 +173,27 @@
                       <code class="we-seq"><span class="we-hl">28.6</span></code>
                     </div>
                   </div>
-                  <p class="we-note">В <code>GATTACA</code> две буквы из семи относятся к <code>G</code> или <code>C</code>. После округления получается 28.6.</p>
+                  <p class="we-note">В <code>GATTACA</code> букв G и C две из семи: 2 / 7 · 100 ≈ 28.57, а после округления 28.6.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
                 <tr><td><pre>GATTACA</pre></td><td><pre>28.6</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>50.0</pre></td></tr>
+                <tr><td><pre>GGCC</pre></td><td><pre>100.0</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Счетчики нуклеотидов дают состав последовательности. GC-состав показывает долю букв <code>G</code> и <code>C</code> в процентах.</p>
+                <p>GC-состав различается у разных организмов и у разных участков генома; по нему, например, проверяют, не попала ли в образец чужая ДНК.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GC-состав</strong> — доля букв G и C среди всех букв последовательности, в процентах.</li>
+                  <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
+                  <li><strong>Проценты</strong> — долю умножают на 100: <code>(g + c) / len(seq) * 100</code>.</li>
+                  <li><strong>Функция <code>round(x, n)</code></strong> — округляет до n знаков после точки.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сложите два счетчика и разделите сумму на длину всей строки перед переводом в проценты.</li><li>Если строка называется <code>seq</code>, а счетчик — <code>counter</code>, сумму <code>counter["G"] + counter["C"]</code> сначала разделите на <code>len(seq)</code>, затем умножьте на 100.</li></ol>
+                <ol class="hint-steps"><li>Постройте <code>Counter</code> букв.</li><li>Сложите <code>counts["G"]</code> и <code>counts["C"]</code>, разделите на длину последовательности и умножьте на 100.</li><li>Округлите до одного знака: <code>round(..., 1)</code>, и напечатайте.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> программа печатает <code>28.6</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -187,11 +201,11 @@
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-              <h3>Упражнение 6.7.1. GC-состав не ниже 50 %</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и постройте счетчик вызовом <code>Counter()</code>. Выведите слово «да», если букв G и C вместе не меньше, чем букв A и T вместе, иначе «нет».</p></div>
+              <h3>Упражнение 6.7.1. Прочтения с высоким GC</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите через пробел в порядке ввода прочтения, GC-состав которых не меньше 50 процентов. Если таких нет, выведите <code>нет</code>.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв A, C, G, T.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: прочтения через пробел, от 1 до 100 штук, каждое из букв A, C, G, T длиной от 1 до 100.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Прочтения через пробел или слово <code>нет</code>.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -200,28 +214,35 @@
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA</code>
+                      <code class="we-seq">GGCA AATA ATGC</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">нет</span></code>
+                      <code class="we-seq"><span class="we-hl">GGCA ATGC</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Букв <code>G</code> и <code>C</code> вместе две, а <code>A</code> и <code>T</code> вместе пять. Порог не достигнут.</p>
+                  <p class="we-note">У <code>GGCA</code> GC-состав 75 %, у <code>ATGC</code> ровно 50 %, у <code>AATA</code> 0. Подходят первые два прочтения.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>нет</pre></td></tr>
-                <tr><td><pre>GGCC</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>GGCA AATA ATGC</pre></td><td><pre>GGCA ATGC</pre></td></tr>
+                <tr><td><pre>AT TA</pre></td><td><pre>нет</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Счетчики нуклеотидов дают состав последовательности. GC-состав показывает долю букв <code>G</code> и <code>C</code> в процентах.</p>
+                <p>GC-состав различается у разных организмов и у разных участков генома; прочтения с необычным GC-составом проверяют отдельно.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>GC-состав</strong> — доля букв G и C среди всех букв последовательности, в процентах.</li>
+                  <li><strong>Прочтение</strong> — участок последовательности, который прибор-секвенатор прочитал за один раз.</li>
+                  <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
+                  <li><strong>Проценты</strong> — долю умножают на 100: <code>(g + c) / len(seq) * 100</code>.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сравните две суммы счетчиков напрямую, учитывая случай равенства.</li></ol>
+                <ol class="hint-steps"><li>Переберите прочтения и для каждого постройте свой счетчик букв.</li><li>Посчитайте GC-состав в процентах. Ровно 50 процентов подходят, поэтому сравнивайте знаком <code>&gt;=</code>.</li><li>Соберите подходящие прочтения в список. Если он пуст, выведите <code>нет</code>, иначе напечатайте его через пробел.</li><li>Сверьтесь с примером: для ввода <code>GGCA AATA ATGC</code> программа печатает <code>GGCA ATGC</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -233,43 +254,96 @@
         <h2>2. Самый частый элемент</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>Функция <code>max()</code> по словарю перебирает ключи и сравнивает их самих: для счетчика букв она вернула бы последнюю букву по алфавиту, а не самую частую. Чтобы сравнивать ключи по их значениям, функции передают аргумент <code>key</code>.</p>
-        <p>Аргументом <code>key</code> служит метод <code>c.get</code>, записанный без скобок: передается сама функция, как <code>key=len</code> при сортировке строк по длине. Для каждой буквы <code>c.get</code> возвращает ее счетчик, и <code>max()</code> сравнивает счетчики, а возвращает букву. При равных счетчиках <code>max()</code> возвращает букву, встретившуюся раньше; на <a href="t6_04.html">странице 04</a> при равенстве выбиралась первая по алфавиту — поэтому на входе <code>TTAA</code> ответы этих правил расходятся, и выбор задает условие задачи.</p>
-        <p>Третье средство, <code>c.most_common(1)</code>, возвращает список из одной пары; чтобы получить ключ, из списка берут первую пару, а из пары ее первый элемент.</p>
+        <p>Какая буква самая частая? Первое, что приходит в голову, это <code>max(counts)</code>. Но функция <code>max()</code> от словаря перебирает ключи и сравнивает сами ключи. Для счетчика букв она вернет последнюю букву по алфавиту, а не самую частую.</p>
+        <p>Чтобы сравнивать ключи по их значениям, передают аргумент <code>key</code>. Запись <code>max(counts, key=counts.get)</code> для каждого ключа вызывает <code>counts.get</code>, сравнивает полученные числа и возвращает ключ с наибольшим числом. Метод передают без скобок, так же как <code>key=len</code> при сортировке строк по длине.</p>
+        <p class="rule">При равных числах <code>max()</code> возвращает ключ, который идет раньше, то есть букву, встретившуюся раньше. Это то же правило ничьей, что во всей практике.</p>
+        <p class="th-full">Тот же аргумент работает в <code>sorted()</code>: с <code>key=counts.get</code> и <code>reverse=True</code> она дает ключи от самого частого к самому редкому. Сортировка устойчива, поэтому равные элементы остаются в прежнем порядке и при <code>reverse=True</code>.</p>
 
         <div class="step step-see">Пример</div>
         <article class="example">
           <h3>Пример 2. Самый частый элемент</h3>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">freq.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
-<span class="ln">c <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(c, key<span class="tok-op">=</span>c.get))    <span class="tok-out"># → A</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(c, key<span class="tok-op">=</span>c.get,  <span class="tok-out"># → ['A', 'T', 'G', 'C']</span></span>
-<span class="ln">             reverse<span class="tok-op">=</span><span class="tok-const">True</span>))</span>
-<span class="ln"><span class="tok-builtin">print</span>(c.most_common(<span class="tok-num">1</span>))     <span class="tok-out"># → [('A', 3)]</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>A
-['A', 'T', 'G', 'C']
+            <div class="code-block"><span class="code-label">top.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">counts <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(counts))                  <span class="tok-out"># → T</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(counts, key<span class="tok-op">=</span>counts.get))  <span class="tok-out"># → A</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(counts.most_common(<span class="tok-num">1</span>))        <span class="tok-out"># → [('A', 3)]</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>T
+A
 [('A', 3)]</pre></div>
           </div>
-          <div class="analysis">
-            <p>Три строки решают одну задачу разными средствами. <code>max()</code> с аргументом <code>key=c.get</code> возвращает самую частую букву A. Сортировка по частоте ставит ее первой. Метод <code>c.most_common(1)</code> возвращает список с одной парой; в этом примере <code>print</code> выводит <code>[('A', 3)]</code>.</p>
+          <div class="analysis"><p>Без <code>key</code> ответ — <code>T</code>, последняя по алфавиту. С <code>key=counts.get</code> — <code>A</code>, у нее 3. <code>most_common(1)</code> дает список из одной пары «буква, число».</p></div>
+        </article>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените <code>"GATTACA"</code> на <code>"GGATCG"</code> и запустите: ответом должна стать <code>G</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">top.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">counts <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(counts, key<span class="tok-op">=</span>counts.get))  <span class="tok-out"># → A</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>A</pre></div>
           </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s3">
+        <h2>3. k-меры</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Буквы считают по одной. А как найти повторяющиеся участки из нескольких букв, например тройки? Для этого строку разбирают на короткие участки одной длины.</p>
+        <p class="definition"><span class="term">k-мер</span> (k-mer) состоит из k подряд идущих букв строки. Например, в <code>GATTACA</code> первый 3-мер <code>GAT</code>, а второй <code>ATT</code>.</p>
+        <p>k-меры берут во всех позициях. Окно длины k сдвигается по строке на одну букву, поэтому соседние окна перекрываются. В строке длины n таких окон <code>n - k + 1</code>, а окно с началом <code>i</code> дает срез <code>text[i:i + k]</code>.</p>
+        <p class="rule">Вхождения k-мера считают с учетом перекрытий: в <code>GATATAT</code> 3-мер <code>ATA</code> встречается дважды, хотя эти два вхождения делят букву.</p>
+        <p>Самые частые k-меры находят счетчиком окон. Пустой <code>Counter()</code> с операцией <code>+= 1</code> работает так же, как <code>defaultdict(int)</code>: новый k-мер начинает с 0.</p>
+        <figure class="anim" data-anim="t6_07_s3">
+          <figcaption class="anim-title">Подсчет k-меров скользящим окном</figcaption>
+          <p class="anim-lede">Окно длины 3 идет по строке с шагом 1, и каждое окно прибавляет 1 своему k-меру.</p>
+        </figure>
+        <p class="th-full">Метод строки <code>count()</code> перекрывающиеся вхождения не считает: <code>"AAAA".count("AA")</code> дает 2, а окон <code>AA</code> три. Поэтому вхождения с перекрытием считают окнами.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 3. Самые частые k-меры</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">kmers.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">text <span class="tok-op">=</span> <span class="tok-str">"ACGTTGCATGTCGCATGATGCATGAGAGCT"</span></span>
+<span class="ln">k <span class="tok-op">=</span> <span class="tok-num">4</span></span>
+<span class="ln">counts <span class="tok-op">=</span> Counter()</span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
+<span class="ln">    counts[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span>
+<span class="ln">top <span class="tok-op">=</span> <span class="tok-builtin">max</span>(counts.values())</span>
+<span class="ln"><span class="tok-builtin">print</span>(top)  <span class="tok-out"># → 3</span></span>
+<span class="ln"><span class="tok-kw">for</span> kmer, count <span class="tok-kw">in</span> counts.items():</span>
+<span class="ln">    <span class="tok-kw">if</span> count <span class="tok-op">==</span> top:</span>
+<span class="ln">        <span class="tok-builtin">print</span>(kmer)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>3
+GCAT
+CATG</pre></div>
+          </div>
+          <div class="analysis"><p>Это пример задачи BA1B сборника Rosalind. Наибольшее число вхождений 3; его набирают два 4-мера, и они печатаются в порядке первого появления.</p></div>
         </article>
         <div class="mistake th-full">
-          <p class="mistake-caption">Типичная ошибка: <code>max()</code> без key</p>
-          <div class="code-block code-wrong"><span class="code-label">Неверно: сравниваются ключи</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(c))</code></pre></div>
-          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(c, key<span class="tok-op">=</span>c.get))</code></pre></div>
-          <p>Без аргумента <code>key</code> функция <code>max()</code> сравнивает сами ключи и вернет последнюю букву по алфавиту. Сравнивать нужно счетчики: <code>key=c.get</code>.</p>
+          <p class="mistake-caption">Типичная ошибка: окна без перекрытия</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: шаг k</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-num">0</span>, <span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>, k):</span>
+<span class="ln">    counts[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
+<span class="ln">    counts[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span></code></pre></div>
+          <p>С шагом k окна не перекрываются, и часть k-меров не посчитана. k-меры берут во всех позициях, с шагом 1.</p>
         </div>
 
         <div class="step step-try">Практика</div>
         <div class="try-block">
-          <p>Прохор ищет частую букву. Замените <code>"GATTACA"</code> на <code>"ACGTACGT"</code> и запустите: самой частой должна стать буква A.</p>
+          <p>Замените <code>k = 4</code> на <code>k = 2</code> и запустите: самым частым станет 2-мер с пятью вхождениями.</p>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">freq.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
-<span class="ln">c <span class="tok-op">=</span> Counter(<span class="tok-str">"GATTACA"</span>)</span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">max</span>(c, key<span class="tok-op">=</span>c.get))  <span class="tok-out"># → A</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>A</pre></div>
+            <div class="code-block"><span class="code-label">kmers.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
+<span class="ln">text <span class="tok-op">=</span> <span class="tok-str">"ACGTTGCATGTCGCATGATGCATGAGAGCT"</span></span>
+<span class="ln">k <span class="tok-op">=</span> <span class="tok-num">4</span></span>
+<span class="ln">counts <span class="tok-op">=</span> Counter()</span>
+<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
+<span class="ln">    counts[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(counts.most_common(<span class="tok-num">1</span>))  <span class="tok-out"># → [('GCAT', 3)]</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>[('GCAT', 3)]</pre></div>
           </div>
         </div>
 
@@ -283,11 +357,11 @@
           <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-              <h3>Упражнение 6.7.2. Самая частая буква</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте счетчик из этой строки. Выведите самый частый элемент функцией <code>max()</code>, передав ей метод <code>get</code> вашего счетчика как аргумент <code>key</code>. При нескольких максимумах выводится буква, встретившаяся раньше.</p></div>
+              <h3>Упражнение 6.7.2. Разные k-меры</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите, сколько разных k-меров длины k есть в последовательности.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Самая частая буква.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000. Во второй строке целое число k от 1 до длины последовательности.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Целое число.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -296,28 +370,37 @@
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA</code>
+                      <code class="we-seq">GATATAT<br>3</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">A</span></code>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
                     </div>
                   </div>
-                  <p class="we-note">У <code>A</code> три вхождения. Это больше, чем у любой другой буквы строки.</p>
+                  <p class="we-note">3-меры строки <code>GATATAT</code>: GAT, ATA, TAT, ATA, TAT. Разных среди них три.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
-                <tr><td><pre>TTTT</pre></td><td><pre>T</pre></td></tr>
+                <tr><td><pre>GATATAT
+3</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>ACGT
+4</pre></td><td><pre>1</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Частота буквы хранится в значении счетчика. Ключи счетчика идут в порядке первого появления букв.</p>
+                <p>На k-мерах основаны сборка генома из прочтений и быстрое сравнение последовательностей. Первый вопрос о любой строке: сколько в ней разных k-меров.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>k-мер</strong> — подстрока длины k; k-меры берут во всех позициях с шагом 1, поэтому соседние перекрываются.</li>
+                  <li><strong>Запись <code>range(len(text) - k + 1)</code></strong> — начала всех окон длины k, последнее окно кончается на последней букве.</li>
+                  <li><strong>Срез <code>text[i:i + k]</code></strong> — подстрока длины k с позиции i.</li>
+                  <li><strong>Метод <code>add()</code></strong> — добавляет элемент в множество; повторный элемент ничего не меняет.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Передайте <code>max()</code> метод <code>get</code> счетчика через аргумент <code>key</code>.</li></ol>
+                <ol class="hint-steps"><li>Окна начинаются в позициях от 0 до <code>len(text) - k</code> включительно: <code>for i in range(len(text) - k + 1):</code>.</li><li>Добавляйте каждое окно <code>text[i:i + k]</code> в множество: повторное окно ничего не меняет.</li><li>Напечатайте размер множества.</li><li>Сверьтесь с примером: для ввода <code>GATATAT</code> и <code>3</code> программа печатает <code>3</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -325,11 +408,11 @@
           <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-              <h3>Упражнение 6.7.2. Сортировка по частоте</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и создайте счетчик вызовом <code>Counter()</code>. Выведите каждую различную букву один раз по убыванию частоты, при равной частоте — в порядке первого появления. Для сортировки используйте <code>sorted()</code> с аргументом <code>reverse=True</code>.</p></div>
+              <h3>Упражнение 6.7.2. Максимум вхождений</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите, сколько раз встречается самый частый k-мер длины k. Вхождения считаются с учетом перекрытий.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Буквы через пробел по убыванию частоты.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000. Во второй строке целое число k от 1 до длины последовательности.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Целое число.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -338,28 +421,37 @@
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA</code>
+                      <code class="we-seq">GATATAT<br>3</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">A T G C</span></code>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Частоты <code>A</code> и <code>T</code> равны 3 и 2. У <code>G</code> и <code>C</code> по одному вхождению, причем <code>G</code> появляется раньше.</p>
+                  <p class="we-note">ATA и TAT встречаются по два раза, GAT один раз. Ответ 2.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>A T G C</pre></td></tr>
-                <tr><td><pre>AACC</pre></td><td><pre>A C</pre></td></tr>
+                <tr><td><pre>GATATAT
+3</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>ACGT
+2</pre></td><td><pre>1</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Частота буквы хранится в значении счетчика. Ключи счетчика идут в порядке первого появления букв.</p>
+                <p>Частые k-меры часто оказываются повторами или участками, к которым прикрепляются белки.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>k-мер</strong> — подстрока длины k; k-меры берут во всех позициях с шагом 1, поэтому соседние перекрываются.</li>
+                  <li><strong>Вхождение с перекрытием</strong> — следующее вхождение может начаться внутри предыдущего: в AAAA образец AA входит три раза.</li>
+                  <li><strong>Запись <code>counts[key] += 1</code></strong> — у <code>Counter</code> работает и для нового ключа: он начинается с 0.</li>
+                  <li><strong>Запись <code>max(counts.values())</code></strong> — наибольшее значение счетчика.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сортируйте ключи по значениям счетчика по убыванию. Равные ключи сортировки сохраняют исходный порядок.</li><li>Если счетчик называется <code>counter</code>, передайте <code>key=counter.get</code> в <code>sorted()</code>.</li></ol>
+                <ol class="hint-steps"><li>Заведите пустой <code>Counter()</code> и переберите окна, как в базовом варианте.</li><li>Для каждого окна выполните <code>counts[text[i:i + k]] += 1</code>.</li><li>Наибольшее значение счетчика дает <code>max(counts.values())</code>.</li><li>Сверьтесь с примером: для ввода <code>GATATAT</code> и <code>3</code> программа печатает <code>2</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -367,11 +459,11 @@
           <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-              <h3>Упражнение 6.7.2. Все самые частые</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте счетчик вызовом <code>Counter()</code>. Найдите максимальное число вхождений функцией <code>max()</code> по значениям счетчика и выведите все буквы с этим числом вхождений через пробел, в порядке появления.</p></div>
+              <h3>Упражнение 6.7.2. Самые частые k-меры</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите через пробел все k-меры длины k, которые встречаются максимальное число раз, в порядке их первого появления в последовательности.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Буквы с максимальной частотой через пробел.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000. Во второй строке целое число k от 1 до длины последовательности.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>k-меры через пробел.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -380,228 +472,39 @@
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA</code>
+                      <code class="we-seq">GATATAT<br>3</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">A</span></code>
+                      <code class="we-seq"><span class="we-hl">ATA TAT</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Максимальная частота равна 3. В этом примере столько вхождений только у <code>A</code>.</p>
+                  <p class="we-note">ATA и TAT встречаются по два раза, чаще остальных. ATA появляется раньше, поэтому идет первым.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
-                <tr><td><pre>AACC</pre></td><td><pre>A C</pre></td></tr>
+                <tr><td><pre>GATATAT
+3</pre></td><td><pre>ATA TAT</pre></td></tr>
+                <tr><td><pre>ACGTTGCATGTCGCATGATGCATGAGAGCT
+4</pre></td><td><pre>GCAT CATG</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Частота буквы хранится в значении счетчика. Ключи счетчика идут в порядке первого появления букв.</p>
+                <p>Частые k-меры часто оказываются повторами или участками, к которым прикрепляются белки. Это задача BA1B сборника Rosalind.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>k-мер</strong> — подстрока длины k; k-меры берут во всех позициях с шагом 1, поэтому соседние перекрываются.</li>
+                  <li><strong>Rosalind</strong> — сборник задач по биоинформатике (rosalind.info).</li>
+                  <li><strong>Запись <code>max(counts.values())</code></strong> — наибольшее значение счетчика.</li>
+                  <li><strong>Метод <code>items()</code></strong> — пары «ключ, значение» для перебора в цикле.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сначала найдите максимум значений, затем отберите все ключи с этим значением.</li></ol>
+                <ol class="hint-steps"><li>Посчитайте окна счетчиком, как в среднем варианте.</li><li>Найдите наибольшее значение: <code>top = max(counts.values())</code>.</li><li>Переберите пары счетчика и соберите k-меры с числом <code>top</code>: ключи идут в порядке первого появления.</li><li>Сверьтесь с примером: для ввода <code>GATATAT</code> и <code>3</code> программа печатает <code>ATA TAT</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="subsection" id="s3">
-        <h2>3. k-меры</h2>
-
-        <div class="step step-learn">Теория</div>
-        <p class="definition"><span class="term">k-мер</span> — участок строки из <code>k</code> подряд идущих букв.</p>
-        <p>Кодоны читают без перекрытия, с шагом 3. k-меры берут во всех позициях подряд: окно сдвигается на одну букву, поэтому соседние окна перекрываются, и вхождения k-мера считаются с учетом перекрытий. В строке длины n таких окон n − k + 1.</p>
-        <p>Самые частые k-меры находят тем же счетчиком окон. Пустой <code>Counter()</code> с операцией <code>+= 1</code> работает так же, как <code>defaultdict(int)</code>.</p>
-        <p class="th-full">Задача BA1B сборника Rosalind называет k-мер самым частым, если число его вхождений максимально среди всех k-меров строки, и требует найти все такие k-меры. Если их несколько, выводятся все.</p>
-
-        <div class="step step-see">Пример</div>
-        <article class="example">
-          <h3>Пример 3. Самые частые k-меры</h3>
-          <div class="run-pair">
-            <div class="code-block"><span class="code-label">kmers.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
-<span class="ln">text <span class="tok-op">=</span> (<span class="tok-str">"ACGTTGCATGTCGCA"</span></span>
-<span class="ln">        <span class="tok-str">"TGATGCATGAGAGCT"</span>)</span>
-<span class="ln">k <span class="tok-op">=</span> <span class="tok-num">4</span></span>
-<span class="ln">c <span class="tok-op">=</span> Counter()</span>
-<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
-<span class="ln">    c[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span>
-<span class="ln">top <span class="tok-op">=</span> <span class="tok-builtin">max</span>(c.values())</span>
-<span class="ln"><span class="tok-builtin">print</span>(top)                            <span class="tok-out"># → 3</span></span>
-<span class="ln"><span class="tok-builtin">print</span>([w <span class="tok-kw">for</span> w <span class="tok-kw">in</span> c <span class="tok-kw">if</span> c[w] <span class="tok-op">==</span> top])  <span class="tok-out"># → ['GCAT', 'CATG']</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>3
-['GCAT', 'CATG']</pre></div>
-          </div>
-          <div class="analysis">
-            <p>В строке длины 30 при k = 4 окон 27. Максимальный счетчик равен 3, и его имеют два 4-мера, GCAT и CATG. Цикл сдвигает окно на одну букву, поэтому вхождения перекрываются.</p>
-          </div>
-        </article>
-        <div class="mistake th-full">
-          <p class="mistake-caption">Типичная ошибка: окон на одно меньше</p>
-          <div class="code-block code-wrong"><span class="code-label">Неверно: окон меньше на одно</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k):</span>
-<span class="ln">    c[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span></code></pre></div>
-          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
-<span class="ln">    c[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span></code></pre></div>
-          <p>Последний k-мер начинается за k букв до конца строки, поэтому окон на одно больше: <code>n − k + 1</code>.</p>
-        </div>
-
-        <div class="step step-try">Практика</div>
-        <div class="try-block">
-          <p>Василиса считает 2-меры. Замените <code>k = 4</code> на <code>k = 2</code> и запустите.</p>
-          <div class="run-pair">
-            <div class="code-block"><span class="code-label">kmers.py</span><pre><code><span class="ln"><span class="tok-kw">from</span> collections <span class="tok-kw">import</span> Counter</span>
-<span class="ln">text <span class="tok-op">=</span> (<span class="tok-str">"ACGTTGCATGTCGCA"</span></span>
-<span class="ln">        <span class="tok-str">"TGATGCATGAGAGCT"</span>)</span>
-<span class="ln">k <span class="tok-op">=</span> <span class="tok-num">4</span></span>
-<span class="ln">c <span class="tok-op">=</span> Counter()</span>
-<span class="ln"><span class="tok-kw">for</span> i <span class="tok-kw">in</span> <span class="tok-builtin">range</span>(<span class="tok-builtin">len</span>(text) <span class="tok-op">-</span> k <span class="tok-op">+</span> <span class="tok-num">1</span>):</span>
-<span class="ln">    c[text[i:i <span class="tok-op">+</span> k]] <span class="tok-op">+=</span> <span class="tok-num">1</span></span>
-<span class="ln">top <span class="tok-op">=</span> <span class="tok-builtin">max</span>(c.values())</span>
-<span class="ln"><span class="tok-builtin">print</span>(top)  <span class="tok-out"># → 3</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>3</pre></div>
-          </div>
-        </div>
-
-        <div class="step step-task">Задача</div>
-        <div class="level-tabs ex-variants" id="ex-3" data-exercise="ex-3">
-          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
-            <button class="tab" type="button" role="tab" id="ex-3-tab-basic" aria-controls="ex-3-basic" data-level="basic" data-task="t6_07_3_basic.py">Базовый</button>
-            <button class="tab" type="button" role="tab" id="ex-3-tab-medium" aria-controls="ex-3-medium" data-level="medium" data-task="t6_07_3_medium.py">Средний</button>
-            <button class="tab" type="button" role="tab" id="ex-3-tab-advanced" aria-controls="ex-3-advanced" data-level="advanced" data-task="t6_07_3_advanced.py">Продвинутый</button>
-          </div>
-          <div class="tab-panel" id="ex-3-basic" role="tabpanel" aria-labelledby="ex-3-tab-basic">
-            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
-              <h3>Упражнение 6.7.3. Разные k-меры</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>kmer_length</code>. Выведите число различных k-меров строки: окон длины <code>kmer_length</code>, сдвигаемых на одну букву (вхождения перекрываются), посчитав их счетчиком <code>Counter()</code> в цикле <code>for</code>.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>kmer_length</code> от 1 до длины строки.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Число различных k-меров.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">ACGT<br>2</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">3</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Окна длины 2 — <code>AC</code>, <code>CG</code> и <code>GT</code>. Все три различны.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>ACGT
-2</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>AAA
-2</pre></td><td><pre>1</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>k-мер — фрагмент длины k. Соседние окна начинаются на соседних позициях, поэтому их вхождения могут перекрываться.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Берите срез на каждой допустимой позиции и считайте число ключей счетчика.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_07_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
-            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
-              <h3>Упражнение 6.7.3. Максимум вхождений</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>kmer_length</code>. Выведите максимальное число вхождений одного k-мера: окна сдвигаются на одну букву и перекрываются, счетчик окон постройте вызовом <code>Counter()</code> в цикле <code>for</code>, максимум найдите функцией <code>max()</code> по значениям счетчика.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>kmer_length</code> от 1 до длины строки.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Максимальное число вхождений k-мера.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">AAAA<br>2</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">3</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">В <code>AAAA</code> окно <code>AA</code> встречается на трех соседних позициях. Это и есть максимум.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>AAAA
-2</pre></td><td><pre>3</pre></td></tr>
-                <tr><td><pre>ACGT
-1</pre></td><td><pre>1</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>k-мер — фрагмент длины k. Соседние окна начинаются на соседних позициях, поэтому их вхождения могут перекрываться.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>После подсчета окон найдите максимум среди значений.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_07_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
-            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
-              <h3>Упражнение 6.7.3. Самые частые k-меры</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>kmer_length</code>. Выведите все самые частые k-меры через пробел в порядке появления: окна сдвигаются на одну букву и перекрываются. Счетчик окон постройте вызовом <code>Counter()</code> в цикле <code>for</code>, максимум найдите функцией <code>max()</code>, затем отберите все k-меры с этим числом вхождений.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>kmer_length</code> от 1 до длины строки.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Самые частые k-меры через пробел.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">AAAAAC<br>2</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">AA</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Окно <code>AA</code> встречается четыре раза, <code>AC</code> — один раз. Выводится <code>AA</code>.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>AAAAAC
-2</pre></td><td><pre>AA</pre></td></tr>
-                <tr><td><pre>ACGTAC
-2</pre></td><td><pre>AC</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>k-мер — фрагмент длины k. Соседние окна начинаются на соседних позициях, поэтому их вхождения могут перекрываться.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сначала найдите максимум значений счетчика, затем отберите все ключи с этим значением.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_07_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -617,11 +520,113 @@
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-              <h3>Задача со звездочкой 6.7. Счетчики и GC-состав</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из нуклеотидов и создайте счетчик вызовом <code>Counter()</code>. Выведите числа вхождений букв A, C, G и T через пробел, в этом порядке. Второй строкой выведите GC-состав, то есть процент букв <code>G</code> и <code>C</code> от длины строки. Долю вычислите так: сумму <code>counter["G"] + counter["C"]</code> разделите на <code>len(seq)</code> и только потом умножьте на 100 (<code>seq</code> — строка, <code>counter</code> — ее счетчик); результат округлите результат функцией <code>round()</code> до одного знака после точки.</p></div>
+              <h3>Задача со звездочкой 6.7. Вхождения с перекрытием</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите, сколько раз образец из второй строки входит в текст из первой строки с учетом перекрытий.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–100 букв A, C, G, T.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: четыре числа через пробел и GC-состав.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки из букв A, C, G, T: текст длиной от 1 до 1000 и образец длиной от 1 до длины текста.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Целое число.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATATATGCATATAC<br>ATAT</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">3</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">В <code>GATATATGCATATAC</code> образец <code>ATAT</code> начинается в позициях 1, 3 и 9, то есть входит три раза.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+                <tr><td><pre>GATATATGCATATAC
+ATAT</pre></td><td><pre>3</pre></td></tr>
+                <tr><td><pre>ACGT
+GG</pre></td><td><pre>0</pre></td></tr>
+              </tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Это задача SUBS сборника Rosalind: так ищут повторяющиеся участки ДНК.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Rosalind</strong> — сборник задач по биоинформатике (rosalind.info).</li>
+                  <li><strong>Вхождение с перекрытием</strong> — следующее вхождение может начаться внутри предыдущего: в AAAA образец AA входит три раза.</li>
+                  <li><strong>Запись <code>range(len(text) - k + 1)</code></strong> — начала всех окон длины k, последнее окно кончается на последней букве.</li>
+                  <li><strong>Срез <code>text[i:i + k]</code></strong> — подстрока длины k с позиции i.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Метод строки <code>count()</code> перекрывающиеся вхождения не считает, поэтому сравнивайте окна.</li><li>Переберите окна длины образца: <code>text[i:i + k]</code>, где <code>k = len(pattern)</code>.</li><li>Считайте окна, равные образцу, и напечатайте их число.</li><li>Сверьтесь с примером: для ввода <code>GATATATGCATATAC</code> и <code>ATAT</code> программа печатает <code>3</code>.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_07_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
+            <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
+            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
+              <h3>Задача со звездочкой 6.7. Повторяющиеся k-меры</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите через пробел в порядке первого появления k-меры длины k, которые встречаются не меньше двух раз. Если таких нет, выведите <code>нет</code>.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000. Во второй строке целое число k от 1 до длины последовательности.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>k-меры через пробел или слово <code>нет</code>.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">GATATAT<br>3</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">ATA TAT</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">ATA и TAT встречаются по два раза, а GAT один раз.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+                <tr><td><pre>GATATAT
+3</pre></td><td><pre>ATA TAT</pre></td></tr>
+                <tr><td><pre>ACGT
+2</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Частые k-меры часто оказываются повторами или участками, к которым прикрепляются белки; k-мер, который встретился хотя бы дважды, уже кандидат в повтор.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>k-мер</strong> — подстрока длины k; k-меры берут во всех позициях с шагом 1, поэтому соседние перекрываются.</li>
+                  <li><strong>Вхождение с перекрытием</strong> — следующее вхождение может начаться внутри предыдущего: в AAAA образец AA входит три раза.</li>
+                  <li><strong>Запись <code>counts[key] += 1</code></strong> — у <code>Counter</code> работает и для нового ключа: он начинается с 0.</li>
+                  <li><strong>Метод <code>items()</code></strong> — пары «ключ, значение» для перебора в цикле.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Посчитайте окна счетчиком.</li><li>Переберите его пары и соберите k-меры с числом не меньше 2.</li><li>Если список пуст, выведите <code>нет</code>, иначе напечатайте его через пробел.</li><li>Сверьтесь с примером: для ввода <code>GATATAT</code> и <code>3</code> программа печатает <code>ATA TAT</code>.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_07_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+              <h3>Задача со звездочкой 6.7. Сортировка по частоте</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите без пробелов буквы последовательности, отсортированные от самой частой к самой редкой, каждую букву один раз. Буквы с равным числом идут в порядке первого появления.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>Последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Строка из различных букв.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -635,113 +640,29 @@
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">3 1 1 2<br>28.6</span></code>
+                      <code class="we-seq"><span class="we-hl">ATGC</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Числа вхождений равны 3, 1, 1 и 2. На <code>G</code> и <code>C</code> приходится 2 из 7 букв, то есть 28.6 процента после округления.</p>
+                  <p class="we-note">Буква A встречается 3 раза, T 2 раза, G и C по одному. G встретилась раньше C, поэтому ответ <code>ATGC</code>.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>3 1 1 2
-28.6</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>1 1 1 1
-50.0</pre></td></tr>
+                <tr><td><pre>GATTACA</pre></td><td><pre>ATGC</pre></td></tr>
+                <tr><td><pre>CCCA</pre></td><td><pre>CA</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>По одному счетчику можно получить и состав последовательности, и результат отбора по частоте. Единицей подсчета служит буква или окно.</p>
+                <p>Порядок букв по частоте позволяет быстро сравнить состав двух последовательностей на глаз.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
+                  <li><strong>Аргумент <code>key=counts.get</code></strong> — сортирует ключи по их значениям; <code>reverse=True</code> ставит большие значения первыми, а равные остаются в прежнем порядке.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель; <code>" ".join(d)</code> у словаря склеивает ключи.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Используйте один счетчик для обеих строк вывода.</li><li>Если строка называется <code>seq</code>, а счетчик — <code>counter</code>, сумму <code>counter["G"] + counter["C"]</code> сначала разделите на <code>len(seq)</code>, затем умножьте на 100.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_07_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
-            <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
-            <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-              <h3>Задача со звездочкой 6.7. Самый частый k-мер</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>kmer_length</code>. Выведите самый частый k-мер, найденный функцией <code>max()</code> по частоте; при равных счетчиках выведите первый встреченный. Окна сдвигаются на одну букву и перекрываются, счетчик постройте вызовом <code>Counter()</code>.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>kmer_length</code> от 1 до длины строки.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Самый частый k-мер.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">AAAAAC<br>2</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">AA</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Из пяти окон четыре равны <code>AA</code> и одно равно <code>AC</code>. Выбирается <code>AA</code>.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>AAAAAC
-2</pre></td><td><pre>AA</pre></td></tr>
-                <tr><td><pre>ACGTAC
-2</pre></td><td><pre>AC</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>По одному счетчику можно получить и состав последовательности, и результат отбора по частоте. Единицей подсчета служит буква или окно.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Передайте <code>max()</code> метод <code>get</code> именно того счетчика, где ключами служат окна.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_07_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
-            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
-            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-              <h3>Задача со звездочкой 6.7. k-меры с двумя вхождениями</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и число <code>kmer_length</code>. Выведите все k-меры, которые встречаются ровно два раза, через пробел в порядке появления; если таких нет, выведите пустую строку. Окна сдвигаются на одну букву и перекрываются, счетчик постройте вызовом <code>Counter()</code> в цикле <code>for</code>.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: строка из 1–100 букв и число <code>kmer_length</code> от 1 до длины строки.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>k-меры через пробел или пустая строка.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">ACGTAC<br>2</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">AC</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Окно <code>AC</code> появляется в начале и конце строки. Остальные окна встречаются по одному разу.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>ACGTAC
-2</pre></td><td><pre>AC</pre></td></tr>
-                <tr><td><pre>ACGTACGT
-2</pre></td><td><pre>AC CG GT</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>По одному счетчику можно получить и состав последовательности, и результат отбора по частоте. Единицей подсчета служит буква или окно.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Переберите ключи счетчика по порядку и оставьте только значения 2.</li></ol>
+                <ol class="hint-steps"><li>Постройте <code>Counter</code> букв.</li><li>Отсортируйте его ключи по значениям: <code>sorted(counts, key=counts.get)</code> с аргументом <code>reverse=True</code>. Сортировка устойчива, и равные остаются в порядке первого появления.</li><li>Склейте буквы без пробелов: <code>"".join(...)</code>.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> программа печатает <code>ATGC</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_07_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -752,7 +673,7 @@
       <section class="then">
         <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
         <ol class="submit-steps">
-          <li>В папке <code>projects_6</code> создайте папку <code>t6_07</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_07_1_basic.py</code>, <code>t6_07_2_basic.py</code> и <code>t6_07_3_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_07_1_medium.py</code>, <code>t6_07_2_medium.py</code> и <code>t6_07_3_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_07_1_advanced.py</code>, <code>t6_07_2_advanced.py</code> и <code>t6_07_3_advanced.py</code>.</span></li>
+          <li>В папке <code>projects_6</code> создайте папку <code>t6_07</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_07_1_basic.py</code> и <code>t6_07_2_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_07_1_medium.py</code> и <code>t6_07_2_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_07_1_advanced.py</code> и <code>t6_07_2_advanced.py</code>.</span></li>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_07_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_07_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_07_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_07</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
@@ -762,20 +683,17 @@
 └── projects_6/
     └── t6_07/
         ├── t6_07_1_basic.py
-        ├── t6_07_2_basic.py
-        └── t6_07_3_basic.py</pre>
+        └── t6_07_2_basic.py</pre>
 <pre class="tree" data-level="medium">prokhorova_vp/
 └── projects_6/
     └── t6_07/
         ├── t6_07_1_medium.py
-        ├── t6_07_2_medium.py
-        └── t6_07_3_medium.py</pre>
+        └── t6_07_2_medium.py</pre>
 <pre class="tree" data-level="advanced">prokhorova_vp/
 └── projects_6/
     └── t6_07/
         ├── t6_07_1_advanced.py
-        ├── t6_07_2_advanced.py
-        └── t6_07_3_advanced.py</pre>
+        └── t6_07_2_advanced.py</pre>
       </section>
       <nav class="pager pager-cards" aria-label="Переход между страницами">
         <a class="pcard pcard-prev" href="t6_06.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">06 <code>Counter</code> и <code>defaultdict</code></span></a>

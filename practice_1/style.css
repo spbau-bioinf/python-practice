@@ -2967,7 +2967,7 @@ html.site-locked body { background: var(--c-bg); }
 .wrap-code .code-block pre > code { white-space: normal; display: block; }
 .wrap-code .code-block pre > code .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: calc(2ch + 0.75em - 0.7rem); text-indent: calc(-2ch - 0.75em + 0.7rem); }
 .wrap-code .st-ln, .wrap-code .mside-code .ml, .wrap-code .mdiff-l { white-space: pre-wrap; overflow-wrap: anywhere; }
-.wrap-code .st-ln { padding-left: calc(3.6em + 2ch); text-indent: calc(-3.6em - 2ch); }
+.wrap-code .st-ln { padding-left: calc(1.5rem + 2ch + 0.75em - 0.7rem); text-indent: calc(-2ch - 0.75em + 0.7rem); }
 .wrap-code .mside-code .ml { padding-left: calc(3.1em + 2ch); text-indent: calc(-3.1em - 2ch); }
 .wrap-code .mdiff-l { padding-left: calc(2.35rem + 2ch); text-indent: calc(-1.4rem - 2ch); }
 
@@ -2989,10 +2989,12 @@ html.site-locked body { background: var(--c-bg); }
 .st-left > .code-block { margin: 0; }
 .st-right { position: relative; min-width: 0; }
 .st-right-in { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 0.7rem; }
-.st-lines-wrap { overflow-x: auto; padding: 0.6rem 0 1rem; }
-.st-lines { font: 0.95rem/1.75 var(--font-mono); color: var(--win-code-text); counter-reset: line; --gut: 3.6em; }
-.st-ln { display: block; white-space: pre; padding-right: 1.2rem; counter-increment: line; transition: background 200ms; }
-.st-ln::before { content: counter(line); display: inline-block; width: 1.6em; margin: 0 1em; text-align: right; color: var(--win-code-gutter); user-select: none; }
+.st-lines-wrap { overflow-x: auto; padding: 0.9rem 0 1.4rem; }
+/* версия 116: окно кода «По шагам» как окно кода примера (.code-block pre): шрифт 1rem / 1.7, поля 0.9rem 1.5rem 1.4rem,
+   номер строки — колонка 2ch по центру, отступ 0.75em; --gut — сдвиг границы PEP 8 на ширину номеров */
+.st-lines { font: 1rem/1.7 var(--font-mono); color: var(--win-code-text); counter-reset: line; --gut: calc(0.8rem + 2ch + 0.75em); }
+.st-ln { display: block; white-space: pre; padding: 0 1.5rem; counter-increment: line; transition: background 200ms; }
+.st-ln::before { content: counter(line); display: inline-block; width: 2ch; margin: 0 0.75em 0 -0.7rem; text-align: center; color: var(--win-code-gutter); user-select: none; }
 .st-ln.is-cur { background: var(--st-cur); box-shadow: inset 3px 0 0 var(--st-cur-line); }
 .st-ln.is-cur::before { color: var(--st-cur-line); font-weight: 700; }
 .tv { background: var(--st-val-bg); color: var(--st-val-text); outline: 1px solid var(--st-val-line); border-radius: 4px; padding: 0 2px; }
@@ -3032,6 +3034,13 @@ html.site-locked body { background: var(--c-bg); }
   .st-ctrl { position: sticky; bottom: 0; z-index: 5; padding: 0.6rem 0 calc(0.6rem + env(safe-area-inset-bottom, 0px)); background: var(--c-bg); border-top: 1px solid var(--c-border-light); }
 }
 @media (prefers-reduced-motion: reduce) { .st-ln, .st-var { transition: none; } }
+/* версия 116: на узком экране окно «По шагам» уменьшается так же, как .code-block pre (0.9rem, поля 0.8rem 1rem 1.1rem) */
+@media (max-width: 900px) {
+  .st-lines-wrap { padding: 0.8rem 0 1.1rem; }
+  .st-lines { font-size: 0.9rem; --gut: calc(0.3rem + 2ch + 0.75em); }
+  .st-ln { padding: 0 1rem; }
+  .wrap-code .st-ln { padding-left: calc(1rem + 2ch + 0.75em - 0.7rem); }
+}
 
 /* типичная ошибка: переключатель в заголовке и вид «До и после» (без цветной полосы сверху) */
 .mk-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding-block: 0.55rem; }
@@ -3768,3 +3777,65 @@ details.task-spoiler .definitions-title {
 .definitions-list { margin: 0 0 0.4rem; padding-left: 1.2rem; }
 .definitions-list li { margin: 0.35rem 0; line-height: 1.5; }
 .definitions-list strong { color: var(--c-text); }
+
+/* ===== Пошаговые сцены в теории (версия 116): figure.anim, сцены строит anim.js =====
+   Блок оформлен как пример: шапка .st-head с переключателем «Разбор: Сразу | По шагам».
+   «Сразу» — .an-whole (обычные .run-pair, .code-block, .output-block). «По шагам» — .an-stp в один столбец .an-col:
+   текст шага .an-note → кнопки .st-ctrl → окно кода .st-code → «Состояние» .an-state → «Вывод» .an-out.
+   Высоты .an-note, .an-state и вывода задает anim.js по самому большому шагу, поэтому блоки не скачут. */
+.anim { margin: 1.5rem 0; padding: 0; }
+.anim .an-head { margin-bottom: 0; }
+.anim .anim-title { margin: 0; font-family: var(--font-display); font-size: var(--t-lg); font-weight: 700; color: var(--c-text); }
+.anim .anim-title::before { content: ""; display: inline-block; width: 4px; height: 1.05em; margin-right: 0.55rem; vertical-align: -0.15em; border-radius: 2px; background: var(--c-plum); }
+.anim .anim-lede { margin: 0.35rem 0 0; color: var(--c-text-2); font-size: var(--t-sm); }
+.anim:not(.is-ready) .anim-lede::after { content: " Разбор появится после загрузки страницы."; color: var(--c-muted); }
+.an-whole { margin-top: 0.9rem; }
+.an-whole[hidden], .an-stp[hidden] { display: none !important; }
+.an-stp:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 4px; border-radius: var(--radius-sm); }
+.an-col { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.9rem; }
+.an-col > .code-block, .an-col > .st-out { margin: 0; }
+.an-col > .st-ctrl { margin-top: 0; }
+.an-note p { margin: 0; }
+.an-note .an-step-title { font-weight: 700; color: var(--c-text); }
+.an-note .an-text { color: var(--c-text); }
+.an-note.is-final .an-step-title { color: var(--c-accent); }
+.an-state { display: flex; flex-direction: column; }
+.an-view { display: grid; gap: 0.55rem; align-content: start; padding: 0.7rem 0.85rem 0.6rem; }
+.an-caption { margin: auto 0 0; padding: 0.5rem 0.85rem 0.6rem; border-top: 1px solid var(--c-border-light); color: var(--c-text-2); font-size: var(--t-sm); line-height: 1.5; }
+.an-caption b { color: var(--c-text); }
+.an-out pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.an-out .an-err { color: var(--c-error-text); }
+.an-model-note { margin: 0.6rem 0 0; color: var(--c-text-2); font-size: 0.82rem; line-height: 1.5; }
+.an-note code, .an-caption code, .an-model-note code { padding: 0.05rem 0.3rem; border-radius: 5px; background: var(--c-accent-light); color: var(--c-text); font: 0.92em var(--font-mono); }
+.an-dict, .an-list { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.4rem; padding: 0.5rem 0.65rem;
+  border: 1px solid var(--c-border-light); border-radius: var(--radius-sm); background: var(--c-surface-warm); font: 0.88rem/1.3 var(--font-mono); }
+.an-brace, .an-comma, .an-colon { color: var(--c-muted); }
+.an-empty { color: var(--c-muted); font: 0.82rem var(--font-body); }
+.an-pair { display: inline-flex; align-items: baseline; gap: 0.25rem; padding: 0.2rem 0.45rem; border: 1px solid transparent; border-radius: var(--radius-sm); }
+.an-pk { font-weight: 700; color: var(--c-accent); }
+.an-pv { color: var(--c-amber); }
+.an-item { display: inline-grid; justify-items: center; padding: 0.2rem 0.45rem; border: 1px solid var(--c-border); border-radius: var(--radius-sm); }
+.an-idx { display: block; font: 0.68rem var(--font-mono); color: var(--c-muted); }
+.an-pair.new, .an-item.new { border-color: var(--c-accent); background: var(--c-accent-light); }
+.an-pair.changed { border-color: var(--c-amber); background: var(--c-amber-light); }
+.an-pair.found, .an-item.found { border-color: var(--c-info); background: var(--c-info-light); }
+.an-pair.error { border-color: var(--c-error); background: var(--c-error-light); }
+.an-cells { display: grid; grid-template-columns: repeat(var(--an-n, 8), minmax(0, 1fr)); gap: 0.3rem; }
+.an-cell { position: relative; display: grid; place-items: center; min-height: 3.4rem; padding: 0.95rem 0.15rem 0.3rem; text-align: center;
+  border: 1.5px solid var(--c-border); border-radius: var(--radius-sm); background: var(--c-surface); font: 700 0.8rem/1.15 var(--font-mono); overflow-wrap: anywhere; }
+.an-no { position: absolute; top: 0.1rem; left: 0.35rem; font: 0.66rem var(--font-mono); color: var(--c-muted); }
+.an-cv { display: block; font: 600 0.7rem var(--font-mono); color: var(--c-amber); }
+.an-cell.filled { border-color: var(--c-accent); background: var(--c-accent-light); }
+.an-cell.probe { border-color: var(--c-amber); background: var(--c-amber-light); }
+.an-cell.error { border-color: var(--c-error); background: var(--c-error-light); }
+.an-cell.found { border-color: var(--c-info); background: var(--c-info-light); }
+.an-cell.new { border-color: var(--c-accent); box-shadow: 0 0 0 3px var(--c-accent-light); }
+.an-formula { width: fit-content; max-width: 100%; padding: 0.25rem 0.65rem; border: 1px solid var(--c-border); border-radius: var(--radius-full);
+  font: 0.82rem var(--font-mono); color: var(--c-text); overflow-wrap: anywhere; }
+.an-formula b { color: var(--c-accent); }
+.an-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.an-tag { display: inline-block; padding: 0.1rem 0.5rem; border-radius: var(--radius-full); font: 0.76rem var(--font-body); background: var(--c-info-light); color: var(--c-info); }
+.an-tag.is-red { background: var(--c-error-light); color: var(--c-error-text); }
+@media (max-width: 760px) { .an-cells { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.an-item.error { border-color: var(--c-error); background: var(--c-error-light); }
+.an-item.gone { opacity: 0.4; }

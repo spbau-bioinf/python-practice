@@ -2893,7 +2893,8 @@
     helpWrap.appendChild(helpPop);
     head.appendChild(helpWrap);
     block.appendChild(head);
-    var rec = REC_NAMES[file];
+    /* версия 114: утвержденные имена из REC_NAMES, иначе имена из данных задачи (build_tests.py собирает их из эталона) */
+    var rec = REC_NAMES[file] || (spec.rec_names && spec.rec_names.length ? spec.rec_names : null);
     block.appendChild(hintEl("p", "checker-note checker-note-short",
       rec ? "Рекомендуемые имена переменных: " + rec.map(function (x) { return "`" + x + "`"; }).join(", ") + "."
         : "Тестов: " + n + " · примеры и скрытые · " + (setMode ? "данные уже вставлены" : "ввод через `input()`")));
@@ -3688,6 +3689,21 @@
      Высота блока по шагам постоянна: кнопки не сдвигаются, таблица прокручивается внутри. */
   var SPEEDS = [[0.5, "0,5×"], [1, "1×"], [2, "2×"]];
   function escHtml(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  /* версия 116: окно кода «По шагам» — имя файла копируется, справа «Скопировать код» (тот же текст, что в «Сразу»).
+     Нужна и anim.js: блоки figure.anim строят «По шагам» при первом открытии и зовут window.PracticeSteps.decorate */
+  function decorateStepCode(stCode, source) {
+    if (!stCode || stCode.querySelector(".ex-tools")) return;
+    var label = stCode.querySelector(".code-label"), name = label ? label.textContent.trim() : "";
+    if (label && isPyName(name)) { label.textContent = ""; label.appendChild(fileCopyButton(name)); }
+    var tools = el("span", "ex-tools");
+    tools.appendChild(copyButton(function () {
+      var pre = source && source.querySelector("pre");
+      return pre ? pre.textContent : "";
+    }));
+    stCode.appendChild(tools);
+  }
+  window.PracticeSteps = { decorate: decorateStepCode };
+
   function setupStepper(art) {
     var src = art.querySelector(":scope > script.steps-data");
     var h3 = art.querySelector(":scope > h3");
@@ -3719,6 +3735,7 @@
       '<button type="button" class="st-btn is-play" data-a="auto" aria-pressed="false"></button><div class="seg st-speed" role="group" aria-label="Скорость"></div>' +
       '<button type="button" class="st-btn" data-a="reset">Сначала</button><span class="st-count"></span></div>';
     box.querySelector(".code-label").textContent = D.file || "";
+    decorateStepCode(box.querySelector(".st-code"), art.querySelector(":scope > .run-pair > .code-block"));
     var linesEl = box.querySelector(".st-lines"), noteEl = box.querySelector(".st-note"), varsEl = box.querySelector(".st-vars-b");
     var tbody = box.querySelector("tbody"), traceEl = box.querySelector(".st-trace"), outEl = box.querySelector(".st-out pre");
     var bBack = box.querySelector('[data-a="back"]'), bNext = box.querySelector('[data-a="next"]'), bAuto = box.querySelector('[data-a="auto"]');

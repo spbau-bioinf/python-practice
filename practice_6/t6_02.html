@@ -10,6 +10,8 @@
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t6_02.js"></script>
+  <script src="data/t6_02_anim.js"></script>
+  <script src="anim.js" defer></script>
   <script src="checker.js" defer></script>
   <script src="game.js" defer></script>
 </head>
@@ -21,7 +23,7 @@
       <ul class="menu">
         <li><a href="t6_00.html"><span class="menu-title"><span class="menu-code">00</span><span class="menu-name">Обзор практики</span></span></a></li>
         <li class="menu-sub"><a href="t6_01.html"><span class="menu-title"><span class="menu-code">01</span><span class="menu-name">Словарь и ключи</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Хеш и номер ячейки</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Заполнение циклом и размер таблицы</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Коллизии и пробы</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.2.1</span> <span class="anc-ex-title" data-variant="basic">Ячейки таблицы</span><span class="anc-ex-title" data-variant="medium">Разные начальные ячейки</span><span class="anc-ex-title" data-variant="advanced">Коллизии при вставке</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.2</span> <span class="anc-ex-title" data-variant="basic">Таблица после вставки</span><span class="anc-ex-title" data-variant="medium">Поиск с пробами</span><span class="anc-ex-title" data-variant="advanced">Самый длинный блок</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Как словарь находит ключ</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Что может быть ключом</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.2.1</span> <span class="anc-ex-title" data-variant="basic">Мутация по координатам</span><span class="anc-ex-title" data-variant="medium">Повторы мутаций</span><span class="anc-ex-title" data-variant="advanced">Одинаковые числа</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.2</span> <span class="anc-ex-title" data-variant="basic">Таблица после вставки</span><span class="anc-ex-title" data-variant="medium">Пробы при вставке</span><span class="anc-ex-title" data-variant="advanced">Поиск с пробами</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
         <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
         <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
@@ -44,251 +46,143 @@
     <div class="page-body">
     <main class="content">
 
-      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Вычислять ячейку ключа по хешу, прослеживать вставку при коллизии и отличать хеш от шифрования.</p>
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Прослеживать, как словарь находит ключ по хешу, и составлять ключ из нескольких значений кортежем.</p>
 
       <section class="subsection" id="s1">
-        <h2>1. Хеш и номер ячейки</h2>
+        <h2>1. Как словарь находит ключ</h2>
+
         <div class="step step-learn">Теория</div>
-        <p class="th-full">Словарь хранит пары «ключ&nbsp;— значение» и находит значение по ключу сразу, не перебирая все пары. Такой поиск возможен потому, что для каждого ключа Python вычисляет число и по нему выбирает ячейку своей таблицы.</p>
-        <p>Число вычисляет встроенная функция <code>hash()</code>. Для небольших целых чисел хеш равен самому числу: <code>hash(10)</code> дает 10, <code>hash(18)</code> дает 18. Для больших чисел CPython вычисляет хеш с учетом модуля, поэтому равенство <code>hash(n) == n</code> верно не для всех целых; в упражнениях ключи лежат в диапазоне от −1000 до 1000, где оно выполняется. Исключение одно: <code>hash(-1)</code> равно −2, потому что −1 внутри CPython занято служебным значением.</p>
-        <p class="definition"><span class="term">Хеш</span>&nbsp;— целое число, которое хеш-функция вычисляет по объекту. <span class="term">Хеш-функция</span> вычисляет хеш по объекту; в Python это <code>hash()</code>.</p>
-        <p class="rule">В учебной таблице номер начальной ячейки равен <span class="formula">hash(key) % m</span>. Размер таблицы <code>m</code> равен степени двойки: 8, 16, 32 и так далее.</p>
-        <p>Разные ключи могут получить один номер ячейки: у <code>10</code>, <code>18</code> и <code>26</code> при <code>m = 8</code> остаток равен 2. Это не ошибка, а коллизия; как словарь ее разрешает, разберем в разделе 3.</p>
-        <p>Ключом может быть только хешируемый объект: число, строка, кортеж из хешируемых элементов. Список, словарь и множество ключами быть не могут: их содержимое меняется, а хеш ключа должен оставаться прежним.</p>
+        <p class="th-full">На странице 01 сказано, что словарь находит значение по ключу сразу. Как это возможно? Оператор <code>in</code> у списка проверяет элементы по одному. В списке из миллиона названий нужное может оказаться последним, и тогда понадобится миллион сравнений. Словарю столько сравнений не нужно.</p>
+        <p>Словарь не перебирает ключи. По ключу он вычисляет число и по этому числу сразу идет к нужному месту своей таблицы.</p>
+        <p class="definition"><span class="term">Хеш</span> (hash) получается из значения объекта: это целое число, которое вычисляет функция <code>hash()</code>. Например, <code>hash(10)</code> дает 10. Равные значения всегда дают равные хеши.</p>
+        <p>Таблица словаря состоит из пронумерованных ячеек. В учебной модели этой страницы ключ кладут в ячейку с номером <code>hash(key) % size</code>, где <code>size</code> означает число ячеек. Остаток от деления на 8 лежит от 0 до 7, поэтому в таблице из 8 ячеек номер всегда существует. У небольших целых чисел хеш равен самому числу: ключ 10 попадает в ячейку <code>10 % 8</code>, то есть 2, а ключ 13 в ячейку 5.</p>
+        <p>Что делать, если ячейка уже занята? Ключ 18 тоже дает <code>18 % 8</code>, то есть 2, а в ячейке 2 уже лежит ключ 10.</p>
+        <p class="definition"><span class="term">Коллизия</span> (collision) возникает, когда разные ключи получают одну и ту же начальную ячейку.</p>
+        <p>При коллизии новый ключ проверяет следующую ячейку, потом еще одну, пока не найдет свободную; после последней ячейки проверяется ячейка 0. Поиск идет тем же путем. Он начинает с ячейки <code>hash(key) % size</code> и сравнивает ключи оператором <code>==</code>. Встретился равный ключ, значит, ключ найден. Встретилась пустая ячейка, значит, такого ключа в словаре нет.</p>
+        <p class="rule">Поиск останавливается на пустой ячейке, поэтому таблицу словаря никогда не заполняют целиком: когда занято примерно две трети ячеек, Python строит таблицу больше.</p>
+        <figure class="anim" data-anim="t6_02_s1">
+          <figcaption class="anim-title">Вставка, коллизия и поиск в хеш-таблице</figcaption>
+          <p class="anim-lede">Зеленая рамка отмечает новую пару, красная ячейку, занятую другим ключом, желтая ячейку, проверенную при поиске, синяя найденный ключ.</p>
+        </figure>
+        <p class="th-full">Таблица ниже показывает вставку пяти ключей в таблицу из 8 ячеек по этому правилу. Ключи 10, 18 и 26 начинают с ячейки 2 и встают в ячейки 2, 3 и 4. Ключ 13 начинает с ячейки 5, но ее уже занял ключ 5, поэтому 13 встает в ячейку 6.</p>
+        <div class="table-wrap th-full"><table class="data"><thead><tr><th>Ключ</th><th><code>hash(key) % 8</code></th><th>Проверены ячейки</th><th>Место</th></tr></thead><tbody>
+<tr><td>10</td><td>2</td><td>2</td><td>2</td></tr><tr><td>18</td><td>2</td><td>2, 3</td><td>3</td></tr><tr><td>26</td><td>2</td><td>2, 3, 4</td><td>4</td></tr><tr><td>5</td><td>5</td><td>5</td><td>5</td></tr><tr><td>13</td><td>5</td><td>5, 6</td><td>6</td></tr></tbody></table></div>
+        <div class="table-wrap th-full"><table class="data"><thead><tr><th>Кажется</th><th>На самом деле</th></tr></thead><tbody>
+<tr><td>коллизия значит, что ключи равны</td><td>совпали только начальные ячейки; ключи словарь сравнивает оператором <code>==</code></td></tr>
+<tr><td>при коллизии новый ключ затирает старый</td><td>новый ключ занимает следующую свободную ячейку</td></tr>
+<tr><td>поиск перебирает все ключи подряд</td><td>поиск начинает со своей ячейки и останавливается на равном ключе или на пустой ячейке</td></tr></tbody></table></div>
+        <details class="deep"><summary>Подробнее: как это устроено в CPython</summary>
+          <p>Учебная модель упрощена. В CPython таблица словаря сначала содержит 8 ячеек и увеличивается, когда занято около двух третей; следующая ячейка при коллизии вычисляется формулой от хеша, а не прибавлением единицы. Хеш строки зависит от случайной «соли», которую Python выбирает при каждом запуске: в разных запусках <code>hash("ATG")</code> разный, внутри одного запуска одинаковый. Из небольших целых чисел особое только −1: <code>hash(-1)</code> равно −2, потому что −1 внутри CPython означает ошибку.</p>
+        </details>
+
         <div class="step step-see">Пример</div>
         <article class="example">
-          <h3>Хеш и ячейка</h3>
+          <h3>Пример 1. Хеш и начальная ячейка</h3>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">slot.py</span><pre><code><span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> (<span class="tok-num">10</span>, <span class="tok-num">18</span>, <span class="tok-num">26</span>):</span>
+            <div class="code-block"><span class="code-label">cells.py</span><pre><code><span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> (<span class="tok-num">10</span>, <span class="tok-num">18</span>, <span class="tok-num">5</span>):</span>
 <span class="ln">    <span class="tok-builtin">print</span>(key, <span class="tok-builtin">hash</span>(key), <span class="tok-builtin">hash</span>(key) <span class="tok-op">%</span> <span class="tok-num">8</span>)</span></code></pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>10 10 2
 18 18 2
-26 26 2</pre></div>
+5 5 5</pre></div>
           </div>
-          <div class="analysis"><ol>
-            <li>Для ключа <code>10</code> хеш равен <code>10</code>: <code>hash(10)</code> равно <code>10</code>.</li>
-            <li>Остаток от деления на 8 у всех трех хешей равен 2: ключи претендуют на одну ячейку.</li>
-            <li>Словарь не хранит ключи в порядке номеров ячеек: порядок перебора задает порядок вставки. Об этом ниже.</li>
-          </ol></div>
-          <script type="application/json" class="steps-data">{"file": "slot.py", "code": ["<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">26<\/span>):", "    <span class=\"tok-builtin\">print<\/span>(key, <span class=\"tok-builtin\">hash<\/span>(key), <span class=\"tok-builtin\">hash<\/span>(key) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)"], "columns": ["key", "напечатано"], "steps": [{"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">26<\/span>):", "vars": [["key", "10", true]], "out": "", "row": null, "note": "Строка 1: key получает первое значение, key = 10."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>, <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>), <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [["key", "10", false]], "out": "10 10 2\n", "row": ["10", "10 10 2"], "note": "Строка 2: печатается 10 10 2."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">26<\/span>):", "vars": [["key", "18", true]], "out": "10 10 2\n", "row": null, "note": "Строка 1: key получает следующее значение, key = 18."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">18<\/span><\/span>, <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">18<\/span><\/span>), <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">18<\/span><\/span>) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [["key", "18", false]], "out": "10 10 2\n18 18 2\n", "row": ["18", "10 10 2\n18 18 2"], "note": "Строка 2: печатается 18 18 2."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">26<\/span>):", "vars": [["key", "26", true]], "out": "10 10 2\n18 18 2\n", "row": null, "note": "Строка 1: key получает следующее значение, key = 26."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">26<\/span><\/span>, <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">26<\/span><\/span>), <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">26<\/span><\/span>) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [["key", "26", false]], "out": "10 10 2\n18 18 2\n26 26 2\n", "row": ["26", "10 10 2\n18 18 2\n26 26 2"], "note": "Строка 2: печатается 26 26 2."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">26<\/span>):", "vars": [["key", "26", false]], "out": "10 10 2\n18 18 2\n26 26 2\n", "row": null, "note": "Строка 1: значений больше нет, цикл закончен; key остается 26."}, {"line": 0, "html": "", "vars": [["key", "26", false]], "out": "10 10 2\n18 18 2\n26 26 2\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <div class="analysis"><p>Хеш каждого ключа равен самому ключу. Ключи 10 и 18 в таблице из 8 ячеек получают одну начальную ячейку 2 — это коллизия; ключ 5 начинает с ячейки 5.</p></div>
+          <script type="application/json" class="steps-data">{"file": "cells.py", "code": ["<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">5<\/span>):", "    <span class=\"tok-builtin\">print<\/span>(key, <span class=\"tok-builtin\">hash<\/span>(key), <span class=\"tok-builtin\">hash<\/span>(key) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)"], "columns": ["key", "напечатано"], "steps": [{"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">5<\/span>):", "vars": [["key", "10", true]], "out": "", "row": null, "note": "Строка 1: key получает первое значение, key = 10."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>, <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>), <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">10<\/span><\/span>) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [["key", "10", false]], "out": "10 10 2\n", "row": ["10", "10 10 2"], "note": "Строка 2: печатается 10 10 2."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">5<\/span>):", "vars": [["key", "18", true]], "out": "10 10 2\n", "row": null, "note": "Строка 1: key получает следующее значение, key = 18."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">18<\/span><\/span>, <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">18<\/span><\/span>), <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">18<\/span><\/span>) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [["key", "18", false]], "out": "10 10 2\n18 18 2\n", "row": ["18", "10 10 2\n18 18 2"], "note": "Строка 2: печатается 18 18 2."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">5<\/span>):", "vars": [["key", "5", true]], "out": "10 10 2\n18 18 2\n", "row": null, "note": "Строка 1: key получает следующее значение, key = 5."}, {"line": 2, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>, <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>), <span class=\"tok-builtin\">hash<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>) <span class=\"tok-op\">%<\/span> <span class=\"tok-num\">8<\/span>)", "vars": [["key", "5", false]], "out": "10 10 2\n18 18 2\n5 5 5\n", "row": ["5", "10 10 2\n18 18 2\n5 5 5"], "note": "Строка 2: печатается 5 5 5."}, {"line": 1, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> (<span class=\"tok-num\">10<\/span>, <span class=\"tok-num\">18<\/span>, <span class=\"tok-num\">5<\/span>):", "vars": [["key", "5", false]], "out": "10 10 2\n18 18 2\n5 5 5\n", "row": null, "note": "Строка 1: значений больше нет, цикл закончен; key остается 5."}, {"line": 0, "html": "", "vars": [["key", "5", false]], "out": "10 10 2\n18 18 2\n5 5 5\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
-        <div class="mistake">
-          <p class="mistake-caption">Типичная ошибка: список вместо ключа</p>
-          <div class="code-block code-wrong"><span class="code-label">Неверно: список нехешируем</span><pre><code><span class="ln">d <span class="tok-op">=</span> {}</span>
-<span class="ln">d[[<span class="tok-num">1</span>, <span class="tok-num">2</span>]] <span class="tok-op">=</span> <span class="tok-str">"A"</span></span></code></pre></div>
-          <div class="output-block error-output" data-alt-error="TypeError: unhashable type: 'list'"><span class="output-label">Сообщение об ошибке</span><pre>TypeError: cannot use 'list' as a dict key (unhashable type: 'list')</pre></div>
-          <div class="code-block code-right"><span class="code-label">Верно: кортеж хешируем</span><pre><code><span class="ln">d <span class="tok-op">=</span> {}</span>
-<span class="ln">d[(<span class="tok-num">1</span>, <span class="tok-num">2</span>)] <span class="tok-op">=</span> <span class="tok-str">"A"</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(d[(<span class="tok-num">1</span>, <span class="tok-num">2</span>)])  <span class="tok-out"># → A</span></span></code></pre></div>
-          <div class="output-block"><span class="output-label">Вывод</span><pre>A</pre></div>
-          <p>Список можно изменить после вставки, и его хеш перестал бы соответствовать ячейке. Кортеж из чисел изменить нельзя, поэтому он годится в ключи. В Python 3.12 сообщение короче: <code>TypeError: unhashable type: 'list'</code>.</p>
-        </div>
-        <div class="th-full">
-          <p>Хеш строки зависит от всех ее символов, но на настольной 64-битной сборке Python результат всегда укладывается в 64 бита; в браузере страницы работает 32-битная платформа <a href="https://pyodide.org/">Pyodide</a>, где хеш занимает 32 бита, поэтому в упражнениях размер хеша не используется. В разных запусках <code>hash("ATG")</code> дает разные числа: Python добавляет к строке случайную соль, чтобы хеши нельзя было предсказать заранее. Внутри одного запуска хеш одной и той же строки не меняется, поэтому словарь работает.</p>
-          <details class="deep"><summary>Подробнее: кортеж как ключ</summary>
-            <p>Кортеж хешируем, если хешируем каждый его элемент. Хеш кортежа строится из хешей элементов, поэтому у одинаковых кортежей он одинаковый. Кортеж со списком внутри ключом не станет: список нехешируем.</p>
-            <div class="run-pair">
-              <div class="code-block"><span class="code-label">tuple_key.py</span><pre><code><span class="ln">point <span class="tok-op">=</span> (<span class="tok-num">3</span>, <span class="tok-num">4</span>)</span>
-<span class="ln">d <span class="tok-op">=</span> {point: <span class="tok-str">"A"</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(d[(<span class="tok-num">3</span>, <span class="tok-num">4</span>)])  <span class="tok-out"># → A</span></span></code></pre></div>
-              <div class="output-block"><span class="output-label">Вывод</span><pre>A</pre></div>
-            </div>
-          </details>
-          <details class="deep"><summary>Подробнее: почему hash(-1) равно -2</summary>
-            <p>Хеш в CPython на настольной 64-битной сборке хранится в знаковом 64-битном числе <code>Py_hash_t</code>, от −2⁶³ до 2⁶³ − 1. Значение −1 зарезервировано: им внутренние функции сообщают об ошибке. Чтобы настоящий хеш не совпал со служебным, <code>hash(-1)</code> возвращает −2.</p>
-          </details>
-        </div>
+        <article class="example">
+          <h3>Пример 2. Поиск при коллизии</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">lookup.py</span><pre><code><span class="ln">d <span class="tok-op">=</span> {<span class="tok-num">10</span>: <span class="tok-str">"A"</span>, <span class="tok-num">18</span>: <span class="tok-str">"C"</span>, <span class="tok-num">26</span>: <span class="tok-str">"G"</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(d[<span class="tok-num">18</span>])             <span class="tok-out"># → C</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">10</span> <span class="tok-kw">in</span> d, <span class="tok-num">15</span> <span class="tok-kw">in</span> d)  <span class="tok-out"># → True False</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>C
+True False</pre></div>
+          </div>
+          <div class="analysis"><p>Все три ключа начинают с ячейки 2, но словарь различает их сравнением: <code>d[18]</code> находит свое значение. Ключа 15 нет: его поиск остановился на пустой ячейке.</p></div>
+          <script type="application/json" class="steps-data">{"file": "lookup.py", "code": ["d <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">10<\/span>: <span class=\"tok-str\">\"A\"<\/span>, <span class=\"tok-num\">18<\/span>: <span class=\"tok-str\">\"C\"<\/span>, <span class=\"tok-num\">26<\/span>: <span class=\"tok-str\">\"G\"<\/span>}", "<span class=\"tok-builtin\">print<\/span>(d[<span class=\"tok-num\">18<\/span>])             ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-kw\">in<\/span> d, <span class=\"tok-num\">15<\/span> <span class=\"tok-kw\">in<\/span> d)  "], "columns": [], "steps": [{"line": 1, "html": "d <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">10<\/span>: <span class=\"tok-str\">\"A\"<\/span>, <span class=\"tok-num\">18<\/span>: <span class=\"tok-str\">\"C\"<\/span>, <span class=\"tok-num\">26<\/span>: <span class=\"tok-str\">\"G\"<\/span>}", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", true]], "out": "", "row": null, "note": "Строка 1: d = {10: 'A', 18: 'C', 26: 'G'}."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>)", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", false]], "out": "C\n", "row": null, "note": "Строка 2: печатается C."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-kw\">in<\/span> d, <span class=\"tok-num\">15<\/span> <span class=\"tok-kw\">in<\/span> d)  ", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", false]], "out": "C\nTrue False\n", "row": null, "note": "Строка 3: печатается True False."}, {"line": 0, "html": "", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", false]], "out": "C\nTrue False\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+
         <div class="step step-try">Практика</div>
         <div class="try-block">
-          <p>Замените размер таблицы на 16 и запустите. Какие ключи по-прежнему делят ячейку, а какой переехал?</p>
+          <p>Замените 8 на 16 и запустите: какие ключи теперь начинают с разных ячеек?</p>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">try_slot.py</span><pre><code><span class="ln">m <span class="tok-op">=</span> <span class="tok-num">16</span></span>
-<span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> (<span class="tok-num">10</span>, <span class="tok-num">18</span>, <span class="tok-num">26</span>):</span>
-<span class="ln">    <span class="tok-builtin">print</span>(key, <span class="tok-builtin">hash</span>(key), <span class="tok-builtin">hash</span>(key) <span class="tok-op">%</span> m)</span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>10 10 10
-18 18 2
-26 26 10</pre></div>
+            <div class="code-block"><span class="code-label">cells.py</span><pre><code><span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> (<span class="tok-num">10</span>, <span class="tok-num">18</span>, <span class="tok-num">5</span>):</span>
+<span class="ln">    <span class="tok-builtin">print</span>(key, <span class="tok-builtin">hash</span>(key) <span class="tok-op">%</span> <span class="tok-num">8</span>)</span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>10 2
+18 2
+5 5</pre></div>
           </div>
         </div>
       </section>
 
       <section class="subsection" id="s2">
-        <h2>2. Заполнение циклом и размер таблицы</h2>
-        <div class="step step-learn">Теория</div>
-        <p>Когда словарь заполняют циклом <code>for</code>, хеш вычисляется для каждого ключа в момент записи. Длина хеша от длины ключа не зависит: на настольной 64-битной сборке Python хеш занимает 64 бита, то есть 8 байт; в браузере страницы хеш 32-битный. Меняется только значение хеша.</p>
-        <p>Отдельно хранится размер таблицы <code>m</code>. Он тоже не связан с длиной хеша: <code>m</code> показывает, сколько в таблице ячеек. Функция <code>len(d)</code> возвращает число ключей в словаре, а не длину хеша и не размер таблицы.</p>
-        <div class="table-wrap">
-          <table class="data">
-            <thead><tr><th>Ключ</th><th>Длина ключа</th><th>Длина хеша (64-битная сборка)</th></tr></thead>
-            <tbody>
-              <tr><td><code>7</code></td><td>1 цифра</td><td>8 байт</td></tr>
-              <tr><td><code>12345</code></td><td>5 цифр</td><td>8 байт</td></tr>
-              <tr><td><code>"A"</code></td><td>1 символ</td><td>8 байт</td></tr>
-              <tr><td><code>"ATG"</code></td><td>3 символа</td><td>8 байт</td></tr>
-              <tr><td><code>"ATGCGTACGT"</code></td><td>10 символов</td><td>8 байт</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Пример для CPython при добавлении новых ключей по одному: таблица начинается с 8 ячеек. Когда она заполняется примерно на две трети, Python строит таблицу вдвое больше и переносит в нее все ключи. Сами хеши ключей не меняются, а индексы ячеек рассчитываются заново для нового размера: <code>hash(key) % m</code> зависит от <code>m</code>. Этот перенос называют перехешированием.</p>
-        <div class="table-wrap">
-          <table class="data">
-            <thead><tr><th>Ключей в словаре</th><th><code>len(d)</code></th><th>Размер таблицы <code>m</code></th><th>Что произошло</th></tr></thead>
-            <tbody>
-              <tr><td>1</td><td>1</td><td>8</td><td>словарь создан</td></tr>
-              <tr><td>2</td><td>2</td><td>8</td><td>то же</td></tr>
-              <tr><td>3</td><td>3</td><td>8</td><td>то же</td></tr>
-              <tr><td>4</td><td>4</td><td>8</td><td>то же</td></tr>
-              <tr><td>5</td><td>5</td><td>8</td><td>то же</td></tr>
-              <tr><td>6</td><td>6</td><td>16</td><td>таблица выросла, индексы рассчитаны для нового размера</td></tr>
-              <tr><td>7</td><td>7</td><td>16</td><td>то же</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="table-wrap">
-          <table class="data">
-            <thead><tr><th>Ключ</th><th>Начальная ячейка при <code>m = 8</code></th><th>Начальная ячейка при <code>m = 16</code></th></tr></thead>
-            <tbody>
-              <tr><td><code>10</code></td><td>2</td><td>10</td></tr>
-              <tr><td><code>18</code></td><td>2</td><td>2</td></tr>
-              <tr><td><code>26</code></td><td>2</td><td>10</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>При <code>m = 8</code> все три ключа попадали в ячейку 2. При <code>m = 16</code> у ключа <code>18</code> начальная ячейка по-прежнему 2, а <code>10</code> и <code>26</code> снова начинают с ячейки 10. Куда они встанут после проб, разберем в разделе 3.</p>
-        <p><code>sorted</code> при обращении к словарю не нужен: <code>d[key]</code> и <code>key in d</code> находят ключ по хешу, без перебора и без сортировки. Сортируют не словарь, а последовательность ключей или пар, когда нужен предсказуемый порядок вывода.</p>
-        <p>Сам словарь запоминает порядок вставки: если добавлять ключи <code>G</code>, <code>A</code>, <code>C</code>, перебор даст тот же порядок. Если ключи добавляли в произвольном порядке, вставка его и сохранит. Поэтому в задачах, где важен порядок, результат сортируют.</p>
-        <div class="step step-see">Пример</div>
-        <article class="example">
-          <h3>Порядок вставки и <code>sorted</code></h3>
-          <div class="run-pair">
-            <div class="code-block"><span class="code-label">ordered.py</span><pre><code><span class="ln">counts <span class="tok-op">=</span> {<span class="tok-str">"G"</span>: <span class="tok-num">3</span>, <span class="tok-str">"A"</span>: <span class="tok-num">5</span>, <span class="tok-str">"C"</span>: <span class="tok-num">2</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">list</span>(counts))    <span class="tok-out"># → ['G', 'A', 'C']</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(counts))  <span class="tok-out"># → ['A', 'C', 'G']</span></span>
-<span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> <span class="tok-builtin">sorted</span>(counts):</span>
-<span class="ln">    <span class="tok-builtin">print</span>(key, counts[key])</span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>['G', 'A', 'C']
-['A', 'C', 'G']
-A 5
-C 2
-G 3</pre></div>
-          </div>
-          <div class="analysis"><ol>
-            <li><code>list(counts)</code> перебирает ключи в порядке вставки: <code>G</code>, <code>A</code>, <code>C</code>.</li>
-            <li><code>sorted(counts)</code> строит новый список ключей по алфавиту, сам словарь не меняется.</li>
-            <li>Цикл по <code>sorted(counts)</code> печатает пары в алфавитном порядке ключей.</li>
-          </ol></div>
-          <script type="application/json" class="steps-data">{"file": "ordered.py", "code": ["counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"G\"<\/span>: <span class=\"tok-num\">3<\/span>, <span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">5<\/span>, <span class=\"tok-str\">\"C\"<\/span>: <span class=\"tok-num\">2<\/span>}", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(counts))    ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(counts))  ", "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">sorted<\/span>(counts):", "    <span class=\"tok-builtin\">print<\/span>(key, counts[key])"], "columns": ["key", "напечатано"], "steps": [{"line": 1, "html": "counts <span class=\"tok-op\">=<\/span> {<span class=\"tok-str\">\"G\"<\/span>: <span class=\"tok-num\">3<\/span>, <span class=\"tok-str\">\"A\"<\/span>: <span class=\"tok-num\">5<\/span>, <span class=\"tok-str\">\"C\"<\/span>: <span class=\"tok-num\">2<\/span>}", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", true]], "out": "", "row": null, "note": "Строка 1: counts = {'G': 3, 'A': 5, 'C': 2}."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">list<\/span>(counts))    ", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false]], "out": "['G', 'A', 'C']\n", "row": null, "note": "Строка 2: печатается ['G', 'A', 'C']."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(counts))  ", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\n", "row": null, "note": "Строка 3: печатается ['A', 'C', 'G']."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">sorted<\/span>(counts):", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"A\"", true]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\n", "row": null, "note": "Строка 4: key получает первое значение, key = \"A\"."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"A\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>)", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"A\"", false]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\n", "row": ["A", "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5"], "note": "Строка 5: печатается A 5."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">sorted<\/span>(counts):", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"C\"", true]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\n", "row": null, "note": "Строка 4: key получает следующее значение, key = \"C\"."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">2<\/span><\/span>)", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"C\"", false]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2\n", "row": ["C", "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2"], "note": "Строка 5: печатается C 2."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">sorted<\/span>(counts):", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"G\"", true]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2\n", "row": null, "note": "Строка 4: key получает следующее значение, key = \"G\"."}, {"line": 5, "html": "    <span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">3<\/span><\/span>)", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"G\"", false]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2\nG 3\n", "row": ["G", "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2\nG 3"], "note": "Строка 5: печатается G 3."}, {"line": 4, "html": "<span class=\"tok-kw\">for<\/span> key <span class=\"tok-kw\">in<\/span> <span class=\"tok-builtin\">sorted<\/span>(counts):", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"G\"", false]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2\nG 3\n", "row": null, "note": "Строка 4: значений больше нет, цикл закончен; key остается \"G\"."}, {"line": 0, "html": "", "vars": [["counts", "{'G': 3, 'A': 5, 'C': 2}", false], ["key", "\"G\"", false]], "out": "['G', 'A', 'C']\n['A', 'C', 'G']\nA 5\nC 2\nG 3\n", "row": null, "note": "Программа закончилась."}]}</script>
-        </article>
-        <p class="th-full">Хеш часто путают с шифрованием. Это разные операции: хеш сжимает данные в короткий отпечаток и необратим, шифрование заменяет данные другой записью и обратимо с помощью ключа.</p>
-        <div class="table-wrap th-full">
-          <table class="data">
-            <thead><tr><th>Свойство</th><th>Хеш</th><th>Шифрование</th></tr></thead>
-            <tbody>
-              <tr><td>Что делает</td><td>сжимает данные в короткий отпечаток</td><td>превращает данные в другую запись</td></tr>
-              <tr><td>Обратимость</td><td>необратим: данные не восстановить</td><td>обратимо: с ключом данные восстанавливают</td></tr>
-              <tr><td>Ключ</td><td>секретного ключа нет; у <code>hash()</code> есть соль</td><td>нужен ключ</td></tr>
-              <tr><td>Длина результата</td><td>постоянная: 64 бита на настольной сборке</td><td>сравнима с длиной данных</td></tr>
-              <tr><td>Где применяют</td><td>поиск в словаре</td><td>передача и хранение секретов</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="th-full">У встроенной функции <code>hash()</code> одно назначение — поиск в словаре и других коллекциях: ее результат стабилен во время жизни объекта. Для воспроизводимой контрольной суммы файла нужен дайджест, например <code>hashlib.sha256</code>. Для хранения паролей применяют специально замедляемые функции <code>hashlib.scrypt</code>, <code>bcrypt</code> или <code>argon2</code>: они медленные, и их результат трудно подобрать.</p>
-        <details class="deep"><summary>Подробнее: как устроен хеш в CPython</summary>
-          <p>Хеш малого целого числа равен самому числу, кроме <code>-1</code>, у которого хеш равен <code>-2</code>; для больших целых хеш считается с учетом модуля и совпадать с числом перестает. Хеш строки считается по всем символам и соли, поэтому в разных запусках он разный; соль задает переменная окружения <code>PYTHONHASHSEED</code>. Хеш кортежа комбинирует хеши элементов.</p>
-          <p>Размер таблицы словаря равен степени двойки, поэтому вместо остатка <code>hash % m</code> CPython берет младшие биты хеша: <code>hash &amp; (m - 1)</code>. Для неотрицательного остатка это то же самое, но работает быстрее.</p>
-          <p>Порядок перебора словаря не совпадает с порядком ячеек. Кроме таблицы ячеек, словарь хранит записи в отдельном массиве в порядке вставки; перебор идет по этому массиву.</p>
-        </details>
-        <div class="step step-try">Практика</div>
-        <div class="try-block">
-          <p>В таблице на 8 ячеек ключи 4, 12 и 20 начинают с одной ячейки. Замените ключи на 6, 14 и 22 и проверьте, в какой ячейке начинается каждый ключ.</p>
-          <div class="run-pair">
-            <div class="code-block"><span class="code-label">try_slots.py</span><pre><code><span class="ln">m <span class="tok-op">=</span> <span class="tok-num">8</span></span>
-<span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> (<span class="tok-num">4</span>, <span class="tok-num">12</span>, <span class="tok-num">20</span>):</span>
-<span class="ln">    <span class="tok-builtin">print</span>(key, <span class="tok-builtin">hash</span>(key) <span class="tok-op">%</span> m)</span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>4 4
-12 4
-20 4</pre></div>
-          </div>
-        </div>
-      </section>
+        <h2>2. Что может быть ключом</h2>
 
-      <section class="subsection" id="s3">
-        <h2>3. Коллизии и пробы</h2>
         <div class="step step-learn">Теория</div>
-        <p>Коллизия — случай, когда разные ключи получают одну и ту же начальную ячейку. Хеши при этом могут совпадать или различаться: важно, что совпадает остаток <code>hash(key) % m</code>.</p>
-        <p>Коллизии неизбежны: ячеек <code>m</code>, а возможных ключей бесконечно много. При <code>m = 8</code> ключи <code>10</code>, <code>18</code> и <code>26</code> все претендуют на ячейку 2.</p>
-        <p class="rule">При вставке проверяется ячейка <span class="formula">hash(key) % m</span>. Если она занята другим ключом, проверяется следующая, затем следующая, а после последней проверяется первая. Ключ встает в первую свободную ячейку. Такой способ называют линейным пробированием.</p>
-        <p>Поиск идет так же: вычислить начальную ячейку, сравнить ключ, при несовпадении перейти к следующей. Совпадение означает, что ключ найден; пустая ячейка означает, что ключа в таблице нет. Поэтому в таблице всегда оставляют свободные ячейки: на пустой поиск останавливается.</p>
-        <details class="deep"><summary>Подробнее: пробы в CPython</summary>
-          <p>В учебной модели выше пробы идут в следующую ячейку: 2, 3, 4. В CPython номер следующей ячейки вычисляется по формуле от хеша, поэтому он не всегда больше на единицу. Общее правило сохраняется: ключ занимает свободную ячейку, а поиск останавливается на совпадении или на пустой ячейке. Упражнения практики проверяют учебную модель с шагом 1.</p>
-        </details>
-        <div class="table-wrap">
-          <table class="data trace">
-            <thead><tr><th>Ключ</th><th><code>hash(key)</code></th><th><code>hash(key) % 8</code></th><th>Проверены ячейки</th><th>Место</th></tr></thead>
-            <tbody>
-              <tr><td><code>10</code></td><td>10</td><td>2</td><td>2</td><td>2</td></tr>
-              <tr><td><code>18</code></td><td>18</td><td>2</td><td>2, 3</td><td>3</td></tr>
-              <tr><td><code>26</code></td><td>26</td><td>2</td><td>2, 3, 4</td><td>4</td></tr>
-              <tr><td><code>5</code></td><td>5</td><td>5</td><td>5</td><td>5</td></tr>
-              <tr><td><code>13</code></td><td>13</td><td>5</td><td>5, 6</td><td>6</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Чем больше таблица заполнена, тем длиннее пробы. При заполнении примерно на две трети словарь растет и перехеширует ключи, как в разделе 2. В среднем вставка и поиск занимают постоянное время, не зависящее от числа ключей; в худшем случае, когда все ключи попали в одну ячейку, поиск перебирает все ключи.</p>
-        <p>Совпадение хешей не означает равенство ключей. Словарь сравнивает ключи оператором <code>==</code>: хеш только указывает, где искать. Поэтому разные ключи с одинаковой начальной ячейкой остаются разными ключами: путь проб идет по соседним ячейкам, а занятые позиции разных ключей могут оказаться дальше друг от друга.</p>
-        <div class="th-full">
-          <div class="table-wrap">
-            <table class="data">
-              <thead><tr><th>Кажется</th><th>На самом деле</th></tr></thead>
-              <tbody>
-                <tr><td>коллизия значит, что ключи равны</td><td>совпали начальные ячейки; сами хеши могут совпасть или различаться, а ключи словарь сравнивает через <code>==</code></td></tr>
-                <tr><td>при коллизии новый ключ затирает старый</td><td>новый ключ ищет следующую свободную ячейку</td></tr>
-                <tr><td>поиск перебирает все ключи подряд</td><td>поиск проверяет ячейки по правилу проб и останавливается на пустой</td></tr>
-                <tr><td>все ключи с одинаковой начальной ячейкой стоят в одной ячейке</td><td>они расходятся по следующим ячейкам</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <p>Можно ли сделать ключом любой объект, например список? Вспомним, как словарь работает. Он вычисляет хеш ключа один раз, при записи, и кладет ключ в ячейку по этому хешу. Если бы ключ потом изменился, изменился бы и хеш. Словарь стал бы искать ключ не в той ячейке и не нашел бы его.</p>
+        <p class="definition"><span class="term">Хешируемый объект</span> (hashable) имеет хеш, который не меняется, пока объект существует. Ключом словаря может быть только хешируемый объект.</p>
+        <p>Числа, строки и <code>None</code> изменить нельзя, поэтому они хешируемы. Кортеж тоже нельзя изменить, и он хешируем, если хешируемы его элементы. Список, словарь и множество можно менять, поэтому они нехешируемы: <code>d[["A", "T"]] = 1</code> останавливает программу ошибкой <code>TypeError: unhashable type: 'list'</code>.</p>
+        <p>Кортеж нужен, когда место задают несколько значений сразу. Например, место замены нуклеотида задают номер хромосомы и позиция в ней. Ключом делают кортеж из двух чисел: <code>mutations[(17, 41245466)]</code>. Скобки внутри квадратных можно не писать, <code>mutations[17, 41245466]</code> означает тот же кортеж.</p>
+        <p class="rule">Ключи словарь сравнивает по значению. Числа 1, 1.0 и <code>True</code> равны, поэтому для словаря это один и тот же ключ: после <code>d[1] = "a"</code> и <code>d[1.0] = "b"</code> в словаре одна пара, и ключом остается первый записанный, целое число 1.</p>
+        <figure class="anim" data-anim="t6_02_s2">
+          <figcaption class="anim-title">Что может быть ключом</figcaption>
+          <p class="anim-lede">Хеши кортежей настоящие, их вычислил Python; номер ячейки равен остатку от деления хеша на 8.</p>
+        </figure>
+        <p class="th-full">Кортеж хешируем, только если хешируемы все его элементы: <code>(17, [100, 200])</code> ключом быть не может, потому что внутри список. Множество, как и список, можно менять, но у него есть неизменяемый вариант <code>frozenset</code>, и он годится в ключи. Множества разбираются на <a href="t6_05.html">странице 05</a>.</p>
+
         <div class="step step-see">Пример</div>
         <article class="example">
-          <h3>Поиск при коллизии</h3>
+          <h3>Пример 3. Кортеж как ключ и равные числа</h3>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">lookup.py</span><pre><code><span class="ln">d <span class="tok-op">=</span> {<span class="tok-num">10</span>: <span class="tok-str">"A"</span>, <span class="tok-num">18</span>: <span class="tok-str">"C"</span>, <span class="tok-num">26</span>: <span class="tok-str">"G"</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(d[<span class="tok-num">18</span>])             <span class="tok-out"># → C</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-num">10</span> <span class="tok-kw">in</span> d, <span class="tok-num">15</span> <span class="tok-kw">in</span> d)  <span class="tok-out"># → True False</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>C
-True False</pre></div>
+            <div class="code-block"><span class="code-label">keys.py</span><pre><code><span class="ln">mutations <span class="tok-op">=</span> {(<span class="tok-num">17</span>, <span class="tok-num">41245466</span>): <span class="tok-str">"G"</span>, (<span class="tok-num">13</span>, <span class="tok-num">32906729</span>): <span class="tok-str">"T"</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(mutations[<span class="tok-num">17</span>, <span class="tok-num">41245466</span>])  <span class="tok-out"># → G</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((<span class="tok-num">13</span>, <span class="tok-num">100</span>) <span class="tok-kw">in</span> mutations)   <span class="tok-out"># → False</span></span>
+<span class="ln">values <span class="tok-op">=</span> {}</span>
+<span class="ln">values[<span class="tok-num">1</span>] <span class="tok-op">=</span> <span class="tok-str">"целое"</span></span>
+<span class="ln">values[<span class="tok-num">1.0</span>] <span class="tok-op">=</span> <span class="tok-str">"вещественное"</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(values)                   <span class="tok-out"># → {1: 'вещественное'}</span></span></code></pre></div>
+            <div class="output-block predict"><span class="output-label">Вывод</span><pre>G
+False
+{1: 'вещественное'}</pre></div>
           </div>
-          <div class="analysis"><ol>
-            <li>Все три ключа при <code>m = 8</code> начинают с ячейки 2, но словарь различает их по значению ключа.</li>
-            <li><code>d[18]</code> находит значение <code>C</code>: словарь проверяет ключи, пока не встретит равный.</li>
-            <li><code>15</code> в словаре нет: поиск доходит до пустой ячейки и сообщает, что ключа нет.</li>
-          </ol></div>
-          <script type="application/json" class="steps-data">{"file": "lookup.py", "code": ["d <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">10<\/span>: <span class=\"tok-str\">\"A\"<\/span>, <span class=\"tok-num\">18<\/span>: <span class=\"tok-str\">\"C\"<\/span>, <span class=\"tok-num\">26<\/span>: <span class=\"tok-str\">\"G\"<\/span>}", "<span class=\"tok-builtin\">print<\/span>(d[<span class=\"tok-num\">18<\/span>])             ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-kw\">in<\/span> d, <span class=\"tok-num\">15<\/span> <span class=\"tok-kw\">in<\/span> d)  "], "columns": [], "steps": [{"line": 1, "html": "d <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">10<\/span>: <span class=\"tok-str\">\"A\"<\/span>, <span class=\"tok-num\">18<\/span>: <span class=\"tok-str\">\"C\"<\/span>, <span class=\"tok-num\">26<\/span>: <span class=\"tok-str\">\"G\"<\/span>}", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", true]], "out": "", "row": null, "note": "Строка 1: d = {10: 'A', 18: 'C', 26: 'G'}."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"C\"<\/span><\/span>)", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", false]], "out": "C\n", "row": null, "note": "Строка 2: печатается C."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-num\">10<\/span> <span class=\"tok-kw\">in<\/span> d, <span class=\"tok-num\">15<\/span> <span class=\"tok-kw\">in<\/span> d)  ", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", false]], "out": "C\nTrue False\n", "row": null, "note": "Строка 3: печатается True False."}, {"line": 0, "html": "", "vars": [["d", "{10: 'A', 18: 'C', 26: 'G'}", false]], "out": "C\nTrue False\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <div class="analysis"><p>Ключ — пара «хромосома, позиция». Запрос <code>(13, 100)</code> отличается от ключа <code>(13, 32906729)</code> позицией, поэтому <code>in</code> дает <code>False</code>. Ключи 1 и 1.0 равны: вторая запись заменила значение, а ключом осталась целая единица.</p></div>
+          <script type="application/json" class="steps-data">{"file": "keys.py", "code": ["mutations <span class=\"tok-op\">=<\/span> {(<span class=\"tok-num\">17<\/span>, <span class=\"tok-num\">41245466<\/span>): <span class=\"tok-str\">\"G\"<\/span>, (<span class=\"tok-num\">13<\/span>, <span class=\"tok-num\">32906729<\/span>): <span class=\"tok-str\">\"T\"<\/span>}", "<span class=\"tok-builtin\">print<\/span>(mutations[<span class=\"tok-num\">17<\/span>, <span class=\"tok-num\">41245466<\/span>])  ", "<span class=\"tok-builtin\">print<\/span>((<span class=\"tok-num\">13<\/span>, <span class=\"tok-num\">100<\/span>) <span class=\"tok-kw\">in<\/span> mutations)   ", "values <span class=\"tok-op\">=<\/span> {}", "values[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"целое\"<\/span>", "values[<span class=\"tok-num\">1.0<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"вещественное\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(values)                   "], "columns": [], "steps": [{"line": 1, "html": "mutations <span class=\"tok-op\">=<\/span> {(<span class=\"tok-num\">17<\/span>, <span class=\"tok-num\">41245466<\/span>): <span class=\"tok-str\">\"G\"<\/span>, (<span class=\"tok-num\">13<\/span>, <span class=\"tok-num\">32906729<\/span>): <span class=\"tok-str\">\"T\"<\/span>}", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", true]], "out": "", "row": null, "note": "Строка 1: mutations = {(17, 41245466): 'G', (13, 32906729): 'T'}."}, {"line": 2, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"G\"<\/span><\/span>)", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false]], "out": "G\n", "row": null, "note": "Строка 2: печатается G."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>((<span class=\"tok-num\">13<\/span>, <span class=\"tok-num\">100<\/span>) <span class=\"tok-kw\">in<\/span> mutations)   ", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false]], "out": "G\nFalse\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "values <span class=\"tok-op\">=<\/span> {}", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false], ["values", "{}", true]], "out": "G\nFalse\n", "row": null, "note": "Строка 4: values = {}."}, {"line": 5, "html": "values[<span class=\"tok-num\">1<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"целое\"<\/span>", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false], ["values", "{1: 'целое'}", true]], "out": "G\nFalse\n", "row": null, "note": "Строка 5: values = {1: 'целое'}."}, {"line": 6, "html": "values[<span class=\"tok-num\">1.0<\/span>] <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"вещественное\"<\/span>", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false], ["values", "{1: 'вещественное'}", true]], "out": "G\nFalse\n", "row": null, "note": "Строка 6: values = {1: 'вещественное'}."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(values)                   ", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false], ["values", "{1: 'вещественное'}", false]], "out": "G\nFalse\n{1: 'вещественное'}\n", "row": null, "note": "Строка 7: печатается {1: 'вещественное'}."}, {"line": 0, "html": "", "vars": [["mutations", "{(17, 41245466): 'G', (13, 32906729): 'T'}", false], ["values", "{1: 'вещественное'}", false]], "out": "G\nFalse\n{1: 'вещественное'}\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
+        <div class="mistake">
+          <p class="mistake-caption">Типичная ошибка: список вместо ключа</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: список как ключ</span><pre><code><span class="ln">d <span class="tok-op">=</span> {}</span>
+<span class="ln">d[[<span class="tok-str">"A"</span>, <span class="tok-str">"T"</span>]] <span class="tok-op">=</span> <span class="tok-num">1</span></span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">d <span class="tok-op">=</span> {}</span>
+<span class="ln">d[(<span class="tok-str">"A"</span>, <span class="tok-str">"T"</span>)] <span class="tok-op">=</span> <span class="tok-num">1</span></span></code></pre></div>
+          <p>Список можно изменить после вставки, поэтому ключом он быть не может: программа останавливается ошибкой <code>TypeError: unhashable type: 'list'</code> (в Python 3.14 сообщение длиннее, но тип ошибки тот же). Кортеж изменить нельзя, он годится в ключи.</p>
+        </div>
+
         <div class="step step-try">Практика</div>
         <div class="try-block">
-          <p>Все три ключа начинают с ячейки 4. Вставьте их по очереди по правилу проб и проверьте себя: <code>4</code> занимает ячейку 4, <code>12</code> идет в 5, <code>20</code> попадает в 6. Замените ключи на <code>6</code>, <code>14</code> и <code>22</code> и повторите.</p>
+          <p>Добавьте в словарь пару <code>(13, 100): "A"</code> и запустите: вторая строка вывода должна стать <code>True</code>.</p>
           <div class="run-pair">
-            <div class="code-block"><span class="code-label">try_probe.py</span><pre><code><span class="ln">m <span class="tok-op">=</span> <span class="tok-num">8</span></span>
-<span class="ln"><span class="tok-kw">for</span> key <span class="tok-kw">in</span> (<span class="tok-num">4</span>, <span class="tok-num">12</span>, <span class="tok-num">20</span>):</span>
-<span class="ln">    <span class="tok-builtin">print</span>(key, <span class="tok-builtin">hash</span>(key) <span class="tok-op">%</span> m)</span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>4 4
-12 4
-20 4</pre></div>
+            <div class="code-block"><span class="code-label">keys.py</span><pre><code><span class="ln">mutations <span class="tok-op">=</span> {(<span class="tok-num">17</span>, <span class="tok-num">41245466</span>): <span class="tok-str">"G"</span>, (<span class="tok-num">13</span>, <span class="tok-num">32906729</span>): <span class="tok-str">"T"</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(mutations[<span class="tok-num">17</span>, <span class="tok-num">41245466</span>])  <span class="tok-out"># → G</span></span>
+<span class="ln"><span class="tok-builtin">print</span>((<span class="tok-num">13</span>, <span class="tok-num">100</span>) <span class="tok-kw">in</span> mutations)   <span class="tok-out"># → False</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>G
+False</pre></div>
           </div>
         </div>
+
         <div class="step step-task">Задача</div>
         <div class="level-tabs ex-variants" id="ex-1" data-exercise="ex-1">
-          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения"><button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t6_02_1_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t6_02_1_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t6_02_1_advanced.py">Продвинутый</button></div>
+          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
+            <button class="tab" type="button" role="tab" id="ex-1-tab-basic" aria-controls="ex-1-basic" data-level="basic" data-task="t6_02_1_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-medium" aria-controls="ex-1-medium" data-level="medium" data-task="t6_02_1_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-1-tab-advanced" aria-controls="ex-1-advanced" data-level="advanced" data-task="t6_02_1_advanced.py">Продвинутый</button>
+          </div>
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-          <h3>Упражнение 6.2.1. Ячейки таблицы</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Для каждого ключа вычислите номер ячейки в таблице размера <code>size</code>: <code>hash(key) % size</code>. Все ключи целые числа. Выведите номер для каждого ключа в порядке ввода, по одному в строке.</p></div>
+              <h3>Упражнение 6.2.1. Мутация по координатам</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Замены нуклеотидов, найденные в образце, записаны строками «хромосома позиция буква». Сохраните их в словарь: ключом служит пара (хромосома, позиция), значением буква. Затем ответьте на запрос: какая буква записана для заданной позиции заданной хромосомы.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>size</code>: степень двойки от 4 до 1024. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Для каждого ключа номер его ячейки, по одному числу в строке.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке число записей от 1 до 20. Далее записи, по одной в строке: номер хромосомы от 1 до 22, позиция от 1 до 300000000 и буква <code>A</code>, <code>C</code>, <code>G</code> или <code>T</code>. Все пары «хромосома, позиция» различны. В последней строке запрос «хромосома позиция»; такая пара есть среди записей.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Одна буква.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -297,52 +191,55 @@ True False</pre></div>
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">16<br>5 21 37 52</code>
+                      <code class="we-seq">3<br>17 41245466 G<br>13 32906729 T<br>17 7577120 A<br>13 32906729</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">5<br>5<br>5<br>4</span></code>
+                      <code class="we-seq"><span class="we-hl">T</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Остатки от деления хешей этих ключей на 16 идут в порядке <code>5, 5, 5, 4</code>.</p>
+                  <p class="we-note">Пара (13, 32906729) записана второй строкой, и ее буква <code>T</code>.</p>
                 </div>
-                <div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
-<tbody>
-                <tr><td><pre>16
-5 21 37 52</pre></td><td><pre>5
-5
-5
-4</pre></td></tr>
-                <tr><td><pre>8
-3</pre></td><td><pre>3</pre></td></tr>
-              </tbody>
-</table>
-</div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+                <tr><td><pre>3
+17 41245466 G
+13 32906729 T
+17 7577120 A
+13 32906729</pre></td><td><pre>T</pre></td></tr>
+                <tr><td><pre>2
+17 100 A
+13 100 G
+13 100</pre></td><td><pre>G</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Начальная ячейка хеш-таблицы получается из хеша ключа. Разные ключи могут попасть в одну ячейку, это называется коллизией.</p>
+                <p>Место замены в геноме человека задают две величины: номер хромосомы и позиция в ней. Одна и та же позиция есть в каждой хромосоме, поэтому ключом служит пара чисел, а не одно число.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Хромосома</strong> — одна из молекул ДНК, на которые разделен геном; у человека 22 пары обычных хромосом, их обозначают номерами.</li>
+                  <li><strong>Позиция</strong> — номер нуклеотида в хромосоме, считая от ее начала.</li>
+                  <li><strong>Замена нуклеотида</strong> — место, где в образце стоит другая буква, чем в эталонной последовательности.</li>
+                  <li><strong>Кортеж-ключ</strong> — пара значений в круглых скобках, например <code>(17, 100)</code>; кортеж не меняется, поэтому годится в ключи.</li>
+                  <li><strong>Функция <code>int()</code></strong> — переводит строку в целое число.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Вычисляйте начальную ячейку заново для каждого ключа.</li></ol>
+                <ol class="hint-steps"><li>Прочитайте число записей и в цикле разложите каждую запись методом <code>split()</code> на хромосому, позицию и букву.</li><li>Ключом сделайте кортеж из двух чисел: <code>(int(chromosome), int(position))</code>, а значением букву. Номера прочитаны строками, поэтому их переводят функцией <code>int()</code>.</li><li>Прочитайте запрос, так же соберите из него кортеж и напечатайте букву по этому ключу.</li><li>Сверьтесь с первым примером из таблицы «Примеры»: программа должна напечатать ровно его вывод.</li></ol>
               </details>
-              <div class="checker" data-split data-file="t6_02_1_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <div class="checker" data-split data-file="t6_02_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-          <h3>Упражнение 6.2.1. Разные начальные ячейки</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте словарь, который каждому ключу сопоставляет начальную ячейку <code>hash(key) % size</code>. Пробы не выполняются: считается только начальная ячейка. Выведите число разных ключей, а затем разные начальные ячейки по возрастанию.</p></div>
+              <h3>Упражнение 6.2.1. Повторы мутаций</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Одну и ту же замену нуклеотида находят в нескольких образцах, поэтому ее координаты «хромосома позиция» встречаются в списке несколько раз. Выведите, сколько в списке различных мест замены, и наибольшее число повторов одного места.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>size</code>: степень двойки от 4 до 1024. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000; ключи могут повторяться.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>В первой строке число разных ключей. Во второй строке номера разных начальных ячеек по возрастанию через пробел.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке число записей от 1 до 30. Далее записи «хромосома позиция», по одной в строке: номер хромосомы от 1 до 22 и позиция от 1 до 300000000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: число различных пар «хромосома, позиция» и наибольшее число повторов одной пары.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -351,51 +248,55 @@ True False</pre></div>
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">8<br>3 11 19 27 4 12</code>
+                      <code class="we-seq">4<br>17 100<br>13 100<br>17 100<br>17 200</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">6<br>3 4</span></code>
+                      <code class="we-seq"><span class="we-hl">3<br>2</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Все шесть ключей различны. Первые четыре начинают с ячейки 3, остальные два — с ячейки 4.</p>
+                  <p class="we-note">Пара (17, 100) встречается дважды, а пары (13, 100) и (17, 200) по одному разу. Различных пар три, и больше всего повторов, два, у пары (17, 100).</p>
                 </div>
-                <div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
-<tbody>
-                <tr><td><pre>8
-3 11 19 27 4 12</pre></td><td><pre>6
-3 4</pre></td></tr>
-                <tr><td><pre>16
-1 17 33</pre></td><td><pre>3
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+                <tr><td><pre>4
+17 100
+13 100
+17 100
+17 200</pre></td><td><pre>3
+2</pre></td></tr>
+                <tr><td><pre>2
+2 13
+21 3</pre></td><td><pre>2
 1</pre></td></tr>
-              </tbody>
-</table>
-</div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Начальная ячейка хеш-таблицы получается из хеша ключа. Разные ключи могут попасть в одну ячейку, это называется коллизией.</p>
+                <p>Замену, которую нашли во многих образцах, считают частой: по ней отличают общие варианты последовательности от случайных ошибок прибора.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Замена нуклеотида</strong> — место, где в образце стоит другая буква, чем в эталонной последовательности.</li>
+                  <li><strong>Кортеж-ключ</strong> — пара значений в круглых скобках, например <code>(17, 100)</code>; кортеж не меняется, поэтому годится в ключи.</li>
+                  <li><strong>Метод <code>get(key, default)</code></strong> — значение ключа или <code>default</code>, если ключа нет; словарь не меняется.</li>
+                  <li><strong>Функция <code>max()</code></strong> — наибольшее из значений.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сначала соберите соответствие «ключ — начальная ячейка». Затем удалите повторы среди номеров ячеек.</li></ol>
+                <ol class="hint-steps"><li>Заведите пустой словарь <code>repeats</code>: ключом будет кортеж <code>(хромосома, позиция)</code>, значением число повторов этой пары.</li><li>Для каждой записи увеличьте число ее пары: <code>repeats.get(key, 0) + 1</code> запишите под тем же ключом.</li><li>Наибольшее число повторов запоминайте по ходу цикла: если число повторов пары стало больше запомненного, запомните новое.</li><li>Число различных мест дает <code>len(repeats)</code>. Напечатайте его и наибольшее число повторов.</li><li>Сверьтесь с первым примером из таблицы «Примеры»: программа должна напечатать ровно его вывод.</li></ol>
               </details>
-              <div class="checker" data-split data-file="t6_02_1_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <div class="checker" data-split data-file="t6_02_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
-            <div class="panel-head"><p class="panel-note">Задача с неочевидным шагом.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
+            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-          <h3>Упражнение 6.2.1. Коллизии при вставке</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу размера <code>size</code> в порядке ввода. Начальная ячейка равна <code>hash(key) % size</code>. Если ячейка занята другим ключом, проверяйте следующие по кругу, пока не найдется свободная, и вставляйте ключ туда. Каждая проверка занятой ячейки при вставке нового ключа увеличивает счетчик на единицу. Если ключ уже вставляли, выведите его прежнюю ячейку и не увеличивайте счетчик. Выведите для каждого ключа в порядке ввода его итоговую ячейку, затем число занятых ячеек, проверенных при вставке.</p></div>
+              <h3>Упражнение 6.2.1. Одинаковые числа</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Прибор записал измерения строкой через пробел: одни значения без десятичной точки, другие с точкой. Значение без точки переведите функцией <code>int()</code>, значение с точкой функцией <code>float()</code>. Посчитайте словарем, сколько раз встретилось каждое число, и выведите получившийся словарь. Числа сравниваются по значению: 2 и 2.0 считаются одним и тем же числом.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>size</code>: степень двойки от 4 до 256. Во второй строке от 1 до 20 целых ключей через пробел, от −1000 до 1000. Разных ключей не больше <code>size</code>.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Для каждого ключа номер его ячейки, по одному числу в строке. В последней строке число занятых ячеек, проверенных при вставке.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 чисел через пробел; число может быть со знаком минус и с десятичной точкой.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Словарь «число : сколько раз встретилось» в том виде, в каком его выводит <code>print()</code>.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -404,61 +305,58 @@ True False</pre></div>
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">8<br>4 12 20 7 15</code>
+                      <code class="we-seq">2 2.0 3.5</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">4<br>5<br>6<br>7<br>0<br>4</span></code>
+                      <code class="we-seq"><span class="we-hl">{2: 2, 3.5: 1}</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Ключи занимают ячейки <code>4, 5, 6, 7, 0</code>. Ключи 12, 20 и 15 проверяют соответственно одну, две и одну занятую ячейку. Суммарно их четыре.</p>
+                  <p class="we-note">2 и 2.0 равны, поэтому в словаре одна пара с двумя повторами. Ключом осталось первое записанное число, целое 2.</p>
                 </div>
-                <div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
-<tbody>
-                <tr><td><pre>8
-4 12 20 7 15</pre></td><td><pre>4
-5
-6
-7
-0
-4</pre></td></tr>
-                <tr><td><pre>4
-3 7</pre></td><td><pre>3
-0
-1</pre></td></tr>
-              </tbody>
-</table>
-</div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+                <tr><td><pre>2 2.0 3.5</pre></td><td><pre>{2: 2, 3.5: 1}</pre></td></tr>
+                <tr><td><pre>1.0 1 1</pre></td><td><pre>{1.0: 3}</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Начальная ячейка хеш-таблицы получается из хеша ключа. Разные ключи могут попасть в одну ячейку, это называется коллизией.</p>
+                <p>Одни приборы пишут целые значения без точки, другие — с точкой и нулем после нее. При подсчете это одно и то же значение.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Равные числа</strong> — <code>2</code> и <code>2.0</code> равны и дают один хеш, поэтому в словаре это один ключ.</li>
+                  <li><strong>Оператор <code>in</code> для строк</strong> — проверяет, есть ли в строке подстрока: <code>"." in text</code>.</li>
+                  <li><strong>Функция <code>int()</code></strong> — переводит строку в целое число.</li>
+                  <li><strong>Функция <code>float()</code></strong> — переводит строку в вещественное число.</li>
+                  <li><strong>Метод <code>get(key, default)</code></strong> — значение ключа или <code>default</code>, если ключа нет; словарь не меняется.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Храните занятость ячеек в списке <code>table</code> из <code>size</code> элементов. Чтобы не вставлять повторный ключ, запоминайте готовый ответ в словаре <code>slot_of</code>. Номер следующей ячейки: <code>(slot + 1) % size</code>; после последней ячейки счет возвращается к нулю.</li></ol>
+                <ol class="hint-steps"><li>Переберите значения строки. Есть ли в значении точка, проверяет <code>"." in text</code>.</li><li>Переведите значение функцией <code>float()</code> или <code>int()</code>.</li><li>Запишите под числом <code>counts.get(number, 0) + 1</code>. Равные 2 и 2.0 попадут в одну пару, и ключом останется первое записанное.</li><li>Напечатайте словарь.</li><li>Сверьтесь с примером: для ввода <code>2 2.0 3.5</code> программа печатает <code>{2: 2, 3.5: 1}</code>.</li></ol>
               </details>
-              <div class="checker" data-split data-file="t6_02_1_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <div class="checker" data-split data-file="t6_02_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
+
         <div class="step step-star">Задача со звездочкой</div>
-        <p class="star-intro">Необязательная задача для тех, кому хочется больше. В зачет не входит, за решение дается дополнительный опыт в игровом режиме. Вариант каждого уровня сложнее упражнения этого уровня.</p>
+        <p class="star-intro">Необязательная задача, в зачет не входит. За решение дается дополнительный опыт в игровом режиме.</p>
         <div class="level-tabs star-variants" id="ex-star" data-star="ex-star">
-          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой"><button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t6_02_star_basic.py">Базовый</button><button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t6_02_star_medium.py">Средний</button><button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t6_02_star_advanced.py">Продвинутый</button></div>
+          <div class="tabs-list" role="tablist" aria-label="Уровень задачи со звездочкой">
+            <button class="tab" type="button" role="tab" id="ex-star-tab-basic" aria-controls="ex-star-basic" data-level="basic" data-task="t6_02_star_basic.py">Базовый</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-medium" aria-controls="ex-star-medium" data-level="medium" data-task="t6_02_star_medium.py">Средний</button>
+            <button class="tab" type="button" role="tab" id="ex-star-tab-advanced" aria-controls="ex-star-advanced" data-level="advanced" data-task="t6_02_star_advanced.py">Продвинутый</button>
+          </div>
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-          <h3>Задача со звездочкой 6.2. Таблица после вставки</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу размера <code>size</code> по правилу проб из упражнения 6.2.1 продвинутого уровня. Выведите содержимое таблицы: значения в порядке ячеек, пустая ячейка обозначается знаком <code>_</code>.</p></div>
+              <h3>Задача со звездочкой 6.2. Таблица после вставки</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу из <code>size</code> ячеек в порядке ввода по правилу из раздела 1. Начальная ячейка ключа равна <code>hash(key) % size</code>. Если она занята, проверяется следующая, а после последней ячейки проверяется ячейка 0. Выведите содержимое ячеек по порядку: ключ или знак <code>_</code>, если ячейка пустая.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>size</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей через пробел, от −1000 до 1000; различных ключей не больше <code>size</code>.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Одна строка из <code>size</code> значений через пробел: ключ или <code>_</code> для пустой ячейки.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке число ячеек <code>size</code>: 4, 8, 16, 32 или 64. Во второй строке от 1 до <code>size</code> различных целых ключей от 0 до 1000 через пробел.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p><code>size</code> значений через пробел: ключ или знак <code>_</code>.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -475,40 +373,99 @@ True False</pre></div>
                       <code class="we-seq"><span class="we-hl">_ _ _ 3 11 19 _ _</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Ключи 3, 11 и 19 начинают с ячейки 3. При вставке они занимают ячейки 3, 4 и 5.</p>
+                  <p class="we-note">Ключи 3, 11 и 19 начинают с ячейки 3. Первый ключ ее занимает, второй уходит в ячейку 4, третий в ячейку 5.</p>
                 </div>
-                <div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
-<tbody>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
                 <tr><td><pre>8
 3 11 19</pre></td><td><pre>_ _ _ 3 11 19 _ _</pre></td></tr>
                 <tr><td><pre>4
 1 5 9 13</pre></td><td><pre>13 1 5 9</pre></td></tr>
-              </tbody>
-</table>
-</div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Линейное пробирование идет по соседним ячейкам. За последней ячейкой следует ячейка с номером ноль.</p>
+                <p>Так устроена вставка в учебной модели словаря со страницы: ключ ищет свободную ячейку, начиная со своей.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Хеш-таблица</strong> — ряд пронумерованных ячеек; ключ кладется в ячейку с номером <code>hash(key) % size</code>.</li>
+                  <li><strong>Функция <code>hash()</code></strong> — целое число, которое Python вычисляет по значению; равные значения дают равные хеши.</li>
+                  <li><strong>Остаток <code>%</code></strong> — <code>hash(key) % size</code> дает номер ячейки: целое число от 0, меньшее <code>size</code>.</li>
+                  <li><strong>Коллизия</strong> — два ключа претендуют на одну начальную ячейку.</li>
+                  <li><strong>Переход по кругу</strong> — <code>(slot + 1) % size</code> после последней ячейки дает 0.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Печатайте таблицу по порядку ее ячеек, включая пустые.</li></ol>
+                <ol class="hint-steps"><li>Храните таблицу списком из <code>size</code> элементов <code>None</code>: <code>table = [None] * size</code>.</li><li>Для каждого ключа начните с ячейки <code>hash(key) % size</code> и, пока ячейка занята, переходите к следующей: <code>slot = (slot + 1) % size</code>.</li><li>Положите ключ в найденную свободную ячейку.</li><li>Соберите вывод: вместо <code>None</code> знак <code>_</code>, вместо ключа его запись строкой.</li><li>Сверьтесь с примером: для ввода <code>8</code> и <code>3 11 19</code> программа печатает <code>_ _ _ 3 11 19 _ _</code>.</li></ol>
               </details>
-              <div class="checker" data-split data-file="t6_02_star_basic.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <div class="checker" data-split data-file="t6_02_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
-            <div class="panel-head"><p class="panel-note">Сложнее упражнения среднего уровня.</p></div>
+            <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-          <h3>Задача со звездочкой 6.2. Поиск с пробами</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>После вставки ключей ответьте на запросы: сколько ячеек проверит поиск, чтобы найти ключ, если начинать с <code>hash(key) % size</code> и идти по кругу до совпадения или первой пустой ячейки. Первая проверенная ячейка считается. Если ключа в таблице нет, выведите <code>-1</code>.</p></div>
+              <h3>Задача со звездочкой 6.2. Пробы при вставке</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу из <code>size</code> ячеек в порядке ввода по правилу из раздела 1. Начальная ячейка ключа равна <code>hash(key) % size</code>. Если она занята, проверяется следующая, а после последней ячейки проверяется ячейка 0. Каждая проверка занятой ячейки при вставке нового ключа считается одной пробой. Ключ, который уже вставлен, второй раз не вставляется и проб не дает. Выведите для каждого ключа в порядке ввода номер его ячейки, а последней строкой общее число проб.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>size</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей от −1000 до 1000 через пробел. В третьей строке от 1 до 20 ключей-запросов от −1000 до 1000 через пробел. В таблице остается хотя бы одна пустая ячейка.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке число ячеек <code>size</code>: 4, 8, 16, 32, 64, 128 или 256. Во второй строке от 1 до 20 целых ключей от 0 до 1000 через пробел; различных ключей не больше <code>size</code>.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Для каждого ключа номер его ячейки, по одному в строке; в последней строке число проб.</p></div>
+              </div>
+              <details class="task-spoiler sp-example">
+                <summary>Пример</summary>
+                <div class="worked-example">
+                  <p class="we-title">Разберем пример</p>
+                  <div class="we-pair">
+                    <div class="we-side">
+                      <span class="we-label">Ввод</span>
+                      <code class="we-seq">8<br>4 12 20 7 15</code>
+                    </div>
+                    <span class="we-arrow" aria-hidden="true">→</span>
+                    <div class="we-side">
+                      <span class="we-label">Вывод</span>
+                      <code class="we-seq"><span class="we-hl">4<br>5<br>6<br>7<br>0<br>4</span></code>
+                    </div>
+                  </div>
+                  <p class="we-note">Ключи занимают ячейки 4, 5, 6, 7 и 0. Ключ 12 проверил одну занятую ячейку, ключ 20 две, ключ 15 одну: всего четыре пробы.</p>
+                </div>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
+                <tr><td><pre>8
+4 12 20 7 15</pre></td><td><pre>4
+5
+6
+7
+0
+4</pre></td></tr>
+                <tr><td><pre>4
+3 7</pre></td><td><pre>3
+0
+1</pre></td></tr>
+              </tbody></table></div>
+              </details>
+              <details class="task-spoiler sp-bio">
+                <summary>Контекст</summary>
+                <p>Чем больше проб, тем медленнее работает словарь. Поэтому настоящий словарь увеличивает таблицу, когда она заполнена примерно на две трети.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Хеш-таблица</strong> — ряд пронумерованных ячеек; ключ кладется в ячейку с номером <code>hash(key) % size</code>.</li>
+                  <li><strong>Коллизия</strong> — два ключа претендуют на одну начальную ячейку.</li>
+                  <li><strong>Проба</strong> — проверка занятой ячейки, после которой поиск переходит к следующей.</li>
+                  <li><strong>Переход по кругу</strong> — <code>(slot + 1) % size</code> после последней ячейки дает 0.</li>
+                </ul>
+              </details>
+              <details class="task-spoiler sp-hint">
+                <summary>Подсказка</summary>
+                <ol class="hint-steps"><li>Вставляйте ключи так же, как в базовом варианте, и считайте каждую проверку занятой ячейки.</li><li>Ячейку каждого вставленного ключа запоминайте в словаре <code>slot_of</code>. Повторный ключ пропустите: его ячейка уже известна.</li><li>После вставки напечатайте ячейки ключей в порядке ввода и последней строкой число проб.</li><li>Сверьтесь с первым примером из таблицы «Примеры»: программа должна напечатать ровно его вывод.</li></ol>
+              </details>
+              <div class="checker" data-split data-file="t6_02_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
+            </article>
+          </div>
+          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
+            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
+            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
+              <h3>Задача со звездочкой 6.2. Поиск с пробами</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Вставьте ключи в таблицу из <code>size</code> ячеек по правилу из раздела 1. Начальная ячейка ключа равна <code>hash(key) % size</code>. Если она занята, проверяется следующая, а после последней ячейки проверяется ячейка 0. Затем ответьте на запросы: сколько ячеек проверит поиск ключа. Поиск начинает с ячейки <code>hash(key) % size</code> и идет по кругу до ячейки с этим ключом или до первой пустой ячейки; первая проверенная ячейка тоже считается. Если ключа в таблице нет, выведите <code>-1</code>.</p></div>
+              <div class="task-io">
+                <div class="io-col"><h4>Входные данные</h4><p>В первой строке число ячеек <code>size</code>: 4, 8, 16, 32 или 64. Во второй строке от 1 до 20 различных целых ключей от 0 до 1000 через пробел; в таблице остается хотя бы одна пустая ячейка. В третьей строке от 1 до 20 ключей-запросов от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Для каждого запроса число проверенных ячеек или <code>-1</code>, по одному в строке.</p></div>
               </div>
               <details class="task-spoiler sp-example">
@@ -526,12 +483,9 @@ True False</pre></div>
                       <code class="we-seq"><span class="we-hl">3<br>2<br>-1<br>-1</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Ключ 20 находится в третьей проверенной ячейке, 12 — во второй. Ключей 5 и 13 в таблице нет.</p>
+                  <p class="we-note">Ключ 20 найден в третьей проверенной ячейке, ключ 12 во второй. Ключей 5 и 13 в таблице нет: поиск дошел до пустой ячейки.</p>
                 </div>
-                <div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
-<tbody>
+                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
                 <tr><td><pre>8
 4 12 20
 20 12 5 13</pre></td><td><pre>3
@@ -542,72 +496,24 @@ True False</pre></div>
 3
 3 7</pre></td><td><pre>1
 -1</pre></td></tr>
-              </tbody>
-</table>
-</div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Линейное пробирование идет по соседним ячейкам. За последней ячейкой следует ячейка с номером ноль.</p>
+                <p>Поиск в словаре останавливается на пустой ячейке, поэтому таблицу никогда не заполняют целиком.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Хеш-таблица</strong> — ряд пронумерованных ячеек; ключ кладется в ячейку с номером <code>hash(key) % size</code>.</li>
+                  <li><strong>Поиск ключа</strong> — идет по тем же ячейкам, что и вставка, и останавливается на ключе или на первой пустой ячейке.</li>
+                  <li><strong>Проба</strong> — проверка занятой ячейки, после которой поиск переходит к следующей.</li>
+                  <li><strong>Переход по кругу</strong> — <code>(slot + 1) % size</code> после последней ячейки дает 0.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Для каждого запроса начните с исходной ячейки и ведите новый счетчик проб.</li></ol>
+                <ol class="hint-steps"><li>Заполните таблицу так же, как в базовом варианте.</li><li>Для каждого запроса начните с ячейки <code>hash(key) % size</code> и счетчика 1.</li><li>Пока ячейка занята другим ключом, переходите к следующей и увеличивайте счетчик.</li><li>Если в последней проверенной ячейке лежит искомый ключ, ответ равен счетчику, иначе <code>-1</code>.</li><li>Сверьтесь с первым примером из таблицы «Примеры»: программа должна напечатать ровно его вывод.</li></ol>
               </details>
-              <div class="checker" data-split data-file="t6_02_star_medium.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
-            <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
-            <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-          <h3>Задача со звездочкой 6.2. Самый длинный блок</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Найдите самый длинный блок подряд идущих занятых ячеек. Таблица закольцована: блок может заканчиваться в последней ячейке и продолжаться в первой. Выведите длину блока и номер его первой ячейки; если блоков одинаковой длины несколько, выберите блок с наименьшим номером первой ячейки.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>В первой строке размер таблицы <code>size</code>: степень двойки от 4 до 64. Во второй строке от 1 до 20 различных целых ключей от −1000 до 1000 через пробел. В таблице остается хотя бы одна пустая ячейка.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Два числа через пробел: длина самого длинного блока и номер его первой ячейки.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">8<br>4 12 20</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">3 4</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Ключи 4, 12 и 20 занимают ячейки 4, 5 и 6. Получается блок длины 3 с началом в ячейке 4.</p>
-                </div>
-                <div class="table-wrap">
-<table class="data tests"><caption>Примеры</caption>
-<thead><tr><th>Ввод</th><th>Вывод</th></tr></thead>
-<tbody>
-                <tr><td><pre>8
-4 12 20</pre></td><td><pre>3 4</pre></td></tr>
-                <tr><td><pre>8
-7 15</pre></td><td><pre>2 7</pre></td></tr>
-              </tbody>
-</table>
-</div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Линейное пробирование идет по соседним ячейкам. За последней ячейкой следует ячейка с номером ноль.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Начинайте блок с занятой ячейки, перед которой стоит пустая. Идите вперед по кругу, пока ячейки заняты, а номер ячейки считайте по остатку от деления на <code>size</code>.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_02_star_advanced.py">
-            <p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p>
-          </div>
+              <div class="checker" data-split data-file="t6_02_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>

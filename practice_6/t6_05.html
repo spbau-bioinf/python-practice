@@ -10,6 +10,8 @@
   <script src="theme.js"></script>
   <script src="data/practice.js"></script>
   <script src="data/t6_05.js"></script>
+  <script src="data/t6_05_anim.js"></script>
+  <script src="anim.js" defer></script>
   <script src="checker.js" defer></script>
   <script src="game.js" defer></script>
 </head>
@@ -24,7 +26,7 @@
         <li class="menu-sub"><a href="t6_02.html"><span class="menu-title"><span class="menu-code">02</span><span class="menu-name">Хеширование и ключи</span></span></a></li>
         <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
         <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Множество и его создание</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Операции над множествами</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Подмножество и проверка алфавита</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.1</span> <span class="anc-ex-title" data-variant="basic">Разные буквы</span><span class="anc-ex-title" data-variant="medium">Буквы по алфавиту</span><span class="anc-ex-title" data-variant="advanced">Есть ли повторы</span></span></a></li><li><a class="anc-ex" href="#ex-2" data-ex-link="ex-2"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.2</span> <span class="anc-ex-title" data-variant="basic">Пересечение</span><span class="anc-ex-title" data-variant="medium">Объединение и разность</span><span class="anc-ex-title" data-variant="advanced">Дополнение до границы</span></span></a></li><li><a class="anc-ex" href="#ex-3" data-ex-link="ex-3"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.3</span> <span class="anc-ex-title" data-variant="basic">Проверка алфавита</span><span class="anc-ex-title" data-variant="medium">Лишние буквы</span><span class="anc-ex-title" data-variant="advanced">Все ли нуклеотиды</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.5</span> <span class="anc-ex-title" data-variant="basic">Общие буквы</span><span class="anc-ex-title" data-variant="medium">Нет ли общих элементов</span><span class="anc-ex-title" data-variant="advanced">Дополнение набора</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Множество и его создание</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Операции над множествами</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> Подмножество и проверка алфавита</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.5.1</span> <span class="anc-ex-title" data-variant="basic">Общие буквы</span><span class="anc-ex-title" data-variant="medium">Только в одной</span><span class="anc-ex-title" data-variant="advanced">Два запуска</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.5</span> <span class="anc-ex-title" data-variant="basic">Лишние буквы</span><span class="anc-ex-title" data-variant="medium">Все четыре нуклеотида</span><span class="anc-ex-title" data-variant="advanced">Пары без общих букв</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
@@ -44,16 +46,23 @@
     <div class="page-body">
     <main class="content">
 
-      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Строить множество функцией <code>set()</code>, выполнять объединение, пересечение и разность, проверять алфавит последовательности подмножеством.</p>
+      <p class="goal-line"><span class="i i-target" aria-hidden="true"></span>Строить множества, выполнять над ними объединение, пересечение и разность и проверять, входит ли одно множество в другое.</p>
 
       <section class="subsection" id="s1">
         <h2>1. Множество и его создание</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>Иногда значения словаря не нужны вовсе: важно лишь, какие ключи есть. Чтобы узнать, какие буквы встречаются в последовательности <code>"GATTACA"</code>, можно построить словарь-счетчик и взять его ключи, но множество делает то же короче.</p>
-        <p class="definition"><span class="term">Множество</span> (тип <code>set</code>) — неупорядоченная коллекция различных хешируемых объектов.</p>
-        <p>Функция <code>set()</code> принимает итерируемый объект и строит множество из его элементов; элементы должны быть хешируемыми, поэтому <code>set([[1]])</code> вызывает <code>TypeError</code>.</p>
-        <p class="th-full">Внутри множество устроено как словарь без значений, на той же хеш-таблице (<a href="t6_02.html">страница 02</a>). Следствия: элементы обязаны быть хешируемыми, проверка вхождения очень быстрая, памяти уходит заметно больше, чем у списка, а порядок элементов ненадежен. Метод <code>add()</code> добавляет элемент, если его нет. Метод <code>discard()</code> удаляет элемент, а отсутствующий элемент молча пропускает; метод <code>remove()</code> в той же ситуации вызвал бы <code>KeyError</code>. Непустое множество можно записать литералом в фигурных скобках: <code>{"A", "T"}</code>. Пустое множество так записать нельзя: пустые скобки <code>{}</code> создают пустой словарь, поэтому пустое множество создают вызовом <code>set()</code>.</p>
+        <p>Иногда важно не сколько раз встречается элемент, а только есть ли он. Какие буквы встречаются в <code>"GATTACA"</code>? Ответ: A, C, G и T, без счетчиков. Для таких вопросов есть множество.</p>
+        <p class="definition"><span class="term">Множество</span> (тип <code>set</code>) хранит различные элементы без порядка. Элементы множества должны быть хешируемыми, как ключи словаря.</p>
+        <p>Функция <code>set()</code> строит множество из элементов строки, списка или другой коллекции, и каждый повтор остается один раз: <code>set("GATTACA")</code> дает множество из четырех букв. Непустое множество можно записать и в фигурных скобках: <code>{"A", "T"}</code>.</p>
+        <p class="rule">Пустое множество создают только вызовом <code>set()</code>. Пустые фигурные скобки <code>{}</code> дают пустой словарь.</p>
+        <p>Оператор <code>in</code> проверяет, есть ли элемент, а функция <code>len()</code> дает число элементов. Метод <code>add()</code> добавляет элемент; если элемент уже есть, множество не меняется. Метод <code>discard()</code> удаляет элемент, а отсутствующий пропускает без ошибки.</p>
+        <p>В каком порядке Python напечатает множество? Этот порядок не гарантирован и может не совпасть с порядком появления букв. Поэтому множество печатают через <code>sorted()</code>: <code>sorted(bases)</code> дает список элементов по возрастанию.</p>
+        <figure class="anim" data-anim="t6_05_s1">
+          <figcaption class="anim-title">Множество букв</figcaption>
+          <p class="anim-lede">Буквы <code>GATTACA</code> идут по одной: новая буква добавляется, повторная ничего не меняет.</p>
+        </figure>
+        <p class="th-full">Множество устроено как словарь без значений, на той же хеш-таблице, что на <a href="t6_02.html">странице 02</a>. Поэтому его элементы обязаны быть хешируемыми, а проверка <code>in</code> быстрая при любом размере. Метод <code>remove()</code> тоже удаляет элемент, но для отсутствующего, в отличие от <code>discard()</code>, останавливает программу ошибкой <code>KeyError</code>.</p>
 
         <div class="step step-see">Пример</div>
         <article class="example">
@@ -63,19 +72,17 @@
 <span class="ln">bases <span class="tok-op">=</span> <span class="tok-builtin">set</span>(seq)</span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq), <span class="tok-builtin">len</span>(bases))  <span class="tok-out"># → 7 4</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(bases))         <span class="tok-out"># → ['A', 'C', 'G', 'T']</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"U"</span> <span class="tok-kw">in</span> bases)          <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-str">"N"</span> <span class="tok-kw">in</span> bases)          <span class="tok-out"># → False</span></span>
 <span class="ln">bases.add(<span class="tok-str">"N"</span>)</span>
-<span class="ln">bases.discard(<span class="tok-str">"U"</span>)</span>
+<span class="ln">bases.add(<span class="tok-str">"A"</span>)</span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(bases))            <span class="tok-out"># → 5</span></span></code></pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>7 4
 ['A', 'C', 'G', 'T']
 False
 5</pre></div>
           </div>
-          <div class="analysis">
-            <p>Из семи букв осталось четыре различные. Множество печатается через <code>sorted()</code>, который возвращает список в алфавитном порядке. <code>add("N")</code> добавляет новый элемент, <code>discard("U")</code> молча пропускает отсутствующий.</p>
-          </div>
-          <script type="application/json" class="steps-data">{"file": "bases.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATTACA\"<\/span>", "bases <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(seq)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(seq), <span class=\"tok-builtin\">len<\/span>(bases))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(bases))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"U\"<\/span> <span class=\"tok-kw\">in<\/span> bases)          ", "bases.add(<span class=\"tok-str\">\"N\"<\/span>)", "bases.discard(<span class=\"tok-str\">\"U\"<\/span>)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(bases))            "], "columns": [], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATTACA\"<\/span>", "vars": [["seq", "\"GATTACA\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GATTACA\"."}, {"line": 2, "html": "bases <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATTACA\"<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", true]], "out": "", "row": null, "note": "Строка 2: bases = {'T', 'G', 'A', 'C'}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">7<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", false]], "out": "7 4\n", "row": null, "note": "Строка 3: печатается 7 4."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(bases))         ", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\n", "row": null, "note": "Строка 4: печатается ['A', 'C', 'G', 'T']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"U\"<\/span> <span class=\"tok-kw\">in<\/span> bases)          ", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 5: печатается False."}, {"line": 6, "html": "bases.add(<span class=\"tok-str\">\"N\"<\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", true]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 6: bases = {'A', 'C', 'N', 'T', 'G'}."}, {"line": 7, "html": "bases.discard(<span class=\"tok-str\">\"U\"<\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 7."}, {"line": 8, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n5\n", "row": null, "note": "Строка 8: печатается 5."}, {"line": 0, "html": "", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n5\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <div class="analysis"><p>В строке 7 букв, а разных среди них 4. <code>sorted()</code> печатает их по алфавиту. После <code>add("N")</code> элементов 5; <code>add("A")</code> ничего не меняет: <code>A</code> уже есть.</p></div>
+          <script type="application/json" class="steps-data">{"file": "bases.py", "code": ["seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATTACA\"<\/span>", "bases <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(seq)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(seq), <span class=\"tok-builtin\">len<\/span>(bases))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(bases))         ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"N\"<\/span> <span class=\"tok-kw\">in<\/span> bases)          ", "bases.add(<span class=\"tok-str\">\"N\"<\/span>)", "bases.add(<span class=\"tok-str\">\"A\"<\/span>)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">len<\/span>(bases))            "], "columns": [], "steps": [{"line": 1, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATTACA\"<\/span>", "vars": [["seq", "\"GATTACA\"", true]], "out": "", "row": null, "note": "Строка 1: seq = \"GATTACA\"."}, {"line": 2, "html": "bases <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATTACA\"<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", true]], "out": "", "row": null, "note": "Строка 2: bases = {'T', 'G', 'A', 'C'}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">7<\/span><\/span>, <span class=\"tv\"><span class=\"tok-num\">4<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", false]], "out": "7 4\n", "row": null, "note": "Строка 3: печатается 7 4."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(bases))         ", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\n", "row": null, "note": "Строка 4: печатается ['A', 'C', 'G', 'T']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-str\">\"N\"<\/span> <span class=\"tok-kw\">in<\/span> bases)          ", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'T', 'G', 'A', 'C'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 5: печатается False."}, {"line": 6, "html": "bases.add(<span class=\"tok-str\">\"N\"<\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", true]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 6: bases = {'A', 'C', 'N', 'T', 'G'}."}, {"line": 7, "html": "bases.add(<span class=\"tok-str\">\"A\"<\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n", "row": null, "note": "Строка 7."}, {"line": 8, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tv\"><span class=\"tok-num\">5<\/span><\/span>)", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n5\n", "row": null, "note": "Строка 8: печатается 5."}, {"line": 0, "html": "", "vars": [["seq", "\"GATTACA\"", false], ["bases", "{'A', 'C', 'N', 'T', 'G'}", false]], "out": "7 4\n['A', 'C', 'G', 'T']\nFalse\n5\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="mistake th-full">
           <p class="mistake-caption">Типичная ошибка: пустое множество через {}</p>
@@ -83,17 +90,71 @@ False
 <span class="ln">bases.add(<span class="tok-str">"A"</span>)</span></code></pre></div>
           <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">bases <span class="tok-op">=</span> <span class="tok-builtin">set</span>()</span>
 <span class="ln">bases.add(<span class="tok-str">"A"</span>)</span></code></pre></div>
-          <p>Пустые скобки <code>{}</code> создают пустой словарь, и вызов <code>add()</code> поднимает <code>AttributeError</code>. Пустое множество создают только вызовом <code>set()</code>.</p>
+          <p>Пустые скобки <code>{}</code> создают словарь, у словаря нет метода <code>add()</code>, и программа останавливается ошибкой <code>AttributeError</code>.</p>
         </div>
 
         <div class="step step-try">Практика</div>
         <div class="try-block">
-          <p>Василиса проверяет буквы последовательности. Замените <code>"GATTACA"</code> на <code>"GATTACAG"</code> и запустите: число разных букв не должно измениться.</p>
+          <p>Замените <code>"GATTACA"</code> на <code>"GATTACAG"</code> и запустите: число разных букв не должно измениться.</p>
           <div class="run-pair">
             <div class="code-block"><span class="code-label">bases.py</span><pre><code><span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATTACA"</span></span>
 <span class="ln">bases <span class="tok-op">=</span> <span class="tok-builtin">set</span>(seq)</span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">len</span>(seq), <span class="tok-builtin">len</span>(bases))  <span class="tok-out"># → 7 4</span></span></code></pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>7 4</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection" id="s2">
+        <h2>2. Операции над множествами</h2>
+
+        <div class="step step-learn">Теория</div>
+        <p>Как найти буквы, общие для двух последовательностей? Или буквы, которые есть только в одной из них? Для таких вопросов над множествами выполняют операции из математики. Их записывают знаками, и каждая операция строит новое множество, а исходные не меняет.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th>Запись</th><th>Название</th><th>Какие элементы</th></tr></thead><tbody><tr><td><code>a | b</code></td><td>объединение</td><td>есть хотя бы в одном</td></tr><tr><td><code>a &amp; b</code></td><td>пересечение</td><td>есть в обоих</td></tr><tr><td><code>a - b</code></td><td>разность</td><td>есть в <code>a</code>, нет в <code>b</code></td></tr><tr><td><code>a ^ b</code></td><td>симметрическая разность</td><td>есть ровно в одном</td></tr></tbody></table></div>
+        <p class="rule">Разность зависит от порядка: если множества <code>a</code> и <code>b</code> не равны, то <code>a - b</code> и <code>b - a</code> дают разные множества. Объединение, пересечение и симметрическая разность от порядка не зависят.</p>
+        <figure class="anim" data-anim="t6_05_s2">
+          <figcaption class="anim-title">Четыре операции над множествами</figcaption>
+          <p class="anim-lede">Одни и те же два множества и четыре операции: синие элементы попадают в результат.</p>
+        </figure>
+        <p class="th-full">У каждой операции есть метод: <code>union()</code>, <code>intersection()</code>, <code>difference()</code>, <code>symmetric_difference()</code>. Метод принимает любую коллекцию, например список, а оператору нужны два множества: <code>{1, 2} | [3]</code> останавливает программу ошибкой <code>TypeError</code>.</p>
+
+        <div class="step step-see">Пример</div>
+        <article class="example">
+          <h3>Пример 2. Операции над множествами</h3>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">sets.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"GATTACA"</span>)</span>
+<span class="ln">b <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"TTGN"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(a <span class="tok-op">|</span> b))  <span class="tok-out"># → ['A', 'C', 'G', 'N', 'T']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(a <span class="tok-op">&amp;</span> b))  <span class="tok-out"># → ['G', 'T']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(a <span class="tok-op">-</span> b))  <span class="tok-out"># → ['A', 'C']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(b <span class="tok-op">-</span> a))  <span class="tok-out"># → ['N']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(a <span class="tok-op">^</span> b))  <span class="tok-out"># → ['A', 'C', 'N']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['A', 'C', 'G', 'N', 'T']
+['G', 'T']
+['A', 'C']
+['N']
+['A', 'C', 'N']</pre></div>
+          </div>
+          <div class="analysis"><p>Общие буквы — G и T. Только в первой строке — A и C, только во второй — N; вместе они дают симметрическую разность.</p></div>
+          <script type="application/json" class="steps-data">{"file": "sets.py", "code": ["a <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GATTACA\"<\/span>)", "b <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"TTGN\"<\/span>)", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a | b))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a &amp; b))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a <span class=\"tok-op\">-<\/span> b))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(b <span class=\"tok-op\">-<\/span> a))  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a ^ b))  "], "columns": [], "steps": [{"line": 1, "html": "a <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GATTACA\"<\/span>)", "vars": [["a", "{'T', 'G', 'A', 'C'}", true]], "out": "", "row": null, "note": "Строка 1: a = {'T', 'G', 'A', 'C'}."}, {"line": 2, "html": "b <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"TTGN\"<\/span>)", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", true]], "out": "", "row": null, "note": "Строка 2: b = {'T', 'G', 'N'}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a | b))  ", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", false]], "out": "['A', 'C', 'G', 'N', 'T']\n", "row": null, "note": "Строка 3: печатается ['A', 'C', 'G', 'N', 'T']."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a &amp; b))  ", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", false]], "out": "['A', 'C', 'G', 'N', 'T']\n['G', 'T']\n", "row": null, "note": "Строка 4: печатается ['G', 'T']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a <span class=\"tok-op\">-<\/span> b))  ", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", false]], "out": "['A', 'C', 'G', 'N', 'T']\n['G', 'T']\n['A', 'C']\n", "row": null, "note": "Строка 5: печатается ['A', 'C']."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(b <span class=\"tok-op\">-<\/span> a))  ", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", false]], "out": "['A', 'C', 'G', 'N', 'T']\n['G', 'T']\n['A', 'C']\n['N']\n", "row": null, "note": "Строка 6: печатается ['N']."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(a ^ b))  ", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", false]], "out": "['A', 'C', 'G', 'N', 'T']\n['G', 'T']\n['A', 'C']\n['N']\n['A', 'C', 'N']\n", "row": null, "note": "Строка 7: печатается ['A', 'C', 'N']."}, {"line": 0, "html": "", "vars": [["a", "{'T', 'G', 'A', 'C'}", false], ["b", "{'T', 'G', 'N'}", false]], "out": "['A', 'C', 'G', 'N', 'T']\n['G', 'T']\n['A', 'C']\n['N']\n['A', 'C', 'N']\n", "row": null, "note": "Программа закончилась."}]}</script>
+        </article>
+        <div class="mistake th-full">
+          <p class="mistake-caption">Типичная ошибка: оператор со списком</p>
+          <div class="code-block code-wrong"><span class="code-label">Неверно: список как операнд</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> [<span class="tok-num">3</span>, <span class="tok-num">4</span>])</span></code></pre></div>
+          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(a.union([<span class="tok-num">3</span>, <span class="tok-num">4</span>])))  <span class="tok-out"># → [1, 2, 3, 4]</span></span></code></pre></div>
+          <p>Оператору <code>|</code> нужны два множества, со списком программа останавливается ошибкой <code>TypeError</code>. Метод <code>union()</code> принимает и список.</p>
+        </div>
+
+        <div class="step step-try">Практика</div>
+        <div class="try-block">
+          <p>Замените <code>"TTGN"</code> на <code>"CCCC"</code> и запустите: пересечение должно стать <code>['C']</code>.</p>
+          <div class="run-pair">
+            <div class="code-block"><span class="code-label">sets.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"GATTACA"</span>)</span>
+<span class="ln">b <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"TTGN"</span>)</span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(a <span class="tok-op">&amp;</span> b))  <span class="tok-out"># → ['G', 'T']</span></span></code></pre></div>
+            <div class="output-block"><span class="output-label">Вывод</span><pre>['G', 'T']</pre></div>
           </div>
         </div>
 
@@ -107,11 +168,11 @@ False
           <div class="tab-panel" id="ex-1-basic" role="tabpanel" aria-labelledby="ex-1-tab-basic">
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-basic-task" data-level="exercise" data-variant="basic">
-              <h3>Упражнение 6.5.1. Разные буквы</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте множество функцией <code>set()</code>. Выведите число различных букв в строке.</p></div>
+              <h3>Упражнение 6.5.1. Общие буквы</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите по алфавиту через пробел буквы, которые есть в обеих последовательностях. Если общих букв нет, выведите пустую строку.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Число различных букв.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: две последовательности нуклеотидов из букв A, C, G, T и, возможно, N. Длина каждой от 1 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Буквы через пробел по алфавиту или пустая строка.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -120,28 +181,37 @@ False
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA</code>
+                      <code class="we-seq">GATTACA<br>TTGN</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">4</span></code>
+                      <code class="we-seq"><span class="we-hl">G T</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Из <code>GATTACA</code> в множество попадают четыре буквы: <code>A</code>, <code>C</code>, <code>G</code> и <code>T</code>.</p>
+                  <p class="we-note">В <code>GATTACA</code> есть буквы A, C, G, T, в <code>TTGN</code> буквы G, N, T. Общие буквы G и T.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>4</pre></td></tr>
-                <tr><td><pre>AAA</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>GATTACA
+TTGN</pre></td><td><pre>G T</pre></td></tr>
+                <tr><td><pre>AAA
+CCC</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>В множестве каждый элемент представлен один раз. У множества нет алфавитного или числового порядка.</p>
+                <p>Набор букв последовательности показывает, какие нуклеотиды в ней есть, без учета количества. Сравнить наборы двух прочтений помогают операции над множествами.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Буква N</strong> — нуклеотид, который прибор не смог определить.</li>
+                  <li><strong>Функция <code>set()</code></strong> — множество различных элементов; <code>set(seq)</code> дает множество букв строки.</li>
+                  <li><strong>Оператор <code>&</code></strong> — пересечение: элементы, которые есть в обоих множествах.</li>
+                  <li><strong>Функция <code>sorted()</code></strong> — новый список элементов множества по возрастанию; множество печатают через нее, потому что своего порядка у него нет.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте множество из символов строки и посчитайте элементы.</li></ol>
+                <ol class="hint-steps"><li>Множество букв строки дает <code>set(seq)</code>. Постройте множества обеих строк.</li><li>Общие буквы дает пересечение <code>&amp;</code>.</li><li>Порядок элементов множества не гарантирован, поэтому напечатайте <code>" ".join(sorted(...))</code>.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> и <code>TTGN</code> программа печатает <code>G T</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -149,11 +219,11 @@ False
           <div class="tab-panel" id="ex-1-medium" role="tabpanel" aria-labelledby="ex-1-tab-medium">
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
-              <h3>Упражнение 6.5.1. Буквы по алфавиту</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв через пробел. Постройте множество функцией <code>set()</code> и выведите его элементы в алфавитном порядке через пробел, отсортировав функцией <code>sorted()</code>.</p></div>
+              <h3>Упражнение 6.5.1. Только в одной</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите в первой строке буквы, которые есть только в первой последовательности, а во второй строке буквы, которые есть только во второй. Буквы в строке идут по алфавиту через пробел. Если таких букв нет, строка пустая.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 букв через пробел; буквы могут повторяться.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Различные буквы в алфавитном порядке через пробел.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: две последовательности нуклеотидов из букв A, C, G, T и, возможно, N. Длина каждой от 1 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки букв.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -162,28 +232,39 @@ False
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">G A T</code>
+                      <code class="we-seq">GATTACA<br>TTGN</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">A G T</span></code>
+                      <code class="we-seq"><span class="we-hl">A C<br>N</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Множество содержит <code>G</code>, <code>A</code> и <code>T</code>. После сортировки порядок становится <code>A G T</code>.</p>
+                  <p class="we-note">Только в <code>GATTACA</code> есть буквы A и C, только в <code>TTGN</code> буква N.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>G A T</pre></td><td><pre>A G T</pre></td></tr>
-                <tr><td><pre>A A A</pre></td><td><pre>A</pre></td></tr>
+                <tr><td><pre>GATTACA
+TTGN</pre></td><td><pre>A C
+N</pre></td></tr>
+                <tr><td><pre>ACGT
+TGCA</pre></td><td><pre><span class="io-empty">(пустая строка)</span>
+<span class="io-empty">(пустая строка)</span></pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>В множестве каждый элемент представлен один раз. У множества нет алфавитного или числового порядка.</p>
+                <p>Набор букв последовательности показывает, какие нуклеотиды в ней есть, без учета количества. Разность множеств несимметрична, поэтому для двух строк вывода нужны две разности.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Буква N</strong> — нуклеотид, который прибор не смог определить.</li>
+                  <li><strong>Функция <code>set()</code></strong> — множество различных элементов; <code>set(seq)</code> дает множество букв строки.</li>
+                  <li><strong>Оператор <code>-</code></strong> — разность: элементы первого множества, которых нет во втором.</li>
+                  <li><strong>Функция <code>sorted()</code></strong> — новый список элементов множества по возрастанию; множество печатают через нее, потому что своего порядка у него нет.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Разбейте строку по пробелам, удалите повторы и отсортируйте результат.</li></ol>
+                <ol class="hint-steps"><li>Постройте множества букв обеих строк.</li><li>Буквы только первой строки дает разность <code>first - second</code>, буквы только второй дает <code>second - first</code>: порядок важен.</li><li>Каждую разность напечатайте через <code>sorted()</code>.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> и <code>TTGN</code> программа печатает <code>A C</code> и <code>N</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -191,11 +272,11 @@ False
           <div class="tab-panel" id="ex-1-advanced" role="tabpanel" aria-labelledby="ex-1-tab-advanced">
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
-              <h3>Упражнение 6.5.1. Есть ли повторы</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв и постройте множество функцией <code>set()</code>. Выведите слово «да», если в строке есть повторяющиеся буквы, иначе «нет».</p></div>
+              <h3>Упражнение 6.5.1. Два запуска</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите в первой строке по алфавиту через пробел образцы, которые есть в обоих запусках. Во второй строке выведите число образцов, которые есть ровно в одном запуске. Если общих образцов нет, первая строка пустая.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: названия образцов первого и второго запуска прибора через пробел, от 1 до 100 названий в строке; в одной строке названия могут повторяться.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: общие образцы и число.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -204,226 +285,41 @@ False
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA</code>
+                      <code class="we-seq">s1 s2 s3 s2<br>s3 s4 s2</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">да</span></code>
+                      <code class="we-seq"><span class="we-hl">s2 s3<br>2</span></code>
                     </div>
                   </div>
-                  <p class="we-note">В строке семь букв, а различных букв четыре. Значит, повторы есть.</p>
+                  <p class="we-note">В обоих запусках есть <code>s2</code> и <code>s3</code>. Только в одном запуске есть <code>s1</code> и <code>s4</code>, то есть два образца. Повтор <code>s2</code> в первом запуске считается один раз.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA</pre></td><td><pre>да</pre></td></tr>
-                <tr><td><pre>ACGT</pre></td><td><pre>нет</pre></td></tr>
+                <tr><td><pre>s1 s2 s3 s2
+s3 s4 s2</pre></td><td><pre>s2 s3
+2</pre></td></tr>
+                <tr><td><pre>a b
+c d</pre></td><td><pre><span class="io-empty">(пустая строка)</span>
+4</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>В множестве каждый элемент представлен один раз. У множества нет алфавитного или числового порядка.</p>
+                <p>За один запуск прибор читает сразу много образцов. Образцы, которые не прочитались, ставят в следующий запуск, поэтому одно название может встретиться в обоих.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Запуск</strong> — одна работа прибора-секвенатора, за которую читают сразу много образцов.</li>
+                  <li><strong>Запись <code>set(input().split())</code></strong> — множество различных слов строки.</li>
+                  <li><strong>Оператор <code>&</code></strong> — пересечение: элементы, которые есть в обоих множествах.</li>
+                  <li><strong>Оператор <code>^</code></strong> — симметрическая разность: элементы, которые есть ровно в одном множестве.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сравните длину строки с длиной множества.</li></ol>
+                <ol class="hint-steps"><li>Постройте множества названий обоих запусков: <code>set(input().split())</code>. Повторы внутри строки при этом исчезнут.</li><li>Общие образцы дает пересечение <code>&amp;</code>, напечатайте их через <code>sorted()</code>.</li><li>Образцы ровно одного запуска дает симметрическая разность <code>^</code>; напечатайте ее размер.</li><li>Сверьтесь с примером: для ввода <code>s1 s2 s3 s2</code> и <code>s3 s4 s2</code> программа печатает <code>s2 s3</code> и <code>2</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="subsection" id="s2">
-        <h2>2. Операции над множествами</h2>
-
-        <div class="step step-learn">Теория</div>
-        <p>Множества поддерживают четыре операции из математики, и записываются они знаками. Объединение <code>A | B</code> содержит элементы, которые есть хотя бы в одном множестве; пересечение <code>A &amp; B</code> содержит общие элементы; разность <code>A - B</code> содержит элементы A, которых нет в B; симметрическая разность <code>A ^ B</code> содержит элементы, которые есть ровно в одном из двух. Каждая операция строит новое множество, исходные не меняются.</p>
-        <p>Если поменять множества местами, результат разности может измениться: при равных множествах обе разности пусты, а в остальных случаях <code>A - B</code> и <code>B - A</code> различаются. Дополнение до известного набора получают той же разностью, например <code>set(range(1, 11)) - A</code>.</p>
-        <p class="th-full">У каждой операции есть и метод: <code>union()</code>, <code>intersection()</code>, <code>difference()</code>, <code>symmetric_difference()</code>. Методы принимают аргументом любую коллекцию, по которой можно пройти циклом <code>for</code>, например список или строку, а операторы требуют, чтобы оба операнда были множествами.</p>
-
-        <div class="step step-see">Пример</div>
-        <article class="example">
-          <h3>Пример 2. Операции над множествами</h3>
-          <div class="run-pair">
-            <div class="code-block"><span class="code-label">sets.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>}</span>
-<span class="ln">b <span class="tok-op">=</span> {<span class="tok-num">2</span>, <span class="tok-num">8</span>, <span class="tok-num">5</span>, <span class="tok-num">10</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> b)  <span class="tok-out"># → {1, 2, 3, 4, 5, 8, 10}</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">&amp;</span> b)  <span class="tok-out"># → {2, 5}</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">-</span> b)  <span class="tok-out"># → {1, 3, 4}</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(b <span class="tok-op">-</span> a)  <span class="tok-out"># → {8, 10}</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">^</span> b)  <span class="tok-out"># → {1, 3, 4, 8, 10}</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>{1, 2, 3, 4, 5, 8, 10}
-{2, 5}
-{1, 3, 4}
-{8, 10}
-{1, 3, 4, 8, 10}</pre></div>
-          </div>
-          <div class="analysis">
-            <p>Если поменять множества местами, результат разности может измениться: при равных множествах обе разности пусты, а в остальных случаях <code>a - b</code> и <code>b - a</code> различаются.</p>
-          </div>
-          <script type="application/json" class="steps-data">{"file": "sets.py", "code": ["a <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">4<\/span>, <span class=\"tok-num\">5<\/span>}", "b <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">5<\/span>, <span class=\"tok-num\">10<\/span>}", "<span class=\"tok-builtin\">print<\/span>(a | b)  ", "<span class=\"tok-builtin\">print<\/span>(a &amp; b)  ", "<span class=\"tok-builtin\">print<\/span>(a <span class=\"tok-op\">-<\/span> b)  ", "<span class=\"tok-builtin\">print<\/span>(b <span class=\"tok-op\">-<\/span> a)  ", "<span class=\"tok-builtin\">print<\/span>(a ^ b)  "], "columns": [], "steps": [{"line": 1, "html": "a <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">1<\/span>, <span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">3<\/span>, <span class=\"tok-num\">4<\/span>, <span class=\"tok-num\">5<\/span>}", "vars": [["a", "{1, 2, 3, 4, 5}", true]], "out": "", "row": null, "note": "Строка 1: a = {1, 2, 3, 4, 5}."}, {"line": 2, "html": "b <span class=\"tok-op\">=<\/span> {<span class=\"tok-num\">2<\/span>, <span class=\"tok-num\">8<\/span>, <span class=\"tok-num\">5<\/span>, <span class=\"tok-num\">10<\/span>}", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", true]], "out": "", "row": null, "note": "Строка 2: b = {8, 2, 10, 5}."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(a | b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n", "row": null, "note": "Строка 3: печатается {1, 2, 3, 4, 5, 8, 10}."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(a &amp; b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n", "row": null, "note": "Строка 4: печатается {2, 5}."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(a <span class=\"tok-op\">-<\/span> b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n", "row": null, "note": "Строка 5: печатается {1, 3, 4}."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(b <span class=\"tok-op\">-<\/span> a)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n{8, 10}\n", "row": null, "note": "Строка 6: печатается {8, 10}."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(a ^ b)  ", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n{8, 10}\n{1, 3, 4, 8, 10}\n", "row": null, "note": "Строка 7: печатается {1, 3, 4, 8, 10}."}, {"line": 0, "html": "", "vars": [["a", "{1, 2, 3, 4, 5}", false], ["b", "{8, 2, 10, 5}", false]], "out": "{1, 2, 3, 4, 5, 8, 10}\n{2, 5}\n{1, 3, 4}\n{8, 10}\n{1, 3, 4, 8, 10}\n", "row": null, "note": "Программа закончилась."}]}</script>
-        </article>
-        <div class="mistake th-full">
-          <p class="mistake-caption">Типичная ошибка: оператор со списком</p>
-          <div class="code-block code-wrong"><span class="code-label">Неверно: список как операнд</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> [<span class="tok-num">3</span>, <span class="tok-num">4</span>])</span></code></pre></div>
-          <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(a.union([<span class="tok-num">3</span>, <span class="tok-num">4</span>]))  <span class="tok-out"># → {1, 2, 3, 4}</span></span></code></pre></div>
-          <p>Оператор <code>|</code> требует, чтобы оба операнда были множествами, и со списком поднимает <code>TypeError</code>. Метод <code>union()</code> принимает любую коллекцию, по которой можно пройти циклом.</p>
-        </div>
-
-        <div class="step step-try">Практика</div>
-        <div class="try-block">
-          <p>Прохор сравнивает наборы. Добавьте строку, которая печатает пересечение <code>a &amp; b</code>, и запустите.</p>
-          <div class="run-pair">
-            <div class="code-block"><span class="code-label">sets.py</span><pre><code><span class="ln">a <span class="tok-op">=</span> {<span class="tok-num">1</span>, <span class="tok-num">2</span>, <span class="tok-num">3</span>, <span class="tok-num">4</span>, <span class="tok-num">5</span>}</span>
-<span class="ln">b <span class="tok-op">=</span> {<span class="tok-num">2</span>, <span class="tok-num">8</span>, <span class="tok-num">5</span>, <span class="tok-num">10</span>}</span>
-<span class="ln"><span class="tok-builtin">print</span>(a <span class="tok-op">|</span> b)  <span class="tok-out"># → {1, 2, 3, 4, 5, 8, 10}</span></span></code></pre></div>
-            <div class="output-block"><span class="output-label">Вывод</span><pre>{1, 2, 3, 4, 5, 8, 10}</pre></div>
-          </div>
-        </div>
-
-        <div class="step step-task">Задача</div>
-        <div class="level-tabs ex-variants" id="ex-2" data-exercise="ex-2">
-          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
-            <button class="tab" type="button" role="tab" id="ex-2-tab-basic" aria-controls="ex-2-basic" data-level="basic" data-task="t6_05_2_basic.py">Базовый</button>
-            <button class="tab" type="button" role="tab" id="ex-2-tab-medium" aria-controls="ex-2-medium" data-level="medium" data-task="t6_05_2_medium.py">Средний</button>
-            <button class="tab" type="button" role="tab" id="ex-2-tab-advanced" aria-controls="ex-2-advanced" data-level="advanced" data-task="t6_05_2_advanced.py">Продвинутый</button>
-          </div>
-          <div class="tab-panel" id="ex-2-basic" role="tabpanel" aria-labelledby="ex-2-tab-basic">
-            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
-              <h3>Упражнение 6.5.2. Пересечение</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте два множества функцией <code>set()</code>. Найдите пересечение оператором <code>&amp;</code>, отсортируйте результат по возрастанию и выведите элементы через пробел; если пересечение пустое, выведите пустую строку.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Общие числа в порядке возрастания через пробел или пустая строка.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">1 2 3 4 5<br>2 8 5 10</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">2 5</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Числа 2 и 5 есть в обоих наборах. Других общих чисел нет.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>1 2 3 4 5
-2 8 5 10</pre></td><td><pre>2 5</pre></td></tr>
-                <tr><td><pre>1 2
-3 4</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Операции над множествами различают общие элементы, все элементы и элементы, оставшиеся после исключения.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Найдите пересечение и отсортируйте числа по возрастанию.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_05_2_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-2-medium" role="tabpanel" aria-labelledby="ex-2-tab-medium">
-            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
-              <h3>Упражнение 6.5.2. Объединение и разность</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте два множества функцией <code>set()</code>. Выведите объединение, найденное оператором <code>|</code>, и разность первого со вторым, найденную оператором <code>-</code>, каждое в своей строке; в каждой строке выведите элементы в порядке возрастания через пробел.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Две строки: объединение и разность в порядке возрастания через пробел.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">1 2 3<br>2 3 4</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">1 2 3 4<br>1</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">В объединение входят 1, 2, 3 и 4. Только в первом наборе есть 1.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>1 2 3
-2 3 4</pre></td><td><pre>1 2 3 4
-1</pre></td></tr>
-                <tr><td><pre>7
-8</pre></td><td><pre>7 8
-7</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Операции над множествами различают общие элементы, все элементы и элементы, оставшиеся после исключения.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Вычислите объединение и разность первого набора со вторым отдельно.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_05_2_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-2-advanced" role="tabpanel" aria-labelledby="ex-2-tab-advanced">
-            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
-              <h3>Упражнение 6.5.2. Дополнение до границы</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из целых чисел первого набора через пробел, строку из целых чисел второго и число <code>limit</code>. Постройте два множества функцией <code>set()</code> и выведите числа от 1 до <code>limit</code>, которых нет ни в одном из двух наборов. Объединение найдите оператором <code>|</code>, разность — оператором <code>-</code>. Выведите числа по возрастанию через пробел; если дополнение пустое, выведите пустую строку.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Три строки: 1–20 целых чисел через пробел, 1–20 целых чисел через пробел и число <code>limit</code> от 1 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Числа от 1 до <code>limit</code>, которых нет в объединении, через пробел, или пустая строка.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">1 2 3<br>2 8 5 10<br>10</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">4 6 7 9</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Объединение содержит <code>1, 2, 3, 5, 8, 10</code>. Из чисел от 1 до 10 остаются <code>4, 6, 7, 9</code>.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>1 2 3
-2 8 5 10
-10</pre></td><td><pre>4 6 7 9</pre></td></tr>
-                <tr><td><pre>1 2 3
-3 4
-4</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Операции над множествами различают общие элементы, все элементы и элементы, оставшиеся после исключения.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Создайте множество всех чисел от 1 до границы включительно, затем исключите объединение.</li><li>Множество чисел от 1 до <code>limit</code> включительно можно записать как <code>set(range(1, limit + 1))</code>.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_05_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
           </div>
         </div>
@@ -433,9 +329,10 @@ False
         <h2>3. Подмножество и проверка алфавита</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>Оператор <code>&lt;=</code> для множеств проверяет, является ли первое множество подмножеством второго, то есть входят ли все его элементы во второе. Вопрос «состоит ли строка только из заданных букв» сводится к одной строке: <code>set(строка) &lt;= set(алфавит)</code>.</p>
-        <p>Разность с алфавитом сразу показывает лишние буквы: <code>set(seq) - set("ACGT")</code>. Буква N обозначает неизвестный нуклеотид, поэтому последовательность с буквой N не проходит проверку алфавита.</p>
-        <p class="th-full">Тот же результат дает включение множества <code>{b for b in seq if b not in dna}</code>: оно записывается в фигурных скобках, как словарное, но без двоеточия — одно выражение на элемент. Обычное множество изменяемо, поэтому не может быть ключом словаря; неизменяемое множество <code>frozenset</code> хешируемо и годится в ключи. Например, коды неоднозначности нуклеотидов IUPAC обозначают наборы: W означает A или T, S означает C или G, и словарь с ключами <code>frozenset("AT")</code> и <code>frozenset("CG")</code> находит код по паре букв.</p>
+        <p>Состоит ли строка только из букв A, C, G и T? Вопрос сводится к тому, входит ли множество букв строки в множество <code>{"A", "C", "G", "T"}</code> целиком.</p>
+        <p>Если каждый элемент множества <code>a</code> есть в множестве <code>b</code>, то <code>a</code> называют подмножеством <code>b</code>. Проверяет это оператор <code>&lt;=</code>: для строки из правильных букв <code>set(seq) &lt;= set("ACGT")</code> дает <code>True</code>.</p>
+        <p>Разность с алфавитом показывает лишние буквы: <code>set(seq) - set("ACGT")</code>. Если разность пустая, лишних букв нет. Метод <code>isdisjoint()</code> отвечает на другой вопрос, нет ли у двух множеств ни одного общего элемента: <code>a.isdisjoint(b)</code> дает <code>True</code>, если пересечение пустое.</p>
+        <p class="th-full">Множество, как и список, можно построить включением, только в фигурных скобках: <code>{base for base in seq if base != "N"}</code>. Обычное множество изменяемо, поэтому оно не может быть ключом словаря или элементом другого множества. Неизменяемый вариант <code>frozenset</code> хешируем и годится в ключи.</p>
 
         <div class="step step-see">Пример</div>
         <article class="example">
@@ -443,171 +340,33 @@ False
           <div class="run-pair">
             <div class="code-block"><span class="code-label">dna.py</span><pre><code><span class="ln">dna <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"ACGT"</span>)</span>
 <span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATNACA"</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)    <span class="tok-out"># → False</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">-</span> dna)     <span class="tok-out"># → {'N'}</span></span>
-<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(<span class="tok-str">"GAT"</span>) <span class="tok-op">&lt;=</span> dna)  <span class="tok-out"># → True</span></span>
-<span class="ln">bad <span class="tok-op">=</span> {b <span class="tok-kw">for</span> b <span class="tok-kw">in</span> seq <span class="tok-kw">if</span> b <span class="tok-kw">not</span> <span class="tok-kw">in</span> dna}</span>
-<span class="ln"><span class="tok-builtin">print</span>(bad)                <span class="tok-out"># → {'N'}</span></span></code></pre></div>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)                  <span class="tok-out"># → False</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">sorted</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">-</span> dna))           <span class="tok-out"># → ['N']</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(<span class="tok-str">"GAT"</span>) <span class="tok-op">&lt;=</span> dna)                <span class="tok-out"># → True</span></span>
+<span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(<span class="tok-str">"AT"</span>).isdisjoint(<span class="tok-builtin">set</span>(<span class="tok-str">"CG"</span>)))  <span class="tok-out"># → True</span></span></code></pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>False
-{'N'}
+['N']
 True
-{'N'}</pre></div>
+True</pre></div>
           </div>
-          <div class="analysis">
-            <p>Последовательность содержит букву N, поэтому проверка подмножества дает <code>False</code>, а разность с алфавитом показывает лишнюю букву. Последние две строки делают то же включением множества.</p>
-          </div>
-          <script type="application/json" class="steps-data">{"file": "dna.py", "code": ["dna <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"ACGT\"<\/span>)", "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATNACA\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(seq) <span class=\"tok-op\">&lt;=<\/span> dna)    ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(seq) <span class=\"tok-op\">-<\/span> dna)     ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GAT\"<\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)  ", "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> seq <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "<span class=\"tok-builtin\">print<\/span>(bad)                "], "columns": [], "steps": [{"line": 1, "html": "dna <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"ACGT\"<\/span>)", "vars": [["dna", "{'T', 'G', 'A', 'C'}", true]], "out": "", "row": null, "note": "Строка 1: dna = {'T', 'G', 'A', 'C'}."}, {"line": 2, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATNACA\"<\/span>", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", true]], "out": "", "row": null, "note": "Строка 2: seq = \"GATNACA\"."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span>) <span class=\"tok-op\">-<\/span> dna)", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n{'N'}\n", "row": null, "note": "Строка 4: печатается {'N'}."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GAT\"<\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)  ", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"G\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"G\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"A\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"T\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"T\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"N\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"N\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"A\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"C\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"C\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b (во включении)", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b (во включении) = \"A\"."}, {"line": 6, "html": "bad <span class=\"tok-op\">=<\/span> {b <span class=\"tok-kw\">for<\/span> b <span class=\"tok-kw\">in<\/span> <span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span> <span class=\"tok-kw\">if<\/span> b <span class=\"tok-kw\">not<\/span> <span class=\"tok-kw\">in<\/span> dna}", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["b", "\"A\"", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 6: b = \"A\"."}, {"line": 0, "html": "<span class=\"tok-builtin\">print<\/span>(bad)                ", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["bad", "{'N'}", true]], "out": "False\n{'N'}\nTrue\n", "row": null, "note": "Строка 0: bad = {'N'}."}, {"line": 7, "html": "<span class=\"tok-builtin\">print<\/span>(bad)                ", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["bad", "{'N'}", false]], "out": "False\n{'N'}\nTrue\n{'N'}\n", "row": null, "note": "Строка 7: печатается {'N'}."}, {"line": 0, "html": "", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false], ["bad", "{'N'}", false]], "out": "False\n{'N'}\nTrue\n{'N'}\n", "row": null, "note": "Программа закончилась."}]}</script>
+          <div class="analysis"><p>В <code>GATNACA</code> есть буква N, поэтому строка не проходит проверку, а разность показывает именно N. <code>"GAT"</code> проходит: лишних букв нет, хотя C отсутствует. У <code>AT</code> и <code>CG</code> общих букв нет.</p></div>
+          <script type="application/json" class="steps-data">{"file": "dna.py", "code": ["dna <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"ACGT\"<\/span>)", "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATNACA\"<\/span>", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(seq) <span class=\"tok-op\">&lt;=<\/span> dna)                  ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(<span class=\"tok-builtin\">set<\/span>(seq) <span class=\"tok-op\">-<\/span> dna))           ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GAT\"<\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)                ", "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"AT\"<\/span>).isdisjoint(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"CG\"<\/span>)))  "], "columns": [], "steps": [{"line": 1, "html": "dna <span class=\"tok-op\">=<\/span> <span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"ACGT\"<\/span>)", "vars": [["dna", "{'T', 'G', 'A', 'C'}", true]], "out": "", "row": null, "note": "Строка 1: dna = {'T', 'G', 'A', 'C'}."}, {"line": 2, "html": "seq <span class=\"tok-op\">=<\/span> <span class=\"tok-str\">\"GATNACA\"<\/span>", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", true]], "out": "", "row": null, "note": "Строка 2: seq = \"GATNACA\"."}, {"line": 3, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n", "row": null, "note": "Строка 3: печатается False."}, {"line": 4, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">sorted<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tv\"><span class=\"tok-str\">\"GATNACA\"<\/span><\/span>) <span class=\"tok-op\">-<\/span> dna))", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n['N']\n", "row": null, "note": "Строка 4: печатается ['N']."}, {"line": 5, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"GAT\"<\/span>) <span class=\"tok-op\">&lt;=<\/span> dna)                ", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n['N']\nTrue\n", "row": null, "note": "Строка 5: печатается True."}, {"line": 6, "html": "<span class=\"tok-builtin\">print<\/span>(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"AT\"<\/span>).isdisjoint(<span class=\"tok-builtin\">set<\/span>(<span class=\"tok-str\">\"CG\"<\/span>)))  ", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n['N']\nTrue\nTrue\n", "row": null, "note": "Строка 6: печатается True."}, {"line": 0, "html": "", "vars": [["dna", "{'T', 'G', 'A', 'C'}", false], ["seq", "\"GATNACA\"", false]], "out": "False\n['N']\nTrue\nTrue\n", "row": null, "note": "Программа закончилась."}]}</script>
         </article>
         <div class="mistake th-full">
-          <p class="mistake-caption">Типичная ошибка: сравнение вместо подмножества</p>
+          <p class="mistake-caption">Типичная ошибка: равенство вместо подмножества</p>
           <div class="code-block code-wrong"><span class="code-label">Неверно: равенство</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">==</span> dna)</code></pre></div>
           <div class="code-block code-right"><span class="code-label">Верно</span><pre><code><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)</code></pre></div>
-          <p>Равенство требует, чтобы в строке были все четыре буквы алфавита. Подмножество <code>&lt;=</code> допускает строку, в которой алфавитных букв меньше: главное, чтобы лишних не было.</p>
+          <p>Равенство требует, чтобы в строке были все четыре буквы. Подмножество пропускает и строку, где букв меньше, лишь бы не было лишних.</p>
         </div>
 
         <div class="step step-try">Практика</div>
         <div class="try-block">
-          <p>Василиса проверяет другую последовательность. Замените <code>"GATNACA"</code> на <code>"GATTACA"</code> и запустите: проверка должна дать <code>True</code>.</p>
+          <p>Замените <code>"GATNACA"</code> на <code>"GATTACA"</code> и запустите: проверка должна дать <code>True</code>.</p>
           <div class="run-pair">
             <div class="code-block"><span class="code-label">dna.py</span><pre><code><span class="ln">dna <span class="tok-op">=</span> <span class="tok-builtin">set</span>(<span class="tok-str">"ACGT"</span>)</span>
 <span class="ln">seq <span class="tok-op">=</span> <span class="tok-str">"GATNACA"</span></span>
 <span class="ln"><span class="tok-builtin">print</span>(<span class="tok-builtin">set</span>(seq) <span class="tok-op">&lt;=</span> dna)  <span class="tok-out"># → False</span></span></code></pre></div>
             <div class="output-block"><span class="output-label">Вывод</span><pre>False</pre></div>
-          </div>
-        </div>
-
-        <div class="step step-task">Задача</div>
-        <div class="level-tabs ex-variants" id="ex-3" data-exercise="ex-3">
-          <div class="tabs-list" role="tablist" aria-label="Уровень упражнения">
-            <button class="tab" type="button" role="tab" id="ex-3-tab-basic" aria-controls="ex-3-basic" data-level="basic" data-task="t6_05_3_basic.py">Базовый</button>
-            <button class="tab" type="button" role="tab" id="ex-3-tab-medium" aria-controls="ex-3-medium" data-level="medium" data-task="t6_05_3_medium.py">Средний</button>
-            <button class="tab" type="button" role="tab" id="ex-3-tab-advanced" aria-controls="ex-3-advanced" data-level="advanced" data-task="t6_05_3_advanced.py">Продвинутый</button>
-          </div>
-          <div class="tab-panel" id="ex-3-basic" role="tabpanel" aria-labelledby="ex-3-tab-basic">
-            <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-3-basic-task" data-level="exercise" data-variant="basic">
-              <h3>Упражнение 6.5.3. Проверка алфавита</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв. Выведите слово «да», если все буквы из алфавита <code>ACGT</code>, иначе «нет». Постройте множества функцией <code>set()</code> и проверьте подмножество оператором <code>&lt;=</code>.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATT</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">да</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">В <code>GATT</code> встретились только <code>G</code>, <code>A</code> и <code>T</code>. Все они входят в алфавит.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATT</pre></td><td><pre>да</pre></td></tr>
-                <tr><td><pre>GATNACA</pre></td><td><pre>нет</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Проверку алфавита можно выразить через множества букв: какие разрешены, какие встретились и каких не хватает.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Сравните множество букв строки с множеством разрешенных букв.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_05_3_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-3-medium" role="tabpanel" aria-labelledby="ex-3-tab-medium">
-            <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-3-medium-task" data-level="exercise" data-variant="medium">
-              <h3>Упражнение 6.5.3. Лишние буквы</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из букв. Выведите буквы, которых нет в алфавите <code>ACGT</code>, в алфавитном порядке через пробел, найдя разность множеств, построенных функцией <code>set()</code>, оператором <code>-</code>; если лишних нет, выведите пустую строку.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–50 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Лишние буквы через пробел или пустая строка.</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATNACA</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">N</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">В строке есть <code>N</code>. Остальные буквы входят в алфавит, поэтому выводится только <code>N</code>.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATNACA</pre></td><td><pre>N</pre></td></tr>
-                <tr><td><pre>GATT</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Проверку алфавита можно выразить через множества букв: какие разрешены, какие встретились и каких не хватает.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Из множества встретившихся букв вычтите множество разрешенных.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_05_3_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
-          </div>
-          <div class="tab-panel" id="ex-3-advanced" role="tabpanel" aria-labelledby="ex-3-tab-advanced">
-            <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
-            <article class="task task-exercise" id="ex-3-advanced-task" data-level="exercise" data-variant="advanced">
-              <h3>Упражнение 6.5.3. Все ли нуклеотиды</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий нуклеотидов через пробел. Выведите слово «да», если каждый из четырех нуклеотидов <code>A</code>, <code>T</code>, <code>G</code>, <code>C</code> встречается хотя бы один раз, иначе «нет». Постройте множества функцией <code>set()</code> и проверьте подмножество оператором <code>&lt;=</code>.</p></div>
-              <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 названий нуклеотидов через пробел; названия могут повторяться.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
-              </div>
-              <details class="task-spoiler sp-example">
-                <summary>Пример</summary>
-                <div class="worked-example">
-                  <p class="we-title">Разберем пример</p>
-                  <div class="we-pair">
-                    <div class="we-side">
-                      <span class="we-label">Ввод</span>
-                      <code class="we-seq">A T G C</code>
-                    </div>
-                    <span class="we-arrow" aria-hidden="true">→</span>
-                    <div class="we-side">
-                      <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">да</span></code>
-                    </div>
-                  </div>
-                  <p class="we-note">Во входном наборе есть все четыре буквы: <code>A</code>, <code>T</code>, <code>G</code> и <code>C</code>.</p>
-                </div>
-                <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>A T G C</pre></td><td><pre>да</pre></td></tr>
-                <tr><td><pre>A T G</pre></td><td><pre>нет</pre></td></tr>
-              </tbody></table></div>
-              </details>
-              <details class="task-spoiler sp-bio">
-                <summary>Контекст</summary>
-                <p>Проверку алфавита можно выразить через множества букв: какие разрешены, какие встретились и каких не хватает.</p>
-              </details>
-              <details class="task-spoiler sp-hint">
-                <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Проверьте, входит ли весь обязательный алфавит в полученный набор.</li></ol>
-              </details>
-              <div class="checker" data-split data-file="t6_05_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
-            </article>
           </div>
         </div>
 
@@ -622,11 +381,11 @@ True
           <div class="tab-panel" id="ex-star-basic" role="tabpanel" aria-labelledby="ex-star-tab-basic">
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
-              <h3>Задача со звездочкой 6.5. Общие буквы</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте две строки из букв. Постройте множества функцией <code>set()</code> и выведите общие буквы, найденные пересечением <code>&amp;</code>, в алфавитном порядке через пробел; если общих нет, выведите пустую строку.</p></div>
+              <h3>Задача со звездочкой 6.5. Лишние буквы</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите по алфавиту через пробел буквы последовательности, которых нет в алфавите ДНК <code>ACGT</code>. Если таких нет, выведите <code>нет</code>.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки из 1–50 букв.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Общие буквы через пробел или пустая строка.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из заглавных латинских букв длиной от 1 до 1000.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Буквы через пробел или слово <code>нет</code>.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -635,30 +394,35 @@ True
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">GATTACA<br>ACGTAC</code>
+                      <code class="we-seq">GATNACAR</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">A C G T</span></code>
+                      <code class="we-seq"><span class="we-hl">N R</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Обе строки содержат <code>A</code>, <code>C</code>, <code>G</code> и <code>T</code>. Они выводятся по алфавиту.</p>
+                  <p class="we-note">В <code>GATNACAR</code> вне алфавита ДНК буквы N и R.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>GATTACA
-ACGTAC</pre></td><td><pre>A C G T</pre></td></tr>
-                <tr><td><pre>AAA
-T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+                <tr><td><pre>GATNACAR</pre></td><td><pre>N R</pre></td></tr>
+                <tr><td><pre>GATTACA</pre></td><td><pre>нет</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Пересечение показывает, что у наборов общего. Разность показывает, чего нет в исключаемом наборе.</p>
+                <p>Последовательность с буквами не из алфавита ДНК, например N, перед анализом проверяют или отбрасывают. Найти такие буквы помогает разность множеств.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Алфавит ДНК</strong> — буквы A, C, G, T.</li>
+                  <li><strong>Буква N</strong> — нуклеотид, который прибор не смог определить.</li>
+                  <li><strong>Оператор <code>-</code></strong> — разность: элементы первого множества, которых нет во втором.</li>
+                  <li><strong>Пустое множество или счетчик в <code>if</code></strong> — считается ложью, непустое считается истиной.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте отдельно множество букв каждой строки.</li></ol>
+                <ol class="hint-steps"><li>Лишние буквы равны разности множества букв строки и множества <code>set("ACGT")</code>.</li><li>Пустое множество в условии <code>if</code> ложно: если разность пустая, выведите <code>нет</code>.</li><li>Иначе напечатайте буквы разности через <code>sorted()</code>.</li><li>Сверьтесь с примером: для ввода <code>GATNACAR</code> программа печатает <code>N R</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -666,11 +430,11 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
           <div class="tab-panel" id="ex-star-medium" role="tabpanel" aria-labelledby="ex-star-tab-medium">
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
-              <h3>Задача со звездочкой 6.5. Нет ли общих элементов</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел первого набора через пробел и строку из чисел второго. Постройте два множества функцией <code>set()</code> и выведите слово «да», если общих элементов нет (пересечение <code>&amp;</code> пустое), иначе «нет».</p></div>
+              <h3>Задача со звездочкой 6.5. Все четыре нуклеотида</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите через пробел в порядке ввода последовательности, в которых есть все четыре буквы <code>A</code>, <code>C</code>, <code>G</code>, <code>T</code>. Буква N этому не мешает. Если таких последовательностей нет, выведите <code>нет</code>.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой 1–20 целых чисел через пробел, от 0 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Слово «да» или «нет».</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: последовательности через пробел, от 1 до 100 штук, каждая из букв A, C, G, T, N длиной от 1 до 100.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Последовательности через пробел или слово <code>нет</code>.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -679,30 +443,34 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">1 2<br>3 4</code>
+                      <code class="we-seq">GATTACA AAT ACGTN</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">да</span></code>
+                      <code class="we-seq"><span class="we-hl">GATTACA ACGTN</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Первая строка содержит 1 и 2, вторая — 3 и 4. Пересечение пустое.</p>
+                  <p class="we-note">Все четыре буквы есть в <code>GATTACA</code> и <code>ACGTN</code>, а в <code>AAT</code> нет букв C и G.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>1 2
-3 4</pre></td><td><pre>да</pre></td></tr>
-                <tr><td><pre>1 2
-2 3</pre></td><td><pre>нет</pre></td></tr>
+                <tr><td><pre>GATTACA AAT ACGTN</pre></td><td><pre>GATTACA ACGTN</pre></td></tr>
+                <tr><td><pre>AC GT</pre></td><td><pre>нет</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Пересечение показывает, что у наборов общего. Разность показывает, чего нет в исключаемом наборе.</p>
+                <p>Последовательность пригодна для подсчета состава, если в ней встречаются все четыре нуклеотида. Проверка сводится к вопросу, входит ли одно множество в другое.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Алфавит ДНК</strong> — буквы A, C, G, T.</li>
+                  <li><strong>Функция <code>set()</code></strong> — множество различных элементов; <code>set(seq)</code> дает множество букв строки.</li>
+                  <li><strong>Оператор <code><=</code></strong> — проверяет, входит ли первое множество во второе целиком.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Проверьте, остались ли элементы после пересечения.</li></ol>
+                <ol class="hint-steps"><li>Вопрос «есть ли в строке все буквы алфавита» сводится к подмножеству: <code>set("ACGT") &lt;= set(seq)</code>.</li><li>Переберите последовательности и соберите в список подходящие.</li><li>Если список пуст, выведите <code>нет</code>, иначе напечатайте его через пробел.</li><li>Сверьтесь с примером: для ввода <code>GATTACA AAT ACGTN</code> программа печатает <code>GATTACA ACGTN</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_star_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -710,11 +478,11 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
           <div class="tab-panel" id="ex-star-advanced" role="tabpanel" aria-labelledby="ex-star-tab-advanced">
             <div class="panel-head"><p class="panel-note">Сложнее продвинутого упражнения.</p></div>
             <article class="task task-star" id="ex-star-advanced-task" data-level="star" data-variant="advanced">
-              <h3>Задача со звездочкой 6.5. Дополнение набора</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из чисел через пробел и число <code>limit</code>. Постройте множество функцией <code>set()</code> и выведите отсортированные числа от 1 до <code>limit</code>, которых нет в прочитанном наборе, через пробел. Для поиска этих чисел примените оператор разности <code>-</code>. Если таких чисел нет, выведите пустую строку.</p></div>
+              <h3>Задача со звездочкой 6.5. Пары без общих букв</h3>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Посчитайте, сколько пар последовательностей из строки не имеют ни одной общей буквы. Пару составляют две последовательности с разными номерами в строке, и каждая пара считается один раз.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 целых чисел через пробел и число <code>limit</code> от 1 до 1000.</p></div>
-                <div class="io-col"><h4>Выходные данные</h4><p>Числа от 1 до <code>limit</code>, которых нет в наборе, через пробел, или пустая строка.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: последовательности через пробел, от 1 до 100 штук, каждая из букв A, C, G, T, N длиной от 1 до 100.</p></div>
+                <div class="io-col"><h4>Выходные данные</h4><p>Целое число: число пар.</p></div>
               </div>
               <details class="task-spoiler sp-example">
                 <summary>Пример</summary>
@@ -723,30 +491,35 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
                   <div class="we-pair">
                     <div class="we-side">
                       <span class="we-label">Ввод</span>
-                      <code class="we-seq">2 4<br>6</code>
+                      <code class="we-seq">AA CG GT</code>
                     </div>
                     <span class="we-arrow" aria-hidden="true">→</span>
                     <div class="we-side">
                       <span class="we-label">Вывод</span>
-                      <code class="we-seq"><span class="we-hl">1 3 5 6</span></code>
+                      <code class="we-seq"><span class="we-hl">2</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Из чисел от 1 до 6 исключаются 2 и 4. Остаются 1, 3, 5 и 6.</p>
+                  <p class="we-note">Общих букв нет у пар <code>AA</code> и <code>CG</code>, <code>AA</code> и <code>GT</code>. У <code>CG</code> и <code>GT</code> общая буква G. Ответ 2.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-                <tr><td><pre>2 4
-6</pre></td><td><pre>1 3 5 6</pre></td></tr>
-                <tr><td><pre>1 2 3
-3</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
+                <tr><td><pre>AA CG GT</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>A A</pre></td><td><pre>0</pre></td></tr>
               </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Пересечение показывает, что у наборов общего. Разность показывает, чего нет в исключаемом наборе.</p>
+                <p>Короткие последовательности без общих букв не могут слипнуться друг с другом одинаковыми участками; такие пары ищут, когда подбирают праймеры для одного опыта.</p>
+                <h4 class="definitions-title">Основные определения</h4>
+                <ul class="definitions-list">
+                  <li><strong>Праймер</strong> — короткая затравка, с которой начинается копирование ДНК.</li>
+                  <li><strong>Функция <code>set()</code></strong> — множество различных элементов; <code>set(seq)</code> дает множество букв строки.</li>
+                  <li><strong>Метод <code>isdisjoint()</code></strong> — <code>True</code>, если у двух множеств нет общих элементов.</li>
+                  <li><strong>Пары с разными номерами</strong> — второй цикл начинается с <code>i + 1</code>, поэтому каждая пара считается один раз.</li>
+                </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте полный диапазон до заданной границы включительно и вычтите входной набор.</li><li>Множество чисел от 1 до <code>limit</code> включительно можно записать как <code>set(range(1, limit + 1))</code>.</li></ol>
+                <ol class="hint-steps"><li>Постройте список множеств букв: <code>[set(seq) for seq in input().split()]</code>.</li><li>Переберите пары номеров двумя циклами: внешний по <code>i</code>, внутренний по <code>j</code> от <code>i + 1</code>. Так каждая пара встретится один раз.</li><li>Метод <code>isdisjoint()</code> отвечает, нет ли у двух множеств общих элементов. Считайте пары, для которых он дает <code>True</code>.</li><li>Сверьтесь с примером: для ввода <code>AA CG GT</code> программа печатает <code>2</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_05_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -757,7 +530,7 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
       <section class="then">
         <h2 class="block-title"><span class="i i-upload" aria-hidden="true"></span>Сдача работы</h2>
         <ol class="submit-steps">
-          <li>В папке <code>projects_6</code> создайте папку <code>t6_05</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_05_1_basic.py</code>, <code>t6_05_2_basic.py</code> и <code>t6_05_3_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_05_1_medium.py</code>, <code>t6_05_2_medium.py</code> и <code>t6_05_3_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_05_1_advanced.py</code>, <code>t6_05_2_advanced.py</code> и <code>t6_05_3_advanced.py</code>.</span></li>
+          <li>В папке <code>projects_6</code> создайте папку <code>t6_05</code> и сохраните в нее решения упражнений этой страницы для своего уровня: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_05_1_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_05_1_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_05_1_advanced.py</code>.</span></li>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_05_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_05_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_05_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_05</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
@@ -766,21 +539,15 @@ T</pre></td><td><pre><span class="io-empty">(пустая строка)</span></
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/
     └── t6_05/
-        ├── t6_05_1_basic.py
-        ├── t6_05_2_basic.py
-        └── t6_05_3_basic.py</pre>
+        └── t6_05_1_basic.py</pre>
 <pre class="tree" data-level="medium">prokhorova_vp/
 └── projects_6/
     └── t6_05/
-        ├── t6_05_1_medium.py
-        ├── t6_05_2_medium.py
-        └── t6_05_3_medium.py</pre>
+        └── t6_05_1_medium.py</pre>
 <pre class="tree" data-level="advanced">prokhorova_vp/
 └── projects_6/
     └── t6_05/
-        ├── t6_05_1_advanced.py
-        ├── t6_05_2_advanced.py
-        └── t6_05_3_advanced.py</pre>
+        └── t6_05_1_advanced.py</pre>
       </section>
       <nav class="pager pager-cards" aria-label="Переход между страницами">
         <a class="pcard pcard-prev" href="t6_04.html"><span class="pcard-dir">← Назад</span><span class="pcard-title">04 Счетчик и группировка</span></a>

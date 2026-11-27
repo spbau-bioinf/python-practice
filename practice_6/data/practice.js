@@ -35,82 +35,55 @@ window.PRACTICE_MANIFEST = {
     {
      "file": "t6_01_1_basic.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-basic-task",
-     "title": "Упражнение 6.1.1. Значение поля",
+     "title": "Упражнение 6.1.1. Новое значение",
      "group": "ex-1",
      "variant": "basic"
     },
     {
      "file": "t6_01_1_medium.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.1.1. Сумма значений двух ключей",
+     "title": "Упражнение 6.1.1. Прибавить к счетчику",
      "group": "ex-1",
      "variant": "medium"
     },
     {
      "file": "t6_01_1_advanced.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.1.1. Число занятий",
+     "title": "Упражнение 6.1.1. Правки словаря",
      "group": "ex-1",
      "variant": "advanced"
     },
     {
      "file": "t6_01_2_basic.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-basic-task",
-     "title": "Упражнение 6.1.2. Новая пара",
+     "title": "Упражнение 6.1.2. Поле записи",
      "group": "ex-2",
      "variant": "basic"
     },
     {
      "file": "t6_01_2_medium.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-medium-task",
-     "title": "Упражнение 6.1.2. Замена и сумма",
+     "title": "Упражнение 6.1.2. Есть ли поле",
      "group": "ex-2",
      "variant": "medium"
     },
     {
      "file": "t6_01_2_advanced.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.1.2. Прежнее значение",
+     "title": "Упражнение 6.1.2. Несколько полей",
      "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_01_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.1.3. Отсутствующий ключ",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_01_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.1.3. Сумма с пропусками",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_01_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.1.3. Проценты",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -120,7 +93,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.1. Сумма с пропусками",
+     "title": "Задача со звездочкой 6.1. Какая буква чаще",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -129,7 +102,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.1. Оба ли ключа есть",
+     "title": "Задача со звездочкой 6.1. Добавки к счетчикам",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -138,7 +111,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.1. Больший ключ",
+     "title": "Задача со звездочкой 6.1. Синонимы полей",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -153,42 +126,38 @@ window.PRACTICE_MANIFEST = {
    "sections": [
     {
      "id": "s1",
-     "title": "Хеш и номер ячейки"
+     "title": "Как словарь находит ключ"
     },
     {
      "id": "s2",
-     "title": "Заполнение циклом и размер таблицы"
-    },
-    {
-     "id": "s3",
-     "title": "Коллизии и пробы"
+     "title": "Что может быть ключом"
     }
    ],
    "tasks": [
     {
      "file": "t6_02_1_basic.py",
      "level": "exercise",
-     "section": "s3",
+     "section": "s2",
      "id": "ex-1-basic-task",
-     "title": "Упражнение 6.2.1. Ячейки таблицы",
+     "title": "Упражнение 6.2.1. Мутация по координатам",
      "group": "ex-1",
      "variant": "basic"
     },
     {
      "file": "t6_02_1_medium.py",
      "level": "exercise",
-     "section": "s3",
+     "section": "s2",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.2.1. Разные начальные ячейки",
+     "title": "Упражнение 6.2.1. Повторы мутаций",
      "group": "ex-1",
      "variant": "medium"
     },
     {
      "file": "t6_02_1_advanced.py",
      "level": "exercise",
-     "section": "s3",
+     "section": "s2",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.2.1. Коллизии при вставке",
+     "title": "Упражнение 6.2.1. Одинаковые числа",
      "group": "ex-1",
      "variant": "advanced"
     }
@@ -197,7 +166,7 @@ window.PRACTICE_MANIFEST = {
     {
      "file": "t6_02_star_basic.py",
      "level": "star",
-     "section": "s3",
+     "section": "s2",
      "id": "ex-star-basic-task",
      "title": "Задача со звездочкой 6.2. Таблица после вставки",
      "group": "ex-star",
@@ -206,18 +175,18 @@ window.PRACTICE_MANIFEST = {
     {
      "file": "t6_02_star_medium.py",
      "level": "star",
-     "section": "s3",
+     "section": "s2",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.2. Поиск с пробами",
+     "title": "Задача со звездочкой 6.2. Пробы при вставке",
      "group": "ex-star",
      "variant": "medium"
     },
     {
      "file": "t6_02_star_advanced.py",
      "level": "star",
-     "section": "s3",
+     "section": "s2",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.2. Самый длинный блок",
+     "title": "Задача со звездочкой 6.2. Поиск с пробами",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -240,89 +209,35 @@ window.PRACTICE_MANIFEST = {
     },
     {
      "id": "s3",
-     "title": "Построение словаря из данных"
+     "title": "Словарь из двух последовательностей"
     }
    ],
    "tasks": [
     {
      "file": "t6_03_1_basic.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s3",
      "id": "ex-1-basic-task",
-     "title": "Упражнение 6.3.1. Значения букв",
+     "title": "Упражнение 6.3.1. Длина образца",
      "group": "ex-1",
      "variant": "basic"
     },
     {
      "file": "t6_03_1_medium.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s3",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.3.1. Ключи по порогу",
+     "title": "Упражнение 6.3.1. Повторные названия",
      "group": "ex-1",
      "variant": "medium"
     },
     {
      "file": "t6_03_1_advanced.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s3",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.3.1. Среднее букв",
+     "title": "Упражнение 6.3.1. Образцы заданной длины",
      "group": "ex-1",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_03_2_basic.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-basic-task",
-     "title": "Упражнение 6.3.2. Алфавитный порядок",
-     "group": "ex-2",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_03_2_medium.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-medium-task",
-     "title": "Упражнение 6.3.2. Значения по алфавиту",
-     "group": "ex-2",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_03_2_advanced.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.3.2. Сумма между названиями",
-     "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_03_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.3.3. Длина образца",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_03_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.3.3. Длина по запросу",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_03_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.3.3. Общая длина",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -332,7 +247,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.3. Обратный алфавит",
+     "title": "Задача со звездочкой 6.3. Самый длинный образец",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -341,7 +256,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.3. Все, кроме одного",
+     "title": "Задача со звездочкой 6.3. Убрать короткие",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -350,7 +265,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.3. Не короче порога",
+     "title": "Задача со звездочкой 6.3. Сводка по длинам",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -373,7 +288,7 @@ window.PRACTICE_MANIFEST = {
     },
     {
      "id": "s3",
-     "title": "Методы, которые меняют словарь"
+     "title": "Методы update(), pop() и fromkeys()"
     }
    ],
    "tasks": [
@@ -391,7 +306,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s1",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.4.1. Разные буквы",
+     "title": "Упражнение 6.4.1. Состав последовательности",
      "group": "ex-1",
      "variant": "medium"
     },
@@ -409,7 +324,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s2",
      "id": "ex-2-basic-task",
-     "title": "Упражнение 6.4.2. Число групп",
+     "title": "Упражнение 6.4.2. Группа по длине",
      "group": "ex-2",
      "variant": "basic"
     },
@@ -418,7 +333,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s2",
      "id": "ex-2-medium-task",
-     "title": "Упражнение 6.4.2. Группа по запросу",
+     "title": "Упражнение 6.4.2. Все группы",
      "group": "ex-2",
      "variant": "medium"
     },
@@ -427,35 +342,8 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s2",
      "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.4.2. Самая частая длина",
+     "title": "Упражнение 6.4.2. Самая большая группа",
      "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_04_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.4.3. Добавление методом update()",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_04_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.4.3. Поле по умолчанию",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_04_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.4.3. Список полей",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -465,7 +353,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.4. Буквы G и C",
+     "title": "Задача со звездочкой 6.4. Одиночные буквы",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -474,7 +362,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.4. Группа по первой букве",
+     "title": "Задача со звездочкой 6.4. Обращение словаря",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -483,7 +371,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.4. Одиночные буквы",
+     "title": "Задача со звездочкой 6.4. Одинаковый состав",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -513,82 +401,28 @@ window.PRACTICE_MANIFEST = {
     {
      "file": "t6_05_1_basic.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-basic-task",
-     "title": "Упражнение 6.5.1. Разные буквы",
+     "title": "Упражнение 6.5.1. Общие буквы",
      "group": "ex-1",
      "variant": "basic"
     },
     {
      "file": "t6_05_1_medium.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.5.1. Буквы по алфавиту",
+     "title": "Упражнение 6.5.1. Только в одной",
      "group": "ex-1",
      "variant": "medium"
     },
     {
      "file": "t6_05_1_advanced.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.5.1. Есть ли повторы",
+     "title": "Упражнение 6.5.1. Два запуска",
      "group": "ex-1",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_05_2_basic.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-basic-task",
-     "title": "Упражнение 6.5.2. Пересечение",
-     "group": "ex-2",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_05_2_medium.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-medium-task",
-     "title": "Упражнение 6.5.2. Объединение и разность",
-     "group": "ex-2",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_05_2_advanced.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.5.2. Дополнение до границы",
-     "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_05_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.5.3. Проверка алфавита",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_05_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.5.3. Лишние буквы",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_05_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.5.3. Все ли нуклеотиды",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -598,7 +432,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.5. Общие буквы",
+     "title": "Задача со звездочкой 6.5. Лишние буквы",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -607,7 +441,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.5. Нет ли общих элементов",
+     "title": "Задача со звездочкой 6.5. Все четыре нуклеотида",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -616,7 +450,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.5. Дополнение набора",
+     "title": "Задача со звездочкой 6.5. Пары без общих букв",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -631,7 +465,7 @@ window.PRACTICE_MANIFEST = {
    "sections": [
     {
      "id": "s1",
-     "title": "Модули и Counter"
+     "title": "Модуль collections и Counter"
     },
     {
      "id": "s2",
@@ -646,82 +480,28 @@ window.PRACTICE_MANIFEST = {
     {
      "file": "t6_06_1_basic.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-basic-task",
-     "title": "Упражнение 6.6.1. Число вхождений счетчиком",
+     "title": "Упражнение 6.6.1. Счетчик Counter",
      "group": "ex-1",
      "variant": "basic"
     },
     {
      "file": "t6_06_1_medium.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.6.1. Сумма по запросу",
+     "title": "Упражнение 6.6.1. Две самые частые",
      "group": "ex-1",
      "variant": "medium"
     },
     {
      "file": "t6_06_1_advanced.py",
      "level": "exercise",
-     "section": "s1",
+     "section": "s2",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.6.1. Самые частые буквы",
+     "title": "Упражнение 6.6.1. Лишние буквы прочтения",
      "group": "ex-1",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_06_2_basic.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-basic-task",
-     "title": "Упражнение 6.6.2. Сумма счетчиков",
-     "group": "ex-2",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_06_2_medium.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-medium-task",
-     "title": "Упражнение 6.6.2. Разность счетчиков",
-     "group": "ex-2",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_06_2_advanced.py",
-     "level": "exercise",
-     "section": "s2",
-     "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.6.2. Хватает ли букв",
-     "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_06_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.6.3. Счетчик с defaultdict",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_06_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.6.3. Группы с defaultdict",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_06_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.6.3. Самая большая группа",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -731,7 +511,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.6. Самая редкая буква",
+     "title": "Задача со звездочкой 6.6. Группы по первой букве",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -740,7 +520,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.6. Пересечение счетчиков",
+     "title": "Задача со звездочкой 6.6. Самая редкая буква",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -749,7 +529,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.6. Длины с двумя образцами",
+     "title": "Задача со звездочкой 6.6. Хватит ли букв",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -799,62 +579,35 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s1",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.7.1. GC-состав не ниже 50 %",
+     "title": "Упражнение 6.7.1. Прочтения с высоким GC",
      "group": "ex-1",
      "variant": "advanced"
     },
     {
      "file": "t6_07_2_basic.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-basic-task",
-     "title": "Упражнение 6.7.2. Самая частая буква",
+     "title": "Упражнение 6.7.2. Разные k-меры",
      "group": "ex-2",
      "variant": "basic"
     },
     {
      "file": "t6_07_2_medium.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-medium-task",
-     "title": "Упражнение 6.7.2. Сортировка по частоте",
+     "title": "Упражнение 6.7.2. Максимум вхождений",
      "group": "ex-2",
      "variant": "medium"
     },
     {
      "file": "t6_07_2_advanced.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.7.2. Все самые частые",
+     "title": "Упражнение 6.7.2. Самые частые k-меры",
      "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_07_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.7.3. Разные k-меры",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_07_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.7.3. Максимум вхождений",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_07_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.7.3. Самые частые k-меры",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -864,7 +617,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.7. Счетчики и GC-состав",
+     "title": "Задача со звездочкой 6.7. Вхождения с перекрытием",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -873,7 +626,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.7. Самый частый k-мер",
+     "title": "Задача со звездочкой 6.7. Повторяющиеся k-меры",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -882,7 +635,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.7. k-меры с двумя вхождениями",
+     "title": "Задача со звездочкой 6.7. Сортировка по частоте",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -923,7 +676,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s1",
      "id": "ex-1-medium-task",
-     "title": "Упражнение 6.8.1. Стоп-кодон",
+     "title": "Упражнение 6.8.1. Сколько кодонов",
      "group": "ex-1",
      "variant": "medium"
     },
@@ -932,7 +685,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s1",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.8.1. Строка из кодонов",
+     "title": "Упражнение 6.8.1. Кодоны аминокислоты",
      "group": "ex-1",
      "variant": "advanced"
     },
@@ -962,33 +715,6 @@ window.PRACTICE_MANIFEST = {
      "title": "Упражнение 6.8.2. Трансляция с буквой N",
      "group": "ex-2",
      "variant": "advanced"
-    },
-    {
-     "file": "t6_08_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.8.3. Число кодонов",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_08_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.8.3. Кодоны аминокислоты",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_08_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.8.3. Пары синонимов",
-     "group": "ex-3",
-     "variant": "advanced"
     }
    ],
    "stars": [
@@ -1006,7 +732,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.8. Длина до стопа",
+     "title": "Задача со звездочкой 6.8. Синонимы ли кодоны",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -1015,7 +741,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.8. Неизвестные кодоны",
+     "title": "Задача со звездочкой 6.8. Синонимичные замены",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -1065,62 +791,35 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s1",
      "id": "ex-1-advanced-task",
-     "title": "Упражнение 6.9.1. Разные ткани",
+     "title": "Упражнение 6.9.1. Повторяющиеся названия",
      "group": "ex-1",
      "variant": "advanced"
     },
     {
      "file": "t6_09_2_basic.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-basic-task",
-     "title": "Упражнение 6.9.2. Общие гены",
+     "title": "Упражнение 6.9.2. Мера Жаккара",
      "group": "ex-2",
      "variant": "basic"
     },
     {
      "file": "t6_09_2_medium.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-medium-task",
-     "title": "Упражнение 6.9.2. Ровно в одном наборе",
+     "title": "Упражнение 6.9.2. Мера Жаккара k-меров",
      "group": "ex-2",
      "variant": "medium"
     },
     {
      "file": "t6_09_2_advanced.py",
      "level": "exercise",
-     "section": "s2",
+     "section": "s3",
      "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.9.2. Все ли гены в первом",
+     "title": "Упражнение 6.9.2. Похожие образцы",
      "group": "ex-2",
-     "variant": "advanced"
-    },
-    {
-     "file": "t6_09_3_basic.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-basic-task",
-     "title": "Упражнение 6.9.3. Мера Жаккара",
-     "group": "ex-3",
-     "variant": "basic"
-    },
-    {
-     "file": "t6_09_3_medium.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-medium-task",
-     "title": "Упражнение 6.9.3. Мера Жаккара для множеств k-меров",
-     "group": "ex-3",
-     "variant": "medium"
-    },
-    {
-     "file": "t6_09_3_advanced.py",
-     "level": "exercise",
-     "section": "s3",
-     "id": "ex-3-advanced-task",
-     "title": "Упражнение 6.9.3. Порог сходства",
-     "group": "ex-3",
      "variant": "advanced"
     }
    ],
@@ -1130,7 +829,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-basic-task",
-     "title": "Задача со звездочкой 6.9. Повторяющиеся названия",
+     "title": "Задача со звездочкой 6.9. Расстояние Жаккара",
      "group": "ex-star",
      "variant": "basic"
     },
@@ -1139,7 +838,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-medium-task",
-     "title": "Задача со звездочкой 6.9. Жаккар с округлением",
+     "title": "Задача со звездочкой 6.9. Только в одном наборе",
      "group": "ex-star",
      "variant": "medium"
     },
@@ -1148,7 +847,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.9. Жаккар в процентах",
+     "title": "Задача со звездочкой 6.9. Ближайший образец",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -1223,7 +922,7 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_01_1_basic.py",
     "page": "t6_01.html",
     "id": "ex-1-basic-task",
-    "title": "Упражнение 6.1.1. Значение поля",
+    "title": "Упражнение 6.1.1. Новое значение",
     "group": "ex-1",
     "variant": "basic"
    },
@@ -1231,23 +930,15 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_01_2_basic.py",
     "page": "t6_01.html",
     "id": "ex-2-basic-task",
-    "title": "Упражнение 6.1.2. Новая пара",
+    "title": "Упражнение 6.1.2. Поле записи",
     "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_01_3_basic.py",
-    "page": "t6_01.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.1.3. Отсутствующий ключ",
-    "group": "ex-3",
     "variant": "basic"
    },
    {
     "file": "t6_02_1_basic.py",
     "page": "t6_02.html",
     "id": "ex-1-basic-task",
-    "title": "Упражнение 6.2.1. Ячейки таблицы",
+    "title": "Упражнение 6.2.1. Мутация по координатам",
     "group": "ex-1",
     "variant": "basic"
    },
@@ -1255,24 +946,8 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_03_1_basic.py",
     "page": "t6_03.html",
     "id": "ex-1-basic-task",
-    "title": "Упражнение 6.3.1. Значения букв",
+    "title": "Упражнение 6.3.1. Длина образца",
     "group": "ex-1",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_03_2_basic.py",
-    "page": "t6_03.html",
-    "id": "ex-2-basic-task",
-    "title": "Упражнение 6.3.2. Алфавитный порядок",
-    "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_03_3_basic.py",
-    "page": "t6_03.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.3.3. Длина образца",
-    "group": "ex-3",
     "variant": "basic"
    },
    {
@@ -1287,64 +962,24 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_04_2_basic.py",
     "page": "t6_04.html",
     "id": "ex-2-basic-task",
-    "title": "Упражнение 6.4.2. Число групп",
+    "title": "Упражнение 6.4.2. Группа по длине",
     "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_04_3_basic.py",
-    "page": "t6_04.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.4.3. Добавление методом update()",
-    "group": "ex-3",
     "variant": "basic"
    },
    {
     "file": "t6_05_1_basic.py",
     "page": "t6_05.html",
     "id": "ex-1-basic-task",
-    "title": "Упражнение 6.5.1. Разные буквы",
+    "title": "Упражнение 6.5.1. Общие буквы",
     "group": "ex-1",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_05_2_basic.py",
-    "page": "t6_05.html",
-    "id": "ex-2-basic-task",
-    "title": "Упражнение 6.5.2. Пересечение",
-    "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_05_3_basic.py",
-    "page": "t6_05.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.5.3. Проверка алфавита",
-    "group": "ex-3",
     "variant": "basic"
    },
    {
     "file": "t6_06_1_basic.py",
     "page": "t6_06.html",
     "id": "ex-1-basic-task",
-    "title": "Упражнение 6.6.1. Число вхождений счетчиком",
+    "title": "Упражнение 6.6.1. Счетчик Counter",
     "group": "ex-1",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_06_2_basic.py",
-    "page": "t6_06.html",
-    "id": "ex-2-basic-task",
-    "title": "Упражнение 6.6.2. Сумма счетчиков",
-    "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_06_3_basic.py",
-    "page": "t6_06.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.6.3. Счетчик с defaultdict",
-    "group": "ex-3",
     "variant": "basic"
    },
    {
@@ -1359,16 +994,8 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_07_2_basic.py",
     "page": "t6_07.html",
     "id": "ex-2-basic-task",
-    "title": "Упражнение 6.7.2. Самая частая буква",
+    "title": "Упражнение 6.7.2. Разные k-меры",
     "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_07_3_basic.py",
-    "page": "t6_07.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.7.3. Разные k-меры",
-    "group": "ex-3",
     "variant": "basic"
    },
    {
@@ -1388,14 +1015,6 @@ window.PRACTICE_MANIFEST = {
     "variant": "basic"
    },
    {
-    "file": "t6_08_3_basic.py",
-    "page": "t6_08.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.8.3. Число кодонов",
-    "group": "ex-3",
-    "variant": "basic"
-   },
-   {
     "file": "t6_09_1_basic.py",
     "page": "t6_09.html",
     "id": "ex-1-basic-task",
@@ -1407,16 +1026,8 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_09_2_basic.py",
     "page": "t6_09.html",
     "id": "ex-2-basic-task",
-    "title": "Упражнение 6.9.2. Общие гены",
+    "title": "Упражнение 6.9.2. Мера Жаккара",
     "group": "ex-2",
-    "variant": "basic"
-   },
-   {
-    "file": "t6_09_3_basic.py",
-    "page": "t6_09.html",
-    "id": "ex-3-basic-task",
-    "title": "Упражнение 6.9.3. Мера Жаккара",
-    "group": "ex-3",
     "variant": "basic"
    }
   ],
@@ -1425,7 +1036,7 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_01_1_medium.py",
     "page": "t6_01.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.1.1. Сумма значений двух ключей",
+    "title": "Упражнение 6.1.1. Прибавить к счетчику",
     "group": "ex-1",
     "variant": "medium"
    },
@@ -1433,23 +1044,15 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_01_2_medium.py",
     "page": "t6_01.html",
     "id": "ex-2-medium-task",
-    "title": "Упражнение 6.1.2. Замена и сумма",
+    "title": "Упражнение 6.1.2. Есть ли поле",
     "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_01_3_medium.py",
-    "page": "t6_01.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.1.3. Сумма с пропусками",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
     "file": "t6_02_1_medium.py",
     "page": "t6_02.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.2.1. Разные начальные ячейки",
+    "title": "Упражнение 6.2.1. Повторы мутаций",
     "group": "ex-1",
     "variant": "medium"
    },
@@ -1457,31 +1060,15 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_03_1_medium.py",
     "page": "t6_03.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.3.1. Ключи по порогу",
+    "title": "Упражнение 6.3.1. Повторные названия",
     "group": "ex-1",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_03_2_medium.py",
-    "page": "t6_03.html",
-    "id": "ex-2-medium-task",
-    "title": "Упражнение 6.3.2. Значения по алфавиту",
-    "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_03_3_medium.py",
-    "page": "t6_03.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.3.3. Длина по запросу",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
     "file": "t6_04_1_medium.py",
     "page": "t6_04.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.4.1. Разные буквы",
+    "title": "Упражнение 6.4.1. Состав последовательности",
     "group": "ex-1",
     "variant": "medium"
    },
@@ -1489,64 +1076,24 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_04_2_medium.py",
     "page": "t6_04.html",
     "id": "ex-2-medium-task",
-    "title": "Упражнение 6.4.2. Группа по запросу",
+    "title": "Упражнение 6.4.2. Все группы",
     "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_04_3_medium.py",
-    "page": "t6_04.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.4.3. Поле по умолчанию",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
     "file": "t6_05_1_medium.py",
     "page": "t6_05.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.5.1. Буквы по алфавиту",
+    "title": "Упражнение 6.5.1. Только в одной",
     "group": "ex-1",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_05_2_medium.py",
-    "page": "t6_05.html",
-    "id": "ex-2-medium-task",
-    "title": "Упражнение 6.5.2. Объединение и разность",
-    "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_05_3_medium.py",
-    "page": "t6_05.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.5.3. Лишние буквы",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
     "file": "t6_06_1_medium.py",
     "page": "t6_06.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.6.1. Сумма по запросу",
+    "title": "Упражнение 6.6.1. Две самые частые",
     "group": "ex-1",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_06_2_medium.py",
-    "page": "t6_06.html",
-    "id": "ex-2-medium-task",
-    "title": "Упражнение 6.6.2. Разность счетчиков",
-    "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_06_3_medium.py",
-    "page": "t6_06.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.6.3. Группы с defaultdict",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
@@ -1561,23 +1108,15 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_07_2_medium.py",
     "page": "t6_07.html",
     "id": "ex-2-medium-task",
-    "title": "Упражнение 6.7.2. Сортировка по частоте",
+    "title": "Упражнение 6.7.2. Максимум вхождений",
     "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_07_3_medium.py",
-    "page": "t6_07.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.7.3. Максимум вхождений",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
     "file": "t6_08_1_medium.py",
     "page": "t6_08.html",
     "id": "ex-1-medium-task",
-    "title": "Упражнение 6.8.1. Стоп-кодон",
+    "title": "Упражнение 6.8.1. Сколько кодонов",
     "group": "ex-1",
     "variant": "medium"
    },
@@ -1587,14 +1126,6 @@ window.PRACTICE_MANIFEST = {
     "id": "ex-2-medium-task",
     "title": "Упражнение 6.8.2. Трансляция до стопа",
     "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_08_3_medium.py",
-    "page": "t6_08.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.8.3. Кодоны аминокислоты",
-    "group": "ex-3",
     "variant": "medium"
    },
    {
@@ -1609,16 +1140,8 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_09_2_medium.py",
     "page": "t6_09.html",
     "id": "ex-2-medium-task",
-    "title": "Упражнение 6.9.2. Ровно в одном наборе",
+    "title": "Упражнение 6.9.2. Мера Жаккара k-меров",
     "group": "ex-2",
-    "variant": "medium"
-   },
-   {
-    "file": "t6_09_3_medium.py",
-    "page": "t6_09.html",
-    "id": "ex-3-medium-task",
-    "title": "Упражнение 6.9.3. Мера Жаккара для множеств k-меров",
-    "group": "ex-3",
     "variant": "medium"
    }
   ],
@@ -1627,7 +1150,7 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_01_1_advanced.py",
     "page": "t6_01.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.1.1. Число занятий",
+    "title": "Упражнение 6.1.1. Правки словаря",
     "group": "ex-1",
     "variant": "advanced"
    },
@@ -1635,23 +1158,15 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_01_2_advanced.py",
     "page": "t6_01.html",
     "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.1.2. Прежнее значение",
+    "title": "Упражнение 6.1.2. Несколько полей",
     "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_01_3_advanced.py",
-    "page": "t6_01.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.1.3. Проценты",
-    "group": "ex-3",
     "variant": "advanced"
    },
    {
     "file": "t6_02_1_advanced.py",
     "page": "t6_02.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.2.1. Коллизии при вставке",
+    "title": "Упражнение 6.2.1. Одинаковые числа",
     "group": "ex-1",
     "variant": "advanced"
    },
@@ -1659,24 +1174,8 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_03_1_advanced.py",
     "page": "t6_03.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.3.1. Среднее букв",
+    "title": "Упражнение 6.3.1. Образцы заданной длины",
     "group": "ex-1",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_03_2_advanced.py",
-    "page": "t6_03.html",
-    "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.3.2. Сумма между названиями",
-    "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_03_3_advanced.py",
-    "page": "t6_03.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.3.3. Общая длина",
-    "group": "ex-3",
     "variant": "advanced"
    },
    {
@@ -1691,71 +1190,31 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_04_2_advanced.py",
     "page": "t6_04.html",
     "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.4.2. Самая частая длина",
+    "title": "Упражнение 6.4.2. Самая большая группа",
     "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_04_3_advanced.py",
-    "page": "t6_04.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.4.3. Список полей",
-    "group": "ex-3",
     "variant": "advanced"
    },
    {
     "file": "t6_05_1_advanced.py",
     "page": "t6_05.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.5.1. Есть ли повторы",
+    "title": "Упражнение 6.5.1. Два запуска",
     "group": "ex-1",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_05_2_advanced.py",
-    "page": "t6_05.html",
-    "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.5.2. Дополнение до границы",
-    "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_05_3_advanced.py",
-    "page": "t6_05.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.5.3. Все ли нуклеотиды",
-    "group": "ex-3",
     "variant": "advanced"
    },
    {
     "file": "t6_06_1_advanced.py",
     "page": "t6_06.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.6.1. Самые частые буквы",
+    "title": "Упражнение 6.6.1. Лишние буквы прочтения",
     "group": "ex-1",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_06_2_advanced.py",
-    "page": "t6_06.html",
-    "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.6.2. Хватает ли букв",
-    "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_06_3_advanced.py",
-    "page": "t6_06.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.6.3. Самая большая группа",
-    "group": "ex-3",
     "variant": "advanced"
    },
    {
     "file": "t6_07_1_advanced.py",
     "page": "t6_07.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.7.1. GC-состав не ниже 50 %",
+    "title": "Упражнение 6.7.1. Прочтения с высоким GC",
     "group": "ex-1",
     "variant": "advanced"
    },
@@ -1763,23 +1222,15 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_07_2_advanced.py",
     "page": "t6_07.html",
     "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.7.2. Все самые частые",
+    "title": "Упражнение 6.7.2. Самые частые k-меры",
     "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_07_3_advanced.py",
-    "page": "t6_07.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.7.3. Самые частые k-меры",
-    "group": "ex-3",
     "variant": "advanced"
    },
    {
     "file": "t6_08_1_advanced.py",
     "page": "t6_08.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.8.1. Строка из кодонов",
+    "title": "Упражнение 6.8.1. Кодоны аминокислоты",
     "group": "ex-1",
     "variant": "advanced"
    },
@@ -1792,18 +1243,10 @@ window.PRACTICE_MANIFEST = {
     "variant": "advanced"
    },
    {
-    "file": "t6_08_3_advanced.py",
-    "page": "t6_08.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.8.3. Пары синонимов",
-    "group": "ex-3",
-    "variant": "advanced"
-   },
-   {
     "file": "t6_09_1_advanced.py",
     "page": "t6_09.html",
     "id": "ex-1-advanced-task",
-    "title": "Упражнение 6.9.1. Разные ткани",
+    "title": "Упражнение 6.9.1. Повторяющиеся названия",
     "group": "ex-1",
     "variant": "advanced"
    },
@@ -1811,16 +1254,8 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_09_2_advanced.py",
     "page": "t6_09.html",
     "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.9.2. Все ли гены в первом",
+    "title": "Упражнение 6.9.2. Похожие образцы",
     "group": "ex-2",
-    "variant": "advanced"
-   },
-   {
-    "file": "t6_09_3_advanced.py",
-    "page": "t6_09.html",
-    "id": "ex-3-advanced-task",
-    "title": "Упражнение 6.9.3. Порог сходства",
-    "group": "ex-3",
     "variant": "advanced"
    }
   ]
@@ -1830,7 +1265,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_1_basic.py",
    "page": "t6_01.html",
    "id": "ex-1-basic-task",
-   "title": "Упражнение 6.1.1. Значение поля",
+   "title": "Упражнение 6.1.1. Новое значение",
    "group": "ex-1",
    "variant": "basic"
   },
@@ -1838,7 +1273,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_1_medium.py",
    "page": "t6_01.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.1.1. Сумма значений двух ключей",
+   "title": "Упражнение 6.1.1. Прибавить к счетчику",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -1846,7 +1281,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_1_advanced.py",
    "page": "t6_01.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.1.1. Число занятий",
+   "title": "Упражнение 6.1.1. Правки словаря",
    "group": "ex-1",
    "variant": "advanced"
   },
@@ -1854,7 +1289,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_2_basic.py",
    "page": "t6_01.html",
    "id": "ex-2-basic-task",
-   "title": "Упражнение 6.1.2. Новая пара",
+   "title": "Упражнение 6.1.2. Поле записи",
    "group": "ex-2",
    "variant": "basic"
   },
@@ -1862,7 +1297,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_2_medium.py",
    "page": "t6_01.html",
    "id": "ex-2-medium-task",
-   "title": "Упражнение 6.1.2. Замена и сумма",
+   "title": "Упражнение 6.1.2. Есть ли поле",
    "group": "ex-2",
    "variant": "medium"
   },
@@ -1870,39 +1305,15 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_2_advanced.py",
    "page": "t6_01.html",
    "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.1.2. Прежнее значение",
+   "title": "Упражнение 6.1.2. Несколько полей",
    "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_01_3_basic.py",
-   "page": "t6_01.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.1.3. Отсутствующий ключ",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_01_3_medium.py",
-   "page": "t6_01.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.1.3. Сумма с пропусками",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_01_3_advanced.py",
-   "page": "t6_01.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.1.3. Проценты",
-   "group": "ex-3",
    "variant": "advanced"
   },
   {
    "file": "t6_02_1_basic.py",
    "page": "t6_02.html",
    "id": "ex-1-basic-task",
-   "title": "Упражнение 6.2.1. Ячейки таблицы",
+   "title": "Упражнение 6.2.1. Мутация по координатам",
    "group": "ex-1",
    "variant": "basic"
   },
@@ -1910,7 +1321,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_02_1_medium.py",
    "page": "t6_02.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.2.1. Разные начальные ячейки",
+   "title": "Упражнение 6.2.1. Повторы мутаций",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -1918,7 +1329,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_02_1_advanced.py",
    "page": "t6_02.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.2.1. Коллизии при вставке",
+   "title": "Упражнение 6.2.1. Одинаковые числа",
    "group": "ex-1",
    "variant": "advanced"
   },
@@ -1926,7 +1337,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_1_basic.py",
    "page": "t6_03.html",
    "id": "ex-1-basic-task",
-   "title": "Упражнение 6.3.1. Значения букв",
+   "title": "Упражнение 6.3.1. Длина образца",
    "group": "ex-1",
    "variant": "basic"
   },
@@ -1934,7 +1345,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_1_medium.py",
    "page": "t6_03.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.3.1. Ключи по порогу",
+   "title": "Упражнение 6.3.1. Повторные названия",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -1942,56 +1353,8 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_1_advanced.py",
    "page": "t6_03.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.3.1. Среднее букв",
+   "title": "Упражнение 6.3.1. Образцы заданной длины",
    "group": "ex-1",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_03_2_basic.py",
-   "page": "t6_03.html",
-   "id": "ex-2-basic-task",
-   "title": "Упражнение 6.3.2. Алфавитный порядок",
-   "group": "ex-2",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_03_2_medium.py",
-   "page": "t6_03.html",
-   "id": "ex-2-medium-task",
-   "title": "Упражнение 6.3.2. Значения по алфавиту",
-   "group": "ex-2",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_03_2_advanced.py",
-   "page": "t6_03.html",
-   "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.3.2. Сумма между названиями",
-   "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_03_3_basic.py",
-   "page": "t6_03.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.3.3. Длина образца",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_03_3_medium.py",
-   "page": "t6_03.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.3.3. Длина по запросу",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_03_3_advanced.py",
-   "page": "t6_03.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.3.3. Общая длина",
-   "group": "ex-3",
    "variant": "advanced"
   },
   {
@@ -2006,7 +1369,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_1_medium.py",
    "page": "t6_04.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.4.1. Разные буквы",
+   "title": "Упражнение 6.4.1. Состав последовательности",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -2022,7 +1385,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_2_basic.py",
    "page": "t6_04.html",
    "id": "ex-2-basic-task",
-   "title": "Упражнение 6.4.2. Число групп",
+   "title": "Упражнение 6.4.2. Группа по длине",
    "group": "ex-2",
    "variant": "basic"
   },
@@ -2030,7 +1393,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_2_medium.py",
    "page": "t6_04.html",
    "id": "ex-2-medium-task",
-   "title": "Упражнение 6.4.2. Группа по запросу",
+   "title": "Упражнение 6.4.2. Все группы",
    "group": "ex-2",
    "variant": "medium"
   },
@@ -2038,39 +1401,15 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_2_advanced.py",
    "page": "t6_04.html",
    "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.4.2. Самая частая длина",
+   "title": "Упражнение 6.4.2. Самая большая группа",
    "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_04_3_basic.py",
-   "page": "t6_04.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.4.3. Добавление методом update()",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_04_3_medium.py",
-   "page": "t6_04.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.4.3. Поле по умолчанию",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_04_3_advanced.py",
-   "page": "t6_04.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.4.3. Список полей",
-   "group": "ex-3",
    "variant": "advanced"
   },
   {
    "file": "t6_05_1_basic.py",
    "page": "t6_05.html",
    "id": "ex-1-basic-task",
-   "title": "Упражнение 6.5.1. Разные буквы",
+   "title": "Упражнение 6.5.1. Общие буквы",
    "group": "ex-1",
    "variant": "basic"
   },
@@ -2078,7 +1417,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_05_1_medium.py",
    "page": "t6_05.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.5.1. Буквы по алфавиту",
+   "title": "Упражнение 6.5.1. Только в одной",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -2086,63 +1425,15 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_05_1_advanced.py",
    "page": "t6_05.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.5.1. Есть ли повторы",
+   "title": "Упражнение 6.5.1. Два запуска",
    "group": "ex-1",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_05_2_basic.py",
-   "page": "t6_05.html",
-   "id": "ex-2-basic-task",
-   "title": "Упражнение 6.5.2. Пересечение",
-   "group": "ex-2",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_05_2_medium.py",
-   "page": "t6_05.html",
-   "id": "ex-2-medium-task",
-   "title": "Упражнение 6.5.2. Объединение и разность",
-   "group": "ex-2",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_05_2_advanced.py",
-   "page": "t6_05.html",
-   "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.5.2. Дополнение до границы",
-   "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_05_3_basic.py",
-   "page": "t6_05.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.5.3. Проверка алфавита",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_05_3_medium.py",
-   "page": "t6_05.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.5.3. Лишние буквы",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_05_3_advanced.py",
-   "page": "t6_05.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.5.3. Все ли нуклеотиды",
-   "group": "ex-3",
    "variant": "advanced"
   },
   {
    "file": "t6_06_1_basic.py",
    "page": "t6_06.html",
    "id": "ex-1-basic-task",
-   "title": "Упражнение 6.6.1. Число вхождений счетчиком",
+   "title": "Упражнение 6.6.1. Счетчик Counter",
    "group": "ex-1",
    "variant": "basic"
   },
@@ -2150,7 +1441,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_06_1_medium.py",
    "page": "t6_06.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.6.1. Сумма по запросу",
+   "title": "Упражнение 6.6.1. Две самые частые",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -2158,56 +1449,8 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_06_1_advanced.py",
    "page": "t6_06.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.6.1. Самые частые буквы",
+   "title": "Упражнение 6.6.1. Лишние буквы прочтения",
    "group": "ex-1",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_06_2_basic.py",
-   "page": "t6_06.html",
-   "id": "ex-2-basic-task",
-   "title": "Упражнение 6.6.2. Сумма счетчиков",
-   "group": "ex-2",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_06_2_medium.py",
-   "page": "t6_06.html",
-   "id": "ex-2-medium-task",
-   "title": "Упражнение 6.6.2. Разность счетчиков",
-   "group": "ex-2",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_06_2_advanced.py",
-   "page": "t6_06.html",
-   "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.6.2. Хватает ли букв",
-   "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_06_3_basic.py",
-   "page": "t6_06.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.6.3. Счетчик с defaultdict",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_06_3_medium.py",
-   "page": "t6_06.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.6.3. Группы с defaultdict",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_06_3_advanced.py",
-   "page": "t6_06.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.6.3. Самая большая группа",
-   "group": "ex-3",
    "variant": "advanced"
   },
   {
@@ -2230,7 +1473,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_1_advanced.py",
    "page": "t6_07.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.7.1. GC-состав не ниже 50 %",
+   "title": "Упражнение 6.7.1. Прочтения с высоким GC",
    "group": "ex-1",
    "variant": "advanced"
   },
@@ -2238,7 +1481,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_2_basic.py",
    "page": "t6_07.html",
    "id": "ex-2-basic-task",
-   "title": "Упражнение 6.7.2. Самая частая буква",
+   "title": "Упражнение 6.7.2. Разные k-меры",
    "group": "ex-2",
    "variant": "basic"
   },
@@ -2246,7 +1489,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_2_medium.py",
    "page": "t6_07.html",
    "id": "ex-2-medium-task",
-   "title": "Упражнение 6.7.2. Сортировка по частоте",
+   "title": "Упражнение 6.7.2. Максимум вхождений",
    "group": "ex-2",
    "variant": "medium"
   },
@@ -2254,32 +1497,8 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_2_advanced.py",
    "page": "t6_07.html",
    "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.7.2. Все самые частые",
+   "title": "Упражнение 6.7.2. Самые частые k-меры",
    "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_07_3_basic.py",
-   "page": "t6_07.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.7.3. Разные k-меры",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_07_3_medium.py",
-   "page": "t6_07.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.7.3. Максимум вхождений",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_07_3_advanced.py",
-   "page": "t6_07.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.7.3. Самые частые k-меры",
-   "group": "ex-3",
    "variant": "advanced"
   },
   {
@@ -2294,7 +1513,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_08_1_medium.py",
    "page": "t6_08.html",
    "id": "ex-1-medium-task",
-   "title": "Упражнение 6.8.1. Стоп-кодон",
+   "title": "Упражнение 6.8.1. Сколько кодонов",
    "group": "ex-1",
    "variant": "medium"
   },
@@ -2302,7 +1521,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_08_1_advanced.py",
    "page": "t6_08.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.8.1. Строка из кодонов",
+   "title": "Упражнение 6.8.1. Кодоны аминокислоты",
    "group": "ex-1",
    "variant": "advanced"
   },
@@ -2331,30 +1550,6 @@ window.PRACTICE_MANIFEST = {
    "variant": "advanced"
   },
   {
-   "file": "t6_08_3_basic.py",
-   "page": "t6_08.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.8.3. Число кодонов",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_08_3_medium.py",
-   "page": "t6_08.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.8.3. Кодоны аминокислоты",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_08_3_advanced.py",
-   "page": "t6_08.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.8.3. Пары синонимов",
-   "group": "ex-3",
-   "variant": "advanced"
-  },
-  {
    "file": "t6_09_1_basic.py",
    "page": "t6_09.html",
    "id": "ex-1-basic-task",
@@ -2374,7 +1569,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_1_advanced.py",
    "page": "t6_09.html",
    "id": "ex-1-advanced-task",
-   "title": "Упражнение 6.9.1. Разные ткани",
+   "title": "Упражнение 6.9.1. Повторяющиеся названия",
    "group": "ex-1",
    "variant": "advanced"
   },
@@ -2382,7 +1577,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_2_basic.py",
    "page": "t6_09.html",
    "id": "ex-2-basic-task",
-   "title": "Упражнение 6.9.2. Общие гены",
+   "title": "Упражнение 6.9.2. Мера Жаккара",
    "group": "ex-2",
    "variant": "basic"
   },
@@ -2390,7 +1585,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_2_medium.py",
    "page": "t6_09.html",
    "id": "ex-2-medium-task",
-   "title": "Упражнение 6.9.2. Ровно в одном наборе",
+   "title": "Упражнение 6.9.2. Мера Жаккара k-меров",
    "group": "ex-2",
    "variant": "medium"
   },
@@ -2398,32 +1593,8 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_2_advanced.py",
    "page": "t6_09.html",
    "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.9.2. Все ли гены в первом",
+   "title": "Упражнение 6.9.2. Похожие образцы",
    "group": "ex-2",
-   "variant": "advanced"
-  },
-  {
-   "file": "t6_09_3_basic.py",
-   "page": "t6_09.html",
-   "id": "ex-3-basic-task",
-   "title": "Упражнение 6.9.3. Мера Жаккара",
-   "group": "ex-3",
-   "variant": "basic"
-  },
-  {
-   "file": "t6_09_3_medium.py",
-   "page": "t6_09.html",
-   "id": "ex-3-medium-task",
-   "title": "Упражнение 6.9.3. Мера Жаккара для множеств k-меров",
-   "group": "ex-3",
-   "variant": "medium"
-  },
-  {
-   "file": "t6_09_3_advanced.py",
-   "page": "t6_09.html",
-   "id": "ex-3-advanced-task",
-   "title": "Упражнение 6.9.3. Порог сходства",
-   "group": "ex-3",
    "variant": "advanced"
   }
  ],
@@ -2432,7 +1603,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_star_basic.py",
    "page": "t6_01.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.1. Сумма с пропусками",
+   "title": "Задача со звездочкой 6.1. Какая буква чаще",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2440,7 +1611,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_star_medium.py",
    "page": "t6_01.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.1. Оба ли ключа есть",
+   "title": "Задача со звездочкой 6.1. Добавки к счетчикам",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2448,7 +1619,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_01_star_advanced.py",
    "page": "t6_01.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.1. Больший ключ",
+   "title": "Задача со звездочкой 6.1. Синонимы полей",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2464,7 +1635,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_02_star_medium.py",
    "page": "t6_02.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.2. Поиск с пробами",
+   "title": "Задача со звездочкой 6.2. Пробы при вставке",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2472,7 +1643,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_02_star_advanced.py",
    "page": "t6_02.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.2. Самый длинный блок",
+   "title": "Задача со звездочкой 6.2. Поиск с пробами",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2480,7 +1651,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_star_basic.py",
    "page": "t6_03.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.3. Обратный алфавит",
+   "title": "Задача со звездочкой 6.3. Самый длинный образец",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2488,7 +1659,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_star_medium.py",
    "page": "t6_03.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.3. Все, кроме одного",
+   "title": "Задача со звездочкой 6.3. Убрать короткие",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2496,7 +1667,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_star_advanced.py",
    "page": "t6_03.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.3. Не короче порога",
+   "title": "Задача со звездочкой 6.3. Сводка по длинам",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2504,7 +1675,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_star_basic.py",
    "page": "t6_04.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.4. Буквы G и C",
+   "title": "Задача со звездочкой 6.4. Одиночные буквы",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2512,7 +1683,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_star_medium.py",
    "page": "t6_04.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.4. Группа по первой букве",
+   "title": "Задача со звездочкой 6.4. Обращение словаря",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2520,7 +1691,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_04_star_advanced.py",
    "page": "t6_04.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.4. Одиночные буквы",
+   "title": "Задача со звездочкой 6.4. Одинаковый состав",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2528,7 +1699,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_05_star_basic.py",
    "page": "t6_05.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.5. Общие буквы",
+   "title": "Задача со звездочкой 6.5. Лишние буквы",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2536,7 +1707,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_05_star_medium.py",
    "page": "t6_05.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.5. Нет ли общих элементов",
+   "title": "Задача со звездочкой 6.5. Все четыре нуклеотида",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2544,7 +1715,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_05_star_advanced.py",
    "page": "t6_05.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.5. Дополнение набора",
+   "title": "Задача со звездочкой 6.5. Пары без общих букв",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2552,7 +1723,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_06_star_basic.py",
    "page": "t6_06.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.6. Самая редкая буква",
+   "title": "Задача со звездочкой 6.6. Группы по первой букве",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2560,7 +1731,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_06_star_medium.py",
    "page": "t6_06.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.6. Пересечение счетчиков",
+   "title": "Задача со звездочкой 6.6. Самая редкая буква",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2568,7 +1739,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_06_star_advanced.py",
    "page": "t6_06.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.6. Длины с двумя образцами",
+   "title": "Задача со звездочкой 6.6. Хватит ли букв",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2576,7 +1747,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_star_basic.py",
    "page": "t6_07.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.7. Счетчики и GC-состав",
+   "title": "Задача со звездочкой 6.7. Вхождения с перекрытием",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2584,7 +1755,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_star_medium.py",
    "page": "t6_07.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.7. Самый частый k-мер",
+   "title": "Задача со звездочкой 6.7. Повторяющиеся k-меры",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2592,7 +1763,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_07_star_advanced.py",
    "page": "t6_07.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.7. k-меры с двумя вхождениями",
+   "title": "Задача со звездочкой 6.7. Сортировка по частоте",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2608,7 +1779,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_08_star_medium.py",
    "page": "t6_08.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.8. Длина до стопа",
+   "title": "Задача со звездочкой 6.8. Синонимы ли кодоны",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2616,7 +1787,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_08_star_advanced.py",
    "page": "t6_08.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.8. Неизвестные кодоны",
+   "title": "Задача со звездочкой 6.8. Синонимичные замены",
    "group": "ex-star",
    "variant": "advanced"
   },
@@ -2624,7 +1795,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_star_basic.py",
    "page": "t6_09.html",
    "id": "ex-star-basic-task",
-   "title": "Задача со звездочкой 6.9. Повторяющиеся названия",
+   "title": "Задача со звездочкой 6.9. Расстояние Жаккара",
    "group": "ex-star",
    "variant": "basic"
   },
@@ -2632,7 +1803,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_star_medium.py",
    "page": "t6_09.html",
    "id": "ex-star-medium-task",
-   "title": "Задача со звездочкой 6.9. Жаккар с округлением",
+   "title": "Задача со звездочкой 6.9. Только в одном наборе",
    "group": "ex-star",
    "variant": "medium"
   },
@@ -2640,17 +1811,17 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_09_star_advanced.py",
    "page": "t6_09.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.9. Жаккар в процентах",
+   "title": "Задача со звездочкой 6.9. Ближайший образец",
    "group": "ex-star",
    "variant": "advanced"
   }
  ],
  "counts": {
-  "basic": 25,
-  "medium": 25,
-  "advanced": 25,
-  "exercise": 25,
-  "exercise_variants": 75
+  "basic": 14,
+  "medium": 14,
+  "advanced": 14,
+  "exercise": 14,
+  "exercise_variants": 42
  },
  "game_theme": "knight"
 };
