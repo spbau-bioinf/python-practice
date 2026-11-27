@@ -252,7 +252,7 @@ True True
                       <code class="we-seq">ATG CCA<br>ATG CCA <span class="we-hl">TTTT</span></code>
                     </div>
                   </div>
-                  <p class="we-note">copy() создает независимую копию: TTTT добавляется только в копию, а исходный набор остается ATG CCA.</p>
+                  <p class="we-note"><code>copy()</code> создает независимую копию: TTTT добавляется только в копию, а исходный набор остается ATG CCA.</p>
                 </div>
                 <div class="table-wrap">
                   <table class="data tests"><caption>Примеры</caption>
@@ -270,14 +270,14 @@ GATTACA GATTACA</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Метод copy() создает новый список с теми же элементами, а срез [:] делает то же самое. Присваивание draft = seqs копией не является: обе переменные смотрят на один список, и append в draft изменил бы и seqs.</p>
+                <p>Метод <code>copy()</code> создает новый список с теми же элементами, а срез [:] делает то же самое. Присваивание draft = seqs копией не является: обе переменные смотрят на один список, и append в draft изменил бы и seqs.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
-                  <li><strong>Метод copy()</strong> — возвращает копию списка.</li>
+                  <li><strong>Метод <code>copy()</code></strong> — возвращает копию списка.</li>
                   <li><strong>Срез [:]</strong> — копия всего списка.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -347,10 +347,10 @@ ACGT GGCC</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
-                  <li><strong>Метод copy()</strong> — возвращает копию списка.</li>
+                  <li><strong>Метод <code>copy()</code></strong> — возвращает копию списка.</li>
                   <li><strong>Оператор in</strong> — проверяет, встречается ли подстрока в строке.</li>
                   <li><strong>Индекс</strong> — номер элемента в списке; нумерация начинается с 0.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -359,7 +359,7 @@ ACGT GGCC</pre></td></tr>
                   <li>Прочитайте набор и сделайте копию: <code>seqs = input().split()</code>, <code>masked = seqs.copy()</code>.</li>
                   <li>Перебирайте индексы копии: <code>for index in range(len(masked)):</code>.</li>
                   <li>Если в последовательности есть N (<code>"N" in masked[index]</code>), замените элемент: <code>masked[index] = "-"</code>.</li>
-                  <li>Напечатайте обе строки через <code>" ".join</code>; сверьтесь с примером: ACGT ANNT GGNC TTAA дают во второй строке ACGT - - TTAA.</li>
+                  <li>Напечатайте обе строки через <code>" ".join</code>; сверьтесь с примером: ACGT ANNT GGNC TTAA дают во второй строке <code>ACGT--TTAA</code>.</li>
                 </ol>
               </details>
               <div class="checker" data-split data-file="t5_02_1_medium.py">
@@ -416,14 +416,14 @@ ACGT GGCC</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Новое место элемента при сдвиге считают остатком от деления: элемент с номером (index - shift) % length встает на место index. Остаток работает и при сдвиге, большем длины списка, поэтому заранее уменьшать сдвиг не нужно; копию заполняют по номерам исходного списка.</p>
+                <p>Новое место элемента при сдвиге считают остатком от деления: элемент с номером <code>(index - shift) % length</code> встает на место index. Остаток работает и при сдвиге, большем длины списка, поэтому заранее уменьшать сдвиг не нужно; копию заполняют по номерам исходного списка.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Сдвиг по кругу</strong> — элементы переходят на заданное число мест вправо, вышедшие за конец встают в начало.</li>
-                  <li><strong>Остаток от деления %</strong> — номер по кругу: (index - shift) % length остается в пределах от 0 до length - 1.</li>
+                  <li><strong>Остаток от деления %</strong> — номер по кругу: <code>(index - shift) % length</code> остается в пределах от 0 до <code>length - 1</code>.</li>
                   <li><strong>Индекс</strong> — номер элемента в списке; нумерация начинается с 0.</li>
                   <li><strong>Копия списка</strong> — новый список с теми же элементами; его заполняют по номерам исходного.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -500,10 +500,10 @@ NN GT NN</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
-                  <li><strong>Метод copy()</strong> — возвращает копию списка.</li>
+                  <li><strong>Метод <code>copy()</code></strong> — возвращает копию списка.</li>
                   <li><strong>Номера с 1</strong> — из номера вычитают единицу, чтобы получить индекс.</li>
                   <li><strong>Умножение строки</strong> — "N" * 4 дает NNNN.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -569,14 +569,14 @@ GC AT CG</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Пары обходят циклом range(0, len(seqs) - 1, 2): шаг 2 перескакивает через пару, а граница len(seqs) - 1 не пускает цикл на последний индекс при нечетном числе. Оба элемента пары берут из исходного списка, поэтому обмен не портит данные.</p>
+                <p>Пары обходят циклом <code>range(0, len(seqs) - 1, 2)</code>: шаг 2 перескакивает через пару, а граница <code>len(seqs) - 1</code> не пускает цикл на последний индекс при нечетном числе. Оба элемента пары берут из исходного списка, поэтому обмен не портит данные.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Копия списка</strong> — новый список с теми же элементами; изменения в нем не затрагивают исходный.</li>
                   <li><strong>Шаг цикла</strong> — третий аргумент range задает шаг: 2 значит через один индекс.</li>
                   <li><strong>Пара соседей</strong> — элементы с номерами index и index + 1.</li>
                   <li><strong>Нечетное число элементов</strong> — последняя последовательность остается на месте.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -642,11 +642,11 @@ GC GC</pre></td><td><pre>-1</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Перебирают shift от 0 до length - 1: большие сдвиги повторяют уже проверенные, ведь сдвиг на length возвращает набор в исходный вид. Для каждого shift строят сдвинутую копию и сравнивают списки оператором ==; при совпадении запоминают shift и выходят через break, поэтому остается наименьший.</p>
+                <p>Перебирают shift от 0 до <code>length - 1</code>: большие сдвиги повторяют уже проверенные, ведь сдвиг на length возвращает набор в исходный вид. Для каждого shift строят сдвинутую копию и сравнивают списки оператором ==; при совпадении запоминают shift и выходят через break, поэтому остается наименьший.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Сдвиг по кругу</strong> — элементы переходят на shift мест вправо, вышедшие за конец встают в начало.</li>
-                  <li><strong>Остаток от деления %</strong> — номер по кругу: (index - shift) % length остается в пределах от 0 до length - 1.</li>
+                  <li><strong>Остаток от деления %</strong> — номер по кругу: <code>(index - shift) % length</code> остается в пределах от 0 до <code>length - 1</code>.</li>
                   <li><strong>Сравнение списков</strong> — == сравнивает элементы по порядку.</li>
                   <li><strong>Команда break</strong> — немедленно завершает цикл.</li>
                 </ul>

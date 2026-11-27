@@ -248,8 +248,8 @@
                 <ul class="definitions-list">
                   <li><strong>Планшет</strong> — пластина с углублениями, лунками, в которые ставят пробы.</li>
                   <li><strong>Лунка</strong> — одно углубление планшета.</li>
-                  <li><strong>Функция range()</strong> — выдает числа от начального до конечного, не включая конечное.</li>
-                  <li><strong>Параметр end у print()</strong> — задает, чем заканчивается вывод; end=" " печатает через пробел.</li>
+                  <li><strong>Функция <code>range()</code></strong> — выдает числа от начального до конечного, не включая конечное.</li>
+                  <li><strong>Параметр end у <code>print()</code></strong> — задает, чем заканчивается вывод; end=" " печатает через пробел.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -319,7 +319,7 @@ TAA</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
-                  <li><strong>range() с шагом</strong> — третий аргумент задает разность между соседними числами.</li>
+                  <li><strong><code>range()</code> с шагом</strong> — третий аргумент задает разность между соседними числами.</li>
                   <li><strong>Срез seq[index:index + 3]</strong> — три символа, начиная с символа с номером index.</li>
                   <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
                 </ul>
@@ -389,7 +389,7 @@ ATG</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Рамка считывания сдвигает начало разбиения: при рамке frame первый кодон начинается с позиции frame, то есть с индекса frame - 1. Число полных кодонов — (длина - frame + 1) // 3, а обратный обход задает отрицательный шаг range.</p>
+                <p>Рамка считывания сдвигает начало разбиения: при рамке frame первый кодон начинается с позиции frame, то есть с индекса <code>frame - 1</code>. Число полных кодонов — <code>(len(seq) - frame + 1) // 3</code>, а обратный обход задает отрицательный шаг range.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Рамка считывания</strong> — выбор первой позиции, с которой начинают читаться кодоны.</li>
@@ -471,7 +471,7 @@ ATG</pre></td></tr>
                   <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
                   <li><strong>Индекс</strong> — номер символа в строке; нумерация начинается с 0.</li>
                   <li><strong>Цикл по range(len(seq))</strong> — перебирает индексы всех символов строки.</li>
-                  <li><strong>Метод strip()</strong> — убирает пробелы по краям строки.</li>
+                  <li><strong>Метод <code>strip()</code></strong> — убирает пробелы по краям строки.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">

@@ -233,7 +233,7 @@ True</pre></div>
                   <li><strong>Биномиальная номенклатура</strong> — двойное латинское название вида: род и видовой эпитет.</li>
                   <li><strong>Род</strong> — группа близких видов; в названии пишется первым, с заглавной буквы.</li>
                   <li><strong>Видовой эпитет</strong> — второе слово названия; пишется со строчной буквы.</li>
-                  <li><strong>Метод capitalize()</strong> — делает первую букву строки заглавной, а остальные строчными.</li>
+                  <li><strong>Метод <code>capitalize()</code></strong> — делает первую букву строки заглавной, а остальные строчными.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -303,8 +303,8 @@ Cd8a</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Символ гена</strong> — короткое имя гена из латинских букв и цифр.</li>
-                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
-                  <li><strong>Метод capitalize()</strong> — делает первую букву заглавной, а остальные строчными.</li>
+                  <li><strong>Метод <code>upper()</code></strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Метод <code>capitalize()</code></strong> — делает первую букву заглавной, а остальные строчными.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -375,7 +375,7 @@ DANIO RERIO</pre></td><td><pre>False</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Сравнение строк</strong> — проверка, какая строка идет раньше по кодам символов.</li>
                   <li><strong>Код символа</strong> — число, под которым символ хранится в таблице; у заглавных букв оно меньше, чем у строчных.</li>
-                  <li><strong>Метод lower()</strong> — переводит все буквы строки в строчные.</li>
+                  <li><strong>Метод <code>lower()</code></strong> — переводит все буквы строки в строчные.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -510,7 +510,7 @@ TTT</pre></td><td><pre>0</pre></td></tr>
                 <p>Число вхождений мотива — простая характеристика повторов и сайтов в последовательности. Метод <code>count()</code> считает вхождения без перекрытия: в GAGAGA мотив GAG найден один раз.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Метод count()</strong> — считает, сколько раз подстрока встречается в строке.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз подстрока встречается в строке.</li>
                   <li><strong>Вхождение</strong> — место в строке, где начинается мотив.</li>
                   <li><strong>Перекрывающиеся вхождения</strong> — вхождения, которые делят часть символов, например GAG и AGA в GAGA.</li>
                 </ul>
@@ -562,7 +562,7 @@ TTT</pre></td><td><pre>0</pre></td></tr>
                       <code class="we-seq"><span class="we-hl">3</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Мотив начинается с индекса 2, а позиции нумеруются с 1, поэтому ответ 3; когда мотива нет, find() дает −1, и выводится 0.</p>
+                  <p class="we-note">Мотив начинается с индекса 2, а позиции нумеруются с 1, поэтому ответ 3; когда мотива нет, <code>find()</code> дает −1, и выводится 0.</p>
                 </div>
                 <div class="table-wrap">
                   <table class="data tests"><caption>Примеры</caption>
@@ -581,7 +581,7 @@ GGG</pre></td><td><pre>0</pre></td></tr>
                 <p>Метод <code>find()</code> возвращает индекс с нуля, а биологи нумеруют позиции с единицы: к результату прибавляют 1. Если мотива нет, <code>find()</code> возвращает −1, и после прибавления единицы получается 0.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Метод find()</strong> — возвращает индекс первого вхождения подстроки или −1, если ее нет.</li>
+                  <li><strong>Метод <code>find()</code></strong> — возвращает индекс первого вхождения подстроки или −1, если ее нет.</li>
                   <li><strong>Позиция</strong> — номер нуклеотида; нумерация начинается с 1.</li>
                   <li><strong>Индекс</strong> — номер символа в строке; в Python нумерация начинается с 0.</li>
                 </ul>
@@ -652,8 +652,8 @@ GATC</pre></td><td><pre>AGATC</pre></td></tr>
                 <p>Участок между двумя сайтами — например, вставка между повторами — выделяют по первому и последнему вхождению. Начало первого находит <code>find()</code>, начало последнего — <code>rfind()</code>, а между ними лежит нужный срез.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Метод find()</strong> — возвращает индекс первого вхождения подстроки.</li>
-                  <li><strong>Метод rfind()</strong> — возвращает индекс последнего вхождения подстроки.</li>
+                  <li><strong>Метод <code>find()</code></strong> — возвращает индекс первого вхождения подстроки.</li>
+                  <li><strong>Метод <code>rfind()</code></strong> — возвращает индекс последнего вхождения подстроки.</li>
                   <li><strong>Срез</strong> — часть строки, заданная границами.</li>
                 </ul>
               </details>
@@ -730,7 +730,7 @@ GATC</pre></td><td><pre>1</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Повтор</strong> — участок, который много раз встречается в геноме.</li>
                   <li><strong>Регистр</strong> — запись буквы заглавной или строчной; на смысл последовательности не влияет.</li>
-                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Метод <code>upper()</code></strong> — переводит все буквы строки в заглавные.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -800,7 +800,7 @@ GGG</pre></td><td><pre>0</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Кодон</strong> — тройка подряд идущих нуклеотидов.</li>
-                  <li><strong>Метод find()</strong> — возвращает индекс первого вхождения подстроки или −1, если ее нет.</li>
+                  <li><strong>Метод <code>find()</code></strong> — возвращает индекс первого вхождения подстроки или −1, если ее нет.</li>
                   <li><strong>Ветвление</strong> — инструкция if, которая выбирает один из вариантов; здесь она не нужна.</li>
                 </ul>
               </details>
@@ -810,7 +810,7 @@ GGG</pre></td><td><pre>0</pre></td></tr>
                   <li>Прочитайте две строки: <code>seq = input()</code> и <code>motif = input()</code>.</li>
                   <li>Индекс начала вхождения: <code>seq.find(motif)</code>.</li>
                   <li>Три нуклеотида на кодон: номер — это <code>seq.find(motif) // 3 + 1</code>.</li>
-                  <li>Проверьте случай без мотива: find() равен −1, −1 // 3 равно −1, и номер получается 0; выведите <code>print(seq.find(motif) // 3 + 1)</code>.</li>
+                  <li>Проверьте случай без мотива: <code>find()</code> равен −1, −1 // 3 равно −1, и номер получается 0; выведите <code>print(seq.find(motif) // 3 + 1)</code>.</li>
                 </ol>
               </details>
               <div class="checker" data-split data-file="t2_04_star_medium.py">
@@ -872,7 +872,7 @@ CTAG</pre></td><td><pre>1</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
                   <li><strong>Кольцевая ДНК</strong> — молекула без концов: после последнего нуклеотида записи идет первый.</li>
-                  <li><strong>Метод count()</strong> — считает вхождения подстроки без перекрытия.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает вхождения подстроки без перекрытия.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">

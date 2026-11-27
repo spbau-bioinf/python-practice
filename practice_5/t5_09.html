@@ -229,8 +229,8 @@ T</pre></td><td><pre>0 0 0 0</pre></td></tr>
                   <li><strong>Выравнивание</strong> — несколько последовательностей одной длины, записанных друг под другом.</li>
                   <li><strong>Столбец</strong> — буквы одной позиции всех последовательностей.</li>
                   <li><strong>Строка профиля</strong> — числа одной буквы по всем столбцам.</li>
-                  <li><strong>Функция zip()</strong> — с распаковкой *seqs собирает буквы одного столбца.</li>
-                  <li><strong>Метод count()</strong> — считает, сколько раз буква встречается в строке.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — с распаковкой *seqs собирает буквы одного столбца.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз буква встречается в строке.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -238,7 +238,7 @@ T</pre></td><td><pre>0 0 0 0</pre></td></tr>
                 <ol class="hint-steps">
                   <li>Прочитайте выравнивание и букву: <code>seqs = input().split()</code>, <code>letter = input()</code>.</li>
                   <li>Перебирайте столбцы: <code>zip(*seqs)</code> — распаковка звездочкой передает все строки сразу.</li>
-                  <li>Считайте букву в каждом столбце: <code>col.count(letter)</code>; число сразу переводите в строку функцией str().</li>
+                  <li>Считайте букву в каждом столбце: <code>col.count(letter)</code>; число сразу переводите в строку функцией <code>str()</code>.</li>
                   <li>Напечатайте <code>" ".join(row)</code>; сверьтесь с примером: ATGCA ACGCT ATGGA и буква G дают 0 0 3 1 0, а AAAA CCCC и T — 0 0 0 0.</li>
                 </ol>
               </details>
@@ -301,9 +301,9 @@ T</pre></td><td><pre>0 0 0 0</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Консенсус</strong> — буква на каждой позиции: самая частая, при ничьей первая по порядку A, C, G, T.</li>
                   <li><strong>Ключ key</strong> — key=col.count сравнивает буквы по числу вхождений.</li>
-                  <li><strong>Функция max()</strong> — при равных ключах возвращает первый элемент.</li>
+                  <li><strong>Функция <code>max()</code></strong> — при равных ключах возвращает первый элемент.</li>
                   <li><strong>Расстояние Хэмминга</strong> — число позиций, где буквы различаются.</li>
-                  <li><strong>Функция zip()</strong> — идет по двум строкам одновременно, выдавая пары букв.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — идет по двум строкам одновременно, выдавая пары букв.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -367,14 +367,14 @@ T</pre></td><td><pre>0 0 0 0</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Для каждого столбца считают [col.count(base) for base in "ACGT"]: пропуски - в счет не попадают. Если максимум равен 0, в консенсус идет -, если максимум набрали несколько букв (counts.count(best) > 1) — N, иначе буква по индексу через counts.index(best) в строке "ACGT".</p>
+                <p>Для каждого столбца считают <code>[col.count(base) for base in "ACGT"]</code>: пропуски в счет не попадают. Если максимум равен 0, в консенсус идет <code>-</code>, если максимум набрали несколько букв (counts.count(best) > 1) — N, иначе буква по индексу через counts.index(best) в строке "ACGT".</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Пропуск</strong> — знак -: у последовательности в этой позиции нет буквы.</li>
                   <li><strong>Неоднозначность</strong> — две буквы или больше набрали поровну — в консенсус ставится N.</li>
                   <li><strong>Буква N</strong> — буква не определена.</li>
-                  <li><strong>Метод index()</strong> — возвращает номер первого вхождения в строке.</li>
-                  <li><strong>Метод count()</strong> — считает вхождения буквы в строке.</li>
+                  <li><strong>Метод <code>index()</code></strong> — возвращает номер первого вхождения в строке.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает вхождения буквы в строке.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -447,8 +447,8 @@ T</pre></td><td><pre>0 0 0 0</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Уверенность консенсуса</strong> — чем меньше раз встречается самая частая буква, тем ниже уверенность в позиции.</li>
-                  <li><strong>Функция enumerate()</strong> — с start=1 дает номера столбцов.</li>
-                  <li><strong>Функция max()</strong> — находит число самой частой буквы.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — с start=1 дает номера столбцов.</li>
+                  <li><strong>Функция <code>max()</code></strong> — находит число самой частой буквы.</li>
                   <li><strong>Строгое сравнение</strong> — &lt; не пропускает равное число.</li>
                 </ul>
               </details>
@@ -521,8 +521,8 @@ AC AG AC</pre></td><td><pre>нет</pre></td></tr>
                   <li><strong>Консенсус группы</strong> — буква на каждой позиции: самая частая среди последовательностей группы.</li>
                   <li><strong>Ключ key</strong> — key=col.count сравнивает буквы по числу вхождений.</li>
                   <li><strong>Принцип первого при ничьей</strong> — max оставляет первую из равных букв в порядке A, C, G, T.</li>
-                  <li><strong>Функция enumerate()</strong> — дает номера позиций, считая с 1.</li>
-                  <li><strong>Функция zip()</strong> — идет по двум консенсусам одновременно.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — дает номера позиций, считая с 1.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — идет по двум консенсусам одновременно.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -607,8 +607,8 @@ T: 0 0 1 1 0 0 0</pre></td></tr>
                   <li><strong>Запись FASTA из нескольких строк</strong> — все строки до следующего заголовка — одна последовательность.</li>
                   <li><strong>Строка профиля</strong> — числа одной буквы по всем столбцам.</li>
                   <li><strong>Консенсус</strong> — буква на каждой позиции, при ничьей первая по порядку A, C, G, T.</li>
-                  <li><strong>Метод startswith()</strong> — проверяет, с чего начинается строка.</li>
-                  <li><strong>Функция zip()</strong> — с распаковкой *seqs собирает буквы одного столбца.</li>
+                  <li><strong>Метод <code>startswith()</code></strong> — проверяет, с чего начинается строка.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — с распаковкой *seqs собирает буквы одного столбца.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">

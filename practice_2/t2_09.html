@@ -205,9 +205,9 @@ gene_00284728	32	53.1</pre></div>
                 <ul class="definitions-list">
                   <li><strong>GC-состав</strong> — доля букв G и C среди всех нуклеотидов последовательности.</li>
                   <li><strong>Повтор</strong> — участок, который много раз встречается в геноме; в записи помечен строчными буквами.</li>
-                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
-                  <li><strong>Метод count()</strong> — считает, сколько раз символ встречается в строке.</li>
-                  <li><strong>len()</strong> — возвращает число символов в строке.</li>
+                  <li><strong>Метод <code>upper()</code></strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз символ встречается в строке.</li>
+                  <li><strong><code>len()</code></strong> — возвращает число символов в строке.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -280,8 +280,8 @@ atgc</pre></td><td><pre>seq1	4	50.0</pre></td></tr>
                   <li><strong>Строка описания</strong> — первая строка записи: символ >, идентификатор и, возможно, комментарий.</li>
                   <li><strong>Идентификатор</strong> — короткое имя записи без пробелов.</li>
                   <li><strong>Табуляция</strong> — символ разделения колонок, записывается как \t.</li>
-                  <li><strong>Метод removeprefix()</strong> — убирает заданное начало строки, если оно есть.</li>
-                  <li><strong>Метод split()</strong> — делит строку по разделителю; с <code>maxsplit=1</code> делит только по первому пробелу.</li>
+                  <li><strong>Метод <code>removeprefix()</code></strong> — убирает заданное начало строки, если оно есть.</li>
+                  <li><strong>Метод <code>split()</code></strong> — делит строку по разделителю; с <code>maxsplit=1</code> делит только по первому пробелу.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -427,8 +427,8 @@ atgcatgcatgca</pre></td><td><pre>frag_7	13	46.2	50.0</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>GC-перекос</strong> — величина (count_g − count_c) / (count_g + count_c), показывающая перевес гуанина или цитозина.</li>
-                  <li><strong>Гуанин и цитозин</strong> — нуклеотиды G и C; их число считают методом count().</li>
-                  <li><strong>Метод upper()</strong> — переводит все буквы строки в заглавные.</li>
+                  <li><strong>Гуанин и цитозин</strong> — нуклеотиды G и C; их число считают методом <code>count()</code>.</li>
+                  <li><strong>Метод <code>upper()</code></strong> — переводит все буквы строки в заглавные.</li>
                   <li><strong>Формат .3f</strong> — запись числа с тремя знаками после точки.</li>
                 </ul>
               </details>
@@ -508,7 +508,7 @@ nnGC</pre></td><td><pre>s1	2	100.0</pre></td></tr>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
                 <ol class="hint-steps">
-                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в упражнении 2.9.1.</li>
+                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в упражнении 2.9.1 среднего уровня.</li>
                   <li>Число пропусков: <code>count_n = seq.count("N")</code>.</li>
                   <li>Определенных нуклеотидов <code>len(seq) - count_n</code>, поэтому GC-состав — сумма <code>seq.count("G") + seq.count("C")</code>, деленная на это число и умноженная на <code>100</code>.</li>
                   <li>Выведите три колонки через <code>\t</code>; сверьтесь с примером: ctg12, 3 пропуска, 55.6.</li>
@@ -574,14 +574,14 @@ CcGg</pre></td><td><pre>p2	100.0	1.00</pre></td></tr>
                   <li><strong>CpG</strong> — пара соседних нуклеотидов C и G; в записи выглядит как CG.</li>
                   <li><strong>CpG-островок</strong> — участок, где пар CpG больше ожидаемого по числу букв C и G.</li>
                   <li><strong>Ожидаемое число пар</strong> — доля, которую составили бы пары CG при случайном расположении букв: (число C · число G) / длина.</li>
-                  <li><strong>Метод count()</strong> — считает вхождения подстроки; seq.count("CG") считает пары.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает вхождения подстроки; seq.count("CG") считает пары.</li>
                   <li><strong>Табуляция</strong> — символ разделения колонок, записывается как \t.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
                 <ol class="hint-steps">
-                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в упражнении 2.9.1.</li>
+                  <li>Прочитайте запись: <code>header = input()</code>, <code>seq = input().upper()</code>; идентификатор — как в упражнении 2.9.1 среднего уровня.</li>
                   <li>Сосчитайте <code>count_c = seq.count("C")</code>, <code>count_g = seq.count("G")</code> и число пар <code>seq.count("CG")</code>.</li>
                   <li>GC-состав — сумма <code>count_c + count_g</code>, деленная на <code>len(seq)</code> и умноженная на <code>100</code>; отношение — <code>seq.count("CG") * len(seq)</code>, деленное на <code>count_c * count_g</code>.</li>
                   <li>Выведите три колонки: <code>f"{seq_id}\t{gc:.1f}\t{ratio:.2f}"</code>; сверьтесь с примером: isl_4, 63.2, 2.11.</li>

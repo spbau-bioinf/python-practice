@@ -166,13 +166,13 @@ ACG TGA</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Срез списка возвращает новый список: seqs[:count] берет элементы с номерами от 0 до count - 1, seqs[-count:] отсчитывает count элементов от конца. Когда count равно длине набора, оба среза дают весь набор.</p>
+                <p>Срез списка возвращает новый список: <code>seqs[:count]</code> берет элементы с номерами от 0 до <code>count - 1</code>, <code>seqs[-count:]</code> отсчитывает count элементов от конца. Когда count равно длине набора, оба среза дают весь набор.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Срез списка</strong> — часть списка, вырезанная по границам.</li>
                   <li><strong>Срез seqs[:count]</strong> — первые count элементов.</li>
                   <li><strong>Срез seqs[-count:]</strong> — последние count элементов; отрицательный номер считается от конца.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -244,7 +244,7 @@ C T</pre></td></tr>
                   <li><strong>Срез seqs[::2]</strong> — каждый второй элемент начиная с первого.</li>
                   <li><strong>Срез seqs[1::2]</strong> — каждый второй элемент начиная со второго.</li>
                   <li><strong>Пустой список</strong> — join от него дает пустую строку.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -312,14 +312,14 @@ C T</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Срез seqs[start - 1:end] включает левую границу и не включает правую, поэтому номер end в ответе есть, а элемент после него не попадает. Обратный порядок задает шаг -1: срез [::-1] разворачивает уже вырезанный участок.</p>
+                <p>Срез <code>seqs[start - 1:end]</code> включает левую границу и не включает правую, поэтому номер end в ответе есть, а элемент после него не попадает. Обратный порядок задает шаг <code>-1</code>: срез <code>[::-1]</code> разворачивает уже вырезанный участок.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Срез seqs[start:end]</strong> — элементы с индексами от start до end - 1.</li>
+                  <li><strong>Срез <code>seqs[start:end]</code></strong> — элементы с индексами от start до <code>end - 1</code>.</li>
                   <li><strong>Нумерация с 1</strong> — из номера вычитают единицу, чтобы получить индекс.</li>
                   <li><strong>Обратный срез [::-1]</strong> — разворачивает список.</li>
                   <li><strong>Шаг -1</strong> — идет от конца к началу.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -556,10 +556,10 @@ CC</pre></td></tr>
                 <p>Метод pop(0) удаляет элемент с индексом 0 и возвращает его, поэтому удаленное значение сохраняют в переменной. После удаления оставшиеся элементы сдвигаются влево, и первой в наборе становится вторая последовательность.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Метод pop()</strong> — удаляет элемент по индексу и возвращает его.</li>
+                  <li><strong>Метод <code>pop()</code></strong> — удаляет элемент по индексу и возвращает его.</li>
                   <li><strong>pop(0)</strong> — удаляет первый элемент.</li>
                   <li><strong>Индекс</strong> — номер элемента в списке; нумерация начинается с 0.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -625,14 +625,14 @@ CC</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Удалять элементы из списка во время обычного цикла for нельзя: номера сдвигаются, и часть элементов цикл пропустит. Поэтому перебирают копию seqs[:], а удаляют из исходного списка методом remove(). Условие len(sequence) &lt; min_length строгое: последовательность ровно такой длины остается.</p>
+                <p>Удалять элементы из списка во время обычного цикла for нельзя: номера сдвигаются, и часть элементов цикл пропустит. Поэтому перебирают копию seqs[:], а удаляют из исходного списка методом <code>remove()</code>. Условие len(sequence) &lt; min_length строгое: последовательность ровно такой длины остается.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Метод remove()</strong> — удаляет первое вхождение элемента.</li>
+                  <li><strong>Метод <code>remove()</code></strong> — удаляет первое вхождение элемента.</li>
                   <li><strong>Копия списка</strong> — перебор копии не мешает удалению из исходного списка.</li>
                   <li><strong>Строгое сравнение</strong> — len(sequence) &lt; min_length не трогает последовательность ровно такой длины.</li>
                   <li><strong>Пустой список</strong> — у пустого списка условие if seqs ложно.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -700,14 +700,14 @@ CC</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Команду разбирают по знаку: cmd[0] — первый символ, cmd[1:] — остальная последовательность. Команда + дописывает через append(), команда - удаляет первое вхождение методом remove(); если элемента нет, remove не вызывают, и команда попадает в счетчик пропущенных.</p>
+                <p>Команду разбирают по знаку: cmd[0] — первый символ, cmd[1:] — остальная последовательность. Команда <code>+</code> дописывает через <code>append()</code>, команда <code>-</code> удаляет первое вхождение методом <code>remove()</code>; если элемента нет, remove не вызывают, и команда попадает в счетчик пропущенных.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Срез строки</strong> — cmd[1:] — вся строка без первого символа.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Метод remove()</strong> — удаляет первое вхождение элемента.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>remove()</code></strong> — удаляет первое вхождение элемента.</li>
                   <li><strong>Пропущенная команда</strong> — удалять нечего: такой последовательности в наборе нет.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -781,9 +781,9 @@ CC</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Соседние повторы</strong> — одинаковые элементы, стоящие подряд.</li>
                   <li><strong>result[-1]</strong> — последний элемент списка.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
                   <li><strong>Срез seqs[1:]</strong> — все элементы, кроме первого.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -922,14 +922,14 @@ CC</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Номер следующей забранной пробы считают по остатку: index = (index + step - 1) % len(seqs) — счет начинается с текущей пробы, поэтому шагов на единицу меньше. После pop(index) список короче, и следующий счет сам начинается с пробы, стоявшей за забранной. Цикл while seqs идет, пока пробы не кончатся.</p>
+                <p>Номер следующей забранной пробы считают по остатку: <code>index = (index + step - 1) % len(seqs)</code> — счет начинается с текущей пробы, поэтому шагов на единицу меньше. После pop(index) список короче, и следующий счет сам начинается с пробы, стоявшей за забранной. Цикл while seqs идет, пока пробы не кончатся.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Проба</strong> — последовательность набора.</li>
                   <li><strong>Остаток от деления %</strong> — держит номер в пределах длины списка.</li>
-                  <li><strong>Метод pop()</strong> — удаляет элемент по индексу и возвращает его.</li>
+                  <li><strong>Метод <code>pop()</code></strong> — удаляет элемент по индексу и возвращает его.</li>
                   <li><strong>Цикл while</strong> — идет, пока список не опустеет.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">

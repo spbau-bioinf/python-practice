@@ -224,7 +224,7 @@ False True</pre></div>
                       <code class="we-seq"><span class="we-hl">3</span><br>TTTT</code>
                     </div>
                   </div>
-                  <p class="we-note">split() делит строку по пробелам на три элемента: ATG, CCA и TTTT; len() возвращает 3, а индекс -1 — последний элемент TTTT.</p>
+                  <p class="we-note"><code>split()</code> делит строку по пробелам на три элемента: ATG, CCA и TTTT; <code>len()</code> возвращает 3, а индекс -1 — последний элемент TTTT.</p>
                 </div>
                 <div class="table-wrap">
                   <table class="data tests"><caption>Примеры</caption>
@@ -240,12 +240,12 @@ GATTACA</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Метод split() режет строку по пробелам и выдает список. Число элементов дает функция len(), индексы списка считаются с нуля, поэтому последний элемент доступен по индексу -1.</p>
+                <p>Метод <code>split()</code> режет строку по пробелам и выдает список. Число элементов дает функция <code>len()</code>, индексы списка считаются с нуля, поэтому последний элемент доступен по индексу -1.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
-                  <li><strong>Метод split()</strong> — режет строку по пробелам и выдает список слов.</li>
-                  <li><strong>Функция len()</strong> — возвращает число элементов списка или длину строки.</li>
+                  <li><strong>Метод <code>split()</code></strong> — режет строку по пробелам и выдает список слов.</li>
+                  <li><strong>Функция <code>len()</code></strong> — возвращает число элементов списка или длину строки.</li>
                   <li><strong>Индекс -1</strong> — последний элемент списка.</li>
                 </ul>
               </details>
@@ -314,14 +314,14 @@ AAA</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Новую партию перебирают циклом и проверяют оператором in по текущему списку. Если последовательности там нет, ее дописывают в конец методом append(); проверка идет по уже пополненному списку, поэтому повторы внутри партии отбрасываются сами.</p>
+                <p>Новую партию перебирают циклом и проверяют оператором in по текущему списку. Если последовательности там нет, ее дописывают в конец методом <code>append()</code>; проверка идет по уже пополненному списку, поэтому повторы внутри партии отбрасываются сами.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
-                  <li><strong>Метод split()</strong> — режет строку по пробелам и выдает список слов.</li>
+                  <li><strong>Метод <code>split()</code></strong> — режет строку по пробелам и выдает список слов.</li>
                   <li><strong>Оператор in</strong> — проверяет, есть ли значение в списке.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -389,9 +389,9 @@ AAA</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
                   <li><strong>Оператор in</strong> — проверяет, есть ли значение в списке.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -546,7 +546,7 @@ A ATG</pre></div>
                 <ul class="definitions-list">
                   <li><strong>Средняя длина</strong> — сумма длин всех последовательностей, деленная на их число.</li>
                   <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
                   <li><strong>Нестрогое сравнение</strong> — &gt;= пропускает и равные значения.</li>
                 </ul>
               </details>
@@ -618,8 +618,8 @@ CA TG</pre></td><td><pre>нет</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Список</strong> — несколько значений, доступных по индексу.</li>
                   <li><strong>Оператор in</strong> — проверяет, есть ли значение в списке.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">

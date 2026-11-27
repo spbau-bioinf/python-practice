@@ -285,14 +285,14 @@ R3 [] 0</pre></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Распаковка name, length, gc = input().split() присваивает три части строки трем переменным сразу. Части приходят строками, поэтому выражение переводит их: int(length) * float(gc) / 100. Деление всегда дает float, а round() возвращает ближайшее целое.</p>
+                <p>Распаковка name, length, gc = <code>input()</code>.split() присваивает три части строки трем переменным сразу. Части приходят строками, поэтому выражение переводит их: int(length) * float(gc) / 100. Деление всегда дает <code>float</code>, а <code>round()</code> возвращает ближайшее целое.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Распаковка</strong> — несколько переменных слева от знака = и столько же частей справа.</li>
                   <li><strong>GC-состав</strong> — доля букв G и C в процентах от длины последовательности.</li>
-                  <li><strong>Функция float()</strong> — переводит строку в вещественное число.</li>
-                  <li><strong>Функция round()</strong> — округляет до ближайшего целого.</li>
-                  <li><strong>Функция int()</strong> — отбрасывает дробную часть.</li>
+                  <li><strong>Функция <code>float()</code></strong> — переводит строку в вещественное число.</li>
+                  <li><strong>Функция <code>round()</code></strong> — округляет до ближайшего целого.</li>
+                  <li><strong>Функция <code>int()</code></strong> — отбрасывает дробную часть.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -342,7 +342,7 @@ R3 [] 0</pre></div>
                       <code class="we-seq">Rosalind_0498<br><span class="we-hl">4</span></code>
                     </div>
                   </div>
-                  <p class="we-note">first, *rest = input().split() отделяет первое слово — идентификатор; после удаления знака &gt; остается Rosalind_0498, а в описании четыре слова: Homo, sapiens, chromosome, 1.</p>
+                  <p class="we-note">first, *rest = <code>input()</code>.split() отделяет первое слово — идентификатор; после удаления знака &gt; остается Rosalind_0498, а в описании четыре слова: Homo, sapiens, chromosome, 1.</p>
                 </div>
                 <div class="table-wrap">
                   <table class="data tests"><caption>Примеры</caption>
@@ -358,7 +358,7 @@ R3 [] 0</pre></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Распаковка со звездочкой first, *rest = input().split() кладет первое слово в first, а все остальные — списком в rest. Даже при пустом описании rest получает пустой список, поэтому len(rest) всегда дает число слов описания. Знак &gt; отрезают срезом first[1:].</p>
+                <p>Распаковка со звездочкой first, *rest = <code>input()</code>.split() кладет первое слово в first, а все остальные — списком в rest. Даже при пустом описании rest получает пустой список, поэтому len(rest) всегда дает число слов описания. Знак &gt; отрезают срезом first[1:].</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Идентификатор</strong> — имя последовательности без пробелов, сразу за знаком &gt;.</li>
@@ -430,14 +430,14 @@ r2 18 24</pre></td><td><pre>4</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Каждое прочтение — отрезок на геноме. Запись от большей позиции к меньшей сначала приводят к обычному виду, меняя концы местами. Общая часть двух отрезков начинается с большего из начал и кончается меньшим из концов; число позиций равно end - start + 1, а у непересекающихся отрезков конец раньше начала, и max(0, ...) превращает разность в 0.</p>
+                <p>Каждое прочтение — отрезок на геноме. Запись от большей позиции к меньшей сначала приводят к обычному виду, меняя концы местами. Общая часть двух отрезков начинается с большего из начал и кончается меньшим из концов; число позиций равно <code>end - start + 1</code>, а у непересекающихся отрезков конец раньше начала, и max(0, ...) превращает разность в 0.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Прочтение</strong> — участок ДНК, который прибор прочитал за один раз.</li>
                   <li><strong>Геном</strong> — вся ДНК организма; позиции в нем нумеруются подряд с 1.</li>
                   <li><strong>Перекрытие</strong> — позиции генома, входящие в оба прочтения.</li>
                   <li><strong>Обратная цепь</strong> — в выводе программы BLAST прочтение с другой цепи записано от большей позиции к меньшей.</li>
-                  <li><strong>Функция max()</strong> — возвращает большее из значений.</li>
+                  <li><strong>Функция <code>max()</code></strong> — возвращает большее из значений.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -513,14 +513,14 @@ B 69.9</pre></td><td><pre>нет</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Порог читают как float, состав каждой записи тоже float; сравнение float(gc) &gt;= threshold нестрогое, поэтому запись ровно на пороге проходит. Имена накапливают в списке, а слово нет печатают, когда список остался пустым.</p>
+                <p>Порог читают как <code>float</code>, состав каждой записи тоже <code>float</code>; сравнение float(gc) &gt;= threshold нестрогое, поэтому запись ровно на пороге проходит. Имена накапливают в списке, а слово нет печатают, когда список остался пустым.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Порог</strong> — граничное значение GC-состава.</li>
                   <li><strong>Нестрогое сравнение</strong> — &gt;= пропускает и равные значения.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Функция float()</strong> — переводит строку в вещественное число.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Функция <code>float()</code></strong> — переводит строку в вещественное число.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -589,13 +589,13 @@ y 7 3</pre></td><td><pre>x 10</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Распаковка со звездочкой name, *values = input().split() отделяет имя от всех чисел записи: values получает список строк, и цикл складывает их как int. У записи без измерений values пуст, и сумма остается 0. Лучшую сумму заменяют только при строгом &gt;, поэтому при равенстве остается первая запись.</p>
+                <p>Распаковка со звездочкой name, *values = <code>input()</code>.split() отделяет имя от всех чисел записи: values получает список строк, и цикл складывает их как <code>int</code>. У записи без измерений values пуст, и сумма остается 0. Лучшую сумму заменяют только при строгом &gt;, поэтому при равенстве остается первая запись.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Распаковка со звездочкой</strong> — name, *values = ... — values забирает все числа записи.</li>
                   <li><strong>Пустой список</strong> — у записи без измерений values пуст, сумма равна 0.</li>
                   <li><strong>Строгое сравнение</strong> — &gt; не пропускает равную сумму.</li>
-                  <li><strong>Функция int()</strong> — переводит строку в целое число.</li>
+                  <li><strong>Функция <code>int()</code></strong> — переводит строку в целое число.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -618,7 +618,7 @@ y 7 3</pre></td><td><pre>x 10</pre></td></tr>
               <h3>Задача со звездочкой 5.4. Смертные кролики</h3>
               <div class="todo-box">
                 <p class="todo-title">Условие задачи</p>
-                <p>Кролики живут <code>lifespan</code> месяцев: пара, родившаяся в месяце birth_month, есть в месяцах birth_month, birth_month + 1, …, birth_month + <code>lifespan</code> - 1, а в месяце birth_month + <code>lifespan</code> ее уже нет. В первом месяце есть одна новорожденная пара. В каждом следующем месяце рождается столько новых пар, сколько пар в прошлом месяце были в возрасте хотя бы одного месяца. Сколько пар будет в месяце <code>month</code>? Не путайте номер месяца с числом пар.</p>
+                <p>Кролики живут <code>lifespan</code> месяцев: пара, родившаяся в месяце birth_month, есть в месяцах birth_month, birth_month + 1, …, <code>birth_month + lifespan - 1</code>, а в месяце birth_month + <code>lifespan</code> ее уже нет. В первом месяце есть одна новорожденная пара. В каждом следующем месяце рождается столько новых пар, сколько пар в прошлом месяце были в возрасте хотя бы одного месяца. Сколько пар будет в месяце <code>month</code>? Не путайте номер месяца с числом пар.</p>
                 <p><strong>Пример.</strong> При <code>month = 6</code> и <code>lifespan = 3</code> ответ 4: в шестом месяце четыре пары. Первое число задает номер месяца, второе показывает, сколько месяцев живет одна пара. Не путайте номер месяца с числом пар.</p>
               </div>
               <div class="task-io">
@@ -666,16 +666,16 @@ y 7 3</pre></td><td><pre>x 10</pre></td></tr>
                   <li><strong>Возраст пары</strong> — сколько полных месяцев она прожила; у новорожденной возраст 0.</li>
                   <li><strong>Список возрастов</strong> — ages[age] — число пар этого возраста.</li>
                   <li><strong>Новорожденные</strong> — ages[0]; в первом месяце такая пара одна.</li>
-                  <li><strong>Сумма списка</strong> — sum() складывает все элементы.</li>
+                  <li><strong>Сумма списка</strong> — <code>sum()</code> складывает все элементы.</li>
                   <li><strong>Сдвиг возрастов</strong> — [newborn] + ages[:-1] старит всех на месяц и убирает самый старый возраст.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
                 <ol class="hint-steps">
-                  <li>Прочитайте числа: <code>month, lifespan = input().split()</code>; переведите оба в int.</li>
+                  <li>Прочитайте числа: <code>month, lifespan = input().split()</code>; переведите оба в <code>int</code>.</li>
                   <li>Заведите возрасты: <code>ages = [1]</code>, затем допишите нули, чтобы длина стала lifespan — в первом месяце одна новорожденная пара.</li>
-                  <li>Каждый следующий месяц (цикл повторяется month - 1 раз) считайте <code>newborn = sum(ages[1:])</code> и сдвигайте: <code>ages = [newborn] + ages[:-1]</code>.</li>
+                  <li>Каждый следующий месяц (цикл повторяется <code>month - 1</code> раз) считайте <code>newborn = sum(ages[1:])</code> и сдвигайте: <code>ages = [newborn] + ages[:-1]</code>.</li>
                   <li>Выведите <code>sum(ages)</code>; сверьтесь с примером: 6 и 3 дают 4, а 2 и 2 — 1.</li>
                 </ol>
               </details>

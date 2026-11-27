@@ -221,14 +221,14 @@ recs <span class="tok-op">=</span> <span class="tok-builtin">list</span>(<span c
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Включение [str(seq.count(base)) for base in "ACGT"] перебирает буквы строки "ACGT" и для каждой считает вхождения методом count — получается вектор признаков в нужном порядке. str() внутри включения сразу делает числа строками, и join склеивает их через пробел.</p>
+                <p>Включение [str(seq.count(base)) for base in "ACGT"] перебирает буквы строки "ACGT" и для каждой считает вхождения методом count — получается вектор признаков в нужном порядке. <code>str()</code> внутри включения сразу делает числа строками, и join склеивает их через пробел.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Вектор признаков</strong> — четыре числа букв A, C, G, T по порядку.</li>
                   <li><strong>Списковое включение</strong> — список, собранный выражением из строки.</li>
-                  <li><strong>Метод count()</strong> — считает, сколько раз буква встречается в строке.</li>
-                  <li><strong>Функция str()</strong> — переводит число в строку.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз буква встречается в строке.</li>
+                  <li><strong>Функция <code>str()</code></strong> — переводит число в строку.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -306,7 +306,7 @@ A</pre></td><td><pre>x 1 0 0 0</pre></td></tr>
                   <li><strong>Матрица признаков</strong> — строка на запись: идентификатор и четыре числа букв.</li>
                   <li><strong>Списковое включение</strong> — список, собранный выражением из строки.</li>
                   <li><strong>Срез [1:]</strong> — убирает первый символ заголовка — знак &gt;.</li>
-                  <li><strong>Метод count()</strong> — считает, сколько раз буква встречается в строке.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз буква встречается в строке.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -356,7 +356,7 @@ A</pre></td><td><pre>x 1 0 0 0</pre></td></tr>
                       <code class="we-seq">1.0 1.33 1.0 0.67<br><span class="we-hl">s1</span></code>
                     </div>
                   </div>
-                  <p class="we-note">Средний вектор — 1.0 1.33 1.0 0.67; s1 отличается от него на 0,67, а s2 и s3 — на 4, поэтому ближе всех s1.</p>
+                  <p class="we-note">Средний вектор — <code>1.0 1.33 1.0 0.67</code>; s1 отличается от него на 0,67, а s2 и s3 — на 4, поэтому ближе всех s1.</p>
                 </div>
                 <div class="table-wrap">
                   <table class="data tests"><caption>Примеры</caption>
@@ -380,14 +380,14 @@ only</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Матрицу matrix собирают как список векторов. Средний вектор получают по столбцам: zip(*matrix) разворачивает матрицу, и sum(col) складывает столбец; деление на count выполняют только при печати, а расстояния сравнивают до неокругленного среднего. Расстояние |value - среднее| для каждого признака считают через abs(), а сумму умножают на count, чтобы обойтись без дробей: sum(abs(count * value - column_sum)).</p>
+                <p>Матрицу matrix собирают как список векторов. Средний вектор получают по столбцам: zip(*matrix) разворачивает матрицу, и sum(col) складывает столбец; деление на count выполняют только при печати, а расстояния сравнивают до неокругленного среднего. Расстояние между значением и средним для каждого признака считают через <code>abs()</code>, а сумму умножают на count, чтобы обойтись без дробей: <code>sum(abs(count * value - column_sum))</code>.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Матрица признаков</strong> — строка на запись: идентификатор и четыре числа букв.</li>
                   <li><strong>Средний вектор</strong> — среднее арифметическое каждого столбца матрицы.</li>
                   <li><strong>Расстояние между векторами</strong> — сумма модулей разностей их чисел.</li>
-                  <li><strong>Функция abs()</strong> — возвращает модуль числа.</li>
-                  <li><strong>Функция zip()</strong> — разворачивает матрицу по столбцам.</li>
+                  <li><strong>Функция <code>abs()</code></strong> — возвращает модуль числа.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — разворачивает матрицу по столбцам.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -396,7 +396,7 @@ only</pre></td></tr>
                   <li>Прочитайте записи: <code>count = int(input())</code>; для каждой сохраните <code>name = input()[1:]</code> и вектор <code>[seq.count(base) for base in "ACGT"]</code> в список matrix.</li>
                   <li>Соберите суммы столбцов: <code>sum(col)</code> для каждого <code>col</code> из <code>zip(*matrix)</code>; <code>zip(*matrix)</code> разворачивает матрицу.</li>
                   <li>Для каждой строки посчитайте расстояние до среднего без деления на <code>count</code>: сумма модулей разностей <code>abs(count * value - column_sum)</code> по парам <code>value</code> и <code>column_sum</code> из <code>zip(vector, sums)</code>.</li>
-                  <li>Выберите первую строку с наименьшим distance (строгое &lt;); напечатайте суммы, округленные <code>round(column_sum / count, 2)</code>, и идентификатор; сверьтесь с примером: ACGT, AAGG и CCCT дают 1.0 1.33 1.0 0.67 и s1.</li>
+                  <li>Выберите первую строку с наименьшим distance (строгое &lt;); напечатайте суммы, округленные <code>round(column_sum / count, 2)</code>, и идентификатор; сверьтесь с примером: ACGT, AAGG и CCCT дают <code>1.0 1.33 1.0 0.67</code> и s1.</li>
                 </ol>
               </details>
               <div class="checker" data-split data-file="t5_08_1_advanced.py">
@@ -462,14 +462,14 @@ ACGT</pre></td><td><pre>1 1 1 1</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>zip(*matrix) разворачивает матрицу по столбцам: каждый элемент — признак во всех записях. sum(col) складывает столбец, а включение [str(sum(col)) for col in zip(*matrix)] переводит суммы в строки для join. Заголовки записей в этом задании не нужны, но их все равно читают, чтобы добраться до последовательностей.</p>
+                <p>zip(*matrix) разворачивает матрицу по столбцам: каждый элемент — признак во всех записях. sum(col) складывает столбец, а включение [str(sum(col)) for col in zip(*matrix)] переводит суммы в строки для join. Заголовки записей в этом упражнении не нужны, но их все равно читают, чтобы добраться до последовательностей.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Матрица признаков</strong> — строка на запись: четыре числа букв A, C, G, T.</li>
-                  <li><strong>Функция zip()</strong> — разворачивает матрицу по столбцам.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — разворачивает матрицу по столбцам.</li>
                   <li><strong>Распаковка звездочкой в вызове</strong> — *matrix передает все строки матрицы отдельными аргументами.</li>
-                  <li><strong>Функция sum()</strong> — складывает все элементы списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Функция <code>sum()</code></strong> — складывает все элементы списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -540,14 +540,14 @@ ACGT</pre></td><td><pre>x 0.25 0.25 0.25 0.25</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Для каждой записи включение строит доли: seq.count(base) / len(seq) для base из "ACGT", вызов round(..., 2) округляет, а str() переводит в строку. Деление / дает float, поэтому доли печатаются как 0.43 или 0.0, даже когда они целые.</p>
+                <p>Для каждой записи включение строит доли: seq.count(base) / len(seq) для base из "ACGT", вызов round(..., 2) округляет, а <code>str()</code> переводит в строку. Деление / дает <code>float</code>, поэтому доли печатаются как 0.43 или 0.0, даже когда они целые.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Доля буквы</strong> — число буквы, деленное на длину последовательности.</li>
                   <li><strong>Списковое включение</strong> — список, собранный выражением из строки.</li>
-                  <li><strong>Функция round()</strong> — округляет число; второй аргумент задает число знаков.</li>
-                  <li><strong>Функция len()</strong> — возвращает длину строки.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Функция <code>round()</code></strong> — округляет число; второй аргумент задает число знаков.</li>
+                  <li><strong>Функция <code>len()</code></strong> — возвращает длину строки.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -621,13 +621,13 @@ CCCC</pre></td><td><pre>a b 8</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Пары перебирают двумя вложенными циклами, inner_index начинает с index + 1 — каждая пара встречается один раз. Расстояние считают суммой abs(value - other_value) по zip двух векторов; лучшую пару заменяют строгим &lt;, поэтому при равных расстояниях остается первая по порядку.</p>
+                <p>Пары перебирают двумя вложенными циклами, inner_index начинает с index + 1 — каждая пара встречается один раз. Расстояние считают суммой <code>abs(value - other_value)</code> по zip двух векторов; лучшую пару заменяют строгим &lt;, поэтому при равных расстояниях остается первая по порядку.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Расстояние между векторами</strong> — сумма модулей разностей их чисел.</li>
                   <li><strong>Матрица признаков</strong> — строка на запись: четыре числа букв A, C, G, T.</li>
-                  <li><strong>Функция abs()</strong> — возвращает модуль числа.</li>
-                  <li><strong>Функция zip()</strong> — перебирает пары чисел двух векторов.</li>
+                  <li><strong>Функция <code>abs()</code></strong> — возвращает модуль числа.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — перебирает пары чисел двух векторов.</li>
                   <li><strong>Строгое сравнение</strong> — &lt; не пропускает равное расстояние.</li>
                 </ul>
               </details>

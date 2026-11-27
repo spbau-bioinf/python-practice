@@ -172,10 +172,10 @@
                 <p>sorted(seqs, key=len) сортирует по длине, а не по алфавиту: ключ key задает, что именно сравнивать. Сортировка устойчивая: последовательности одинаковой длины сохраняют исходный порядок.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция sorted()</strong> — возвращает новый отсортированный список.</li>
+                  <li><strong>Функция <code>sorted()</code></strong> — возвращает новый отсортированный список.</li>
                   <li><strong>Ключ key</strong> — функция, по которой сравнивают элементы; key=len сравнивает длины.</li>
                   <li><strong>Устойчивая сортировка</strong> — равные элементы сохраняют исходный порядок.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -242,7 +242,7 @@
                 <p>Параметр reverse=True переворачивает порядок сортировки, а устойчивость сохраняется: последовательности одинаковой длины идут в исходном порядке, а не задом наперед.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция sorted()</strong> — возвращает новый отсортированный список.</li>
+                  <li><strong>Функция <code>sorted()</code></strong> — возвращает новый отсортированный список.</li>
                   <li><strong>Ключ key=len</strong> — сравнивает длины последовательностей.</li>
                   <li><strong>Параметр reverse</strong> — reverse=True сортирует по убыванию.</li>
                   <li><strong>Устойчивая сортировка</strong> — равные элементы сохраняют исходный порядок.</li>
@@ -309,13 +309,13 @@
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Сначала собирают длины функцией len(), затем сортируют их методом sort(). Если count нечетно, средний элемент стоит по индексу count // 2, при четном медиана — среднее двух элементов с индексами count // 2 - 1 и count // 2. Деление / всегда дает float, поэтому четный случай печатается как 3.5 или 2.0.</p>
+                <p>Сначала собирают длины функцией <code>len()</code>, затем сортируют их методом <code>sort()</code>. Если count нечетно, средний элемент стоит по индексу <code>count // 2</code>, при четном медиана — среднее двух элементов с индексами <code>count // 2 - 1</code> и <code>count // 2</code>. Деление / всегда дает <code>float</code>, поэтому четный случай печатается как 3.5 или 2.0.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Медиана</strong> — число в середине упорядоченного набора; при четном количестве — среднее двух средних.</li>
-                  <li><strong>Метод sort()</strong> — сортирует список на месте.</li>
+                  <li><strong>Метод <code>sort()</code></strong> — сортирует список на месте.</li>
                   <li><strong>Целочисленное деление //</strong> — count // 2 дает номер среднего элемента.</li>
-                  <li><strong>Функция len()</strong> — возвращает длину строки.</li>
+                  <li><strong>Функция <code>len()</code></strong> — возвращает длину строки.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -477,8 +477,8 @@ GG</pre></td></tr>
                 <p>max(seqs, key=len) и min(seqs, key=len) находят элементы с наибольшей и наименьшей длиной. При равных длинах обе функции возвращают первый подходящий элемент, поэтому побеждает первый в порядке набора.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция max()</strong> — возвращает наибольший элемент.</li>
-                  <li><strong>Функция min()</strong> — возвращает наименьший элемент.</li>
+                  <li><strong>Функция <code>max()</code></strong> — возвращает наибольший элемент.</li>
+                  <li><strong>Функция <code>min()</code></strong> — возвращает наименьший элемент.</li>
                   <li><strong>Ключ key=len</strong> — сравнивает элементы по длине.</li>
                   <li><strong>Первый из равных</strong> — при равной длине возвращается первый по порядку элемент.</li>
                 </ul>
@@ -555,8 +555,8 @@ a 90.0</pre></td><td><pre>b a</pre></td></tr>
                   <li><strong>Кортеж</strong> — несколько значений в скобках: (gc, name).</li>
                   <li><strong>Сравнение кортежей</strong> — сначала первый элемент, при равенстве — второй.</li>
                   <li><strong>GC-состав</strong> — доля букв G и C в процентах от длины последовательности.</li>
-                  <li><strong>Метод sort()</strong> — сортирует список на месте.</li>
-                  <li><strong>Функция float()</strong> — переводит строку в вещественное число.</li>
+                  <li><strong>Метод <code>sort()</code></strong> — сортирует список на месте.</li>
+                  <li><strong>Функция <code>float()</code></strong> — переводит строку в вещественное число.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -631,8 +631,8 @@ a GC</pre></td><td><pre>a b</pre></td></tr>
                   <li><strong>Кортеж</strong> — несколько значений в скобках: (-gc, name).</li>
                   <li><strong>Сравнение кортежей</strong> — сначала первый элемент, при равенстве — второй.</li>
                   <li><strong>Минус перед числом</strong> — переворачивает порядок чисел: большее значение получает меньший ключ.</li>
-                  <li><strong>Метод count()</strong> — считает, сколько раз подстрока встречается в строке.</li>
-                  <li><strong>Метод sort()</strong> — сортирует список на месте.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз подстрока встречается в строке.</li>
+                  <li><strong>Метод <code>sort()</code></strong> — сортирует список на месте.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -704,7 +704,7 @@ a GC</pre></td><td><pre>a b</pre></td></tr>
                 <p>sorted(..., key=len) упорядочивает набор, а срез [1:-1] отрезает первый и последний элементы сразу: первая граница 1, последняя -1 в срез не входит. На наборе из трех элементов остается ровно один.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция sorted()</strong> — возвращает новый отсортированный список.</li>
+                  <li><strong>Функция <code>sorted()</code></strong> — возвращает новый отсортированный список.</li>
                   <li><strong>Ключ key=len</strong> — сравнивает длины последовательностей.</li>
                   <li><strong>Срез [1:-1]</strong> — все элементы, кроме первого и последнего.</li>
                   <li><strong>Устойчивая сортировка</strong> — равные элементы сохраняют исходный порядок.</li>
@@ -776,9 +776,9 @@ a GC</pre></td><td><pre>a b</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Кортеж</strong> — несколько значений в скобках: (число G, номер, последовательность).</li>
                   <li><strong>Сравнение кортежей</strong> — сначала первый элемент, при равенстве следующий.</li>
-                  <li><strong>Метод count()</strong> — считает, сколько раз подстрока встречается в строке.</li>
+                  <li><strong>Метод <code>count()</code></strong> — считает, сколько раз подстрока встречается в строке.</li>
                   <li><strong>Номер в наборе</strong> — второй элемент кортежа сохраняет исходный порядок при равном числе G.</li>
-                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — перебирает элементы вместе с номерами.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -846,10 +846,10 @@ a GC</pre></td><td><pre>a b</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Место с пропусками</strong> — равные доли делят место, следующее место пропускается.</li>
-                  <li><strong>Метод index()</strong> — возвращает номер первого вхождения элемента в список.</li>
+                  <li><strong>Метод <code>index()</code></strong> — возвращает номер первого вхождения элемента в список.</li>
                   <li><strong>sorted(reverse=True)</strong> — сортирует копию по убыванию.</li>
                   <li><strong>GC-состав</strong> — доля букв G и C среди всех букв последовательности.</li>
-                  <li><strong>Функция len()</strong> — возвращает длину строки.</li>
+                  <li><strong>Функция <code>len()</code></strong> — возвращает длину строки.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">

@@ -158,11 +158,11 @@ T</pre></td><td><pre>нет</pre></td></tr>
                 <p>Функция enumerate(seq, start=1) выдает пары «номер, буква», причем нумерация начинается с 1, как в задачах Rosalind. Подходящие номера копят строками в списке, а join склеивает их через пробел; пустой список означает, что буквы нет, и тогда печатают слово нет.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — перебирает элементы вместе с номерами.</li>
                   <li><strong>Параметр start</strong> — start=1 задает первый номер.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
                   <li><strong>Список строк</strong> — номера хранят строками, чтобы join мог их склеить.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -233,9 +233,9 @@ GG</pre></td><td><pre>нет</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Мотив</strong> — короткая последовательность, которую ищут в длинной.</li>
                   <li><strong>Оператор in</strong> — проверяет, встречается ли подстрока в строке.</li>
-                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -310,7 +310,7 @@ GG</pre></td><td><pre>нет</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Оценка качества</strong> — целое число: чем оно больше, тем увереннее прибор в букве.</li>
                   <li><strong>Порог quality</strong> — оценка не меньше quality считается хорошей.</li>
-                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — перебирает элементы вместе с номерами.</li>
                   <li><strong>Срез seq[:last + 1]</strong> — буквы до последней хорошей включительно.</li>
                   <li><strong>Прочтение</strong> — участок ДНК, который прибор прочитал за один раз.</li>
                 </ul>
@@ -478,7 +478,7 @@ TGCA</pre></td><td><pre>0</pre></td></tr>
                 <p>zip(first, second) идет по двум строкам одновременно и на каждом шаге выдает пару букв из одного столбца. Цикл увеличивает счетчик, когда буквы пары равны; длины строк одинаковы, поэтому zip не теряет ни одного столбца.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция zip()</strong> — перебирает несколько строк одновременно, выдавая пары букв.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — перебирает несколько строк одновременно, выдавая пары букв.</li>
                   <li><strong>Столбец</strong> — буквы двух строк на одной позиции.</li>
                   <li><strong>Счетчик</strong> — переменная, которая растет на единицу за каждую подходящую пару.</li>
                   <li><strong>Оператор ==</strong> — сравнивает две буквы.</li>
@@ -550,11 +550,11 @@ ACGT</pre></td><td><pre>нет</pre></td></tr>
                 <p>Пары букв дает zip(first, second), а номера к ним добавляет enumerate с start=1: в скобках цикла пара распаковывается как (first_base, second_base). Различающиеся номера копят строками, чтобы join собрал их через пробел.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
-                  <li><strong>Функция zip()</strong> — перебирает две строки одновременно, выдавая пары букв.</li>
-                  <li><strong>Функция enumerate()</strong> — добавляет к каждой паре номер.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — перебирает две строки одновременно, выдавая пары букв.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — добавляет к каждой паре номер.</li>
                   <li><strong>Распаковка в цикле</strong> — for index, (first_base, second_base) in enumerate(...) разбирает номер и пару.</li>
-                  <li><strong>Метод append()</strong> — дописывает элемент в конец списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает список строк в одну строку через разделитель.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает элемент в конец списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает список строк в одну строку через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -625,7 +625,7 @@ ACGT</pre></td><td><pre>0</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Выравнивание по правому краю</strong> — последние буквы прочтений стоят в одном столбце.</li>
                   <li><strong>Обратный срез [::-1]</strong> — разворачивает строку.</li>
-                  <li><strong>Функция zip()</strong> — останавливается на конце короткой строки.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — останавливается на конце короткой строки.</li>
                   <li><strong>Счетчик</strong> — переменная, которая растет за каждый различающийся столбец.</li>
                 </ul>
               </details>
@@ -697,14 +697,14 @@ ACGT</pre></td><td><pre>0</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>zip(*seqs) с распаковкой звездочкой передает функции все последовательности сразу: каждый шаг zip собирает буквы одной позиции — столбец. Столбцы собираются в список списков, и столбец с номером position стоит по индексу position - 1. "".join склеивает буквы без пробелов.</p>
+                <p>zip(*seqs) с распаковкой звездочкой передает функции все последовательности сразу: каждый шаг zip собирает буквы одной позиции — столбец. Столбцы собираются в список списков, и столбец с номером position стоит по индексу <code>position - 1</code>. <code>"".join</code> склеивает буквы без пробелов.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Распаковка звездочкой в вызове</strong> — *seqs передает все элементы списка отдельными аргументами.</li>
-                  <li><strong>Функция zip()</strong> — собирает буквы одной позиции всех строк в столбец.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — собирает буквы одной позиции всех строк в столбец.</li>
                   <li><strong>Столбец</strong> — буквы одной позиции всех последовательностей.</li>
-                  <li><strong>Индекс position - 1</strong> — номер столбца с 1 переводится в индекс списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает буквы без пробелов.</li>
+                  <li><strong>Индекс <code>position - 1</code></strong> — номер столбца с 1 переводится в индекс списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает буквы без пробелов.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -772,10 +772,10 @@ ACGT</pre></td><td><pre>0</pre></td></tr>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Распаковка звездочкой в вызове</strong> — *seqs передает все элементы списка отдельными аргументами.</li>
-                  <li><strong>Функция zip()</strong> — собирает буквы одной позиции всех строк в столбец.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — собирает буквы одной позиции всех строк в столбец.</li>
                   <li><strong>Столбец</strong> — буквы одной позиции всех последовательностей.</li>
-                  <li><strong>Метод append()</strong> — дописывает строку-столбец в конец списка.</li>
-                  <li><strong>Метод join()</strong> — склеивает строки через пробел.</li>
+                  <li><strong>Метод <code>append()</code></strong> — дописывает строку-столбец в конец списка.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает строки через пробел.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -846,8 +846,8 @@ ACGT</pre></td><td><pre>0</pre></td></tr>
                 <ul class="definitions-list">
                   <li><strong>Соседи</strong> — две последовательности, у которых расстояние Хэмминга не больше distance.</li>
                   <li><strong>Расстояние Хэмминга</strong> — число позиций, где буквы различаются.</li>
-                  <li><strong>Функция zip()</strong> — перебирает пары букв двух последовательностей.</li>
-                  <li><strong>Функция enumerate()</strong> — перебирает элементы вместе с номерами.</li>
+                  <li><strong>Функция <code>zip()</code></strong> — перебирает пары букв двух последовательностей.</li>
+                  <li><strong>Функция <code>enumerate()</code></strong> — перебирает элементы вместе с номерами.</li>
                   <li><strong>Строгое сравнение</strong> — &gt; не пропускает равный счет.</li>
                 </ul>
               </details>

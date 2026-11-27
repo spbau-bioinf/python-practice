@@ -299,7 +299,7 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
                       <code class="we-seq"><span class="we-hl">повторить</span></code>
                     </div>
                   </div>
-                  <p class="we-note">0.12 больше 0.05, поэтому условие «не больше 0,05» ложно и ветка else выводит «повторить». При плотности 0.05 серия была бы принята.</p>
+                  <p class="we-note"><code>0.12</code> больше <code>0.05</code>, поэтому условие «не больше 0,05» ложно и ветка else выводит «повторить». При плотности <code>0.05</code> серия была бы принята.</p>
                 </div>
                 <div class="table-wrap">
                   <table class="data tests"><caption>Примеры</caption>
@@ -459,7 +459,7 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Номер нуклеотида в гене считают от начала чтения. На цепи + чтение идет от start к end, поэтому номер равен position - start + 1; на цепи − в обратную сторону, и номер равен end - position + 1.</p>
+                <p>Номер нуклеотида в гене считают от начала чтения. На цепи + чтение идет от start к end, поэтому номер равен <code>position - start + 1</code>; на цепи − в обратную сторону, и номер равен <code>end - position + 1</code>.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Цепь +</strong> — цепь ДНК, ген на которой читается в сторону возрастания позиций.</li>
@@ -542,7 +542,7 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
                   <li><strong>Концентрация</strong> — количество ДНК в единице объема, здесь в нг/мкл.</li>
                   <li><strong>Разведение</strong> — добавление воды, которое снижает концентрацию.</li>
                   <li><strong>Количество ДНК</strong> — произведение концентрации на объем; при разведении не меняется.</li>
-                  <li><strong>Функция round()</strong> — округляет число до заданного числа знаков после точки.</li>
+                  <li><strong>Функция <code>round()</code></strong> — округляет число до заданного числа знаков после точки.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -610,7 +610,7 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>На кольце из length позиций расстояние от position1 до position2 в сторону роста номеров — остаток (position2 - position1) % length. В обратную сторону — length - distance; берут меньшее из двух.</p>
+                <p>На кольце из length позиций расстояние от position1 до position2 в сторону роста номеров — остаток <code>(position2 - position1) % length</code>. В обратную сторону — <code>length - distance</code>; берут меньшее из двух.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
@@ -686,7 +686,7 @@ IndentationError: expected an indented block after 'if' statement on line 2</pre
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>На кольце участок и позицию удобно отсчитывать остатками от start: номер позиции position внутри участка — (position - start) % length + 1, длина участка — (end - start) % length + 1. Позиция внутри участка, если ее номер не превышает длину.</p>
+                <p>На кольце участок и позицию удобно отсчитывать остатками от start: номер позиции position внутри участка — <code>(position - start) % length + 1</code>, длина участка — <code>(end - start) % length + 1</code>. Позиция внутри участка, если ее номер не превышает длину.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Плазмида</strong> — небольшая кольцевая молекула ДНК.</li>
