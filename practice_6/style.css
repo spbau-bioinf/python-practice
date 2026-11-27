@@ -64,7 +64,7 @@
   --shadow-sm: 0 1px 2px rgba(var(--shadow-rgb), 0.05);
   --shadow-md: 0 4px 12px rgba(var(--shadow-rgb), 0.08);
   --shadow-lg: 0 8px 24px rgba(var(--shadow-rgb), 0.12);
-  --win-shadow: 0 10px 30px rgba(var(--shadow-rgb), 0.16), 0 2px 6px rgba(var(--shadow-rgb), 0.08);
+  --win-shadow: 8px 8px 16px -6px rgba(var(--shadow-rgb), 0.22), 2px 2px 5px -2px rgba(var(--shadow-rgb), 0.12); /* версия 120: тень только снизу и справа */
   --bg-glow: rgba(45, 139, 85, 0.035);
 
   --font-display: Georgia, "PT Serif", "Noto Serif", "Times New Roman", serif;
@@ -1030,6 +1030,59 @@ pre.tree { margin: 0.9rem 0; padding: 1rem 1.2rem; background: var(--c-surface-w
   position: absolute; left: 0; right: 0; bottom: 0.35rem; text-align: center; font-family: var(--font-mono); font-size: 0.8rem;
   font-weight: 700; color: #FFF8E6; text-shadow: 2px 2px 0 #1A1C2C; pointer-events: none; text-transform: uppercase;
 }
+
+/* ---------- 18а. Тема «Подземелье» (версия 120; практика 6, game.js: DScene) ----------
+   Сцена на ширину колонки, пропорция залу 456 : 240. Размер спрайтов задает --dg-px (game.js, по ширине сцены).
+   Палитра зала рисуется в DungeonArt и от светлой/темной темы страницы не зависит. */
+.dg-scene { aspect-ratio: 456 / 240; overflow: hidden; background: #17151F; --dg-px: 1.5px; }
+.dg-world { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
+.dg-spr { display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
+.dg-actors { position: absolute; left: 32.5%; right: 24%; bottom: 31%; display: flex; align-items: flex-end; justify-content: space-between; z-index: 2; }
+.dg-grp { display: flex; align-items: flex-end; }
+.dg-mobs .dg-actor { margin-left: calc(2 * var(--dg-px)); }
+.dg-actor { position: relative; transition: opacity .5s steps(4); }
+.dg-actor::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: calc(-1 * var(--dg-px)); height: calc(3 * var(--dg-px)); background: rgba(0,0,0,.45); border-radius: 50%; }
+.dg-actor .dg-spr { position: relative; z-index: 1; }
+.dg-actor.walk { transition: transform var(--t, 1s) linear; }
+.dg-actor.dead { opacity: 0; }
+.dg-actor.dead .dg-spr, .dg-actor.still .dg-spr { animation: none !important; }
+.dg-actor.hurt .dg-spr { filter: brightness(5); }
+.dg-actor .dg-spr { animation: dg-bob 1s steps(1) infinite; }
+.dg-mobs .dg-actor .dg-spr { animation: dg-prowl 1.2s steps(1) infinite; }
+.dg-hero.walk-in-place .dg-spr { animation: dg-bob .2s steps(1) infinite; }
+.dg-hero.cheer .dg-spr { animation: dg-cheer .42s steps(2) 4; }
+.dg-boss .dg-spr { animation: dg-prowl 1.2s steps(1) infinite; }
+@keyframes dg-bob { 50% { transform: translateY(calc(-1 * var(--dg-px))); } }
+@keyframes dg-prowl { 25% { transform: translate(calc(-2 * var(--dg-px)), calc(-1 * var(--dg-px))); } 75% { transform: translate(calc(2 * var(--dg-px)), calc(-1 * var(--dg-px))); } }
+@keyframes dg-cheer { 50% { transform: translateY(calc(-4 * var(--dg-px))); } }
+.dg-chestbox { position: relative; transition: transform .12s steps(2); }
+.dg-chestbox.shake { animation: dg-shake .14s steps(2) 3; }
+.dg-chestbox.bite { transform: translateX(calc(-9 * var(--dg-px))); }
+@keyframes dg-shake { 0% { transform: translateX(calc(-1 * var(--dg-px))); } 50% { transform: translateX(var(--dg-px)); } }
+.dg-final .dg-chest { min-width: calc(34 * var(--dg-px)); min-height: calc(30 * var(--dg-px)); display: flex; align-items: flex-end; }
+.dg-loot { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); display: flex; gap: var(--dg-px); width: max-content; pointer-events: none; }
+.dg-loot .dg-spr { animation: dg-rise .7s steps(7) both; }
+.dg-loot .dg-spr:nth-child(2) { animation-delay: .12s; } .dg-loot .dg-spr:nth-child(3) { animation-delay: .24s; } .dg-loot .dg-spr:nth-child(4) { animation-delay: .36s; }
+@keyframes dg-rise { from { transform: translateY(calc(14 * var(--dg-px))); opacity: 0; } }
+.dg-banner { position: absolute; left: 0; right: 0; top: 12%; z-index: 3; display: none; text-align: center; font-family: var(--font-mono); font-weight: 700;
+  font-size: clamp(0.8rem, 3vw, 1.3rem); color: #F2C84B; text-shadow: 3px 3px 0 #0C0B12, -1px -1px 0 #0C0B12; text-transform: uppercase; pointer-events: none; }
+.dg-banner.on { display: block; animation: dg-pop .45s steps(4) both; }
+.dg-banner.bad { color: #FF6A5A; }
+@keyframes dg-pop { from { transform: scale(.3); opacity: 0; } 70% { transform: scale(1.15); } }
+.dg-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.9rem; margin: 0.45rem 0 0; }
+.dg-caption { margin: 0; flex: 1 1 18rem; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--c-text); }
+.dg-potion { font: inherit; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.8rem; color: #FFFFFF; background: #CC463D;
+  border: var(--border-w) solid var(--c-border); box-shadow: 3px 3px 0 var(--c-border); cursor: pointer; }
+.dg-potion[hidden] { display: none; }
+.dg-potion:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--c-border); }
+.dg-potion:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 2px; }
+.dg-foot { display: none; }
+[data-profile="game"] .dg-foot { display: flex; }
+@media (prefers-reduced-motion: reduce) {
+  .dg-actor .dg-spr, .dg-mobs .dg-actor .dg-spr, .dg-hero.cheer .dg-spr, .dg-boss .dg-spr, .dg-loot .dg-spr, .dg-banner.on, .dg-chestbox.shake { animation: none; }
+  .dg-actor.walk { transition: none; }
+}
+@media print { .dg-foot { display: none !important; } }
 
 /* ---------- 19. Мобильный экран ---------- */
 @media (max-width: 900px) {
@@ -3129,6 +3182,7 @@ script.steps-data { display: none; }
 .arc-canvas:focus-visible { outline: 3px solid #F2C230; outline-offset: 2px; }
 .arc-msg { min-height: 1.4em; margin: 0; color: #FFF8E6; font-family: var(--font-mono); }
 .arc-pad { display: none; justify-content: space-between; gap: 0.5rem; }
+.arc-pad > div { display: flex; gap: 0.5rem; }
 .arc-pad button { min-width: 64px; min-height: 48px; font-size: 1.4rem; border: 3px solid #FFF8E6; background: #2A2E5C; color: #FFF8E6; }
 @media (pointer: coarse) { .arc-pad { display: flex; } }
 

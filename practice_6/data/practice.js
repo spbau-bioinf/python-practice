@@ -1823,5 +1823,5 @@ window.PRACTICE_MANIFEST = {
   "exercise": 14,
   "exercise_variants": 42
  },
- "game_theme": "knight"
+ "game_theme": "dungeon"
 };
