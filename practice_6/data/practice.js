@@ -1025,8 +1025,8 @@ window.PRACTICE_MANIFEST = {
    "href": "t6_09.html",
    "kind": "theory",
    "number": "09",
-   "name": "Сравнение образцов",
-   "title": "Сравнение образцов",
+   "name": "Наборы и Жаккар",
+   "title": "Наборы и Жаккар",
    "sections": [
     {
      "id": "s1",
@@ -1214,7 +1214,7 @@ window.PRACTICE_MANIFEST = {
    "href": "t6_09.html",
    "soon": false,
    "code": "09",
-   "name": "Сравнение образцов"
+   "name": "Наборы и Жаккар"
   }
  ],
  "graded": {

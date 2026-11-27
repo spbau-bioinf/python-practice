@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-home="../index.html" data-theory-default="full" data-theory="full">
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,9 +146,9 @@ M *</pre></div>
                   <p class="we-note">Кодону <code>AUG</code> соответствует метионин, обозначенный <code>M</code>.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUG</pre></td><td><pre>M</pre></td></tr>
-<tr><td><pre>UAA</pre></td><td><pre>*</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUG</pre></td><td><pre>M</pre></td></tr>
+                <tr><td><pre>UAA</pre></td><td><pre>*</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -188,9 +188,9 @@ M *</pre></div>
                   <p class="we-note">В таблице для <code>UAA</code> записан знак <code>*</code>. Это стоп-кодон, поэтому ответ «да».</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>UAA</pre></td><td><pre>да</pre></td></tr>
-<tr><td><pre>AUG</pre></td><td><pre>нет</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>UAA</pre></td><td><pre>да</pre></td></tr>
+                <tr><td><pre>AUG</pre></td><td><pre>нет</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -230,9 +230,9 @@ M *</pre></div>
                   <p class="we-note">Кодоны <code>AUG</code> и <code>UUU</code> дают <code>M</code> и <code>F</code>. Они записываются подряд.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUG UUU</pre></td><td><pre>MF</pre></td></tr>
-<tr><td><pre>UAA AUG</pre></td><td><pre>*M</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUG UUU</pre></td><td><pre>MF</pre></td></tr>
+                <tr><td><pre>UAA AUG</pre></td><td><pre>*M</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -346,9 +346,9 @@ M *</pre></div>
                   <p class="we-note">Строка делится на <code>AUG</code> и <code>GCC</code>. По таблице получаются <code>M</code> и <code>A</code>.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGGCC</pre></td><td><pre>MA</pre></td></tr>
-<tr><td><pre>UUUCCC</pre></td><td><pre>FP</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGGCC</pre></td><td><pre>MA</pre></td></tr>
+                <tr><td><pre>UUUCCC</pre></td><td><pre>FP</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -388,9 +388,9 @@ M *</pre></div>
                   <p class="we-note">Первые две тройки дают <code>M</code> и <code>A</code>. <code>UAA</code> останавливает чтение до добавления следующего символа.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGGCCUAA</pre></td><td><pre>MA</pre></td></tr>
-<tr><td><pre>UUUUAA</pre></td><td><pre>F</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGGCCUAA</pre></td><td><pre>MA</pre></td></tr>
+                <tr><td><pre>UUUUAA</pre></td><td><pre>F</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -430,9 +430,9 @@ M *</pre></div>
                   <p class="we-note"><code>AUG</code> дает <code>M</code>. Для <code>NCC</code> в таблице нет записи, поэтому добавляется <code>?</code>.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGNCC</pre></td><td><pre>M?</pre></td></tr>
-<tr><td><pre>NNNUAA</pre></td><td><pre>?</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGNCC</pre></td><td><pre>M?</pre></td></tr>
+                <tr><td><pre>NNNUAA</pre></td><td><pre>?</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -548,9 +548,9 @@ M *</pre></div>
                   <p class="we-note">Для <code>M</code> в таблице ровно один кодон, <code>AUG</code>.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>M</pre></td><td><pre>1</pre></td></tr>
-<tr><td><pre>L</pre></td><td><pre>6</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>M</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>L</pre></td><td><pre>6</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -590,9 +590,9 @@ M *</pre></div>
                   <p class="we-note">Список для <code>M</code> состоит из одного элемента <code>AUG</code>. Сортировка не меняет этот список.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>M</pre></td><td><pre>AUG</pre></td></tr>
-<tr><td><pre>W</pre></td><td><pre>UGG</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>M</pre></td><td><pre>AUG</pre></td></tr>
+                <tr><td><pre>W</pre></td><td><pre>UGG</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -632,9 +632,9 @@ M *</pre></div>
                   <p class="we-note">Соседние тройки <code>CUG</code> и <code>CUU</code> обе дают <code>L</code>. Пара <code>AUG</code> и <code>CUG</code> дает разные аминокислоты.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGCUGCUU</pre></td><td><pre>1</pre></td></tr>
-<tr><td><pre>AUGUUUUUC</pre></td><td><pre>1</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGCUGCUU</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>AUGUUUUUC</pre></td><td><pre>1</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -684,9 +684,9 @@ M *</pre></div>
                   <p class="we-note">Тройки <code>AUG</code> и <code>GCC</code> обе переводятся. В результате две аминокислоты.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGGCC</pre></td><td><pre>2</pre></td></tr>
-<tr><td><pre>UUU</pre></td><td><pre>1</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGGCC</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>UUU</pre></td><td><pre>1</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -726,9 +726,9 @@ M *</pre></div>
                   <p class="we-note">До <code>UAA</code> прочитаны <code>AUG</code> и <code>GCC</code>. Это две аминокислоты.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGGCCUAA</pre></td><td><pre>2</pre></td></tr>
-<tr><td><pre>UAA</pre></td><td><pre>0</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGGCCUAA</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>UAA</pre></td><td><pre>0</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -768,9 +768,9 @@ M *</pre></div>
                   <p class="we-note"><code>AUG</code> есть в таблице, а <code>NCC</code> — нет. Один кодон остается непереведенным.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AUGNCC</pre></td><td><pre>1</pre></td></tr>
-<tr><td><pre>NNNUNN</pre></td><td><pre>2</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>AUGNCC</pre></td><td><pre>1</pre></td></tr>
+                <tr><td><pre>NNNUNN</pre></td><td><pre>2</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -793,7 +793,7 @@ M *</pre></div>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_08_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_08_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_08_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_08</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
-        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
         <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/

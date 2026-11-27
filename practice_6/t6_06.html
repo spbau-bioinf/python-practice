@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-home="../index.html" data-theory-default="full" data-theory="full">
+<html lang="ru" data-theory-default="full" data-theory="full" data-home="../index.html">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,11 +128,11 @@
                   <p class="we-note">В <code>GATTACA</code> три вхождения <code>A</code>.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>GATTACA
+                <tr><td><pre>GATTACA
 A</pre></td><td><pre>3</pre></td></tr>
-<tr><td><pre>GATTACA
+                <tr><td><pre>GATTACA
 N</pre></td><td><pre>0</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -172,11 +172,11 @@ N</pre></td><td><pre>0</pre></td></tr>
                   <p class="we-note">Счетчик дает 3 для <code>A</code> и 1 для <code>G</code>. Сумма равна 4.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>GATTACA
+                <tr><td><pre>GATTACA
 AG</pre></td><td><pre>4</pre></td></tr>
-<tr><td><pre>GATTACA
+                <tr><td><pre>GATTACA
 NN</pre></td><td><pre>0</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -216,9 +216,9 @@ NN</pre></td><td><pre>0</pre></td></tr>
                   <p class="we-note">У <code>A</code> три вхождения. Это максимальная частота, других букв с такой частотой нет.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
-<tr><td><pre>AACC</pre></td><td><pre>A C</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>GATTACA</pre></td><td><pre>A</pre></td></tr>
+                <tr><td><pre>AACC</pre></td><td><pre>A C</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -314,11 +314,11 @@ Counter({'G': 3, 'A': 2, 'C': 1})</pre></div>
                   <p class="we-note">В первой строке одна <code>G</code>, во второй — ни одной. Суммарный счетчик дает 1.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AACG
+                <tr><td><pre>AACG
 ACCT</pre></td><td><pre>1</pre></td></tr>
-<tr><td><pre>GGG
+                <tr><td><pre>GGG
 GG</pre></td><td><pre>5</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -358,11 +358,11 @@ GG</pre></td><td><pre>5</pre></td></tr>
                   <p class="we-note">У первой строки на одну <code>A</code> больше и есть одна <code>G</code>. После вычитания остаются эти две буквы.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AACG
+                <tr><td><pre>AACG
 ACCT</pre></td><td><pre>AG</pre></td></tr>
-<tr><td><pre>ACG
+                <tr><td><pre>ACG
 ACG</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -402,11 +402,11 @@ ACG</pre></td><td><pre><span class="io-empty">(пустая строка)</span>
                   <p class="we-note">В первой строке хватает и буквы <code>A</code>, и буквы <code>C</code>, чтобы составить вторую.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AACG
+                <tr><td><pre>AACG
 AC</pre></td><td><pre>да</pre></td></tr>
-<tr><td><pre>AACG
+                <tr><td><pre>AACG
 AAT</pre></td><td><pre>нет</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -515,11 +515,11 @@ None
                   <p class="we-note">После обработки строки счетчик буквы <code>A</code> равен 3.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>GATTACA
+                <tr><td><pre>GATTACA
 A</pre></td><td><pre>3</pre></td></tr>
-<tr><td><pre>GATTACA
+                <tr><td><pre>GATTACA
 N</pre></td><td><pre>0</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -559,11 +559,11 @@ N</pre></td><td><pre>0</pre></td></tr>
                   <p class="we-note">Названия <code>ATG</code> и <code>TAA</code> имеют длину 3. Оба входят в нужную группу.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>ATG GC TAA AT
+                <tr><td><pre>ATG GC TAA AT
 3</pre></td><td><pre>ATG TAA</pre></td></tr>
-<tr><td><pre>ATG GC TAA AT
+                <tr><td><pre>ATG GC TAA AT
 2</pre></td><td><pre>AT GC</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -603,9 +603,9 @@ N</pre></td><td><pre>0</pre></td></tr>
                   <p class="we-note">В группе длины 2 два названия, в группе длины 3 тоже два. Максимальный размер — 2.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>ATG GC TAA AT</pre></td><td><pre>2</pre></td></tr>
-<tr><td><pre>A B</pre></td><td><pre>2</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>ATG GC TAA AT</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>A B</pre></td><td><pre>2</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -655,9 +655,9 @@ N</pre></td><td><pre>0</pre></td></tr>
                   <p class="we-note">По одному разу встречаются <code>G</code> и <code>C</code>. <code>C</code> впервые появляется позже, поэтому она последняя при равной частоте.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>GATTACA</pre></td><td><pre>C</pre></td></tr>
-<tr><td><pre>AACC</pre></td><td><pre>C</pre></td></tr>
-</tbody></table></div>
+                <tr><td><pre>GATTACA</pre></td><td><pre>C</pre></td></tr>
+                <tr><td><pre>AACC</pre></td><td><pre>C</pre></td></tr>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -697,11 +697,11 @@ N</pre></td><td><pre>0</pre></td></tr>
                   <p class="we-note">В обеих строках есть хотя бы одна <code>A</code> и одна <code>C</code>. Меньший счетчик для каждой из них равен 1.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>AACG
+                <tr><td><pre>AACG
 ACCT</pre></td><td><pre>AC</pre></td></tr>
-<tr><td><pre>AA
+                <tr><td><pre>AA
 AA</pre></td><td><pre>AA</pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -741,11 +741,11 @@ AA</pre></td><td><pre>AA</pre></td></tr>
                   <p class="we-note">Длина 8 соответствует двум образцам, длина 12 — одному. Выводится только 8.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
-<tr><td><pre>s1 s2 s3
+                <tr><td><pre>s1 s2 s3
 8 12 8</pre></td><td><pre>8</pre></td></tr>
-<tr><td><pre>a b c
+                <tr><td><pre>a b c
 3 5 7</pre></td><td><pre><span class="io-empty">(пустая строка)</span></pre></td></tr>
-</tbody></table></div>
+              </tbody></table></div>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
@@ -768,7 +768,7 @@ AA</pre></td><td><pre>AA</pre></td></tr>
           <li>Задача со звездочкой необязательная и в зачет не входит. Если вы ее решили, сохраните решение в ту же папку: <span class="submit-level" data-level="basic"><span class="lvl-tag lvl-basic">Базовый</span> <code>t6_06_star_basic.py</code>.</span><span class="submit-level" data-level="medium"><span class="lvl-tag lvl-medium">Средний</span> <code>t6_06_star_medium.py</code>.</span><span class="submit-level" data-level="advanced"><span class="lvl-tag lvl-advanced">Продвинутый</span> <code>t6_06_star_advanced.py</code>.</span></li>
           <li>Загрузите папку <code>t6_06</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
-        <p class="submit-choose">Выберите свой уровень во вкладках любого упражнения: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
+        <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
         <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/
