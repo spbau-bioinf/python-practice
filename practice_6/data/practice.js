@@ -186,7 +186,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s2",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.2. Поиск с пробами",
+     "title": "Задача со звездочкой 6.2. Сколько ячеек проверит поиск",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -460,8 +460,8 @@ window.PRACTICE_MANIFEST = {
    "href": "t6_06.html",
    "kind": "theory",
    "number": "06",
-   "name": "Counter и defaultdict",
-   "title": "Counter и defaultdict",
+   "name": "collections",
+   "title": "collections",
    "sections": [
     {
      "id": "s1",
@@ -895,7 +895,7 @@ window.PRACTICE_MANIFEST = {
    "href": "t6_06.html",
    "soon": false,
    "code": "06",
-   "name": "Counter и defaultdict"
+   "name": "collections"
   },
   {
    "href": "t6_07.html",
@@ -1643,7 +1643,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_02_star_advanced.py",
    "page": "t6_02.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.2. Поиск с пробами",
+   "title": "Задача со звездочкой 6.2. Сколько ячеек проверит поиск",
    "group": "ex-star",
    "variant": "advanced"
   },

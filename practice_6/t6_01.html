@@ -27,7 +27,7 @@
         <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
         <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
         <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
-        <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
+        <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>collections</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
         <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Мера Жаккара</span></span></a></li>
@@ -123,7 +123,7 @@ True</pre></div>
         <h2>2. Добавление, замена и удаление</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>В примерах этой практики словарь <code>counts</code> хранит, сколько раз каждая буква встретилась в последовательности: <code>{"A": 12, "T": 8}</code> значит, что буква A встретилась 12 раз, а буква T 8 раз. Когда к последовательности добавляются новые буквы, эти числа приходится увеличивать, а для новой буквы заводить пару. Поэтому словарь, как и список, можно менять после создания.</p>
+        <p>В примерах этой практики словарь <code>counts</code> хранит, сколько раз каждая буква встретилась в последовательности: <code>{"A": 12, "T": 8}</code> значит, что буква A встретилась 12 раз, а буква T — 8 раз. Когда к последовательности добавляются новые буквы, эти числа приходится увеличивать, а для новой буквы заводить пару. Поэтому словарь, как и список, можно менять после создания.</p>
         <p>Новое значение записывают присваиванием по ключу: <code>counts["G"] = 15</code>. Что при этом произойдет, зависит от того, есть ли такой ключ.</p>
         <p>Если ключа еще нет, в словаре появляется новая пара. Если ключ уже есть, второй пары с тем же ключом не появляется: прежнее значение заменяется новым, и число пар не меняется.</p>
         <p>Инструкция <code>del</code> удаляет пару вместе с ключом: <code>del counts["T"]</code>. Ключ, которого нет, удалить нельзя: <code>del</code> останавливает программу той же ошибкой <code>KeyError</code>, что и чтение (раздел 3).</p>
@@ -241,7 +241,7 @@ True</pre></div>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Прочитайте букву и число: <code>letter = input()</code>, <code>number = int(input())</code>.</li><li>Запишите число под буквой: <code>counts[letter] = number</code>. Эта строка и заменяет значение, и добавляет пару.</li><li>Напечатайте <code>len(counts)</code> и <code>counts[letter]</code>.</li><li>Сверьтесь с примером: для ввода <code>G</code> и <code>20</code> программа печатает <code>4</code> и <code>20</code>.</li></ol>
+                <ol class="hint-steps"><li>Прочитайте букву и число: <code>letter = input()</code>, <code>number = int(input())</code>.</li><li>Запишите число под буквой: <code>counts[letter] = number</code>. Эта строка и заменяет значение, и добавляет пару.</li><li>Напечатайте <code>len(counts)</code> и <code>counts[letter]</code>.</li><li>Сверьтесь с примером: для ввода <code>G</code>, <code>20</code> программа печатает <code>4</code>, <code>20</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_01_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -250,7 +250,7 @@ True</pre></div>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.1.1. Прибавить к счетчику</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов в прочтении:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Новое прочтение добавило к одной букве еще несколько нуклеотидов. Считайте букву и число и прибавьте число к значению этой буквы в словаре. Выведите новое значение буквы и сумму значений всех четырех букв.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов в прочтении:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>В новом прочтении одна из букв встретилась еще несколько раз. Считайте букву и число и прибавьте число к значению этой буквы в словаре. Выведите новое значение буквы и сумму значений всех четырех букв.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: буква (<code>A</code>, <code>C</code>, <code>G</code> или <code>T</code>) и целое число от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Две строки: новое значение буквы и сумма значений всех четырех букв.</p></div>
@@ -294,7 +294,7 @@ True</pre></div>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Прочитайте букву и число, число переведите функцией <code>int()</code>.</li><li>Запишите под той же буквой сумму прежнего значения и числа: <code>counts[letter] = counts[letter] + number</code>.</li><li>Сумму четырех значений считайте уже после изменения словаря и напечатайте оба числа.</li><li>Сверьтесь с примером: для ввода <code>A</code> и <code>3</code> программа печатает <code>15</code> и <code>49</code>.</li></ol>
+                <ol class="hint-steps"><li>Прочитайте букву и число, число переведите функцией <code>int()</code>.</li><li>Запишите под той же буквой сумму прежнего значения и числа: <code>counts[letter] = counts[letter] + number</code>.</li><li>Сумму четырех значений считайте уже после изменения словаря и напечатайте оба числа.</li><li>Сверьтесь с примером: для ввода <code>A</code>, <code>3</code> программа печатает <code>15</code>, <code>49</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_01_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -305,7 +305,7 @@ True</pre></div>
               <h3>Упражнение 6.1.1. Правки словаря</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов в прочтении:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Правки к словарю записаны одной строкой, например <code>A:15 T:0 N:2</code>. Правка «буква:число» записывает число под буквой: заменяет значение или добавляет пару. Число 0 означает, что букву нужно удалить из словаря. Правка с нулем приходит только для буквы, которая в этот момент есть в словаре. Примените правки слева направо и выведите получившийся словарь.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–10 правок через пробел. Правка состоит из буквы, двоеточия и целого числа от 0 до 1000.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–10 правок через пробел. Правка состоит из заглавной латинской буквы, двоеточия и целого числа от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Словарь после всех правок в том виде, в каком его выводит <code>print()</code>.</p></div>
               </div>
               <details class="task-spoiler sp-example">
@@ -355,7 +355,7 @@ True</pre></div>
         <h2>3. Отсутствующий ключ</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>Что будет, если спросить словарь о ключе, которого в нем нет? Квадратные скобки не возвращают ни <code>None</code>, ни 0. Программа останавливается ошибкой <code>KeyError</code>, и в сообщении стоит сам ключ.</p>
+        <p>Ключа, о котором спрашивают, в словаре может не оказаться. Квадратные скобки в этом случае не возвращают ни <code>None</code>, ни 0. Программа останавливается ошибкой <code>KeyError</code>, и в сообщении стоит сам ключ.</p>
         <p>Ошибки избегают двумя способами. Оператор <code>in</code> проверяет, есть ли ключ: <code>"N" in counts</code> дает <code>True</code> или <code>False</code>. Метод <code>get()</code> возвращает значение ключа, а для отсутствующего ключа возвращает <code>None</code> или свой второй аргумент: <code>counts.get("N", 0)</code> дает 0. Ни <code>in</code>, ни <code>get()</code> словарь не меняют.</p>
         <div class="table-wrap"><table class="data"><thead><tr><th>Запись</th><th>Ключ есть</th><th>Ключа нет</th></tr></thead><tbody><tr><td><code>counts[key]</code></td><td>значение</td><td>ошибка <code>KeyError</code></td></tr><tr><td><code>key in counts</code></td><td><code>True</code></td><td><code>False</code></td></tr><tr><td><code>counts.get(key)</code></td><td>значение</td><td><code>None</code></td></tr><tr><td><code>counts.get(key, 0)</code></td><td>значение</td><td>0</td></tr></tbody></table></div>
         <p class="rule">Оператор <code>in</code> у словаря ищет только среди ключей: для словаря <code>{"A": 12, "T": 8}</code> выражение <code>12 in counts</code> дает <code>False</code>, хотя значение 12 в словаре есть.</p>
@@ -504,7 +504,7 @@ None
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Белок p53 у человека состоит из 393 аминокислот, его код в базе UniProt P04637, а ген, по которому клетка его строит, называется TP53. Пользователь может спросить о поле, которого в записи нет, и программа должна ответить, а не остановиться.</p>
+                <p>Пользователь может спросить о поле, которого в записи нет, и программа должна ответить, а не остановиться.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Белок</strong> — цепочка аминокислот, которую клетка строит по гену.</li>
@@ -556,18 +556,18 @@ None
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Белок p53 у человека состоит из 393 аминокислот, его код в базе UniProt P04637, а ген, по которому клетка его строит, называется TP53. Запрос к записи часто состоит из нескольких полей сразу, и часть из них может не найтись.</p>
+                <p>Запрос к записи часто состоит из нескольких полей сразу, и часть из них может не найтись.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Белок</strong> — цепочка аминокислот, которую клетка строит по гену.</li>
                   <li><strong>Оператор <code>in</code></strong> — проверяет, есть ли ключ в словаре.</li>
                   <li><strong>Функция <code>str()</code></strong> — переводит число в строку, чтобы склеить его с другими строками.</li>
-                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель; <code>" ".join(d)</code> у словаря склеивает ключи.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Заведите пустой список значений и счетчик ненайденных названий, равный 0.</li><li>Переберите названия из строки. Если название есть в записи, добавьте в список <code>str(protein[field])</code>, иначе увеличьте счетчик.</li><li>Склейте список через пробел: <code>" ".join(values)</code>. Число перед склейкой нужно превратить в строку, поэтому в список кладут <code>str()</code>.</li><li>Напечатайте строку значений и счетчик.</li><li>Сверьтесь с примером: для ввода <code>gene length mass</code> программа печатает <code>TP53 393</code> и <code>1</code>.</li></ol>
+                <ol class="hint-steps"><li>Заведите пустой список значений и счетчик ненайденных названий, равный 0.</li><li>Переберите названия из строки. Если название есть в записи, добавьте в список <code>str(protein[field])</code>, иначе увеличьте счетчик.</li><li>Склейте список через пробел: <code>" ".join(values)</code>. Число перед склейкой нужно превратить в строку, поэтому в список кладут <code>str()</code>.</li><li>Напечатайте строку значений и счетчик.</li><li>Сверьтесь с примером: для ввода <code>gene length mass</code> программа печатает <code>TP53 393</code>, <code>1</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_01_2_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -627,7 +627,7 @@ T</pre></td><td><pre>T</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Прочитайте обе буквы.</li><li>Возьмите их значения методом <code>get()</code> с нулем: <code>counts.get(first, 0)</code>.</li><li>Если значение второй буквы строго больше, напечатайте вторую, иначе первую: так при равенстве выводится первая.</li><li>Сверьтесь с примером: для ввода <code>A</code> и <code>G</code> программа печатает <code>G</code>.</li></ol>
+                <ol class="hint-steps"><li>Прочитайте обе буквы.</li><li>Возьмите их значения методом <code>get()</code> с нулем: <code>counts.get(first, 0)</code>.</li><li>Если значение второй буквы строго больше, напечатайте вторую, иначе первую: так при равенстве выводится первая.</li><li>Сверьтесь с примером: для ввода <code>A</code>, <code>G</code> программа печатает <code>G</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_01_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -708,7 +708,7 @@ T</pre></td><td><pre>T</pre></td></tr>
                       <code class="we-seq"><span class="we-hl">393 TP53 P04637</span></code>
                     </div>
                   </div>
-                  <p class="we-note"><code>len</code> указывает на поле <code>length</code>, <code>symbol</code> на поле <code>gene</code>, а <code>id</code> уже является полем записи.</p>
+                  <p class="we-note"><code>len</code> указывает на поле <code>length</code>, <code>symbol</code> на поле <code>gene</code>, а <code>id</code> и есть поле записи.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
                 <tr><td><pre>len symbol id</pre></td><td><pre>393 TP53 P04637</pre></td></tr>
@@ -724,7 +724,7 @@ T</pre></td><td><pre>T</pre></td></tr>
                   <li><strong>Запись <code>aliases.get(word, word)</code></strong> — дает настоящее название поля, а если синонима нет, само слово.</li>
                   <li><strong>Метод <code>get(key, default)</code></strong> — значение ключа или <code>default</code>, если ключа нет; словарь не меняется.</li>
                   <li><strong>Функция <code>str()</code></strong> — переводит число в строку, чтобы склеить его с другими строками.</li>
-                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель; <code>" ".join(d)</code> у словаря склеивает ключи.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
@@ -746,7 +746,7 @@ T</pre></td><td><pre>T</pre></td></tr>
           <li>Загрузите папку <code>t6_01</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
         <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
-        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так (вместо <code>prokhorova_vp</code> имя вашей личной папки):</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/
     └── t6_01/

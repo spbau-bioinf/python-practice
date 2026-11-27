@@ -29,7 +29,7 @@ const {esc, reg} = A;
   steps.push({line: 11, title: "Мера Жаккара", text: "Доля общих среди всех различных. Одна замененная буква испортила сразу три окна, поэтому мера заметно меньше 1.", caption: `J = ${common.length} / ${union.length} ≈ <b>${Math.round(common.length / union.length * 100) / 100}</b>.`,
     act: s => { s.mode = "j"; s.out.push({t: String(Math.round(common.length / union.length * 100) / 100)}); }});
   reg("t6_09_s3", {file: "jaccard.py",
-    code: ['first = "ACGTACGT"', 'second = "ACGTTCGT"', 'k = 3', 'kmers1 = set()', 'for i in range(len(first) - k + 1):', '    kmers1.add(first[i:i + k])', 'kmers2 = set()', 'for i in range(len(second) - k + 1):', '    kmers2.add(second[i:i + k])', 'print(sorted(kmers1 & kmers2))', 'print(len(kmers1 | kmers2))', 'print(round(len(kmers1 & kmers2) / len(kmers1 | kmers2), 2))'],
+    code: ['first = "ACGTACGT"', 'second = "ACGTTCGT"', 'k = 3', 'kmers1 = set()', 'for start in range(len(first) - k + 1):', '    kmers1.add(first[start:start + k])', 'kmers2 = set()', 'for start in range(len(second) - k + 1):', '    kmers2.add(second[start:start + k])', 'print(sorted(kmers1 & kmers2))', 'print(len(kmers1 | kmers2))', 'print(round(len(kmers1 & kmers2) / len(kmers1 | kmers2), 2))'],
     init: () => ({sets: {1: [], 2: []}, cur: null, hit: null, mode: null}),
     view: s => {
       const mark = x => (s.mode && common.includes(x)) ? "found" : (s.hit === x ? "new" : "");

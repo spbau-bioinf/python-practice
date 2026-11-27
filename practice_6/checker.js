@@ -398,15 +398,19 @@
     "",
     "",
     "def _body_writes_list(loop, names):",
+    "    # версия 118 (рецензия практики 6): запись в список также методом insert() и присваиванием по индексу",
     "    def rec(node):",
     "        if isinstance(node, (ast.For, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.Lambda)):",
     "            return False",
     "        if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)",
-    "                and node.func.attr in ('append', 'extend')",
+    "                and node.func.attr in ('append', 'extend', 'insert')",
     "                and isinstance(node.func.value, ast.Name) and node.func.value.id in names):",
     "            return True",
     "        if (isinstance(node, ast.AugAssign) and isinstance(node.target, ast.Name)",
     "                and node.target.id in names and isinstance(node.op, ast.Add)):",
+    "            return True",
+    "        if (isinstance(node, ast.Assign) and any(isinstance(t, ast.Subscript) and isinstance(t.value, ast.Name)",
+    "                                                 and t.value.id in names for t in node.targets)):",
     "            return True",
     "        if (isinstance(node, ast.Assign) and len(node.targets) == 1",
     "                and isinstance(node.targets[0], ast.Name) and node.targets[0].id in names",
@@ -502,13 +506,27 @@
     "",
     "",
     "def _zip_names(tree, live):",
+    "    # версия 118 (рецензия практики 6): аргумент zip() — имя, срез или индекс имени",
+    "    # (codons[:64]) или list(имя) / tuple(имя)",
+    "    def base(arg):",
+    "        if isinstance(arg, ast.Name):",
+    "            return arg.id",
+    "        if isinstance(arg, ast.Subscript) and isinstance(arg.value, ast.Name):",
+    "            return arg.value.id",
+    "        if (isinstance(arg, ast.Call) and isinstance(arg.func, ast.Name) and arg.func.id in ('list', 'tuple')",
+    "                and len(arg.args) == 1 and not arg.keywords):",
+    "            return base(arg.args[0])",
+    "        return None",
+    "",
     "    names = set()",
     "    for node in ast.walk(tree):",
     "        if not live(node):",
     "            continue",
     "        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == 'zip':",
-    "            if node.args and isinstance(node.args[0], ast.Name):",
-    "                names.add(node.args[0].id)",
+    "            # любой аргумент zip(): zip(amino_acids, codons) тоже строит словарь",
+    "            for arg in node.args:",
+    "                if base(arg):",
+    "                    names.add(base(arg))",
     "    return names",
     "",
     "",
@@ -528,6 +546,35 @@
     "    return False",
     "",
     "",
+    "def _group_dict_ok(tree):",
+    "    # рецензия практики 6, п. 9: словарь строится (пустой {}, dict(), defaultdict() или включением)",
+    "    # и из него потом читают; неиспользуемая строка groups = {} рядом с фильтром не засчитывается",
+    "    def dict_like(v):",
+    "        if isinstance(v, (ast.Dict, ast.DictComp)):",
+    "            return True",
+    "        if isinstance(v, ast.Call):",
+    "            f = v.func",
+    "            name = f.id if isinstance(f, ast.Name) else (f.attr if isinstance(f, ast.Attribute) else None)",
+    "            return name in ('dict', 'defaultdict')",
+    "        return False",
+    "",
+    "    names = set()",
+    "    for node in ast.walk(tree):",
+    "        if isinstance(node, ast.Assign) and dict_like(node.value):",
+    "            names |= {t.id for t in node.targets if isinstance(t, ast.Name)}",
+    "        elif isinstance(node, ast.AnnAssign) and node.value is not None and dict_like(node.value):",
+    "            if isinstance(node.target, ast.Name):",
+    "                names.add(node.target.id)",
+    "        elif isinstance(node, (ast.Attribute, ast.Subscript)) and isinstance(node.value, ast.DictComp):",
+    "            return True",
+    "    if not names:",
+    "        return False",
+    "    for node in ast.walk(tree):",
+    "        if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Load) and node.id in names:",
+    "            return True",
+    "    return False",
+    "",
+    "",
     "def _ast_rule(name, code):",
     "    try:",
     "        tree = ast.parse(code)",
@@ -535,6 +582,8 @@
     "        return False",
     "    if name == 'max_key_get':",
     "        return _max_key_get_ok(tree)",
+    "    if name == 'group_dict':",
+    "        return _group_dict_ok(tree)",
     "    if name == 'three_nested_for':",
     "        live_names = _live_function_names(tree)",
     "        live = _is_live(tree, live_names)",
@@ -1675,7 +1724,7 @@
           "Превышено время на тесте №" + (idx + 1) + " — вход «" +
           testData(tt).replace(/\n/g, " ↵ ") + "». Программа не уложилась в отведенное время."));
       });
-      if (file === "t6_02_1_advanced.py") {
+      if (file === "t6_02_star_medium.py") {
         box.appendChild(el("p", "checker-hint",
           "Похоже, повторный ключ ищет свободную ячейку, а таблица уже заполнена. Проверяйте повтор ключа до поиска свободного места."));
       }
@@ -3421,448 +3470,6 @@
       "three",
       "four",
       "result"
-    ],
-    "t6_04_1_basic.py": [
-      "seq",
-      "letter",
-      "counts",
-      "base"
-    ],
-    "t6_04_1_medium.py": [
-      "seq",
-      "counts",
-      "base"
-    ],
-    "t6_04_1_advanced.py": [
-      "seq",
-      "counts",
-      "base",
-      "best"
-    ],
-    "t6_04_2_basic.py": [
-      "names",
-      "groups",
-      "name",
-      "length"
-    ],
-    "t6_04_2_medium.py": [
-      "names",
-      "groups",
-      "name",
-      "length"
-    ],
-    "t6_04_2_advanced.py": [
-      "names",
-      "lengths",
-      "value",
-      "length_of",
-      "by_len",
-      "name",
-      "best",
-      "length",
-      "result"
-    ],
-    "t6_04_3_basic.py": [
-      "ann",
-      "field",
-      "value"
-    ],
-    "t6_04_3_medium.py": [
-      "ann",
-      "field"
-    ],
-    "t6_04_3_advanced.py": [
-      "ann",
-      "field"
-    ],
-    "t6_04_star_basic.py": [
-      "seq",
-      "counts",
-      "base"
-    ],
-    "t6_04_star_medium.py": [
-      "names",
-      "groups",
-      "name",
-      "letter"
-    ],
-    "t6_04_star_advanced.py": [
-      "seq",
-      "counts",
-      "base",
-      "result"
-    ],
-    "t6_05_1_basic.py": [
-      "seq"
-    ],
-    "t6_05_1_medium.py": [
-      "letters"
-    ],
-    "t6_05_1_advanced.py": [
-      "seq",
-      "letters"
-    ],
-    "t6_05_2_basic.py": [
-      "first_set",
-      "value",
-      "second_set"
-    ],
-    "t6_05_2_medium.py": [
-      "first_set",
-      "value",
-      "second_set"
-    ],
-    "t6_05_2_advanced.py": [
-      "first_set",
-      "value",
-      "second_set",
-      "limit"
-    ],
-    "t6_05_3_basic.py": [
-      "seq"
-    ],
-    "t6_05_3_medium.py": [
-      "seq",
-      "extra"
-    ],
-    "t6_05_3_advanced.py": [
-      "letters"
-    ],
-    "t6_05_star_basic.py": [
-      "first_seq",
-      "second_seq"
-    ],
-    "t6_05_star_medium.py": [
-      "first_set",
-      "value",
-      "second_set"
-    ],
-    "t6_05_star_advanced.py": [
-      "first_set",
-      "value",
-      "limit"
-    ],
-    "t6_06_1_basic.py": [
-      "seq",
-      "counter",
-      "letter"
-    ],
-    "t6_06_1_medium.py": [
-      "counter",
-      "query",
-      "total",
-      "letter"
-    ],
-    "t6_06_1_advanced.py": [
-      "seq",
-      "counter",
-      "top",
-      "result",
-      "letter"
-    ],
-    "t6_06_2_basic.py": [
-      "first_counter",
-      "second_counter"
-    ],
-    "t6_06_2_medium.py": [
-      "first_counter",
-      "second_counter"
-    ],
-    "t6_06_2_advanced.py": [
-      "first_counter",
-      "second_counter"
-    ],
-    "t6_06_3_basic.py": [
-      "counts",
-      "seq",
-      "base",
-      "letter"
-    ],
-    "t6_06_3_medium.py": [
-      "groups",
-      "name",
-      "length"
-    ],
-    "t6_06_3_advanced.py": [
-      "groups",
-      "name",
-      "best",
-      "group"
-    ],
-    "t6_06_star_basic.py": [
-      "counter"
-    ],
-    "t6_06_star_medium.py": [
-      "first_counter",
-      "second_counter"
-    ],
-    "t6_06_star_advanced.py": [
-      "names",
-      "lengths",
-      "value",
-      "length_of",
-      "groups",
-      "name",
-      "result",
-      "length"
-    ],
-    "t6_07_1_basic.py": [
-      "counter",
-      "base"
-    ],
-    "t6_07_1_medium.py": [
-      "seq",
-      "counter",
-      "gc"
-    ],
-    "t6_07_1_advanced.py": [
-      "seq",
-      "counter"
-    ],
-    "t6_07_2_basic.py": [
-      "counter"
-    ],
-    "t6_07_2_medium.py": [
-      "counter"
-    ],
-    "t6_07_2_advanced.py": [
-      "counter",
-      "top",
-      "letter"
-    ],
-    "t6_07_3_basic.py": [
-      "text",
-      "kmer_length",
-      "counter",
-      "start"
-    ],
-    "t6_07_3_medium.py": [
-      "text",
-      "kmer_length",
-      "counter",
-      "start"
-    ],
-    "t6_07_3_advanced.py": [
-      "text",
-      "kmer_length",
-      "counter",
-      "start",
-      "top",
-      "kmer"
-    ],
-    "t6_07_star_basic.py": [
-      "seq",
-      "counter",
-      "profile",
-      "gc"
-    ],
-    "t6_07_star_medium.py": [
-      "text",
-      "kmer_length",
-      "counter",
-      "start"
-    ],
-    "t6_07_star_advanced.py": [
-      "text",
-      "kmer_length",
-      "counter",
-      "start",
-      "kmer"
-    ],
-    "t6_08_1_basic.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "codon"
-    ],
-    "t6_08_1_medium.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "codon"
-    ],
-    "t6_08_1_advanced.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "protein",
-      "codon"
-    ],
-    "t6_08_2_basic.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "protein",
-      "start"
-    ],
-    "t6_08_2_medium.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "protein",
-      "start",
-      "amino_acid"
-    ],
-    "t6_08_2_advanced.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "protein",
-      "start",
-      "amino_acid"
-    ],
-    "t6_08_3_basic.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "synonyms",
-      "codon",
-      "amino_acid"
-    ],
-    "t6_08_3_medium.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "synonyms",
-      "codon",
-      "amino_acid"
-    ],
-    "t6_08_3_advanced.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "pairs",
-      "start"
-    ],
-    "t6_08_star_basic.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "count",
-      "start"
-    ],
-    "t6_08_star_medium.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "count",
-      "start"
-    ],
-    "t6_08_star_advanced.py": [
-      "bases",
-      "codons",
-      "first",
-      "second",
-      "third",
-      "aas",
-      "code",
-      "rna",
-      "unknown",
-      "start"
-    ],
-    "t6_09_1_basic.py": [
-      "names"
-    ],
-    "t6_09_1_medium.py": [
-      "names"
-    ],
-    "t6_09_1_advanced.py": [
-      "names",
-      "tissues",
-      "tissue_of"
-    ],
-    "t6_09_2_basic.py": [
-      "first_set",
-      "second_set"
-    ],
-    "t6_09_2_medium.py": [
-      "first_set",
-      "second_set"
-    ],
-    "t6_09_2_advanced.py": [
-      "first_set",
-      "second_set"
-    ],
-    "t6_09_3_basic.py": [
-      "first_set",
-      "value",
-      "second_set"
-    ],
-    "t6_09_3_medium.py": [
-      "first_seq",
-      "second_seq",
-      "kmer_length",
-      "first_kmers",
-      "second_kmers",
-      "start"
-    ],
-    "t6_09_3_advanced.py": [
-      "first_set",
-      "second_set"
-    ],
-    "t6_09_star_basic.py": [
-      "counts",
-      "name"
-    ],
-    "t6_09_star_medium.py": [
-      "first_set",
-      "value",
-      "second_set"
-    ],
-    "t6_09_star_advanced.py": [
-      "first_set",
-      "value",
-      "second_set"
     ]
   };
 

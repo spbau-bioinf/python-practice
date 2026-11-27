@@ -19,7 +19,7 @@ const {dictView, setPair, reg} = A;
   steps.push({line: 6, title: "Итог", text: "ATA и TAT встречаются по два раза, хотя их вхождения делят буквы. Метод <code>count()</code> у строки перекрытия не считает.", caption: "Пять окон, три разных 3-мера.",
     act: s => { s.from = null; s.out.push({t: "Counter({'ATA': 2, 'TAT': 2, 'GAT': 1})"}); }});
   reg("t6_07_s3", {file: "window.py",
-    code: ['from collections import Counter', 'text = "GATATAT"', 'k = 3', 'counts = Counter()', 'for i in range(len(text) - k + 1):', '    counts[text[i:i + k]] += 1', 'print(counts)'],
+    code: ['from collections import Counter', 'text = "GATATAT"', 'k = 3', 'counts = Counter()', 'for start in range(len(text) - k + 1):', '    counts[text[start:start + k]] += 1', 'print(counts)'],
     init: () => ({pairs: [], from: null, made: false}),
     view: s => textView(s.from) + (s.made ? dictView("counts", s.pairs, s.mark) : ""),
     steps

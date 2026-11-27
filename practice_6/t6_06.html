@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <title>Counter и defaultdict. Практика 6. Python</title>
+  <title>collections. Практика 6. Python</title>
   <link rel="stylesheet" href="style.css">
   <script src="../site-config.js"></script>
   <script src="theme.js"></script>
@@ -27,7 +27,7 @@
         <li class="menu-sub"><a href="t6_03.html"><span class="menu-title"><span class="menu-code">03</span><span class="menu-name">Перебор словаря</span></span></a></li>
         <li class="menu-sub"><a href="t6_04.html"><span class="menu-title"><span class="menu-code">04</span><span class="menu-name">Счетчик и группировка</span></span></a></li>
         <li class="menu-sub"><a href="t6_05.html"><span class="menu-title"><span class="menu-code">05</span><span class="menu-name">Множества</span></span></a></li>
-        <li class="menu-sub"><a class="current" aria-current="page" href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Модуль <code>collections</code> и Counter</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сложение и вычитание счетчиков</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> defaultdict</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.6.1</span> <span class="anc-ex-title" data-variant="basic">Счетчик Counter</span><span class="anc-ex-title" data-variant="medium">Две самые частые</span><span class="anc-ex-title" data-variant="advanced">Лишние буквы прочтения</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.6</span> <span class="anc-ex-title" data-variant="basic">Группы по первой букве</span><span class="anc-ex-title" data-variant="medium">Самая редкая буква</span><span class="anc-ex-title" data-variant="advanced">Хватит ли букв</span></span></a></li></ul></li>
+        <li class="menu-sub"><a class="current" aria-current="page" href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>collections</code></span></span></a><ul class="menu-anchors" aria-label="Разделы и упражнения страницы"><li class="anc-group">Разделы</li><li><a href="#s1" data-section="s1"><span class="anc-num">1.</span> Модуль <code>collections</code> и Counter</a></li><li><a href="#s2" data-section="s2"><span class="anc-num">2.</span> Сложение и вычитание счетчиков</a></li><li><a href="#s3" data-section="s3"><span class="anc-num">3.</span> defaultdict</a></li><li class="anc-group">Упражнения</li><li><a class="anc-ex" href="#ex-1" data-ex-link="ex-1"><svg class="anc-ex-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="nb-cover nb-stroke" d="M1.2 8.6v12.2c3.8-.9 7.3-.4 10.8 1.4 3.5-1.8 7-2.3 10.8-1.4V8.6z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M3.4 5.3c3-.8 6-.3 8.6 1.5v12.3c-2.6-1.7-5.6-2.2-8.6-1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-page nb-stroke" d="M12 6.8c2.6-1.8 5.6-2.3 8.6-1.5v12.4c-3-.8-6-.3-8.6 1.4z" stroke-width="1.2" stroke-linejoin="round"/><path class="nb-line" d="M5.3 8.6h1.5M7.9 8.8h2.1M5.3 11h4.7M5.3 13.4h1.6M7.9 13.6h2.1" stroke-width="1.1" stroke-linecap="round" fill="none"/><path class="nb-pencil nb-stroke" d="M14.7 14.2l4.4-7.7 1.8 1-4.4 7.7z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-eraser nb-stroke" d="M19.1 6.5l.8-1.3a1.05 1.05 0 0 1 1.8 1l-.8 1.3z" stroke-width="1.1" stroke-linejoin="round"/><path class="nb-tip nb-stroke" d="M14.7 14.2l-.3 2.2 2.1-1.2z" stroke-width="1" stroke-linejoin="round"/></svg><span class="anc-ex-text"><span class="anc-ex-num">6.6.1</span> <span class="anc-ex-title" data-variant="basic">Счетчик Counter</span><span class="anc-ex-title" data-variant="medium">Две самые частые</span><span class="anc-ex-title" data-variant="advanced">Лишние буквы прочтения</span></span></a></li><li><a class="anc-star" href="#ex-star" data-ex-link="ex-star"><span class="anc-star-ic" aria-hidden="true">★</span><span class="anc-ex-text"><span class="anc-ex-num">6.6</span> <span class="anc-ex-title" data-variant="basic">Группы по первой букве</span><span class="anc-ex-title" data-variant="medium">Самая редкая буква</span><span class="anc-ex-title" data-variant="advanced">Хватит ли букв</span></span></a></li></ul></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
         <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Мера Жаккара</span></span></a></li>
@@ -40,7 +40,7 @@
     <header class="page-header">
       <span class="page-number" aria-hidden="true">06</span>
       <p class="page-path"><span>Практика 6</span><span class="page-path-sep" aria-hidden="true">›</span><span>Словари и множества</span></p>
-      <h1><code>Counter</code> и <code>defaultdict</code></h1>
+      <h1><code>collections</code></h1>
       <p class="page-meta"><span class="page-time" title="Время на страницу"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>25 минут</span><span class="page-author" title="Автор"><svg class="page-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1-4 4-5.8 7.5-5.8s6.5 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ерофеев&nbsp;А.&nbsp;И.</span></p>
     </header>
     <div class="page-body">
@@ -53,10 +53,10 @@
 
         <div class="step step-learn">Теория</div>
         <p>На странице 04 счетчик букв строили циклом. Подсчет нужен так часто, что в Python для него есть готовый инструмент. Он лежит в модуле стандартной библиотеки.</p>
-        <p class="definition"><span class="term">Модуль</span> (module) представляет собой файл с готовыми функциями и типами, которые можно подключить к своей программе.</p>
+        <p class="definition"><span class="term">Модуль</span> (module) — файл с готовыми функциями и типами, которые можно подключить к своей программе.</p>
         <p>Модуль <code>collections</code> входит в стандартную библиотеку и устанавливается вместе с Python, скачивать его не нужно. Инструкция <code>from collections import Counter</code> подключает из него имя <code>Counter</code>, и дальше это имя пишут без приставки. Инструкции <code>import</code> ставят в начало программы.</p>
         <p class="definition"><span class="term"><code>Counter</code></span> строит словарь-счетчик из элементов коллекции: ключами становятся элементы, значениями числа их вхождений.</p>
-        <p>Вызов <code>Counter("GATTACA")</code> одной строкой строит тот же счетчик, что цикл со страницы 04. Какие буквы самые частые? Метод <code>most_common(n)</code> возвращает список не более чем из <code>n</code> пар «элемент, число», начиная с самого частого. Элементы с равными числами идут в порядке первого появления, по тому же правилу ничьей, что во всей практике.</p>
+        <p>Вызов <code>Counter("GATTACA")</code> одной строкой строит тот же счетчик, что цикл со страницы 04. Самые частые буквы дает метод <code>most_common(n)</code>: он возвращает список не более чем из <code>n</code> пар «элемент, число», начиная с самого частого. Элементы с равными числами идут в порядке первого появления, по тому же правилу ничьей, что во всей практике.</p>
         <p class="rule">У <code>Counter</code> отсутствующий ключ в квадратных скобках дает 0, а не ошибку <code>KeyError</code>: <code>Counter("GATTACA")["N"]</code> равно 0.</p>
         <p class="th-full">Инструкция <code>import collections</code> подключает модуль целиком, и тогда имя пишут через точку: <code>collections.Counter</code>. Метод <code>total()</code> (с Python 3.10) возвращает сумму всех чисел счетчика; для последовательности это ее длина.</p>
 
@@ -99,7 +99,7 @@
         <h2>2. Сложение и вычитание счетчиков</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>Как сравнить состав двух прочтений одного участка? Счетчики можно складывать и вычитать, как числа, только операция выполняется для каждого элемента отдельно.</p>
+        <p>Состав двух прочтений одного участка сравнивают вычитанием счетчиков. Счетчики можно складывать и вычитать, как числа, только операция выполняется для каждого элемента отдельно.</p>
         <p>Сумма <code>first + second</code> дает общий состав: числа одинаковых элементов складываются. Разность <code>first - second</code> вычитает числа, но оставляет только положительные. Элемент, у которого получился ноль или отрицательное число, в результат не попадает.</p>
         <p class="rule">Разность счетчиков зависит от порядка: <code>first - second</code> показывает, чего в первом счетчике больше, чем во втором, а <code>second - first</code> показывает обратное.</p>
         <p>Пустой счетчик в условии <code>if</code> ложен, как пустой словарь. Поэтому <code>if first - second:</code> проверяет, есть ли хоть одна лишняя буква.</p>
@@ -196,7 +196,7 @@ N</pre></td><td><pre>0</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Подключите класс: <code>from collections import Counter</code>.</li><li>Постройте счетчик одной строкой: <code>counts = Counter(input())</code>.</li><li>Прочитайте букву и напечатайте <code>counts[letter]</code>: для отсутствующей буквы <code>Counter</code> дает 0.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> и <code>T</code> программа печатает <code>2</code>.</li></ol>
+                <ol class="hint-steps"><li>Подключите класс: <code>from collections import Counter</code>.</li><li>Постройте счетчик одной строкой: <code>counts = Counter(input())</code>.</li><li>Прочитайте букву и напечатайте <code>counts[letter]</code>: для отсутствующей буквы <code>Counter</code> дает 0.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code>, <code>T</code> программа печатает <code>2</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_1_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -205,7 +205,7 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.6.1. Две самые частые</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите две самые частые буквы последовательности от более частой к менее частой, каждую на отдельной строке вместе с числом через пробел. Буквы с равным числом идут в порядке первого появления. Если в последовательности только одна разная буква, выведите одну строку.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Посчитайте буквы последовательности классом <code>Counter</code> и выведите две самые частые буквы от более частой к менее частой, каждую на отдельной строке вместе с числом через пробел. Буквы с равным числом идут в порядке первого появления. Если все буквы последовательности одинаковые, выведите одну строку.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Одна или две строки «буква число».</p></div>
@@ -235,7 +235,7 @@ T 2</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>С подсчета букв начинают разбор прочитанной последовательности. Самые частые буквы Counter находит сам, сортировать счетчик вручную не нужно.</p>
+                <p>Самые частые буквы Counter находит сам, сортировать счетчик вручную не нужно.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
@@ -244,7 +244,7 @@ T 2</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте <code>Counter</code> букв.</li><li>Метод <code>most_common(2)</code> возвращает список не более чем из двух пар «буква, число».</li><li>Переберите пары и напечатайте каждую: <code>print(base, count)</code>.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> программа печатает <code>A 3</code> и <code>T 2</code>.</li></ol>
+                <ol class="hint-steps"><li>Постройте <code>Counter</code> букв.</li><li>Метод <code>most_common(2)</code> возвращает список не более чем из двух пар «буква, число».</li><li>Переберите пары и напечатайте каждую: <code>print(base, count)</code>.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> программа печатает <code>A 3</code>, <code>T 2</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_1_medium.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -253,7 +253,7 @@ T 2</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-1-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.6.1. Лишние буквы прочтения</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите, каких букв в первом прочтении больше, чем во втором, и на сколько: пары «буква:число» по алфавиту через пробел. Если таких букв нет, выведите <code>нет</code>.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Постройте счетчики <code>Counter</code> обоих прочтений и выведите, каких букв в первом прочтении больше, чем во втором, и на сколько: пары «буква:число» по алфавиту через пробел. Если таких букв нет, выведите <code>нет</code>.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: два прочтения, последовательности из букв A, C, G, T длиной от 1 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Пары «буква:число» через пробел или слово <code>нет</code>.</p></div>
@@ -284,7 +284,7 @@ ACGT</pre></td><td><pre>нет</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Два прочтения одного участка сравнивают по составу: если в одном какой-то буквы больше, в этом месте прибор мог ошибиться.</p>
+                <p>Два прочтения одного участка сравнивают по составу: если в одном какой-то буквы больше, значит, прочтения различаются, и в одном из них прибор мог ошибиться.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Прочтение</strong> — участок последовательности, который прибор-секвенатор прочитал за один раз.</li>
@@ -295,7 +295,7 @@ ACGT</pre></td><td><pre>нет</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте два счетчика <code>Counter</code>, по одному на прочтение.</li><li>Разность счетчиков <code>first - second</code> оставляет только положительные числа: это и есть лишние буквы.</li><li>Переберите буквы разности по алфавиту и соберите пары «буква:число». Если разность пустая, выведите <code>нет</code>.</li><li>Сверьтесь с примером: для ввода <code>AACG</code> и <code>ACCT</code> программа печатает <code>A:1 G:1</code>.</li></ol>
+                <ol class="hint-steps"><li>Постройте два счетчика <code>Counter</code>, по одному на прочтение.</li><li>Разность счетчиков <code>first - second</code> оставляет только положительные числа: это и есть лишние буквы.</li><li>Переберите буквы разности по алфавиту и соберите пары «буква:число». Если разность пустая, выведите <code>нет</code>.</li><li>Сверьтесь с примером: для ввода <code>AACG</code>, <code>ACCT</code> программа печатает <code>A:1 G:1</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_1_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -307,9 +307,9 @@ ACGT</pre></td><td><pre>нет</pre></td></tr>
         <h2>3. defaultdict</h2>
 
         <div class="step step-learn">Теория</div>
-        <p>На странице 04 группировка требовала проверки: если группы еще нет, под нее сначала кладут пустой список. Можно ли обойтись без этой проверки? Можно, если словарь сам создаст значение для отсутствующего ключа.</p>
+        <p>На странице 04 группировка требовала проверки: если группы еще нет, под нее сначала кладут пустой список. Без этой проверки можно обойтись, если словарь сам создаст значение для отсутствующего ключа.</p>
         <p class="definition"><span class="term"><code>defaultdict</code></span> из модуля <code>collections</code> работает как словарь, но для отсутствующего ключа сам создает значение.</p>
-        <p>Каким будет новое значение, решает аргумент: <code>defaultdict(int)</code> создает 0, а <code>defaultdict(list)</code> пустой список. Передают сам тип, без скобок. С таким словарем счетчик и группировка со страницы 04 записываются короче, без проверки ключа: <code>counts[base] += 1</code> и <code>groups[length].append(seq)</code>.</p>
+        <p>Каким будет новое значение, решает аргумент: <code>defaultdict(int)</code> создает 0, а <code>defaultdict(list)</code> пустой список. Передают сам тип, без скобок. Этот аргумент называют фабрикой: <code>defaultdict</code> вызывает его, когда нужно новое значение. С таким словарем счетчик и группировка со страницы 04 записываются короче, без проверки ключа: <code>counts[base] += 1</code> и <code>groups[length].append(seq)</code>.</p>
         <p class="rule">Значение создается при любом обращении квадратными скобками, даже если его просто читают. <code>groups.get(key)</code> и <code>key in groups</code> ничего не создают. Поэтому есть ли ключ, проверяют через <code>in</code>, а не чтением <code>groups[key]</code>.</p>
         <figure class="anim" data-anim="t6_06_s3">
           <figcaption class="anim-title"><code>defaultdict</code>: ключ появляется при чтении</figcaption>
@@ -384,7 +384,7 @@ True 1</pre></div>
               <h3>Задача со звездочкой 6.6. Группы по первой букве</h3>
               <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Сгруппируйте последовательности по первой букве с помощью <code>defaultdict(list)</code>. Выведите группы в порядке появления первой буквы, каждую на отдельной строке в виде «буква: последовательности через пробел». Последовательности в группе идут в порядке ввода.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: последовательности через пробел, от 1 до 100 штук, каждая из букв A, C, G, T длиной от 1 до 20.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Одна строка: от 1 до 100 последовательностей через пробел, каждая из букв A, C, G, T длиной от 1 до 20.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>По строке на каждую первую букву.</p></div>
               </div>
               <details class="task-spoiler sp-example">
@@ -419,12 +419,12 @@ T: TAA</pre></td></tr>
                   <li><strong>Словарь <code>defaultdict(list)</code></strong> — отсутствующий ключ при обращении сразу получает пустой список.</li>
                   <li><strong>Запись <code>seq[0]</code></strong> — первая буква строки.</li>
                   <li><strong>Метод <code>items()</code></strong> — пары «ключ, значение» для перебора в цикле.</li>
-                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель; <code>" ".join(d)</code> у словаря склеивает ключи.</li>
+                  <li><strong>Метод <code>join()</code></strong> — склеивает строки списка через разделитель.</li>
                 </ul>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Подключите <code>defaultdict</code> и заведите <code>groups = defaultdict(list)</code>.</li><li>Для каждой последовательности выполните <code>groups[seq[0]].append(seq)</code>: для новой буквы пустой список появится сам.</li><li>Переберите пары методом <code>items()</code> и напечатайте каждую группу.</li><li>Сверьтесь с примером: для ввода <code>ATG GC AT TAA GG</code> программа печатает <code>A: ATG AT</code> и <code>G: GC GG</code> и <code>T: TAA</code>.</li></ol>
+                <ol class="hint-steps"><li>Подключите <code>defaultdict</code> и заведите <code>groups = defaultdict(list)</code>.</li><li>Для каждой последовательности выполните <code>groups[seq[0]].append(seq)</code>: для новой буквы пустой список появится сам.</li><li>Переберите пары методом <code>items()</code> и напечатайте каждую группу.</li><li>Сверьтесь с примером: для ввода <code>ATG GC AT TAA GG</code> программа печатает <code>A: ATG AT</code>, <code>G: GC GG</code>, <code>T: TAA</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_star_basic.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -433,7 +433,7 @@ T: TAA</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее среднего упражнения.</p></div>
             <article class="task task-star" id="ex-star-medium-task" data-level="star" data-variant="medium">
               <h3>Задача со звездочкой 6.6. Самая редкая буква</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите букву, которая встречается в последовательности реже всех остальных встреченных букв, и через пробел число ее вхождений. Если таких несколько, выведите ту, что встретилась раньше.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Выведите букву, которая встречается в последовательности реже всего, и через пробел число ее вхождений. Если таких несколько, выведите ту, что встретилась раньше.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Последовательность нуклеотидов: строка из букв A, C, G, T длиной от 1 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Буква и число через пробел.</p></div>
@@ -462,7 +462,7 @@ T: TAA</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Редкие буквы так же важны, как частые: необычно редкий нуклеотид бывает признаком ошибки прибора.</p>
+                <p>Иногда нужна не самая частая буква, а самая редкая.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
@@ -513,7 +513,7 @@ CAT</pre></td><td><pre>да</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Так проверяют, хватит ли нуклеотидов в смеси, чтобы собрать нужную короткую цепочку: из счетчика нужных букв вычитают счетчик имеющихся.</p>
+                <p>Задача о наборе букв: хватит ли их, чтобы составить слово. Из счетчика нужных букв вычитают счетчик имеющихся.</p>
                 <h4 class="definitions-title">Основные определения</h4>
                 <ul class="definitions-list">
                   <li><strong>Класс <code>Counter</code></strong> — словарь-счетчик из модуля <code>collections</code>: <code>Counter(seq)</code> считает элементы за один вызов.</li>
@@ -523,7 +523,7 @@ CAT</pre></td><td><pre>да</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Постройте счетчики набора и слова.</li><li>Недостающие буквы дает разность <code>Counter(word) - Counter(letters)</code>.</li><li>Пустой счетчик в условии ложен: если разность пустая, ответ <code>да</code>, иначе <code>нет</code> и пары «буква:число» по алфавиту.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code> и <code>GGT</code> программа печатает <code>нет</code> и <code>G:1</code>.</li></ol>
+                <ol class="hint-steps"><li>Постройте счетчики набора и слова.</li><li>Недостающие буквы дает разность <code>Counter(word) - Counter(letters)</code>.</li><li>Пустой счетчик в условии ложен: если разность пустая, ответ <code>да</code>, иначе <code>нет</code> и пары «буква:число» по алфавиту.</li><li>Сверьтесь с примером: для ввода <code>GATTACA</code>, <code>GGT</code> программа печатает <code>нет</code>, <code>G:1</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_06_star_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -539,7 +539,7 @@ CAT</pre></td><td><pre>да</pre></td></tr>
           <li>Загрузите папку <code>t6_06</code> в свой репозиторий внутрь папки <code>projects_6</code> и отправьте изменения до срока. Итоговая проверка добавляет закрытые тесты, которых нет на странице: программа должна правильно работать на любых допустимых входных данных, а не только на примерах.</li>
         </ol>
         <p class="submit-choose">Нажмите «Выбрать уровень» в верхней панели и выберите уровень, согласованный с преподавателем: здесь останутся только имена файлов вашего уровня и появится структура папок.</p>
-        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так:</p>
+        <p class="submit-tree-title">Итоговая структура папок должна выглядеть так (вместо <code>prokhorova_vp</code> имя вашей личной папки):</p>
 <pre class="tree" data-level="basic">prokhorova_vp/
 └── projects_6/
     └── t6_06/
