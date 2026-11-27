@@ -3421,8 +3421,635 @@
       "three",
       "four",
       "result"
+    ],
+    "t6_01_1_basic.py": [
+      "protein",
+      "field"
+    ],
+    "t6_01_1_medium.py": [
+      "counts",
+      "first",
+      "second"
+    ],
+    "t6_01_1_advanced.py": [
+      "minutes",
+      "name"
+    ],
+    "t6_01_2_basic.py": [
+      "counts",
+      "letter",
+      "number"
+    ],
+    "t6_01_2_medium.py": [
+      "counts",
+      "letter",
+      "number"
+    ],
+    "t6_01_2_advanced.py": [
+      "counts",
+      "letter",
+      "number",
+      "old_value"
+    ],
+    "t6_01_3_basic.py": [
+      "counts",
+      "letter"
+    ],
+    "t6_01_3_medium.py": [
+      "counts",
+      "first",
+      "second"
+    ],
+    "t6_01_3_advanced.py": [
+      "counts",
+      "letter"
+    ],
+    "t6_01_star_basic.py": [
+      "counts",
+      "first",
+      "second"
+    ],
+    "t6_01_star_medium.py": [
+      "counts",
+      "first",
+      "second"
+    ],
+    "t6_01_star_advanced.py": [
+      "counts",
+      "first",
+      "second",
+      "answer"
+    ],
+    "t6_02_1_basic.py": [
+      "size",
+      "lines",
+      "key"
+    ],
+    "t6_02_1_medium.py": [
+      "size",
+      "data",
+      "key",
+      "cells",
+      "cell"
+    ],
+    "t6_02_1_advanced.py": [
+      "size",
+      "keys",
+      "key",
+      "table",
+      "slot_of",
+      "collisions",
+      "slot",
+      "lines"
+    ],
+    "t6_02_star_basic.py": [
+      "size",
+      "keys",
+      "key",
+      "table",
+      "slot",
+      "cells",
+      "cell"
+    ],
+    "t6_02_star_medium.py": [
+      "size",
+      "keys",
+      "key",
+      "table",
+      "slot",
+      "lines",
+      "probes"
+    ],
+    "t6_02_star_advanced.py": [
+      "size",
+      "keys",
+      "key",
+      "table",
+      "slot",
+      "best_length",
+      "best_start",
+      "start",
+      "length"
+    ],
+    "t6_03_1_basic.py": [
+      "counts",
+      "seq",
+      "letter"
+    ],
+    "t6_03_1_medium.py": [
+      "counts",
+      "threshold",
+      "result",
+      "key",
+      "value"
+    ],
+    "t6_03_1_advanced.py": [
+      "counts",
+      "seq",
+      "total",
+      "letter"
+    ],
+    "t6_03_2_basic.py": [
+      "letters"
+    ],
+    "t6_03_2_medium.py": [
+      "counts",
+      "first",
+      "second",
+      "keys"
+    ],
+    "t6_03_2_advanced.py": [
+      "counts",
+      "first",
+      "second",
+      "keys",
+      "start",
+      "end",
+      "total",
+      "key"
+    ],
+    "t6_03_3_basic.py": [
+      "names",
+      "lengths",
+      "length",
+      "length_of",
+      "name"
+    ],
+    "t6_03_3_medium.py": [
+      "names",
+      "lengths",
+      "length",
+      "length_of",
+      "name"
+    ],
+    "t6_03_3_advanced.py": [
+      "names",
+      "length_of",
+      "name"
+    ],
+    "t6_03_star_basic.py": [
+      "counts",
+      "first",
+      "second",
+      "keys"
+    ],
+    "t6_03_star_medium.py": [
+      "names",
+      "lengths",
+      "length",
+      "length_of",
+      "name",
+      "total"
+    ],
+    "t6_03_star_advanced.py": [
+      "names",
+      "length_of",
+      "name",
+      "min_length",
+      "result"
+    ],
+    "t6_04_1_basic.py": [
+      "seq",
+      "letter",
+      "counts",
+      "base"
+    ],
+    "t6_04_1_medium.py": [
+      "seq",
+      "counts",
+      "base"
+    ],
+    "t6_04_1_advanced.py": [
+      "seq",
+      "counts",
+      "base",
+      "best"
+    ],
+    "t6_04_2_basic.py": [
+      "names",
+      "groups",
+      "name",
+      "length"
+    ],
+    "t6_04_2_medium.py": [
+      "names",
+      "groups",
+      "name",
+      "length"
+    ],
+    "t6_04_2_advanced.py": [
+      "names",
+      "lengths",
+      "value",
+      "length_of",
+      "by_len",
+      "name",
+      "best",
+      "length",
+      "result"
+    ],
+    "t6_04_3_basic.py": [
+      "ann",
+      "field",
+      "value"
+    ],
+    "t6_04_3_medium.py": [
+      "ann",
+      "field"
+    ],
+    "t6_04_3_advanced.py": [
+      "ann",
+      "field"
+    ],
+    "t6_04_star_basic.py": [
+      "seq",
+      "counts",
+      "base"
+    ],
+    "t6_04_star_medium.py": [
+      "names",
+      "groups",
+      "name",
+      "letter"
+    ],
+    "t6_04_star_advanced.py": [
+      "seq",
+      "counts",
+      "base",
+      "result"
+    ],
+    "t6_05_1_basic.py": [
+      "seq"
+    ],
+    "t6_05_1_medium.py": [
+      "letters"
+    ],
+    "t6_05_1_advanced.py": [
+      "seq",
+      "letters"
+    ],
+    "t6_05_2_basic.py": [
+      "first_set",
+      "value",
+      "second_set"
+    ],
+    "t6_05_2_medium.py": [
+      "first_set",
+      "value",
+      "second_set"
+    ],
+    "t6_05_2_advanced.py": [
+      "first_set",
+      "value",
+      "second_set",
+      "limit"
+    ],
+    "t6_05_3_basic.py": [
+      "seq"
+    ],
+    "t6_05_3_medium.py": [
+      "seq",
+      "extra"
+    ],
+    "t6_05_3_advanced.py": [
+      "letters"
+    ],
+    "t6_05_star_basic.py": [
+      "first_seq",
+      "second_seq"
+    ],
+    "t6_05_star_medium.py": [
+      "first_set",
+      "value",
+      "second_set"
+    ],
+    "t6_05_star_advanced.py": [
+      "first_set",
+      "value",
+      "limit"
+    ],
+    "t6_06_1_basic.py": [
+      "seq",
+      "counter",
+      "letter"
+    ],
+    "t6_06_1_medium.py": [
+      "counter",
+      "query",
+      "total",
+      "letter"
+    ],
+    "t6_06_1_advanced.py": [
+      "seq",
+      "counter",
+      "top",
+      "result",
+      "letter"
+    ],
+    "t6_06_2_basic.py": [
+      "first_counter",
+      "second_counter"
+    ],
+    "t6_06_2_medium.py": [
+      "first_counter",
+      "second_counter"
+    ],
+    "t6_06_2_advanced.py": [
+      "first_counter",
+      "second_counter"
+    ],
+    "t6_06_3_basic.py": [
+      "counts",
+      "seq",
+      "base",
+      "letter"
+    ],
+    "t6_06_3_medium.py": [
+      "groups",
+      "name",
+      "length"
+    ],
+    "t6_06_3_advanced.py": [
+      "groups",
+      "name",
+      "best",
+      "group"
+    ],
+    "t6_06_star_basic.py": [
+      "counter"
+    ],
+    "t6_06_star_medium.py": [
+      "first_counter",
+      "second_counter"
+    ],
+    "t6_06_star_advanced.py": [
+      "names",
+      "lengths",
+      "value",
+      "length_of",
+      "groups",
+      "name",
+      "result",
+      "length"
+    ],
+    "t6_07_1_basic.py": [
+      "counter",
+      "base"
+    ],
+    "t6_07_1_medium.py": [
+      "seq",
+      "counter",
+      "gc"
+    ],
+    "t6_07_1_advanced.py": [
+      "seq",
+      "counter"
+    ],
+    "t6_07_2_basic.py": [
+      "counter"
+    ],
+    "t6_07_2_medium.py": [
+      "counter"
+    ],
+    "t6_07_2_advanced.py": [
+      "counter",
+      "top",
+      "letter"
+    ],
+    "t6_07_3_basic.py": [
+      "text",
+      "kmer_length",
+      "counter",
+      "start"
+    ],
+    "t6_07_3_medium.py": [
+      "text",
+      "kmer_length",
+      "counter",
+      "start"
+    ],
+    "t6_07_3_advanced.py": [
+      "text",
+      "kmer_length",
+      "counter",
+      "start",
+      "top",
+      "kmer"
+    ],
+    "t6_07_star_basic.py": [
+      "seq",
+      "counter",
+      "profile",
+      "gc"
+    ],
+    "t6_07_star_medium.py": [
+      "text",
+      "kmer_length",
+      "counter",
+      "start"
+    ],
+    "t6_07_star_advanced.py": [
+      "text",
+      "kmer_length",
+      "counter",
+      "start",
+      "kmer"
+    ],
+    "t6_08_1_basic.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "codon"
+    ],
+    "t6_08_1_medium.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "codon"
+    ],
+    "t6_08_1_advanced.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "protein",
+      "codon"
+    ],
+    "t6_08_2_basic.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "protein",
+      "start"
+    ],
+    "t6_08_2_medium.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "protein",
+      "start",
+      "amino_acid"
+    ],
+    "t6_08_2_advanced.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "protein",
+      "start",
+      "amino_acid"
+    ],
+    "t6_08_3_basic.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "synonyms",
+      "codon",
+      "amino_acid"
+    ],
+    "t6_08_3_medium.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "synonyms",
+      "codon",
+      "amino_acid"
+    ],
+    "t6_08_3_advanced.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "pairs",
+      "start"
+    ],
+    "t6_08_star_basic.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "count",
+      "start"
+    ],
+    "t6_08_star_medium.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "count",
+      "start"
+    ],
+    "t6_08_star_advanced.py": [
+      "bases",
+      "codons",
+      "first",
+      "second",
+      "third",
+      "aas",
+      "code",
+      "rna",
+      "unknown",
+      "start"
+    ],
+    "t6_09_1_basic.py": [
+      "names"
+    ],
+    "t6_09_1_medium.py": [
+      "names"
+    ],
+    "t6_09_1_advanced.py": [
+      "names",
+      "tissues",
+      "tissue_of"
+    ],
+    "t6_09_2_basic.py": [
+      "first_set",
+      "second_set"
+    ],
+    "t6_09_2_medium.py": [
+      "first_set",
+      "second_set"
+    ],
+    "t6_09_2_advanced.py": [
+      "first_set",
+      "second_set"
+    ],
+    "t6_09_3_basic.py": [
+      "first_set",
+      "value",
+      "second_set"
+    ],
+    "t6_09_3_medium.py": [
+      "first_seq",
+      "second_seq",
+      "kmer_length",
+      "first_kmers",
+      "second_kmers",
+      "start"
+    ],
+    "t6_09_3_advanced.py": [
+      "first_set",
+      "second_set"
+    ],
+    "t6_09_star_basic.py": [
+      "counts",
+      "name"
+    ],
+    "t6_09_star_medium.py": [
+      "first_set",
+      "value",
+      "second_set"
+    ],
+    "t6_09_star_advanced.py": [
+      "first_set",
+      "value",
+      "second_set"
     ]
-
   };
 
 

@@ -350,7 +350,7 @@ window.PRACTICE_MANIFEST = {
      "level": "star",
      "section": "s3",
      "id": "ex-star-advanced-task",
-     "title": "Задача со звездочкой 6.3. Не короче k",
+     "title": "Задача со звездочкой 6.3. Не короче порога",
      "group": "ex-star",
      "variant": "advanced"
     }
@@ -560,7 +560,7 @@ window.PRACTICE_MANIFEST = {
      "level": "exercise",
      "section": "s2",
      "id": "ex-2-advanced-task",
-     "title": "Упражнение 6.5.2. Дополнение до n",
+     "title": "Упражнение 6.5.2. Дополнение до границы",
      "group": "ex-2",
      "variant": "advanced"
     },
@@ -1025,8 +1025,8 @@ window.PRACTICE_MANIFEST = {
    "href": "t6_09.html",
    "kind": "theory",
    "number": "09",
-   "name": "Наборы и Жаккар",
-   "title": "Наборы и Жаккар",
+   "name": "Мера Жаккара",
+   "title": "Мера Жаккара",
    "sections": [
     {
      "id": "s1",
@@ -1214,7 +1214,7 @@ window.PRACTICE_MANIFEST = {
    "href": "t6_09.html",
    "soon": false,
    "code": "09",
-   "name": "Наборы и Жаккар"
+   "name": "Мера Жаккара"
   }
  ],
  "graded": {
@@ -1715,7 +1715,7 @@ window.PRACTICE_MANIFEST = {
     "file": "t6_05_2_advanced.py",
     "page": "t6_05.html",
     "id": "ex-2-advanced-task",
-    "title": "Упражнение 6.5.2. Дополнение до n",
+    "title": "Упражнение 6.5.2. Дополнение до границы",
     "group": "ex-2",
     "variant": "advanced"
    },
@@ -2110,7 +2110,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_05_2_advanced.py",
    "page": "t6_05.html",
    "id": "ex-2-advanced-task",
-   "title": "Упражнение 6.5.2. Дополнение до n",
+   "title": "Упражнение 6.5.2. Дополнение до границы",
    "group": "ex-2",
    "variant": "advanced"
   },
@@ -2496,7 +2496,7 @@ window.PRACTICE_MANIFEST = {
    "file": "t6_03_star_advanced.py",
    "page": "t6_03.html",
    "id": "ex-star-advanced-task",
-   "title": "Задача со звездочкой 6.3. Не короче k",
+   "title": "Задача со звездочкой 6.3. Не короче порога",
    "group": "ex-star",
    "variant": "advanced"
   },

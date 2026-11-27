@@ -28,7 +28,7 @@
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
-        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Наборы и Жаккар</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Мера Жаккара</span></span></a></li>
       </ul>
       <p class="menu-head">Мой уровень</p>
       <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
@@ -165,7 +165,7 @@
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Запись в словаре разбита на поля. Имя поля служит ключом, а данные поля хранятся как значение.</p>
+                <p>Словарь хранит данные парами «ключ: значение». В записи о белке ключ — название поля, в расписании — название занятия. По ключу значение находится сразу, без перебора всех пар.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -209,7 +209,7 @@ T</pre></td><td><pre>16</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Запись в словаре разбита на поля. Имя поля служит ключом, а данные поля хранятся как значение.</p>
+                <p>Словарь хранит данные парами «ключ: значение». В записи о белке ключ — название поля, в расписании — название занятия. По ключу значение находится сразу, без перебора всех пар.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -252,7 +252,7 @@ T</pre></td><td><pre>16</pre></td></tr>
               </details>
               <details class="task-spoiler sp-bio">
                 <summary>Контекст</summary>
-                <p>Запись в словаре разбита на поля. Имя поля служит ключом, а данные поля хранятся как значение.</p>
+                <p>Словарь хранит данные парами «ключ: значение». В записи о белке ключ — название поля, в расписании — название занятия. По ключу значение находится сразу, без перебора всех пар.</p>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
@@ -429,7 +429,7 @@ T</pre></td><td><pre>16</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Нужно придумать, как применить изученное.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="advanced"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-advanced-task" data-level="exercise" data-variant="advanced">
               <h3>Упражнение 6.1.2. Прежнее значение</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Выведите прежнее значение этого ключа и новое значение после замены, каждое на своей строке.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts</code> хранятся количества нуклеотидов:</p><div class="code-block"><span class="code-label">counts.py</span><pre><code>counts <span class="tok-op">=</span> {<span class="tok-str">"A"</span>: <span class="tok-num">12</span>, <span class="tok-str">"T"</span>: <span class="tok-num">8</span>, <span class="tok-str">"G"</span>: <span class="tok-num">15</span>, <span class="tok-str">"C"</span>: <span class="tok-num">11</span>}</code></pre></div><p>Считайте название нуклеотида и число. Замените значение этого ключа прочитанным числом. Выведите прежнее значение ключа и новое значение после замены, каждое на своей строке.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки: название нуклеотида (<code>A</code>, <code>T</code>, <code>G</code> или <code>C</code>) и целое число от 0 до 1000.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Две строки: прежнее значение ключа и новое значение после замены.</p></div>
@@ -649,7 +649,7 @@ N</pre></td><td><pre>0</pre></td></tr>
                       <code class="we-seq"><span class="we-hl">26</span></code>
                     </div>
                   </div>
-                  <p class="we-note">На <code>A</code> приходится 12 из 46. Целая часть <code>12 * 100 / 46</code> равна 26.</p>
+                  <p class="we-note">На <code>A</code> приходится 12 из 46. Значение <code>12 * 100 // 46</code> равно 26.</p>
                 </div>
                 <div class="table-wrap"><table class="data tests"><caption>Примеры</caption><thead><tr><th>Ввод</th><th>Вывод</th></tr></thead><tbody>
                 <tr><td><pre>A</pre></td><td><pre>26</pre></td></tr>
@@ -662,7 +662,7 @@ N</pre></td><td><pre>0</pre></td></tr>
               </details>
               <details class="task-spoiler sp-hint">
                 <summary>Подсказка</summary>
-                <ol class="hint-steps"><li>Формула: значение · 100 // 46.</li></ol>
+                <ol class="hint-steps"><li>Формула: <code>значение * 100 // 46</code>.</li></ol>
               </details>
               <div class="checker" data-split data-file="t6_01_3_advanced.py"><p class="checker-fallback">Проверка на этой странице работает в браузере с JavaScript и доступом в интернет. Без них проверьте программу в редакторе сами: запустите ее, введите строки из левой колонки таблицы «Примеры» по одной, как они записаны, завершая каждую клавишей Enter, и сравните вывод с правой колонкой.</p></div>
             </article>
@@ -681,7 +681,7 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Сложнее базового упражнения.</p></div>
             <article class="task task-star" id="ex-star-basic-task" data-level="star" data-variant="basic">
               <h3>Задача со звездочкой 6.1. Сумма с пропусками</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>d = {"A": 5, "T": 7, "G": 3}</code>. Считайте названия двух нуклеотидов и выведите сумму их значений, взятых методом <code>get()</code>; отсутствующий ключ считается нулем.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>В словаре <code>counts = {"A": 5, "T": 7, "G": 3}</code>. Считайте названия двух нуклеотидов и выведите сумму их значений, взятых методом <code>get()</code>; отсутствующий ключ считается нулем.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Две строки, в каждой название нуклеотида.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Сумма значений; отсутствующие ключи дают ноль.</p></div>

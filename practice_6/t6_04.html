@@ -28,7 +28,7 @@
         <li class="menu-sub"><a href="t6_06.html"><span class="menu-title"><span class="menu-code">06</span><span class="menu-name"><code>Counter</code> и <code>defaultdict</code></span></span></a></li>
         <li class="menu-sub"><a href="t6_07.html"><span class="menu-title"><span class="menu-code">07</span><span class="menu-name">Частоты и k-меры</span></span></a></li>
         <li class="menu-sub"><a href="t6_08.html"><span class="menu-title"><span class="menu-code">08</span><span class="menu-name">Кодоны и трансляция</span></span></a></li>
-        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Наборы и Жаккар</span></span></a></li>
+        <li class="menu-sub"><a href="t6_09.html"><span class="menu-title"><span class="menu-code">09</span><span class="menu-name">Мера Жаккара</span></span></a></li>
       </ul>
       <p class="menu-head">Мой уровень</p>
       <ul class="menu menu-levels"><li data-level="basic"><span class="lvl-row"><span class="lvl-tag lvl-basic">Базовый</span><span class="lvl-count" data-level="basic">0 / 25</span></span></li><li data-level="medium"><span class="lvl-row"><span class="lvl-tag lvl-medium">Средний</span><span class="lvl-count" data-level="medium">0 / 25</span></span></li><li data-level="advanced"><span class="lvl-row"><span class="lvl-tag lvl-advanced">Продвинутый</span><span class="lvl-count" data-level="advanced">0 / 25</span></span></li><li class="lvl-none"><span class="lvl-row">Не выбран: нажмите «Выбрать уровень» в верхней панели</span></li></ul>
@@ -293,7 +293,7 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Повторить разобранное в примере.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="basic"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-basic-task" data-level="exercise" data-variant="basic">
               <h3>Упражнение 6.4.2. Число групп</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте идентификаторы по числу символов в словарь списков, перебирая названия циклом <code>for</code>, и выведите число групп.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте названия по числу символов в словарь списков, перебирая названия циклом <code>for</code>, и выведите число групп.</p></div>
               <div class="task-io">
                 <div class="io-col"><h4>Входные данные</h4><p>Одна строка из 1–20 названий через пробел; в названии только буквы и цифры, без пробелов.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Число групп по длине.</p></div>
@@ -335,9 +335,9 @@ N</pre></td><td><pre>0</pre></td></tr>
             <div class="panel-head"><p class="panel-note">Применить самостоятельно.</p><div class="mine-controls"><button class="mine-btn" type="button" data-track="medium"><span class="mine-off">Сделать моим уровнем</span><span class="mine-on">Мой уровень</span></button><button class="mine-reset" type="button">Сбросить выбор</button></div></div>
             <article class="task task-exercise" id="ex-2-medium-task" data-level="exercise" data-variant="medium">
               <h3>Упражнение 6.4.2. Группа по запросу</h3>
-              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте идентификаторы по числу символов в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Считайте число <code>k</code> и выведите названия длиной <code>k</code> символов в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
+              <div class="todo-box"><p class="todo-title">Условие задачи</p><p>Считайте строку из названий образцов через пробел. Сгруппируйте названия по числу символов в словарь списков методом <code>setdefault()</code>, перебирая названия циклом <code>for</code>. Считайте число <code>length</code> и выведите названия длиной <code>length</code> символов в алфавитном порядке через пробел; если группы нет, выведите пустую строку.</p></div>
               <div class="task-io">
-                <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и целое число <code>k</code> от 1 до 100.</p></div>
+                <div class="io-col"><h4>Входные данные</h4><p>Две строки: 1–20 названий через пробел (в названии только буквы и цифры, без пробелов) и целое число <code>length</code> от 1 до 100.</p></div>
                 <div class="io-col"><h4>Выходные данные</h4><p>Названия через пробел или пустая строка.</p></div>
               </div>
               <details class="task-spoiler sp-example">
