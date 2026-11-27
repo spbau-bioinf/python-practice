@@ -2241,6 +2241,34 @@ html .lvl-dot { margin-right: 0.45rem; vertical-align: -1px; }
   [data-profile="game"] .topbar { flex-wrap: wrap; row-gap: 0.4rem; }
   [data-profile="game"] .tb-game { order: 10; flex: 1 1 100%; min-width: 0; overflow-x: auto; display: flex; gap: 0.4rem; }
 }
+/* ---------- Версия 124: список практик в боковом меню на узком экране; длинный код в тексте переносится ----------
+   До 900 px панель с «Практика N ▾» скрыта, поэтому в меню «Содержание» под ссылкой «← Все практики курса» стоит
+   строка «Практика N · название ▾»: она раскрывает тот же список, что на компьютере (theme.js, practiceSwitch). */
+.side-practice { display: none; }
+@media (max-width: 900px) {
+  .side-practice { display: block; margin: 0 0 0.9rem; }
+  .side-practice-btn { width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+    padding: 0.6rem 0.8rem; min-height: 44px; text-align: left; font: inherit; color: var(--c-text); background: var(--c-surface);
+    border: 1px solid var(--c-control-border); border-radius: var(--radius-sm); cursor: pointer; }
+  .side-practice-btn:hover { border-color: var(--c-accent-muted); }
+  .side-practice-btn:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 2px; }
+  .side-practice-btn[aria-expanded="true"] { border-color: var(--c-accent); background: var(--c-accent-light); }
+  .side-practice-btn[aria-expanded="true"] .tb-caret { transform: rotate(180deg); }
+  .side-practice-text { display: flex; flex-direction: column; min-width: 0; }
+  .side-practice-k { font: 700 0.66rem var(--font-ui); text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-accent); }
+  .side-practice-n { font-weight: 700; font-size: 0.95rem; }
+  .side-practice-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; padding: 0.45rem; box-sizing: border-box;
+    background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-md); }
+  .side-practice-list[hidden] { display: none; }
+  .side-practice-list .tb-practice-item { padding: 0.62rem 0.7rem; min-height: 44px; }
+  .side-practice-list .tb-practice-name { font-size: 0.9rem; }
+  .side-practice-list .tb-practice-sub { font-size: 0.72rem; }
+  .side-practice-list .tb-practice-count { font-size: 0.8rem; }
+}
+/* код и формула внутри строки текста и выражение в блок-схеме на телефоне переносятся (на компьютере остаются цельными): иначе длинное выражение шире экрана */
+@media (max-width: 600px) { :not(pre) > code, .formula { white-space: normal; overflow-wrap: anywhere; } .flow-expr { white-space: normal; overflow-wrap: anywhere; min-width: 0; } }
+/* длинное слово в заголовке («последовательностей») на экране 320 px переносится с дефисом, а не раздвигает страницу */
+@media (max-width: 600px) { .content h1, .content h2, .content h3, .content h4 { overflow-wrap: break-word; hyphens: auto; } }
 /* кнопки под палец на сенсорных экранах; подсказки при наведении там «залипают» после касания */
 @media (pointer: coarse) {
   .topbar .tb-icon, .tb-level, .tb-pop .tb-icon { width: 44px; height: 44px; }

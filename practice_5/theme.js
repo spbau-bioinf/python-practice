@@ -1120,14 +1120,8 @@
     if (cur && window.PRACTICE_MANIFEST) practiceManifests[cur] = window.PRACTICE_MANIFEST;
     loadPracticeManifests(refreshPracticeCounts);
   }
-  function practiceBrand() {
-    var title = document.querySelector(".sidebar-title");
-    var text = title ? title.textContent.replace(/\s+/g, " ").trim() : "Python";
-    var path = window.location.pathname;
-    var n = (/practice_(\d+)/.exec(path) || [])[1] || (/Практика\s+(\d+)/.exec(text) || [])[1];
-    var wrap = el("div", "tb-brand tb-brand-nav");
-    if (!n) { wrap.textContent = text; return wrap; }
-    if (window.PRACTICE_MANIFEST) practiceManifests[String(n)] = window.PRACTICE_MANIFEST;
+  /* версия 124: строки списка практик строятся одним местом — для окна в панели и для бокового меню на телефоне */
+  function practiceItemsHtml(n) {
     var items = "";
     practiceList(n).forEach(function (p) {
       var k = p.no, cur = String(k) === String(n), name = practiceEsc(p.name);
@@ -1141,6 +1135,39 @@
         name + '</span><small class="tb-practice-sub">Практика ' + k + (cur ? " · текущая" : "") +
         '</small></span><span class="tb-practice-count" aria-hidden="true"></span></a>';
     });
+    return items;
+  }
+  /* версия 124: на узком экране (до 900 px) панель скрыта, поэтому практику меняют в боковом меню «Содержание»:
+     строка «Практика N ▾» раскрывает тот же список, что на компьютере (названия, счетчики, неактивные пункты) */
+  function practiceSwitch(side) {
+    var n = currentPracticeNo();
+    if (!side || !n || side.querySelector(".side-practice")) return;
+    var cur = null;
+    practiceList(n).forEach(function (p) { if (String(p.no) === String(n)) cur = p; });
+    var box = el("div", "side-practice");
+    box.innerHTML = '<button class="side-practice-btn" type="button" aria-expanded="false" aria-controls="side-practice-list">' +
+      '<span class="side-practice-text"><span class="side-practice-k">Практика ' + n + '</span>' +
+      '<span class="side-practice-n">' + practiceEsc(cur ? cur.name : "") + '</span></span>' +
+      '<span class="tb-caret" aria-hidden="true">▾</span></button>' +
+      '<div class="side-practice-list" id="side-practice-list" hidden>' + practiceItemsHtml(n) + '</div>';
+    var btn = box.firstChild, list = box.lastChild;
+    btn.addEventListener("click", function () {
+      list.hidden = !list.hidden;
+      btn.setAttribute("aria-expanded", String(!list.hidden));
+      if (!list.hidden) ensurePracticeCounts();
+    });
+    var home = side.querySelector(".side-home");
+    side.insertBefore(box, home ? home.nextSibling : side.firstChild);
+  }
+  function practiceBrand() {
+    var title = document.querySelector(".sidebar-title");
+    var text = title ? title.textContent.replace(/\s+/g, " ").trim() : "Python";
+    var path = window.location.pathname;
+    var n = (/practice_(\d+)/.exec(path) || [])[1] || (/Практика\s+(\d+)/.exec(text) || [])[1];
+    var wrap = el("div", "tb-brand tb-brand-nav");
+    if (!n) { wrap.textContent = text; return wrap; }
+    if (window.PRACTICE_MANIFEST) practiceManifests[String(n)] = window.PRACTICE_MANIFEST;
+    var items = practiceItemsHtml(n);
     wrap.innerHTML = '<span class="tb-brand-name">Python ·</span>' +
       '<button class="tb-practice-trigger" type="button" aria-haspopup="true" aria-expanded="false">Практика ' + n +
       ' <span class="tb-caret" aria-hidden="true">▾</span></button>' +
@@ -1206,6 +1233,7 @@
       sh.href = home;
       side.insertBefore(sh, side.firstChild);
     }
+    practiceSwitch(side);
     if (home) {
       /* версия 40: круглая кнопка с домиком; левый край на одной линии с активным пунктом меню */
       var hl = el("a", "tb-icon tip tip-left tb-home");
