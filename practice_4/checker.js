@@ -3848,6 +3848,18 @@
     });
   }
 
+  /* версия 122: код в тексте (не в окнах кода, ссылках, заголовках, меню и блоке проверки) подсвечивается теми же токенами, что и окна кода.
+     Копирование по нажатию остается только в «Практике» (setupInlineCopy); обработанный элемент помечен data-hl */
+  var INLINE_HL_SKIP = "pre, a, kbd, h1, h2, h3, h4, h5, h6, summary, button, label, th, caption, .code-block, .output-block, .checker, " +
+    ".checker-fallback, .copy-name, .we-seq, .menu, .sidebar, .topbar, .tch, .st-code, .anim-code";
+  function highlightTextCode() {
+    Array.prototype.forEach.call(document.querySelectorAll("main code"), function (c) {
+      if (c.getAttribute("data-hl") || c.closest(INLINE_HL_SKIP)) return;
+      highlightInlineCode(c);
+      c.setAttribute("data-hl", "1");
+    });
+  }
+
   function setupInlineCopy() {
     Array.prototype.forEach.call(document.querySelectorAll(".try-block :not(pre):not(a) > code"), function (c) {
       var text = c.textContent.trim();
@@ -3879,6 +3891,7 @@
     highlightUserInputKeys();
     setupFileCopies();
     setupInlineCopy();
+    highlightTextCode();
     initProgress();
     setupAnchors();
     Array.prototype.forEach.call(document.querySelectorAll(".mistake"), setupMistakeDiff);

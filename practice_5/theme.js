@@ -1046,7 +1046,30 @@
   }
 
   var PRACTICE_NAMES = {1: "Введение в Python", 2: "Строки и текстовые данные", 3: "Логика и ветвления",
-    4: "Циклы", 5: "Списки и кортежи"};
+    4: "Циклы", 5: "Списки и кортежи", 6: "Словари и множества"};
+  /* версия 122: число пунктов списка равно числу названий выше; новую практику добавляют сюда одной строкой */
+  var PRACTICE_COUNT = Object.keys(PRACTICE_NAMES).length;
+  /* версия 123: состав списка практик берется из расписания сайта (site-config.js):
+     открытые практики — ссылки, «Скоро» и еще не наступившие по дате — неактивные пункты, скрытые не показываются.
+     Практика из PRACTICE_NAMES без записи в расписании считается открытой, как раньше. */
+  function practiceEsc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; });
+  }
+  function practiceList(current) {
+    var site = window.SITE_CONFIG, cfg = site && site.practices, keys = {}, k;
+    for (k = 1; k <= PRACTICE_COUNT; k++) keys[k] = 1;
+    if (cfg) for (k in cfg) if (/^\d+$/.test(k)) keys[k] = 1;
+    var out = [];
+    Object.keys(keys).map(Number).sort(function (a, b) { return a - b; }).forEach(function (no) {
+      var c = cfg && cfg[no], st = c ? c.state : "open", at = c ? openAt(c.from) : null, note = "";
+      var live = st === "open" || (st === "scheduled" && ((at && new Date() >= at) || (site && site.preview)));
+      if (String(no) === String(current)) live = true;
+      else if (st === "hidden") return;
+      if (!live) note = st === "scheduled" && at ? "откроется " + ruDate(c.from) : "скоро";
+      out.push({no: no, name: PRACTICE_NAMES[no] || (c && c.title) || "Практика " + no, live: live, note: note});
+    });
+    return out;
+  }
   /* Версия 102: у каждой строки списка практик справа счетчик «решено / всего».
      Манифесты соседних практик читаются один раз при первом открытии списка —
      тем же способом, что и на главной странице (index.html). */
@@ -1058,7 +1081,7 @@
   function loadPracticeManifests(done) {
     if (practiceManifestsLoading) return;
     var todo = [], k;
-    for (k = 1; k <= 5; k++) if (!practiceManifests[k]) todo.push(k);
+    practiceList(currentPracticeNo()).forEach(function (p) { if (p.live && !practiceManifests[p.no]) todo.push(p.no); });
     if (!todo.length) { if (done) done(); return; }
     var keep = window.PRACTICE_MANIFEST;
     var cur = currentPracticeNo();
@@ -1106,24 +1129,40 @@
     if (!n) { wrap.textContent = text; return wrap; }
     if (window.PRACTICE_MANIFEST) practiceManifests[String(n)] = window.PRACTICE_MANIFEST;
     var items = "";
-    for (var k = 1; k <= 5; k++) {
-      items += '<a class="tb-practice-item' + (String(k) === String(n) ? " is-current" : "") + '" data-practice="' + k + '" href="../practice_' + k + '/t' + k + '_00.html"' +
-        (String(k) === String(n) ? ' aria-current="page"' : '') + '><span class="tb-practice-text"><span class="tb-practice-name">' +
-        PRACTICE_NAMES[k] + '</span><small class="tb-practice-sub">Практика ' + k + (String(k) === String(n) ? " · текущая" : "") +
+    practiceList(n).forEach(function (p) {
+      var k = p.no, cur = String(k) === String(n), name = practiceEsc(p.name);
+      if (!p.live) {
+        items += '<div class="tb-practice-item is-soon" aria-disabled="true" title="Практика пока закрыта"><span class="tb-practice-text"><span class="tb-practice-name">' +
+          name + '</span><small class="tb-practice-sub">Практика ' + k + ' · ' + practiceEsc(p.note) + '</small></span><span class="tb-practice-count" aria-hidden="true"></span></div>';
+        return;
+      }
+      items += '<a class="tb-practice-item' + (cur ? " is-current" : "") + '" data-practice="' + k + '" href="../practice_' + k + '/t' + k + '_00.html"' +
+        (cur ? ' aria-current="page"' : '') + '><span class="tb-practice-text"><span class="tb-practice-name">' +
+        name + '</span><small class="tb-practice-sub">Практика ' + k + (cur ? " · текущая" : "") +
         '</small></span><span class="tb-practice-count" aria-hidden="true"></span></a>';
-    }
+    });
     wrap.innerHTML = '<span class="tb-brand-name">Python ·</span>' +
       '<button class="tb-practice-trigger" type="button" aria-haspopup="true" aria-expanded="false">Практика ' + n +
       ' <span class="tb-caret" aria-hidden="true">▾</span></button>' +
       '<div class="tb-practice-pop" hidden><p class="tb-practice-pop-title">Перейти к практике</p>' + items + '</div>';
     var trigger = wrap.querySelector(".tb-practice-trigger"), pop = wrap.querySelector(".tb-practice-pop");
     function close() { pop.hidden = true; trigger.setAttribute("aria-expanded", "false"); }
+    /* версия 123: окно занимает все боковое меню — от нижнего края панели до низа экрана, по его ширине */
+    function place() {
+      var side = document.querySelector(".sidebar"), bar = document.querySelector(".topbar");
+      if (!side || !bar) return;
+      var r = side.getBoundingClientRect(), b = bar.getBoundingClientRect();
+      pop.style.setProperty("--pop-left", Math.max(0, Math.round(r.left)) + "px");
+      pop.style.setProperty("--pop-top", Math.max(0, Math.round(b.bottom)) + "px");
+      pop.style.setProperty("--pop-w", Math.round(r.width) + "px");
+    }
     trigger.addEventListener("click", function (e) {
       e.stopPropagation();
       pop.hidden = !pop.hidden;
       trigger.setAttribute("aria-expanded", String(!pop.hidden));
-      if (!pop.hidden) ensurePracticeCounts();
+      if (!pop.hidden) { place(); ensurePracticeCounts(); }
     });
+    window.addEventListener("resize", function () { if (!pop.hidden) place(); });
     document.addEventListener("click", function (e) { if (!pop.hidden && !wrap.contains(e.target)) close(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
     return wrap;
